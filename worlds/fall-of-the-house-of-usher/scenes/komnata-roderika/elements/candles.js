@@ -1,7 +1,7 @@
 // The candles on the table: a three-branch candlestick (the anchor) and two tall candles beside it (lib.js CANDLES) — the
 // room's only warm light. Painted once: the iron, the wax, and every flame at its fullest (layer "flames"); how lit each
 // is (`candles` 0…1.6: dimmed toward 0.3 the side ones go out and the middle one shrinks, past 1 the tall ones are
-// lit), how it flickers, sways and jumps with the guitar (`strum`, `wild`) is its shader's (candles.glsl, uniforms from
+// lit), how it flickers, sways and jumps with the guitar (`strum`, `wild`) is its shader's (candles.wgsl, uniforms from
 // animate) — and each flame's light (c0…c4: the scene's lights take them over) its animate's.
 const CANDLES = e.lib.CANDLES;
 g.fillStyle = "#2a3034";

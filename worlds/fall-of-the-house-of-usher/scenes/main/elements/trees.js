@@ -41,6 +41,6 @@ function tree(name, x, scale, seed, lean, len, w, bias, col) {
   });
 }
 tree("left", -10, 1.09, 0, 0.06, 2.5, 0.42, 0.05, "#262c30");
-tree("right", 9.2, 0.92, 777, -0.08, 2.8, 0.48, -0.05, "#272d31");
-// where the trees are pressed (a game offering them): the left one, where its trunk forks
-e.at(-10.28, -2.41);
+tree("right", 6.4, 0.92, 777, -0.08, 2.8, 0.48, -0.05, "#272d31");
+// where the trees are pressed (a game offering them): the right one, low on its trunk — within the middle 4:3
+e.at(6.35, -1.6);

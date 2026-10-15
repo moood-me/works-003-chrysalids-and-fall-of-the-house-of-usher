@@ -22,10 +22,9 @@ scene.on('change', 'with_roderick', who);
 // The run (running): `run` says where along the causeway he is making for (0 — 60 m before the house, 1 — the shore);
 // he runs there at his own pace (the cast's flee), never faster — a game moving `run` faster than he runs has him a
 // little behind it, catching up. `run` at where he is (or behind him) stops him: running, he runs out a stride and
-// stands. The others go from where he is; the camera backs before him over the time he takes to get where he is sent
-// (at the flee's pace, PACE); `run_at` — where he is now, in `run`'s units (for the game).
+// stands. The others go from where he is; the camera backs before him over the time his run there takes (known once
+// it has begun); `run_at` — where he is now, in `run`'s units (for the game).
 const RUN_OUT = 0.6; // m: a runner told to stop comes to a stand this far on
-const PACE = 4.5; // m/s: the cast's flee on the causeway
 let aim = null, going = null;
 function chase() {
   if (!scene.get('running')) { aim = null; return; }
@@ -36,9 +35,9 @@ function chase() {
   if (here - d > 0.05) to = d;
   else if (going && !going.done) to = here - RUN_OUT;
   if (to == null) return;
-  going = P('narrator').walk([[L.across(to) + 0.05, to]], { gait: 'flee' });
-  const cam = L.camOf(to), over = Math.max(0.3, (here - to) / PACE);
-  for (const key in cam) scene.move(key, cam[key], { over, ease: 'linear' });
+  const run = going = P('narrator').walk([[L.across(to) + 0.05, to]], { gait: 'flee' });
+  const cam = L.camOf(to);
+  scene.after(0.05, () => { if (run === going) for (const key in cam) scene.move(key, cam[key], { over: Math.max(0.3, run.remaining ?? 0.3), ease: 'linear' }); });
 }
 scene.on('change', 'run', chase);
 scene.on('change', 'running', chase);

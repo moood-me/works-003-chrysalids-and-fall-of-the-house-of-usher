@@ -1,5 +1,5 @@
 // how lit each candle is now (lib.js litOf, sinking with the song), the guitar's jump and wildness — for the shader; and
-// each flame's light, flickering with it (the same flicker as candles.glsl)
+// each flame's light, flickering with it (the same flicker as candles.wgsl)
 const lib = e.lib, S = e.state;
 const L = lib.light(S);
 const lit = lib.litOf(L.candles);

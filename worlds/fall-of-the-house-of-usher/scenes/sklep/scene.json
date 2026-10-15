@@ -37,6 +37,15 @@
       "reach": 6,
       "flicker": 0.3,
       "on": "torch"
+    },
+    {
+      "id": "fill",
+      "across": 0,
+      "distance": 0.4,
+      "elevation": 1.8,
+      "color": "#b8c8d4",
+      "strength": 0.7,
+      "reach": 9
     }
   ],
   "modules": [

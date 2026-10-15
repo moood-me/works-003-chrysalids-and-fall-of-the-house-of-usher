@@ -90,9 +90,8 @@ const polyline = (g, pts) => { g.beginPath(); g.moveTo(pts[0][0], pts[0][1]); fo
 const crackOf = (CR) => ({ k: 0.45 + 0.55 * CR, w: 0.026 + 0.05 * CR, branches: clamp((CR - 0.35) / 0.65, 0, 1) });
 
 // ── the back wall: stone, the lancet window's deep reveal and the door's surround, both cut through (what is beyond
-// shows: the sky, the corridor; the casements and the door's leaf are their own), and the crack ──
+// shows: the sky, the corridor; the casements and the door's leaf are their own; the crack too) ──
 function wall(g, e) {
-  const CR = N(e.state.crack);
   const W = new Path2D();
   W.rect(-8, -6.6, 16, 6.7);
   arch(W, WX, 0.6, -0.95, -3.35, -4.3);
@@ -162,7 +161,12 @@ function wall(g, e) {
   g.fill(S2);
   g.fillStyle = '#727b82';
   g.fillRect(-0.86, -0.05, 1.72, 0.05);
-  // the crack: as long as `crack` says, its branches past 0.35
+  g.restore();
+}
+// ── the crack in the wall (a card just before it): painted once at CRACKS depths — each a layer — its animate showing
+// the one `crack` comes to (two, crossing over, between them): nothing painted again as it runs ──
+const CRACKS = [0, 0.25, 0.5, 0.75, 1];
+function crackPaint(g, CR) {
   const C = crackOf(CR), { pts, vis } = crackLine(C.k);
   const main = strip(pts, (u) => C.w * (1 - 0.8 * u) * (0.7 + 0.3 * Math.sin(u * 31)));
   g.save();
@@ -177,7 +181,13 @@ function wall(g, e) {
     for (const [c0, bp] of CRACK.brs) if (c0 <= vis) g.fill(strip(bp, (u) => C.w * 0.45 * (1 - u)));
     g.globalAlpha = 1;
   }
-  g.restore();
+}
+function crack(g, e) {
+  CRACKS.forEach((CR, i) => e.layer(`c${i}`, {}, (g) => crackPaint(g, CR)));
+}
+function crackMotion(e) {
+  const at = N(e.state.crack) * (CRACKS.length - 1);
+  CRACKS.forEach((_, i) => { e.layer(`c${i}`).alpha = clamp(1 - Math.abs(at - i), 0, 1); });
 }
 
 // ── what glows in the crack (a glowing card just before the wall): the mist's cold light seeping through it (`seep`:
@@ -1301,6 +1311,6 @@ function film(scene) {
 
 return {
   film, SHOWCASE, N, WX, DH, DT, CANDLE, SPOT, LAMP_DOWN, PUT_AT, DOOR, CASE,
-  wall, fissure, fissureMotion, door, corridor, doorGap, doorGapMotion, feet, feetMotion, windowFrame, casement, curtain,
+  wall, crack, crackMotion, fissure, fissureMotion, door, corridor, doorGap, doorGapMotion, feet, feetMotion, windowFrame, casement, curtain,
   curtainMotion, floor, table, tableTop, candle, flame, flameMotion, seat, chair, book, bookMotion, sky, skyMotion, clear, rippleMotion, closeup, closeupNow,
 };

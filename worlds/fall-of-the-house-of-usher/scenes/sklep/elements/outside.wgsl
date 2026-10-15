@@ -27,7 +27,7 @@ fn dust(p: vec2f, a: f32, n: f32, seed: f32, pxl: f32) -> vec4f {
 fn shade(painted: vec4f, at: vec2f, uv: vec2f) -> vec4f {
   let pxl = max(length(abs(at_dx) + abs(at_dy)), 1e-5);
   let p = at - MID;
-  let b = 1.3 * pow(max(u_fl, 0.0) / FL, 1.5);
+  let b = 2.1 * pow(max(u_fl, 0.0) / FL, 1.5);
   var c = painted;
   let room = layer(1, at);
   c = over(vec4f(room.rgb * b, room.a), c);
@@ -44,5 +44,5 @@ fn shade(painted: vec4f, at: vec2f, uv: vec2f) -> vec4f {
   c = over(dust(p, u_an, 26.0, 50.0, pxl), c);
   // the dark all round, closing in on the candle
   let v = clamp((length(p - (CANDLE + vec2f(0.3, -0.1))) - 0.2) / 1.05, 0.0, 1.0);
-  return c * (1.0 - 0.85 * v);
+  return c * (1.0 - 0.7 * v);
 }

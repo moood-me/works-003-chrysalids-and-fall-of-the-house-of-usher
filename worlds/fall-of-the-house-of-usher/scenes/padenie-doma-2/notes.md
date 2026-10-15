@@ -80,7 +80,7 @@ showcase.js — показ), всё рисование и куски — lib.js 
 
 Ключи: `fall`, `moon`, `storm`, `morning`, `ghosts`, `narrator_here`, `with_madeline`, `with_roderick`, `run`, `run_at`,
 `running`, `trip`, `hand_in_hand`, `swim`, места людей, `brk_a`/`brk_d`, `breaking`, `house_dust`, `stones`, `spray`,
-`rings` (сцены). Элементы для выбора: `narrator`, `madeline`, `roderick`, `house`, `causeway`.
+`rings` (сцены). Выборов в сцене нет; точка игры — `narrator` («Бег»).
 
 ## Мини-игра «Бег» (игра: bespoke/minigames/beg.js)
 
@@ -101,6 +101,9 @@ showcase.js — показ), всё рисование и куски — lib.js 
 - Моменты: `prologue:split` (дом раскалывается — грохот игры), `end_alone:under`, `end_stayed:under` (пруд сомкнулся),
   `end_madeline:water`, `end_roderick:behind`, `end_both:hands`, `gone:morning`.
 - Точка игры: `narrator` (знак доли бега — «Бег»).
+- Шаг 2: `house` и `house_mirror` видны — движок 3 не вырезал по невидимым элементам `clip` (`above_tarn`,
+  `below_tarn`); починено в движке (FLAG.CUT_ONLY). Заполняющий свет `fill` из-за глаза, красноватый (утром слабее):
+  луна и отсвет — у людей за спиной. Камера бега едет туда, куда послан бегущий, за его время (`run.remaining`).
 
 ## Контракт для проверки
 

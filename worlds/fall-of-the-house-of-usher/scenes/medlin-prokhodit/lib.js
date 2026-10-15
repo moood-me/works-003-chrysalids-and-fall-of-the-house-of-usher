@@ -394,7 +394,6 @@ function sconceLive(e) {
 // (Madeline is painted turned to him, −0.1, and turns toward the window as far as `to` says: 1 at cu_turn 1.)
 const MAD_TURN = -0.1;
 function closeup(S) {
-  if (!S.closeup) return null;
   const SHOTS = {
     // his face in his long fingers, tears running through them
     roderick: { light: "window", faces: [{ who: "roderick", grief: 1, hands: "face", tear: 1 }] },

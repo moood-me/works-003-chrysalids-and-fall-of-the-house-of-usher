@@ -3,7 +3,7 @@
 // candle's light as it burns steadily (FL): the dark (the base); the passage — its stones lit near the candle, the
 // crack, the floor and the candle's pool, the door's deep frame, the candle in its dish (layer room); the door's leaf
 // of iron plates and its bands, the keyhole — the key is gone (layer leaf, which the knocks shake); the candle's flame
-// (layer flame). What moves is its shader's (outside.glsl) and its animate's: the flame's flicker and the light with it,
+// (layer flame). What moves is its shader's (outside.wgsl) and its animate's: the flame's flicker and the light with it,
 // the knocks (`knock` from this side, `answer` from the other — pulses 1 → 0): the door trembling, dust shaken from its
 // top falling, the flame dipping
 var L = e.lib, A = e.anim, X = L.CARD[0], M = L.CARD[1], C = L.CANDLE, cx = C[0], cy = C[1], FL = L.FL;
@@ -11,7 +11,7 @@ g.translate(X, M);
 L.cardDark(g, "#030405");
 // its points: the door's leaf (where it is knocked on) and the passage beside it, the way up (where one goes from it)
 e.at(0.03, -0.05, "door");
-e.at(0.62, 0.0, "away");
+e.at(0.5, 0.0, "away");
 // the candle's glow (its animate: as it flickers and dips)
 e.light(cx, cy + 0.01, 0.6, "#ffb870", 0.7 * FL);
 e.layer("room", { box: [X - 1.42, M - 0.72, X + 1.42, M + 0.72] }, function (g) {

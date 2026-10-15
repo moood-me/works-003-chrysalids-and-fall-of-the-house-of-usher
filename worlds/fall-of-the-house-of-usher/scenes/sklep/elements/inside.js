@@ -2,7 +2,7 @@
 // edge a hairline of torchlight. Painted once, in stage heights (about lib.CARD, the frame's middle: y −0.5…0.5 about
 // it): the dark and the lid's rough underside as the hairline shows it (the base); the hairline itself (layer seam); the
 // four screws' points as they are when through (layer points); the wood split round each (layer splinters). What moves
-// is its shader's (inside.glsl) and its animate's: the flame's tremble and how much of it is left (`seam`), the two
+// is its shader's (inside.wgsl) and its animate's: the flame's tremble and how much of it is left (`seam`), the two
 // men's shapes passing over it (`shade`), the points coming through one after another (`tip`), grit falling
 var L = e.lib, A = e.anim, Y = L.SEAM, X = L.CARD[0], M = L.CARD[1];
 g.translate(X, M);

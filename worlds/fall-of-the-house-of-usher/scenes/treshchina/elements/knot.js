@@ -1,6 +1,6 @@
 // the end of the crack: a hole in the stone with an ember deep in it, glowing red on the stone round it — the player
 // picks it to go on. Painted once a map, where the crack ends (lib.js layout); its breath and its coming as the crack
-// reaches it are its shader's (knot.glsl): the glow's heart (layer 1) and rim (2), the ember (3), shining.
+// reaches it are its shader's (knot.wgsl): the glow's heart (layer 1) and rim (2), the ember (3), shining.
 var st = e.state;
 var lib = e.lib;
 var L = lib.layout(e.aspect, { map: st.map, chapter_number: st.chapter_number, chapter_title: st.chapter_title }, function (s, size, italic) {

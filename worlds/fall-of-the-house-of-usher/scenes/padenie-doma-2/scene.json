@@ -20,7 +20,7 @@
     }
   ],
   "light": {
-    "ambient": 0.85,
+    "ambient": 0.95,
     "ambientColor": "#a49cae",
     "grain": 0.3,
     "haze": 0.08,
@@ -40,7 +40,10 @@
       "morning": {
         "ambient": 1,
         "ambientColor": "#c4c8cc",
-        "tintStrength": 0
+        "tintStrength": 0,
+        "lights": {
+          "fill": 0.4
+        }
       },
       "storm": {
         "wind": [
@@ -77,6 +80,15 @@
       "of": "breach#glow",
       "on": "breaking",
       "reach": 6
+    },
+    {
+      "id": "fill",
+      "from": [
+        178,
+        14
+      ],
+      "color": "#d0a8a8",
+      "strength": 0.7
     }
   ],
   "modules": [
@@ -551,7 +563,7 @@
   "states": {
     "beat": {
       "type": "string",
-      "means": "кусок фильма (модуль beats): имя — он играется с начала, в конце сцена говорит beat:<имя>. Куски: prologue, run, dash, stumble, ashore, end_alone, end_madeline, end_roderick, end_both, end_stayed, gone; моменты — gone:morning"
+      "means": "кусок фильма (модуль beats): имя — он играется с начала, в конце сцена говорит beat:<имя>. Куски: prologue, run, dash, stumble, ashore, end_alone, end_madeline, end_roderick, end_both, end_stayed, gone; моменты — prologue:split, end_alone:under, end_madeline:water, end_roderick:behind, end_both:hands, end_stayed:under, gone:morning"
     },
     "fall": {
       "range": [

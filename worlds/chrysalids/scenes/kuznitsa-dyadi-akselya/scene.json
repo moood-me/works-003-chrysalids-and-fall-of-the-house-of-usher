@@ -51,7 +51,7 @@
       "at": "joseph#hand_r",
       "color": "#ffc46a",
       "strength": 0.9,
-      "reach": 5,
+      "reach": 9,
       "flicker": 0.15,
       "glow": 0.25,
       "on": "joseph_lamp"
@@ -61,7 +61,7 @@
       "at": "farmhand#hand_r",
       "color": "#ffc46a",
       "strength": 0.9,
-      "reach": 5,
+      "reach": 9,
       "flicker": 0.15,
       "glow": 0.25,
       "on": "farmhand_lamp"
@@ -92,6 +92,15 @@
       "reach": 1.2,
       "glow": 0.3,
       "on": "dv_glow"
+    },
+    {
+      "id": "fill",
+      "across": -1.5,
+      "distance": 0.5,
+      "elevation": 1.8,
+      "color": "#ffc89a",
+      "strength": 0.55,
+      "reach": 11
     }
   ],
   "state": {

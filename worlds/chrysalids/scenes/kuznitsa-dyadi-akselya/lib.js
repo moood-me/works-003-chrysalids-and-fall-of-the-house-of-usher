@@ -56,7 +56,7 @@ const ANVIL = [-1.05, 4.62, 0.88], // the iron on the anvil, where the hammer fa
 const TOOLS = ['hammer', 'tongs'];
 // the camera's places (camera_x, camera_z): the forge; on Axel kneeling by the boy; closer (the hush); on the bellows and
 // the anvil both (the boy at the lever, Axel at the hammer — «Ритм мехов»: both in the frame's middle); the two at rest
-const CAM = { wide: [0, 0], kneel: [1.0, 1.1], hush: [1.5, 1.4], bellows: [-3.0, -1.5], rest: [-3.2, 1.2] };
+const CAM = { wide: [0, 0], kneel: [1.0, 1.1], hush: [1.5, 1.4], bellows: [-2.6, -0.3], rest: [-3.2, 1.2] };
 const camOf = c => ({ camera_x: c[0], camera_z: c[1] });
 const loop = motion => ({ motion, loop: true });
 

@@ -168,11 +168,12 @@ const RIDE = kit.chrysalids.horse.pace('walk', HORSE.kind);
 const tack = face => kit.chrysalids.horse.tack('horse', face, HORSE.kind);
 
 // ── the close-up ──────────────────────────────────────────────────────
-// The close-up's iris (stage heights: its middle, its radius) — to the right of the frame's middle, within its middle 4:3,
-// so the meadow and the rider coming over it stay in sight while it is open; its paintings are laid out in their own
+// The close-up's iris (stage heights: its middle, its radius) — high, a little right of the frame's middle, within its
+// middle 4:3, over the far meadow: the children under it and the rider coming over the meadow on its left stay in sight
+// while it is open; its paintings are laid out in their own
 // units (as when the iris was 0.46 of the frame's height round the stage's middle), `k` of the stage's, the point
 // (ox, oy) of them in the iris's middle
-const CU = { x: 1.2, y: 0.52, r: 0.3, k: 0.3 / 0.46, ox: -0.2, oy: -0.09 };
+const CU = { x: 1.05, y: 0.3, r: 0.25, k: 0.25 / 0.46, ox: -0.2, oy: -0.09 };
 const cuFrame = q => { q.translate(CU.x - CU.k * CU.ox, CU.y - CU.k * CU.oy); q.scale(CU.k, CU.k); };
 const cuAt = (x, y) => [CU.x + CU.k * (x - CU.ox), CU.y + CU.k * (y - CU.oy)];
 const cuBox = (x0, y0, x1, y1) => [...cuAt(x0, y0), ...cuAt(x1, y1)];
@@ -297,7 +298,7 @@ const person = (id, a, d, more = {}) => ({ [`${id}_a`]: a, [`${id}_d`]: d, [`${i
 // r_d: where; r_face: its heading — 0 toward us, 90 right; r_toss: it tosses its head); not on the meadow yet (r_wait —
 // the game's key, no beat sets it: the game holds him at the meadow's edge while its «Подол» shows its gesture)
 const RIDER = { rider_on: { at: 'horse#seat', up: -0.5 }, rider_do: loop('perch_still'), rider_turn: 110, rider_look: null, rider_here: false,
-  rider_reach: tack(70), r_a: -20, r_d: 18, r_face: 70, r_toss: 0, r_near: 0 };
+  rider_reach: tack(35), r_a: -10, r_d: 19.5, r_face: 35, r_toss: 0, r_near: 0 };
 const START = {
   evening: 0, night: 0, fade: 0, fade_color: '#000000', someone_coming: 0, closeup: 0, cu_pull: 0, cu_wig: 0, cu_hide: 0, cu_cover: false, hem: 0,
   camera_x: 0, camera_z: 0, camera_h: 0, camera_look: 0, puff: 0, puff_a: 1, splash: 0, ring: 0, ring_a: 2.72,
@@ -624,7 +625,7 @@ const FILM = {
       s.tell('ridge:hem');
       // (he rides on from the meadow's edge once the game lets him: r_wait)
       await s.until(() => !s.state.r_wait);
-      await s.path(['r_a', 'r_d', 'r_near'], [[...EDGE, 0], [-11, 13, NEAR_MID], [...SEEN, 1]], { speed: RIDE, ease: 'linear' });
+      await s.path(['r_a', 'r_d', 'r_near'], [[...EDGE, 0], [...BEND, NEAR_MID], [...SEEN, 1]], { speed: SLOW, ease: 'linear' });
       s.tell('ridge:seen');
     },
   },
@@ -639,7 +640,7 @@ const FILM = {
       meadow(s, 2.0);
       s.person('rider').here();
       const [a, d] = [s.state.r_a, s.state.r_d];
-      const riding = Math.hypot(a - SEEN[0], d - SEEN[1]) > 0.01 && s.path(['r_a', 'r_d', 'r_near'], [[a, d, s.state.r_near], ...(a < -11 ? [[-11, 13, NEAR_MID]] : []), [...SEEN, 1]], { speed: RIDE, ease: 'linear' });
+      const riding = Math.hypot(a - SEEN[0], d - SEEN[1]) > 0.01 && s.path(['r_a', 'r_d', 'r_near'], [[a, d, s.state.r_near], ...(a < BEND[0] ? [[...BEND, NEAR_MID]] : []), [...SEEN, 1]], { speed: SLOW, ease: 'linear' });
       david.do('kneel', { loop: true });
       david.reach({ r: 'sophie#foot_r', l: 'sophie#foot_r' });
       david.look('sophie#foot_r');
@@ -1022,10 +1023,11 @@ async function lift(s, ease) {
 // where the rider sees the foot from (on the meadow, the stones in view across the stream); where he reins his horse in
 // (from, to: right behind the children)
 const SEEN = [-4, 10.5], HALT = [[-1, 10.1], [1.2, 9.9]];
-// where he shows, at the meadow's left edge (≈ 11 s at a walk from there to SEEN)
-const EDGE = [-20, 18];
+// where he shows — on the meadow, at the left of the frame's middle 4:3 (seen while he waits there) —, the bend of his
+// way, and his slow walk from there to SEEN (≈ 11 s)
+const EDGE = [-10, 19.5], BEND = [-7, 14.5], SLOW = RIDE * 0.62;
 // how near he has come at the bend of his way (its share of the way from where he shows to SEEN: r_near)
-const NEAR_MID = Math.hypot(9, 5) / (Math.hypot(9, 5) + Math.hypot(7, 2.5));
+const NEAR_MID = Math.hypot(3, 5) / (Math.hypot(3, 5) + Math.hypot(3, 4));
 // the camera on the meadow's shot (the children by the stones, the meadow behind them open, the rider's way over it
 // within the frame's middle), from wherever it is
 const MEADOW = [1.5, 1.1, 0.06];

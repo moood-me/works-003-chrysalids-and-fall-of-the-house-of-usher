@@ -105,7 +105,7 @@ return {
       colors: { skin: '#b88d6e', hair: '#6a4026', top: '#5a4d3e', garment: '#4a3d30', bottom: '#3a332a', accent: '#8c4130', shoes: '#2a221c' } },
     // the Spider-man of the Fringes: very tall, the arms far too long, a ragged dark coat, long grey hair, a beard
     spider: { kind: 'shapes', style: 'chrysalids', who: 'man', garment: 'coat', hair: 'long', parts: ['beard'],
-      body: { height: 1.14, arms: 1.32, shoulders: 1.0, thick: 0.78 },
+      body: { height: 1.24, arms: 1.45, shoulders: 1.0, thick: 0.76 },
       colors: { skin: '#a68068', hair: '#7a7268', top: '#3e3a32', garment: '#36322c', bottom: '#2e2a24', shoes: '#211d19' } },
     // the Fringes' people: worn, patched, odd — a guard with a spear (`spear`), a hunchback, a man and a woman
     guard: { kind: 'shapes', style: 'chrysalids', who: 'man', garment: 'tunic', hair: 'short', parts: ['spear'],

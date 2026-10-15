@@ -63,7 +63,7 @@ const LATE = [{ id: 'c0', who: 'man_b', to: [-1.8, 21.0] }, { id: 'c1', who: 'wo
   { id: 'c2', who: 'old_man', to: [0.7, 21.1] }, { id: 'c3', who: 'woman_c', to: [4.2, 21.0] }];
 // the camera's places (camera_x, camera_z, camera_h, camera_look)
 const CAM = {
-  wide: [0, 0, 0, 0], pool: [2.7, 6.3, 0, 0.47], field: [5.0, 13.0, 0.35, -0.05], edge: [-6.6, 4.0, 1.6, 0.22],
+  wide: [0, 0, 0, 0], pool: [2.7, 6.3, 0, 0.47], field: [5.0, 13.6, 0.35, -0.15], edge: [-6.6, 4.0, 1.6, 0.22],
   down: [-0.6, 3.8, 0, 0.14], swim: [2.5, 4.8, 0, 0.23], out: [0.6, 4.4, 0, 0.2], kneel: [-0.9, 5.3, 0, 0.24],
   across: [0.5, 1.4, 1.1, 0.17], across_in: [0.4, 3.2, 0.8, 0.15], home: [-0.6, 2.6, 0.9, 0.15],
 };

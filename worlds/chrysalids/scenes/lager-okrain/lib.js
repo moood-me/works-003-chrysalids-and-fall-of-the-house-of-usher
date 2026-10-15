@@ -33,12 +33,12 @@ function hut(g, e, h) {
 const FIRE = [-0.74, 6.2];
 const PEOPLE = [
   { id: 'guard', who: 'guard', at: [-2.23, 7.07], turn: 160, does: 'stand', from: 0 },
-  { id: 'spider', who: 'spider', at: [0.37, 6.82], turn: 200, does: 'arms_folded', from: 0.2 },
+  { id: 'spider', who: 'spider', at: [0.37, 6.82], turn: 200, does: 'stand', from: 0.2 },
   { id: 'hunch', who: 'hunchback', at: [-1.49, 5.7], turn: 120, does: 'stand', from: 0.4 },
   { id: 'sitter', who: 'fringe_man', at: [-0.68, 6.94], turn: 180, does: 'sit_knees', from: 0.6 },
   { id: 'woman', who: 'fringe_woman', at: [1.12, 7.69], turn: 210, does: 'stand', from: 0.7 },
   { id: 'guard2', who: 'guard', at: [2.36, 6.45], turn: 220, does: 'stand', from: 0.8 },
 ];
 const POST = [-3.66, 6.94];
-const SOPHIE = { at: [2.9, 5.0], hut: [5.0, 9.6] };
+const SOPHIE = { at: [2.5, 5.2], hut: [5.0, 9.6] };
 return { hut, FIRE, PEOPLE, POST, SOPHIE };

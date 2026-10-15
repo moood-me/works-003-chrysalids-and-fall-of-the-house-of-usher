@@ -9,7 +9,7 @@
     "ambient": 0.95,
     "ambientColor": "#e2e6e2",
     "bounce": 0.5,
-    "haze": 0.35,
+    "haze": 0.22,
     "hazeColor": "#b0b4ac",
     "vignette": 0.3,
     "grain": 0.18,

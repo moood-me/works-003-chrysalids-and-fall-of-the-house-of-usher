@@ -383,8 +383,8 @@ const FILM = {
       sr.on(null);
       sr.with(null);
       s.move('lamp', 0, { over: 1.2 });
-      s.tell('kill:shot'); // (he falls)
-      const falls = sr.do('fall_back');
+      s.tell('kill:shot'); // (he falls — forward, down the near side of the crest: seen lying there)
+      const falls = sr.do('collapse');
       await s.wait(0.3);
       await turnHorse(s, 'horse1', 270, 0.6);
       ride(s, 'horse1', -16, 'canter', 'in');

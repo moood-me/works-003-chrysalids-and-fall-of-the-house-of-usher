@@ -76,7 +76,11 @@
     ],
     "joseph_wear": {
       "hat": "hat"
-    }
+    },
+    "david_a": -1.38,
+    "david_d": 5.5,
+    "rosalind_a": -1.74,
+    "rosalind_d": 4.5
   },
   "states": {
     "glow": {

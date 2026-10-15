@@ -6,7 +6,7 @@
     "mode": "picture"
   },
   "light": {
-    "ambient": 0.55,
+    "ambient": 0.72,
     "ambientColor": "#8a9ac4",
     "bounce": 0.5,
     "haze": 0.3,
@@ -69,6 +69,15 @@
       "reach": 4,
       "on": "lamp",
       "flicker": 0.1
+    },
+    {
+      "id": "fill",
+      "from": [
+        175,
+        22
+      ],
+      "color": "#b8c4e0",
+      "strength": 0.35
     }
   ],
   "state": {

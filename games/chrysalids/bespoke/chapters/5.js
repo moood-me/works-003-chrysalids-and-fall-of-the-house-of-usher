@@ -17,18 +17,19 @@
 import shadow from '../minigames/shadow.js';
 import horses from '../minigames/horses.js';
 import bellows from '../minigames/bellows.js';
+import { SCENES } from '../story.js';
 
 // a step that plays only on one branch, gone to from the author's ☰ (nothing chosen before it): it says
 // so, and may be played as if that had been chosen; → whether to play it
 async function onlyIf(g, text, choice, value, label) {
   if (g.state.choices[choice] !== undefined) return g.state.choices[choice] === value;
   await g.say('author', text, 'narrator'); // (no one's voice: a word to the author, not the story)
-  const go = await g.choose(null, 'knot', [{ id: 'play', label }, { id: 'skip', label: 'Дальше' }]);
+  const go = await g.choose(null, 'david', [{ id: 'play', label }, { id: 'skip', label: 'Дальше' }]);
   if (go === 'play') g.state.choices[choice] = value;
   return go === 'play';
 }
 
-const HALL = 'Дом собраний', KITCHEN = 'Кухня Стормов', FARM = 'Ферма Стормов', FORGE = 'Кузница дяди Акселя', FLIGHT = 'Бегство', EDGE = 'Край Окраин';
+const HALL = SCENES.hall, KITCHEN = SCENES.kitchen, FARM = SCENES.farm, FORGE = SCENES.forge, FLIGHT = SCENES.flight, EDGE = SCENES.edge;
 
 export default {
   number: 'V',
@@ -57,13 +58,14 @@ export default {
     async g => {
       const { marks, scales } = g.state;
       await g.scene(KITCHEN, { beat: 'late' });
-      await g.wait(2500);
+      const late = g.beat('late');
       await g.say('narrator', 'В тот вечер отец читал дольше обычного.');
       if (marks.anne === 'widowed') await g.think('michael', 'Энн больше нет. Она оставила инспектору письмо. Там все наши имена.');
       else if (marks.anne === 'free') await g.think('michael', 'Энн всё рассказала Алану. Утром Алан был у инспектора.');
       else await g.think('michael', 'Нас выдали.');
       await g.think('michael', 'Кэтрин и Салли взяли. Их допрашивают.');
       await g.think('sally', 'Дэвид… Они спрашивают про тебя. Я не скажу. Я постараюсь.');
+      await late;
       if (scales.suspicion >= 3) {
         await g.beat('asks');
         await g.say('father', '— Дэвид. О чём ты думаешь, когда я читаю?', 'joseph');
@@ -88,11 +90,11 @@ export default {
       await g.think('petra', 'Дэвид, мы куда?');
       await g.think('david', 'Далеко. Только думай тихо.');
       if (marks.petra === 'free') await g.think('petra', 'Я не умею тихо!');
-      const look = await g.choose(null, { house: [{ id: 'look', label: 'Оглянуться на дом' }], david: [{ id: 'go', label: 'Уйти не оглядываясь' }] });
+      const look = await g.choose(null, { 'house#window': [{ id: 'look', label: 'Оглянуться на дом' }], david: [{ id: 'go', label: 'Уйти не оглядываясь' }] });
       if (look === 'look' && marks.sophie === 'told') await g.say('narrator', 'В окне стояла мать. Она смотрела, как мы уходим, и не позвала отца.');
       else if (look === 'look') { g.set('window_lit', 0, 3); await g.say('narrator', 'Окно погасло. В доме никто не проснулся.'); }
       if (scales.suspicion >= 4) {
-        const horse = g.sound.hooves();
+        const horse = g.sound.hooves({ gait: 'walk' });
         horse.loud(0.8, 4);
         await g.wait(3000);
         await g.say('narrator', 'У ворот ждали всадники. Инспектор знал, к кому ехать.');
@@ -110,13 +112,15 @@ export default {
         'Сыграть, будто выбрано «вытащить их»'))) return;
       const { marks, scales } = g.state;
       await g.scene(FORGE, { beat: 'key' });
-      await g.wait(2500);
+      const key = g.beat('key');
       await g.say('narrator', 'Я прибежал к дяде Акселю. Больше было не к кому.');
       await g.say('axel', '— Их держат у инспектора, в подвале. Дверь на замке.');
       await g.say('axel', '— Ключ я сделаю. А ты качай мехи — пусть думают, что я работаю.');
+      await key;
       await g.wait(1500);
+      const stop = g.told('stranger:stop');
       const came = g.beat('stranger');
-      await g.wait(3000);
+      await stop;
       await g.say('narrator', 'В воротах остановился человек с фонарём.');
       if (marks.calf === 'hidden') await g.say('narrator', 'Работник отца. Тот, что видел телёнка.');
       await came;
@@ -142,13 +146,13 @@ export default {
           return;
         }
         const gone = g.beat('stranger_go');
-        await g.wait(1500);
         await g.say('narrator', 'Он постоял и ушёл. Не заметил. Или не захотел заметить.');
         await gone;
       } else {
         // a nod at the hammer: Axel goes to the gate, and the man falls back into the dark
+        const step = g.told('strike:step');
         const struck = g.beat('strike');
-        await g.wait(3200);
+        await step;
         await g.say('narrator', 'Дядя шагнул к воротам. Человек не успел обернуться.');
         await struck;
         await g.wait(1000);
@@ -168,7 +172,7 @@ export default {
       if (!(await onlyIf(g, 'Этот шаг — только если Дэвида схватили: у ворот или в кузнице.', 'caught', 'caught',
         'Сыграть, будто схватили'))) return;
       await g.scene(HALL, { lamp: 1, spill: 0, men: 1, rush: 0, inspector_present: true, inspector_up: 0, father_present: true,
-        father_turn: 0, david_present: true, david_look: 0, fire_outside: 0, door: 0 });
+        father_away: 0, david_present: 1, david_look: 'inspector', fire_outside: 0, door: 0 });
       g.set('men', 6, 9);
       await g.wait(2000);
       await g.say('narrator', 'Меня привели в дом собраний. Была ночь, на столе старейшин горела одна лампа.');
@@ -178,17 +182,17 @@ export default {
         { id: 'deny', label: '— Не понимаю, о чём вы.' }, { id: 'silent', label: 'Молчать' }, { id: 'truth', label: '— Слышу. И греха в этом нет.' }]);
       if (answer === 'deny') await g.say('inspector', '— Они тоже сначала не понимали.');
       if (answer === 'silent') {
-        g.set('david_look', 1, 1.2);
+        g.set('david_look', 'father');
         await g.say('father', '— Отвечай, когда спрашивают.');
-        g.set('david_look', 0, 1.5);
+        g.set('david_look', 'inspector');
       }
       if (answer === 'truth') {
-        g.set('david_look', 1, 1.2);
+        g.set('david_look', 'father');
         await g.say('father', '— Тогда ты мне не сын.');
-        g.set('father_turn', 1, 2.5);
+        g.set('father_away', 1, 2.5);
         g.mark('father', 'disowned', 'Отец это запомнит.');
         await g.wait(1500);
-        g.set('david_look', 0, 1.5);
+        g.set('david_look', 'inspector');
       }
       g.set('inspector_up', 1, 2);
       await g.wait(1200);
@@ -207,7 +211,7 @@ export default {
         g.state.choices.trial = 'friends';
       } else {
         await g.think('michael', 'Нас слишком мало, Дэвид. Выбирайся сам.');
-        const trial = await g.choose('trial', 'lamp', [{ id: 'dark', label: 'Задуть лампу' }, { id: 'fire', label: 'Смахнуть лампу на пол' }]);
+        const trial = await g.choose('trial', 'lamp#flame', [{ id: 'dark', label: 'Задуть лампу' }, { id: 'fire', label: 'Смахнуть лампу на пол' }]);
         if (trial === 'dark') {
           g.set('lamp', 0, 0.3);
           await g.say('narrator', 'В темноте отец схватил меня за рукав. Я вырвался.');
@@ -235,8 +239,7 @@ export default {
       // caught, I came alone: Petra got to Rosalind without me (she fled at the gate, or the friends brought her)
       const alone = choices.caught === 'caught' && (choices.night === 'flee' || choices.trial === 'friends');
       await g.scene(FLIGHT, { beat: alone ? 'arrive_alone' : 'arrive' });
-      const came = g.heard(alone ? 'beat:arrive_alone' : 'beat:arrive');
-      await g.wait(2500);
+      const came = g.beat(alone ? 'arrive_alone' : 'arrive');
       if (alone) {
         await g.say('narrator', 'Шебу я увёл из загона за домом. Петра уже ждала меня — в корзине у Розалинды.');
         if (marks.petra === 'free') await g.think('petra', 'Дэвид! Я знала, что ты придёшь!');
@@ -247,36 +250,37 @@ export default {
       // Sheba: home — or with us
       await g.beat('sheba_turn');
       await g.think('rosalind', 'Отпусти её, Дэвид. Большим коням она не пара. И ржёт на всю округу.');
-      const sheba = await g.choose(null, 'fugitives', [{ id: 'let', label: 'Отпустить Шебу домой' }, { id: 'take', label: 'Взять Шебу с собой' }]);
+      const sheba = await g.choose(null, 'david', [{ id: 'let', label: 'Отпустить Шебу домой' }, { id: 'take', label: 'Взять Шебу с собой' }]);
       marks.sheba = sheba === 'take' ? 'took' : 'let';
       if (sheba === 'let') {
+        const off = g.told('sheba_go:gone');
         const went = g.beat('sheba_go');
-        await g.wait(2600);
+        await off;
         await g.say('narrator', 'Шеба ушла домой одна. Назад дороги не было.');
         await went;
       } else {
         const tied = g.beat('sheba_keep');
-        await g.wait(1600);
         await g.say('narrator', 'Я не смог. Отвёл её назад и привязал повод к вьючному коню.');
         await g.think('rosalind', 'Она нас выдаст, Дэвид.');
         await tied;
       }
       await g.beat('climb');
       const armed = g.beat('bow');
-      await g.wait(1600);
       await g.think('rosalind', 'Фонари на дороге. Твой отец с ними.');
       if (choices.forge === 'force') await g.think('michael', 'Того человека у кузницы нашли. За вами поднялась вся округа.');
       await armed;
       // over the shoulder into the fog; the search comes up onto the crest above us
+      const fog = g.told('hollow:fog');
       const down = g.beat('hollow');
-      await g.wait(4500);
+      await fog;
       await g.say('narrator', 'За плечом гряды дорога ныряла в лощину. Лощина была полна тумана.');
       await down;
       await g.think('rosalind', 'Стоим. Пусть проедут.');
-      const horse = g.sound.hooves();
+      const horse = g.sound.hooves({ gait: 'walk' });
       horse.loud(0.3, 3);
+      const riders = g.told('watch:riders');
       const up = g.beat('watch');
-      await g.wait(5000);
+      await riders;
       await g.say('narrator', 'На гребень поднялись двое верховых с фонарями.');
       await up;
       horse.loud(0.03, 2);
@@ -293,29 +297,29 @@ export default {
       let timed = false;
       const rider = await Promise.race([
         g.choose('rider', {
-          searchers: [{ id: 'kill', label: '— Стреляй в него.' }, { id: 'warn', label: '— Стреляй над головой!' }],
-          fugitives: [{ id: 'hide', label: 'Замереть в тумане' }],
+          searcher: [{ id: 'kill', label: '— Стреляй в него.' }, { id: 'warn', label: '— Стреляй над головой!' }],
+          david: [{ id: 'hide', label: 'Замереть в тумане' }],
         }),
         g.wait(20000).then(() => (timed = true, seen ? 'kill' : 'hide')), // she will not wait for him to reach us
       ]);
       g.withdraw();
       g.state.choices.rider = rider;
+      const shot = rider === 'hide' ? null : g.told(`${rider}:shot`);
       const done = g.beat(rider);
       if (rider === 'kill') {
         if (timed) await g.say('narrator', 'Я не успел ничего сказать. Розалинда уже натянула лук.');
-        else await g.wait(2600);
+        await shot;
         await g.say('narrator', 'Всадник упал. Его конь ушёл за гребень один.');
         await done;
         if (seen) await g.think('rosalind', 'Он бы нас не пощадил, Дэвид.');
         else await g.say('narrator', 'Он так нас и не увидел.');
         g.scale('path', seen ? -1 : -2, true);
       } else if (rider === 'warn') {
-        await g.wait(2600);
+        await shot;
         await g.say('narrator', 'Стрела свистнула над самой его головой. Конь шарахнулся, и всадник ускакал за гребень.');
         await done;
         await g.think('rosalind', seen ? 'Он видел, куда мы ушли.' : 'Теперь он знает, где мы.');
       } else {
-        await g.wait(800);
         await g.say('narrator', 'Мы замерли. Петра зажала рот ладошкой.');
         await g.say('narrator', seen ? 'Он подъехал к самому краю лощины и долго светил в туман.' : 'Он поехал по краю лощины, светя в туман. Совсем рядом.');
         await done;
@@ -333,7 +337,7 @@ export default {
         if (rider === 'kill') await g.think('michael', 'Тот всадник умер. Теперь пощады не будет — ни вам, ни им.');
       }
       if (marks.sealand === 'answered' && scales.petra >= 2) await g.think('sealand', 'Мы вас слышим. Держитесь. Мы идём.');
-      else if (marks.sealand === 'answered') await g.say('petra', '— Дэвид, та тётя за водой опять зовёт. Она нас ищет.', 'fugitives');
+      else if (marks.sealand === 'answered') await g.say('petra', '— Дэвид, та тётя за водой опять зовёт. Она нас ищет.', 'petra');
       await on;
     },
     // the last field before the Fringes: from shadow to shadow while the lantern looks for us
@@ -347,7 +351,7 @@ export default {
       await g.say('narrator', 'Фонарь нёс высокий человек. По походке я узнал отца.');
       await g.say('narrator', 'Луна стояла за лесом, и тени деревьев лежали поперёк поля. Идти можно было по ним — или пока он светил в другую сторону.');
       const { seen } = await g.play(shadow, {
-        hard, onSeen: at => (at === 'fence' ? g.say('father', '— Вон они! У изгороди!', 'lantern') : g.say('father', '— Вон они! В поле!', 'lantern')),
+        hard, onSeen: at => (at === 'fence' ? g.say('father', '— Вон они! У изгороди!', 'joseph') : g.say('father', '— Вон они! В поле!', 'joseph')),
       });
       g.state.choices.shadow = seen ? 'seen' : 'hid';
       g.set('figure_on_path', 1, 4);

@@ -14,8 +14,9 @@
 import calm from '../minigames/calm.js';
 import dream from '../minigames/dream.js';
 import windows from '../minigames/windows.js';
+import { SCENES } from '../story.js';
 
-const RIVER = 'Петра у реки', VOICES = 'Голоса', DREAM = 'Сон о городе';
+const RIVER = SCENES.river, VOICES = SCENES.voices, DREAM = SCENES.dream;
 
 export default {
   number: 'IV',
@@ -34,8 +35,7 @@ export default {
     // down to the water and swimming after her — how loud she is when he has her is seen on the far field
     async g => {
       await g.scene(RIVER, { beat: 'pool' });
-      const pool = g.heard('beat:pool');
-      await g.wait(2500);
+      const pool = g.beat('pool');
       await g.say('narrator', 'Весной, когда Петре было шесть, она одна ушла к реке.');
       await pool;
       const struck = g.beat('struck');
@@ -54,8 +54,9 @@ export default {
       if (river === 'quiet') await g.say('narrator', 'Она стихла. Дальше Розалинды её никто не услышал.');
       else await g.say('narrator', 'Взрослые не слышали ни звука. Они видели, как она бежит.');
       await field;
+      const bank = g.told('out:bank');
       const out = g.beat('out');
-      await g.wait(3000);
+      await bank;
       if (river === 'quiet') await g.say('narrator', 'Я вывел её на берег. Она плакала — вслух, как все дети.');
       else {
         await g.say('narrator', 'Я вывел её на берег. Она звала до последнего — и не ртом.');
@@ -67,14 +68,17 @@ export default {
     },
     // the bank: Rosalind across the water — we hear each other; and whoever else has come to look
     async g => {
-      const loud = g.state.choices.river === 'loud';
-      await g.scene(RIVER, { beat: loud ? 'bank_loud' : 'bank_quiet' });
-      await g.wait(3000);
-      await g.think('rosalind', 'Это она? Твоя сестра?', 'far_people');
-      await g.say('petra', '— Я держалась. А ветка сломалась.', 'david');
-      if (loud) await g.think('rosalind', 'Её слышали все наши. А они видели, как мы бежим.', 'far_people');
-      else await g.think('rosalind', 'Она вдруг стихла. Это ты её успокоил?', 'far_people');
-      await g.think('rosalind', 'Она сильнее нас всех, Дэвид. Что мы будем с ней делать?', 'far_people');
+      const loud = g.state.choices.river === 'loud', beat = loud ? 'bank_loud' : 'bank_quiet';
+      const across = g.told(`${beat}:across`);
+      await g.scene(RIVER, { beat });
+      const shown = g.beat(beat);
+      await across;
+      await g.think('rosalind', 'Это она? Твоя сестра?', 'rosalind');
+      await g.say('petra', '— Я держалась. А ветка сломалась.', 'petra');
+      if (loud) await g.think('rosalind', 'Её слышали все наши. А они видели, как мы бежим.', 'rosalind');
+      else await g.think('rosalind', 'Она вдруг стихла. Это ты её успокоил?', 'rosalind');
+      await g.think('rosalind', 'Она сильнее нас всех, Дэвид. Что мы будем с ней делать?', 'rosalind');
+      await shown;
       await g.choose(null, 'david', [{ id: 'home', label: 'Нести Петру домой' }]);
       await g.beat('home');
     },
@@ -135,8 +139,8 @@ export default {
       else if (held >= 0.5) await g.say('narrator', 'Я успел разглядеть каждую башню.');
       g.set('waking', 1, 3);
       await g.wait(3000);
-      g.set('lead_x', null);
-      g.set('lead_y', null);
+      g.set('lead', null);
+      g.set('gaze', null);
       await g.say('narrator', 'Через месяц Петра разбудила меня среди ночи.');
       // what she shows me: as clear as she is strong
       g.set('dream', p >= 2 ? 0.95 : p >= 1 ? 0.65 : 0.3, 4);
@@ -144,7 +148,7 @@ export default {
       g.set('lights', p >= 1 ? 0.8 : 0.3, 4);
       await g.say('petra', '— Дэвид, там кто-то говорит. Далеко-далеко, за водой.', 'narrator');
       g.set('waking', 0, 5);
-      if (p >= 1) await g.say('narrator', 'Она показала мне, что видит. И я узнал город из своего сна.');
+      if (p >= 1 && held >= 0.5) await g.say('narrator', 'Она показала мне, что видит. И я узнал город из своего сна.');
       if (p >= 2) await g.think('sealand', 'Кто ты, девочка? Где ты? Ты так громко зовёшь.', 'city');
       else if (p >= 1) await g.think('sealand', '…кто ты… где…', 'city');
       else await g.say('petra', '— Я не слышу слов. Только что там кто-то есть.', 'narrator');

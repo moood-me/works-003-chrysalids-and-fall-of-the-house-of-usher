@@ -10,8 +10,9 @@
 //   marks.rosalind_hold slipped (I tore out of her hands), rosalind_cover covered, father saved (I lay
 //   over him: he lives under the web), ending sealand|return|michael|fringes|alone — game.js shows it.
 import { shipComes } from './6.js';
+import { SCENES } from '../story.js';
 
-const SHIP = 'Корабль из Зеландии';
+const SHIP = SCENES.ship;
 
 // a beat of the film, played; → once it has ended
 function play(g, beat) {
@@ -26,7 +27,7 @@ async function open(g, beat) {
   await g.scene(SHIP, { beat });
   return { ended };
 }
-// a choice that waits only so long: then `late` is what happened
+// a choice that waits only so long (never less than the language's window, 6 s): then `late` is what happened
 async function inTime(g, id, offer, ms, late) {
   const picked = await Promise.race([g.choose(id, offer), g.wait(ms).then(() => late)]);
   g.withdraw();
@@ -82,9 +83,10 @@ export default {
       const { ended: cave } = await open(g, 'cave');
       await g.say('narrator', 'Мы лежали за камнем у пещеры. Внизу, на поляне, стреляли.');
       await cave;
+      const clearing = g.told('fight:clearing');
       const fight = play(g, 'fight');
       if (choices.fringes === 'fight') await g.think('rosalind', 'Мы сказали Пауку, откуда они идут. Теперь поздно жалеть.');
-      await g.wait(5000);
+      await clearing;
       await g.think('rosalind', 'Твой отец. Впереди, у коня.');
       await fight;
       const father = await inTime(g, 'father', { david: [{ id: 'run', label: 'Бежать к отцу' }], rosalind: [{ id: 'stay', label: 'Остаться' }] }, 12000, 'stay');
@@ -95,9 +97,10 @@ export default {
         await hold;
       } else {
         g.mark('rosalind_hold', 'slipped', 'Розалинда это запомнит.');
+        const by = g.told('run:by');
         const run = play(g, 'run');
         await g.think('rosalind', 'Дэвид! Стой!');
-        await g.wait(1500);
+        await by;
         if (marks.father === 'disowned') await g.say('father', '— Не трогай меня.', 'joseph');
         else await g.say('father', '— Уходи, Дэвид. Уходи отсюда.', 'joseph');
         await g.say('narrator', 'К Пауку бежала Софи.');
@@ -105,10 +108,11 @@ export default {
       }
       // the sky: the ship — or nothing
       if (!shipComes(g.state)) {
+        const sky = g.told('noship:sky'), flee = g.told('noship:flee');
         const none = play(g, 'noship');
-        await g.wait(4000);
+        await sky;
         await g.say('narrator', 'Мы ждали корабль. Небо оставалось пустым.');
-        await g.wait(3000);
+        await flee;
         await g.say('narrator', 'Люди Вакнука дрогнули и побежали к лесу. Отца они оставили.');
         await none;
         await g.think('petra', 'Дэвид… Она больше не отвечает.');
@@ -116,8 +120,9 @@ export default {
         await g.wait(2000);
         return;
       }
+      const seen = g.told('ship:petra');
       const ship = play(g, 'ship');
-      await g.wait(4000);
+      await seen;
       await g.think('petra', 'Это она! Дэвид, это она!');
       await ship;
       // the threads come down: whom do I cover?
@@ -145,29 +150,29 @@ export default {
       const { choices, marks } = g.state;
       if (marks.ending === 'fringes') return;
       const run = choices.father === 'run';
+      const down = g.told('landing:down');
       const { ended: landing } = await open(g, run ? 'landing_run' : 'landing');
       if (marks.father === 'saved') g.set('joseph_th', 0.97);
-      await g.wait(3000);
+      await down;
       await g.say('narrator', 'Стало тихо. Корабль опустился посреди поляны.');
       await landing;
+      const runs = g.told('free:petra');
       const free = play(g, run ? 'free_run' : 'free');
-      await g.wait(4500);
+      await runs;
       await g.think('petra', 'Это ты! Я тебя знаю!');
       await g.say('sealand', '— Вот ты какая, Петра. Как же громко ты зовёшь.');
       if (run) await g.think('rosalind', 'Дэвид! Ты живой? Я тебя почти не слышу.');
       await free;
+      const by = g.told(run ? 'back_run:free' : 'back:father');
       const back = play(g, run ? 'back_run' : 'back');
+      await by;
       if (run) {
-        await g.wait(6000);
         await g.say('sealand', '— Смело. И глупо.');
         if (marks.father === 'saved') {
           await g.say('narrator', 'Под нитями отец дышал. Я видел, как шевельнулись его пальцы.');
           await g.say('sealand', '— Этого я освобождать не стану. Он пришёл вас убить.');
         }
-      } else {
-        await g.wait(10000);
-        await g.say('sealand', '— Не жалей их. Их время прошло.');
-      }
+      } else await g.say('sealand', '— Не жалей их. Их время прошло.');
       await back;
       await g.think('michael', 'Я остаюсь, Дэвид. Кто-то должен рассказать нашим, что мы есть.');
       await inTime(g, 'leave', { ship: [{ id: 'fly', label: 'Улететь' }], michael: [{ id: 'stay', label: 'Остаться с Майклом' }] }, 60000, 'fly');
@@ -178,22 +183,24 @@ export default {
       if (g.state.marks.ending === 'fringes') return;
       if (choices.leave === 'stay') {
         const her = withMe(g.state);
+        const turn = her ? null : g.told('stay_alone:turn');
         const { ended: beat } = await open(g, her ? 'stay_ros' : 'stay_alone');
-        await g.wait(1500);
         await g.think('petra', 'Дэвид, ты куда? Ты с нами?');
         if (her) await g.think('rosalind', 'Куда ты — туда и я.');
         else {
-          await g.wait(2000);
+          await turn;
           await g.think('rosalind', 'Я не могу остаться, Дэвид. Не здесь. Не после всего.');
         }
         await beat;
+        if (!her) await play(g, 'stay_alone_away');
         g.state.marks.ending = her ? 'michael' : 'alone';
       } else {
+        const look = g.told('board:look'), michael = g.told('board:michael');
         const { ended: beat } = await open(g, 'board');
         await g.think('rosalind', 'Пойдём, Дэвид.');
-        await g.wait(3000);
+        await look;
         await g.say('narrator', 'На пороге я оглянулся. Один раз.');
-        await g.wait(12000);
+        await michael;
         await g.think('michael', 'Я им расскажу. Когда-нибудь они станут слушать.');
         await beat;
         g.state.marks.ending = scales.path >= 2 ? 'return' : 'sealand';

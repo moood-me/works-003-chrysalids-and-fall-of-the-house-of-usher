@@ -33,7 +33,7 @@
     ],
     "looks": {
       "moon": {
-        "ambientColor": "#bf9a9e",
+        "ambientColor": "#cc8c84",
         "tint": "#4a1410",
         "tintStrength": 0.12
       },

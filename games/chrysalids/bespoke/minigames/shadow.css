@@ -1,9 +1,0 @@
-/* «По тени» (shadow.js): the trees' shadows across the field, the father's lantern light going over it,
-   and us — a faint mark on the path that warms when the light finds it. */
-#layer .veil-light.shadow-pool { width: 60px; height: 20px; background: radial-gradient(ellipse closest-side, rgba(3, 5, 10, 0.62), rgba(3, 5, 10, 0.4) 60%, rgba(3, 5, 10, 0)); }
-#layer .veil-light.shadow-beam { width: 600px; height: 330px; border-radius: 0; transform-origin: 0 50%; opacity: 1;
-  clip-path: polygon(0 50%, 100% 0, 100% 100%);
-  background: radial-gradient(ellipse 100% 55% at 0 50%, rgba(255, 216, 150, 0.26), rgba(255, 210, 140, 0.1) 55%, rgba(255, 210, 140, 0) 100%); }
-#layer .veil-light.shadow-us { width: 60px; height: 60px; transition: box-shadow 0.5s ease;
-  background: radial-gradient(circle, rgba(196, 210, 236, 0.4), rgba(196, 210, 236, 0) 70%); }
-#layer .veil-light.shadow-us.lit { background: radial-gradient(circle, rgba(255, 220, 170, 0.6), rgba(255, 210, 150, 0) 70%); }

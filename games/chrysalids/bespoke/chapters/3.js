@@ -50,7 +50,7 @@ export default {
       const axel = await g.choose('axel', 'david', [
         { id: 'truth', label: 'Показать на её окно' }, { id: 'lie', label: 'Помотать головой: ни с кем' }]);
       // the truth: a shape out to the window and back, under his eyes; the lie: the answer comes anyway, and my eyes jump to it
-      const far = g.told('truth:window'), ask = g.told(`${axel}:ask`);
+      const far = axel === 'truth' ? g.told('truth:window') : null, ask = g.told(`${axel}:ask`);
       const shown = g.beat(axel);
       if (axel === 'truth') {
         await far;
@@ -146,8 +146,8 @@ export default {
       g.set('children', 3);
       await g.say('narrator', anne.caught ? 'Энн.' : 'Энн. Она нашла меня сама.');
       await g.think('michael', 'Овцы разбрелись по всему холму. Дэвид, ты где?');
-      // and while I search, the ploughman turns: not a move, before he sees
-      const michael = await g.play(tuning, { find: 'shepherd', watch: true, onTurn: () => g.say('narrator', 'Пахарь внизу остановил лошадь и обернулся.') });
+      // and while I search, the ploughman turns: not a move, before he sees (the plate says it)
+      const michael = await g.play(tuning, { find: 'shepherd', watch: true });
       if (michael.seen) {
         await g.say('narrator', 'Пахарь долго смотрел на меня из-под ладони. А я стоял и смотрел в небо.');
         g.scale('suspicion', 1);
@@ -233,17 +233,17 @@ export default {
       const all = g.state.choices.newcomer === 'took' ? 7 : 6;
       const anne = `farm${all + 1}`;
       const { caught } = await g.play(windows, {
-        targets: Array.from({ length: all + 1 }, (_, i) => `farm${i + 1}`), petra: 0, voices: 0.4, hint: true,
+        targets: Array.from({ length: all + 1 }, (_, i) => `farm${i + 1}`), petra: 0, voices: 0.4,
         onLink: async n => {
           if (n === 1) await g.think('rosalind', 'Я здесь.');
           else if (n === 2) await g.think('michael', 'Здесь. Что так поздно?');
-          else if (n === 3) await g.say('narrator', 'Потом Салли и Кэтрин. Марк. Рейчел.');
           else if (n === 7 && all === 7) await g.think('newcomer', 'И я.');
         },
-        onPetra: () => g.say('narrator', 'Из нашего дома вдруг ответили — тонко и так громко, что зазвенело в ушах. И сразу стихло.'),
       });
+      if (caught) await g.say('narrator', 'Из нашего дома вдруг ответили — тонко и так громко, что зазвенело в ушах. И сразу стихло.');
       g.set('count', all + 1);
       g.set('voices', 0.7, 4);
+      await g.say('narrator', 'Потом Салли и Кэтрин. Марк. Рейчел.');
       await g.think('anne', 'Не зовите меня больше. Я выхожу за Алана Эрвина.');
       await g.think('anne', 'Я хочу жить как все. Слышите? Как все.');
       g.set('count', all);

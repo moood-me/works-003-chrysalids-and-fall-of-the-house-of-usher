@@ -45,9 +45,9 @@ export default {
       // down to her and after her, breathing for both: the film runs the minigame's time
       const run = (async () => { await g.beat('edge'); await g.beat('run'); })();
       g.think('david', 'Петра, я здесь. Дыши со мной.', 'david');
-      const { scream } = await g.play(calm, { until: run });
+      const { cry } = await g.play(calm, { until: run });
       await run;
-      const river = scream <= 0.3 ? 'quiet' : 'loud';
+      const river = cry <= 0.3 ? 'quiet' : 'loud';
       g.state.choices.river = river;
       // the far field: only Rosalind — or everyone sees her run
       const field = g.beat(`field_${river}`);

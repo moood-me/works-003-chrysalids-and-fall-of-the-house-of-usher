@@ -34,8 +34,12 @@ export default {
       options: [{ id: 'seek', label: 'искать глазами мать' }, { id: 'bow', label: 'смотреть в пол' }] },
     { id: 'calf', weight: '⚑', title: 'Телёнок',
       options: [{ id: 'show', label: 'сказать отцу' }, { id: 'hide', label: 'увести за сарай' }, { id: 'silent', label: 'промолчать' }] },
+    { id: 'knees', weight: '~', title: 'На колени со всеми',
+      options: [{ id: 'with', label: 'встать на колени' }, { id: 'late', label: 'опоздать' }] },
     { id: 'hymn', weight: '~', title: 'Гимн у огня',
       options: [{ id: 'loud', label: 'петь в полный голос' }, { id: 'lips', label: 'шевелить губами' }, { id: 'silent', label: 'молчать' }] },
+    { id: 'stalk', weight: '~', title: 'Колос на пепелище',
+      options: [{ id: 'stay', label: 'остаться у колоса' }, { id: 'go', label: 'идти с матерью' }] },
     { id: 'warn', weight: '~', title: 'Ночь перед облавой',
       options: [{ id: 'warned', label: 'предупредить Софи' }, { id: 'stayed', label: 'остаться дома' }] },
   ],
@@ -193,7 +197,6 @@ export default {
       g.withdraw();
       g.state.choices.knees = knelt;
       if (knelt === 'with') {
-        g.set('dv_kneel', 1, 1.2);
         await raise;
         await g.beat('rise');
       } else {

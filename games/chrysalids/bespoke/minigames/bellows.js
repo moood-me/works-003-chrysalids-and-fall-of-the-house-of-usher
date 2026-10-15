@@ -1,80 +1,59 @@
-// «Ритм мехов» (the forge, III and V): a man with a lantern looks in at the gate, and David works the bellows in time
-// with his uncle's hammer, as if nothing were the matter. The hammer gives the beat — this game drives it (the
-// scene's ax_blow: one blow, ax_pace seconds from the lift to the iron); each press is David's pull on the lever
-// (pump), seen in the film. With the blow, the fire breathes up; off it, or a blow let go by, the bellows wheeze,
-// the fire stumbles — and the lantern comes up and turns to the boy, and stays on him a while.
-// The scene's own keeping-at-it (ax_work, pump_work) is stopped while it plays; the beat after it starts it again.
-//   opts: { watched } — the man has his eye on the boy already: fewer slips pass
+// «Ритм мехов» (III.1 and V.2, «Кузница дяди Акселя»): David works the bellows in time with his uncle's hammer under the
+// eyes of the man with the lantern at the gate.
+//   1. what he does — pumps the bellows to the hammer; 2. wants — to keep the forge going and give nothing away (in V —
+//   while the key is made); 3. watched from the gate; 4. the player — a steady working rhythm under watch.
+// The language's rhythm: the beat's sign on the hammer (axel#hand_l), the player's ring on the bellows' lever
+// (pump#handle). The game drives the hammer (the scene's ax_blow — a blow from the lift, IMPACT s before the beat) and
+// the lever (pump); BEATS beats (in V fewer), the first two a soft try. A beat missed — the fire sinks, the lantern comes
+// up and onto the boy (st_lamp, st_lx, st_lz).
+//   opts: { watched: the man has his eye on him already — fewer slips pass; night: V — the key, the stranger at the gate }
 //   → { broke: more slips than pass }
-import { veil, playing } from './veil.js';
+import { until } from '../hands.js';
 
-const BEAT = 1.6, BLOWS = 12, SLACK = 0.28, FREE = 2; // the first FREE blows: getting into it, slips not counted
+const IMPACT = 1.17, FREE = 2;
+const BELLOWS = [-6.15, 6.3]; // where the boy is (the scene's lib.BELLOWS)
 
 export default {
   title: 'Ритм мехов', // (as the author's ☰ lists it)
+  about: 26,
   skipped: { broke: false },
-  run: (g, b, opts, signal) => playing(signal, { broke: false }, done => {
-    const v = veil(b, signal), ring = v.light('veil-beat'), word = v.light('veil-word'), blow = v.noise('lowpass', 380, 0.5);
-    word.textContent = 'тяни мехи в такт молоту';
-    const pass = opts.watched ? 1 : 3, base = b.get('fire') ?? 0.7, eyeOn = [b.get('st_lx'), b.get('st_lz')];
+  async run(g, b, { watched = false, night = false } = {}, signal) {
+    const beat = night ? 1.6 : 2.0, n = night ? 8 : 12, pass = watched ? 1 : 3;
+    const times = Array.from({ length: n }, (_, i) => IMPACT + 1 + i * beat);
+    const mg = g.minigame({ phrase: night ? 'В воротах стоял человек с фонарём и смотрел' : 'Молот падал мерно, и горну нужен был воздух' });
     g.set('ax_work', 0);
     g.set('pump_work', 0);
-    g.set('ax_pace', BEAT);
-    let t0 = 0, started = -1, slips = 0, eye = 0, release = 0;
-    const pulled = new Set(), judged = new Set();
-    const now = () => performance.now() / 1000;
-    // blow n starts at t0 + n·BEAT and lands one BEAT later
-    const lands = n => t0 + (n + 1) * BEAT;
-    const slip = t => {
+    const hammer = mg.mark({ at: 'axel#hand_l', kind: 'light' });
+    const lever = mg.mark({ at: 'pump#handle', kind: 'ring' });
+    const rh = mg.rhythm({ on: lever, show: [hammer], times });
+    b.minigame.tricks.teach(mg, [rh], { id: 'rhythm' });
+    const hit = new Set();
+    let slips = 0, blows = 0, fire = g.get('fire') ?? 0.75, pump = 0;
+    const slip = k => {
+      if (k < FREE) return;
       slips++;
-      g.set('fire', base * 0.6, 0.3);
-      v.tone(98, 0, 0.5, 0.05);
-      // the lantern up, on the boy
-      g.set('st_lamp', 1.3, 0.6);
-      g.set('st_lx', b.get('dv_a'));
-      g.set('st_lz', b.get('dv_d'));
-      eye = t + 2.6;
+      fire = Math.max(0.35, fire - 0.12);
+      g.set('fire', fire, 0.6);
+      g.set('st_lx', BELLOWS[0]); g.set('st_lz', BELLOWS[1]); g.set('st_lamp', 1.3, 0.5);
+      setTimeout(() => g.set('st_lamp', 1, 1.5), 2500);
+      mg.plate.set({ shade: Math.min(1, slips / (pass + 1)) });
     };
-    const pull = () => {
-      if (!t0) return;
-      const t = now(), n = Math.round((t - t0) / BEAT) - 1;
-      g.set('pump', 1, 0.15);
-      release = t + 0.2;
-      if (n >= 0 && n < BLOWS && Math.abs(t - lands(n)) < SLACK && !pulled.has(n)) { // with the blow: the fire breathes
-        pulled.add(n);
-        judged.add(n);
-        g.set('fire', Math.min(1, base + 0.3), 0.15);
-        g.set('sparks', 0.9, 0.15);
-        blow.gain.cancelScheduledValues(v.audio.currentTime);
-        blow.gain.setValueAtTime(0.09, v.audio.currentTime);
-        blow.gain.setTargetAtTime(0, v.audio.currentTime + 0.12, 0.15);
-      } else if (n >= FREE) slip(t); // a wheeze between the blows
-    };
-    v.on('pointerdown', e => { if (e.button === 0) pull(); });
-    v.on('keydown', e => { if (e.code === 'Space' && !e.repeat) { e.preventDefault(); pull(); } }, window);
-    v.loop((dt, t) => {
-      t0 ||= t;
-      const time = t - t0, n = Math.floor(time / BEAT);
-      // the next blow begins: the hammer comes up
-      if (n > started && n < BLOWS) { started = n; g.set('ax_blow', (b.get('ax_blow') || 0) + 1); }
-      // a blow gone by without a pull
-      for (let m = 0; m < BLOWS; m++) if (!judged.has(m) && t > lands(m) + SLACK) {
-        judged.add(m);
-        g.set('fire', base, 1);
-        g.set('sparks', 0.5, 1);
-        if (m >= FREE) slip(t);
-      }
-      if (release && t > release) { release = 0; g.set('pump', 0, 0.6); }
-      if (eye && t > eye) { eye = 0; g.set('st_lamp', 1, 0.9); g.set('st_lx', eyeOn[0]); g.set('st_lz', eyeOn[1]); }
-      // the ring closes on David's hands as the hammer comes down
-      const p = b.where('david', 1.5) || { x: innerWidth * 0.12, y: innerHeight * 0.55 }, ph = time / BEAT - n;
-      v.put(ring, p.x, p.y, 0.35 + 1.1 * (1 - ph), Math.min(1, ph * 1.6) * 0.8);
-      v.put(word, p.x + 60, p.y - 90, 1, time < BEAT * 4 ? 0.9 : 0);
-      if (time > (BLOWS + 1) * BEAT + 0.6) {
-        v.end();
-        if (eye) { g.set('st_lamp', 1, 0.9); g.set('st_lx', eyeOn[0]); g.set('st_lz', eyeOn[1]); }
-        done({ broke: slips > pass });
-      }
+    rh.on('tap', ({ k, hit: on }) => {
+      g.set('pump', ++pump);
+      if (on && !hit.has(k)) { hit.add(k); fire = Math.min(0.95, fire + 0.05); g.set('fire', fire, 0.4); }
     });
-  }),
+    const judged = new Set();
+    const done = await until(mg, () => {
+      const t = rh.state.t;
+      // the hammer: each blow from its lift, so that it lands on the beat
+      while (blows < n && t >= times[blows] - IMPACT) { g.set('ax_blow', blows + 1); blows++; }
+      for (let k = 0; k < n; k++) if (!judged.has(k) && t > times[k] + 0.3) { judged.add(k); if (!hit.has(k)) slip(k); }
+      mg.plate.set({ fill: Math.min(1, judged.size / n), glow: slips ? 'bad' : 'good' });
+      return judged.size >= n;
+    });
+    if (!done) return this.skipped;
+    const broke = slips > pass;
+    await mg.end({ as: broke ? 'loss' : slips ? 'flawed' : 'clean' });
+    return { broke };
+  },
 };

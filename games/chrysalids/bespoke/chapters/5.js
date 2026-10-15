@@ -132,7 +132,7 @@ export default {
       g.state.choices.forge = forge;
       if (forge === 'calm') {
         // the rhythm, and hope: he watches the anvil, the boy, the bellows
-        const { broke } = await g.play(bellows, { watched: marks.calf === 'hidden' });
+        const { broke } = await g.play(bellows, { watched: marks.calf === 'hidden', night: true });
         if (broke) g.scale('suspicion', 1);
         if (scales.suspicion >= 3 || (marks.calf === 'hidden' && scales.suspicion >= 2)) {
           // he knew: a whistle, two more lanterns out of the dark; the hammer up — and down

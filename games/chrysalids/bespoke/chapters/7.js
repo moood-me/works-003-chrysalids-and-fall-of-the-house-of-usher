@@ -150,13 +150,13 @@ export default {
       const { choices, marks } = g.state;
       if (marks.ending === 'fringes') return;
       const run = choices.father === 'run';
-      const down = g.told('landing:down');
+      const down = g.told(run ? 'landing_run:down' : 'landing:down');
       const { ended: landing } = await open(g, run ? 'landing_run' : 'landing');
       if (marks.father === 'saved') g.set('joseph_th', 0.97);
       await down;
       await g.say('narrator', 'Стало тихо. Корабль опустился посреди поляны.');
       await landing;
-      const runs = g.told('free:petra');
+      const runs = g.told(run ? 'free_run:petra' : 'free:petra');
       const free = play(g, run ? 'free_run' : 'free');
       await runs;
       await g.think('petra', 'Это ты! Я тебя знаю!');

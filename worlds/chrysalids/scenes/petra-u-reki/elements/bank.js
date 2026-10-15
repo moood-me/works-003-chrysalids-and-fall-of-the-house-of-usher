@@ -1,114 +1,52 @@
-const ys = (x) => {
-  if (x < -5.5) return -1.6 + 0.08 * Math.sin(x * 0.7);
-  if (x > 2) return 0.25;
-  const u = (x + 5.5) / 7.5;
-  return -1.6 + 1.85 * u * u * (3 - 2 * u);
-};
-const wl = (x) => 0.25 + Math.pow(Math.max(0, x - 2), 1.25) * 0.75 + 0.05 * Math.sin(x * 4.1);
-const edge = (x) => (x > 2 ? wl(x) : ys(x) + 0.015 * Math.sin(x * 9));
+// The near clay bank (9 m off; its own metres — x along the river, y down; lib.ys its top, lib.wl where it goes into the
+// pool), painted side-on: the wet clay, its streaks, the grass along its top and the reeds at its foot (layers bending in
+// the wind), the tall rushes in the left foreground. A picture of the land: the people walk on relief.js under it.
+const { ys, wl } = e.lib;
+const edge = x => (x > 2 ? wl(x) : ys(x) + 0.015 * Math.sin(x * 9));
 g.beginPath();
 g.moveTo(-14, 4.5);
 for (let x = -14; x <= 7.5; x += 0.08) g.lineTo(x, Math.min(4.5, edge(x)));
 g.lineTo(7.5, 4.5);
 g.closePath();
 const gr = g.createLinearGradient(0, -1.8, 0, 4.5);
-gr.addColorStop(0, "#5a5b4c");
-gr.addColorStop(0.18, "#4e4a40");
-gr.addColorStop(0.55, "#3d3932");
-gr.addColorStop(1, "#2b2a25");
+gr.addColorStop(0, '#8a826a');
+gr.addColorStop(0.2, '#7e7460');
+gr.addColorStop(0.6, '#6a6252');
+gr.addColorStop(1, '#565046');
 g.fillStyle = gr;
 g.fill();
 g.save();
 g.clip();
 for (let i = 0; i < 160; i++) {
-  const x = -13 + e.rnd() * 20;
-  const y = ys(Math.min(x, 2)) + 0.1 + e.rnd() * 4.2;
-  const w = 0.3 + e.rnd() * 1.4,
-    h = 0.05 + e.rnd() * 0.18;
-  g.globalAlpha = 0.07 + e.rnd() * 0.08;
-  g.fillStyle = e.rnd() < 0.5 ? "#25231f" : "#726c5e";
+  const x = -13 + e.rnd() * 20, y = ys(Math.min(x, 2)) + 0.1 + e.rnd() * 4.2, w = 0.3 + e.rnd() * 1.4, h = 0.05 + e.rnd() * 0.18;
+  g.globalAlpha = 0.1 + e.rnd() * 0.1;
+  g.fillStyle = e.rnd() < 0.5 ? '#4e463a' : '#a49a84';
   g.beginPath();
   g.ellipse(x, y, w, h, 0.18 + e.rnd() * 0.2, 0, 7);
   g.fill();
 }
-for (let i = 0; i < 70; i++) {
-  const x = -5 + e.rnd() * 11;
-  const y = edge(x) + 0.05 + e.rnd() * 0.9;
-  const L = 0.2 + e.rnd() * 0.6;
-  g.globalAlpha = 0.08 + e.rnd() * 0.08;
-  g.strokeStyle = "#7d786a";
-  g.lineWidth = 0.02;
-  g.beginPath();
-  g.moveTo(x, y);
-  g.quadraticCurveTo(x + L * 0.5, y + L * 0.4, x + L * 0.6, y + L);
-  g.stroke();
-}
 g.restore();
-g.save();
+g.globalAlpha = 1;
+// the wet sheen where the clay goes into the water
+g.fillStyle = 'rgba(190,196,186,0.35)';
 g.beginPath();
 for (let x = 1.2; x <= 7.5; x += 0.08) g.lineTo(x, edge(x));
 for (let x = 7.5; x >= 1.2; x -= 0.08) g.lineTo(x - 0.25, edge(x) - 0.12);
 g.closePath();
-g.globalAlpha = 0.35;
-g.fillStyle = "#7a7d74";
 g.fill();
-g.restore();
-g.globalAlpha = 1;
-g.lineCap = "round";
-for (let i = 0; i < 520; i++) {
-  const x = -14 + e.rnd() * 13.5;
-  const y = edge(x) + 0.02 + e.rnd() * 0.08;
-  const h = (0.08 + e.rnd() * 0.32) * (x < -5 ? 1 : 0.7);
-  const ph = e.rnd() * 6.28;
-  const s = 0.04 * Math.sin(e.t * 0.8 + ph + x) + 0.02 * Math.sin(e.t * 0.3 + ph);
-  g.strokeStyle = e.rnd() < 0.5 ? "#4c5242" : "#5e6351";
-  g.globalAlpha = 0.9;
-  g.lineWidth = 0.018 + e.rnd() * 0.012;
-  g.beginPath();
-  g.moveTo(x, y);
-  g.quadraticCurveTo(x + s * 0.4, y - h * 0.6, x + s + 0.04, y - h);
-  g.stroke();
-}
-const xd = Math.min((e.state.dv_a ?? -20) + 2.4, 1.9);
-for (let x = -5; x < Math.min(xd, 1.5) - 0.4; x += 0.55 + 0.1 * Math.sin(x * 5)) {
-  g.globalAlpha = 0.28;
-  g.fillStyle = "#24221d";
-  g.beginPath();
-  g.ellipse(x, ys(x) + 0.06, 0.13, 0.035, 0.2, 0, 7);
-  g.fill();
-}
-function reed(x, y, h, c, w, bend) {
-  const ph = x * 3.7;
-  const s = 0.07 * h * Math.sin(e.t * 0.5 + ph) + 0.03 * h * Math.sin(e.t * 0.19 + ph * 1.7) + bend * h;
-  g.strokeStyle = c;
-  g.lineWidth = w;
-  g.beginPath();
-  g.moveTo(x, y);
-  g.quadraticCurveTo(x + s * 0.2, y - h * 0.6, x + s, y - h);
-  g.stroke();
-  return s;
-}
-for (let c = 0; c < 5; c++) {
-  const cx = 1.6 + c * 1.2 + e.rnd() * 0.6;
-  const n = 10 + Math.floor(e.rnd() * 8);
+const tuft = (name, x0, x1, n, tall, colA, colB, foot) => e.layer(name, { pivot: [(x0 + x1) / 2, foot ?? edge((x0 + x1) / 2) + 0.2], wind: { strength: 0.35, gust: 0.6 }, box: [x0 - 0.6, -4.8, x1 + 0.6, 4.7] }, q => {
+  q.lineCap = 'round';
   for (let i = 0; i < n; i++) {
-    const x = cx + (e.rnd() - 0.5) * 0.8;
-    const y = edge(x) + 0.04;
-    const h = 0.35 + e.rnd() * 1.0 * (c < 3 ? 1 : 0.6);
-    const bend = (e.rnd() - 0.4) * 0.35;
-    g.globalAlpha = 0.92;
-    const s = reed(x, y, h, e.rnd() < 0.5 ? "#2f332c" : "#3e4237", 0.016 + e.rnd() * 0.014, bend);
-    if (e.rnd() < 0.08) {
-      g.fillStyle = "#302b25";
-      g.beginPath();
-      g.ellipse(x + s, y - h - 0.06, 0.025, 0.08, s * 0.4, 0, 7);
-      g.fill();
-    }
+    const x = x0 + e.rnd() * (x1 - x0), y = foot ?? edge(x) + 0.03, h = tall(e.rnd());
+    q.strokeStyle = e.rnd() < 0.5 ? colA : colB;
+    q.lineWidth = foot != null ? 0.03 + e.rnd() * 0.03 : 0.018 + e.rnd() * 0.012;
+    const s = (e.rnd() - 0.4) * 0.3 * h;
+    q.beginPath();
+    q.moveTo(x, y);
+    q.quadraticCurveTo(x + s * 0.2, y - h * 0.6, x + s, y - h);
+    q.stroke();
   }
-}
-for (let i = 0; i < 55; i++) {
-  const x = -13.5 + e.rnd() * 5;
-  const h = 1.4 + e.rnd() * 2.4;
-  reed(x, 4.6, h, e.rnd() < 0.5 ? "#232521" : "#2c2e29", 0.03 + e.rnd() * 0.03, (e.rnd() - 0.3) * 0.25);
-}
-g.globalAlpha = 1;
+});
+for (let k = 0; k < 7; k++) tuft(`grass${k}`, -14 + k * 2, -12 + k * 2, 70, r => (0.08 + r * 0.32) * (k < 4 ? 1 : 0.7), '#6e7a58', '#7e8a64');
+for (let k = 0; k < 5; k++) tuft(`reeds${k}`, 1.3 + k * 1.2, 2.1 + k * 1.2, 16, r => 0.35 + r * (k < 3 ? 1 : 0.6), '#5a6448', '#68724e');
+tuft('rushes', -13.5, -8.5, 55, r => 1.4 + r * 2.4, '#4e5642', '#5a624a', 4.6);

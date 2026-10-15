@@ -73,7 +73,7 @@ export default async function (b) {
   // there (go back to the main run, the next chapter, play one again); how things stand (of run r) in the corner.
   // → what was chosen: an option's id, or `chapter:i`
   async function niti(shown, options, { reveal = false, r = kept.replay ?? kept, compare = null } = {}) {
-    await b.show(NITI, { state: { chapters: sky(), shown, reveal: reveal ? 0 : 1, knot: 1, camera_x: shown * APART } });
+    await b.show(NITI, { state: { chapters: sky(), shown, reveal: reveal ? 0 : 1, knot: 1, camera_x: shown * APART }, captions: false });
     if (reveal) b.set('reveal', 1, 6);
     const g = context(b, view, hub, r);
     const hideNow = view.now(now(r)), hideCompare = compare ? view.compare(compare) : () => {};
@@ -117,7 +117,7 @@ export default async function (b) {
       // the end (of the main run): how it ended, years later; then the first chapter again — a replay, the main run
       // kept — or any chapter
       const ending = ENDINGS.find(e => e.id === kept.marks.ending);
-      await b.show(NITI, { state: { chapters: sky(), shown: END, reveal: 1, knot: 0.6, camera_x: END * APART } });
+      await b.show(NITI, { state: { chapters: sky(), shown: END, reveal: 1, knot: 0.6, camera_x: END * APART }, captions: false });
       await epilogue(context(b, view, hub, kept), ending?.id);
       const next = await niti(END, [{ id: 'again', label: 'Сыграть сначала' }]);
       straight = true;

@@ -1,14 +1,726 @@
 {
+  "engine": 3,
+  "title": "Насыпь у ручья",
+  "horizon": 0.43,
+  "camera": {
+    "mode": "picture"
+  },
   "light": {
     "haze": 0.2,
+    "hazeColor": "#e6dcbc",
     "tint": "#f2d9a0",
+    "tintStrength": 0.05,
     "grain": 0.2,
     "vignette": 0.35,
-    "hazeColor": "#e6dcbc",
-    "tintStrength": 0.05,
-    "people": 0.6,
-    "ambientColor": "#e6dcbc"
+    "ambient": 0.95,
+    "ambientColor": "#fff8ea",
+    "bounce": 0.6,
+    "shafts": 0.25,
+    "wind": [
+      1,
+      0,
+      0.3
+    ],
+    "looks": {
+      "evening": {
+        "tint": "#e89a6a",
+        "tintStrength": 0.13,
+        "saturation": 0.95,
+        "hazeColor": "#e9cfac",
+        "ambient": 0.88,
+        "ambientColor": "#ffe6c8",
+        "lights": {
+          "sun": 0.72
+        }
+      },
+      "night": {
+        "ambient": 0.75,
+        "ambientColor": "#a9b9dc",
+        "bounce": 0.3,
+        "shafts": 0.15,
+        "saturation": 0.7,
+        "haze": 0.25,
+        "hazeColor": "#2a3550",
+        "tint": "#3a4a78",
+        "tintStrength": 0.12,
+        "lights": {
+          "sun": 0
+        }
+      }
+    }
   },
+  "lights": [
+    {
+      "id": "sun",
+      "from": "sky#sun",
+      "color": "#ffe2b0",
+      "strength": 1.3
+    },
+    {
+      "id": "moon",
+      "from": "sky#moon",
+      "color": "#9aaecb",
+      "strength": 0.6,
+      "on": "night"
+    }
+  ],
+  "state": {
+    "beat": null,
+    "evening": 0,
+    "night": 0,
+    "someone_coming": 0,
+    "shoe": "on",
+    "closeup": 0,
+    "cu_pull": 0,
+    "cu_wig": 0,
+    "cu_hide": 0,
+    "puff": 0,
+    "puff_a": 1,
+    "splash": 0,
+    "ring": 0,
+    "ring_a": 2.72,
+    "r_a": -18,
+    "r_d": 17,
+    "r_face": 70,
+    "r_toss": 0,
+    "david_a": -1.95,
+    "david_d": 5.0,
+    "david_e": 0,
+    "david_do": {
+      "motion": "sit_lean_back",
+      "loop": true
+    },
+    "david_turn": 90,
+    "david_steps": false,
+    "sophie_a": -2.85,
+    "sophie_d": 5.0,
+    "sophie_e": 0,
+    "sophie_do": {
+      "motion": "crouch",
+      "loop": true
+    },
+    "sophie_turn": 90,
+    "sophie_look": "david",
+    "mother_a": 10.6,
+    "mother_d": 22,
+    "mother_turn": 330,
+    "mother_here": false,
+    "rider_here": false,
+    "rider_on": {
+      "at": "horse#seat",
+      "up": -0.5
+    },
+    "rider_turn": 110,
+    "cu_cover": false,
+    "hem": 0,
+    "r_near": 0
+  },
+  "states": {
+    "beat": {
+      "type": "string",
+      "means": "кусок фильма (модуль beats): имя куска — он играется с начала; в конце сцена говорит beat:<имя>; моменты — ridge:rider (всадник показался), ridge:hem (крупный план открыт, рука Дэвида на подоле), ridge:seen (всадник видит камни). Канон: play, play_again, stuck, let, toes, ask, promise, mother, nod, alone; ветки игры: talk_hurt, talk_whose, talk_sit, toes_bare, ridge, cover, ridge_pass, ridge_stop, away; глава II: night_warn, night_warn_bye"
+    },
+    "evening": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "вечер: 0 — день, низкое солнце; 1 — солнце садится, свет тёплый и слабее (фильм: 0 → 0.54 к матери, 0.79 к уходу, 1 в конце)"
+    },
+    "night": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "ночь: небо тёмно-синее, звёзды, луна над лугом, земля в лунном свете"
+    },
+    "someone_coming": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "всадник на дальнем гребне: 0 — нет, 1 — едет по гребню"
+    },
+    "shoe": {
+      "values": [
+        "on",
+        "david",
+        "sophie"
+      ],
+      "means": "башмак Софи: на ноге; у Дэвида в руках; у неё. Снят — её правая ступня босая, в чулке (sophie_wear)"
+    },
+    "closeup": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "крупный план (диафрагма): босая ступня на камнях — шесть пальцев; 0 — закрыт, 1 — открыт"
+    },
+    "cu_pull": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "крупный план: его руки с башмаком отходят (0 — у ноги, 1 — отошли)"
+    },
+    "cu_wig": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "крупный план: пальцы поджимаются (0 — покой, 1 — шевелятся)"
+    },
+    "cu_hide": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "крупный план: её рука натягивает подол на ступню (0 — нога открыта, 1 — укрыта)"
+    },
+    "puff": {
+      "type": "number",
+      "means": "пыль из-под удара: каждый раз, как число растёт, — облачко пыли там, где puff_a"
+    },
+    "puff_a": {
+      "range": [
+        -4,
+        4
+      ],
+      "means": "где поднимается пыль: метры поперёк, на линии насыпи"
+    },
+    "splash": {
+      "type": "number",
+      "means": "брызги у камней: каждый раз, как число растёт, — брызги там, где ring_a"
+    },
+    "ring": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "круги на воде у камней: 0 → 1 — расходятся и гаснут"
+    },
+    "ring_a": {
+      "range": [
+        -4,
+        4
+      ],
+      "means": "где круги и брызги: метры поперёк"
+    },
+    "r_a": {
+      "range": [
+        -20,
+        16
+      ],
+      "smooth": true,
+      "means": "конь всадника на лугу: метры поперёк (лево −, право +)"
+    },
+    "r_d": {
+      "range": [
+        8,
+        30
+      ],
+      "smooth": true,
+      "means": "конь всадника на лугу: метры вглубь"
+    },
+    "r_face": {
+      "range": [
+        0,
+        360
+      ],
+      "smooth": true,
+      "means": "куда повёрнут конь, градусы: 0 — к нам, 90 — вправо, 180 — от нас (ноги и руки всадника идут за ним: script.js)"
+    },
+    "r_toss": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "конь вскидывает голову"
+    },
+    "david_e": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "Дэвид в полёте с края ската: высота над землёй, метры"
+    },
+    "sophie_e": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "Софи в полёте с края ската: высота над землёй, метры"
+    },
+    "cu_cover": {
+      "type": "boolean",
+      "means": "крупный план: рука Дэвида на краю подола (он натянет его — «Подол» игры)"
+    },
+    "hem": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "крупный план: подол, который тянет его рука (игра, «Подол»): 0 — нога открыта, 1 — укрыта; отпущен — сползает назад (игра ведёт его к 0)"
+    },
+    "r_near": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "всадник приближается: 0 — показался на краю луга, 1 — там, откуда видно камни (идёт вместе с r_a, r_d)"
+    }
+  },
+  "objects": [
+    {
+      "id": "sky",
+      "name": "Небо и низкое солнце",
+      "sky": true
+    },
+    {
+      "id": "stars",
+      "name": "Звёзды",
+      "sky": true,
+      "uniforms": {
+        "night": 0
+      }
+    },
+    {
+      "id": "far_hills",
+      "name": "Дальние холмы",
+      "x": 0.5,
+      "distance": 900,
+      "height": 60,
+      "box": [
+        -2600,
+        -70,
+        2600,
+        10
+      ]
+    },
+    {
+      "id": "ridge",
+      "name": "Гребень холма",
+      "x": 0.5,
+      "distance": 260,
+      "height": 25,
+      "box": [
+        -1400,
+        -36,
+        1400,
+        6
+      ]
+    },
+    {
+      "id": "meadow",
+      "name": "Луг и тропинка",
+      "plane": true,
+      "x": 0.5,
+      "distance": 85,
+      "elevation": 0,
+      "width": 600,
+      "depth": 170
+    },
+    {
+      "id": "willow_far",
+      "name": "Дальняя ива",
+      "across": -34,
+      "distance": 62,
+      "height": 6,
+      "box": [
+        -3.2,
+        -6.2,
+        3.6,
+        0.4
+      ]
+    },
+    {
+      "id": "farpath",
+      "name": "Дом Уэндеров",
+      "across": 14.6,
+      "distance": 48,
+      "height": 6,
+      "box": [
+        -4.5,
+        -6,
+        4.5,
+        0.5
+      ]
+    },
+    {
+      "id": "chimney_smoke",
+      "name": "Дым над домом Уэндеров",
+      "particles": {
+        "kind": "smoke",
+        "at": "farpath#chimney",
+        "rate": 2,
+        "color": "#e8e2cc",
+        "opacity": 0.2,
+        "size": [
+          0.6,
+          3.2
+        ]
+      }
+    },
+    {
+      "id": "willow_r",
+      "name": "Ива за ручьём",
+      "across": 8.5,
+      "distance": 14,
+      "height": 7,
+      "box": [
+        -4.35,
+        -7.2,
+        3.65,
+        0.4
+      ]
+    },
+    {
+      "id": "stream",
+      "name": "Ручей",
+      "plane": true,
+      "x": 0.5,
+      "distance": 3.9,
+      "elevation": 0.01,
+      "width": 70,
+      "depth": 4.8
+    },
+    {
+      "id": "rings",
+      "name": "Круги на воде",
+      "plane": true,
+      "across": 2.72,
+      "distance": 4.35,
+      "elevation": 0.015,
+      "width": 1.6,
+      "depth": 1.6,
+      "place": {
+        "across": "ring_a"
+      }
+    },
+    {
+      "id": "drops",
+      "name": "Брызги у камней",
+      "across": 2.72,
+      "distance": 4.35,
+      "place": {
+        "across": "ring_a"
+      },
+      "particles": {
+        "kind": "splashes",
+        "burst": {
+          "on": "splash",
+          "count": 10
+        },
+        "color": "#f1f2e2"
+      }
+    },
+    {
+      "id": "dragonfly",
+      "name": "Стрекоза",
+      "across": -0.3,
+      "distance": 4.8,
+      "elevation": 0.35,
+      "height": 0.15,
+      "box": [
+        -1.8,
+        -0.4,
+        1.8,
+        0.4
+      ],
+      "onLand": false
+    },
+    {
+      "id": "motes",
+      "name": "Пылинки в свете",
+      "across": -1.2,
+      "distance": 3.3,
+      "elevation": 1.65,
+      "particles": {
+        "kind": "dust",
+        "source": [
+          9,
+          1.5,
+          3.3
+        ],
+        "rate": 4,
+        "size": [
+          0.02,
+          0.02
+        ],
+        "color": "#fff3d0",
+        "opacity": 0.6,
+        "flicker": 0.5
+      }
+    },
+    {
+      "id": "willow_big",
+      "name": "Большая ива",
+      "across": -11.2,
+      "distance": 11,
+      "height": 8,
+      "box": [
+        -2.4,
+        -8.2,
+        5.2,
+        0.4
+      ]
+    },
+    {
+      "id": "horse",
+      "name": "Конь всадника",
+      "across": -18,
+      "distance": 17,
+      "place": {
+        "across": "r_a",
+        "distance": "r_d"
+      },
+      "height": 2.5,
+      "box": [
+        -2.6,
+        -3.2,
+        2.6,
+        0.4
+      ],
+      "shadow": {
+        "strength": 0.8
+      }
+    },
+    {
+      "id": "rider",
+      "name": "Всадник",
+      "person": {
+        "cast": "cast",
+        "who": "rider",
+        "does": "perch_still",
+        "turn": 110
+      },
+      "across": -18,
+      "distance": 17,
+      "shadow": {
+        "strength": 0.8
+      }
+    },
+    {
+      "id": "big_bank",
+      "name": "Большая насыпь с песчаным скатом",
+      "across": 1.4,
+      "distance": 5.0,
+      "height": 2.5,
+      "box": [
+        -14,
+        -3.2,
+        12.5,
+        0.6
+      ],
+      "onLand": false
+    },
+    {
+      "id": "mother",
+      "name": "Миссис Уэндер",
+      "person": {
+        "cast": "cast",
+        "who": "wender",
+        "turn": 330
+      },
+      "across": 10.6,
+      "distance": 22,
+      "place": {
+        "across": "mother_a",
+        "distance": "mother_d"
+      },
+      "inFront": [
+        "big_bank",
+        "fringe"
+      ],
+      "shadow": {
+        "strength": 0.8
+      }
+    },
+    {
+      "id": "david",
+      "name": "Дэвид",
+      "person": {
+        "cast": "cast",
+        "who": "david",
+        "does": "sit_lean_back",
+        "turn": 90
+      },
+      "across": -1.95,
+      "distance": 5.0,
+      "place": {
+        "across": "david_a",
+        "distance": "david_d",
+        "elevation": "david_e"
+      },
+      "inFront": [
+        "big_bank",
+        "fringe"
+      ],
+      "shadow": {
+        "strength": 0.8
+      }
+    },
+    {
+      "id": "sophie",
+      "name": "Софи",
+      "person": {
+        "cast": "cast",
+        "who": "sophie",
+        "does": "crouch",
+        "turn": 90
+      },
+      "across": -2.85,
+      "distance": 5.0,
+      "place": {
+        "across": "sophie_a",
+        "distance": "sophie_d",
+        "elevation": "sophie_e"
+      },
+      "inFront": [
+        "big_bank",
+        "fringe"
+      ],
+      "shadow": {
+        "strength": 0.8
+      }
+    },
+    {
+      "id": "stones",
+      "name": "Камни у воды",
+      "across": 1.4,
+      "distance": 4.99,
+      "height": 0.3,
+      "box": [
+        0.5,
+        -0.4,
+        2.6,
+        0.2
+      ],
+      "onLand": false
+    },
+    {
+      "id": "fringe",
+      "name": "Высокая трава на насыпи",
+      "across": 1.4,
+      "distance": 4.995,
+      "height": 1,
+      "box": [
+        -12.6,
+        -3.7,
+        -3.0,
+        0.4
+      ],
+      "onLand": false
+    },
+    {
+      "id": "dust",
+      "name": "Пыль из-под удара",
+      "across": 1.0,
+      "distance": 5.0,
+      "place": {
+        "across": "puff_a"
+      },
+      "particles": {
+        "kind": "puff",
+        "burst": {
+          "on": "puff",
+          "count": 16
+        },
+        "color": "#e4d3a4",
+        "size": [
+          0.08,
+          0.4
+        ],
+        "opacity": 0.4
+      }
+    },
+    {
+      "id": "bank",
+      "name": "Травяная насыпь",
+      "across": 0,
+      "distance": 2.6,
+      "height": 1,
+      "box": [
+        -16,
+        -2.2,
+        16,
+        1.3
+      ]
+    },
+    {
+      "id": "closeup",
+      "name": "Крупный план: ступня",
+      "insert": "closeup",
+      "iris": [
+        1.2,
+        0.52,
+        0.3,
+        0.3
+      ]
+    },
+    {
+      "id": "closeup_glints",
+      "name": "Крупный план: блики на воде",
+      "insert": "closeup",
+      "iris": [
+        1.2,
+        0.52,
+        0.3,
+        0.3
+      ],
+      "uniforms": {
+        "cx": 0,
+        "cy": 0,
+        "k": 1
+      }
+    },
+    {
+      "id": "closeup_foot",
+      "name": "Крупный план: ступня, подол, руки",
+      "insert": "closeup",
+      "iris": [
+        1.2,
+        0.52,
+        0.3,
+        0.3
+      ]
+    },
+    {
+      "id": "closeup_iris",
+      "name": "Крупный план: тёмное кольцо вокруг диафрагмы",
+      "insert": "closeup",
+      "iris": [
+        1.2,
+        0.52,
+        0.42,
+        0.42
+      ],
+      "uniforms": {
+        "open": 0,
+        "cx": 1.2,
+        "cy": 0.52,
+        "r": 0.3
+      }
+    }
+  ],
+  "modules": [
+    "chrysalids",
+    "cast",
+    "beats"
+  ],
   "music": {
     "bpm": 72,
     "density": 0.3,
@@ -95,341 +807,5 @@
       }
     ],
     "brightness": 0.55
-  },
-  "state": {
-    "beat": "film",
-    "sun": 1,
-    "cu_a": 0,
-    "cu_d": 2.0,
-    "someone_coming": 0
-  },
-  "title": "Насыпь у ручья",
-  "camera": {
-    "mode": "picture"
-  },
-  "horizon": 0.43,
-  "objects": [
-    {
-      "id": "sky",
-      "sky": true,
-      "name": "Небо и низкое солнце"
-    },
-    {
-      "x": 0.5,
-      "id": "far_hills",
-      "box": [
-        -2600,
-        -70,
-        2600,
-        10
-      ],
-      "name": "Дальние холмы",
-      "height": 60,
-      "distance": 900
-    },
-    {
-      "x": 0.5,
-      "id": "ridge",
-      "box": [
-        -1400,
-        -36,
-        1400,
-        6
-      ],
-      "name": "Гребень холма",
-      "height": 25,
-      "distance": 260
-    },
-    {
-      "x": 0.5,
-      "id": "meadow",
-      "name": "Луг",
-      "depth": 170,
-      "plane": true,
-      "width": 600,
-      "distance": 85,
-      "elevation": 0
-    },
-    {
-      "id": "willow_far",
-      "box": [
-        -3.2,
-        -6.2,
-        3.6,
-        0.4
-      ],
-      "name": "Дальняя ива",
-      "across": -34,
-      "height": 6,
-      "distance": 62
-    },
-    {
-      "id": "willow_r",
-      "box": [
-        -4.35,
-        -7.2,
-        3.65,
-        0.4
-      ],
-      "name": "Ива за ручьём",
-      "across": 8.5,
-      "height": 7,
-      "distance": 14
-    },
-    {
-      "x": 0.5,
-      "id": "stream",
-      "name": "Ручей",
-      "depth": 4.8,
-      "plane": true,
-      "width": 70,
-      "distance": 3.9,
-      "elevation": 0
-    },
-    {
-      "id": "dragonfly",
-      "box": [
-        -1.8,
-        -0.4,
-        1.8,
-        0.4
-      ],
-      "name": "Стрекоза",
-      "across": -0.3,
-      "height": 0.15,
-      "distance": 4.8,
-      "elevation": 0.35,
-      "onLand": false
-    },
-    {
-      "id": "motes",
-      "box": [
-        -4.5,
-        -3.5,
-        4.5,
-        0.5
-      ],
-      "name": "Пылинки в свете",
-      "across": -1.2,
-      "height": 3,
-      "distance": 4.5,
-      "elevation": 0,
-      "onLand": false
-    },
-    {
-      "id": "willow_big",
-      "box": [
-        -2.4,
-        -8.2,
-        5.2,
-        0.4
-      ],
-      "name": "Большая ива",
-      "across": -11.2,
-      "height": 8,
-      "distance": 11
-    },
-    {
-      "id": "farpath",
-      "box": [
-        6,
-        -14,
-        36,
-        9.5
-      ],
-      "name": "Дом Уэндеров и тропинка",
-      "across": 0,
-      "height": 6,
-      "distance": 48
-    },
-    {
-      "id": "rider",
-      "box": [
-        -2.6,
-        -3.8,
-        2.6,
-        0.4
-      ],
-      "name": "Всадник на лугу",
-      "place": {
-        "across": "r_a",
-        "distance": "r_d"
-      },
-      "across": -18,
-      "height": 2.5,
-      "distance": 17
-    },
-    {
-      "id": "big_bank",
-      "box": [
-        -14,
-        -3.2,
-        12.5,
-        0.6
-      ],
-      "name": "Большая насыпь с песчаным скатом",
-      "across": 1.4,
-      "height": 2.5,
-      "distance": 5.0,
-      "onLand": false
-    },
-    {
-      "id": "mother",
-      "name": "Миссис Уэндер",
-      "person": {
-        "cast": "cast",
-        "who": "wender",
-        "turn": 30
-      },
-      "across": 10.6,
-      "distance": 22,
-      "place": {
-        "across": "mother_a",
-        "distance": "mother_d"
-      },
-      "inFront": [
-        "big_bank",
-        "fringe"
-      ],
-      "shadow": true
-    },
-    {
-      "id": "david",
-      "name": "Дэвид",
-      "person": {
-        "cast": "cast",
-        "who": "david",
-        "does": "sit_lean_back",
-        "turn": 90
-      },
-      "across": -1.95,
-      "distance": 5.0,
-      "place": {
-        "across": "david_a",
-        "distance": "david_d",
-        "elevation": "david_e"
-      },
-      "inFront": [
-        "big_bank",
-        "fringe"
-      ],
-      "shadow": true
-    },
-    {
-      "id": "sophie",
-      "name": "Софи",
-      "person": {
-        "cast": "cast",
-        "who": "sophie",
-        "does": "crouch",
-        "turn": 90
-      },
-      "across": -2.85,
-      "distance": 5.0,
-      "place": {
-        "across": "sophie_a",
-        "distance": "sophie_d",
-        "elevation": "sophie_e"
-      },
-      "inFront": [
-        "big_bank",
-        "fringe"
-      ],
-      "shadow": true
-    },
-    {
-      "id": "stones",
-      "box": [
-        0.5,
-        -0.4,
-        2.6,
-        0.2
-      ],
-      "name": "Камни у воды",
-      "across": 1.4,
-      "height": 0.3,
-      "distance": 4.99,
-      "onLand": false
-    },
-    {
-      "id": "fringe",
-      "box": [
-        -12.5,
-        -3.6,
-        -3.5,
-        0.1
-      ],
-      "name": "Высокая трава на насыпи",
-      "across": 1.4,
-      "height": 1,
-      "distance": 4.995,
-      "onLand": false
-    },
-    {
-      "id": "fx",
-      "box": [
-        -2,
-        -1.2,
-        3,
-        0.4
-      ],
-      "name": "Пыль и круги на воде",
-      "across": 1.4,
-      "height": 1,
-      "distance": 4.97,
-      "onLand": false
-    },
-    {
-      "id": "bank",
-      "box": [
-        -16,
-        -2.2,
-        16,
-        1.3
-      ],
-      "name": "Травяная насыпь",
-      "across": 0,
-      "height": 1,
-      "distance": 2.6
-    },
-    {
-      "id": "closeup",
-      "box": [
-        -2.7,
-        -1.6,
-        2.7,
-        1.6
-      ],
-      "name": "Крупный план (диафрагма)",
-      "place": {
-        "across": "cu_a",
-        "distance": "cu_d"
-      },
-      "across": 0,
-      "height": 1,
-      "distance": 2.0,
-      "elevation": 1.46
-    }
-  ],
-  "modules": [
-    "chrysalids",
-    "cast",
-    "film"
-  ],
-  "lights": [
-    {
-      "id": "sun",
-      "from": "sky#sun",
-      "color": "#ffe2b0",
-      "strength": 1.0,
-      "on": "sun_light"
-    },
-    {
-      "id": "moon",
-      "from": "sky#moon",
-      "color": "#9aaecb",
-      "strength": 0.6,
-      "on": "moon_light"
-    }
-  ]
+  }
 }

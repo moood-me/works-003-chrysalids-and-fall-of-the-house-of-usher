@@ -4,12 +4,12 @@
 // go to him, or call it the wind; ⚑ the morning — the last chance to leave. design.md, scenes.md.
 // Reads: marks.doctor, marks.promise. Leaves: choices.check, coffin, screws, night, morning; heard.said,
 // insisted, loose, knocked; marks.loose (the screws stayed loose), marks.key (he told of the key).
-import { SCALES } from '../story.js';
+import { SCALES, SCENES } from '../story.js';
 import vinty from '../minigames/vinty.js';
 import stuk from '../minigames/stuk.js';
 import slushat from '../minigames/slushat.js';
 
-const HOUSE = 'Подъезд к дому', ROOM = 'Комната Родерика', VAULT = 'Склеп', NIGHT = 'Буря и чтение';
+const HOUSE = SCENES.house, ROOM = SCENES.room, VAULT = SCENES.vault, NIGHT = SCENES.storm;
 
 export default {
   number: 'III',
@@ -39,18 +39,18 @@ export default {
       await g.scene(VAULT, { beat: 'enter' });
       await g.beat('enter');
       // (said over her face, close: the scene tells the cut)
-      const face = g.told('shot:face');
+      const face = g.told('open:face');
       const open = g.beat('open');
       await face;
       await g.say('narrator', 'Румянец на щеках. На груди. И улыбка — та, что так страшна у мёртвых.', 'narrator');
       await open;
       const check = await g.choose('check', {
-        madeline: [{ id: 'touch', label: 'Коснуться её руки' }, { id: 'mirror', label: 'Поднести зеркальце к губам' }],
+        madeline: [{ id: 'touch', label: 'Коснуться руки' }, { id: 'mirror', label: 'Зеркальце к губам' }],
         roderick: [{ id: 'none', label: 'Не трогать' }],
       });
       if (check === 'touch') {
         // (said as his hand goes to hers)
-        const hand = g.when('touch', 1);
+        const hand = g.told('touch:hand');
         const touch = g.beat('touch');
         await hand;
         await g.say('narrator', 'Рука была тёплой.', 'narrator');
@@ -58,7 +58,7 @@ export default {
       }
       if (check === 'mirror') {
         // (said as the mirror goes to her lips)
-        const up = g.when('mirror', 1);
+        const up = g.told('mirror:up');
         const mirror = g.beat('mirror');
         await up;
         await g.say('narrator', 'Зеркальце осталось чистым.', 'narrator');
@@ -67,17 +67,22 @@ export default {
       await g.say('narrator', 'Так бывает при её болезни. Она может быть жива. Узнать наверняка нельзя.');
       await g.say('roderick', 'Мы близнецы. Я бы почувствовал.');
       const lid = await g.choose('coffin', 'roderick', [
-        { id: 'said', label: '— Она может быть жива.' },
-        { id: 'insisted', label: '— Подожди. Не закрывай.' },
+        { id: 'said', label: 'Может быть жива' },
+        { id: 'insisted', label: 'Не закрывай' },
         { id: 'silent', label: 'Промолчать' },
       ]);
+      // (where the lid goes next: the screws, or — he shut it himself, hard — straight to her side of it: its cut made
+      // ready ahead)
+      g.set('beat_next', lid === 'insisted' ? 'inside' : 'screws');
       if (lid === 'said') {
+        await g.say('narrator', 'Она может быть жива.');
         g.overheard('said');
         const turn = g.beat('say');
         await g.say('roderick', 'Я знаю. Я боюсь этого больше, чем её смерти.');
         await turn;
         await g.beat('shut');
       } else if (lid === 'insisted') {
+        await g.say('narrator', 'Подожди. Не закрывай.');
         g.overheard('insisted');
         const shut = g.beat('insist');
         await g.say('roderick', 'Это мой дом.');
@@ -90,6 +95,7 @@ export default {
       if (lid !== 'insisted') {
         if (lid === 'said') await g.say('roderick', 'Винты. Помоги мне.');
         await g.beat('screws');
+        g.set('beat_next', 'inside');
         const { loose } = await g.play(vinty, { promised: !!g.state.marks.promise });
         g.state.choices.screws = loose.length ? 'loose' : 'tight';
         if (loose.length) {
@@ -103,9 +109,10 @@ export default {
         }
       }
       // from inside: the line of light, the screw tips coming through the wood as the driver turns them — each turn heard
-      // as it comes (the scene sets `tip` on, a turn at a time)
+      // as it comes (the scene moves `tip` on, a turn at a time)
       g.watch('tip', (v, old) => { if (v > (old ?? 0)) g.sound.screw(0.6); });
       await g.beat('inside');
+      g.set('beat_next', null);
       await g.beat('leave');
       await g.choose(null, 'door', [{ id: 'close', label: 'Закрыть дверь' }]);
       g.sound.ironDoor(true);
@@ -135,7 +142,7 @@ export default {
       }
       if (night === 'told') {
         // (said as he comes to stand beside him)
-        const beside = g.arrived('narrator');
+        const beside = g.told('night_listen:beside');
         await g.scene(ROOM, { beat: 'night_listen' });
         const listen = g.beat('night_listen');
         await beside;
@@ -151,7 +158,6 @@ export default {
       await g.play(stuk, {});
       g.overheard('knocked');
       await g.say('narrator', 'Оттуда ответили.');
-      // (still at the door: his answer comes over it)
       await g.say('narrator', 'Утром я попросил у него ключ.');
       await g.say('roderick', 'Я бросил ключ в пруд. Иначе я бы открыл — и увидел её глаза.', 'narrator');
       g.mark('key', true);
@@ -160,7 +166,7 @@ export default {
     // the morning: his horse saddled — ⚑ the last chance to leave
     async g => {
       // (said as the horse tosses its head)
-      const toss = g.when('horse_toss', 1);
+      const toss = g.told('morning:toss');
       await g.scene(HOUSE, { beat: 'morning' });
       const morning0 = g.beat('morning');
       await toss;

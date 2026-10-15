@@ -3,10 +3,11 @@
 // chance to leave; the walk out of the house («За руку»): his breath, his fear, the house alive — on to
 // the shore or back. «Её больше нет». design.md, scenes.md (docs/usher).
 // Reads: nothing. Leaves: choices.struna, doctor, carriage, walk; marks.doctor (he was told).
+import { SCENES } from '../story.js';
 import struna from '../minigames/struna.js';
 import zaRuku from '../minigames/za-ruku.js';
 
-const HOUSE = 'Подъезд к дому', ROOM = 'Комната Родерика', GALLERY = 'Мэдлин проходит';
+const HOUSE = SCENES.house, ROOM = SCENES.room, GALLERY = SCENES.gallery;
 
 export default {
   number: 'II',
@@ -49,7 +50,7 @@ export default {
     },
     // the doctor: ⚑ tell him or keep silent; his carriage
     async g => {
-      await g.scene(GALLERY, { madeline: 0, doctor_present: 1, beat: 'doctor' });
+      await g.scene(GALLERY, { beat: 'doctor' });
       const doctor = g.beat('doctor');
       await g.say('narrator', 'В галерее меня остановил их врач.');
       await doctor;
@@ -57,7 +58,7 @@ export default {
       await g.say('doctor', 'Любопытнейший случай. Когда она… я бы хотел её изучить.', 'narrator');
       g.set('speak', 0);
       await g.beat('beside');
-      const told = await g.choose('doctor', 'doctor', [{ id: 'told', label: 'Рассказать о её приступах' }, { id: 'silent', label: 'Промолчать' }]);
+      const told = await g.choose('doctor', 'doctor', [{ id: 'told', label: 'Рассказать' }, { id: 'silent', label: 'Промолчать' }]);
       if (told === 'told') {
         await g.say('narrator', 'Я рассказал ему, как она застывает.');
         await g.say('doctor', 'Каталепсия… Восхитительно.');
@@ -66,8 +67,9 @@ export default {
       await g.say('doctor', 'Утром я уезжаю. В коляске есть место.');
       const go = await g.choose('carriage', 'doctor', [{ id: 'stay', label: 'Остаться' }, { id: 'left', label: 'Уехать с ним' }]);
       if (go === 'left') {
-        const sure = await g.choose(null, 'doctor', [{ id: 'yes', label: 'Уехать — оставить его одного' }, { id: 'no', label: 'Нет. Остаться' }]);
+        const sure = await g.choose(null, 'doctor', [{ id: 'yes', label: 'Уехать' }, { id: 'no', label: 'Нет. Остаться' }]);
         if (sure === 'yes') {
+          await g.say('narrator', 'Уехать — и оставить его одного.');
           await g.beat('leave_with');
           g.end('left');
           return;
@@ -79,7 +81,7 @@ export default {
     // the walk: out of the house, by the hand; his breath; ~ on to the shore or back
     async g => {
       // (said as the door opens)
-      const door = g.when('door', v => v > 0);
+      const door = g.told('walk_out:door');
       await g.scene(HOUSE, { beat: 'walk_out' });
       const out = g.beat('walk_out');
       await door;
@@ -88,20 +90,22 @@ export default {
       await g.beat('walk');
       await g.play(zaRuku, {});
       // (said in the close-up of his breath)
-      const close = g.when('closeup', 1);
+      const close = g.told('breathe:close');
       const breathe = g.beat('breathe');
       await close;
       await g.say('roderick', 'Я забыл, как пахнет воздух.', 'narrator');
       await breathe;
       await g.say('roderick', 'Я погибну. Не от беды — от страха перед ней.');
       await g.say('roderick', 'Этот дом живой. Камни, пруд. Они сделали нас такими.');
-      const walk = await g.choose('walk', 'roderick', [{ id: 'shore', label: 'Вести дальше, к берегу' }, { id: 'back', label: 'Повернуть назад' }]);
+      const walk = await g.choose('walk', 'roderick', [{ id: 'shore', label: 'К берегу' }, { id: 'back', label: 'Назад' }]);
       if (walk === 'shore') {
+        await g.say('narrator', 'Я повёл его дальше, к берегу.');
         await g.beat('to_shore');
         await g.say('narrator', 'У самого берега он упал на колени и зажал уши.');
         g.scale('trust', -1);
         g.scale('sanity', 1);
       } else {
+        await g.say('narrator', 'Я повернул назад.');
         await g.beat('turn_back');
         g.scale('trust', 1);
         g.scale('sanity', -1);
@@ -110,7 +114,7 @@ export default {
     // the evening: «Её больше нет»
     async g => {
       // (said as his lips begin to move, in the close-up)
-      const lips = g.when('closeup_speak', 1);
+      const lips = g.told('news:lips');
       await g.scene(ROOM, { beat: 'news' });
       const news = g.beat('news');
       await lips;

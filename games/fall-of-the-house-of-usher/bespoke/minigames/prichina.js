@@ -1,105 +1,76 @@
-// «Причина» (I, «Подъезд к дому»): what is it in the house that chills the heart? The player looks — at the
-// windows, the trees, the water: each look the chapter answers with a sober line, and the scene's `gloom` rises a
-// step (darker, mistier, the lit window dimmer). Then the crack can be picked: the camera comes nearer (the
-// scene's beat `trace`) and the player traces it with a finger from the roof down to the water (the scene's
-// `crack_trace`: that much of it pales). Forgiving: anywhere near the crack below where the trace has got to; the
-// finger may lift and go on.
-//   opts: { onLook(which: 'windows' | 'trees' | 'tarn', n: how many looks so far) → a promise (the next look waits
-//   for it): the chapter's sober line — and its sound falling quieter, if it likes }
+// «Причина» (I, «Подъезд к дому», after the beat `look`): what is it in the house that chills the heart?
+//   1. what he does — looks at the house for the cause of his gloom: the windows, the trees, the water, then the crack,
+//   which he follows down with his eyes; 2. wants — to find a cause, a sober one; 3. dread without a cause, reasoning
+//   with it; 4. the player — looking round, touch by touch, then following the crack carefully from the roof to the water.
+// The language's press, three marks at once (windows, trees, tarn — where each is pressed): a touch is a look — the
+// chapter's sober line (opts.onLook, the scene turning meanwhile: the marks hidden) and the scene's `gloom` a step up
+// (darker, mistier, the lit window dimmer). Then a mark on the crack's top (crack#k0): a touch, and the camera comes
+// nearer (the beat `trace`); then the language's trace along the crack's points (crack#k0 … k16), from the roof down to
+// the water: the scene's `crack_trace` pales it as far as the finger has gone.
+//   opts: { onLook(which: 'windows' | 'trees' | 'tarn', n: how many looks so far) → a promise (the next look waits for
+//   it): the chapter's sober line — and its sound falling quieter }
 //   → { looked: [which…], traced }
-let styled = null;
+import { until, once, keys } from '../hands.js';
+
 const LOOKS = ['windows', 'trees', 'tarn'];
-const TOP = 23; // the crack runs from 23 m up (the roof's edge) down to the water: b.where('crack', h)
-const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const LINE = Array.from({ length: 17 }, (_, i) => `crack#k${i}`);
 
 export default {
   title: 'Причина', // (as the author's ☰ lists it)
-  skipped: { looked: [], traced: false },
+  about: 40,
+  skipped: { looked: ['windows', 'trees', 'tarn'], traced: true },
   async run(g, b, { onLook } = {}, signal) {
-    styled ||= b.css('minigames/prichina.css').catch(e => b.trouble(e.message));
-    signal.addEventListener('abort', () => g.withdraw());
+    const mg = g.minigame({ phrase: 'Ничто в доме не объясняло тоски, которую он наводил' });
+    const send = keys(g);
+    mg.plate.set({ notches: [1 / 4, 2 / 4, 3 / 4] });
     const looked = [];
+    // the three looks, in any order: each a touch — the line, the gloom a step deeper
+    const marks = LOOKS.map(which => {
+      const mark = mg.mark({ at: `${which}@`, kind: 'ring' });
+      return { which, mark, press: mg.press({ on: mark }) };
+    });
+    b.minigame.tricks.teach(mg, marks.map(m => m.press), { id: 'press' });
     while (looked.length < LOOKS.length) {
-      const which = await g.choose(null, Object.fromEntries(LOOKS.filter(w => !looked.includes(w)).map(w => [w, [{ id: w, label: 'Всмотреться' }]])));
+      const left = marks.filter(m => !looked.includes(m.which));
+      const touched = await Promise.race(left.map(m => once(mg, m.press, 'press').then(x => x && m)));
+      if (!touched) return this.skipped;
+      looked.push(touched.which);
+      mg.snap({ at: touched.mark });
+      touched.mark.remove();
+      g.set('gloom', looked.length / LOOKS.length, 3);
+      mg.plate.set({ fill: looked.length / 4 });
+      mg.sceneTurn(true);
+      await onLook?.(touched.which, looked.length);
       if (signal.aborted) return this.skipped;
-      looked.push(which);
-      b.set('gloom', looked.length / LOOKS.length, 3);
-      await onLook?.(which, looked.length);
-      if (signal.aborted) return this.skipped;
+      mg.sceneTurn(false);
     }
-    await g.choose(null, 'crack', [{ id: 'crack', label: 'Провести по трещине' }]);
-    if (signal.aborted) return this.skipped;
+    // the crack: its top touched — the eye comes nearer — then traced down to the water
+    mg.plate.set({ phrase: 'От самой крыши вниз по стене шла едва заметная трещина' });
+    const top = mg.mark({ at: LINE[0], kind: 'ring' });
+    const touch = mg.press({ on: top });
+    if (!(await once(mg, touch, 'press'))) return this.skipped;
+    top.remove();
+    mg.sceneTurn(true);
     await g.beat('trace');
     if (signal.aborted) return this.skipped;
-    await trace(b, signal);
-    return { looked, traced: !signal.aborted };
+    mg.sceneTurn(false);
+    const start = mg.mark({ at: LINE[0], kind: 'dash' });
+    const trace = mg.trace({ on: start, line: LINE });
+    b.minigame.tricks.teach(mg, [trace], { id: 'trace' });
+    trace.on('off', () => mg.error('off', { at: trace, chip: false }));
+    const done = await until(mg, () => {
+      const u = trace.state.u;
+      send('crack_trace', u);
+      mg.plate.set({ fill: 3 / 4 + u / 4, glow: trace.state.tracing ? 'good' : 'idle' });
+      return u >= 0.99;
+    });
+    if (!done) {
+      g.set('crack_trace', 1);
+      return this.skipped;
+    }
+    g.set('crack_trace', 1, 0.4);
+    mg.snap({ at: start });
+    await mg.end({ as: 'clean' });
+    return { looked, traced: true };
   },
 };
-
-// the finger along the crack, from the roof to the water → when it is there (or the game is skipped)
-function trace(b, signal) {
-  return new Promise(done => {
-    const veil = document.createElement('div'), tip = document.createElement('div'), word = document.createElement('p');
-    veil.className = 'prichina-veil';
-    tip.className = 'prichina-tip';
-    word.className = 'prichina-word';
-    word.textContent = 'Веди по трещине — от крыши до воды';
-    veil.append(tip, word);
-    b.layer.append(veil);
-    let p = 0, finger = null, raf = 0, over = false;
-    // the crack on the screen now, as N points from the roof down (the same ones every frame: where follows a point
-    // from the first time it is asked, a frame later — one asked anew each time would be nowhere yet); point u of the
-    // way down: the nearest of them
-    const N = 40, lifts = Array.from({ length: N + 1 }, (_, k) => TOP * (1 - k / N));
-    let pts = [];
-    const look = () => { pts = lifts.map(h => b.where('crack', h)); };
-    const at = u => pts[Math.round(clamp(u) * N)] || null;
-    const near = () => Math.max(40, innerHeight * 0.08); // how far from the crack the finger may stray, px
-    const follow = e => {
-      const a = at(0), z = at(1);
-      if (!a || !z || over) return;
-      const u = clamp((e.clientY - a.y) / (z.y - a.y)), here = at(u);
-      // near the crack, below the trace — but not leaping far ahead of it
-      if (!here || Math.abs(e.clientX - here.x) > near() || u <= p || (u - p) * Math.abs(z.y - a.y) > near() * 1.6) return;
-      p = u;
-      b.set('crack_trace', p);
-      if (p > 0.98) finish();
-    };
-    const down = e => {
-      if (e.button > 0) return;
-      finger = e.pointerId;
-      veil.setPointerCapture(e.pointerId);
-      follow(e);
-    };
-    const move = e => { if (e.pointerId === finger) follow(e); };
-    const up = e => { if (e.pointerId === finger) finger = null; };
-    veil.addEventListener('pointerdown', down);
-    veil.addEventListener('pointermove', move);
-    veil.addEventListener('pointerup', up);
-    veil.addEventListener('pointercancel', up);
-    const t0 = performance.now();
-    const step = now => {
-      look();
-      const here = at(p);
-      if (here) tip.style.transform = `translate(${here.x.toFixed(1)}px, ${here.y.toFixed(1)}px) translate(-50%, -50%)`;
-      word.style.opacity = String(p > 0.25 ? 0 : clamp((now - t0) / 1200) * 0.85);
-      raf = requestAnimationFrame(step);
-    };
-    raf = requestAnimationFrame(step);
-    function end() {
-      if (veil.classList.contains('gone')) return;
-      cancelAnimationFrame(raf);
-      veil.classList.add('gone');
-      setTimeout(() => veil.remove(), 900);
-      done();
-    }
-    function finish() {
-      over = true;
-      p = 1;
-      b.set('crack_trace', 1, 0.4);
-      tip.classList.add('done');
-      setTimeout(() => { if (!signal.aborted) end(); }, 900);
-    }
-    signal.addEventListener('abort', end);
-  });
-}

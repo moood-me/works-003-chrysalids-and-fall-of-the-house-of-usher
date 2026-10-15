@@ -30,17 +30,17 @@
 //   step(heavy, miss) — a running footfall on the wet boards of the causeway; heavy (0…1) — dragging
 //     others by the hand: duller, louder; miss — a foot that slips (a scrape)
 
-// SONG — her song: eight bars in 3/4, D minor, a lullaby; each bar its notes [pitch, beats] and the
-// chord under it (lowest first)
+// SONG — her song: eight bars in 3/4, F♯ minor (the world's key: A major and F♯ minor — the scenes' music and the
+// language's sounds are on it), a lullaby; each bar its notes [pitch, beats] and the chord under it (lowest first)
 export const SONG = [
-  { notes: [['A4', 2], ['D5', 1]], chord: ['D3', 'A3', 'F4'] },
-  { notes: [['C5', 1], ['Bb4', 1], ['A4', 1]], chord: ['G2', 'D3', 'Bb3'] },
-  { notes: [['G4', 1.5], ['A4', 0.5], ['F4', 1]], chord: ['D3', 'A3', 'F4'] },
-  { notes: [['E4', 3]], chord: ['A2', 'E3', 'C#4'] },
-  { notes: [['F4', 2], ['A4', 1]], chord: ['F2', 'C3', 'A3'] },
-  { notes: [['G4', 1], ['F4', 1], ['E4', 1]], chord: ['C3', 'G3', 'E4'] },
-  { notes: [['D4', 1.5], ['E4', 0.5], ['C#4', 1]], chord: ['A2', 'E3', 'A3'] },
-  { notes: [['D4', 3]], chord: ['D3', 'A3', 'D4'] },
+  { notes: [['C#5', 2], ['F#5', 1]], chord: ['F#3', 'C#4', 'A4'] },
+  { notes: [['E5', 1], ['D5', 1], ['C#5', 1]], chord: ['B2', 'F#3', 'D4'] },
+  { notes: [['B4', 1.5], ['C#5', 0.5], ['A4', 1]], chord: ['F#3', 'C#4', 'A4'] },
+  { notes: [['G#4', 3]], chord: ['C#3', 'G#3', 'F4'] },
+  { notes: [['A4', 2], ['C#5', 1]], chord: ['A2', 'E3', 'C#4'] },
+  { notes: [['B4', 1], ['A4', 1], ['G#4', 1]], chord: ['E3', 'B3', 'G#4'] },
+  { notes: [['F#4', 1.5], ['G#4', 0.5], ['F4', 1]], chord: ['C#3', 'G#3', 'C#4'] },
+  { notes: [['F#4', 3]], chord: ['F#3', 'C#4', 'F#4'] },
 ];
 const BEAT = 0.78; // seconds a beat, as she sang it
 

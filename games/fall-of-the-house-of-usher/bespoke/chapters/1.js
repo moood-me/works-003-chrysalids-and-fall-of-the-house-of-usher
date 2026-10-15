@@ -3,10 +3,11 @@
 // or their own («Тише или светлее»), the portrait. The gallery: Madeline passes — ⚑ follow her (her
 // catalepsy seen close, her one line, a promise) or stay with him. design.md, scenes.md (docs/usher).
 // Leaves: choices.tarn, room, madeline, promise; marks.promise.
+import { SCENES } from '../story.js';
 import prichina from '../minigames/prichina.js';
 import tishe from '../minigames/tishe.js';
 
-const HOUSE = 'Подъезд к дому', ROOM = 'Комната Родерика', GALLERY = 'Мэдлин проходит';
+const HOUSE = SCENES.house, ROOM = SCENES.room, GALLERY = SCENES.gallery;
 
 // what the player finds, looking for the cause of the gloom: nothing (until the crack)
 const LOOKS = {
@@ -36,6 +37,7 @@ export default {
       await g.scene(HOUSE, { beat: 'arrive' });
       g.sound.house(0.35, 6);
       await g.beat('arrive');
+      await g.beat('look', { wait: false });
       await g.say('narrator', 'Не знаю отчего, но при первом взгляде на дом тоска овладела мной.');
       await g.play(prichina, {
         onLook: (which, n) => {
@@ -61,7 +63,7 @@ export default {
       await g.scene(ROOM, { beat: 'enter' });
       await g.beat('enter');
       // (said as his lips begin to move, in the close-up)
-      const lips = g.when('closeup_speak', 1);
+      const lips = g.told('meet:lips');
       const meet = g.beat('meet');
       await lips;
       await g.say('roderick', 'Ты приехал. Я думал — уже никто не приедет.', 'narrator');
@@ -75,15 +77,15 @@ export default {
           done[kind]++;
           g.scale('trust', kind === 'his' ? 1 : -1);
           await g.say('roderick', ANSWERS[kind][which]);
-          // the room done his way: said before the portrait is offered
-          if (done.his + done.mine === Object.keys(ANSWERS.his).length && done.his >= 2) {
-            await g.say('narrator', 'Я стал жить по его правилам. Так было проще — ему.');
-            g.scale('sanity', -1);
-          }
         },
       });
       g.state.choices.room = room.his >= room.mine ? 'his' : 'mine';
-      // (tishe ends once the player picks the portrait; he speaks once he stands before her, looking up: the scene tells it)
+      // the room done his way: said before the portrait
+      if (room.his >= 2) {
+        await g.say('narrator', 'Я стал жить по его правилам. Так было проще — ему.');
+        g.scale('sanity', -1);
+      }
+      // (he speaks once he stands before her, looking up: the scene tells it)
       const before = g.told('portrait:before');
       const portrait = g.beat('portrait');
       await before;
@@ -93,7 +95,7 @@ export default {
     },
     // the gallery: Madeline passes; ⚑ follow her or stay with him
     async g => {
-      await g.scene(GALLERY, { doctor_present: 0, beat: 'pass' });
+      await g.scene(GALLERY, { beat: 'pass' });
       await g.beat('pass');
       await g.beat('weep');
       const way = await g.choose('madeline', {
@@ -114,7 +116,7 @@ export default {
       g.scale('trust', -1); // (he saw his friend go after her)
       await g.beat('follow');
       // (said as she stops still mid-step)
-      const still = g.when('madeline_still', true);
+      const still = g.told('freeze:still');
       const frozen = g.beat('freeze');
       await still;
       await g.say('narrator', 'Она застыла на полушаге. Не дышала. Глаза открыты.');
@@ -124,8 +126,11 @@ export default {
       await g.say('madeline', 'Когда я такая — я всё слышу. Не дай им меня закрыть.', 'narrator');
       g.set('speak', 0);
       await g.beat('look');
-      const promise = await g.choose('promise', 'madeline', [{ id: 'promised', label: '— Обещаю.' }, { id: 'silent', label: 'Промолчать' }]);
-      if (promise === 'promised') g.mark('promise', true, 'Мэдлин это запомнит.');
+      const promise = await g.choose('promise', 'madeline', [{ id: 'promised', label: 'Обещаю' }, { id: 'silent', label: 'Промолчать' }]);
+      if (promise === 'promised') {
+        await g.say('narrator', 'Обещаю.');
+        g.mark('promise', true, 'Мэдлин это запомнит.');
+      }
       await g.beat('gone');
       await g.say('narrator', 'Больше я не видел её живой.');
     },

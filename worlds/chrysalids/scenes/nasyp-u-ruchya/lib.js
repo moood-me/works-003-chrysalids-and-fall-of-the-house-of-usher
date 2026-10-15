@@ -335,6 +335,7 @@ const FILM = {
       });
       // (up on the top, she stands up out of the grass, to the edge)
       await s.wait(5.6);
+      s.tell('play:girl'); // (she rises out of the grass up on the top)
       await once(s, 'sophie', 'stand_from_kneel', 90);
       await s.wait(0.5);
       await walk(s, 'sophie', [[-3.0, Z]], 90);
@@ -689,6 +690,7 @@ const FILM = {
       await s.wait(0.4);
       s.move('r_toss', 1, { over: 0.3 });
       rider.look(CHILDREN);
+      s.tell('ridge_stop:held'); // (reined in right behind them, he looks down at them)
       await s.wait(1.0);
       s.move('r_toss', 0, { over: 0.8 });
       await s.wait(0.4);
@@ -707,6 +709,7 @@ const FILM = {
       david.look('rider');
       await stopping;
       await s.wait(3.0);
+      s.tell('ridge_stop:on'); // (he rides on)
       const riding = aside(s, q => rideOn(q, true));
       await s.wait(6.5);
       sophie.look('david');
@@ -779,6 +782,7 @@ const FILM = {
       david.look('mother');
       await up;
       await comes;
+      s.tell('mother:wave'); // (Sophie waves to her mother up the path)
       await wave(s, 'sophie');
       // (she sees her: down the path at a run, on her knees by her, her arms round her)
       mother.look('sophie');
@@ -824,6 +828,7 @@ const FILM = {
       s.move('evening', 0.79, { over: 11, ease: 'linear' });
       await s.wait(0.8);
       await david.do('shush_stand');
+      s.tell('nod:nod'); // (she nods back to him)
       await nod(s, 'mother', 'david');
       await s.wait(0.45);
       mother.look('sophie');
@@ -857,6 +862,7 @@ const FILM = {
       mother.reach(null);
       await s.wait(0.2);
       const turning = aside(s, async q => { await q.wait(2.7); q.person('david').turn(270); await q.wait(0.3); q.person('david').look('mother'); });
+      s.tell('away:gone'); // (she lifts Sophie and goes)
       await lift(s, 'inOut');
       await turning;
     },

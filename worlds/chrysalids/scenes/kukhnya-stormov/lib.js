@@ -206,6 +206,7 @@ const FILM = {
       s.person('farmhand').look([YARD[0], YARD[1], 1.1]);
       await s.wait(0.2);
       // (he comes in, bowed, the hand at his chest, along the table — the father does not look up)
+      s.tell('evening:in');
       const comes = walk(s, 'david', [[1.3, 3.6], BY_HEARTH], 75);
       await s.wait(1.2);
       s.person('mary').look('david');
@@ -246,6 +247,7 @@ const FILM = {
       await comes;
       emily.do('tend', { loop: true });
       emily.reach({ r: 'david#hand_r', l: 'david#hand_r' });
+      s.tell('help:tie'); // (she binds it — shaking her head at the mess)
       await shake(s, 'emily', KNOT);
       await s.wait(0.4);
       david.look('david#hand_r');
@@ -269,6 +271,7 @@ const FILM = {
       emily.look('david#hand_r');
       await comes;
       await shake(s, 'emily', KNOT, 1);
+      s.tell('self:take'); // (she takes his wrist all the same)
       emily.do('tend', { loop: true });
       emily.reach({ r: 'david#hand_r', l: 'david#hand_r' });
       await s.wait(0.5);
@@ -360,6 +363,7 @@ const FILM = {
       await joseph.turn(toward(STANDS, SAMPLER));
       joseph.look(SAMPLER);
       joseph.reach({ r: SAMPLER });
+      s.tell('kneel:image'); // (his hand on the true image on the wall)
       await s.wait(0.6);
       david.look(SAMPLER);
       await s.wait(2.5);
@@ -378,6 +382,7 @@ const FILM = {
       joseph.with(['book_open_l']);
       joseph.look('david');
       joseph.reach({ r: RAISED });
+      s.tell('kneel:pray'); // (the Book open, his hand raised over the boy)
       await s.wait(0.4);
       s.person('mary').do('pray_seated', { loop: true });
       s.person('mary').reach(null);
@@ -481,6 +486,7 @@ const FILM = {
       s.person('farmhand').do('eat_seated', { loop: true });
       s.person('farmhand').with(['spoon']);
       s.person('farmhand').look(BOWL.farmhand);
+      s.tell('upstairs:bowl'); // (the empty chair and the bowl)
       await cam(s, CAM.bowl, 7);
       await s.wait(0.6);
     },
@@ -539,6 +545,7 @@ const FILM = {
       s.person('mary').look(BOWL.mary);
       await goes;
       await goUp(s, 'emily');
+      s.tell('lie_up:alone'); // (he is gone up; she turns to the pot)
       await s.wait(0.8);
       emily.look(POT);
       await walk(s, 'emily', [AT_POT], 0);
@@ -612,6 +619,7 @@ const FILM = {
       await eyes;
       s.person('emily').look([SEAT.emily[0] - 0.4, SEAT.emily[1], 0.4]);
       await goUp(s);
+      s.tell('to_bed:up'); // (he has gone up the stairs)
       s.person('joseph').with(['book_open']);
       s.person('joseph').do('read_seated', { loop: true });
       await s.wait(1.2);

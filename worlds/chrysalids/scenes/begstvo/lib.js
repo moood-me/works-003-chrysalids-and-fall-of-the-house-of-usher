@@ -184,6 +184,7 @@ const FILM = {
       david.reach({ r: spot('sheba', 270, RUMP) });
       await s.wait(0.2);
       s.move('sheba_toss', 1, { over: 0.3 });
+      s.tell('sheba_go:gone'); // (she goes off home alone)
       const goes = ride(s, 'sheba', -16, 'canter', 'in');
       await s.wait(0.4);
       david.reach(null);
@@ -307,6 +308,7 @@ const FILM = {
       s.person('rosalind').turn(90);
       s.person('rosalind').look([HOLLOW + 4, D, 1]);
       await lead(s, 2.8);
+      s.tell('hollow:fog'); // (the hollow full of fog below)
       s.move('petra_peek', 0.5, { over: 1.5 });
       await lead(s, HOLLOW);
       await s.wait(0.6);
@@ -322,6 +324,7 @@ const FILM = {
       for (const k of ['searcher_here', 'searcher2_here', 'h1_here', 'h2_here']) s.set(k, true);
       s.set('h1_a', -20);
       s.set('h2_a', -23.4);
+      s.tell('watch:riders'); // (two riders with lanterns come up onto the crest)
       await s.all(ride(s, 'horse1', 0.9, 'walk', 'out'), s.sequence(async q => { await q.wait(0.8); await ride(q, 'horse2', -1.7, 'walk', 'out'); }));
       s.person('searcher').look([7, D + 0.5, -0.3]);
       s.set('lamp_x', 7);
@@ -379,6 +382,7 @@ const FILM = {
       sr.on(null);
       sr.with(null);
       s.move('lamp', 0, { over: 1.2 });
+      s.tell('kill:shot'); // (he falls)
       const falls = sr.do('fall_back');
       await s.wait(0.3);
       await turnHorse(s, 'horse1', 270, 0.6);
@@ -405,6 +409,7 @@ const FILM = {
       await s.wait(1.3);
       await s.move('arrow', 1, { over: 0.6, ease: 'linear' });
       s.set('arrow', 0);
+      s.tell('warn:shot'); // (the arrow over his head)
       s.move('h1_toss', 1, { over: 0.4, ease: 'out' });
       await s.wait(0.6);
       s.move('h1_toss', 0, { over: 0.8 });

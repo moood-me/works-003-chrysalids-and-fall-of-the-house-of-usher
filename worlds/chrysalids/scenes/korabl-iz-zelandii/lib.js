@@ -151,6 +151,7 @@ const FILM = {
       jo.reach({ r: [3, 18, 2.2] });
       await s.wait(1.0);
       cut(s, CAM.clearing);
+      s.tell('fight:clearing'); // (the clearing: Joseph ahead, by his horse)
       const comes = walk(s, 'spider', [[6.8, 17.6]], toward([6.8, 17.6], [-0.6, 14.2]));
       shoot(s, 'w2');
       await comes;
@@ -229,6 +230,7 @@ const FILM = {
       d.do('kneel_one_still', { loop: true });
       d.reach({ r: 'joseph#back', l: 'joseph#shoulder_r' });
       d.look('joseph');
+      s.tell('run:by'); // (David down by his father)
       // (meanwhile, out of sight, Rosalind goes back to Petra)
       aside(s, async q => { r.reach(null); await walk(q, 'rosalind', [[-2.6, 8.5]], 90); r.do('kneel', { loop: true }); r.reach({ r: 'petra#back' }); r.look('petra'); });
       await returnFire(s);
@@ -255,6 +257,7 @@ const FILM = {
       cam(s, CAM.ledge_wide, 2.6);
       await s.wait(1.8);
       // (Petra: up, her arms to the craft; Rosalind pulls her down)
+      s.tell('ship:petra'); // (Petra up, her arms to the craft)
       const pt = P(s, 'petra');
       pt.do('stand');
       pt.reach({ r: [4.6, 21, 9], l: [4.6, 21, 9] });
@@ -346,6 +349,7 @@ const FILM = {
       await s.wait(1.9);
       P(s, 'david').look([-0.6, 14.2, 0.3]);
       await walk(s, 'david', [[-1.6, 9.1], [-0.6, 11.0], [0.25, 13.0]]);
+      s.tell('back:father'); // (David by his father's cocoon)
       await father(s, r1);
       await ramp(s, led);
     },
@@ -370,6 +374,7 @@ const FILM = {
       sl.reach({ r: 'david#chest' });
       await s.wait(0.4);
       s.move('david_th', 2, { over: 2.5 });
+      s.tell('back_run:free'); // (she frees him by his father)
       await s.wait(2.2);
       sl.reach(null);
       sl.look(null);
@@ -399,6 +404,7 @@ const FILM = {
       await s.wait(0.6);
       await goIn(s, 'rosalind');
       P(s, 'david').look([-6, 12, 1]);
+      s.tell('board:look'); // (on the threshold he looks back, once)
       await s.wait(1.5);
       P(s, 'david').look(null);
       await goIn(s, 'david');
@@ -408,6 +414,7 @@ const FILM = {
       await m.turn(150);
       m.look(null);
       cut(s, CAM.michael);
+      s.tell('board:michael'); // (Michael on the rock)
       await s.wait(1.5);
       await walk(s, 'michael', [[-3.4, 8.7], [-9.5, 9.0]]);
       await cam(s, CAM.wide, 5);
@@ -445,6 +452,7 @@ const FILM = {
       aside(s, async q => { await q.wait(0.3); await goIn(q, 'petra'); });
       await s.wait(2.6);
       await walk(s, 'rosalind', [[2.75, 19.85]]);
+      s.tell('stay_alone:turn'); // (Rosalind turns back to him from the light)
       await P(s, 'rosalind').turn(220);
       P(s, 'rosalind').look('david');
       await s.wait(2.2);
@@ -467,10 +475,12 @@ const FILM = {
     from: () => HELD,
     run: async s => {
       s.move('fight', 1, { over: 1 });
+      s.tell('noship:sky'); // (the fight goes on under an empty sky)
       for (const [id, t] of [['w2', 0.6], ['w1', 1.2], ['w3', 1.2], ['w2', 1.4]]) { await s.wait(t); shoot(s, id); }
       await s.wait(1.2);
       for (const [id, to] of [['w1', [-16, 16.6]], ['w3', [-16, 18.0]], ['w2', [-16, 19.4]]]) { P(s, id).do('stand'); aside(s, q => walk(q, id, [to], null, 'run')); await s.wait(0.5); }
       s.move('fight', 0, { over: 2 });
+      s.tell('noship:flee'); // (Waknuk gives way and runs)
       s.move('dawn', 0.62, { over: 14 });
       s.move('smoke', 0.45, { over: 14 });
       await s.wait(1.5);
@@ -541,6 +551,7 @@ async function landing(s) {
   await s.wait(2.0);
   s.move('dust', 1, { over: 2 });
   await down;
+  s.tell('landing:down'); // (the craft down on the clearing)
   s.move('spin', 0.12, { over: 3 });
   s.move('dust', 0, { over: 4 });
   door.cut();
@@ -572,6 +583,7 @@ async function free(s, withDavid) {
   sl.reach(null);
   for (const id of withDavid ? ['petra', 'rosalind', 'michael', 'david'] : ['petra', 'rosalind', 'michael']) { P(s, id).do('get_up_ground'); await s.wait(0.35); }
   await s.wait(1.0);
+  s.tell('free:petra'); // (Petra runs to her)
   pt.look('sealand');
   await walk(s, 'petra', [[-1.92, 8.3]]);
   await sl.go('kneel_one', { to: [-1.42, 8.5], turn: 270 });

@@ -43,9 +43,9 @@ rosalind, willow#tip (за что держится Петра).
     "run": { "after": ["edge"], "tells": [], "seconds": 15 },
     "field_quiet": { "after": ["run"], "tells": [], "seconds": 6 },
     "field_loud": { "after": ["run"], "tells": [], "seconds": 8 },
-    "out": { "after": ["field_quiet", "field_loud"], "tells": [], "seconds": 16 },
-    "bank_quiet": { "after": ["out"], "tells": [], "seconds": 13 },
-    "bank_loud": { "after": ["out"], "tells": [], "seconds": 13 },
+    "out": { "after": ["field_quiet", "field_loud"], "tells": ["out:bank"], "seconds": 16 },
+    "bank_quiet": { "after": ["out"], "tells": ["bank_quiet:across"], "seconds": 13 },
+    "bank_loud": { "after": ["out"], "tells": ["bank_loud:across"], "seconds": 13 },
     "home": { "after": ["bank_quiet", "bank_loud"], "tells": [], "seconds": 16 }
   },
   "points": ["petra", "david", "rosalind", "willow#tip"],

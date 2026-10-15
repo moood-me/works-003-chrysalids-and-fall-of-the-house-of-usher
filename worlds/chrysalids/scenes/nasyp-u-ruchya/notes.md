@@ -54,7 +54,9 @@ play → play_again → stuck → let → toes → ask → promise → mother �
 let, toes, nod, alone; глава II — night_warn, затем night_warn_bye. Моменты всадника сцена говорит сама (scene.tell):
 ridge:rider — показался на лугу (с этого мига есть от кого прятать ногу; стук копыт игра пускает раньше — по r_a / r_near),
 ridge:hem — крупный план открыт, рука Дэвида на подоле (метка «Подола» — с этого мига), ridge:seen — доехал туда, откуда видно камни
-(говорит тот кусок, в котором он доехал: ridge или cover). Игра ждёт этих слов, а не секунд и не r_a. Чисел сцены игре
+(говорит тот кусок, в котором он доехал: ridge или cover). Моменты для реплик игры: play:girl — Софи поднимается из травы наверху; ridge_stop:held —
+всадник осадил коня за ними и смотрит; ridge_stop:on — тронул дальше; mother:wave — Софи машет матери; nod:nod — мать
+кивает; away:gone — мать поднимает Софи и уходит. Игра ждёт этих слов, а не секунд и не r_a. Чисел сцены игре
 знать не нужно. Что изменилось для игры против старой сцены: после play идёт play_again (потом stuck); «всадник
 показался» — ridge:rider вместо паузы в секунду; после cover не надо ждать r_a ≥ −4.05 — beat:cover и значит «доехал».
 
@@ -98,7 +100,7 @@ closeup#hem — край подола, closeup#foot — куда он ложит
 ```json
 {
   "beats": {
-    "play": { "after": [], "tells": [], "seconds": 21 },
+    "play": { "after": [], "tells": ["play:girl"], "seconds": 21 },
     "play_again": { "after": ["play"], "tells": [], "seconds": 12 },
     "stuck": { "after": ["play_again"], "tells": [], "seconds": 10 },
     "let": { "after": ["stuck"], "tells": [], "seconds": 7 },
@@ -110,12 +112,12 @@ closeup#hem — край подола, closeup#foot — куда он ложит
     "ridge": { "after": ["toes_bare"], "tells": ["ridge:rider", "ridge:hem", "ridge:seen"], "seconds": 13 },
     "cover": { "after": ["ridge"], "tells": ["ridge:seen"], "seconds": 3 },
     "ridge_pass": { "after": ["cover"], "tells": [], "seconds": 16 },
-    "ridge_stop": { "after": ["ridge"], "tells": [], "seconds": 27 },
+    "ridge_stop": { "after": ["ridge"], "tells": ["ridge_stop:held", "ridge_stop:on"], "seconds": 27 },
     "ask": { "after": ["toes"], "tells": [], "seconds": 2 },
     "promise": { "after": ["ask"], "tells": [], "seconds": 4 },
-    "mother": { "after": ["promise"], "tells": [], "seconds": 24 },
-    "nod": { "after": ["mother"], "tells": [], "seconds": 10 },
-    "away": { "after": ["mother"], "tells": [], "seconds": 11 },
+    "mother": { "after": ["promise"], "tells": ["mother:wave"], "seconds": 24 },
+    "nod": { "after": ["mother"], "tells": ["nod:nod"], "seconds": 10 },
+    "away": { "after": ["mother"], "tells": ["away:gone"], "seconds": 11 },
     "alone": { "after": ["nod", "away"], "tells": [], "seconds": 9 },
     "night_warn": { "after": [], "tells": [], "seconds": 5 },
     "night_warn_bye": { "after": ["night_warn"], "tells": [], "seconds": 12 }

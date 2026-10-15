@@ -226,6 +226,7 @@ const FILM = {
       await each(s, 1.0, async (q, m) => { q.person(m.id).look('in'); });
       jo.look('in#hand_r');
       await s.wait(1.6);
+      s.tell('ear:nod'); // (two slow nods: an offence)
       await nod(s, 'jo', 'in#hand_r', 2, 2);
       ins.reach(null);
       await ins.turn(170);
@@ -343,6 +344,7 @@ const FILM = {
       jo.look([FIELD[0], FIELD[1] + 0.6, 0]);
       await s.wait(0.6);
       s.move('fire', 1, { over: 3 });
+      s.tell('fire:caught'); // (the wheat takes the fire)
       s.move('ignite', 0.025, { over: 1.3 });
       s.move('smoke', 0.35, { over: 6 });
       await s.wait(1.2);
@@ -413,6 +415,7 @@ const FILM = {
       await s.wait(1.4);
       dv.look('jo');
       await s.wait(1.4);
+      s.tell('hymn_hide:look'); // (his father's eyes on his side; he freezes)
       dv.still(true);
       await s.wait(1.2);
       dv.still(false);
@@ -488,6 +491,7 @@ const FILM = {
       em.look('dv');
       await s.wait(1.2);
       em.reach({ r: [BY_STALK.em[0] - 0.1, BY_STALK.em[1] + 0.5, 0.9] });
+      s.tell('stalk_stay:pull'); // (she looks back over her shoulder and pulls)
       await s.wait(0.7);
       s.person('in').here(false);
       em.reach({ r: 'dv#hand_l' });

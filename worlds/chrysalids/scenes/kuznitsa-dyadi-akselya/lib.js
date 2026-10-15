@@ -232,6 +232,7 @@ const FILM = {
       axel.look(FAR);
       await s.wait(1.4);
       david.look(FAR);
+      s.tell('truth:window'); // (both look out to her window across the field)
       await s.wait(1.0);
       david.do('perch_still', { loop: true });
       await s.wait(0.2);
@@ -242,6 +243,7 @@ const FILM = {
       axel.look(DAVF);
       await s.wait(0.8);
       await nod(s, 'david', AXF);
+      s.tell('truth:ask'); // (Axel thinks it over)
       axel.do('kneel_one_think', { loop: true });
       await s.wait(2.0);
       axel.look(GATE);
@@ -273,6 +275,7 @@ const FILM = {
       axel.look(DAVF);
       await s.wait(1.2);
       await nod(s, 'david', AXF);
+      s.tell('lie:ask'); // (Axel thinks it over)
       axel.do('kneel_one_think', { loop: true });
       await s.wait(2.4);
       axel.look(GATE);
@@ -322,6 +325,7 @@ const FILM = {
       axel.look(DAVF);
       axel.do('kneel_one_still', { loop: true });
       await s.wait(1.0);
+      s.tell('hush:finger'); // (his finger to his lips)
       await axel.do('kneel_one_hush');
       axel.do('kneel_one_still', { loop: true });
       await s.wait(0.4);
@@ -477,6 +481,7 @@ const FILM = {
       await s.wait(0.4);
       s.set('st_lamp', 0);
       await s.wait(0.6);
+      s.tell('lantern_go:away'); // (the father goes)
       lantern(s, [-5, 8.4]);
       await joseph.turn(270);
       await walk(s, 'joseph', [[0.3, 8.4]]);
@@ -530,6 +535,7 @@ const FILM = {
       david.look([AT_ANVIL[0], AT_ANVIL[1], 1.6]);
       await david.turn(120);
       await s.wait(1.0);
+      s.tell('rest:nod'); // (Axel nods to him across the forge)
       await nod(s, 'axel', DVB);
       await s.wait(0.6);
       await nod(s, 'david', [AT_ANVIL[0], AT_ANVIL[1], 1.6]);
@@ -602,6 +608,7 @@ const FILM = {
       await s.wait(1.2);
       david.look(FIRE);
       await comes;
+      s.tell('stranger:stop'); // (he stops in the gate, the lantern up)
       await s.person('farmhand').turn(180);
       lantern(s, AT_ANVIL, 1);
       await s.wait(1.8);
@@ -688,6 +695,7 @@ const FILM = {
       await s.wait(0.4);
       axel.reach(null);
       axel.look(JOSG);
+      s.tell('strike:step'); // (Axel steps to the gate)
       await walk(s, 'axel', [[1.7, 5.05], [2.45, 7.25]], 30);
       lantern(s, [2.45, 7.25]);
       await axel.do('raise_hammer');

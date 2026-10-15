@@ -145,3 +145,12 @@ for (const id of ['inspector', 'father']) {
   s.on('change', `${id}_present`, v => s.person(id).here(!!v));
   if (s.get(`${id}_present`) === false) s.person(id).here(false);
 }
+// the lamp blown out: a thin thread of smoke rising from its wick a few seconds (lamp_smoke — the scene's own)
+let lit = (s.get('lamp') ?? 1) > 0.5;
+function wick() {
+  const now = (s.get('lamp') ?? 1) > 0.5;
+  if (lit && !now) { s.set('lamp_smoke', 1); s.move('lamp_smoke', 0, { over: 6, ease: 'in' }); }
+  lit = now;
+}
+s.on('change', 'lamp', wick);
+s.on('move', 'lamp', wick);

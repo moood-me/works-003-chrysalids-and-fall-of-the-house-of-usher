@@ -35,7 +35,7 @@
 
 Община стоит двумя крыльями лицом к кромке поля (где Сторм зажигает и поёт), к нам — боком.
 
-КЛЮЧИ: beat, fade, dawn, morning, fire, ignite, ash, smoke, jo_torch, turned (игра; script.js поворачивает шестерых передних
+КЛЮЧИ: beat, fade, dawn, morning, fire, ignite, ash, smoke, jo_torch, dv_kneel (игра: Дэвид на колени сейчас же, вместе со всеми), turned (игра; script.js поворачивает шестерых передних
 — p3, p6, p1, p9, p4, p0 — каждого у своего порога, с задержкой ½…1 с: тело наполовину, голова дальше), in_ear, in_toss;
 сцена ставит сама: front_r, front_l, fire_light. Убраны ключи кукол «кино» (jo_raise, in_nod, dv_kneel, dv_sing, hand…):
 это теперь действия людей в кусках. Новое движение каста: throw_back.
@@ -62,7 +62,7 @@
   },
   "points": ["dv", "jo", "em", "in", "stalk#ear"],
   "offers": ["dv"],
-  "party": { "beat": null, "turned": 0 },
+  "party": { "beat": null, "turned": 0, "dv_kneel": false },
   "speakers": ["dv", "jo", "em", "in"]
 }
 ```

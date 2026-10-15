@@ -294,7 +294,8 @@
     "david_turn": 350,
     "david_gait": null,
     "david_here": true,
-    "father_away": 0
+    "father_away": 0,
+    "lamp_smoke": 0
   },
   "states": {
     "lamp": {
@@ -376,6 +377,14 @@
       ],
       "smooth": true,
       "means": "дверь открывается внутрь"
+    },
+    "lamp_smoke": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "тонкая нить дыма над задутой лампой (ставит сцена сама, когда lamp гаснет)"
     }
   },
   "directions": [
@@ -829,6 +838,30 @@
         "amount": "spill",
         "rate": 3,
         "color": "#3a3232"
+      }
+    },
+    {
+      "id": "lamp_smoke",
+      "name": "Дымок задутой лампы",
+      "particles": {
+        "kind": "smoke",
+        "at": "lamp#flame",
+        "source": [
+          0.02,
+          0.02,
+          0.02
+        ],
+        "amount": "lamp_smoke",
+        "rate": 4,
+        "color": "#8a8486",
+        "size": [
+          0.04,
+          0.5
+        ],
+        "life": [
+          3,
+          5
+        ]
       }
     },
     {

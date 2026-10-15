@@ -41,18 +41,18 @@
 {
   "beats": {
     "dawn": { "after": [], "tells": [], "seconds": 10 },
-    "ear": { "after": ["dawn"], "tells": [], "seconds": 16 },
+    "ear": { "after": ["dawn"], "tells": ["ear:nod"], "seconds": 16 },
     "raise": { "after": ["ear"], "tells": [], "seconds": 6 },
     "rise": { "after": ["raise"], "tells": [], "seconds": 7 },
     "kneel_late": { "after": ["raise"], "tells": [], "seconds": 9 },
     "light": { "after": ["rise", "kneel_late"], "tells": [], "seconds": 6 },
-    "fire": { "after": ["light"], "tells": [], "seconds": 12 },
+    "fire": { "after": ["light"], "tells": ["fire:caught"], "seconds": 12 },
     "hymn": { "after": ["fire"], "tells": [], "seconds": 10 },
     "hymn_loud": { "after": ["hymn"], "tells": [], "seconds": 8 },
-    "hymn_hide": { "after": ["hymn"], "tells": [], "seconds": 12 },
+    "hymn_hide": { "after": ["hymn"], "tells": ["hymn_hide:look"], "seconds": 12 },
     "burn": { "after": ["hymn_loud", "hymn_hide"], "tells": [], "seconds": 7 },
     "morning": { "after": ["burn"], "tells": [], "seconds": 14 },
-    "stalk_stay": { "after": ["morning"], "tells": [], "seconds": 25 },
+    "stalk_stay": { "after": ["morning"], "tells": ["stalk_stay:pull"], "seconds": 25 },
     "stalk_go": { "after": ["morning"], "tells": [], "seconds": 22 }
   },
   "points": ["dv", "jo", "em", "in", "stalk#ear"],

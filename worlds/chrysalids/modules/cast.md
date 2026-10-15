@@ -105,3 +105,7 @@ chin, held, loosed — with the part `bow`), `mount` (once: down into a high sea
 `dismount` (once: down off something high onto the feet — `on(null)` as it begins), `lift_into` (once: crouches, lifts
 a child up high before them — into a pannier), `pull_out` (once: crouching at an edge, both hands down and drawn back
 toward the chest — pulling someone out of the water).
+`throw_back` (once: turns and flings something back over the right shoulder, the arm high), `rake` (a loop: bent
+forward, both hands low drawing toward the body — raking hay, with the part `rake`), `aim_rifle` (a loop: standing, both
+arms straight out before the chest — a gun along them, the part `gun`), `kneel_aim` (a loop: down on the right knee, a gun
+at the shoulder).

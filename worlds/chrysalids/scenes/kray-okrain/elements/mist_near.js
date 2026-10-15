@@ -1,23 +1,13 @@
-const S = e.state || {};
-const m = S.mist ?? 0.6;
-if (m <= 0.01) return;
-for (let i = 0; i < 4; i++) {
-  const y = -0.1 - i * 0.3;
-  const sp = 0.08 + e.rnd() * 0.1;
-  const base = e.rnd() * 120;
-  for (let k = 0; k < 3; k++) {
-    const off = ((((e.t * sp * (i % 2 ? -1 : 1) + base + k * 40) % 120) + 120) % 120) - 60;
-    const rw = 12 + e.rnd() * 12;
-    const gr = g.createRadialGradient(off, y, 0, off, y, rw);
-    const a = m * (0.12 - i * 0.025);
-    gr.addColorStop(0, "rgba(145,160,190," + a + ")");
-    gr.addColorStop(1, "rgba(145,160,190,0)");
-    g.save();
-    g.translate(off, y);
-    g.scale(1, 0.03);
-    g.translate(-off, -y);
-    g.fillStyle = gr;
-    g.fillRect(off - rw, y - rw, rw * 2, rw * 2);
-    g.restore();
+// mist low over the last field (9 m), a sheet drifting
+e.layer('m', { drift: [0.15, 0], box: [-60, -3, 60, 0.5] }, q => {
+  for (let i = 0; i < 14; i++) {
+    const x = -60 + e.rnd() * 120, w = 3 + e.rnd() * 6;
+    for (const k of [-120, 0, 120]) {
+      const mg = q.createRadialGradient(x + k, -0.5, 0, x + k, -0.5, w);
+      mg.addColorStop(0, 'rgba(180,192,214,0.2)');
+      mg.addColorStop(1, 'rgba(180,192,214,0)');
+      q.save(); q.translate(x + k, -0.5); q.scale(1, 0.15); q.translate(-(x + k), 0.5);
+      q.fillStyle = mg; q.fillRect(x + k - w, -0.5 - w, 2 * w, 2 * w); q.restore();
+    }
   }
-}
+});

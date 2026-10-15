@@ -1,26 +1,13 @@
-const S = e.state || {};
-const sm = S.smoke ?? 0.5;
-const a = 0.12 + 0.25 * sm;
-const gr = g.createLinearGradient(0, -3, 0, 1.5);
-gr.addColorStop(0, "rgba(120,106,120,0)");
-gr.addColorStop(0.6, "rgba(120,106,120," + a * 0.6 + ")");
-gr.addColorStop(1, "rgba(70,62,76,0)");
-g.fillStyle = gr;
-g.fillRect(-70, -3, 140, 4.5);
-for (let i = 0; i < 6; i++) {
-  const y = -0.6 - e.rnd() * 1.4;
-  const sp = 0.1 + e.rnd() * 0.12;
-  const base = e.rnd() * 140;
-  const off = ((((e.t * sp * (i % 2 ? -1 : 1) + base) % 140) + 140) % 140) - 70;
-  const rw = 10 + e.rnd() * 12;
-  const rg = g.createRadialGradient(off, y, 0, off, y, rw);
-  rg.addColorStop(0, "rgba(190,168,176," + 0.2 * sm + ")");
-  rg.addColorStop(1, "rgba(190,168,176,0)");
-  g.save();
-  g.translate(off, y);
-  g.scale(1, 0.07);
-  g.translate(-off, -y);
-  g.fillStyle = rg;
-  g.fillRect(off - rw, y - rw, 2 * rw, 2 * rw);
-  g.restore();
-}
+// smoke lying at the roots of the wood (31 m), drifting
+e.layer('m', { drift: [0.2, 0], box: [-70, -4, 70, 2] }, q => {
+  for (let i = 0; i < 10; i++) {
+    const x = -70 + e.rnd() * 140, w = 5 + e.rnd() * 8;
+    for (const k of [-140, 0, 140]) {
+      const mg = q.createRadialGradient(x + k, -0.8, 0, x + k, -0.8, w);
+      mg.addColorStop(0, 'rgba(180,170,176,0.25)');
+      mg.addColorStop(1, 'rgba(180,170,176,0)');
+      q.save(); q.translate(x + k, -0.8); q.scale(1, 0.2); q.translate(-(x + k), 0.8);
+      q.fillStyle = mg; q.fillRect(x + k - w, -0.8 - w, 2 * w, 2 * w); q.restore();
+    }
+  }
+});

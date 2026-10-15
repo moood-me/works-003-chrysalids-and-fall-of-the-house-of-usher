@@ -1,12 +1,1191 @@
 {
-  "light": {
-    "haze": 0.45,
-    "tint": "#5a4a5e",
-    "grain": 0.22,
-    "vignette": 0.45,
-    "hazeColor": "#8a7f8e",
-    "tintStrength": 0.1
+  "engine": 3,
+  "title": "Корабль из Зеландии",
+  "horizon": 0.6,
+  "camera": {
+    "mode": "picture"
   },
+  "light": {
+    "ambient": 0.85,
+    "ambientColor": "#c8bcc8",
+    "bounce": 0.5,
+    "haze": 0.4,
+    "hazeColor": "#9a8f9e",
+    "hazeGlow": 0.6,
+    "shafts": 0.3,
+    "vignette": 0.4,
+    "grain": 0.18,
+    "saturation": 0.9,
+    "wind": [
+      1,
+      0,
+      0.35
+    ],
+    "looks": {
+      "dawn": {
+        "ambient": 1.0,
+        "ambientColor": "#e0d2d0",
+        "hazeColor": "#b0a4aa"
+      }
+    }
+  },
+  "lights": [
+    {
+      "id": "sun",
+      "from": [
+        -60,
+        4
+      ],
+      "color": "#f0c8b4",
+      "strength": 0.5,
+      "on": "dawn"
+    },
+    {
+      "id": "ship_glow",
+      "of": "ship#glint",
+      "color": "#f2e2e6",
+      "strength": 0.8,
+      "reach": 14,
+      "on": "ship_vis"
+    },
+    {
+      "id": "door_light",
+      "of": "ship#door",
+      "color": "#f6cfa0",
+      "strength": 1.4,
+      "reach": 6,
+      "on": "door"
+    }
+  ],
+  "state": {
+    "beat": null,
+    "fade": 0,
+    "dawn": 0.38,
+    "smoke": 0.8,
+    "fight": 1,
+    "fall": 0,
+    "web": 0,
+    "cave_web": 0,
+    "spin": 0,
+    "door": 0,
+    "dust": 0,
+    "ship_vis": 0,
+    "ship_a": 150,
+    "ship_d": 330,
+    "ship_h": 95,
+    "arrow_vis": false,
+    "arrow_a": 6.3,
+    "arrow_d": 17.5,
+    "arrow_h": 1.6,
+    "horse_a": -2.9,
+    "horse_d": 15.6,
+    "horse_face": 90,
+    "horse_toss": 0,
+    "w1_th": 0.15,
+    "w3_th": 0.25,
+    "w2_th": 0.35,
+    "f2_th": 0.45,
+    "f3_th": 0.55,
+    "sophie_th": 0.62,
+    "spider_th": 0,
+    "joseph_th": 0,
+    "david_th": -1,
+    "w1_fire": 0,
+    "w2_fire": 0,
+    "w3_fire": 0,
+    "w1_with": [
+      "gun"
+    ],
+    "w2_with": [
+      "gun"
+    ],
+    "w3_with": [
+      "gun"
+    ],
+    "spider_with": [
+      "bow"
+    ],
+    "f2_with": [
+      "bow"
+    ],
+    "f3_with": [
+      "bow"
+    ],
+    "sealand_here": false,
+    "sealand_with": [
+      "sprayer"
+    ],
+    "joseph_wear": {
+      "hat": "hat"
+    },
+    "w1_do": {
+      "motion": "kneel_aim",
+      "loop": true
+    },
+    "w2_do": {
+      "motion": "aim_rifle",
+      "loop": true
+    },
+    "w3_do": {
+      "motion": "aim_rifle",
+      "loop": true
+    },
+    "david_do": {
+      "motion": "kneel",
+      "loop": true
+    },
+    "rosalind_do": {
+      "motion": "kneel",
+      "loop": true
+    },
+    "petra_do": {
+      "motion": "crouch",
+      "loop": true
+    },
+    "michael_do": {
+      "motion": "crouch",
+      "loop": true
+    }
+  },
+  "states": {
+    "beat": {
+      "type": "string",
+      "means": "кусок (модуль beats): cave → fight → hold | run → ship | noship → web | web_petra | web_rosalind | web_father | web_alone → landing | landing_run → free | free_run → back | back_run → board | stay_ros | stay_alone → stay_alone_away"
+    },
+    "fade": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "затемнение"
+    },
+    "dawn": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "рассвет (взгляд света dawn, низкое солнце)"
+    },
+    "smoke": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "дым боя над лесом и поляной"
+    },
+    "fight": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "идёт бой"
+    },
+    "fall": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "сыплются нити с корабля (паутина в воздухе, нити под кораблём)"
+    },
+    "web": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "паутина на поляне: каждый застывает у своего порога (<id>_th)"
+    },
+    "cave_web": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "паутина на детях у пещеры"
+    },
+    "spin": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "спираль корабля крутится"
+    },
+    "door": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "дверь корабля открыта, тёплый свет, трап"
+    },
+    "dust": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "пыль под кораблём"
+    },
+    "ship_vis": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "корабль виден"
+    },
+    "ship_a": {
+      "type": "number",
+      "means": "корабль: поперёк"
+    },
+    "ship_d": {
+      "type": "number",
+      "means": "корабль: вглубь"
+    },
+    "ship_h": {
+      "type": "number",
+      "means": "корабль: высота над землёй (0 — сел)"
+    },
+    "arrow_vis": {
+      "type": "boolean",
+      "means": "стрела Паука летит"
+    },
+    "arrow_a": {
+      "type": "number",
+      "means": "стрела: поперёк"
+    },
+    "arrow_d": {
+      "type": "number",
+      "means": "стрела: вглубь"
+    },
+    "arrow_h": {
+      "type": "number",
+      "means": "стрела: высота"
+    },
+    "horse_a": {
+      "type": "number",
+      "means": "конь Джозефа: поперёк"
+    },
+    "horse_d": {
+      "type": "number",
+      "means": "конь: вглубь"
+    },
+    "horse_face": {
+      "range": [
+        0,
+        360
+      ],
+      "smooth": true,
+      "means": "конь: куда повёрнут"
+    },
+    "horse_toss": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "конь вскидывает голову, на дыбы"
+    },
+    "w1_th": {
+      "type": "number",
+      "means": "w1: порог паутины (−1 — не на поляне; выше 1.5 — паутина отпускает)"
+    },
+    "w1_down": {
+      "type": "boolean",
+      "means": "w1: лежит (кокон лёжа)"
+    },
+    "w3_th": {
+      "type": "number",
+      "means": "w3: порог паутины (−1 — не на поляне; выше 1.5 — паутина отпускает)"
+    },
+    "w3_down": {
+      "type": "boolean",
+      "means": "w3: лежит (кокон лёжа)"
+    },
+    "w2_th": {
+      "type": "number",
+      "means": "w2: порог паутины (−1 — не на поляне; выше 1.5 — паутина отпускает)"
+    },
+    "w2_down": {
+      "type": "boolean",
+      "means": "w2: лежит (кокон лёжа)"
+    },
+    "f2_th": {
+      "type": "number",
+      "means": "f2: порог паутины (−1 — не на поляне; выше 1.5 — паутина отпускает)"
+    },
+    "f2_down": {
+      "type": "boolean",
+      "means": "f2: лежит (кокон лёжа)"
+    },
+    "f3_th": {
+      "type": "number",
+      "means": "f3: порог паутины (−1 — не на поляне; выше 1.5 — паутина отпускает)"
+    },
+    "f3_down": {
+      "type": "boolean",
+      "means": "f3: лежит (кокон лёжа)"
+    },
+    "sophie_th": {
+      "type": "number",
+      "means": "sophie: порог паутины (−1 — не на поляне; выше 1.5 — паутина отпускает)"
+    },
+    "sophie_down": {
+      "type": "boolean",
+      "means": "sophie: лежит (кокон лёжа)"
+    },
+    "spider_th": {
+      "type": "number",
+      "means": "spider: порог паутины (−1 — не на поляне; выше 1.5 — паутина отпускает)"
+    },
+    "spider_down": {
+      "type": "boolean",
+      "means": "spider: лежит (кокон лёжа)"
+    },
+    "joseph_th": {
+      "type": "number",
+      "means": "joseph: порог паутины (−1 — не на поляне; выше 1.5 — паутина отпускает)"
+    },
+    "joseph_down": {
+      "type": "boolean",
+      "means": "joseph: лежит (кокон лёжа)"
+    },
+    "david_th": {
+      "type": "number",
+      "means": "david: порог паутины (−1 — не на поляне; выше 1.5 — паутина отпускает)"
+    },
+    "david_down": {
+      "type": "boolean",
+      "means": "david: лежит (кокон лёжа)"
+    },
+    "w1_fire": {
+      "type": "number",
+      "means": "w1: выстрел — каждый раз, как число растёт"
+    },
+    "w2_fire": {
+      "type": "number",
+      "means": "w2: выстрел — каждый раз, как число растёт"
+    },
+    "w3_fire": {
+      "type": "number",
+      "means": "w3: выстрел — каждый раз, как число растёт"
+    }
+  },
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Рассветное небо"
+    },
+    {
+      "id": "clouds",
+      "sky": true,
+      "name": "Дымные облака"
+    },
+    {
+      "id": "hills",
+      "name": "Дальние холмы",
+      "x": 0.5,
+      "distance": 700,
+      "height": 40,
+      "box": [
+        -1800,
+        -80,
+        1800,
+        5
+      ]
+    },
+    {
+      "id": "forest_far",
+      "name": "Дальний лес Окраин",
+      "x": 0.5,
+      "distance": 120,
+      "height": 16,
+      "box": [
+        -200,
+        -34,
+        200,
+        2
+      ]
+    },
+    {
+      "id": "smoke_far",
+      "name": "Дым над лесом",
+      "x": 0.5,
+      "distance": 90,
+      "height": 20,
+      "box": [
+        -200,
+        -40,
+        200,
+        2
+      ]
+    },
+    {
+      "id": "forest_near",
+      "name": "Скрюченный лес",
+      "x": 0.5,
+      "distance": 45,
+      "height": 12,
+      "box": [
+        -90,
+        -28,
+        90,
+        2
+      ]
+    },
+    {
+      "id": "undergrowth",
+      "name": "Подлесок",
+      "x": 0.5,
+      "distance": 36,
+      "height": 2,
+      "box": [
+        -70,
+        -4,
+        70,
+        0.5
+      ]
+    },
+    {
+      "id": "valley",
+      "name": "Долина под лесом",
+      "plane": true,
+      "x": 0.5,
+      "distance": 40,
+      "width": 300,
+      "depth": 79
+    },
+    {
+      "id": "mist_base",
+      "name": "Дым у корней",
+      "x": 0.5,
+      "distance": 31,
+      "height": 2,
+      "box": [
+        -70,
+        -4,
+        70,
+        2
+      ]
+    },
+    {
+      "id": "smoke_low",
+      "name": "Низкий дым",
+      "x": 0.5,
+      "distance": 28,
+      "height": 4,
+      "box": [
+        -60,
+        -6,
+        60,
+        1
+      ]
+    },
+    {
+      "id": "thicket",
+      "name": "Спутанные ветви",
+      "across": 14,
+      "distance": 27,
+      "height": 3,
+      "box": [
+        -16,
+        -6,
+        16,
+        1
+      ]
+    },
+    {
+      "id": "shacks",
+      "name": "Хижины Окраин",
+      "across": 12,
+      "distance": 27,
+      "height": 3,
+      "box": [
+        -10,
+        -3.6,
+        6,
+        0.4
+      ]
+    },
+    {
+      "id": "webfield",
+      "name": "Паутина на поляне",
+      "plane": true,
+      "across": 3,
+      "distance": 19,
+      "elevation": 0.02,
+      "width": 34,
+      "depth": 24,
+      "uniforms": {
+        "web": 0
+      }
+    },
+    {
+      "id": "ship",
+      "name": "Корабль из Зеландии",
+      "across": 150,
+      "distance": 330,
+      "elevation": 95,
+      "height": 4,
+      "box": [
+        -12.5,
+        -6.5,
+        6.5,
+        9.4
+      ],
+      "place": {
+        "across": "ship_a",
+        "distance": "ship_d",
+        "elevation": "ship_h"
+      },
+      "uniforms": {
+        "spin": 0,
+        "fall": 0,
+        "legs": 0,
+        "door": 0,
+        "ramp": 0,
+        "vis": 0
+      },
+      "shadow": true
+    },
+    {
+      "id": "dust",
+      "name": "Пыль под кораблём",
+      "across": 3,
+      "distance": 21,
+      "particles": {
+        "kind": "puff",
+        "source": [
+          10,
+          6,
+          0.2
+        ],
+        "rate": 12,
+        "amount": "dust",
+        "color": "#b8aca8",
+        "size": [
+          0.5,
+          3.0
+        ]
+      }
+    },
+    {
+      "id": "gossamer",
+      "name": "Падающая паутина",
+      "across": 0,
+      "distance": 15,
+      "elevation": 6,
+      "box": [
+        -0.5,
+        -0.5,
+        0.5,
+        0.5
+      ],
+      "particles": {
+        "kind": "petals",
+        "source": [
+          26,
+          18,
+          6
+        ],
+        "rate": 40,
+        "amount": "fall",
+        "size": [
+          0.6,
+          0.6
+        ],
+        "gravity": 0.15,
+        "drag": 1.5,
+        "wind": 0.4,
+        "blend": "add",
+        "glow": [
+          0.6,
+          0.6
+        ],
+        "tumble": true,
+        "life": [
+          6,
+          10
+        ]
+      }
+    },
+    {
+      "id": "arrow",
+      "name": "Стрела Паука",
+      "across": 6.3,
+      "distance": 17.5,
+      "elevation": 1.6,
+      "height": 0.3,
+      "box": [
+        -0.6,
+        -0.1,
+        0.6,
+        0.1
+      ],
+      "place": {
+        "across": "arrow_a",
+        "distance": "arrow_d",
+        "elevation": "arrow_h"
+      }
+    },
+    {
+      "id": "horse",
+      "name": "Конь Джозефа",
+      "across": -2.9,
+      "distance": 15.6,
+      "height": 2.4,
+      "box": [
+        -3.4,
+        -4.4,
+        3.4,
+        0.5
+      ],
+      "place": {
+        "across": "horse_a",
+        "distance": "horse_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "joseph",
+      "name": "Джозеф Строрм",
+      "person": {
+        "cast": "cast",
+        "who": "joseph",
+        "turn": 90
+      },
+      "across": -0.6,
+      "distance": 14.2,
+      "place": {
+        "across": "joseph_a",
+        "distance": "joseph_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "w1",
+      "name": "Человек из Вакнука",
+      "person": {
+        "cast": "cast",
+        "who": "man_a",
+        "turn": 90
+      },
+      "across": 1.3,
+      "distance": 16.4,
+      "place": {
+        "across": "w1_a",
+        "distance": "w1_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "w2",
+      "name": "Человек из Вакнука",
+      "person": {
+        "cast": "cast",
+        "who": "man_c",
+        "turn": 90
+      },
+      "across": 2.6,
+      "distance": 19.6,
+      "place": {
+        "across": "w2_a",
+        "distance": "w2_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "w3",
+      "name": "Человек из Вакнука",
+      "person": {
+        "cast": "cast",
+        "who": "farmhand",
+        "turn": 90
+      },
+      "across": -3.6,
+      "distance": 18.6,
+      "place": {
+        "across": "w3_a",
+        "distance": "w3_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "spider",
+      "name": "Паук",
+      "person": {
+        "cast": "cast",
+        "who": "spider",
+        "turn": 270
+      },
+      "across": 8.8,
+      "distance": 19.6,
+      "place": {
+        "across": "spider_a",
+        "distance": "spider_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "sophie",
+      "name": "Софи",
+      "person": {
+        "cast": "cast",
+        "who": "sophie_adult",
+        "turn": 270
+      },
+      "across": 12.6,
+      "distance": 24.2,
+      "place": {
+        "across": "sophie_a",
+        "distance": "sophie_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "f2",
+      "name": "Человек Окраин",
+      "person": {
+        "cast": "cast",
+        "who": "fringe_man",
+        "turn": 270
+      },
+      "across": 9.4,
+      "distance": 16,
+      "place": {
+        "across": "f2_a",
+        "distance": "f2_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "f3",
+      "name": "Человек Окраин",
+      "person": {
+        "cast": "cast",
+        "who": "hunchback",
+        "turn": 270
+      },
+      "across": 14.8,
+      "distance": 25.5,
+      "place": {
+        "across": "f3_a",
+        "distance": "f3_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "sealand",
+      "name": "Женщина из Зеландии",
+      "person": {
+        "cast": "cast",
+        "who": "sealand",
+        "turn": 0
+      },
+      "across": 3,
+      "distance": 20.3,
+      "place": {
+        "across": "sealand_a",
+        "distance": "sealand_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "cocoon_w1",
+      "name": "Паутина: Человек из Вакнука",
+      "across": 1.3,
+      "distance": 16.349999999999998,
+      "height": 2,
+      "box": [
+        -1.3,
+        -2.3,
+        1.3,
+        0.3
+      ],
+      "place": {
+        "across": "w1_a",
+        "distance": "w1_d"
+      },
+      "translucent": 0.6
+    },
+    {
+      "id": "cocoon_w3",
+      "name": "Паутина: Человек из Вакнука",
+      "across": -3.6,
+      "distance": 18.55,
+      "height": 2,
+      "box": [
+        -1.3,
+        -2.3,
+        1.3,
+        0.3
+      ],
+      "place": {
+        "across": "w3_a",
+        "distance": "w3_d"
+      },
+      "translucent": 0.6
+    },
+    {
+      "id": "cocoon_w2",
+      "name": "Паутина: Человек из Вакнука",
+      "across": 2.6,
+      "distance": 19.55,
+      "height": 2,
+      "box": [
+        -1.3,
+        -2.3,
+        1.3,
+        0.3
+      ],
+      "place": {
+        "across": "w2_a",
+        "distance": "w2_d"
+      },
+      "translucent": 0.6
+    },
+    {
+      "id": "cocoon_f2",
+      "name": "Паутина: Человек Окраин",
+      "across": 9.4,
+      "distance": 15.95,
+      "height": 2,
+      "box": [
+        -1.3,
+        -2.3,
+        1.3,
+        0.3
+      ],
+      "place": {
+        "across": "f2_a",
+        "distance": "f2_d"
+      },
+      "translucent": 0.6
+    },
+    {
+      "id": "cocoon_f3",
+      "name": "Паутина: Человек Окраин",
+      "across": 14.8,
+      "distance": 25.45,
+      "height": 2,
+      "box": [
+        -1.3,
+        -2.3,
+        1.3,
+        0.3
+      ],
+      "place": {
+        "across": "f3_a",
+        "distance": "f3_d"
+      },
+      "translucent": 0.6
+    },
+    {
+      "id": "cocoon_sophie",
+      "name": "Паутина: Софи",
+      "across": 12.6,
+      "distance": 24.15,
+      "height": 2,
+      "box": [
+        -1.3,
+        -2.3,
+        1.3,
+        0.3
+      ],
+      "place": {
+        "across": "sophie_a",
+        "distance": "sophie_d"
+      },
+      "translucent": 0.6
+    },
+    {
+      "id": "cocoon_spider",
+      "name": "Паутина: Паук",
+      "across": 8.8,
+      "distance": 19.55,
+      "height": 2,
+      "box": [
+        -1.3,
+        -2.3,
+        1.3,
+        0.3
+      ],
+      "place": {
+        "across": "spider_a",
+        "distance": "spider_d"
+      },
+      "translucent": 0.6
+    },
+    {
+      "id": "cocoon_joseph",
+      "name": "Паутина: Джозеф Строрм",
+      "across": -0.6,
+      "distance": 14.149999999999999,
+      "height": 2,
+      "box": [
+        -1.3,
+        -2.3,
+        1.3,
+        0.3
+      ],
+      "place": {
+        "across": "joseph_a",
+        "distance": "joseph_d"
+      },
+      "translucent": 0.6
+    },
+    {
+      "id": "cave",
+      "name": "Скала с пещерой",
+      "x": 0.5,
+      "distance": 10.5,
+      "height": 3,
+      "box": [
+        -16,
+        -4,
+        0.6,
+        0.5
+      ],
+      "onLand": false
+    },
+    {
+      "id": "david",
+      "name": "Дэвид",
+      "person": {
+        "cast": "cast",
+        "who": "david_teen",
+        "turn": 90
+      },
+      "across": -2.3,
+      "distance": 8.25,
+      "place": {
+        "across": "david_a",
+        "distance": "david_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "petra",
+      "name": "Петра",
+      "person": {
+        "cast": "cast",
+        "who": "petra",
+        "turn": 90
+      },
+      "across": -3.15,
+      "distance": 8.45,
+      "place": {
+        "across": "petra_a",
+        "distance": "petra_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "rosalind",
+      "name": "Розалинда",
+      "person": {
+        "cast": "cast",
+        "who": "rosalind",
+        "turn": 90
+      },
+      "across": -3.9,
+      "distance": 8.65,
+      "place": {
+        "across": "rosalind_a",
+        "distance": "rosalind_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "michael",
+      "name": "Майкл",
+      "person": {
+        "cast": "cast",
+        "who": "michael",
+        "turn": 90
+      },
+      "across": -4.9,
+      "distance": 8.95,
+      "place": {
+        "across": "michael_a",
+        "distance": "michael_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "cocoon_david",
+      "name": "Паутина: Дэвид",
+      "across": -2.3,
+      "distance": 8.2,
+      "height": 2,
+      "box": [
+        -1.3,
+        -2.3,
+        1.3,
+        0.3
+      ],
+      "place": {
+        "across": "david_a",
+        "distance": "david_d"
+      },
+      "translucent": 0.6
+    },
+    {
+      "id": "cave_web",
+      "name": "Паутина на детях у пещеры",
+      "x": 0.5,
+      "distance": 8.2,
+      "elevation": 1.0,
+      "height": 2,
+      "box": [
+        -5.5,
+        -2.2,
+        0,
+        0.2
+      ],
+      "onLand": false,
+      "translucent": 0.6
+    },
+    {
+      "id": "ledge",
+      "name": "Камень у пещеры",
+      "x": 0.5,
+      "distance": 7.3,
+      "height": 2,
+      "box": [
+        -16,
+        -2.4,
+        0.6,
+        5.2
+      ],
+      "onLand": false
+    },
+    {
+      "id": "brush_front",
+      "name": "Бурьян внизу",
+      "across": 5,
+      "distance": 8,
+      "height": 2,
+      "box": [
+        -5,
+        -3,
+        6,
+        1.5
+      ]
+    },
+    {
+      "id": "grass_front",
+      "name": "Трава у края",
+      "x": 0.5,
+      "distance": 4,
+      "height": 1,
+      "box": [
+        -6,
+        -1.2,
+        6,
+        0.5
+      ]
+    },
+    {
+      "id": "shot_w1",
+      "name": "Выстрел (w1)",
+      "particles": {
+        "kind": "puff",
+        "at": "w1#muzzle",
+        "burst": {
+          "on": "w1_fire",
+          "count": 14
+        },
+        "color": "#d8d4d0",
+        "size": [
+          0.1,
+          0.8
+        ]
+      }
+    },
+    {
+      "id": "flash_w1",
+      "name": "Вспышка (w1)",
+      "particles": {
+        "kind": "sparks",
+        "at": "w1#muzzle",
+        "burst": {
+          "on": "w1_fire",
+          "count": 10
+        }
+      }
+    },
+    {
+      "id": "shot_w2",
+      "name": "Выстрел (w2)",
+      "particles": {
+        "kind": "puff",
+        "at": "w2#muzzle",
+        "burst": {
+          "on": "w2_fire",
+          "count": 14
+        },
+        "color": "#d8d4d0",
+        "size": [
+          0.1,
+          0.8
+        ]
+      }
+    },
+    {
+      "id": "flash_w2",
+      "name": "Вспышка (w2)",
+      "particles": {
+        "kind": "sparks",
+        "at": "w2#muzzle",
+        "burst": {
+          "on": "w2_fire",
+          "count": 10
+        }
+      }
+    },
+    {
+      "id": "shot_w3",
+      "name": "Выстрел (w3)",
+      "particles": {
+        "kind": "puff",
+        "at": "w3#muzzle",
+        "burst": {
+          "on": "w3_fire",
+          "count": 14
+        },
+        "color": "#d8d4d0",
+        "size": [
+          0.1,
+          0.8
+        ]
+      }
+    },
+    {
+      "id": "flash_w3",
+      "name": "Вспышка (w3)",
+      "particles": {
+        "kind": "sparks",
+        "at": "w3#muzzle",
+        "burst": {
+          "on": "w3_fire",
+          "count": 10
+        }
+      }
+    }
+  ],
+  "modules": [
+    "cast",
+    "chrysalids",
+    "beats"
+  ],
   "music": {
     "bpm": 66,
     "density": 0.25,
@@ -93,764 +1272,5 @@
       }
     ],
     "brightness": 0.55
-  },
-  "state": {
-    "beat": "film",
-    "arrow_a": 6.3,
-    "arrow_d": 17.5,
-    "arrow_h": 1.6,
-    "arrow_vis": 0,
-    "camera_h": 0.35,
-    "camera_look": 0,
-    "camera_x": -3.3,
-    "camera_z": 3.6,
-    "cave_web": 0,
-    "david_a": -2.3,
-    "david_d": 8.25,
-    "david_dead": 0,
-    "david_f": 90,
-    "david_fire": 0,
-    "david_h": 1,
-    "david_hide": 0,
-    "david_hl": "",
-    "david_hr": "",
-    "david_look": "",
-    "david_p": "kneel",
-    "david_still": 0,
-    "david_th": -1,
-    "david_w_reach": 0,
-    "dawn": 0.38,
-    "door": 0,
-    "dust": 0,
-    "f2_a": 9.4,
-    "f2_d": 16,
-    "f2_dead": 0,
-    "f2_f": -90,
-    "f2_fire": 0,
-    "f2_h": 0,
-    "f2_hide": 0,
-    "f2_hl": "",
-    "f2_hr": "",
-    "f2_look": "",
-    "f2_p": "draw_bow",
-    "f2_still": 0,
-    "f2_th": -1,
-    "f3_a": 14.8,
-    "f3_d": 25.5,
-    "f3_dead": 0,
-    "f3_f": -90,
-    "f3_fire": 0,
-    "f3_h": 0,
-    "f3_hide": 0,
-    "f3_hl": "",
-    "f3_hr": "",
-    "f3_look": "",
-    "f3_p": "draw_bow",
-    "f3_still": 0,
-    "f3_th": -1,
-    "fade": 0,
-    "fall": 0,
-    "fight": 1,
-    "horse_a": -2.9,
-    "horse_d": 15.6,
-    "horse_f": 90,
-    "horse_w_rear": 0,
-    "joseph_a": -0.6,
-    "joseph_d": 14.2,
-    "joseph_dead": 0,
-    "joseph_f": 90,
-    "joseph_fire": 0,
-    "joseph_h": 0,
-    "joseph_hide": 0,
-    "joseph_hl": "",
-    "joseph_hr": "",
-    "joseph_look": "",
-    "joseph_p": "point",
-    "joseph_still": 0,
-    "joseph_th": -1,
-    "michael_a": -4.9,
-    "michael_d": 8.95,
-    "michael_dead": 0,
-    "michael_f": 90,
-    "michael_fire": 0,
-    "michael_h": 1,
-    "michael_hide": 0,
-    "michael_hl": "",
-    "michael_hr": "",
-    "michael_look": "",
-    "michael_p": "crouch",
-    "michael_still": 0,
-    "michael_th": -1,
-    "petra_a": -3.15,
-    "petra_d": 8.45,
-    "petra_dead": 0,
-    "petra_f": 90,
-    "petra_fire": 0,
-    "petra_h": 1,
-    "petra_hide": 0,
-    "petra_hl": "",
-    "petra_hr": "",
-    "petra_look": "",
-    "petra_p": "crouch",
-    "petra_still": 0,
-    "petra_th": -1,
-    "rosalind_a": -3.9,
-    "rosalind_d": 8.65,
-    "rosalind_dead": 0,
-    "rosalind_f": 90,
-    "rosalind_fire": 0,
-    "rosalind_h": 1,
-    "rosalind_hide": 0,
-    "rosalind_hl": "",
-    "rosalind_hr": "",
-    "rosalind_look": "",
-    "rosalind_p": "kneel",
-    "rosalind_still": 0,
-    "rosalind_th": -1,
-    "sealand_a": 3,
-    "sealand_d": 20.3,
-    "sealand_dead": 0,
-    "sealand_f": 0,
-    "sealand_fire": 0,
-    "sealand_h": 1,
-    "sealand_hide": 1,
-    "sealand_hl": "",
-    "sealand_hr": "",
-    "sealand_look": "",
-    "sealand_p": "",
-    "sealand_still": 0,
-    "sealand_th": -1,
-    "ship_a": 150,
-    "ship_d": 330,
-    "ship_h": 95,
-    "ship_tilt": 0.16,
-    "ship_vis": 0,
-    "smoke": 0.8,
-    "sophie_a": 12.6,
-    "sophie_d": 24.2,
-    "sophie_dead": 0,
-    "sophie_f": -90,
-    "sophie_fire": 0,
-    "sophie_h": 0,
-    "sophie_hide": 0,
-    "sophie_hl": "",
-    "sophie_hr": "",
-    "sophie_look": "",
-    "sophie_p": "",
-    "sophie_still": 0,
-    "sophie_th": -1,
-    "spider_a": 8.8,
-    "spider_d": 19.6,
-    "spider_dead": 0,
-    "spider_f": -90,
-    "spider_fire": 0,
-    "spider_h": 0,
-    "spider_hide": 0,
-    "spider_hl": "",
-    "spider_hr": "",
-    "spider_look": "",
-    "spider_p": "",
-    "spider_still": 0,
-    "spider_th": -1,
-    "spin": 0,
-    "spray": 0,
-    "w1_a": 1.3,
-    "w1_d": 16.4,
-    "w1_dead": 0,
-    "w1_f": 90,
-    "w1_fire": 0,
-    "w1_h": 0,
-    "w1_hide": 0,
-    "w1_hl": "",
-    "w1_hr": "",
-    "w1_look": "",
-    "w1_p": "kneel_aim",
-    "w1_still": 0,
-    "w1_th": -1,
-    "w2_a": 2.6,
-    "w2_d": 19.6,
-    "w2_dead": 0,
-    "w2_f": 90,
-    "w2_fire": 0,
-    "w2_h": 0,
-    "w2_hide": 0,
-    "w2_hl": "",
-    "w2_hr": "",
-    "w2_look": "",
-    "w2_p": "aim_rifle",
-    "w2_still": 0,
-    "w2_th": -1,
-    "w3_a": -3.6,
-    "w3_d": 18.6,
-    "w3_dead": 0,
-    "w3_f": 90,
-    "w3_fire": 0,
-    "w3_h": 0,
-    "w3_hide": 0,
-    "w3_hl": "",
-    "w3_hr": "",
-    "w3_look": "",
-    "w3_p": "aim_rifle",
-    "w3_still": 0,
-    "w3_th": -1,
-    "web": 0
-  },
-  "title": "Корабль из Зеландии",
-  "camera": {
-    "mode": "picture"
-  },
-  "caption": "",
-  "horizon": 0.6,
-  "objects": [
-    {
-      "id": "sky",
-      "sky": true,
-      "name": "Рассветное небо"
-    },
-    {
-      "id": "clouds",
-      "sky": true,
-      "name": "Дымные облака"
-    },
-    {
-      "x": 0.5,
-      "id": "hills",
-      "box": [
-        -1800,
-        -80,
-        1800,
-        5
-      ],
-      "name": "Дальние холмы",
-      "height": 40,
-      "distance": 700
-    },
-    {
-      "x": 0.5,
-      "id": "forest_far",
-      "box": [
-        -200,
-        -34,
-        200,
-        2
-      ],
-      "name": "Дальний лес Окраин",
-      "height": 16,
-      "distance": 120
-    },
-    {
-      "x": 0.5,
-      "id": "smoke_far",
-      "box": [
-        -200,
-        -40,
-        200,
-        2
-      ],
-      "name": "Дым над лесом",
-      "height": 20,
-      "distance": 90
-    },
-    {
-      "x": 0.5,
-      "id": "forest_near",
-      "box": [
-        -90,
-        -26,
-        90,
-        2
-      ],
-      "name": "Скрюченный лес",
-      "height": 12,
-      "distance": 45
-    },
-    {
-      "x": 0.5,
-      "id": "smoke_low",
-      "box": [
-        -60,
-        -6,
-        60,
-        1
-      ],
-      "name": "Низкий дым",
-      "height": 4,
-      "distance": 28
-    },
-    {
-      "x": 0.45,
-      "id": "glitter_near",
-      "box": [
-        -14,
-        -8,
-        14,
-        1
-      ],
-      "name": "Нити над поляной",
-      "height": 6,
-      "distance": 14
-    },
-    {
-      "x": 0.5,
-      "y": 0.98,
-      "id": "grass_front",
-      "box": [
-        -6,
-        -1.2,
-        6,
-        0.5
-      ],
-      "name": "Трава у края",
-      "height": 1
-    },
-    {
-      "x": 0.5,
-      "id": "undergrowth",
-      "box": [
-        -70,
-        -4,
-        70,
-        0.5
-      ],
-      "name": "Подлесок",
-      "height": 2,
-      "distance": 36
-    },
-    {
-      "x": 0.5,
-      "id": "valley",
-      "name": "Долина под лесом",
-      "color": "#3a3340",
-      "depth": 79,
-      "plane": true,
-      "width": 300,
-      "distance": 40,
-      "elevation": 0
-    },
-    {
-      "x": 0.5,
-      "id": "mist_base",
-      "box": [
-        -70,
-        -4,
-        70,
-        2
-      ],
-      "name": "Дым у корней",
-      "height": 2,
-      "distance": 31
-    },
-    {
-      "x": 0.76,
-      "id": "thicket",
-      "box": [
-        -16,
-        -6,
-        16,
-        1
-      ],
-      "name": "Спутанные ветви",
-      "height": 3,
-      "distance": 27
-    },
-    {
-      "x": 0.9,
-      "id": "brush_front",
-      "box": [
-        -5,
-        -3,
-        6,
-        1.5
-      ],
-      "name": "Бурьян внизу",
-      "height": 2,
-      "distance": 8
-    },
-    {
-      "id": "gossamer",
-      "sky": true,
-      "name": "Падающая паутина"
-    },
-    {
-      "x": 0.5,
-      "id": "shacks",
-      "box": [
-        -10,
-        -3.6,
-        6,
-        0.4
-      ],
-      "name": "Хижины Окраин",
-      "across": 12,
-      "height": 3,
-      "distance": 27
-    },
-    {
-      "x": 0.5,
-      "id": "cave",
-      "box": [
-        -16,
-        -4,
-        0.6,
-        0.5
-      ],
-      "name": "Скала с пещерой",
-      "height": 3,
-      "distance": 10.5
-    },
-    {
-      "x": 0.5,
-      "id": "ledge",
-      "box": [
-        -16,
-        -2.4,
-        0.6,
-        5.2
-      ],
-      "name": "Камень у пещеры",
-      "height": 2,
-      "distance": 7.3
-    },
-    {
-      "id": "webfield",
-      "name": "Паутина на поляне",
-      "depth": 24,
-      "plane": true,
-      "width": 34,
-      "across": 3,
-      "distance": 19
-    },
-    {
-      "x": 0.5,
-      "id": "ship",
-      "box": [
-        -17,
-        -7.5,
-        10,
-        11
-      ],
-      "name": "Корабль из Зеландии",
-      "place": {
-        "across": "ship_a",
-        "distance": "ship_d",
-        "elevation": "ship_h"
-      },
-      "across": 150,
-      "height": 4,
-      "distance": 330,
-      "elevation": 95
-    },
-    {
-      "x": 0.5,
-      "id": "arrow",
-      "box": [
-        -0.6,
-        -0.5,
-        2.4,
-        0.5
-      ],
-      "name": "Стрела",
-      "place": {
-        "across": "arrow_a",
-        "distance": "arrow_d",
-        "elevation": "arrow_h"
-      },
-      "across": 10,
-      "height": 1,
-      "distance": 21,
-      "elevation": 1.5
-    },
-    {
-      "x": 0.5,
-      "id": "horse",
-      "box": [
-        -2.8,
-        -3.4,
-        2.8,
-        0.5
-      ],
-      "name": "Конь Джозефа",
-      "place": {
-        "across": "horse_a",
-        "distance": "horse_d"
-      },
-      "across": -2.9,
-      "height": 2.4,
-      "distance": 15.6
-    },
-    {
-      "x": 0.5,
-      "id": "david",
-      "box": [
-        -2.2,
-        -2.8,
-        2.2,
-        0.5
-      ],
-      "name": "Дэвид",
-      "place": {
-        "across": "david_a",
-        "distance": "david_d",
-        "elevation": "david_h"
-      },
-      "across": -2.3,
-      "height": 1.75,
-      "distance": 8.25,
-      "elevation": 1,
-      "after": [
-        "joseph",
-        "petra"
-      ]
-    },
-    {
-      "x": 0.5,
-      "id": "petra",
-      "box": [
-        -2.2,
-        -2.8,
-        2.2,
-        0.5
-      ],
-      "name": "Петра",
-      "place": {
-        "across": "petra_a",
-        "distance": "petra_d",
-        "elevation": "petra_h"
-      },
-      "across": -3.15,
-      "height": 1.75,
-      "distance": 8.45,
-      "elevation": 1,
-      "after": [
-        "sealand"
-      ]
-    },
-    {
-      "x": 0.5,
-      "id": "rosalind",
-      "box": [
-        -2.2,
-        -2.8,
-        2.2,
-        0.5
-      ],
-      "name": "Розалинда",
-      "place": {
-        "across": "rosalind_a",
-        "distance": "rosalind_d",
-        "elevation": "rosalind_h"
-      },
-      "across": -3.9,
-      "height": 1.75,
-      "distance": 8.65,
-      "elevation": 1,
-      "after": [
-        "david",
-        "petra"
-      ]
-    },
-    {
-      "x": 0.5,
-      "id": "michael",
-      "box": [
-        -2.2,
-        -2.8,
-        2.2,
-        0.5
-      ],
-      "name": "Майкл",
-      "place": {
-        "across": "michael_a",
-        "distance": "michael_d",
-        "elevation": "michael_h"
-      },
-      "across": -4.9,
-      "height": 1.75,
-      "distance": 8.95,
-      "elevation": 1,
-      "after": [
-        "petra",
-        "david"
-      ]
-    },
-    {
-      "x": 0.5,
-      "id": "joseph",
-      "box": [
-        -2.2,
-        -2.8,
-        2.2,
-        0.5
-      ],
-      "name": "Джозеф Строрм",
-      "place": {
-        "across": "joseph_a",
-        "distance": "joseph_d"
-      },
-      "across": -0.6,
-      "height": 1.75,
-      "distance": 14.2,
-      "elevation": 0
-    },
-    {
-      "x": 0.5,
-      "id": "w1",
-      "box": [
-        -2.2,
-        -2.8,
-        2.2,
-        0.5
-      ],
-      "name": "Человек из Вакнука",
-      "place": {
-        "across": "w1_a",
-        "distance": "w1_d"
-      },
-      "across": 1.3,
-      "height": 1.75,
-      "distance": 16.4,
-      "elevation": 0
-    },
-    {
-      "x": 0.5,
-      "id": "w2",
-      "box": [
-        -2.2,
-        -2.8,
-        2.2,
-        0.5
-      ],
-      "name": "Человек из Вакнука",
-      "place": {
-        "across": "w2_a",
-        "distance": "w2_d"
-      },
-      "across": 2.6,
-      "height": 1.75,
-      "distance": 19.6,
-      "elevation": 0
-    },
-    {
-      "x": 0.5,
-      "id": "w3",
-      "box": [
-        -2.2,
-        -2.8,
-        2.2,
-        0.5
-      ],
-      "name": "Человек из Вакнука",
-      "place": {
-        "across": "w3_a",
-        "distance": "w3_d"
-      },
-      "across": -3.6,
-      "height": 1.75,
-      "distance": 18.6,
-      "elevation": 0
-    },
-    {
-      "x": 0.5,
-      "id": "spider",
-      "box": [
-        -10.5,
-        -2.9,
-        2.2,
-        0.5
-      ],
-      "name": "Паук",
-      "place": {
-        "across": "spider_a",
-        "distance": "spider_d"
-      },
-      "across": 8.8,
-      "height": 1.75,
-      "distance": 19.6,
-      "elevation": 0
-    },
-    {
-      "x": 0.5,
-      "id": "sophie",
-      "box": [
-        -2.2,
-        -2.8,
-        2.2,
-        0.5
-      ],
-      "name": "Софи",
-      "place": {
-        "across": "sophie_a",
-        "distance": "sophie_d"
-      },
-      "across": 12.6,
-      "height": 1.75,
-      "distance": 24.2,
-      "elevation": 0,
-      "after": [
-        "spider"
-      ]
-    },
-    {
-      "x": 0.5,
-      "id": "f2",
-      "box": [
-        -10.5,
-        -2.9,
-        2.2,
-        0.5
-      ],
-      "name": "Человек Окраин",
-      "place": {
-        "across": "f2_a",
-        "distance": "f2_d"
-      },
-      "across": 9.4,
-      "height": 1.75,
-      "distance": 16,
-      "elevation": 0
-    },
-    {
-      "x": 0.5,
-      "id": "f3",
-      "box": [
-        -10.5,
-        -2.9,
-        2.2,
-        0.5
-      ],
-      "name": "Человек Окраин",
-      "place": {
-        "across": "f3_a",
-        "distance": "f3_d"
-      },
-      "across": 14.8,
-      "height": 1.75,
-      "distance": 25.5,
-      "elevation": 0
-    },
-    {
-      "x": 0.5,
-      "id": "sealand",
-      "box": [
-        -2.2,
-        -2.8,
-        2.2,
-        0.5
-      ],
-      "name": "Женщина из Зеландии",
-      "place": {
-        "across": "sealand_a",
-        "distance": "sealand_d",
-        "elevation": "sealand_h"
-      },
-      "across": 3,
-      "height": 1.75,
-      "distance": 20.3,
-      "elevation": 1
-    }
-  ],
-  "modules": [
-    "chrysalids",
-    "film"
-  ]
+  }
 }

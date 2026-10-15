@@ -1,1 +1,2 @@
-e.kit.chrysalids.horse(g, e, e.lib.people.horse(e));
+// Joseph's horse (the world's module chrysalids)
+e.kit.chrysalids.horse.paint(g, e, { kind: 'horse' });

@@ -1,2 +1,2 @@
-// a row of the wheat at 22 m: the true wheat left of the track, the Offence right of it, then fire, then ash (lib)
+// a row of the wheat 22 m off (lib.wheat: painted once; its fire — wheat.wgsl's, the same text in every row)
 e.lib.wheat(g, e, 22);

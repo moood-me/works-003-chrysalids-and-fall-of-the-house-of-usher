@@ -1,14 +1,825 @@
 {
-  "light": {
-    "haze": 0.15,
-    "tint": "#20140e",
-    "grain": 0.25,
-    "vignette": 0.55,
-    "hazeColor": "#1c2640",
-    "tintStrength": 0.08,
-    "people": 0.22,
-    "ambientColor": "#6a5a6a"
+  "engine": 3,
+  "title": "Кузница дяди Акселя",
+  "horizon": 0.52,
+  "camera": {
+    "mode": "picture"
   },
+  "light": {
+    "ambient": 0.5,
+    "ambientColor": "#8c90b4",
+    "bounce": 0.5,
+    "haze": 0.12,
+    "hazeColor": "#1c2640",
+    "hazeGlow": 0.6,
+    "shafts": 0.3,
+    "vignette": 0.45,
+    "grain": 0.18,
+    "saturation": 0.9
+  },
+  "lights": [
+    {
+      "id": "fire",
+      "color": "#ff8a40",
+      "strength": 2.2,
+      "reach": 10,
+      "on": "fire",
+      "flicker": 0.3,
+      "glow": 0.4,
+      "across": -3.8,
+      "distance": 6.3,
+      "elevation": 1.05
+    },
+    {
+      "id": "moon",
+      "from": [
+        25,
+        40
+      ],
+      "color": "#a8bce4",
+      "strength": 0.7
+    },
+    {
+      "id": "iron_glow",
+      "of": "anvil#iron",
+      "color": "#ff7a30",
+      "strength": 0.5,
+      "reach": 1.5
+    },
+    {
+      "id": "lantern",
+      "at": "joseph#hand_r",
+      "color": "#ffc46a",
+      "strength": 0.9,
+      "reach": 5,
+      "flicker": 0.15,
+      "glow": 0.25,
+      "on": "joseph_lamp"
+    },
+    {
+      "id": "lantern2",
+      "at": "farmhand#hand_r",
+      "color": "#ffc46a",
+      "strength": 0.9,
+      "reach": 5,
+      "flicker": 0.15,
+      "glow": 0.25,
+      "on": "farmhand_lamp"
+    },
+    {
+      "id": "lantern_w0",
+      "at": "watch0#hand_r",
+      "color": "#ffc46a",
+      "strength": 0.7,
+      "reach": 4,
+      "flicker": 0.15,
+      "glow": 0.22
+    },
+    {
+      "id": "lantern_w1",
+      "at": "watch1#hand_r",
+      "color": "#ffc46a",
+      "strength": 0.7,
+      "reach": 4,
+      "flicker": 0.15,
+      "glow": 0.22
+    },
+    {
+      "id": "glow",
+      "at": "david#head",
+      "color": "#c8d2ff",
+      "strength": 0.6,
+      "reach": 1.2,
+      "glow": 0.3,
+      "on": "dv_glow"
+    }
+  ],
+  "state": {
+    "beat": null,
+    "fade": 0,
+    "fire": 0.75,
+    "sparks": 0.5,
+    "door": 1,
+    "pump": 0,
+    "ax_work": 0,
+    "ax_pace": 2,
+    "ax_blow": 0,
+    "ax_spark": 0,
+    "dv_chat": 0,
+    "dv_glow": 0,
+    "dv_pump": 0,
+    "pump_work": 0,
+    "th_amp": 1,
+    "tho_a": 1.3,
+    "tho_e": 1.28,
+    "tho_d": 4.3,
+    "thi_a": 1.3,
+    "thi_e": 1.28,
+    "thi_d": 4.3,
+    "st_on": 0,
+    "st_who": "joseph",
+    "st_lamp": 0,
+    "st_lx": -5,
+    "st_lz": 8.4,
+    "st_drop": 0,
+    "st_glow": 1,
+    "st_lanx": 2.9,
+    "st_more": 0,
+    "joseph_lamp": 1,
+    "farmhand_lamp": 1,
+    "hz_a": 9.6,
+    "hz_d": 17,
+    "hz_face": 250,
+    "ax_a": -0.56,
+    "ax_d": 4.65,
+    "axel_with": [
+      "hammer",
+      "tongs"
+    ],
+    "dv_a": 1.3,
+    "dv_d": 4.32,
+    "david_on": [
+      1.3,
+      4.32,
+      0.7
+    ],
+    "david_do": {
+      "motion": "perch",
+      "loop": true
+    },
+    "joseph_here": false,
+    "farmhand_here": false,
+    "joseph_wear": {
+      "hat": "hat"
+    },
+    "farmhand_wear": {
+      "hat": "hat"
+    },
+    "joseph_with": [
+      "lantern"
+    ],
+    "farmhand_with": [
+      "lantern"
+    ],
+    "watch0_here": false,
+    "watch1_here": false,
+    "watch0_with": [
+      "lantern"
+    ],
+    "watch1_with": [
+      "lantern"
+    ],
+    "st_a": 5.8,
+    "st_d": 8.4,
+    "w0_a": 9.5,
+    "w0_d": 10,
+    "w1_a": 11.5,
+    "w1_d": 10.6
+  },
+  "states": {
+    "beat": {
+      "type": "string",
+      "means": "кусок фильма (модуль beats): канон chatter → notice → truth | lie → door → hush → lantern → after; III.1 — после hush lantern_bellows → lantern_go | lantern_linger → rest; III.5 night_anne → night_anne_end; V.2 key → stranger → stranger_go | caught | strike"
+    },
+    "fade": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "затемнение"
+    },
+    "fire": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "огонь горна: как сильно горит (свет fire, угли, пламя)"
+    },
+    "sparks": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "сколько искр летит над горном"
+    },
+    "door": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "откатная дверь: 1 — ворота открыты, 0.7 — задвинута наполовину"
+    },
+    "pump": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "рычаг мехов: 0 — вверху, 1 — прижат (каждый раз, как он идёт вниз, Дэвид у мехов тянет его — pull_lever)"
+    },
+    "ax_work": {
+      "type": "number",
+      "means": "1 — Аксель куёт сам, удар раз в ax_pace с; 0 — нет"
+    },
+    "ax_pace": {
+      "type": "number",
+      "means": "секунды между ударами, пока ax_work"
+    },
+    "ax_blow": {
+      "type": "number",
+      "means": "игра: каждое изменение — один удар от подъёма; боёк на железе через 1.17 с — сцена говорит ax:hit"
+    },
+    "ax_spark": {
+      "type": "number",
+      "means": "искры из-под молота: каждый раз, как число растёт"
+    },
+    "dv_chat": {
+      "type": "number",
+      "means": "N — Дэвид «болтает»: мысль к окну раз в N с, ответ через 3.2 с; 0 — нет"
+    },
+    "dv_glow": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "свечение в голове Дэвида (ответ пришёл)"
+    },
+    "dv_pump": {
+      "type": "number",
+      "means": "1 — руки Дэвида на рычаге мехов (pump#handle)"
+    },
+    "pump_work": {
+      "type": "number",
+      "means": "N — рычаг мехов сам раз в N с (огонь вздыхает); 0 — нет"
+    },
+    "th_amp": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "яркость мыслей-форм"
+    },
+    "tho_a": {
+      "type": "number",
+      "means": "мысль Дэвида в полёте: метры поперёк (от головы к окну)"
+    },
+    "tho_e": {
+      "type": "number",
+      "means": "её высота"
+    },
+    "tho_d": {
+      "type": "number",
+      "means": "её даль"
+    },
+    "thi_a": {
+      "type": "number",
+      "means": "ответ в полёте: метры поперёк (от окна к голове)"
+    },
+    "thi_e": {
+      "type": "number",
+      "means": "его высота"
+    },
+    "thi_d": {
+      "type": "number",
+      "means": "его даль"
+    },
+    "st_on": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "человек с фонарём во дворе (кто — st_who)"
+    },
+    "st_who": {
+      "values": [
+        "joseph",
+        "farmhand"
+      ],
+      "means": "кто с фонарём: отец или работник"
+    },
+    "st_lamp": {
+      "range": [
+        0,
+        1.3
+      ],
+      "smooth": true,
+      "means": "фонарь поднят: 1 — вверх, к тому, куда он смотрит; 1.3 — выше, на мальчика"
+    },
+    "st_lx": {
+      "type": "number",
+      "means": "куда он смотрит и светит: метры поперёк"
+    },
+    "st_lz": {
+      "type": "number",
+      "means": "…и вглубь"
+    },
+    "st_drop": {
+      "type": "number",
+      "means": "1 — фонарь выпал (лежит во дворе, гаснет — st_glow)"
+    },
+    "st_glow": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "упавший фонарь: как ещё горит"
+    },
+    "st_lanx": {
+      "type": "number",
+      "means": "где лежит упавший фонарь: метры поперёк"
+    },
+    "st_more": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "ещё двое с фонарями во дворе"
+    },
+    "joseph_lamp": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "фонарь отца горит"
+    },
+    "farmhand_lamp": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "фонарь работника горит"
+    },
+    "hz_a": {
+      "type": "number",
+      "means": "лошадь во дворе: поперёк"
+    },
+    "hz_d": {
+      "type": "number",
+      "means": "лошадь: вглубь"
+    },
+    "hz_face": {
+      "type": "number",
+      "means": "лошадь: куда повёрнута"
+    }
+  },
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Ночное небо"
+    },
+    {
+      "id": "far",
+      "name": "Уокнук вдали",
+      "across": 0,
+      "distance": 70,
+      "height": 8,
+      "box": [
+        -150,
+        -14,
+        150,
+        1
+      ]
+    },
+    {
+      "id": "morton",
+      "name": "Ферма Мортонов, окно Розалинды",
+      "across": 23.6,
+      "distance": 60,
+      "height": 11,
+      "box": [
+        -27,
+        -13,
+        27,
+        1.5
+      ]
+    },
+    {
+      "id": "yard",
+      "name": "Двор",
+      "plane": true,
+      "across": 0,
+      "distance": 40,
+      "width": 160,
+      "depth": 64
+    },
+    {
+      "id": "horse",
+      "name": "Дремлющая лошадь",
+      "across": 9.6,
+      "distance": 17,
+      "place": {
+        "across": "hz_a",
+        "distance": "hz_d"
+      },
+      "height": 1.6,
+      "box": [
+        -2.6,
+        -3.2,
+        2.6,
+        0.4
+      ],
+      "shadow": true
+    },
+    {
+      "id": "fence",
+      "name": "Угол изгороди",
+      "across": 4.2,
+      "distance": 12,
+      "height": 1.4,
+      "box": [
+        -3.5,
+        -1.8,
+        8,
+        0.3
+      ]
+    },
+    {
+      "id": "floor",
+      "name": "Земляной пол",
+      "plane": true,
+      "across": 0,
+      "distance": 4.5,
+      "width": 18,
+      "depth": 7.4
+    },
+    {
+      "id": "ceiling",
+      "name": "Кровля",
+      "plane": true,
+      "across": 0,
+      "distance": 4.5,
+      "elevation": 4.6,
+      "width": 18,
+      "depth": 7.4,
+      "shadow": {
+        "light": "moon",
+        "onto": [
+          "ground",
+          "floor",
+          "wall"
+        ],
+        "strength": 0.9
+      }
+    },
+    {
+      "id": "wall",
+      "name": "Стена с открытыми воротами",
+      "across": 0,
+      "distance": 7.5,
+      "facing": 180,
+      "height": 6,
+      "box": [
+        -11,
+        -7,
+        11,
+        0.2
+      ]
+    },
+    {
+      "id": "door",
+      "name": "Откатная дверь ворот",
+      "across": 0.9,
+      "distance": 7.45,
+      "facing": 180,
+      "height": 4,
+      "box": [
+        -0.1,
+        -4.0,
+        8.0,
+        0.3
+      ]
+    },
+    {
+      "id": "forge",
+      "name": "Горн",
+      "across": -3.8,
+      "distance": 6.5,
+      "facing": 180,
+      "height": 5,
+      "box": [
+        -2.3,
+        -7,
+        2.3,
+        0.2
+      ]
+    },
+    {
+      "id": "pump",
+      "name": "Мехи и рычаг",
+      "across": -3.8,
+      "distance": 6.45,
+      "height": 1.5,
+      "box": [
+        -2.3,
+        -1.7,
+        -0.8,
+        0.1
+      ]
+    },
+    {
+      "id": "fire",
+      "name": "Огонь горна",
+      "across": -3.8,
+      "distance": 6.4,
+      "elevation": 0.95,
+      "particles": {
+        "kind": "fire",
+        "source": [
+          1.1,
+          0.05,
+          0.05
+        ],
+        "size": [
+          0.28,
+          0.06
+        ],
+        "amount": "fire"
+      }
+    },
+    {
+      "id": "embers",
+      "name": "Искры над горном",
+      "across": -3.8,
+      "distance": 6.4,
+      "elevation": 1.0,
+      "particles": {
+        "kind": "embers",
+        "source": [
+          1.0,
+          0.1,
+          0.1
+        ],
+        "rate": 6,
+        "amount": "sparks"
+      }
+    },
+    {
+      "id": "smoke",
+      "name": "Дым под колпаком",
+      "across": -3.8,
+      "distance": 6.4,
+      "elevation": 1.2,
+      "particles": {
+        "kind": "smoke",
+        "source": [
+          0.8,
+          0.1,
+          0.1
+        ],
+        "rate": 1.5,
+        "size": [
+          0.3,
+          1.2
+        ],
+        "opacity": 0.25,
+        "color": "#a09088",
+        "amount": "fire"
+      }
+    },
+    {
+      "id": "motes",
+      "name": "Пылинки в свете горна",
+      "across": -1.5,
+      "distance": 5.5,
+      "elevation": 1.5,
+      "particles": {
+        "kind": "dust",
+        "source": [
+          6,
+          2,
+          2.5
+        ],
+        "rate": 4,
+        "size": [
+          0.015,
+          0.015
+        ],
+        "color": "#ffd0a0",
+        "opacity": 0.6
+      }
+    },
+    {
+      "id": "bench",
+      "name": "Верстак",
+      "across": 0.2,
+      "distance": 5.5,
+      "height": 1,
+      "box": [
+        -1.4,
+        -1.6,
+        1.4,
+        0.15
+      ]
+    },
+    {
+      "id": "anvil",
+      "name": "Наковальня",
+      "across": -1.1,
+      "distance": 4.6,
+      "height": 0.85,
+      "box": [
+        -0.8,
+        -1.9,
+        0.8,
+        0.15
+      ]
+    },
+    {
+      "id": "sparks",
+      "name": "Искры из-под молота",
+      "particles": {
+        "kind": "sparks",
+        "at": "anvil#iron",
+        "burst": {
+          "on": "ax_spark",
+          "count": 40
+        }
+      }
+    },
+    {
+      "id": "axel",
+      "name": "Дядя Аксель",
+      "person": {
+        "cast": "cast",
+        "who": "axel",
+        "turn": 270,
+        "gait": "limp"
+      },
+      "across": -0.56,
+      "distance": 4.65,
+      "place": {
+        "across": "ax_a",
+        "distance": "ax_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "barrel",
+      "name": "Бочка",
+      "across": 1.3,
+      "distance": 4.32,
+      "height": 0.75,
+      "box": [
+        -0.5,
+        -0.9,
+        0.5,
+        0.15
+      ]
+    },
+    {
+      "id": "david",
+      "name": "Дэвид",
+      "person": {
+        "cast": "cast",
+        "who": "david",
+        "turn": 90
+      },
+      "across": 1.3,
+      "distance": 4.32,
+      "place": {
+        "across": "dv_a",
+        "distance": "dv_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "dropped",
+      "name": "Упавший фонарь во дворе",
+      "across": 2.9,
+      "distance": 9.3,
+      "place": {
+        "across": "st_lanx"
+      },
+      "height": 0.3,
+      "box": [
+        -0.4,
+        -0.4,
+        0.4,
+        0.1
+      ]
+    },
+    {
+      "id": "watch0",
+      "name": "Человек с фонарём",
+      "person": {
+        "cast": "cast",
+        "who": "man_a",
+        "turn": 270
+      },
+      "across": 9.5,
+      "distance": 10.0,
+      "place": {
+        "across": "w0_a",
+        "distance": "w0_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "watch1",
+      "name": "Ещё один с фонарём",
+      "person": {
+        "cast": "cast",
+        "who": "man_c",
+        "turn": 270
+      },
+      "across": 11.5,
+      "distance": 10.6,
+      "place": {
+        "across": "w1_a",
+        "distance": "w1_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "joseph",
+      "name": "Джозеф Строрм, отец Дэвида",
+      "person": {
+        "cast": "cast",
+        "who": "joseph",
+        "turn": 270
+      },
+      "across": 5.8,
+      "distance": 8.4,
+      "place": {
+        "across": "st_a",
+        "distance": "st_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "farmhand",
+      "name": "Работник Стрормов",
+      "person": {
+        "cast": "cast",
+        "who": "farmhand",
+        "turn": 270
+      },
+      "across": 5.8,
+      "distance": 8.4,
+      "place": {
+        "across": "st_a",
+        "distance": "st_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "thought_out",
+      "name": "Мысль Дэвида",
+      "across": 1.3,
+      "distance": 4.3,
+      "elevation": 1.28,
+      "height": 0.6,
+      "box": [
+        -1,
+        -1,
+        1,
+        1
+      ],
+      "place": {
+        "across": "tho_a",
+        "distance": "tho_d",
+        "elevation": "tho_e"
+      },
+      "glows": true
+    },
+    {
+      "id": "thought_in",
+      "name": "Ответ Розалинды",
+      "across": 1.3,
+      "distance": 4.3,
+      "elevation": 1.28,
+      "height": 0.6,
+      "box": [
+        -1,
+        -1,
+        1,
+        1
+      ],
+      "place": {
+        "across": "thi_a",
+        "distance": "thi_d",
+        "elevation": "thi_e"
+      },
+      "glows": true
+    }
+  ],
+  "modules": [
+    "cast",
+    "chrysalids",
+    "beats"
+  ],
   "music": {
     "bpm": 66,
     "density": 0.25,
@@ -95,505 +906,5 @@
       }
     ],
     "brightness": 0.3
-  },
-  "state": {
-    "beat": "film",
-    "fade": 1,
-    "camera_x": 0,
-    "camera_z": 0,
-    "fire": 0.75,
-    "sparks": 0.5,
-    "door": 1,
-    "pump": 0,
-    "ax_a": -0.56,
-    "ax_d": 4.65,
-    "ax_work": 0,
-    "ax_pace": 2,
-    "ax_blow": 0,
-    "ax_spark": 0,
-    "axel_do": "stand",
-    "axel_turn": 270,
-    "axel_look": [
-      -1.05,
-      4.62,
-      0.88
-    ],
-    "axel_with": [
-      "hammer",
-      "tongs"
-    ],
-    "dv_a": 1.3,
-    "dv_d": 4.32,
-    "dv_chat": 0,
-    "dv_glow": 0,
-    "dv_pump": 0,
-    "pump_work": 0,
-    "david_on": [
-      1.3,
-      4.32,
-      0.7
-    ],
-    "david_do": {
-      "motion": "perch",
-      "loop": true
-    },
-    "david_turn": 90,
-    "david_look": [
-      12,
-      40,
-      5
-    ],
-    "th_amp": 1,
-    "tho_a": 1.3,
-    "tho_e": 1.28,
-    "tho_d": 4.3,
-    "thi_a": 1.3,
-    "thi_e": 1.28,
-    "thi_d": 4.3,
-    "st_on": 0,
-    "st_who": "joseph",
-    "st_a": 5.8,
-    "st_d": 8.4,
-    "st_lamp": 0,
-    "st_lx": -5,
-    "st_lz": 8.4,
-    "st_drop": 0,
-    "st_glow": 1,
-    "st_lanx": 2.9,
-    "st_more": 0,
-    "joseph_here": false,
-    "joseph_wear": {
-      "hat": "hat"
-    },
-    "farmhand_wear": {
-      "hat": "hat"
-    },
-    "farmhand_here": false,
-    "joseph_lamp": 1,
-    "farmhand_lamp": 1,
-    "joseph_with": [
-      "lantern"
-    ],
-    "farmhand_with": [
-      "lantern"
-    ],
-    "joseph_turn": 270,
-    "farmhand_turn": 270,
-    "w0_a": 9.5,
-    "w0_d": 10,
-    "w1_a": 11.5,
-    "w1_d": 10.6,
-    "watch0_here": false,
-    "watch1_here": false,
-    "watch0_with": [
-      "lantern"
-    ],
-    "watch1_with": [
-      "lantern"
-    ]
-  },
-  "title": "Кузница дяди Акселя",
-  "camera": {
-    "mode": "picture"
-  },
-  "horizon": 0.52,
-  "objects": [
-    {
-      "id": "sky",
-      "sky": true,
-      "name": "Ночное небо"
-    },
-    {
-      "id": "far",
-      "box": [
-        -150,
-        -14,
-        150,
-        1
-      ],
-      "name": "Уокнук вдали",
-      "across": 0,
-      "height": 8,
-      "distance": 70
-    },
-    {
-      "id": "morton",
-      "box": [
-        -27,
-        -13,
-        27,
-        1.5
-      ],
-      "name": "Ферма Мортонов, окно Розалинды",
-      "across": 23.6,
-      "height": 11,
-      "distance": 60
-    },
-    {
-      "id": "yard",
-      "name": "Двор",
-      "color": "#1f2840",
-      "depth": 64,
-      "plane": true,
-      "width": 160,
-      "across": 0,
-      "distance": 40,
-      "elevation": 0
-    },
-    {
-      "id": "horse",
-      "box": [
-        -1.7,
-        -1.8,
-        1.4,
-        0.2
-      ],
-      "name": "Дремлющая лошадь",
-      "across": 9.6,
-      "height": 1.6,
-      "distance": 17
-    },
-    {
-      "id": "fence",
-      "box": [
-        -3.5,
-        -1.8,
-        8,
-        0.3
-      ],
-      "name": "Угол изгороди",
-      "across": 4.2,
-      "height": 1.4,
-      "distance": 12
-    },
-    {
-      "id": "floor",
-      "name": "Земляной пол",
-      "color": "#16110e",
-      "depth": 7.4,
-      "plane": true,
-      "width": 18,
-      "across": 0,
-      "distance": 4.5,
-      "elevation": 0
-    },
-    {
-      "id": "wall",
-      "box": [
-        -11,
-        -7,
-        11,
-        0.2
-      ],
-      "name": "Стена с открытыми воротами",
-      "across": 0,
-      "height": 6,
-      "distance": 7.5
-    },
-    {
-      "id": "forge",
-      "box": [
-        -2.3,
-        -7,
-        2.3,
-        0.2
-      ],
-      "name": "Горн",
-      "across": -3.8,
-      "height": 5,
-      "flicker": 0.3,
-      "distance": 6.5
-    },
-    {
-      "id": "sparks",
-      "box": [
-        -2,
-        -6,
-        2,
-        0.2
-      ],
-      "name": "Искры",
-      "across": -3.8,
-      "height": 5,
-      "distance": 6.4
-    },
-    {
-      "id": "smoke",
-      "box": [
-        -6,
-        -6,
-        6,
-        0.2
-      ],
-      "name": "Дым и пылинки",
-      "across": -2,
-      "height": 5,
-      "distance": 6
-    },
-    {
-      "id": "bench",
-      "box": [
-        -1.4,
-        -1.6,
-        1.4,
-        0.15
-      ],
-      "name": "Верстак",
-      "across": 0.2,
-      "height": 1,
-      "distance": 5.5
-    },
-    {
-      "id": "anvil",
-      "box": [
-        -0.8,
-        -1.9,
-        0.8,
-        0.15
-      ],
-      "name": "Наковальня",
-      "across": -1.1,
-      "height": 0.85,
-      "distance": 4.6
-    },
-    {
-      "id": "axel",
-      "name": "Дядя Аксель",
-      "person": {
-        "cast": "cast",
-        "who": "axel",
-        "turn": 270,
-        "gait": "limp"
-      },
-      "across": -0.56,
-      "distance": 4.65,
-      "place": {
-        "across": "ax_a",
-        "distance": "ax_d"
-      },
-      "shadow": true
-    },
-    {
-      "id": "barrel",
-      "box": [
-        -0.5,
-        -0.9,
-        0.5,
-        0.15
-      ],
-      "name": "Бочка",
-      "across": 1.3,
-      "height": 0.75,
-      "distance": 4.32
-    },
-    {
-      "id": "david",
-      "name": "Дэвид",
-      "person": {
-        "cast": "cast",
-        "who": "david",
-        "turn": 90,
-        "does": "perch"
-      },
-      "across": 1.3,
-      "distance": 4.32,
-      "place": {
-        "across": "dv_a",
-        "distance": "dv_d"
-      },
-      "shadow": true
-    },
-    {
-      "id": "dropped",
-      "box": [
-        -0.4,
-        -0.4,
-        0.4,
-        0.1
-      ],
-      "name": "Упавший фонарь во дворе",
-      "across": 2.9,
-      "height": 0.3,
-      "distance": 9.3,
-      "place": {
-        "across": "st_lanx"
-      }
-    },
-    {
-      "id": "watch0",
-      "name": "Человек с фонарём",
-      "person": {
-        "cast": "cast",
-        "who": "villager",
-        "turn": 270
-      },
-      "across": 9.5,
-      "distance": 10.0,
-      "place": {
-        "across": "w0_a",
-        "distance": "w0_d"
-      },
-      "shadow": true
-    },
-    {
-      "id": "watch1",
-      "name": "Ещё один с фонарём",
-      "person": {
-        "cast": "cast",
-        "who": "villager",
-        "turn": 270,
-        "look": {
-          "colors": {
-            "top": "#5a5244",
-            "garment": "#5a5244",
-            "hat": "#3a3228"
-          }
-        }
-      },
-      "across": 11.5,
-      "distance": 10.6,
-      "place": {
-        "across": "w1_a",
-        "distance": "w1_d"
-      },
-      "shadow": true
-    },
-    {
-      "id": "joseph",
-      "name": "Джозеф Строрм, отец Дэвида",
-      "person": {
-        "cast": "cast",
-        "who": "joseph",
-        "turn": 270
-      },
-      "across": 5.8,
-      "distance": 8.4,
-      "place": {
-        "across": "st_a",
-        "distance": "st_d"
-      },
-      "shadow": true
-    },
-    {
-      "id": "farmhand",
-      "name": "Работник Стрормов",
-      "person": {
-        "cast": "cast",
-        "who": "farmhand",
-        "turn": 270
-      },
-      "across": 5.8,
-      "distance": 8.4,
-      "place": {
-        "across": "st_a",
-        "distance": "st_d"
-      },
-      "shadow": true
-    },
-    {
-      "id": "thought_out",
-      "box": [
-        -1,
-        -1,
-        1,
-        1
-      ],
-      "name": "Мысль Дэвида",
-      "place": {
-        "across": "tho_a",
-        "distance": "tho_d",
-        "elevation": "tho_e"
-      },
-      "across": 1.3,
-      "height": 0.6,
-      "distance": 4.3,
-      "elevation": 1.28
-    },
-    {
-      "id": "thought_in",
-      "box": [
-        -1,
-        -1,
-        1,
-        1
-      ],
-      "name": "Ответ Розалинды",
-      "place": {
-        "across": "thi_a",
-        "distance": "thi_d",
-        "elevation": "thi_e"
-      },
-      "across": 1.3,
-      "height": 0.6,
-      "distance": 4.3,
-      "elevation": 1.28
-    }
-  ],
-  "modules": [
-    "cast",
-    "film"
-  ],
-  "lights": [
-    {
-      "id": "fire",
-      "of": "forge",
-      "flicker": 0.3
-    },
-    {
-      "id": "yard",
-      "across": 2.7,
-      "distance": 8.6,
-      "elevation": 2.4,
-      "color": "#8ea4d8",
-      "strength": 0.45,
-      "reach": 5.5
-    },
-    {
-      "id": "lantern",
-      "at": "joseph#hand_r",
-      "color": "#ffc46a",
-      "strength": 0.7,
-      "reach": 5,
-      "flicker": 0.15,
-      "glow": 0.25,
-      "on": "joseph_lamp"
-    },
-    {
-      "id": "lantern2",
-      "at": "farmhand#hand_r",
-      "color": "#ffc46a",
-      "strength": 0.7,
-      "reach": 5,
-      "flicker": 0.15,
-      "glow": 0.25,
-      "on": "farmhand_lamp"
-    },
-    {
-      "id": "lantern_w0",
-      "at": "watch0#hand_r",
-      "color": "#ffc46a",
-      "strength": 0.6,
-      "reach": 4,
-      "flicker": 0.15,
-      "glow": 0.22
-    },
-    {
-      "id": "lantern_w1",
-      "at": "watch1#hand_r",
-      "color": "#ffc46a",
-      "strength": 0.6,
-      "reach": 4,
-      "flicker": 0.15,
-      "glow": 0.22
-    },
-    {
-      "id": "glow",
-      "at": "david#head",
-      "color": "#c8d2ff",
-      "strength": 0.5,
-      "reach": 1.2,
-      "glow": 0.3,
-      "on": "dv_glow"
-    }
-  ]
+  }
 }

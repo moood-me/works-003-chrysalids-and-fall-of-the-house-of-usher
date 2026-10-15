@@ -146,7 +146,6 @@
       "motion": "crouch",
       "loop": true
     },
-    "beat_next": null,
     "w1_down": false,
     "w3_down": false,
     "w2_down": false,
@@ -161,10 +160,6 @@
     "beat": {
       "type": "string",
       "means": "кусок (модуль beats): cave → fight → hold | run → ship | noship → web | web_petra | web_rosalind | web_father | web_alone → landing | landing_run → free | free_run → back | back_run → board | stay_ros | stay_alone → stay_alone_away"
-    },
-    "beat_next": {
-      "type": "string",
-      "means": "кусок, который игра поставит следующим (модуль beats готовит его начало заранее)"
     },
     "fade": {
       "range": [

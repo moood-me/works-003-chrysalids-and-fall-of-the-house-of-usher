@@ -112,8 +112,10 @@ const RAN = { ...HELD, david_a: -0.15, david_d: 13.35, david_do: loop('kneel_one
 // the craft over the clearing, the first threads falling, everyone looking up (ship's end)
 const OVER = (from) => ({ ...from, ship_vis: 1, ship_a: 4.6, ship_d: 21, ship_h: 8.5, spin: 1, fight: 0, fall: 0.4,
   ...Object.fromEntries(['w1', 'w2', 'w3', 'f2', 'f3', 'rosalind', 'michael', 'david'].map(id => [`${id}_look`, [4.6, 21, 9]])) });
+// after the web the father's thread (joseph_th) is the game's — the web_father beat, or the play: its cuts keep it
+const kept = (o) => { const { joseph_th: _, ...rest } = o; return rest; };
 // under the web, the craft landed, the door open (landing's end): the woman walking toward the ledge
-const LANDED = (from) => ({ ...from, ship_h: 0, spin: 0.12, fall: 0, web: 1, cave_web: 1, door: 1, dust: 0, sealand_here: true, sealand_a: 1.5, sealand_d: 15.9 });
+const LANDED = (from) => kept({ ...from, ship_h: 0, spin: 0.12, fall: 0, web: 1, cave_web: 1, door: 1, dust: 0, sealand_here: true, sealand_a: 1.5, sealand_d: 15.9 }));
 // (cut) she is already by the cave, the camera on the ledge
 const FREE = (from) => ({ ...LANDED(from), ...camOf(CAM.free), sealand_a: -0.45, sealand_d: 10.4, sealand_turn: 330 });
 
@@ -337,9 +339,9 @@ const FILM = {
   // free — (cut) she is already by the cave: up onto the ledge, she sprays — the web melts; Petra runs to her, the woman on
   // one knee holds her; the others get up (in free_run David is not among them: Rosalind looks down at the clearing). A cut
   // always (after none): each stands right after its landing in the table, so the module beats says its opening ahead
-  landing: { after: ['web', 'web_petra', 'web_rosalind'], from: () => ({ ...OVER(HELD), fall: 0, web: 1, cave_web: 1 }), run: s => landing(s, 'landing') },
+  landing: { after: ['web', 'web_petra', 'web_rosalind'], from: () => kept({ ...OVER(HELD), fall: 0, web: 1, cave_web: 1 }), run: s => landing(s, 'landing') },
   free: { after: [], from: () => FREE(OVER(HELD)), run: s => free(s, true) },
-  landing_run: { after: ['web_father', 'web_alone'], from: () => ({ ...OVER(RAN), fall: 0, web: 1, cave_web: 1 }), run: s => landing(s, 'landing_run') },
+  landing_run: { after: ['web_father', 'web_alone'], from: () => kept({ ...OVER(RAN), fall: 0, web: 1, cave_web: 1 }), run: s => landing(s, 'landing_run') },
   free_run: { after: [], from: () => FREE(OVER(RAN)), run: s => free(s, false) },
   // back — down across the clearing, the woman leading Petra by the hand, not looking back; David looks back. (cut, close)
   // David by his father's cocoon, on one knee, touching it; Rosalind comes back, her hand on his shoulder; he gets up, she
@@ -402,7 +404,7 @@ const FILM = {
   // board — (cut: the ramp) they go into the light, one by one; David looks back once at the clearing. (cut: wide) The craft
   // goes; Michael on the rock watches it go, looks once at the clearing of cocoons — and walks away along the rock; the still
   // clearing
-  // (a cut, always: its opening said ahead by the module beats — the game names it in beat_next once it is chosen)
+  // (opened by the game as its own step: it opens on the ramp)
   board: {
     after: [],
     from: () => ({ ...ATRAMP, ...camOf(CAM.ramp) }),

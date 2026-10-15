@@ -164,7 +164,7 @@ const FILM = {
   // on the water. (While edge and run play the game's «Успокоить» drives `cry`: the beats leave it alone; the camera goes.)
   edge: {
     after: [],
-    from: () => ({ ...STRUCK, ...camOf(CAM.edge), heard: 0, rosalind_still: false }),
+    from: () => ({ ...without(STRUCK, 'cry'), ...camOf(CAM.edge), heard: 0, rosalind_still: false }),
     run: async s => {
       const david = s.person('david');
       await walk(s, 'david', [[EDGE, NEAR - 0.3]], 90, 'run');
@@ -217,7 +217,7 @@ const FILM = {
     after: [],
     from: () => FIELD(),
     run: async s => {
-      const ro = s.person('rosalind');
+      const ro = s.person('rosalind'), back = s.shot({ ...camOf(CAM.swim) });
       s.move('heard', 0.35, { over: 0.6, ease: 'out' });
       await s.wait(0.4);
       await ro.turn(0);
@@ -227,6 +227,7 @@ const FILM = {
       s.set('ro_drop', 1);
       s.move('heard', 0, { over: 2.0 });
       await walk(s, 'rosalind', [RO_WATER], 200, 'run');
+      back.cut(); // (back to the pool — the cut said ahead: `out` goes on from it)
     },
   },
   // the far field: the cry hits hard — her hands to her head, the rake falls; the rakers stop and look at her, each in his
@@ -235,7 +236,7 @@ const FILM = {
     after: [],
     from: () => FIELD(),
     run: async s => {
-      const ro = s.person('rosalind');
+      const ro = s.person('rosalind'), back = s.shot({ ...camOf(CAM.swim) });
       s.move('heard', 1, { over: 0.5, ease: 'out' });
       await s.wait(0.3);
       ro.do('stand');
@@ -260,13 +261,14 @@ const FILM = {
       await stare;
       const follows = walk(s, 'r1', [[4.7, 19.8]], 200);
       await s.all(runs, follows);
+      back.cut(); // (back to the pool — the cut said ahead: `out` goes on from it, the far bank as this left it)
     },
   },
   // back at the pool: he brings Petra back and finds his feet; she stands, her hand in his; he leads her out; she sits down
   // on the bank and only now cries, her face in her hands; he kneels by her, his hand on her shoulder. Across the water,
   // Rosalind wades in
   out: {
-    after: [],
+    after: ['field_quiet', 'field_loud'],
     from: () => ({ ...without(DOWN, 'cry'), ...camOf(CAM.swim) }),
     run: async s => {
       const david = s.person('david'), petra = s.person('petra');

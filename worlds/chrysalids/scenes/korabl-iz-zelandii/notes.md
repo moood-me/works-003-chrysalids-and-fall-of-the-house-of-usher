@@ -16,9 +16,9 @@ gossamer (спрайт — нить с бусиной), на людях — ко
 КУСКИ (lib.FILM; `from` — всё состояние): cave, fight (выбор «бежать к отцу» — на david), hold | run, ship (выбор «кого
 заслонить» — на rosalind, petra или joseph), noship (если корабля нет), web | web_petra | web_rosalind (Дэвид на уступе) |
 web_father | web_alone (Дэвид у отца), landing | landing_run, free | free_run, back | back_run (выбор «улететь или остаться» —
-на ship и michael), board | stay_ros | stay_alone → stay_alone_away. free, free_run и board — всегда склейка (after пуст): free
-и free_run стоят в таблице сразу за своей посадкой — их начало модуль beats готовит заранее; board — когда игра назовёт его
-в beat_next. Склейки внутри кусков сказаны заранее (lib.ahead). «кино»-кусок stay_alone (32 с) разделён по своей склейке:
+на ship и michael), board | stay_ros | stay_alone → stay_alone_away. free и free_run — всегда склейка (after пуст): стоят в таблице
+сразу за своей посадкой — их начало модуль beats готовит заранее; board игра открывает своим шагом (с трапа). После паутины
+joseph_th — ключ игры (web_father или партия): from кусков после неё его не пишут. Склейки внутри кусков сказаны заранее (lib.ahead). «кино»-кусок stay_alone (32 с) разделён по своей склейке:
 stay_alone — Дэвид уходит наверх к Майклу, Розалинда входит за Петрой, оборачивается из света и исчезает; stay_alone_away —
 корабль уходит, они на уступе смотрят вслед.
 
@@ -55,7 +55,7 @@ horse_a/d/face/toss, <id>_th, <id>_down, w<i>_fire. Убраны ключи ку
   },
   "points": ["david", "rosalind", "petra", "joseph", "ship", "michael", "sealand", "ship#door"],
   "offers": ["david", "rosalind", "petra", "joseph", "ship", "michael"],
-  "party": { "beat": null, "beat_next": null },
+  "party": { "beat": null, "joseph_th": 0 },
   "speakers": ["david", "rosalind", "petra", "michael", "joseph", "sealand", "spider"]
 }
 ```

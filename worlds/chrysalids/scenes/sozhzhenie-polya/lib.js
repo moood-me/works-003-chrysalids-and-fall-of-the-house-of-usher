@@ -179,7 +179,7 @@ const S0 = {
 const DAWN = { ...S0, fade: 0, dawn: 0.25, ...person('in', EDGE_IN, 180, { with: ['lantern'], wear: { hat: 'hat' } }), in_ear: true };
 const EAR = { ...DAWN, dawn: 0.28, ...person('in', SHOW, 170, { with: ['lantern'], wear: { hat: 'hat' } }), in_ear: false, in_toss: 1, jo_turn: 100,
   ...congregation(m => ({ [`${m.id}_look`]: null })) };
-const KNELT = { ...EAR, jo_turn: 180, jo_reach: { r: [JO[0], JO[1], 3.0] }, jo_look: [JO[0], JO[1] + 3, 5], in_turn: 200, in_look: [SHOW[0], SHOW[1] - 0.8, 0.2],
+const KNELT = { ...EAR, jo_turn: 180, jo_reach: { r: [JO[0], JO[1], 3.0] }, jo_look: [JO[0], JO[1] - 1, 5], in_turn: 200, in_look: [SHOW[0], SHOW[1] - 0.8, 0.2],
   ...congregation(m => ({ [`${m.id}_do`]: loop('kneel_pray'), [`${m.id}_look`]: bowed(m) })),
   em_do: loop('kneel_pray') };
 const RISEN = { ...EAR, jo_turn: 180 };

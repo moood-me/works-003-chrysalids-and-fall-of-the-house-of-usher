@@ -18,7 +18,7 @@ const BEAT = 0.75, LEAD = 2, D3 = 146.83;
 export default {
   title: 'Петь со всеми', // (as the author's ☰ lists it)
   about: 32,
-  skipped: { hymn: 'loud', turned: 0 },
+  skipped: { hymn: 'lips', turned: 0 }, // (neutral: the path not moved)
   async run(g, b, opts, signal) {
     // the syllables on the rhythm's own clock (from LEAD s on)
     const syl = [];

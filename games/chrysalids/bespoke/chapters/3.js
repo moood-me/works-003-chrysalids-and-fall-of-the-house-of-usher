@@ -48,7 +48,7 @@ export default {
       await noticed;
       await g.say('axel', '— С кем это ты, Дэви?');
       const axel = await g.choose('axel', 'david', [
-        { id: 'truth', label: 'Показать на её окно' }, { id: 'lie', label: 'Помотать головой: ни с кем' }]);
+        { id: 'truth', label: 'Показать на окно' }, { id: 'lie', label: 'Помотать головой' }]);
       // the truth: a shape out to the window and back, under his eyes; the lie: the answer comes anyway, and my eyes jump to it
       const far = axel === 'truth' ? g.told('truth:window') : null, ask = g.told(`${axel}:ask`);
       const shown = g.beat(axel);
@@ -103,11 +103,13 @@ export default {
       await g.scene(STORIES, { fire: 0.8, story: 0, vision: 0, dawn: 0, david_present: true });
       await g.wait(1500);
       await g.say('narrator', 'По вечерам дядя рассказывал мне о том, что видел за морем.');
-      const ASK = { sea: { id: 'sea', label: '— А какое оно, море?' }, city: { id: 'city', label: '— Ты видел, где жили Древние?' }, coast: { id: 'coast', label: '— А люди там какие?' } };
+      const ASK = { sea: { id: 'sea', label: 'Какое море?' }, city: { id: 'city', label: 'Где жили Древние?' }, coast: { id: 'coast', label: 'Какие там люди?' } };
+      const LINE = { sea: '— А какое оно, море?', city: '— Ты видел, где жили Древние?', coast: '— А люди там какие?' };
       const asked = [];
       while (asked.length < 2) {
         const q = await g.choose(null, 'axel', Object.values(ASK).filter(a => !asked.includes(a.id)));
         asked.push(q);
+        await g.say('david', LINE[q]);
         g.set('story', 0, 1);
         await g.wait(1000);
         g.set('vision', { sea: 1, city: 2, coast: 3 }[q]);
@@ -166,12 +168,8 @@ export default {
       await g.think('newcomer', 'Кто здесь? Кто это говорит?');
       await g.think('michael', 'Не отвечай. Мы её не знаем.');
       await g.think('rosalind', 'Она там совсем одна. Как мы когда-то.');
-      const answer = await Promise.race([
-        g.choose('newcomer', 'david', [{ id: 'took', label: 'Ответить ей' }, { id: 'left', label: 'Промолчать' }]),
-        g.wait(30000).then(() => 'left'),
-      ]);
-      g.withdraw();
-      g.state.choices.newcomer = answer;
+      const answer = await g.choose('newcomer', 'david', [{ id: 'took', label: 'Ответить ей' }, { id: 'left', label: 'Промолчать' }],
+        { seconds: 30, late: 'left' });
       if (answer === 'took') {
         g.set('children', 6);
         await g.think('newcomer', 'Я думала, я одна такая.');
@@ -250,7 +248,7 @@ export default {
       await g.wait(1500);
       await g.think('michael', 'Она ему скажет. Не сразу — так через год.');
       await g.think('rosalind', 'Она одна из нас. Её не удержишь силой.');
-      const choice = await g.choose('anne', anne, [{ id: 'let', label: 'Отпустить её' }, { id: 'axel', label: 'Рассказать всё дяде Акселю' }]);
+      const choice = await g.choose('anne', anne, [{ id: 'let', label: 'Отпустить её' }, { id: 'axel', label: 'Рассказать Акселю' }]);
       if (choice === 'let') {
         await g.think('michael', 'Тогда будем молиться, чтобы она молчала.');
         g.scale('group', -1);

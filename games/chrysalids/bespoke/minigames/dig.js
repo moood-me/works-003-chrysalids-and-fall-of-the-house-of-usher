@@ -29,7 +29,10 @@ export default {
       if (t - t0 >= BELL) bell = true;
       return u >= 1 || bell;
     });
-    if (!done) return this.skipped;
+    if (!done) {
+      g.set('dig', 1); // (skipped: the earth off it, as when played cleanly)
+      return this.skipped;
+    }
     const cleared = Math.min(1, rub.state.u);
     if (bell) {
       g.set('bell', 1, 3);

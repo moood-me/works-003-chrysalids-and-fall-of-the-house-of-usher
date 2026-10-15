@@ -5,6 +5,8 @@
 // The language's pull along a way: a dashed mark on the hem (closeup#hem), its way to the foot (closeup#foot); the scene
 // draws the hem where the hand has it (its key `hem`); let go half way, it slides back, seen (a spring). The time — the
 // arc on the mark: the rider coming (r_near). Done: the hem on the foot before he has come (ridge:seen) — hid; else late.
+// The ghost shows the pull once, at the start, while the scene holds the rider at the meadow's edge (its key r_wait, which
+// the chapter sets): the showing is not the player's time — he rides on once it is over or a finger is down.
 //   → { hid }
 import { until, keys } from '../hands.js';
 
@@ -20,7 +22,10 @@ export default {
     const send = keys(g);
     const hem = mg.mark({ at: 'closeup#hem', kind: 'dash', time: 1 });
     const pull = mg.pull({ on: hem, to: 'closeup#foot', release: 'spring' });
-    b.minigame.tricks.teach(mg, [pull], { id: 'pull' });
+    let held = true;
+    const ride = () => { if (held) { held = false; g.set('r_wait', false); } };
+    mg.show({ gestures: [pull] }).finished.then(ride);
+    const off = mg.on('down', ride);
     const done = await until(mg, () => {
       const s = pull.state, u = s.shown ?? s.u;
       send('hem', u);
@@ -28,7 +33,12 @@ export default {
       mg.plate.set({ fill: s.u, glow: s.held ? 'good' : 'idle' });
       return s.u >= 0.99 || late;
     });
-    if (!done) return this.skipped;
+    off();
+    ride();
+    if (!done) {
+      g.set('hem', 1);
+      return this.skipped;
+    }
     if (late) {
       await mg.end({ as: 'loss' });
       return { hid: false };

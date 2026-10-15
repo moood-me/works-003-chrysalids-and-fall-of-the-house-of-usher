@@ -1,7 +1,7 @@
 // I. Шесть пальцев — David meets Sophie by the stream and sees her foot; a rider on the meadow; the
 // summer at the ruins of the Old People (digging out a find before the bell); at home, the mother
 // asks where he has been.
-// Steps 0–2 play the film «Насыпь у ручья» in its beats (its notes.md says what each one shows); the lines inside a
+// Steps 0–2 play «Насыпь у ручья» in its beats (its notes.md says what each one shows); the lines inside a
 // beat wait for its moments (play:girl, ridge:rider…), not for seconds.
 // Leaves: choices.talk hurt|whose|sit (how he spoke to her: what she answered, how she let him take the
 // shoe off), hooves hid|late (late: suspicion +1), wender shush|away (the mother's look: he promised
@@ -43,7 +43,7 @@ export default {
       await g.beat('play_again');
       await g.beat('stuck');
       const talk = await g.choose('talk', 'sophie', [
-        { id: 'hurt', label: '— Тебе больно?' }, { id: 'whose', label: '— Ты чья? Я тебя раньше не видел.' }, { id: 'sit', label: 'Молча сесть рядом' }]);
+        { id: 'hurt', label: 'Тебе больно?' }, { id: 'whose', label: 'Ты чья?' }, { id: 'sit', label: 'Сесть рядом' }]);
       const shoe = g.beat('talk_' + talk);
       if (talk === 'hurt') {
         await g.say('david', '— Тебе больно?');
@@ -65,15 +65,16 @@ export default {
     // comes to where the stones are seen (the hooves heard before he shows)
     async g => {
       const rider = g.told('ridge:rider'), hem = g.told('ridge:hem'), ridge = g.told('beat:ridge');
-      await g.scene(BANK, { beat: 'ridge' });
+      await g.scene(BANK, { beat: 'ridge', r_wait: true }); // (the rider held at the meadow's edge till «Подол» lets him)
       g.beat('ridge', { wait: false }); // (cut short by «cover» if the hem is over the foot in time)
       const horse = g.sound.hooves({ gait: 'walk' });
       horse.loud(0.15, 2);
-      horse.loud(0.8, 11);
+      horse.loud(0.8, 16);
       await rider;
       await g.say('narrator', 'Копыта. Нельзя, чтобы её ногу увидели.');
       await hem;
       const { hid } = await g.play(podol);
+      g.set('r_wait', false);
       g.state.choices.hooves = hid ? 'hid' : 'late';
       if (hid) {
         await g.beat('cover'); // (it ends once he has come to where the stones are seen)
@@ -103,7 +104,7 @@ export default {
       await g.scene(BANK, { beat: 'ask' });
       await g.beat('ask');
       await g.say('sophie', '— Обещай, что никому не скажешь.');
-      await g.choose(null, 'sophie', [{ id: 'promise', label: '— Обещаю.' }]);
+      await g.choose(null, 'sophie', [{ id: 'promise', label: 'Обещаю' }]);
       const given = g.beat('promise');
       await g.say('david', '— Обещаю.');
       await given;
@@ -139,21 +140,15 @@ export default {
       const seen = dug.cleared >= 0.6;
       if (seen && !dug.bell) {
         await g.say('narrator', 'Гладкая пластинка с буквами Древних. Для чего она им была?');
-        const guess = await Promise.race([
-          g.choose(null, 'glint', [{ id: 'way', label: '— Дорогу показывать.' }, { id: 'pray', label: '— Им на неё молились.' }, { id: 'toy', label: '— Просто игрушка.' }]),
-          g.wait(20000).then(() => null),
-        ]);
-        g.withdraw();
+        const guess = await g.choose(null, 'glint', [{ id: 'way', label: 'Дорогу показывать' }, { id: 'pray', label: 'Им молились' }, { id: 'toy', label: 'Игрушка' }],
+          { seconds: 20 });
+        if (guess) await g.say('david', { way: '— Дорогу показывать.', pray: '— Им на неё молились.', toy: '— Просто игрушка.' }[guess]);
         if (guess === 'way') await g.say('narrator', 'Может быть. Только дороги отсюда давно никуда не вели.');
         if (guess === 'pray') await g.say('sophie', '— Тише. Услышат — нам попадёт.');
         if (guess === 'toy') await g.say('sophie', '— Ничего себе игрушки у них были.');
       }
       if (!dug.bell) {
-        const find = await Promise.race([
-          g.choose('find', 'glint', [{ id: 'took', label: 'Взять домой' }, { id: 'left', label: 'Оставить Древним' }]),
-          g.wait(25000).then(() => null),
-        ]);
-        g.withdraw();
+        const find = await g.choose('find', 'glint', [{ id: 'took', label: 'Взять домой' }, { id: 'left', label: 'Оставить Древним' }], { seconds: 25 });
         if (find === 'took') await g.say('narrator', 'Я сунул её за пазуху.');
         if (find === 'left') {
           g.set('glint', 0.2, 3);
@@ -167,12 +162,8 @@ export default {
       if (dug.bell) {
         // the bell caught us digging: grab it as it is, or leave it
         if (!seen) await g.say('narrator', 'Я так и не откопал её до конца.');
-        const find = await Promise.race([
-          g.choose('find', 'glint', [{ id: 'took', label: seen ? 'Схватить её и бежать' : 'Выдернуть из земли и бежать' }, { id: 'left', label: 'Бросить и бежать' }]),
-          g.wait(15000).then(() => 'left'),
-        ]);
-        g.withdraw();
-        g.state.choices.find = find;
+        const find = await g.choose('find', 'glint', [{ id: 'took', label: seen ? 'Схватить и бежать' : 'Выдернуть и бежать' }, { id: 'left', label: 'Бросить и бежать' }],
+          { seconds: 15, late: 'left' });
         g.set('glint', find === 'took' ? 0 : 0.2, 2);
         g.set('children', 0, 5);
         await g.wait(4000);
@@ -185,7 +176,8 @@ export default {
       await g.say('narrator', 'Дома пахло хлебом и воском.');
       await g.say('mother', '— Где ты пропадал весь день, Дэвид?', 'house');
       const secret = await g.choose('secret', 'house#window', [
-        { id: 'kept', label: '— У ручья. Один.' }, { id: 'told', label: '— Я встретил девочку. У неё на ноге шесть пальцев.' }]);
+        { id: 'kept', label: 'У ручья. Один' }, { id: 'told', label: 'Про девочку' }]);
+      await g.say('david', secret === 'kept' ? '— У ручья. Один.' : '— Я встретил девочку. У неё на ноге шесть пальцев.');
       if (secret === 'kept') {
         g.mark('sophie', 'kept', 'Софи это запомнит.');
         await g.say('mother', '— Отец спрашивал. Не опаздывай к молитве.', 'house');

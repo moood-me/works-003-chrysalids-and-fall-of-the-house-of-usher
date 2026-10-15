@@ -19,7 +19,7 @@ export default {
   async run(g, b, { targets = [], petra = 0, voices = 0.4, onLink, onPetra } = {}, signal) {
     const mg = g.minigame({ phrase: petra > 0 ? 'Огни ферм снова горели вдалеке, а Петра слушала' : 'Ночью огни ферм горели далеко друг от друга' });
     const home = mg.mark({ at: 'home#window', hidden: true });
-    let links = 0, caught = false, stir = petra;
+    let links = 0, caught = false, stir = petra, settle = null;
     for (const id of targets) {
       const me = mg.mark({ at: 'david#head', kind: 'dash' });
       const goal = mg.mark({ at: `${id}#window`, hidden: true });
@@ -27,14 +27,15 @@ export default {
       if (!links) b.minigame.tricks.teach(mg, [pull], { id: 'pull' });
       const done = await until(mg, () => {
         const s = pull.state, u = s.shown ?? s.u;
+        if (settle != null && mg.t >= settle) { settle = null; g.set('petra', stir, 2.5); }
         // (the thread's end along its way; near her window as she stirs, it is hers)
         if (!caught && s.held && me.pos && goal.pos && home.pos && stir > 0.3) {
           const x = me.pos.x + (goal.pos.x - me.pos.x) * u, y = me.pos.y + (goal.pos.y - me.pos.y) * u;
           if (Math.hypot(x - home.pos.x, y - home.pos.y) < NEAR) {
             caught = true;
             g.set('petra', 1, 0.4);
-            setTimeout(() => g.set('petra', stir, 2.5), 900);
-            mg.error('wrong', { at: home });
+            settle = mg.t + 0.9;
+            mg.snap({ at: home }); // (she has caught it: not a fault — something has happened)
             onPetra?.();
           }
         }
@@ -52,7 +53,8 @@ export default {
       g.set('petra', stir, 2);
       await onLink?.(links);
     }
-    await mg.end({ as: caught ? 'flawed' : 'clean' });
+    if (settle != null) g.set('petra', stir, 2.5);
+    await mg.end({ as: 'clean' });
     return { links, caught };
   },
 };

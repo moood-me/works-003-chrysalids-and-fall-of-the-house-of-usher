@@ -70,7 +70,7 @@ export default {
       g.set('window_lit', 1);
       await g.wait(1000);
     },
-    // the third hand (the kitchen's film): David comes in with his hand cut, his mother binds it — and he lets slip
+    // the third hand (the kitchen's beats): David comes in with his hand cut, his mother binds it — and he lets slip
     // that he could have managed «if he had another hand». The father heard. Say it again and kneel under «Чти
     // образ Божий» — or lie, and the father turns to the mother.
     async g => {
@@ -81,7 +81,7 @@ export default {
       await g.say('narrator', 'В тот вечер я распорол ладонь о борону.');
       await g.say('narrator', 'Когда отец читал, в дом входили тихо.');
       await evening;
-      const tie = await g.choose('tie', 'david', [{ id: 'help', label: 'Протянуть руку матери' }, { id: 'self', label: '— Я сам.' }]);
+      const tie = await g.choose('tie', 'david', [{ id: 'help', label: 'Протянуть руку' }, { id: 'self', label: 'Я сам' }]);
       if (tie === 'self') {
         await g.say('david', '— Я сам.');
         const take = g.told('self:take');
@@ -101,7 +101,7 @@ export default {
       await slip;
       await g.say('father', '— Что ты сказал?', 'joseph');
       const hand = await g.choose('hand', 'david', [
-        { id: 'truth', label: 'Повторить: «будь у меня ещё одна рука»' }, { id: 'lie', label: '— Ничего, отец.' }]);
+        { id: 'truth', label: 'Повторить' }, { id: 'lie', label: 'Ничего, отец' }]);
       if (hand === 'truth') {
         await g.say('david', '— Я сказал… будь у меня ещё одна рука…');
         const image = g.told('kneel:image'), pray = g.told('kneel:pray');
@@ -111,7 +111,7 @@ export default {
         await pray;
         await g.say('father', '— Господи, прости ему слово его. Да не пожелает он иного образа.', 'joseph');
         await knelt;
-        const kneel = await g.choose('kneel', 'david', [{ id: 'seek', label: 'Поднять глаза на мать' }, { id: 'bow', label: 'Смотреть в пол' }]);
+        const kneel = await g.choose('kneel', 'david', [{ id: 'seek', label: 'Поднять глаза' }, { id: 'bow', label: 'Смотреть в пол' }]);
         await g.beat(kneel);
         if (kneel === 'bow') await g.say('narrator', 'Я смотрел в пол. Что она на меня тогда посмотрела, я узнал много позже.');
         const bowl = g.told('upstairs:bowl');
@@ -144,15 +144,12 @@ export default {
       await g.say('narrator', 'Каждую осень приезжал инспектор и решал, чему жить.');
       await g.say('narrator', 'Я смотрел из-за сарая на нашего телёнка — пока на него не посмотрел инспектор.');
       const look = await g.play(gaze);
-      const show = [{ id: 'show', label: '— Отец, у телёнка ноги не такие.' }];
+      const show = [{ id: 'show', label: 'Сказать отцу' }];
       if (look.found) await g.say('narrator', 'Ноги у него были длинноваты. Чуть-чуть.');
       else await g.say('narrator', 'Инспектор подошёл к телёнку раньше меня. Ноги у него были длинноваты. Чуть-чуть.');
-      const calf = await Promise.race([
-        g.choose('calf', look.found ? { calf: [{ id: 'hide', label: 'Увести телёнка за сарай, пока они говорят' }], joseph: show } : { joseph: show }),
-        g.wait(look.found ? Math.max(10000, look.left * 1000 + 4000) : 10000).then(() => 'silent'),
-      ]);
-      g.withdraw();
-      g.state.choices.calf = calf;
+      const calf = await g.choose('calf', look.found ? { calf: [{ id: 'hide', label: 'Увести телёнка' }], joseph: show } : { joseph: show },
+        { seconds: look.found ? Math.max(10, look.left + 4) : 10, late: 'silent' });
+      if (calf === 'show') await g.say('david', '— Отец, у телёнка ноги не такие.');
       if (calf === 'hide') {
         g.set('calf_present', 0, 2.5);
         await g.say('narrator', 'Пока инспектор листал свою книгу, я увёл телёнка за сарай.');
@@ -174,8 +171,8 @@ export default {
       }
       await g.wait(1500);
     },
-    // the burning of the wrong wheat (the film «Сожжение поля», in beats): on the knees with everyone — or late, and
-    // seen; the hymn, sung in time — or not: the film shows it at once (the heads in front turn round; David sings by
+    // the burning of the wrong wheat («Сожжение поля», in beats): on the knees with everyone — or late, and
+    // seen; the hymn, sung in time — or not: the scene shows it at once (the heads in front turn round; David sings by
     // his mother, or hides his face in her skirt); in the grey morning, the one stalk the fire left
     async g => {
       await g.scene(BURNING, { beat: 'dawn' });
@@ -190,12 +187,7 @@ export default {
       // the torch goes up and everyone goes down on their knees: with them — or late, standing alone among them (the
       // choice's window as long as the language asks: the beat ends in its pose and holds it)
       const raise = g.beat('raise');
-      const knelt = await Promise.race([
-        g.choose('knees', 'dv', [{ id: 'with', label: 'Встать на колени' }]),
-        g.wait(6500).then(() => 'late'),
-      ]);
-      g.withdraw();
-      g.state.choices.knees = knelt;
+      const knelt = await g.choose('knees', 'dv', [{ id: 'with', label: 'Встать на колени' }], { seconds: 6.5, late: 'late' });
       if (knelt === 'with') {
         await raise;
         await g.beat('rise');
@@ -212,11 +204,12 @@ export default {
       await caught;
       await g.say('narrator', 'Пшеница занялась сразу, с треском, как солома.');
       await fire;
-      // the hymn: the fire goes on spreading while it is sung (the game moves ignite; the beat ends in its pose and
-      // holds it while the hymn goes on)
+      // the hymn: the fire goes on spreading while it is sung (the beat's; it ends in its pose and holds it while the
+      // hymn goes on)
+      const still = g.told('hymn:still');
       const hymnBeat = g.beat('hymn');
-      g.set('ignite', 0.75, 36);
       await g.say('narrator', 'Все пели. Надо было петь со всеми — в такт.');
+      await still; // (the camera stands)
       const singing = g.play(hymn);
       await g.wait(10000);
       await g.think('someone', 'Дэвид… А нас — тоже так? В огонь?');
@@ -227,6 +220,7 @@ export default {
       g.state.choices.hymn = sung.hymn;
       if (sung.hymn === 'loud') {
         const shown = g.beat('hymn_loud');
+        g.set('turned', 0, 1.5); // (the ones in front back to the fire)
         await g.say('narrator', 'Я пел громко, громче матери. Голос был не мой.');
         g.scale('path', -1, true);
         await shown;
@@ -238,6 +232,7 @@ export default {
         else await g.say('narrator', 'Я не пел. Отец смотрел прямо на нас.');
         if (sung.hymn === 'silent') g.scale('path', 1, true);
         if (sung.hymn === 'silent' || sung.turned >= 0.5) g.scale('suspicion', 1);
+        g.set('turned', 0, 3); // (the eyes moved on: the heads back to the fire)
         await shown;
       }
       await g.beat('burn');
@@ -245,12 +240,8 @@ export default {
       await g.say('narrator', 'К утру от поля осталась серая полоса.');
       await morning;
       // by the edge of the ash: the one stalk left standing
-      const stalk = await Promise.race([
-        g.choose('stalk', 'dv', [{ id: 'stay', label: 'Остаться у колоса' }, { id: 'go', label: 'Идти с матерью' }]),
-        g.wait(9000).then(() => 'stay'),
-      ]);
-      g.withdraw();
-      g.state.choices.stalk = stalk;
+      const stalk = await g.choose('stalk', 'dv', [{ id: 'stay', label: 'Остаться у колоса' }, { id: 'go', label: 'Идти с матерью' }],
+        { seconds: 9, late: 'stay' });
       if (stalk === 'stay') {
         const pull = g.told('stalk_stay:pull');
         const shown = g.beat('stalk_stay');
@@ -291,7 +282,7 @@ export default {
       }
       if (g.state.marks.sophie === 'told') await g.say('narrator', 'Мать не подняла глаз. Она знала, о ком он.');
       else await g.say('narrator', 'Я смотрел в стол и считал удары сердца.');
-      const warn = await g.choose('warn', 'david', [{ id: 'warned', label: 'Ночью бежать к Уендерам' }, { id: 'stayed', label: 'Остаться в постели' }]);
+      const warn = await g.choose('warn', 'david', [{ id: 'warned', label: 'Бежать к Уэндерам' }, { id: 'stayed', label: 'Остаться в постели' }]);
       const up = g.told('to_bed:up');
       const bed = g.beat('to_bed');
       if (warn === 'warned') {
@@ -303,7 +294,7 @@ export default {
         const out = g.beat('sneak');
         await g.say('narrator', 'Я дождался, пока в доме всё стихнет.');
         await out;
-        // at the stream (its film's night_warn): Sophie and her mother with a bundle, already on the path
+        // at the stream (its beat night_warn): Sophie and her mother with a bundle, already on the path
         await g.scene(BANK, { beat: 'night_warn' });
         await g.beat('night_warn');
         await g.say('david', '— Утром за вами поедут.');

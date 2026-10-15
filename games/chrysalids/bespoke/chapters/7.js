@@ -1,4 +1,4 @@
-// VII. Зеландия — the scene «Корабль из Зеландии» is a film in beats (its notes.md): the children at the
+// VII. Зеландия — the scene «Корабль из Зеландии» is played in beats (its notes.md): the children at the
 // cave above the clearing, Waknuk against the Fringes; the Spider's arrow takes my father. I run to him
 // or Rosalind holds me. If Petra was heard over the sea (VI: shipComes), the fish-ship comes: its
 // threads take everyone below — whom do I cover? The woman from Sealand frees us, leads Petra to the
@@ -14,7 +14,7 @@ import { SCENES } from '../story.js';
 
 const SHIP = SCENES.ship;
 
-// a beat of the film, played; → once it has ended
+// a beat of the scene, played; → once it has ended
 function play(g, beat) {
   const ended = g.heard(`beat:${beat}`);
   g.beat(beat, { wait: false });
@@ -26,13 +26,6 @@ async function open(g, beat) {
   const ended = g.heard(`beat:${beat}`);
   await g.scene(SHIP, { beat });
   return { ended };
-}
-// a choice that waits only so long (never less than the language's window, 6 s): then `late` is what happened
-async function inTime(g, id, offer, ms, late) {
-  const picked = await Promise.race([g.choose(id, offer), g.wait(ms).then(() => late)]);
-  g.withdraw();
-  g.state.choices[id] = picked;
-  return picked;
 }
 const WEB = { none: 'web', petra: 'web_petra', rosalind: 'web_rosalind', father: 'web_father', self: 'web_alone' };
 // whether Rosalind stays where I stay
@@ -89,7 +82,7 @@ export default {
       await clearing;
       await g.think('rosalind', 'Твой отец. Впереди, у коня.');
       await fight;
-      const father = await inTime(g, 'father', { david: [{ id: 'run', label: 'Бежать к отцу' }], rosalind: [{ id: 'stay', label: 'Остаться' }] }, 12000, 'stay');
+      const father = await g.choose('father', { david: [{ id: 'run', label: 'Бежать к отцу' }], rosalind: [{ id: 'stay', label: 'Остаться' }] }, { seconds: 12, late: 'stay' });
       if (father === 'stay') {
         const hold = play(g, 'hold');
         await g.think('rosalind', 'Нельзя, Дэвид! Ты ему не поможешь!');
@@ -127,10 +120,10 @@ export default {
       await ship;
       // the threads come down: whom do I cover?
       const run = father === 'run';
-      const cover = await inTime(g, 'cover', run
-        ? { joseph: [{ id: 'father', label: 'Закрыть отца собой' }], david: [{ id: 'self', label: 'Упасть рядом с ним' }] }
+      const cover = await g.choose('cover', run
+        ? { joseph: [{ id: 'father', label: 'Закрыть отца' }], david: [{ id: 'self', label: 'Упасть рядом' }] }
         : { petra: [{ id: 'petra', label: 'Накрыть Петру' }], rosalind: [{ id: 'rosalind', label: 'Накрыть Розалинду' }] },
-      10000, run ? 'self' : 'none');
+      { seconds: 10, late: run ? 'self' : 'none' });
       const web = play(g, WEB[cover]);
       if (cover === 'petra') await g.say('narrator', 'Петра лежала подо мной тихо-тихо. Нити ложились мне на спину.');
       else if (cover === 'rosalind') {
@@ -175,7 +168,8 @@ export default {
       } else await g.say('sealand', '— Не жалей их. Их время прошло.');
       await back;
       await g.think('michael', 'Я остаюсь, Дэвид. Кто-то должен рассказать нашим, что мы есть.');
-      await inTime(g, 'leave', { ship: [{ id: 'fly', label: 'Улететь' }], michael: [{ id: 'stay', label: 'Остаться с Майклом' }] }, 60000, 'fly');
+      const leave = await g.choose('leave', { ship: [{ id: 'fly', label: 'Улететь' }], michael: [{ id: 'stay', label: 'Остаться с Майклом' }] }, { seconds: 60, late: 'fly' });
+      if (leave === 'fly') g.set('beat_next', 'board'); // (its opening, a cut to the ramp, made ready meanwhile)
     },
     // the door closes; the ship goes — with me, or without me
     async g => {

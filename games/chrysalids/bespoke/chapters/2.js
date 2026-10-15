@@ -189,6 +189,7 @@ export default {
       const raise = g.beat('raise');
       const knelt = await g.choose('knees', 'dv', [{ id: 'with', label: 'Встать на колени' }], { seconds: 6.5, late: 'late' });
       if (knelt === 'with') {
+        g.set('dv_kneel', true); // (down on his knees now, with them)
         await raise;
         await g.beat('rise');
       } else {

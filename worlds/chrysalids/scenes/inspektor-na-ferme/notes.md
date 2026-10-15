@@ -8,9 +8,9 @@ farmhand держит телёнка за недоуздок, inspector с кн�
 
 КЛЮЧИ (их ставит игра; script.js переводит в то, что делают люди): verdict (0.3 — инспектор указывает на угол сарая, 0.55 —
 работник ведёт телёнка к сараю, 1 — инспектор смотрит на работника), calf_present (0 — Дэвид увёл телёнка за сарай: работник
-отпускает верёвку и смотрит на угол сарая — видел; инспектор листает книгу), david_present, inspector_look (игра, «Найди
-раньше него»: взгляд инспектора по порядку — книга, угол сарая, загон, конь, голова телёнка, спина, хвост, ноги), cart, rain,
-season. Точки: calf#head, calf#back, calf#tail, calf#legs, calf#ring, barn#corner; выборы — на calf и joseph (как в «кино»).
+отпускает верёвку и смотрит на угол сарая — видел; инспектор листает книгу), david_present, cart, rain, season; inspector_look —
+ключ самого человека (куда он смотрит: точка): «Найди раньше него» ставит его по порядку lib.LOOK — книга (inspector#hand_l),
+угол сарая, загон, конь, голова телёнка, спина, хвост, ноги. Точки: calf#head, calf#back, calf#tail, calf#legs, calf#ring, barn#corner; выборы — на calf и joseph (как в «кино»).
 
 ## Контракт для проверки
 
@@ -19,7 +19,7 @@ season. Точки: calf#head, calf#back, calf#tail, calf#legs, calf#ring, barn#
   "beats": {},
   "points": ["calf#head", "calf#back", "calf#tail", "calf#legs", "calf", "joseph", "david", "inspector", "farmhand", "barn#corner"],
   "offers": ["calf", "joseph"],
-  "party": { "cart": 0.5, "rain": 0, "season": 0, "verdict": 0, "calf_present": 1, "david_present": 1, "inspector_look": 0 },
+  "party": { "cart": 0.5, "rain": 0, "season": 0, "verdict": 0, "calf_present": 1, "david_present": 1, "inspector_look": "inspector#hand_l" },
   "speakers": ["joseph", "inspector", "david", "farmhand"]
 }
 ```

@@ -55,7 +55,6 @@
     "verdict": 0,
     "calf_present": 1,
     "david_present": 1,
-    "inspector_look": 0,
     "calf_a": -0.1,
     "horse_a": 4.6,
     "horse_d": 9.6,
@@ -77,7 +76,8 @@
     },
     "farmhand_look": "calf#ring",
     "joseph_look": "calf",
-    "david_look": "calf"
+    "david_look": "calf",
+    "inspector_look": "inspector#hand_l"
   },
   "states": {
     "cart": {
@@ -127,14 +127,6 @@
       ],
       "smooth": true,
       "means": "Дэвид выглядывает из-за дальнего угла сарая (0 — ушёл за сарай)"
-    },
-    "inspector_look": {
-      "range": [
-        0,
-        1
-      ],
-      "smooth": true,
-      "means": "игра («Найди раньше него»): куда смотрит инспектор — по порядку: книга, угол сарая, загон, конь, голова телёнка, спина, хвост, ноги (1)"
     },
     "calf_a": {
       "type": "number",

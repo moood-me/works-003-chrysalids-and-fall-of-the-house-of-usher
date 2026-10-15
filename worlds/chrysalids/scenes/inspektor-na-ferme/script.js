@@ -2,8 +2,8 @@
 // it (its place by his); `verdict` — the inspector points at the barn's corner (0.3), the farmhand leads the calf there
 // (0.55), the inspector lowers his hand and looks at the farmhand (1); `calf_present` 0 — David has taken the calf behind the
 // barn while they talked: the farmhand lets the rope go and looks at the barn's corner (he saw), the inspector leafs his
-// book; `david_present` — David peeking round the far corner of the barn, or gone behind it; `inspector_look` — where his eyes
-// are on their way over the yard to the calf (lib.LOOK).
+// book; `david_present` — David peeking round the far corner of the barn, or gone behind it. (Where the inspector
+// looks is his own key, inspector_look: the game's «Найди раньше него» leads it in lib.LOOK's order.)
 const s = scene, L = s.lib, P = id => s.person(id);
 const calf = () => s.set('calf_a', (s.get('farmhand_a') ?? -1.25) + L.CALF_OFF);
 s.on('move', 'farmhand_a', calf);
@@ -23,7 +23,7 @@ function verdict() {
       P('farmhand').look('calf');
     }
     if (now >= 3) { P('inspector').reach(null); P('inspector').look('farmhand'); }
-    if (now === 0) { P('inspector').reach(null); P('inspector').look(L.lookAt(s.get('inspector_look') || 0)); }
+    if (now === 0) { P('inspector').reach(null); P('inspector').look('inspector#hand_l'); }
   }, { name: 'verdict' });
 }
 s.on('change', 'verdict', verdict);
@@ -52,6 +52,3 @@ function david() {
   }, { name: 'david' });
 }
 s.on('change', 'david_present', david);
-const look = () => { if ((s.get('verdict') || 0) < 0.3) P('inspector').look(L.lookAt(s.get('inspector_look') || 0)); };
-s.on('change', 'inspector_look', look);
-s.on('move', 'inspector_look', look);

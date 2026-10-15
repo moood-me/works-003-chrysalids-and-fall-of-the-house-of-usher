@@ -308,6 +308,16 @@
       "color": "#e6d4bc",
       "strength": 1.6,
       "reach": 14
+    },
+    {
+      "id": "night_fill",
+      "across": 2.8,
+      "distance": 7.4,
+      "elevation": 2.6,
+      "color": "#c4cede",
+      "strength": 1.6,
+      "reach": 6,
+      "on": "night_fill"
     }
   ],
   "directions": [
@@ -676,7 +686,8 @@
     "window_dusk": 0,
     "closeup_shot": null,
     "valet_here": false,
-    "wick_smoke": 0
+    "wick_smoke": 0,
+    "night_fill": 0
   },
   "states": {
     "crack": {
@@ -867,6 +878,14 @@
       "type": "number",
       "smooth": true,
       "means": "где стоит (valet), метры"
+    },
+    "night_fill": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "ночью у стены: свет со стороны глаза на тех, кто слушает стену (ставит кусок night_listen)"
     }
   },
   "modules": [

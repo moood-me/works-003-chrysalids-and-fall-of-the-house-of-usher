@@ -42,5 +42,6 @@ function tree(name, x, scale, seed, lean, len, w, bias, col) {
 }
 tree("left", -10, 1.09, 0, 0.06, 2.5, 0.42, 0.05, "#262c30");
 tree("right", 5.4, 0.92, 777, -0.08, 2.8, 0.48, -0.05, "#272d31");
-// where the trees are pressed (a game offering them: trees#trunk): the right one, on its trunk — within the middle 4:3
-e.at(5.3, -2.2, "trunk");
+// where the trees are pressed (a game offering them: trees#trunk): the right one, on its trunk under the fork — within
+// the middle 4:3
+e.at(5.2, -2.6, "trunk");

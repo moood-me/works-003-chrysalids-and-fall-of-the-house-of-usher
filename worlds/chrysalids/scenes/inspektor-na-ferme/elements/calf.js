@@ -62,3 +62,4 @@ e.at(-0.66, -0.95, 'head');
 e.at(0.05, -1.08, 'back');
 e.at(0.52, -0.8, 'tail');
 e.at(0.0, -0.32, 'legs');
+e.at(0.0, -0.7); // (its point without a name: its body's middle — what `calf` means)

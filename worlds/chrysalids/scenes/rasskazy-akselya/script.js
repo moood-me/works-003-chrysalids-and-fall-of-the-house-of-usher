@@ -7,7 +7,9 @@ function story() {
   const now = (+s.get('story') || 0) > 0.2;
   if (now === telling) return;
   telling = now;
-  P('axel').do(now ? 'perch_talk' : 'perch_still', { loop: true });
+  // (his hand out toward the smoke — a reach, so it never passes before his face as a talking gesture did)
+  P('axel').do('perch_still', { loop: true });
+  P('axel').reach(now ? { r: L.VISION } : null);
   P('axel').look(now ? L.VISION : 'david');
   P('david').look(now ? L.VISION : 'axel');
 }

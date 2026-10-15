@@ -70,8 +70,8 @@
       "distance": 1.2,
       "elevation": 1.7,
       "color": "#ffd8b0",
-      "strength": 0.5,
-      "reach": 9
+      "strength": 0.8,
+      "reach": 10
     }
   ],
   "state": {

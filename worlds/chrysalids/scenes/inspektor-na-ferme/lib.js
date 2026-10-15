@@ -4,7 +4,7 @@
 // own key — to these one after another; the showcase does the same).
 const HORSE = { kind: 'horse', across: 'horse_a', distance: 'horse_d', face: 'horse_face' };
 // the calf stands this far to the farmhand's right as he holds its halter
-const CALF_OFF = 1.15, CALF_GONE = -6.6; // (and where it is led to, behind the barn's corner)
+const CALF_OFF = 1.15, CALF_GONE = -4.6; // (and where it is led to, behind the barn's corner)
 // his look, in order: his ledger, the barn's corner, the pen's fence, his horse, the calf's head, its back, its tail, its legs
 const LOOK = ['inspector#hand_l', 'barn#corner', 'fence#pen', 'horse', 'calf#head', 'calf#back', 'calf#tail', 'calf#legs'];
 // where the farmhand leads the calf at the verdict (to the barn), and where David goes when he is not at the corner

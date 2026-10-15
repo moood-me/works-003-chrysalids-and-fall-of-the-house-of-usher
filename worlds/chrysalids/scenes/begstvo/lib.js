@@ -37,7 +37,7 @@ const spot = (id, face, p) => kit.chrysalids.horse.spot(id, face, HORSES[id].kin
 const BEFORE = [0, 0.98, 0.26], RUMP = [0, 0.95, -0.5], CRUPPER = [0, 0.92, -0.62];
 
 // ── where things are (across along the track, at its distance) ──
-const GX = 0.3, PACK_BEHIND = 3.4, SHEBA_BY = -0.6, SHEBA_D = D - 0.22, HOLLOW = 11.3, AWAY = 24;
+const GX = 0.3, PACK_BEHIND = 3.4, SHEBA_BY = -0.6, SHEBA_D = D - 0.22, HOLLOW = 9.3, AWAY = 24;
 const BY_GREAT = -0.45; // where David stands by the great-horse's near side to hand Petra up
 // the camera's places (camera_x, camera_z)
 const CAM = { wide: [0, 0], met: [0, 2.2], keep: [-3.4, 0], hollow: [5.2, -2.5], go_far: [6, 0], crest: [-1.2, 0], away: [7, 0] };

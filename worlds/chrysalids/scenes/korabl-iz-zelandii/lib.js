@@ -115,7 +115,7 @@ const OVER = (from) => ({ ...from, ship_vis: 1, ship_a: 4.6, ship_d: 21, ship_h:
 // after the web the father's thread (joseph_th) is the game's — the web_father beat, or the play: its cuts keep it
 const kept = (o) => { const { joseph_th: _, ...rest } = o; return rest; };
 // under the web, the craft landed, the door open (landing's end): the woman walking toward the ledge
-const LANDED = (from) => kept({ ...from, ship_h: 0, spin: 0.12, fall: 0, web: 1, cave_web: 1, door: 1, dust: 0, sealand_here: true, sealand_a: 1.5, sealand_d: 15.9 }));
+const LANDED = (from) => kept({ ...from, ship_h: 0, spin: 0.12, fall: 0, web: 1, cave_web: 1, door: 1, dust: 0, sealand_here: true, sealand_a: 1.5, sealand_d: 15.9 });
 // (cut) she is already by the cave, the camera on the ledge
 const FREE = (from) => ({ ...LANDED(from), ...camOf(CAM.free), sealand_a: -0.45, sealand_d: 10.4, sealand_turn: 330 });
 

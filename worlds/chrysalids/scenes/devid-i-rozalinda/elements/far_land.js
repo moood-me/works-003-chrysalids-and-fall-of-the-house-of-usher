@@ -1,4 +1,4 @@
-var C = "#6a5560";
+var C = "#e1b9ce";
 g.fillStyle = C;
 g.beginPath();
 g.moveTo(-4000, 40);

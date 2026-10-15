@@ -1,0 +1,11 @@
+const L = e.lib, S = e.state, t = e.t, v = S.thread == null ? 0.35 : +S.thread, gl = +(S.glance || 0);
+const k = Math.min(1, v * (0.75 + 0.25 * Math.sin(t * 0.17)) * (1 + 0.3 * gl));
+e.layer('s0').alpha = k;
+e.layer('s1').alpha = k;
+e.layer('a0').alpha = Math.min(1, v * 0.4);
+e.layer('a1').alpha = Math.min(1, v * 0.4);
+const [x0, y0] = L.pt(L.DAVID), [x1, y1] = L.pt(L.ROS), c1 = [x0 + 1.0, y0 - 1.1], c2 = [x1 - 1.7, y1 - 1.0];
+const p = ((t * 0.03) % 1.4) - 0.2, u = Math.max(0, Math.min(1, p)), iu = 1 - u, Pl = e.layer('p');
+Pl.x = iu * iu * iu * x0 + 3 * iu * iu * u * c1[0] + 3 * iu * u * u * c2[0] + u * u * u * x1;
+Pl.y = iu * iu * iu * y0 + 3 * iu * iu * u * c1[1] + 3 * iu * u * u * c2[1] + u * u * u * y1;
+Pl.alpha = p < 0 || p > 1 ? 0 : k * Math.sin(Math.PI * u);

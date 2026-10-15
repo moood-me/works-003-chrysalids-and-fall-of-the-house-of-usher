@@ -1,5 +1,5 @@
-var t = e.t;
-g.fillStyle = "#4d3f4c";
+var t = 0;
+g.fillStyle = "#aa8fa8";
 function elm(x, h, w) {
   var sw = 0.15 * Math.sin(t * 0.3 + x) + 0.07 * Math.sin(t * 0.71 + x * 2);
   for (var k = 0; k < 7; k++) {

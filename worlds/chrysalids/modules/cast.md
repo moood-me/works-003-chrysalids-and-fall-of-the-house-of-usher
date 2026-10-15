@@ -109,5 +109,6 @@ toward the chest — pulling someone out of the water).
 `throw_back` (once: turns and flings something back over the right shoulder, the arm high), `rake` (a loop: bent
 forward, both hands low drawing toward the body — raking hay, with the part `rake`), `aim_rifle` (a loop: standing, the
 right hand at the shoulder, the left forward, the head down to the sights — the part `gun`), `kneel_aim` (a loop: down on the right knee, a gun
-at the shoulder). `swim` (a loop: in the water to the chest, the arms sweeping out
+at the shoulder). `sing_book` (a loop: standing, an open book held up in both hands before the chest, singing from it — with the part
+`book_open`). `swim` (a loop: in the water to the chest, the arms sweeping out
 in a breaststroke, walking forward on the bottom — Kimodo makes no swimming; under the water's surface it reads as it).

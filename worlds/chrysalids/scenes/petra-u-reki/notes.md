@@ -32,9 +32,10 @@ pt_held, dv_swim, dv_scoop, ro_hands, stare, follow, crowd…): это тепе�
 rosalind, willow#tip (за что держится Петра).
 Движения: swim (слабое — Kimodo не умеет плавать: стоя гребёт руками; тело под водой), cling, scoop, carry, rake (новое).
 
-СКЛЕЙКИ: struck, edge, field_quiet, field_loud, out, bank_quiet, bank_loud начинаются склейкой (after пуст, камера — в их
-from): их начало модуль beats готовит заранее — следующий в таблице или тот, что игра назвала в beat_next (field_loud,
-out после field_quiet, bank_loud).
+СКЛЕЙКИ: struck, edge, field_quiet, field_loud, bank_quiet, bank_loud начинаются склейкой (after пуст, камера — в их
+from): их начало модуль beats готовит заранее (следующий в таблице; field_loud и field_quiet открываются одним и тем же —
+готовое годится обоим). field_* кончаются склейкой обратно к омуту, сказанной заранее, и out идёт с неё (after) — дальний
+берег остаётся, каким его оставил field_*. edge и field_* cry не пишут (его ведёт «Успокоить»).
 
 ## Контракт для проверки
 
@@ -47,14 +48,14 @@ out после field_quiet, bank_loud).
     "run": { "after": ["edge"], "tells": [], "seconds": 15 },
     "field_quiet": { "after": [], "tells": [], "seconds": 6 },
     "field_loud": { "after": [], "tells": [], "seconds": 8 },
-    "out": { "after": [], "tells": ["out:bank"], "seconds": 16 },
+    "out": { "after": ["field_quiet", "field_loud"], "tells": ["out:bank"], "seconds": 16 },
     "bank_quiet": { "after": [], "tells": ["bank_quiet:across"], "seconds": 13 },
     "bank_loud": { "after": [], "tells": ["bank_loud:across"], "seconds": 13 },
     "home": { "after": ["bank_quiet", "bank_loud"], "tells": [], "seconds": 16 }
   },
   "points": ["petra", "david", "rosalind", "willow#tip"],
   "offers": ["david"],
-  "party": { "beat": null, "beat_next": null, "cry": 0 },
+  "party": { "beat": null, "cry": 0 },
   "speakers": ["petra", "david", "rosalind"]
 }
 ```

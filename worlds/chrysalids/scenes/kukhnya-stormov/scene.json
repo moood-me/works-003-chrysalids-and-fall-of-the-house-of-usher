@@ -1,0 +1,445 @@
+{
+  "light": {
+    "haze": 0.03,
+    "tint": "#1a1830",
+    "grain": 0.22,
+    "vignette": 0.65,
+    "hazeColor": "#1b1719",
+    "tintStrength": 0.06,
+    "people": 0.18,
+    "ambientColor": "#3a3038"
+  },
+  "music": {
+    "bpm": 60,
+    "density": 0.2,
+    "prompts": [
+      {
+        "text": "Sparse Protestant hymn on a wheezing reed organ, slow chords with long silences, an empty farmhouse parlour",
+        "weight": 2
+      },
+      {
+        "text": "Ticking pendulum clock in a silent wooden kitchen, faint ember crackle, no melody",
+        "weight": 1.5
+      },
+      {
+        "text": "Low solo cello drone, one held note with slow bow changes, oppressive stillness",
+        "weight": 1.5
+      },
+      {
+        "text": "Muted church harmonium playing a psalm tune very slowly, slightly out of tune, 19th-century rural",
+        "weight": 0
+      },
+      {
+        "text": "Dark ambient room tone, distant wind against a window pane, creaking timber",
+        "weight": 0
+      },
+      {
+        "text": "Minimal string quartet sul tasto, sustained dissonant chords, fear held under the surface",
+        "weight": 0
+      },
+      {
+        "text": "Solo viola playing a plain modal melody, hesitant, unaccompanied",
+        "weight": 0
+      },
+      {
+        "text": "Old upright piano, single low notes struck softly and left to decay",
+        "weight": 0
+      },
+      {
+        "text": "Austere Shaker hymn harmony rendered on bowed strings, devout and cold",
+        "weight": 0
+      },
+      {
+        "text": "Distant thunder over prairie, rain on a wooden roof, low drone beneath",
+        "weight": 0
+      },
+      {
+        "text": "Glass harmonica tones, fragile and eerie, very slow",
+        "weight": 0
+      },
+      {
+        "text": "Bass clarinet low sustained tones, breath and air, chamber silence",
+        "weight": 0
+      },
+      {
+        "text": "Puritan psalmody on a small pipe organ, stern four-part chorale, slow",
+        "weight": 0
+      },
+      {
+        "text": "Felt piano and soft cello, intimate, a child's quiet fear",
+        "weight": 0
+      },
+      {
+        "text": "Appalachian dulcimer plucked sparingly, melancholic folk",
+        "weight": 0
+      },
+      {
+        "text": "Low rough hurdy-gurdy drone, ascetic and medieval",
+        "weight": 0
+      },
+      {
+        "text": "Slow cinematic tension pad swelling, a distant bell tolling once",
+        "weight": 0
+      },
+      {
+        "text": "Frontier fiddle playing a slow lament in a cabin, sparse",
+        "weight": 0
+      }
+    ],
+    "brightness": 0.25
+  },
+  "state": {
+    "beat": "film",
+    "fade": 1
+  },
+  "title": "Кухня Стормов",
+  "camera": {
+    "mode": "picture"
+  },
+  "horizon": 0.42,
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Сумерки за окном"
+    },
+    {
+      "id": "wall",
+      "box": [
+        -8,
+        -4.6,
+        8,
+        0.1
+      ],
+      "name": "Задняя стена кухни",
+      "across": 0,
+      "height": 3.35,
+      "distance": 6.2
+    },
+    {
+      "id": "ceiling",
+      "name": "Потолок",
+      "depth": 5.5,
+      "plane": true,
+      "width": 16,
+      "across": 0,
+      "distance": 3.45,
+      "elevation": 3.35
+    },
+    {
+      "id": "floor",
+      "name": "Дощатый пол",
+      "depth": 5.5,
+      "plane": true,
+      "width": 16,
+      "across": 0,
+      "distance": 3.45
+    },
+    {
+      "id": "tabletop",
+      "name": "Столешница",
+      "depth": 0.9,
+      "plane": true,
+      "width": 2.6,
+      "across": 0.3,
+      "distance": 4.5,
+      "elevation": 0.78,
+      "shadow": {
+        "light": "lamp",
+        "onto": [],
+        "strength": 0.92
+      }
+    },
+    {
+      "id": "chair_father",
+      "box": [
+        -0.5,
+        -1.5,
+        0.5,
+        0.1
+      ],
+      "name": "Стул отца",
+      "across": -1.66,
+      "height": 1.3,
+      "distance": 4.55
+    },
+    {
+      "id": "chair_mother",
+      "box": [
+        -0.5,
+        -1.5,
+        0.5,
+        0.1
+      ],
+      "name": "Стул матери",
+      "across": 2.12,
+      "height": 1.3,
+      "distance": 4.6
+    },
+    {
+      "id": "lamp",
+      "box": [
+        -0.4,
+        -0.6,
+        0.4,
+        0.05
+      ],
+      "name": "Масляная лампа",
+      "across": 0.3,
+      "height": 0.45,
+      "flicker": 0.3,
+      "distance": 4.45,
+      "elevation": 0.78
+    },
+    {
+      "id": "steam",
+      "box": [
+        -0.2,
+        -0.45,
+        0.2,
+        0.02
+      ],
+      "name": "Пар над миской Дэвида",
+      "across": 0.6,
+      "height": 0.4,
+      "distance": 4.25,
+      "elevation": 0.8
+    },
+    {
+      "id": "dust",
+      "box": [
+        -2.5,
+        -3,
+        2.5,
+        0.1
+      ],
+      "name": "Пылинки в свете лампы",
+      "across": 0.3,
+      "height": 2.4,
+      "distance": 4.3
+    },
+    {
+      "id": "table",
+      "box": [
+        -1.5,
+        -0.9,
+        1.5,
+        0.08
+      ],
+      "name": "Тяжёлый стол",
+      "across": 0.3,
+      "height": 0.78,
+      "distance": 4.05
+    },
+    {
+      "id": "chair",
+      "box": [
+        -0.4,
+        -1,
+        0.4,
+        0.05
+      ],
+      "name": "Стул Дэвида",
+      "across": 0.6,
+      "height": 1,
+      "distance": 3.85
+    },
+    {
+      "id": "joseph",
+      "name": "Отец, Джозеф Сторм",
+      "person": {
+        "cast": "cast",
+        "who": "joseph",
+        "does": "read_seated",
+        "turn": 90
+      },
+      "across": -1.66,
+      "distance": 4.55,
+      "place": {
+        "across": "joseph_a",
+        "distance": "joseph_d"
+      },
+      "shadow": {
+        "light": "lamp",
+        "onto": [
+          "wall",
+          "floor"
+        ],
+        "soft": 0.12,
+        "strength": 0.6
+      }
+    },
+    {
+      "id": "mary",
+      "name": "Мэри, сестра",
+      "person": {
+        "cast": "cast",
+        "who": "mary",
+        "does": "sit_still",
+        "turn": 174
+      },
+      "across": -0.3,
+      "distance": 5.05,
+      "place": {
+        "across": "mary_a",
+        "distance": "mary_d"
+      },
+      "shadow": {
+        "light": "lamp",
+        "onto": [
+          "wall",
+          "floor"
+        ],
+        "soft": 0.12,
+        "strength": 0.6
+      }
+    },
+    {
+      "id": "farmhand",
+      "name": "Работник",
+      "person": {
+        "cast": "cast",
+        "who": "farmhand",
+        "does": "eat_seated",
+        "turn": 188
+      },
+      "across": 0.95,
+      "distance": 5.05,
+      "place": {
+        "across": "farmhand_a",
+        "distance": "farmhand_d"
+      },
+      "shadow": {
+        "light": "lamp",
+        "onto": [
+          "wall",
+          "floor"
+        ],
+        "soft": 0.12,
+        "strength": 0.6
+      }
+    },
+    {
+      "id": "emily",
+      "name": "Мать",
+      "person": {
+        "cast": "cast",
+        "who": "emily",
+        "does": "stir_pot",
+        "turn": 0
+      },
+      "across": 3.05,
+      "distance": 5.75,
+      "place": {
+        "across": "emily_a",
+        "distance": "emily_d"
+      },
+      "shadow": {
+        "light": "lamp",
+        "onto": [
+          "wall",
+          "floor"
+        ],
+        "soft": 0.12,
+        "strength": 0.6
+      }
+    },
+    {
+      "id": "david",
+      "name": "Дэвид",
+      "person": {
+        "cast": "cast",
+        "who": "david",
+        "does": "clutch",
+        "turn": 90
+      },
+      "across": -4.8,
+      "distance": 3.6,
+      "place": {
+        "across": "david_a",
+        "distance": "david_d",
+        "elevation": "david_e"
+      },
+      "shadow": {
+        "light": "lamp",
+        "onto": [
+          "wall",
+          "floor"
+        ],
+        "soft": 0.12,
+        "strength": 0.6
+      }
+    },
+    {
+      "id": "wish",
+      "name": "Третья рука (его желание)",
+      "across": -4.8,
+      "distance": 3.6,
+      "place": {
+        "across": "david_a",
+        "distance": "david_d",
+        "elevation": "david_e"
+      },
+      "box": [
+        -0.8,
+        -1.6,
+        0.8,
+        0.2
+      ],
+      "height": 1.4,
+      "inFront": [
+        "david"
+      ]
+    },
+    {
+      "id": "stairs",
+      "name": "Лестница наверх",
+      "across": -2.58,
+      "distance": 6.3,
+      "box": [
+        -0.5,
+        -2.2,
+        0.5,
+        0.05
+      ],
+      "height": 2.2,
+      "onLand": false
+    }
+  ],
+  "modules": [
+    "cast",
+    "film"
+  ],
+  "lights": [
+    {
+      "id": "lamp",
+      "of": "lamp",
+      "reach": 6
+    },
+    {
+      "id": "hearth",
+      "of": "wall",
+      "reach": 3.5
+    },
+    {
+      "id": "yard",
+      "across": -6.5,
+      "distance": 3.4,
+      "elevation": 1.1,
+      "color": "#8ea6d4",
+      "strength": 0.7,
+      "reach": 7,
+      "on": "yard_door"
+    },
+    {
+      "id": "moon",
+      "across": 0.8,
+      "distance": 6.1,
+      "elevation": 1.9,
+      "color": "#8fa6cf",
+      "strength": 0.5,
+      "reach": 6,
+      "on": "moon_light"
+    }
+  ]
+}

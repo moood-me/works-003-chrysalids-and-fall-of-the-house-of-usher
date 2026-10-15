@@ -1,0 +1,349 @@
+{
+  "light": {
+    "haze": 0.4,
+    "tint": "#1a2a4a",
+    "grain": 0.25,
+    "vignette": 0.5,
+    "hazeColor": "#2c3854",
+    "tintStrength": 0.15
+  },
+  "music": {
+    "bpm": 60,
+    "density": 0.2,
+    "prompts": [
+      {
+        "text": "dark ambient drone, slow evolving low synth pads, vast and empty, nocturnal dread",
+        "weight": 2
+      },
+      {
+        "text": "distant low strings, sustained cello and double bass clusters, barely moving, eerie and cold",
+        "weight": 2
+      },
+      {
+        "text": "eerie night wind through tall grass, field recording textures blended with soft drone",
+        "weight": 2
+      },
+      {
+        "text": "sparse metallic textures, bowed cymbals and scraped steel, long reverb tails",
+        "weight": 1
+      },
+      {
+        "text": "post-apocalyptic folk lament on a lone detuned fiddle, far away",
+        "weight": 0
+      },
+      {
+        "text": "slow pulsing sub-bass heartbeat, faint radioactive hum, minimal",
+        "weight": 0
+      },
+      {
+        "text": "glass harmonica tones drifting, uncanny and fragile, slow",
+        "weight": 0
+      },
+      {
+        "text": "Tarkovsky-like ambient, water drips and distant hum, contemplative",
+        "weight": 0
+      },
+      {
+        "text": "low choir hum without words, wordless male voices far off, sacred and forbidding",
+        "weight": 0
+      },
+      {
+        "text": "prepared piano single notes, wooden knocks, sparse and cold",
+        "weight": 0
+      },
+      {
+        "text": "creaking wood and rope textures, slow rhythmic groan, unsettling",
+        "weight": 0
+      },
+      {
+        "text": "shimmering high harmonics over dark drone, a sense of forbidden freedom",
+        "weight": 0
+      },
+      {
+        "text": "minimal tape-loop ambient, worn and warbling, nostalgic and uneasy",
+        "weight": 0
+      },
+      {
+        "text": "low brass swells in the distance, slow, ominous and solemn",
+        "weight": 0
+      },
+      {
+        "text": "Geiger-counter clicks woven into soft ambient pad, sparse",
+        "weight": 0
+      },
+      {
+        "text": "hurdy-gurdy drone, rustic and ancient, slow, dark modal",
+        "weight": 0
+      },
+      {
+        "text": "bowed bass harmonica and slow breathing synth, cinematic suspense",
+        "weight": 0
+      },
+      {
+        "text": "celesta motif fragments, dreamy but wrong, slightly detuned",
+        "weight": 0
+      },
+      {
+        "text": "thick fog ambient, granular synthesis clouds, almost silent",
+        "weight": 0
+      },
+      {
+        "text": "slow tension build, distant timpani rolls, pursuit approaching",
+        "weight": 0
+      }
+    ],
+    "brightness": 0.25
+  },
+  "state": {
+    "glow": 0.7,
+    "mist": 0.6,
+    "figure_on_path": 0,
+    "lantern_in_field": 0
+  },
+  "title": "Край Окраин",
+  "camera": {
+    "area": [
+      -3,
+      3,
+      0,
+      14
+    ],
+    "mode": "walk"
+  },
+  "caption": "Дальше начинается то, о чём не говорят.",
+  "horizon": 0.55,
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Ночное небо"
+    },
+    {
+      "id": "moon",
+      "sky": true,
+      "name": "Луна"
+    },
+    {
+      "id": "clouds",
+      "sky": true,
+      "name": "Облака"
+    },
+    {
+      "x": 0.5,
+      "id": "badlands",
+      "box": [
+        -1800,
+        -90,
+        1800,
+        5
+      ],
+      "name": "Холмы Пустошей",
+      "height": 40,
+      "distance": 700
+    },
+    {
+      "id": "fringe_ground",
+      "name": "Земля Окраин",
+      "color": "#151d2d",
+      "depth": 76.4,
+      "plane": true,
+      "width": 200,
+      "across": 0,
+      "distance": 50,
+      "elevation": 0
+    },
+    {
+      "id": "field",
+      "name": "Последнее поле Уокнука",
+      "color": "#1d2638",
+      "depth": 12.4,
+      "plane": true,
+      "width": 80,
+      "across": 0,
+      "distance": 6,
+      "elevation": 0
+    },
+    {
+      "id": "forest_back",
+      "box": [
+        -140,
+        -40,
+        140,
+        1
+      ],
+      "name": "Дальний лес Окраин",
+      "across": 0,
+      "height": 18,
+      "distance": 80
+    },
+    {
+      "id": "forest_front",
+      "box": [
+        -100,
+        -35,
+        100,
+        1
+      ],
+      "name": "Неправильный лес",
+      "across": 0,
+      "height": 14,
+      "distance": 44
+    },
+    {
+      "id": "hero_trees",
+      "box": [
+        -30,
+        -30,
+        30,
+        1
+      ],
+      "name": "Стражи прохода",
+      "across": 0,
+      "height": 12,
+      "distance": 21
+    },
+    {
+      "id": "pale_plants",
+      "box": [
+        -26,
+        -4,
+        26,
+        0.3
+      ],
+      "name": "Бледные растения",
+      "across": 0,
+      "height": 2,
+      "distance": 17
+    },
+    {
+      "id": "grass_fringe",
+      "box": [
+        -34,
+        -3,
+        34,
+        0.3
+      ],
+      "name": "Неровные травы",
+      "across": 0,
+      "height": 1.5,
+      "distance": 13.2
+    },
+    {
+      "id": "fence",
+      "box": [
+        -36,
+        -3.2,
+        36,
+        0.3
+      ],
+      "name": "Межевая изгородь",
+      "across": 0,
+      "height": 1.6,
+      "distance": 12
+    },
+    {
+      "id": "mist_far",
+      "box": [
+        -170,
+        -10,
+        170,
+        1
+      ],
+      "name": "Туман над Окраинами",
+      "across": 0,
+      "height": 6,
+      "distance": 26
+    },
+    {
+      "id": "mist_near",
+      "box": [
+        -60,
+        -3,
+        60,
+        0.5
+      ],
+      "name": "Туман над полем",
+      "across": 0,
+      "height": 2,
+      "distance": 9
+    },
+    {
+      "id": "figure",
+      "box": [
+        -1,
+        -2.2,
+        1,
+        0.2
+      ],
+      "name": "Беглец на тропе",
+      "across": 2.25,
+      "height": 1.7,
+      "distance": 40
+    },
+    {
+      "id": "lantern",
+      "box": [
+        -2.6,
+        -2.2,
+        2.6,
+        0.6
+      ],
+      "name": "Фонарь погони",
+      "across": -6.2,
+      "height": 1.8,
+      "distance": 10
+    },
+    {
+      "id": "spores",
+      "box": [
+        -12,
+        -5,
+        12,
+        0.5
+      ],
+      "name": "Споры",
+      "across": 2,
+      "height": 3,
+      "distance": 17
+    },
+    {
+      "id": "crops",
+      "box": [
+        -8,
+        -1.2,
+        8,
+        0.4
+      ],
+      "name": "Ровные колосья",
+      "across": 0,
+      "height": 0.6,
+      "distance": 3
+    },
+    {
+      "id": "fog_deep",
+      "box": [
+        -160,
+        -16,
+        160,
+        1
+      ],
+      "name": "Туман в глубине леса",
+      "across": 0,
+      "height": 10,
+      "distance": 62
+    },
+    {
+      "id": "fog_mid",
+      "box": [
+        -100,
+        -11,
+        100,
+        1
+      ],
+      "name": "Туман между деревьями",
+      "across": 0,
+      "height": 8,
+      "distance": 33
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+const S = e.state || {};
+const f = S.fire ?? 0.8;
+const t = e.t;
+const fl = 0.85 + 0.1 * Math.sin(t * 2.3) + 0.06 * Math.sin(t * 5.3 + 1) + 0.04 * Math.sin(t * 8.1);
+const F = f * fl;
+g.save();
+g.scale(1, 0.22);
+const pg = g.createRadialGradient(0, 0, 0, 0, 0, 3);
+pg.addColorStop(0, "rgba(200,110,56," + 0.4 * F + ")");
+pg.addColorStop(0.45, "rgba(140,70,40," + 0.14 * F + ")");
+pg.addColorStop(1, "rgba(80,40,30,0)");
+g.fillStyle = pg;
+g.beginPath();
+g.arc(0, 0, 3, 0, 7);
+g.fill();
+g.restore();
+g.fillStyle = "#1a1210";
+g.save();
+g.translate(0, -0.07);
+g.rotate(-0.3);
+g.fillRect(-0.32, -0.035, 0.64, 0.07);
+g.restore();
+g.save();
+g.translate(0, -0.08);
+g.rotate(0.38);
+g.fillRect(-0.3, -0.03, 0.6, 0.06);
+g.restore();
+g.save();
+g.globalCompositeOperation = "lighter";
+const cg = g.createRadialGradient(0, -0.1, 0, 0, -0.1, 0.45);
+cg.addColorStop(0, "rgba(255,170,90," + 0.6 * F + ")");
+cg.addColorStop(1, "rgba(200,80,30,0)");
+g.fillStyle = cg;
+g.save();
+g.translate(0, -0.1);
+g.scale(1, 0.5);
+g.beginPath();
+g.arc(0, 0, 0.45, 0, 7);
+g.fill();
+g.restore();
+for (let i = 0; i < 6; i++) {
+  const x = -0.2 + i * 0.08 + 0.02 * Math.sin(t * 0.9 + i * 2);
+  const h = (0.2 + 0.26 * (0.5 + 0.5 * Math.sin(t * (1.3 + i * 0.27) + i * 2))) * (0.15 + 0.95 * f);
+  const w = 0.07 + 0.02 * (i % 2);
+  const lean = 0.05 * Math.sin(t * 0.6 + i) + 0.04;
+  const fg = g.createLinearGradient(0, -0.07, 0, -0.08 - h);
+  fg.addColorStop(0, "rgba(255,175,80," + 0.55 * f + ")");
+  fg.addColorStop(0.6, "rgba(235,110,40," + 0.3 * f + ")");
+  fg.addColorStop(1, "rgba(200,70,20,0)");
+  g.fillStyle = fg;
+  g.beginPath();
+  g.moveTo(x - w, -0.06);
+  g.bezierCurveTo(x - w, -0.08 - h * 0.5, x + lean, -0.08 - h * 0.7, x + lean * 1.5, -0.08 - h);
+  g.bezierCurveTo(x + lean + w * 0.4, -0.08 - h * 0.5, x + w, -0.08 - h * 0.3, x + w, -0.06);
+  g.fill();
+}
+for (let i = 0; i < 10; i++) {
+  const r1 = e.rnd(),
+    r2 = e.rnd();
+  const life = 3 + r1 * 4;
+  const p = (t / life + r2) % 1;
+  const x = (r2 - 0.5) * 0.3 + p * p * 0.8 + 0.1 * Math.sin(t * 1.3 + i);
+  const y = -0.25 - p * 2.2;
+  const a = (1 - p) * f * (0.5 + 0.5 * Math.sin(t * 6 + i * 3));
+  g.fillStyle = "rgba(255,190,110," + a * 0.8 + ")";
+  g.beginPath();
+  g.arc(x, y, 0.012, 0, 7);
+  g.fill();
+}
+g.restore();
+for (let i = 0; i < 9; i++) {
+  const x = -0.44 + i * 0.11 + (e.rnd() - 0.5) * 0.03;
+  const r = 0.055 + e.rnd() * 0.03;
+  g.fillStyle = "#12111a";
+  g.beginPath();
+  g.ellipse(x, -0.025, r, r * 0.7, 0, 0, 7);
+  g.fill();
+  g.fillStyle = "rgba(210,120,60," + 0.3 * F + ")";
+  g.beginPath();
+  g.ellipse(x, -0.025 - r * 0.35, r * 0.65, r * 0.25, 0, Math.PI, 0);
+  g.fill();
+}
+e.light(0, -0.25, 3.5 + 3 * f, "#e08040", 0.75 * F + 0.05);

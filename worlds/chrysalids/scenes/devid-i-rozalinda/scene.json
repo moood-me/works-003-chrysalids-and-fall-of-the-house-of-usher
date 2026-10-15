@@ -1,0 +1,336 @@
+{
+  "light": {
+    "haze": 0.4,
+    "tint": "#e0b48a",
+    "grain": 0.22,
+    "vignette": 0.45,
+    "hazeColor": "#bf9a86",
+    "tintStrength": 0.08
+  },
+  "music": {
+    "bpm": 66,
+    "density": 0.25,
+    "prompts": [
+      {
+        "text": "tender solo piano, sparse and hesitant, soft felt hammers, long sustain, private longing",
+        "weight": 2
+      },
+      {
+        "text": "distant church bell tolling slowly across open fields, warm evening air",
+        "weight": 2
+      },
+      {
+        "text": "soft string quartet, muted, slow legato swells, restrained romance",
+        "weight": 2
+      },
+      {
+        "text": "village evening ambience, far-off voices, horses snorting, cart wheels on dust, swallows",
+        "weight": 1.2
+      },
+      {
+        "text": "plain hymn melody on a small reed organ heard through an open chapel door",
+        "weight": 0.6
+      },
+      {
+        "text": "solo cello, low and intimate, a held breath between phrases",
+        "weight": 0
+      },
+      {
+        "text": "glass harmonica, faint shimmering tones, secret thought made audible",
+        "weight": 0
+      },
+      {
+        "text": "wordless female voice humming far away, airy, pure",
+        "weight": 0
+      },
+      {
+        "text": "fingerpicked acoustic guitar, slow American folk, dusty and warm",
+        "weight": 0
+      },
+      {
+        "text": "lonely harmonica in the distance, prairie evening",
+        "weight": 0
+      },
+      {
+        "text": "celesta and harp, delicate, two lines that never quite meet",
+        "weight": 0
+      },
+      {
+        "text": "warm analog pads, golden hour, slow swelling",
+        "weight": 0
+      },
+      {
+        "text": "clarinet solo, soft and breathy, nostalgic 1950s pastoral",
+        "weight": 0
+      },
+      {
+        "text": "minimalist piano ostinato, two notes rocking gently, patience",
+        "weight": 0
+      },
+      {
+        "text": "Appalachian fiddle air, very slow, plaintive",
+        "weight": 0
+      },
+      {
+        "text": "austere shape-note choir, hushed, puritan hymn",
+        "weight": 0
+      },
+      {
+        "text": "string harmonics sul tasto, barely there, suspense of being watched",
+        "weight": 0
+      },
+      {
+        "text": "low drone of an organ pedal tone, solemn, unresolved",
+        "weight": 0
+      },
+      {
+        "text": "music box melody slightly out of tune, fragile memory",
+        "weight": 0
+      },
+      {
+        "text": "field recording: wind in dry grass, crickets beginning at dusk",
+        "weight": 0
+      },
+      {
+        "text": "English pastoral orchestra, Vaughan Williams style, quiet and aching",
+        "weight": 0
+      }
+    ],
+    "brightness": 0.45
+  },
+  "state": {
+    "dusk": 0.2,
+    "crowd": 1,
+    "glance": 0,
+    "thread": 0.35,
+    "someone_watching": 0
+  },
+  "title": "Дэвид и Розалинда",
+  "camera": {
+    "mode": "picture"
+  },
+  "caption": "При всех мы были чужими.",
+  "horizon": 0.62,
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Вечернее небо"
+    },
+    {
+      "x": 0.5,
+      "id": "fields",
+      "name": "Поля за площадью",
+      "depth": 700,
+      "plane": true,
+      "width": 4000,
+      "distance": 400,
+      "elevation": 0
+    },
+    {
+      "x": 0.5,
+      "id": "far_land",
+      "box": [
+        -4000,
+        -40,
+        4000,
+        40
+      ],
+      "name": "Дальние лесополосы",
+      "height": 30,
+      "distance": 900
+    },
+    {
+      "id": "trees_back",
+      "box": [
+        -110,
+        -22,
+        110,
+        4
+      ],
+      "name": "Вязы и тополя за площадью",
+      "across": 0,
+      "height": 19,
+      "distance": 80
+    },
+    {
+      "id": "square",
+      "name": "Пыльная площадь",
+      "depth": 100,
+      "plane": true,
+      "width": 300,
+      "across": 0,
+      "distance": 35,
+      "elevation": 0
+    },
+    {
+      "id": "house",
+      "box": [
+        -6,
+        -11,
+        9,
+        1
+      ],
+      "name": "Дом у площади",
+      "across": -30,
+      "height": 10,
+      "distance": 52
+    },
+    {
+      "id": "shed",
+      "box": [
+        -7,
+        -8,
+        7,
+        1
+      ],
+      "name": "Конюшня",
+      "across": 40,
+      "height": 8,
+      "distance": 46
+    },
+    {
+      "id": "church",
+      "box": [
+        -21,
+        -16,
+        8,
+        2
+      ],
+      "name": "Молитвенный дом",
+      "across": -8,
+      "height": 15.5,
+      "distance": 44
+    },
+    {
+      "id": "well",
+      "box": [
+        -7,
+        -3,
+        1.3,
+        0.8
+      ],
+      "name": "Колодец",
+      "across": 1,
+      "height": 2.8,
+      "distance": 16
+    },
+    {
+      "id": "thread",
+      "box": [
+        -8,
+        -5.5,
+        7,
+        0.5
+      ],
+      "name": "Нить мысли",
+      "across": 0,
+      "height": 4,
+      "distance": 9.4
+    },
+    {
+      "id": "motes",
+      "box": [
+        -10,
+        -6.5,
+        10,
+        0.5
+      ],
+      "name": "Пылинки в лучах",
+      "across": 0,
+      "height": 5,
+      "distance": 8
+    },
+    {
+      "x": 0.5,
+      "y": 1,
+      "id": "fore",
+      "box": [
+        -12,
+        -1,
+        12,
+        0.5
+      ],
+      "name": "Сухая трава у ног",
+      "height": 1
+    },
+    {
+      "id": "dimmer",
+      "box": [
+        -8,
+        -6,
+        8,
+        6
+      ],
+      "name": "Сумерки",
+      "across": 0,
+      "height": 2,
+      "distance": 1.2,
+      "elevation": 1.7
+    },
+    {
+      "id": "david",
+      "box": [
+        -12,
+        -2.3,
+        0.8,
+        1.2
+      ],
+      "name": "Дэвид",
+      "across": -4.2,
+      "height": 2.2,
+      "distance": 10
+    },
+    {
+      "id": "rosalind",
+      "box": [
+        -5,
+        -2.1,
+        3.2,
+        0.6
+      ],
+      "name": "Розалинда",
+      "across": 9,
+      "height": 1.8,
+      "distance": 19
+    },
+    {
+      "id": "horses",
+      "box": [
+        -12,
+        -2.3,
+        3.5,
+        0.8
+      ],
+      "name": "Лошади у коновязи",
+      "across": 24,
+      "height": 2.1,
+      "distance": 33
+    },
+    {
+      "id": "villagers",
+      "box": [
+        -20,
+        -3,
+        22,
+        1.5
+      ],
+      "name": "Прихожане",
+      "across": 0,
+      "height": 1.8,
+      "distance": 30
+    }
+  ],
+  "captions": [
+    {
+      "at": 4,
+      "for": 9,
+      "text": "Мы не смотрели друг на друга."
+    },
+    {
+      "at": 15,
+      "for": 11,
+      "text": "Наедине — только в мыслях — мы были вместе."
+    }
+  ]
+}

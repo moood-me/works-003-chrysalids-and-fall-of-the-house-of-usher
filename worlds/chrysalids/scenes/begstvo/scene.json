@@ -1,0 +1,336 @@
+{
+  "light": {
+    "haze": 0.35,
+    "tint": "#1a2a4a",
+    "grain": 0.22,
+    "vignette": 0.45,
+    "hazeColor": "#2e3f5c",
+    "tintStrength": 0.12
+  },
+  "music": {
+    "bpm": 72,
+    "density": 0.3,
+    "prompts": [
+      {
+        "text": "low pulsing strings, ostinato cellos and basses, tense but restrained, cinematic night flight",
+        "weight": 2
+      },
+      {
+        "text": "distant horse hooves on a dirt road, field-recording ambience blended with soft drone",
+        "weight": 2
+      },
+      {
+        "text": "sparse frame drum, slow heartbeat pattern, dry and close, folk ritual feel",
+        "weight": 2
+      },
+      {
+        "text": "cold wind over open fields, airy noise textures, wintry pre-dawn",
+        "weight": 1
+      },
+      {
+        "text": "solo viola melody, fragile and tender, long bow strokes, minor mode",
+        "weight": 0
+      },
+      {
+        "text": "post-apocalyptic folk lament on a lone detuned fiddle, far away",
+        "weight": 0
+      },
+      {
+        "text": "dark ambient drone, slow evolving low synth pads, vast and empty",
+        "weight": 0
+      },
+      {
+        "text": "hurdy-gurdy drone with soft bowed psaltery, rustic, ancient, slow",
+        "weight": 0
+      },
+      {
+        "text": "glass harmonica tones, shimmering and telepathic, quiet thoughts between minds",
+        "weight": 0
+      },
+      {
+        "text": "slow tension build, distant timpani rolls, pursuit approaching",
+        "weight": 0
+      },
+      {
+        "text": "minimal piano, single low notes with long decay, sorrowful, nocturnal",
+        "weight": 0
+      },
+      {
+        "text": "wordless female humming far away, lullaby fragment, warm and sad",
+        "weight": 0
+      },
+      {
+        "text": "string harmonics high and thin like breath in frost, eerie",
+        "weight": 0
+      },
+      {
+        "text": "galloping rhythm in pizzicato basses, urgent but muted, chase music",
+        "weight": 0
+      },
+      {
+        "text": "sunrise swell of soft brass and strings, hope through fear",
+        "weight": 0
+      },
+      {
+        "text": "tape-saturated ambient guitar swells, slow, melancholic",
+        "weight": 0
+      },
+      {
+        "text": "low male choir hum, solemn, forbidding, puritan hymn echo",
+        "weight": 0
+      },
+      {
+        "text": "celesta motif, childlike and fragile, slightly detuned",
+        "weight": 0
+      },
+      {
+        "text": "granular fog textures, almost silent, distant birds before dawn",
+        "weight": 0
+      },
+      {
+        "text": "bowed cymbals and scraped metal, long reverb, unease",
+        "weight": 0
+      }
+    ],
+    "brightness": 0.25
+  },
+  "state": {
+    "beat": "film",
+    "gx": 0.3,
+    "dawn": 0.1,
+    "fade": 1,
+    "mist": 0.7,
+    "david_a": -0.85,
+    "ros_bow": 0,
+    "sheba_a": -13,
+    "camera_x": 0,
+    "camera_z": 0,
+    "petra_up": 0,
+    "pursuers": 0.12,
+    "ros_face": -90,
+    "search_a": -20,
+    "pack_rest": 1,
+    "david_down": 0,
+    "david_face": 90,
+    "david_lift": 0,
+    "david_slap": 0,
+    "great_toss": 0,
+    "pack_graze": 0,
+    "petra_face": 90,
+    "petra_peek": 0,
+    "sheba_face": 90,
+    "sheba_rear": 0,
+    "sheba_toss": 0,
+    "david_climb": 0,
+    "david_raise": 0,
+    "david_slump": 0,
+    "ros_reach_d": 0,
+    "ros_reach_p": 0,
+    "search_look": 0
+  },
+  "title": "Бегство",
+  "camera": {
+    "mode": "panorama",
+    "span": [
+      -9,
+      10
+    ]
+  },
+  "horizon": 0.62,
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Небо синего часа"
+    },
+    {
+      "id": "clouds",
+      "sky": true,
+      "name": "Рваные облака"
+    },
+    {
+      "x": 0.5,
+      "id": "far_ridge",
+      "box": [
+        -3200,
+        -120,
+        3200,
+        300
+      ],
+      "name": "Дальняя гряда",
+      "height": 80,
+      "distance": 1200
+    },
+    {
+      "x": 0.5,
+      "id": "pursuers",
+      "box": [
+        -3200,
+        -140,
+        3200,
+        30
+      ],
+      "name": "Огни погони",
+      "height": 80,
+      "distance": 1190
+    },
+    {
+      "id": "forest",
+      "box": [
+        10,
+        -26,
+        260,
+        1
+      ],
+      "name": "Тёмный лес",
+      "across": 0,
+      "height": 14,
+      "distance": 48
+    },
+    {
+      "id": "mist_far",
+      "box": [
+        -160,
+        -6,
+        160,
+        1
+      ],
+      "name": "Туман в низинах",
+      "across": 0,
+      "height": 4,
+      "distance": 40
+    },
+    {
+      "id": "field",
+      "name": "Поле",
+      "color": "#151d30",
+      "depth": 76,
+      "plane": true,
+      "width": 240,
+      "across": 0,
+      "distance": 40,
+      "elevation": 0
+    },
+    {
+      "id": "hill",
+      "box": [
+        -80,
+        -3,
+        80,
+        0.4
+      ],
+      "name": "Гряда с дорогой",
+      "across": 0,
+      "height": 1.4,
+      "distance": 9
+    },
+    {
+      "id": "shoulder",
+      "box": [
+        -2,
+        -3,
+        80,
+        0.4
+      ],
+      "name": "Плечо гряды",
+      "across": 0,
+      "height": 1.4,
+      "distance": 8.85
+    },
+    {
+      "id": "mist_near",
+      "box": [
+        -60,
+        -1.5,
+        60,
+        0.4
+      ],
+      "name": "Туман в лощине",
+      "across": 0,
+      "height": 1,
+      "distance": 8
+    },
+    {
+      "id": "foreground",
+      "box": [
+        -9,
+        -1.2,
+        2,
+        0.5
+      ],
+      "name": "Бугор с бурьяном",
+      "across": -1,
+      "height": 0.8,
+      "distance": 3.2
+    },
+    {
+      "id": "grass_near",
+      "box": [
+        -14,
+        -1.3,
+        14,
+        0.6
+      ],
+      "name": "Сухая трава",
+      "across": 0,
+      "height": 1,
+      "distance": 4.5
+    },
+    {
+      "id": "mist_fg",
+      "box": [
+        -40,
+        -1.5,
+        40,
+        0.8
+      ],
+      "name": "Туман у ног",
+      "across": 0,
+      "height": 1,
+      "distance": 6
+    },
+    {
+      "id": "fugitives",
+      "box": [
+        -20,
+        -5.5,
+        16,
+        1
+      ],
+      "name": "Беглецы: Розалинда, Дэвид, Петра и кони",
+      "across": 0,
+      "height": 3,
+      "distance": 8.95
+    },
+    {
+      "id": "fog",
+      "name": "Туман в лощине за плечом гряды",
+      "box": [
+        2,
+        -4,
+        18,
+        0.6
+      ],
+      "across": 0,
+      "height": 1.4,
+      "distance": 8.9
+    },
+    {
+      "id": "searchers",
+      "box": [
+        -26,
+        -5,
+        6,
+        1
+      ],
+      "name": "Облава: двое верховых с фонарями",
+      "across": 0,
+      "height": 3,
+      "distance": 8.98
+    }
+  ],
+  "modules": [
+    "chrysalids",
+    "film"
+  ]
+}

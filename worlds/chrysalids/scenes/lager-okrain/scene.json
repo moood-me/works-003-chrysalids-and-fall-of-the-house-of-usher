@@ -1,0 +1,335 @@
+{
+  "light": {
+    "haze": 0.3,
+    "tint": "#1a2236",
+    "grain": 0.25,
+    "vignette": 0.55,
+    "hazeColor": "#1a2234",
+    "tintStrength": 0.12
+  },
+  "music": {
+    "bpm": 72,
+    "density": 0.35,
+    "prompts": [
+      {
+        "text": "slow hand drum by firelight, frame drum and soft palm strikes, loose and human, night camp",
+        "weight": 2
+      },
+      {
+        "text": "rough folk fiddle, detuned and scratchy, a lonely outcast melody played by the fire",
+        "weight": 2
+      },
+      {
+        "text": "crackling campfire and night forest ambience, crickets, distant creaking branches",
+        "weight": 1.5
+      },
+      {
+        "text": "low throat-singing drone without words, deep and steady, ancient and harsh",
+        "weight": 0
+      },
+      {
+        "text": "post-apocalyptic folk, hurdy-gurdy drone and wooden percussion, dark modal",
+        "weight": 0
+      },
+      {
+        "text": "bowed bass and cello drones, sustained, tense but warm",
+        "weight": 0
+      },
+      {
+        "text": "bone flute fragments drifting over a fire, sparse and haunting",
+        "weight": 0
+      },
+      {
+        "text": "jaw harp pulses and rattles, tribal and rough, slow tempo",
+        "weight": 0
+      },
+      {
+        "text": "distant war horn calling once through a dark forest, ominous",
+        "weight": 0
+      },
+      {
+        "text": "tense tribal drums gathering speed, alarm in the camp",
+        "weight": 0
+      },
+      {
+        "text": "dark ambient pads under a crackling fire, refuge and threat",
+        "weight": 0
+      },
+      {
+        "text": "slide guitar with heavy reverb, dusty and bitter, slow",
+        "weight": 0
+      },
+      {
+        "text": "wordless hummed lullaby by a woman, distant, tender and sad",
+        "weight": 0
+      },
+      {
+        "text": "creaking wood, rope and leather textures, slow rhythmic groan",
+        "weight": 0
+      },
+      {
+        "text": "low brass swells far away, solemn and forbidding",
+        "weight": 0
+      },
+      {
+        "text": "nyckelharpa and frame drum, Nordic dark folk, mid-tempo",
+        "weight": 0
+      },
+      {
+        "text": "wind through twisted trees, eerie whistling, granular ambient",
+        "weight": 0
+      },
+      {
+        "text": "metallic scraped percussion, scavenged junk instruments, raw",
+        "weight": 0
+      },
+      {
+        "text": "slow heartbeat sub-bass under night ambience, suspense",
+        "weight": 0
+      },
+      {
+        "text": "minimal kalimba notes, warm and wistful, like memories of childhood",
+        "weight": 0
+      }
+    ],
+    "brightness": 0.3
+  },
+  "state": {
+    "fire": 0.8,
+    "alarm": 0,
+    "people": 0.8,
+    "captives": 0,
+    "sophie_present": 1
+  },
+  "title": "Лагерь Окраин",
+  "camera": {
+    "area": [
+      -2,
+      2,
+      0,
+      7
+    ],
+    "mode": "walk"
+  },
+  "caption": "Здесь никто не спрашивал, сколько у тебя пальцев.",
+  "horizon": 0.6,
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Ночное небо"
+    },
+    {
+      "x": 0.5,
+      "id": "forest_back",
+      "box": [
+        -120,
+        -34,
+        120,
+        1
+      ],
+      "name": "Дальний лес",
+      "height": 18,
+      "distance": 42
+    },
+    {
+      "x": 0.5,
+      "id": "forest_mid",
+      "box": [
+        -70,
+        -30,
+        70,
+        1
+      ],
+      "name": "Кривые деревья у поляны",
+      "height": 16,
+      "distance": 26
+    },
+    {
+      "x": 0.5,
+      "id": "fog",
+      "box": [
+        -80,
+        -10,
+        80,
+        4
+      ],
+      "name": "Дым и туман над поляной",
+      "height": 8,
+      "distance": 24
+    },
+    {
+      "x": 0.5,
+      "id": "hut_back",
+      "box": [
+        -2.2,
+        -3.2,
+        2.2,
+        0.3
+      ],
+      "name": "Дальний шалаш",
+      "across": 2.4,
+      "height": 2.6,
+      "distance": 19
+    },
+    {
+      "x": 0.5,
+      "id": "hut_left",
+      "box": [
+        -2.2,
+        -3.2,
+        2.2,
+        0.3
+      ],
+      "name": "Шалаш слева",
+      "across": -7.6,
+      "height": 2.8,
+      "distance": 15
+    },
+    {
+      "x": 0.5,
+      "id": "pale_plants",
+      "box": [
+        -26,
+        -4,
+        26,
+        0.3
+      ],
+      "name": "Бледные растения",
+      "height": 2,
+      "distance": 19
+    },
+    {
+      "x": 0.5,
+      "id": "ground",
+      "name": "Земля поляны",
+      "color": "#0c1017",
+      "depth": 100,
+      "plane": true,
+      "width": 140,
+      "distance": 50,
+      "elevation": 0
+    },
+    {
+      "x": 0.5,
+      "id": "captives",
+      "box": [
+        -1.5,
+        -2.6,
+        1.5,
+        0.3
+      ],
+      "name": "Пленники у столба",
+      "across": -5.9,
+      "height": 2.3,
+      "distance": 11.2
+    },
+    {
+      "x": 0.5,
+      "id": "people",
+      "box": [
+        -6,
+        -3.9,
+        6,
+        0.3
+      ],
+      "name": "Люди Окраин у костра",
+      "across": -1.2,
+      "height": 2.4,
+      "distance": 10.3
+    },
+    {
+      "x": 0.5,
+      "id": "fire",
+      "box": [
+        -2.5,
+        -6.5,
+        2.5,
+        0.4
+      ],
+      "name": "Костёр",
+      "across": -1.2,
+      "height": 2,
+      "distance": 10
+    },
+    {
+      "x": 0.5,
+      "id": "smoke",
+      "box": [
+        -4,
+        -13,
+        8,
+        0
+      ],
+      "name": "Дым",
+      "across": -1.1,
+      "height": 10,
+      "distance": 10.1
+    },
+    {
+      "x": 0.5,
+      "id": "hut_right",
+      "box": [
+        -2.2,
+        -3.2,
+        2.2,
+        0.3
+      ],
+      "name": "Шалаш Софи",
+      "across": 5.6,
+      "height": 2.6,
+      "distance": 9.4
+    },
+    {
+      "x": 0.5,
+      "id": "sophie",
+      "box": [
+        -0.9,
+        -2,
+        0.9,
+        0.2
+      ],
+      "name": "Софи",
+      "across": 2.25,
+      "height": 1.7,
+      "distance": 6.6
+    },
+    {
+      "x": 0.5,
+      "id": "near_tree",
+      "box": [
+        -3,
+        -9,
+        9,
+        0.5
+      ],
+      "name": "Вздутое дерево",
+      "across": -4.8,
+      "height": 8,
+      "distance": 5.6
+    },
+    {
+      "x": 0.5,
+      "id": "foreground",
+      "box": [
+        -14,
+        -2,
+        14,
+        0.4
+      ],
+      "name": "Травы у ног",
+      "height": 1.2,
+      "distance": 4.2
+    }
+  ],
+  "directions": [
+    {
+      "key": "alarm",
+      "name": "Тревога в лагере"
+    },
+    {
+      "key": "captives",
+      "name": "Привели пленников"
+    }
+  ]
+}

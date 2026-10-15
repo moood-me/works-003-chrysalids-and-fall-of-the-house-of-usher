@@ -1,0 +1,904 @@
+{
+  "light": {
+    "haze": 0.3,
+    "tint": "#6a5a8a",
+    "grain": 0.25,
+    "vignette": 0.4,
+    "hazeColor": "#9a8696",
+    "tintStrength": 0.1
+  },
+  "music": {
+    "bpm": 66,
+    "density": 0.25,
+    "prompts": [
+      {
+        "text": "sparse solo fiddle, slow lonely air, played softly with long bow strokes, prairie dusk",
+        "weight": 2
+      },
+      {
+        "text": "hymn-like reed organ drone, sustained chords, austere Protestant church, distant",
+        "weight": 2
+      },
+      {
+        "text": "soft prairie wind ambience with faint low strings, wide empty open space",
+        "weight": 2
+      },
+      {
+        "text": "sparse fingerpicked acoustic guitar, Appalachian folk, slow and hesitant",
+        "weight": 0
+      },
+      {
+        "text": "minimal American folk, dulcimer plucked gently, evening calm with unease",
+        "weight": 0
+      },
+      {
+        "text": "low cello sustains, cold and restrained, slow harmonic tension",
+        "weight": 0
+      },
+      {
+        "text": "shaker hymn melody on harmonium, plain and severe, no ornament",
+        "weight": 0
+      },
+      {
+        "text": "distant church bell tolls, slow, with soft ambient pad",
+        "weight": 0
+      },
+      {
+        "text": "quiet banjo clawhammer, very slow, melancholic, rural 19th century",
+        "weight": 0
+      },
+      {
+        "text": "Aaron Copland style open fifths, pastoral but somber, chamber strings",
+        "weight": 0
+      },
+      {
+        "text": "solo harmonica, breathy and slow, lonely farmhouse night",
+        "weight": 0
+      },
+      {
+        "text": "dark ambient drone, uneasy undertone, slow swell, post-apocalyptic stillness",
+        "weight": 0
+      },
+      {
+        "text": "music box melody slightly detuned, childlike and fragile, sparse",
+        "weight": 0
+      },
+      {
+        "text": "string quartet chorale, slow and stern, Puritan restraint",
+        "weight": 0
+      },
+      {
+        "text": "crickets-like soft pizzicato texture, warm summer night, minimal",
+        "weight": 0
+      },
+      {
+        "text": "bowed psaltery, ethereal and eerie, slow sustained tones",
+        "weight": 0
+      },
+      {
+        "text": "lonely upright piano, single notes with long silences, dusk",
+        "weight": 0
+      },
+      {
+        "text": "Americana slowcore, slide guitar swells, desolate fields",
+        "weight": 0
+      },
+      {
+        "text": "Gregorian-like low male choir hum rendered on organ, solemn",
+        "weight": 0
+      },
+      {
+        "text": "warm low accordion drone, rustic, slow breathing bellows",
+        "weight": 0
+      }
+    ],
+    "brightness": 0.3
+  },
+  "state": {
+    "dusk": 0.5,
+    "wind": 0.4,
+    "window_lit": 1,
+    "boy_present": true
+  },
+  "title": "Ферма Стормов",
+  "camera": {
+    "area": [
+      -2,
+      2,
+      0,
+      10
+    ],
+    "mode": "walk"
+  },
+  "caption": "Здесь всё должно быть как положено.",
+  "horizon": 0.64,
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Небо"
+    },
+    {
+      "id": "birds",
+      "sky": true,
+      "name": "Птицы"
+    },
+    {
+      "x": 0.5,
+      "id": "hills",
+      "box": [
+        -3000,
+        -70,
+        3000,
+        5
+      ],
+      "name": "Дальние холмы",
+      "color": "#5a5070",
+      "height": 40,
+      "distance": 900
+    },
+    {
+      "id": "treeline",
+      "box": [
+        -800,
+        -16,
+        800,
+        2
+      ],
+      "name": "Лесополоса",
+      "color": "#4b4460",
+      "across": 0,
+      "height": 12,
+      "distance": 340
+    },
+    {
+      "id": "poplars",
+      "box": [
+        -10,
+        -19,
+        12,
+        0.5
+      ],
+      "name": "Тополя",
+      "color": "#3d3650",
+      "across": 78,
+      "height": 17,
+      "distance": 130
+    },
+    {
+      "id": "barn",
+      "box": [
+        -9,
+        -10,
+        12,
+        0.3
+      ],
+      "name": "Амбар",
+      "color": "#3a3346",
+      "across": -24,
+      "height": 9,
+      "distance": 78
+    },
+    {
+      "id": "ground",
+      "name": "Земля",
+      "color": "#383038",
+      "depth": 400,
+      "plane": true,
+      "width": 800,
+      "across": 0,
+      "distance": 200
+    },
+    {
+      "id": "wheat6",
+      "box": [
+        -110,
+        -1.5,
+        5,
+        0.3
+      ],
+      "name": "Пшеница вдали",
+      "color": "#574a50",
+      "across": 0,
+      "height": 1.1,
+      "distance": 50
+    },
+    {
+      "id": "wall",
+      "box": [
+        12,
+        -1,
+        130,
+        0.3
+      ],
+      "name": "Каменная межа",
+      "color": "#2f2a36",
+      "across": 0,
+      "height": 0.7,
+      "distance": 56
+    },
+    {
+      "id": "stooks5",
+      "box": [
+        20.5,
+        -1.4,
+        102,
+        0.2
+      ],
+      "name": "Снопы",
+      "color": "#302a36",
+      "across": 0,
+      "height": 1.1,
+      "distance": 48
+    },
+    {
+      "id": "house",
+      "box": [
+        -7,
+        -11.5,
+        7,
+        0.8
+      ],
+      "name": "Дом Джозефа Сторма",
+      "color": "#2d2837",
+      "across": 10.7,
+      "height": 10,
+      "flicker": 0.15,
+      "distance": 40
+    },
+    {
+      "id": "david",
+      "box": [
+        -0.7,
+        -1.4,
+        0.7,
+        0.1
+      ],
+      "name": "Дэвид",
+      "color": "#16121c",
+      "across": 12.85,
+      "height": 1.2,
+      "distance": 39.6,
+      "elevation": 0.3
+    },
+    {
+      "id": "well",
+      "box": [
+        -1.4,
+        -2.7,
+        1.4,
+        0.2
+      ],
+      "name": "Колодец",
+      "color": "#2a2530",
+      "across": 17.5,
+      "height": 2.4,
+      "distance": 37
+    },
+    {
+      "id": "stooks4",
+      "box": [
+        16.5,
+        -1.4,
+        72,
+        0.2
+      ],
+      "name": "Снопы",
+      "color": "#2c2632",
+      "across": 0,
+      "height": 1.1,
+      "distance": 30
+    },
+    {
+      "id": "wheat5",
+      "box": [
+        -62,
+        -1.6,
+        6.2,
+        0.3
+      ],
+      "name": "Пшеница",
+      "color": "#4f4348",
+      "across": 0,
+      "height": 1.1,
+      "distance": 30
+    },
+    {
+      "id": "stooks3",
+      "box": [
+        10,
+        -1.4,
+        57,
+        0.2
+      ],
+      "name": "Снопы",
+      "color": "#28222e",
+      "across": 0,
+      "height": 1.1,
+      "distance": 21
+    },
+    {
+      "id": "wheat4",
+      "box": [
+        -42,
+        -1.6,
+        2.6,
+        0.3
+      ],
+      "name": "Пшеница",
+      "color": "#483d43",
+      "across": 0,
+      "height": 1.1,
+      "distance": 20
+    },
+    {
+      "id": "stooks2",
+      "box": [
+        7,
+        -1.4,
+        42,
+        0.2
+      ],
+      "name": "Снопы",
+      "color": "#241f2a",
+      "across": 0,
+      "height": 1.1,
+      "distance": 14
+    },
+    {
+      "id": "wheat3",
+      "box": [
+        -28,
+        -1.6,
+        0.2,
+        0.3
+      ],
+      "name": "Пшеница",
+      "color": "#41373e",
+      "across": 0,
+      "height": 1.1,
+      "distance": 13
+    },
+    {
+      "id": "wheat2",
+      "box": [
+        -17,
+        -1.7,
+        -1.6,
+        0.3
+      ],
+      "name": "Пшеница у забора",
+      "color": "#383038",
+      "across": 0,
+      "height": 1.2,
+      "distance": 8
+    },
+    {
+      "id": "p1",
+      "box": [
+        -0.1,
+        -1.3,
+        0.1,
+        0.05
+      ],
+      "name": "Столб",
+      "color": "#28222d",
+      "across": -1.35,
+      "height": 1.2,
+      "distance": 8.3
+    },
+    {
+      "id": "p2",
+      "box": [
+        -0.1,
+        -1.3,
+        0.1,
+        0.05
+      ],
+      "name": "Столб",
+      "color": "#28222d",
+      "across": -0.2,
+      "height": 1.2,
+      "distance": 11.6
+    },
+    {
+      "id": "p3",
+      "box": [
+        -0.1,
+        -1.3,
+        0.1,
+        0.05
+      ],
+      "name": "Столб",
+      "color": "#28222d",
+      "across": 0.95,
+      "height": 1.2,
+      "distance": 14.9
+    },
+    {
+      "id": "p4",
+      "box": [
+        -0.1,
+        -1.3,
+        0.1,
+        0.05
+      ],
+      "name": "Столб",
+      "color": "#28222d",
+      "across": 2.1,
+      "height": 1.2,
+      "distance": 18.2
+    },
+    {
+      "id": "p5",
+      "box": [
+        -0.1,
+        -1.3,
+        0.1,
+        0.05
+      ],
+      "name": "Столб",
+      "color": "#28222d",
+      "across": 3.25,
+      "height": 1.2,
+      "distance": 21.5
+    },
+    {
+      "id": "p6",
+      "box": [
+        -0.1,
+        -1.3,
+        0.1,
+        0.05
+      ],
+      "name": "Столб",
+      "color": "#28222d",
+      "across": 4.4,
+      "height": 1.2,
+      "distance": 24.8
+    },
+    {
+      "id": "p7",
+      "box": [
+        -0.1,
+        -1.3,
+        0.1,
+        0.05
+      ],
+      "name": "Столб",
+      "color": "#28222d",
+      "across": 5.55,
+      "height": 1.2,
+      "distance": 28.1
+    },
+    {
+      "id": "p8",
+      "box": [
+        -0.1,
+        -1.3,
+        0.1,
+        0.05
+      ],
+      "name": "Столб",
+      "color": "#28222d",
+      "across": 6.7,
+      "height": 1.2,
+      "distance": 31.4
+    },
+    {
+      "id": "p9",
+      "box": [
+        -0.1,
+        -1.3,
+        0.1,
+        0.05
+      ],
+      "name": "Столб",
+      "color": "#28222d",
+      "across": 7.85,
+      "height": 1.2,
+      "distance": 34.7
+    },
+    {
+      "id": "p10",
+      "box": [
+        -0.1,
+        -1.3,
+        0.1,
+        0.05
+      ],
+      "name": "Столб",
+      "color": "#28222d",
+      "across": 9,
+      "height": 1.2,
+      "distance": 38
+    },
+    {
+      "id": "fireflies",
+      "box": [
+        -10,
+        -2.5,
+        10,
+        0.2
+      ],
+      "name": "Светлячки",
+      "across": 3,
+      "height": 2,
+      "distance": 14
+    },
+    {
+      "id": "smoke",
+      "box": [
+        -5,
+        -7,
+        2,
+        0.5
+      ],
+      "name": "Дым из трубы",
+      "across": 13.7,
+      "height": 6,
+      "distance": 40.2,
+      "elevation": 10.7
+    },
+    {
+      "id": "stubble",
+      "name": "Жнивьё",
+      "color": "#2f2933",
+      "depth": 26,
+      "plane": true,
+      "width": 60,
+      "across": 0,
+      "distance": 14
+    },
+    {
+      "id": "rhi1",
+      "name": "Жердь",
+      "color": "#28222d",
+      "depth": 3.5,
+      "plane": true,
+      "width": 1.45,
+      "across": -0.775,
+      "distance": 9.95,
+      "elevation": 1.05
+    },
+    {
+      "id": "rhi2",
+      "name": "Жердь",
+      "color": "#28222d",
+      "depth": 3.5,
+      "plane": true,
+      "width": 1.45,
+      "across": 0.375,
+      "distance": 13.25,
+      "elevation": 1.05
+    },
+    {
+      "id": "rhi3",
+      "name": "Жердь",
+      "color": "#28222d",
+      "depth": 3.5,
+      "plane": true,
+      "width": 1.45,
+      "across": 1.525,
+      "distance": 16.55,
+      "elevation": 1.05
+    },
+    {
+      "id": "rhi4",
+      "name": "Жердь",
+      "color": "#28222d",
+      "depth": 3.5,
+      "plane": true,
+      "width": 1.45,
+      "across": 2.675,
+      "distance": 19.85,
+      "elevation": 1.05
+    },
+    {
+      "id": "rhi5",
+      "name": "Жердь",
+      "color": "#28222d",
+      "depth": 3.5,
+      "plane": true,
+      "width": 1.45,
+      "across": 3.825,
+      "distance": 23.15,
+      "elevation": 1.05
+    },
+    {
+      "id": "rhi6",
+      "name": "Жердь",
+      "color": "#28222d",
+      "depth": 3.5,
+      "plane": true,
+      "width": 1.45,
+      "across": 4.975,
+      "distance": 26.45,
+      "elevation": 1.05
+    },
+    {
+      "id": "rhi7",
+      "name": "Жердь",
+      "color": "#28222d",
+      "depth": 3.5,
+      "plane": true,
+      "width": 1.45,
+      "across": 6.125,
+      "distance": 29.75,
+      "elevation": 1.05
+    },
+    {
+      "id": "rhi8",
+      "name": "Жердь",
+      "color": "#28222d",
+      "depth": 3.5,
+      "plane": true,
+      "width": 1.45,
+      "across": 7.275,
+      "distance": 33.05,
+      "elevation": 1.05
+    },
+    {
+      "id": "rhi9",
+      "name": "Жердь",
+      "color": "#28222d",
+      "depth": 3.5,
+      "plane": true,
+      "width": 1.45,
+      "across": 8.425,
+      "distance": 36.35,
+      "elevation": 1.05
+    },
+    {
+      "id": "rlo1",
+      "name": "Жердь",
+      "color": "#28222d",
+      "depth": 3.5,
+      "plane": true,
+      "width": 1.45,
+      "across": -0.775,
+      "distance": 9.95,
+      "elevation": 0.6
+    },
+    {
+      "id": "rlo2",
+      "name": "Жердь",
+      "color": "#28222d",
+      "depth": 3.5,
+      "plane": true,
+      "width": 1.45,
+      "across": 0.375,
+      "distance": 13.25,
+      "elevation": 0.6
+    },
+    {
+      "id": "rlo3",
+      "name": "Жердь",
+      "color": "#28222d",
+      "depth": 3.5,
+      "plane": true,
+      "width": 1.45,
+      "across": 1.525,
+      "distance": 16.55,
+      "elevation": 0.6
+    },
+    {
+      "id": "rlo4",
+      "name": "Жердь",
+      "color": "#28222d",
+      "depth": 3.5,
+      "plane": true,
+      "width": 1.45,
+      "across": 2.675,
+      "distance": 19.85,
+      "elevation": 0.6
+    },
+    {
+      "id": "rlo5",
+      "name": "Жердь",
+      "color": "#28222d",
+      "depth": 3.5,
+      "plane": true,
+      "width": 1.45,
+      "across": 3.825,
+      "distance": 23.15,
+      "elevation": 0.6
+    },
+    {
+      "id": "rlo6",
+      "name": "Жердь",
+      "color": "#28222d",
+      "depth": 3.5,
+      "plane": true,
+      "width": 1.45,
+      "across": 4.975,
+      "distance": 26.45,
+      "elevation": 0.6
+    },
+    {
+      "id": "rlo7",
+      "name": "Жердь",
+      "color": "#28222d",
+      "depth": 3.5,
+      "plane": true,
+      "width": 1.45,
+      "across": 6.125,
+      "distance": 29.75,
+      "elevation": 0.6
+    },
+    {
+      "id": "rlo8",
+      "name": "Жердь",
+      "color": "#28222d",
+      "depth": 3.5,
+      "plane": true,
+      "width": 1.45,
+      "across": 7.275,
+      "distance": 33.05,
+      "elevation": 0.6
+    },
+    {
+      "id": "rlo9",
+      "name": "Жердь",
+      "color": "#28222d",
+      "depth": 3.5,
+      "plane": true,
+      "width": 1.45,
+      "across": 8.425,
+      "distance": 36.35,
+      "elevation": 0.6
+    },
+    {
+      "id": "nwheat0",
+      "box": [
+        -3.9,
+        -1.7,
+        -0.25,
+        1.2
+      ],
+      "name": "Колосья у края",
+      "color": "#1f1a22",
+      "across": 0,
+      "height": 1.3,
+      "distance": 2.4
+    },
+    {
+      "id": "nwheat1",
+      "box": [
+        -5.1,
+        -1.7,
+        -0.6,
+        1.2
+      ],
+      "name": "Колосья у края",
+      "color": "#251f28",
+      "across": 0,
+      "height": 1.3,
+      "distance": 3.4
+    },
+    {
+      "id": "nwheat2",
+      "box": [
+        -6.5,
+        -1.7,
+        -1.2,
+        1.2
+      ],
+      "name": "Колосья у края",
+      "color": "#2b242c",
+      "across": 0,
+      "height": 1.3,
+      "distance": 4.8
+    },
+    {
+      "id": "p00",
+      "box": [
+        -0.15,
+        -1.4,
+        0.15,
+        0.05
+      ],
+      "name": "Столб",
+      "color": "#1d1820",
+      "across": -2.88,
+      "height": 1.3,
+      "distance": 3.9
+    },
+    {
+      "id": "rhiA",
+      "name": "Жердь",
+      "color": "#221d26",
+      "depth": 2.3,
+      "plane": true,
+      "width": 1.04,
+      "across": -3.25,
+      "distance": 2.85,
+      "elevation": 1.05
+    },
+    {
+      "id": "rhiB",
+      "name": "Жердь",
+      "color": "#221d26",
+      "depth": 4.6,
+      "plane": true,
+      "width": 1.83,
+      "across": -2.115,
+      "distance": 6.1,
+      "elevation": 1.05
+    },
+    {
+      "id": "rloA",
+      "name": "Жердь",
+      "color": "#221d26",
+      "depth": 2.3,
+      "plane": true,
+      "width": 1.04,
+      "across": -3.25,
+      "distance": 2.85,
+      "elevation": 0.6
+    },
+    {
+      "id": "rloB",
+      "name": "Жердь",
+      "color": "#221d26",
+      "depth": 4.6,
+      "plane": true,
+      "width": 1.83,
+      "across": -2.115,
+      "distance": 6.1,
+      "elevation": 0.6
+    },
+    {
+      "id": "tufts0",
+      "box": [
+        -2.5,
+        -0.6,
+        1.4,
+        0.1
+      ],
+      "name": "Трава у дороги",
+      "color": "#2c2530",
+      "across": 0,
+      "height": 0.4,
+      "distance": 5.5
+    },
+    {
+      "id": "tufts1",
+      "box": [
+        -1.5,
+        -0.6,
+        2.4,
+        0.1
+      ],
+      "name": "Трава у дороги",
+      "color": "#2c2530",
+      "across": 0,
+      "height": 0.4,
+      "distance": 9
+    },
+    {
+      "id": "tufts2",
+      "box": [
+        0,
+        -0.6,
+        3.7,
+        0.1
+      ],
+      "name": "Трава у дороги",
+      "color": "#2c2530",
+      "across": 0,
+      "height": 0.4,
+      "distance": 14
+    },
+    {
+      "id": "verge",
+      "name": "Обочина",
+      "color": "#3c343e",
+      "depth": 40,
+      "plane": true,
+      "width": 24,
+      "across": 4,
+      "distance": 20
+    }
+  ]
+}

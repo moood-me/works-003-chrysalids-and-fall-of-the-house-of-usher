@@ -1,0 +1,599 @@
+{
+  "light": {
+    "haze": 0.15,
+    "tint": "#20140e",
+    "grain": 0.25,
+    "vignette": 0.55,
+    "hazeColor": "#1c2640",
+    "tintStrength": 0.08,
+    "people": 0.22,
+    "ambientColor": "#6a5a6a"
+  },
+  "music": {
+    "bpm": 66,
+    "density": 0.25,
+    "prompts": [
+      {
+        "text": "slow anvil strikes far apart, ringing iron, a patient rhythm in a quiet workshop",
+        "weight": 2
+      },
+      {
+        "text": "crackling forge fire ambience, embers hissing, warm and close",
+        "weight": 2
+      },
+      {
+        "text": "a sea shanty hummed very softly on a low wheezing accordion, slow and tender",
+        "weight": 2
+      },
+      {
+        "text": "warm solo cello, long low phrases, intimate and protective",
+        "weight": 1
+      },
+      {
+        "text": "rustic folk guitar fingerpicking, slow, 19th century farmhouse at night",
+        "weight": 0
+      },
+      {
+        "text": "low drone of a pump organ, a village chapel heard from far away, stern",
+        "weight": 0
+      },
+      {
+        "text": "night crickets and a horse breathing outside, field recording blended with soft pads",
+        "weight": 0
+      },
+      {
+        "text": "old sailor's concertina waltz, slow, half-remembered, melancholic",
+        "weight": 0
+      },
+      {
+        "text": "muted fiddle playing a slow air, Scottish lament, very quiet",
+        "weight": 0
+      },
+      {
+        "text": "deep double bass pizzicato heartbeat, slow, secretive",
+        "weight": 0
+      },
+      {
+        "text": "creaking wooden barn, wind under doors, sparse low strings, unease",
+        "weight": 0
+      },
+      {
+        "text": "dulcimer hammered gently, warm notes like sparks drifting up",
+        "weight": 0
+      },
+      {
+        "text": "chamber strings in a minor key, hushed, trust and danger mixed",
+        "weight": 0
+      },
+      {
+        "text": "bellows breathing rhythm, low percussive wooden knocks, earthy",
+        "weight": 0
+      },
+      {
+        "text": "harmonium chords swelling slowly, nostalgic, candlelit",
+        "weight": 0
+      },
+      {
+        "text": "distant church bell tolling once, cold night air, suspense",
+        "weight": 0
+      },
+      {
+        "text": "slow tension pulse, low timpani far away, footsteps approaching",
+        "weight": 0
+      },
+      {
+        "text": "lullaby melody on a music box, slightly out of tune, fragile",
+        "weight": 0
+      },
+      {
+        "text": "Celtic low whistle, breathy and soft, open night sky",
+        "weight": 0
+      },
+      {
+        "text": "post-apocalyptic folk, sparse acoustic textures, worn and gentle",
+        "weight": 0
+      }
+    ],
+    "brightness": 0.3
+  },
+  "state": {
+    "beat": "film",
+    "fade": 1,
+    "camera_x": 0,
+    "camera_z": 0,
+    "fire": 0.75,
+    "sparks": 0.5,
+    "door": 1,
+    "pump": 0,
+    "ax_a": -0.56,
+    "ax_d": 4.65,
+    "ax_work": 0,
+    "ax_pace": 2,
+    "ax_blow": 0,
+    "ax_spark": 0,
+    "axel_do": "stand",
+    "axel_turn": 270,
+    "axel_look": [
+      -1.05,
+      4.62,
+      0.88
+    ],
+    "axel_with": [
+      "hammer",
+      "tongs"
+    ],
+    "dv_a": 1.3,
+    "dv_d": 4.32,
+    "dv_chat": 0,
+    "dv_glow": 0,
+    "dv_pump": 0,
+    "pump_work": 0,
+    "david_on": [
+      1.3,
+      4.32,
+      0.7
+    ],
+    "david_do": {
+      "motion": "perch",
+      "loop": true
+    },
+    "david_turn": 90,
+    "david_look": [
+      12,
+      40,
+      5
+    ],
+    "th_amp": 1,
+    "tho_a": 1.3,
+    "tho_e": 1.28,
+    "tho_d": 4.3,
+    "thi_a": 1.3,
+    "thi_e": 1.28,
+    "thi_d": 4.3,
+    "st_on": 0,
+    "st_who": "joseph",
+    "st_a": 5.8,
+    "st_d": 8.4,
+    "st_lamp": 0,
+    "st_lx": -5,
+    "st_lz": 8.4,
+    "st_drop": 0,
+    "st_glow": 1,
+    "st_lanx": 2.9,
+    "st_more": 0,
+    "joseph_here": false,
+    "joseph_wear": {
+      "hat": "hat"
+    },
+    "farmhand_wear": {
+      "hat": "hat"
+    },
+    "farmhand_here": false,
+    "joseph_lamp": 1,
+    "farmhand_lamp": 1,
+    "joseph_with": [
+      "lantern"
+    ],
+    "farmhand_with": [
+      "lantern"
+    ],
+    "joseph_turn": 270,
+    "farmhand_turn": 270,
+    "w0_a": 9.5,
+    "w0_d": 10,
+    "w1_a": 11.5,
+    "w1_d": 10.6,
+    "watch0_here": false,
+    "watch1_here": false,
+    "watch0_with": [
+      "lantern"
+    ],
+    "watch1_with": [
+      "lantern"
+    ]
+  },
+  "title": "Кузница дяди Акселя",
+  "camera": {
+    "mode": "picture"
+  },
+  "horizon": 0.52,
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Ночное небо"
+    },
+    {
+      "id": "far",
+      "box": [
+        -150,
+        -14,
+        150,
+        1
+      ],
+      "name": "Уокнук вдали",
+      "across": 0,
+      "height": 8,
+      "distance": 70
+    },
+    {
+      "id": "morton",
+      "box": [
+        -27,
+        -13,
+        27,
+        1.5
+      ],
+      "name": "Ферма Мортонов, окно Розалинды",
+      "across": 23.6,
+      "height": 11,
+      "distance": 60
+    },
+    {
+      "id": "yard",
+      "name": "Двор",
+      "color": "#1f2840",
+      "depth": 64,
+      "plane": true,
+      "width": 160,
+      "across": 0,
+      "distance": 40,
+      "elevation": 0
+    },
+    {
+      "id": "horse",
+      "box": [
+        -1.7,
+        -1.8,
+        1.4,
+        0.2
+      ],
+      "name": "Дремлющая лошадь",
+      "across": 9.6,
+      "height": 1.6,
+      "distance": 17
+    },
+    {
+      "id": "fence",
+      "box": [
+        -3.5,
+        -1.8,
+        8,
+        0.3
+      ],
+      "name": "Угол изгороди",
+      "across": 4.2,
+      "height": 1.4,
+      "distance": 12
+    },
+    {
+      "id": "floor",
+      "name": "Земляной пол",
+      "color": "#16110e",
+      "depth": 7.4,
+      "plane": true,
+      "width": 18,
+      "across": 0,
+      "distance": 4.5,
+      "elevation": 0
+    },
+    {
+      "id": "wall",
+      "box": [
+        -11,
+        -7,
+        11,
+        0.2
+      ],
+      "name": "Стена с открытыми воротами",
+      "across": 0,
+      "height": 6,
+      "distance": 7.5
+    },
+    {
+      "id": "forge",
+      "box": [
+        -2.3,
+        -7,
+        2.3,
+        0.2
+      ],
+      "name": "Горн",
+      "across": -3.8,
+      "height": 5,
+      "flicker": 0.3,
+      "distance": 6.5
+    },
+    {
+      "id": "sparks",
+      "box": [
+        -2,
+        -6,
+        2,
+        0.2
+      ],
+      "name": "Искры",
+      "across": -3.8,
+      "height": 5,
+      "distance": 6.4
+    },
+    {
+      "id": "smoke",
+      "box": [
+        -6,
+        -6,
+        6,
+        0.2
+      ],
+      "name": "Дым и пылинки",
+      "across": -2,
+      "height": 5,
+      "distance": 6
+    },
+    {
+      "id": "bench",
+      "box": [
+        -1.4,
+        -1.6,
+        1.4,
+        0.15
+      ],
+      "name": "Верстак",
+      "across": 0.2,
+      "height": 1,
+      "distance": 5.5
+    },
+    {
+      "id": "anvil",
+      "box": [
+        -0.8,
+        -1.9,
+        0.8,
+        0.15
+      ],
+      "name": "Наковальня",
+      "across": -1.1,
+      "height": 0.85,
+      "distance": 4.6
+    },
+    {
+      "id": "axel",
+      "name": "Дядя Аксель",
+      "person": {
+        "cast": "cast",
+        "who": "axel",
+        "turn": 270,
+        "gait": "limp"
+      },
+      "across": -0.56,
+      "distance": 4.65,
+      "place": {
+        "across": "ax_a",
+        "distance": "ax_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "barrel",
+      "box": [
+        -0.5,
+        -0.9,
+        0.5,
+        0.15
+      ],
+      "name": "Бочка",
+      "across": 1.3,
+      "height": 0.75,
+      "distance": 4.32
+    },
+    {
+      "id": "david",
+      "name": "Дэвид",
+      "person": {
+        "cast": "cast",
+        "who": "david",
+        "turn": 90,
+        "does": "perch"
+      },
+      "across": 1.3,
+      "distance": 4.32,
+      "place": {
+        "across": "dv_a",
+        "distance": "dv_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "dropped",
+      "box": [
+        -0.4,
+        -0.4,
+        0.4,
+        0.1
+      ],
+      "name": "Упавший фонарь во дворе",
+      "across": 2.9,
+      "height": 0.3,
+      "distance": 9.3,
+      "place": {
+        "across": "st_lanx"
+      }
+    },
+    {
+      "id": "watch0",
+      "name": "Человек с фонарём",
+      "person": {
+        "cast": "cast",
+        "who": "villager",
+        "turn": 270
+      },
+      "across": 9.5,
+      "distance": 10.0,
+      "place": {
+        "across": "w0_a",
+        "distance": "w0_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "watch1",
+      "name": "Ещё один с фонарём",
+      "person": {
+        "cast": "cast",
+        "who": "villager",
+        "turn": 270,
+        "look": {
+          "colors": {
+            "top": "#5a5244",
+            "garment": "#5a5244",
+            "hat": "#3a3228"
+          }
+        }
+      },
+      "across": 11.5,
+      "distance": 10.6,
+      "place": {
+        "across": "w1_a",
+        "distance": "w1_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "joseph",
+      "name": "Джозеф Строрм, отец Дэвида",
+      "person": {
+        "cast": "cast",
+        "who": "joseph",
+        "turn": 270
+      },
+      "across": 5.8,
+      "distance": 8.4,
+      "place": {
+        "across": "st_a",
+        "distance": "st_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "farmhand",
+      "name": "Работник Стрормов",
+      "person": {
+        "cast": "cast",
+        "who": "farmhand",
+        "turn": 270
+      },
+      "across": 5.8,
+      "distance": 8.4,
+      "place": {
+        "across": "st_a",
+        "distance": "st_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "thought_out",
+      "box": [
+        -1,
+        -1,
+        1,
+        1
+      ],
+      "name": "Мысль Дэвида",
+      "place": {
+        "across": "tho_a",
+        "distance": "tho_d",
+        "elevation": "tho_e"
+      },
+      "across": 1.3,
+      "height": 0.6,
+      "distance": 4.3,
+      "elevation": 1.28
+    },
+    {
+      "id": "thought_in",
+      "box": [
+        -1,
+        -1,
+        1,
+        1
+      ],
+      "name": "Ответ Розалинды",
+      "place": {
+        "across": "thi_a",
+        "distance": "thi_d",
+        "elevation": "thi_e"
+      },
+      "across": 1.3,
+      "height": 0.6,
+      "distance": 4.3,
+      "elevation": 1.28
+    }
+  ],
+  "modules": [
+    "cast",
+    "film"
+  ],
+  "lights": [
+    {
+      "id": "fire",
+      "of": "forge",
+      "flicker": 0.3
+    },
+    {
+      "id": "yard",
+      "across": 2.7,
+      "distance": 8.6,
+      "elevation": 2.4,
+      "color": "#8ea4d8",
+      "strength": 0.45,
+      "reach": 5.5
+    },
+    {
+      "id": "lantern",
+      "at": "joseph#hand_r",
+      "color": "#ffc46a",
+      "strength": 0.7,
+      "reach": 5,
+      "flicker": 0.15,
+      "glow": 0.25,
+      "on": "joseph_lamp"
+    },
+    {
+      "id": "lantern2",
+      "at": "farmhand#hand_r",
+      "color": "#ffc46a",
+      "strength": 0.7,
+      "reach": 5,
+      "flicker": 0.15,
+      "glow": 0.25,
+      "on": "farmhand_lamp"
+    },
+    {
+      "id": "lantern_w0",
+      "at": "watch0#hand_r",
+      "color": "#ffc46a",
+      "strength": 0.6,
+      "reach": 4,
+      "flicker": 0.15,
+      "glow": 0.22
+    },
+    {
+      "id": "lantern_w1",
+      "at": "watch1#hand_r",
+      "color": "#ffc46a",
+      "strength": 0.6,
+      "reach": 4,
+      "flicker": 0.15,
+      "glow": 0.22
+    },
+    {
+      "id": "glow",
+      "at": "david#head",
+      "color": "#c8d2ff",
+      "strength": 0.5,
+      "reach": 1.2,
+      "glow": 0.3,
+      "on": "dv_glow"
+    }
+  ]
+}

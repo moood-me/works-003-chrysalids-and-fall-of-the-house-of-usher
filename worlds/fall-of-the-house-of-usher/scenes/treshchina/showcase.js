@@ -18,7 +18,7 @@ const WALLS = [
     { title: 'III. Крышка', weight: '⚑', options: [opt('«она может быть жива»', 'chosen'), opt('«не закрывай»', 'open'), opt('промолчать', 'open')] },
     { title: 'III. Винты', weight: '⚑', options: [opt('завинтить', 'open'), opt('оставить слабо', 'chosen')] },
     { title: 'III. Звук снизу', weight: '⚑', options: [opt('спуститься', 'chosen'), opt('сказать ему', 'open'), opt('«это ветер»', 'open')] },
-    { title: 'Конец', weight: '⚑', options: [opt('Как у По', 'open'), opt('Мэдлин', 'chosen'), opt('Родерик', 'open'), opt('Оба', 'open'), opt('Остался', 'open'), opt('Уехал', 'open')] },
+    { title: 'Конец', weight: '⚑', options: [opt('Как у По', 'unseen'), opt('Мэдлин', 'chosen'), opt('Родерик', 'unseen'), opt('Оба', 'unseen'), opt('Остался', 'unseen'), opt('Уехал', 'unseen')] },
   ] } },
 ];
 const start = w => ({ ...w.state, reveal: 0, knot: 1 });

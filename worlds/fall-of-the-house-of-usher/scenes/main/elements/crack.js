@@ -14,7 +14,7 @@ L.crackPath(g); g.stroke();
 function crack(g, cr) {
   wall(g);
   g.lineJoin = "miter"; g.lineCap = "round";
-  g.strokeStyle = "rgba(126,140,150," + 0.25 * cr + ")"; g.lineWidth = 0.09;
+  g.strokeStyle = "rgba(150,164,174," + (0.3 + 0.3 * cr) + ")"; g.lineWidth = 0.1;
   g.save(); g.translate(0.14, 0); L.crackPath(g); g.stroke(); g.restore();
   g.strokeStyle = "rgba(5,7,9," + (0.1 + 0.9 * cr) + ")"; g.lineWidth = 0.08 + 0.2 * cr;
   L.crackPath(g);

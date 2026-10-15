@@ -1,16 +1,20 @@
 // What the game shows over the scene (bespoke.layer): the eye in the corner — how much the people
 // around suspect, darker the more; and the few words that come up when a scale moves or someone
-// will remember ("Группа ↑", "Софи это запомнит."). To the game's author also two tools in the
-// corner: ⏭ — skip (what is skippable now: a minigame, else the step), ☰ — every chapter and its
-// steps (and the minigames a step has, under it), to go to any of them.
-//   view.onSkip(fn) → off — fn is what ⏭ does now (the latest one, until off())
+// will remember ("Группа ↑", "Софи это запомнит."). The corner's tools: ⏸ for every player; ⏭ while there is
+// something to skip — a minigame (every player: a safety net if it glitches, not a way through) or, for the author
+// only, a step (game.js); ☰ for the author — every chapter and its steps (and the minigames a step has, under it), to
+// go to any of them.
+//   view.onSkip(fn) → off — fn is what ⏭ does now (the latest one, until off()); none — the ⏭ not shown
 //   view.author({ chapters, at() → {chapter, step}, plays(chapter, step) → [titles of its minigames], go(chapter, step,
 //     minigame) }) — the author's tools: a step to go to, or a minigame of it (its index among the step's)
-//   view.pausing(b) — ⏸ in the corner, for every player: the play paused (bespoke.pause) and going on again
+//   view.pausing(b) — ⏸ in the corner, for every player: the play paused (bespoke.pause, and the game's own sounds:
+//     sound.js pause) and going on again
 // an element of a tag and class, with text
 const el = (tag, cls, text) => Object.assign(document.createElement(tag), cls ? { className: cls } : {}, text != null ? { textContent: text } : {});
 // a line of «now»: a name and what stands by it
 const line = (name, words) => { const p = el('p'); p.append(el('b', '', name), ' — ', words); return p; };
+
+import { pause } from './sound.js';
 
 export function ui(layer) {
   const eye = document.createElement('div');
@@ -19,11 +23,16 @@ export function ui(layer) {
   eye.innerHTML = '<svg viewBox="0 0 48 28"><path d="M2 14C10 4 38 4 46 14C38 24 10 24 2 14Z"/><circle cx="24" cy="14" r="6"/></svg>';
   const toasts = document.createElement('div');
   toasts.className = 'toasts';
-  // the corner's tools: ⏸ for everyone, ⏭ and ☰ for the author
+  // the corner's tools: ⏸ for everyone, ⏭ while something can be skipped, ☰ for the author
   const tools = document.createElement('div');
   tools.className = 'tools';
   layer.append(eye, toasts, tools);
   const skips = []; // what ⏭ does, the latest last
+  // (a button is never focused: the keys are the minigames')
+  const skip = Object.assign(el('button', '', '⏭'), { type: 'button', title: 'пропустить', onclick: () => skips.at(-1)?.(), onmousedown: e => e.preventDefault() });
+  const skipShown = () => { skip.hidden = !skips.length; };
+  tools.append(skip);
+  skipShown();
   return {
     eye(level) { eye.style.setProperty('--level', Math.min(3, Math.max(0, level))); },
     toast(text, kind = 'scale') {
@@ -36,12 +45,13 @@ export function ui(layer) {
     },
     onSkip(fn) {
       skips.push(fn);
-      return () => { const i = skips.indexOf(fn); if (i >= 0) skips.splice(i, 1); };
+      skipShown();
+      return () => { const i = skips.indexOf(fn); if (i >= 0) skips.splice(i, 1); skipShown(); };
     },
     pausing(b) {
       const p = Object.assign(document.createElement('button'), { type: 'button' });
       const paint = () => { p.textContent = b.paused ? '▶' : '⏸'; p.title = b.paused ? 'дальше' : 'пауза'; tools.classList.toggle('paused', b.paused); };
-      p.onclick = () => { b.pause(!b.paused); paint(); };
+      p.onclick = () => { b.pause(!b.paused); pause(b.paused); paint(); };
       paint();
       tools.prepend(p);
     },
@@ -93,8 +103,7 @@ export function ui(layer) {
         map.replaceChildren(panel);
         map.hidden = false;
       };
-      tools.append(button('⏭', 'пропустить (мини-игру, иначе шаг)', () => skips.at(-1)?.()),
-        button('☰', 'главы и шаги', () => (map.hidden ? open() : close())));
+      tools.append(button('☰', 'главы и шаги', () => (map.hidden ? open() : close())));
       layer.append(map);
     },
   };

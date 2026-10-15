@@ -33,7 +33,7 @@ export default {
     }
     b.minigame.tricks.teach(mg, [who[0].hold], { id: 'hold' });
     const wary = 1 + start;
-    let seen = false;
+    let seen = false, quiet = 0;
     const done = await until(mg, ({ t, dt }) => {
       let most = who[0];
       for (const w of who) {
@@ -48,7 +48,9 @@ export default {
       send('lamp', 0.6 + 0.4 * most.danger);
       send('search_point', most.danger > 0.75 ? 1 : 0);
       horse?.loud(0.04 + 0.25 * most.danger, 0.5);
-      mg.plate.set({ fill: Math.min(1, (t - t0) / TIME), glow: most.danger > 0.6 ? 'bad' : 'good' });
+      // (the bar: the time the horses were kept quiet — what was done, not the time gone)
+      if (most.danger < 0.6) quiet += dt;
+      mg.plate.set({ fill: Math.min(1, quiet / TIME), glow: most.danger > 0.6 ? 'bad' : 'good' });
       return seen || t - t0 >= TIME;
     });
     if (!done) return this.skipped;

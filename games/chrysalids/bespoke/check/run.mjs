@@ -58,7 +58,7 @@ const MINIGAMES = {
   shadow: { scene: 'edge', keys: ['walkers', 'walk_u', 'walk_lit', 'walk_shade'], points: ['david'], opts: ['hard', 'onSeen'], result: ['seen'] },
 };
 // what game.js itself takes of «Нити» (it is not run here): its keys, the knots it offers
-const NITI = { keys: ['chapters', 'shown', 'reveal', 'knot', 'camera_x'], offers: Array.from({ length: 8 }, (_, i) => `k${i}#knot`) };
+const NITI = { keys: ['chapters', 'shown', 'reveal', 'knot'], offers: Array.from({ length: 8 }, (_, i) => `k${i}#knot`) };
 // the results put in: the outcomes a chapter branches on — clean, and each one's other
 const CLEAN = {};
 const OTHER = [{ podol: { hid: false } }, { dig: { cleared: 0.3, bell: true } }, { gaze: { found: false, left: 0 } }, { hymn: { hymn: 'silent', turned: 0.7 } }, { hymn: { hymn: 'loud', turned: 0.1 } },

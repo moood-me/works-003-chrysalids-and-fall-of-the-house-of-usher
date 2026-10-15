@@ -2,7 +2,7 @@
 // the player is David; chapters one after another, each a row of steps on the world's scenes; their
 // choices, the scales (suspicion, the group, Petra's strength, the path) and what people remember
 // carry from chapter to chapter. Between the chapters, the scene «Нити»: the whole play on the night sky —
-// the chapters left to right, a tree of each one's choices; the sky comes to a chapter (camera_x, moved over a second)
+// the chapters left to right, a tree of each one's choices; the sky comes to a chapter (`shown`: the scene moves it there over a second)
 // and its knot offers its words (begin it, go on, play it again); a neighbour's knot — its title: chosen, the sky goes
 // to it. In the corner, how things stand now (ui.js now). Choices are the language of mini-games' (story.js hub).
 //
@@ -34,14 +34,13 @@ import seven, { ENDINGS, epilogue } from './chapters/7.js';
 const CHAPTERS = [one, two, three, four, five, six, seven];
 const END = CHAPTERS.length; // «Нити»'s last place: how the play ended
 const NITI = SCENES.niti;
-const APART = 5; // metres between the chapters along «Нити» (its lib.SPACING): the sky at chapter i — camera_x i·APART
 const GO = 1; // s: the sky going from one chapter to the next
 const RUN = { chapter: 0, step: 0, scales: { suspicion: 0, group: 0, petra: 0, path: 0 }, marks: {}, choices: {} };
 
 export default async function (b) {
   await b.css('ui.css');
   // the language of mini-games in this game's hand: the book's serif, muted colours
-  b.minigame.style({ font: 'Georgia, "Times New Roman", serif', colors: { mark: '#efe6d2', fill: '#d9b878', good: '#a9c79a', danger: '#c8604a', fork: '#a8b4cc', ghost: 'rgba(239, 230, 210, 0.5)' } });
+  b.minigame.style({ key: 'C_MAJOR_A_MINOR', font: 'Georgia, "Times New Roman", serif', colors: { mark: '#efe6d2', fill: '#d9b878', good: '#a9c79a', danger: '#c8604a', fork: '#a8b4cc', ghost: 'rgba(239, 230, 210, 0.5)' } });
   const hub = listen(b);
   const view = ui(b.layer);
   view.pausing(b);
@@ -69,11 +68,12 @@ export default async function (b) {
   const replayOf = i => ({ ...run(kept.starts[i]), step: 0 });
 
   // «Нити»: the play on the sky, chapter `shown` in the middle; its knot offers `options`; a neighbour's knot (a chapter
-  // one may go to) — its title: chosen, the sky goes to it (camera_x, over GO s) and its knot offers what can be done
+  // one may go to) — its title: chosen, the sky goes to it (`shown`: the scene moves its sky there, over GO s) and its
+  // knot offers what can be done
   // there (go back to the main run, the next chapter, play one again); how things stand (of run r) in the corner.
   // → what was chosen: an option's id, or `chapter:i`
   async function niti(shown, options, { reveal = false, r = kept.replay ?? kept, compare = null } = {}) {
-    await b.show(NITI, { state: { chapters: sky(), shown, reveal: reveal ? 0 : 1, knot: 1, camera_x: shown * APART }, captions: false });
+    await b.show(NITI, { state: { chapters: sky(), shown, reveal: reveal ? 0 : 1, knot: 1 }, captions: false });
     if (reveal) b.set('reveal', 1, 6);
     const g = context(b, view, hub, r);
     const hideNow = view.now(now(r)), hideCompare = compare ? view.compare(compare) : () => {};
@@ -86,7 +86,6 @@ export default async function (b) {
         const picked = await g.choose(null, offers);
         if (!picked.startsWith('to:')) return picked;
         at = Number(picked.slice(3));
-        b.set('camera_x', at * APART, GO);
         b.set('shown', at);
         await g.wait(GO * 1000);
       }
@@ -117,7 +116,7 @@ export default async function (b) {
       // the end (of the main run): how it ended, years later; then the first chapter again — a replay, the main run
       // kept — or any chapter
       const ending = ENDINGS.find(e => e.id === kept.marks.ending);
-      await b.show(NITI, { state: { chapters: sky(), shown: END, reveal: 1, knot: 0.6, camera_x: END * APART }, captions: false });
+      await b.show(NITI, { state: { chapters: sky(), shown: END, reveal: 1, knot: 0.6 }, captions: false });
       await epilogue(context(b, view, hub, kept), ending?.id);
       const next = await niti(END, [{ id: 'again', label: 'Сыграть сначала' }]);
       straight = true;

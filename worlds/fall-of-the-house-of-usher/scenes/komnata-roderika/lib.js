@@ -96,9 +96,9 @@ const BEFORE_HER = [-2.6, 9.3],
 // the camera on top of the picture: [x, z, h, look]
 const WIDE = [0, 0, 0, 0],
   PORTRAIT = [-1.6, 2.6, 0.1, -0.1], // he below her, from his feet up to her
-  PLAYING = [0.25, 2.0, -0.3, 0.02], // in on him with the guitar, the candles and his friend in the frame
-  SINGING = [0.2, 2.6, -0.25, 0], // and a little closer as he sings
-  LISTENING = [2.3, 4.0, 0.1, 0.02]; // in on the back wall right, where he listens at night
+  PLAYING = [0.25, 1.6, 0.0, 0.04], // in on him with the guitar, the candles and his friend in the frame
+  SINGING = [0.2, 2.1, 0.0, 0.03], // and a little closer as he sings
+  LISTENING = [2.6, 5.6, 0.1, 0.02]; // in on the back wall right, where he listens at night
 const shot = ([x, z, h, look]) => ({ camera_x: x, camera_z: z, camera_h: h, camera_look: look });
 // the camera moved there over `over` seconds (all four together: one action — the last)
 const cam = (s, [x, z, h, look], over, ease = "inOut") => {
@@ -150,8 +150,8 @@ const MET = {
   roderick_a: MEET[0], roderick_d: MEET[1], roderick_turn: toward(...MEET, ...GUEST), roderick_look: "narrator", roderick_reach: { r: "narrator#hand_r", l: "narrator#hand_r" },
   narrator_a: GUEST[0], narrator_d: GUEST[1], narrator_turn: 260, narrator_reach: { r: HANDS },
 };
-// his eyes up past the window, singing
-const UP = [CHAIR[0], CHAIR[1] + 2.5, 4.2];
+// his eyes up, singing — over the room toward us (his face to the eye, lifted)
+const UP = [CHAIR[0], CHAIR[1] - 2.5, 3.6];
 // his hand runs on over the strings: `strokes` more, over `over` seconds (from wherever it is)
 const strum = (s, strokes, over, ease = "linear") => s.move("strum", (+s.get("strum") || 0) + strokes, { over, ease });
 

@@ -60,10 +60,10 @@ st_more; мысли — th_amp, tho_*, thi_* (элементы thought_out, thou
     "night_anne": { "after": [], "tells": [], "seconds": 9 },
     "night_anne_end": { "after": ["night_anne"], "tells": [], "seconds": 13 },
     "key": { "after": [], "tells": [], "seconds": 6 },
-    "stranger": { "after": ["key"], "tells": [], "seconds": 8 },
+    "stranger": { "after": ["key"], "tells": ["stranger:stop"], "seconds": 8 },
     "stranger_go": { "after": ["stranger"], "tells": [], "seconds": 6 },
     "caught": { "after": ["stranger"], "tells": [], "seconds": 9 },
-    "strike": { "after": ["stranger"], "tells": [], "seconds": 10 }
+    "strike": { "after": ["stranger"], "tells": ["strike:step"], "seconds": 10 }
   },
   "tells": ["ax:hit"],
   "points": ["pump#handle", "axel#hand_l", "anvil#iron", "david", "axel", "joseph", "farmhand"],

@@ -608,6 +608,7 @@ const FILM = {
       await s.wait(1.2);
       david.look(FIRE);
       await comes;
+      s.tell('stranger:stop'); // (he stops in the gate, the lantern up)
       await s.person('farmhand').turn(180);
       lantern(s, AT_ANVIL, 1);
       await s.wait(1.8);
@@ -694,6 +695,7 @@ const FILM = {
       await s.wait(0.4);
       axel.reach(null);
       axel.look(JOSG);
+      s.tell('strike:step'); // (Axel steps to the gate)
       await walk(s, 'axel', [[1.7, 5.05], [2.45, 7.25]], 30);
       lantern(s, [2.45, 7.25]);
       await axel.do('raise_hammer');

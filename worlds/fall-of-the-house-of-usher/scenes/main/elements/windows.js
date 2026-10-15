@@ -2,7 +2,7 @@
 // door_r, hinged at the jambs: `door` 0…1 swings them in — its animate), the hall behind them; the lit upper window (a
 // layer: the lamp, its glow "lamp" — dimmed by the gloom in its animate).
 const L = e.lib, S = e.state || {}, lt = L.light(S), [dx, dt, dw, dh] = L.DOOR;
-L.windows(g, L.colours(lt));
+L.windows(g, L.colours());
 e.layer("door_l", { pivot: [dx - dw / 2, dt + dh] }, (g) => L.doorLeaf(g, -1));
 e.layer("door_r", { pivot: [dx + dw / 2, dt + dh] }, (g) => L.doorLeaf(g, 1));
 if (lt.lamp > 0.01) e.layer("lamp", {}, (g) => {

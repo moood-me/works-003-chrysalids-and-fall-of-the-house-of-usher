@@ -1,5 +1,5 @@
 {
-  "engine": 2,
+  "engine": 3,
   "title": "Падение дома",
   "caption": "Кроваво-красная луна вспыхнула в трещине — и тёмные воды пруда сомкнулись над домом Ашеров.",
   "captions": [
@@ -20,11 +20,11 @@
     }
   ],
   "light": {
-    "ambientColor": "#5a4a58",
+    "ambient": 0.85,
+    "ambientColor": "#a49cae",
     "grain": 0.3,
     "haze": 0.08,
     "hazeColor": "#2e333d",
-    "people": 0.3,
     "vignette": 0.6,
     "wind": [
       1,
@@ -32,6 +32,16 @@
       0.3
     ],
     "looks": {
+      "moon": {
+        "ambientColor": "#bf9a9e",
+        "tint": "#4a1410",
+        "tintStrength": 0.12
+      },
+      "morning": {
+        "ambient": 1,
+        "ambientColor": "#c4c8cc",
+        "tintStrength": 0
+      },
       "storm": {
         "wind": [
           1.5,
@@ -50,7 +60,7 @@
       ],
       "color": "#d0402c",
       "on": "moon",
-      "strength": 1.1
+      "strength": 1.4
     },
     {
       "id": "glow",
@@ -541,7 +551,7 @@
   "states": {
     "beat": {
       "type": "string",
-      "means": "кусок фильма (модуль beats): имя — он играется с начала, в конце сцена говорит beat:<имя>. Куски: prologue, run, dash, stumble, ashore, end_alone, end_madeline, end_roderick, end_both, end_stayed, gone"
+      "means": "кусок фильма (модуль beats): имя — он играется с начала, в конце сцена говорит beat:<имя>. Куски: prologue, run, dash, stumble, ashore, end_alone, end_madeline, end_roderick, end_both, end_stayed, gone; моменты — gone:morning"
     },
     "fall": {
       "range": [
@@ -804,6 +814,7 @@
         "text": "Deep tam-tam swells and scraped cymbals, metallic shimmer",
         "weight": 0
       }
-    ]
+    ],
+    "scale": "A_MAJOR_G_FLAT_MINOR"
   }
 }

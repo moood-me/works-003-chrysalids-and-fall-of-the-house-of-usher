@@ -28,7 +28,8 @@ left on the neck.
 
 - Sitting, the room: `sit_down`, `seated` (loop), `rise`, `sit_hands` (loop), `read_seated` (loop), `take_guitar`,
   `play_guitar` (loop), `lay_guitar`, `rock` (loop), `ease`, `tremble`, `talk`, `flinch`, `weep`, `lean_in`,
-  `straighten`, `take_hand`, `bow`, `still`.
+  `straighten`, `take_hand`, `bow`, `still`; `keep_time` (once, 1.2 s: standing, the right palm slaps the thigh — keeping time
+  to his guitar; done again at each beat).
 - Madeline: `sleepwalk` (gait), `sway`, `stagger`, `lean_fall`; the end: `catch_step`, `sink_kneel`, `kneel_slow`,
   `kneel_hold`, `kneel_down`, `kneel`.
 - The lamp: `lamp_walk` (gait), `lamp_stand`, `lamp_put`.

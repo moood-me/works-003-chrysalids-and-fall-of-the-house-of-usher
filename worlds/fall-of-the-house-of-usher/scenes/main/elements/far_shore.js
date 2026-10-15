@@ -1,5 +1,5 @@
 // The far shore behind the house: a low dark bank with dry grass and bare trees (the tarn mirrors it).
-const lt = e.lib.light(e.state || {}), ink = e.lib.tone(lt, "#252d35", "#59636a");
+const ink = e.lib.paint("#59636a");
 const rn = (i) => { const s = Math.sin(i * 91.7 + 17.3) * 43758.5453; return s - Math.floor(s); };
 function tree(x, h, sd) {
   let c = 0;

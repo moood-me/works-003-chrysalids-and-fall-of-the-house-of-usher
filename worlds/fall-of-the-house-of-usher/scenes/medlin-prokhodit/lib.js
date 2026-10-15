@@ -559,6 +559,8 @@ const FILM = {
       const step = mad.walk([[1.75, 24.25]]);
       await s.until(() => s.state.madeline_a >= HALF[0]);
       mad.still(true);
+      // (stopped still mid-step: the game's line from here)
+      s.tell("freeze:still");
       step.cancel();
       s.move("camera_z", 18.3, { over: 2.4, ease: "inOut" });
       await s.wait(2);

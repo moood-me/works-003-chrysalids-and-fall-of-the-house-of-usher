@@ -1,7 +1,7 @@
 // The two dead trees standing in the water off the near shore, left and right of the causeway: a seeded recursion of
 // tapering branches — each tree a layer that leans a little on its own in the still air (its animate).
 const rn = (i) => { const s = Math.sin(i * 45.17 + 7.9) * 43758.5453; return s - Math.floor(s); };
-const L = e.lib, lt = L.light(e.state || {});
+const L = e.lib;
 let c = 0;
 const R = () => rn(c++);
 function seg(g, x, y, x2, y2, w, w2, bend) {
@@ -29,18 +29,18 @@ function br(g, x, y, a, len, w, d, bias) {
     br(g, x2, y2, na, len * (0.58 + R() * 0.22), w2, d - 1, bias);
   }
 }
-// a tree at x (m): its scale, seed, lean (rad), trunk length and width, which way its branches bias, its colours
+// a tree at x (m): its scale, seed, lean (rad), trunk length and width, which way its branches bias, its colour
 function tree(name, x, scale, seed, lean, len, w, bias, col) {
   e.layer(name, { pivot: [x, 0.3] }, (g) => {
     c = seed;
     g.translate(x, 0.3);
     g.scale(scale, scale);
-    g.fillStyle = L.tone(lt, col[0], col[1]);
+    g.fillStyle = L.paint(col);
     br(g, 0, 0, -Math.PI / 2 + lean, len, w, 9, bias);
     g.beginPath(); g.ellipse(0, -0.05, w, w * 0.36, 0, 0, 7); g.fill();
   });
 }
-tree("left", -10, 1.09, 0, 0.06, 2.5, 0.42, 0.05, ["#10151a", "#262c30"]);
-tree("right", 9.2, 0.92, 777, -0.08, 2.8, 0.48, -0.05, ["#11161b", "#272d31"]);
+tree("left", -10, 1.09, 0, 0.06, 2.5, 0.42, 0.05, "#262c30");
+tree("right", 9.2, 0.92, 777, -0.08, 2.8, 0.48, -0.05, "#272d31");
 // where the trees are pressed (a game offering them): the left one, where its trunk forks
 e.at(-10.28, -2.41);

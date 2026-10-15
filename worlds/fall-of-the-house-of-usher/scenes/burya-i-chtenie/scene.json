@@ -1,5 +1,5 @@
 {
-  "engine": 2,
+  "engine": 3,
   "title": "Буря и чтение",
   "caption": "Мне почудилось, что откуда-то из самой глубины дома донёсся тот самый звук, о котором я только что читал.",
   "horizon": 0.45,
@@ -843,7 +843,7 @@
   "states": {
     "beat": {
       "type": "string",
-      "means": "кусок фильма (модуль beats): имя — он играется с начала, в конце сцена говорит beat:<имя>. Куски: night, lamp_pass, enter_lamp, window_open, window_close, watch, read, confess, door_opens, hands, collapse, flee, stay"
+      "means": "кусок фильма (модуль beats): имя — он играется с начала, в конце сцена говорит beat:<имя>. Куски: night, lamp_pass, enter_lamp, window_open, window_close, watch, read, confess, door_opens, hands, collapse, flee, stay; моменты — enter_lamp:close, confess:close, door_opens:out"
     },
     "candle": {
       "range": [
@@ -1266,6 +1266,7 @@
         "text": "Hurdy-gurdy drone, archaic and haunted",
         "weight": 0
       }
-    ]
+    ],
+    "scale": "A_MAJOR_G_FLAT_MINOR"
   }
 }

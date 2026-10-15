@@ -1,5 +1,5 @@
 {
-  "engine": 2,
+  "engine": 3,
   "title": "Мэдлин проходит",
   "caption": "Она медленно прошла в глубине галереи и скрылась, не заметив меня.",
   "horizon": 0.56,
@@ -1284,7 +1284,7 @@
   "states": {
     "beat": {
       "type": "string",
-      "means": "кусок фильма (модуль beats): имя — он играется с начала, в конце сцена говорит beat:<имя>. Куски: pass, weep, follow, freeze, wake, look, gone, stay, doctor, beside, doctor_leaves, leave_with"
+      "means": "кусок фильма (модуль beats): имя — он играется с начала, в конце сцена говорит beat:<имя>. Куски: pass, weep, follow, freeze, wake, look, gone, stay, doctor, beside, doctor_leaves, leave_with; моменты — freeze:still, stay:talk"
     },
     "crack": {
       "range": [
@@ -4713,6 +4713,7 @@
         "text": "icy reversed piano swells, ghostly atmosphere",
         "weight": 0
       }
-    ]
+    ],
+    "scale": "A_MAJOR_G_FLAT_MINOR"
   }
 }

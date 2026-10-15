@@ -1,5 +1,5 @@
 {
-  "engine": 2,
+  "engine": 3,
   "title": "Подъезд к дому",
   "caption": "Я не знаю, отчего, но при первом взгляде на дом невыносимая тоска овладела моей душой.",
   "horizon": 0.5,
@@ -20,11 +20,13 @@
     "tint": "#1f2e36",
     "tintStrength": 0.12,
     "vignette": 0.55,
-    "people": 0.3,
-    "ambientColor": "#8d99a2",
+    "ambient": 1,
+    "ambientColor": "#8f9ba6",
+    "hazeGlow": 0.5,
     "looks": {
       "day": {
-        "people": 0.65
+        "ambientColor": "#e2e5e6",
+        "tintStrength": 0.05
       },
       "gloom": {
         "brightness": 0.78,
@@ -32,8 +34,7 @@
         "haze": 0.2,
         "tintStrength": 0.2
       }
-    },
-    "hazeGlow": 0.5
+    }
   },
   "lights": [
     {
@@ -94,12 +95,14 @@
     "narrator_d": 10,
     "roderick_here": false,
     "roderick_a": -0.35,
-    "roderick_d": 81.95
+    "roderick_d": 81.95,
+    "lead_a": 0.15,
+    "lead_d": 80
   },
   "states": {
     "beat": {
       "type": "string",
-      "means": "кусок фильма (модуль beats): arrive, look, trace, tarn, to_door, walk_out, walk, walk_on, breathe, to_shore, turn_back, morning, ride_away; по концу сцена говорит beat:<имя>"
+      "means": "кусок фильма (модуль beats): arrive, look, trace, tarn, to_door, walk_out, walk, walk_on, breathe, to_shore, turn_back, morning, ride_away; по концу сцена говорит beat:<имя>; моменты — walk_out:door, breathe:close, morning:toss"
     },
     "closeup": {
       "range": [
@@ -137,7 +140,7 @@
         0,
         1
       ],
-      "means": "серый день (глава II: 1; утро главы III: 0.75); 0 — сумерки"
+      "means": "серый день (глава II: 1; утро главы III: 0.75); 0 — сумерки. Взгляд света day; небо пишет своё"
     },
     "door": {
       "range": [
@@ -152,7 +155,7 @@
         0,
         1
       ],
-      "means": "сумерки (0.4 — глава I)"
+      "means": "сумерки на небе (0.4 — глава I): небо пишет их само; свет сумерек — свет сцены"
     },
     "follow": {
       "type": "boolean",
@@ -236,6 +239,14 @@
       "type": "number",
       "smooth": true,
       "means": "куда обращён конь, градусы: 0 — к нам, 90 — вправо, 180 — от нас"
+    },
+    "lead_a": {
+      "type": "number",
+      "means": "точка lead — на гати перед рассказчиком, к нам (куда тянут их руки): метры вправо; ставит сцена"
+    },
+    "lead_d": {
+      "type": "number",
+      "means": "точка lead: метры вперёд; ставит сцена"
     }
   },
   "objects": [
@@ -304,7 +315,8 @@
         -7.6,
         4,
         0.5
-      ]
+      ],
+      "glows": true
     },
     {
       "id": "windows",
@@ -525,6 +537,25 @@
       ]
     },
     {
+      "id": "lead",
+      "name": "Перед ними на гати",
+      "unseen": true,
+      "across": 0.15,
+      "distance": 80,
+      "elevation": 1.0,
+      "height": 0.2,
+      "box": [
+        -0.1,
+        -0.1,
+        0.1,
+        0.1
+      ],
+      "place": {
+        "across": "lead_a",
+        "distance": "lead_d"
+      }
+    },
+    {
       "id": "closeup",
       "name": "Крупный план",
       "insert": "closeup"
@@ -621,6 +652,7 @@
         "text": "slow minor-key string orchestra swell, tragic and restrained",
         "weight": 0
       }
-    ]
+    ],
+    "scale": "A_MAJOR_G_FLAT_MINOR"
   }
 }

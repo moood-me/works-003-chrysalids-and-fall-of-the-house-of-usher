@@ -1,9 +1,11 @@
 // Падение дома — the end of the house of Usher over the black tarn: what its elements paint and move, the causeway's
-// line and the run along it, and its film in beats (film(scene), at the end). A painted scene (its art is its light:
-// the red moon behind the house, its glow on the clouds, the water, the walls' rims; the people alone are lit, by the
-// lights). Everything is painted once; what changes with the moon (moon 0.55 … 1) is a second painting of the same
-// thing in the full red, shown over the first as far as `moon` says; what moves — the halves of the house parting,
-// leaning, sinking, the clouds, the mist, the rings — moves by layers, shaders and particles.
+// line and the run along it, and its film in beats (film(scene), at the end). The sky — the red moon behind the house,
+// its glow on the clouds, the far shore, the water — is the sky's own painting (pale, and a second one in the full red
+// shown over it as far as `moon` says); what stands in the world (the house, the causeway, the shore, the sedge, the
+// mist) is painted once in its own colours and lit by the scene: the night's ambient, the red moon and its glow from
+// behind the house (their look `moon` reddens the night), the fissure's and the windows' red glows, the breach; the
+// morning is a look too. What moves — the halves of the house parting, leaning, sinking, the clouds, the mist, the
+// rings — moves by layers, shaders and particles.
 const { clamp } = anim;
 const sm = (a, b, x) => { const u = clamp((x - a) / (b - a), 0, 1); return u * u * (3 - 2 * u); };
 const H = (n) => { const x = Math.sin(n * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
@@ -11,6 +13,8 @@ const mixc = (a, b, k) => [a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k, a
 const C = (c, a) => `rgba(${Math.round(c[0])},${Math.round(c[1])},${Math.round(c[2])},${a})`;
 const N = (v) => (v === true ? 1 : v === false ? 0 : clamp(+v || 0, 0, 1));
 const mornOf = (s) => N(s.morning);
+// how much lighter than the night's paint what stands in the world is painted (its own colours: the night is the light's)
+const DAY = 2.6;
 
 // ── the causeway and the run ──
 // the causeway: from the house's left wing (149 m) to the near shore; across (m) at a distance d (m)
@@ -183,19 +187,20 @@ function skyMotion(e) {
 }
 
 // ── the house (150 m off, 75 wide, 50 high; its foot on the water): two halves split along the fissure F, each a
-// layer — its stone (`L`, `R`), its moonlit rims and windows (`Lr`, `Rr`: shown as far as `moon`), the fissure's red
-// glow on its edge (`Lc`, `Rc`, added light) — that part, lean outward and sink as `fall` goes (the animate); seen
-// only above the water (clip: above_tarn). Its reflection is house_mirror ──
+// layer — its stone (`L`, `R`), the fissure's red glow on its edge (`Lc`, `Rc`, added light: the fissure's lights, and
+// the red of the moon seen through its tall windows — their glows) — that part, lean outward and sink as `fall` goes
+// (the animate); seen only above the water (clip: above_tarn). Its reflection is house_mirror ──
 const F = [[0, -50], [0.3, -41], [0.6, -36.5], [2.6, -33.5], [1.6, -29.5], [-1.4, -27.5], [-0.6, -23], [2.2, -21], [1, -16.5],
   [-1.8, -14.5], [-0.8, -10], [2, -8], [0.8, -4], [-0.6, -2], [0.4, 0.5]];
 const fx = (y) => {
   for (let i = 1; i < F.length; i++) if (y <= F[i][1]) { const a = F[i - 1], b = F[i], k = (y - a[1]) / (b[1] - a[1]); return a[0] + (b[0] - a[0]) * k; }
   return 0.4;
 };
-// the house as painted: K — its palette's brightness (1, or the reflection's dark 0.42); red — paint only what the moon
-// lights (the rims along its roofs, the red in its windows), at full; else only the stone
-function housePaint(g, K, red) {
-  const c = (r, gg, b, a) => `rgba(${Math.round(r * K)},${Math.round(gg * K)},${Math.round(b * K)},${a == null ? 1 : a})`;
+// the house as painted: K — its palette's brightness (DAY, or the reflection's dark: 0.42 of it); red — the reflection's
+// moonlit rims and windows (the water shows the red the moon lays on them: a painted reflection), as bright as `glow`;
+// else only the stone
+function housePaint(g, K, red, glow = 1) {
+  const c = (r, gg, b, a) => `rgba(${Math.min(255, Math.round(r * K))},${Math.min(255, Math.round(gg * K))},${Math.min(255, Math.round(b * K))},${a == null ? 1 : a})`;
   const archPath = (x, y, w, h) => {
     g.moveTo(x - w / 2, y);
     g.lineTo(x - w / 2, y - h + w * 0.8);
@@ -225,11 +230,11 @@ function housePaint(g, K, red) {
       g.fillRect(sx, y0, 0.5 + 1.2 * H(x0 + i * 7), (y1 - y0) * (0.4 + 0.6 * H(i + x0 * 5)));
     }
   };
-  const win = (x, y, w, h, glow) => {
+  const win = (x, y, w, h, lit) => {
     if (red) {
       const gr = g.createLinearGradient(0, y - h, 0, y);
       gr.addColorStop(0, 'rgba(140,36,28,0)');
-      gr.addColorStop(1, `rgba(150,40,30,${glow * K})`);
+      gr.addColorStop(1, `rgba(150,40,30,${lit * glow})`);
       g.fillStyle = gr;
       g.beginPath(); archPath(x, y, w * 0.8, h * 0.9); g.fill();
       return;
@@ -240,7 +245,7 @@ function housePaint(g, K, red) {
     g.fillRect(x - w * 0.4, y, w * 0.8, 2);
   };
   const fill = (col, path) => { if (red) return; g.fillStyle = col; g.beginPath(); path(); g.fill(); };
-  const rim = (path) => { if (!red) return; g.strokeStyle = `rgba(205,70,48,${0.45 * K})`; g.lineWidth = 0.35; g.beginPath(); path(); g.stroke(); };
+  const rim = (path) => { if (!red) return; g.strokeStyle = `rgba(205,70,48,${0.45 * glow})`; g.lineWidth = 0.35; g.beginPath(); path(); g.stroke(); };
   if (!red) { g.fillStyle = c(20, 22, 27); g.fillRect(-37.5, -2.4, 75, 2.9); }
   for (let sd = -1; sd <= 1; sd += 2) {
     const x0 = sd * 16, x1 = sd * 30;
@@ -304,31 +309,36 @@ function crackPaint(g, al) {
     g.stroke();
   }
 }
-// one half's three layers — stone, rims, glow — each turning about its outer corner (the pivot); oy — where the water
-// line is in the painting (the reflection's 56 m down), flip — upside down
-function halves(e, K, flip, oy, ghosts) {
+// the tall windows the red moon is seen through: [x, y] of their middles on either half, how strong their glows
+const MOONLIT = [[10.5, -17, 0.3], [33.5, -15, 0.14], [2, -20, 0.15]];
+// one half's layers — stone, (in the reflection: its rims), glow — each turning about its outer corner (the pivot); oy —
+// where the water line is in the painting (the reflection's 56 m down), flip — upside down (the reflection, darker)
+function halves(e, flip, oy, ghosts) {
   for (const sd of [-1, 1]) {
     // (each layer's box as far as it goes down — or up, in the reflection — as the half sinks: none of it carried past it)
     const n = sd < 0 ? 'L' : 'R', pivot = [sd * 37, oy], box = flip ? [-60, oy - 56, 60, 1] : [-60, -56, 60, 58];
     const under = (g, fn) => { g.save(); g.translate(0, oy); if (flip) g.scale(1, -1); halfClip(g, sd); fn(g); g.restore(); };
-    e.layer(n, { pivot, box }, (g) => under(g, (g) => housePaint(g, K, false)));
-    e.layer(n + 'r', { pivot, box }, (g) => under(g, (g) => housePaint(g, K, true)));
+    e.layer(n, { pivot, box }, (g) => under(g, (g) => housePaint(g, flip ? 0.42 * DAY : DAY, false)));
+    if (flip) e.layer(n + 'r', { pivot, box }, (g) => under(g, (g) => housePaint(g, 0.42 * DAY, true, 0.42)));
     if (ghosts && sd > 0) e.layer('ghosts', { pivot, box }, (g) => under(g, ghosts));
     e.layer(n + 'c', { pivot, box, blend: 'add' }, (g) => under(g, (g) => {
-      crackPaint(g, K < 1 ? 0.55 : 1);
-      // (its red light: on the house's right half, where the fissure is widest)
-      if (K === 1 && sd > 0) { e.light(1.5, -30, 9, '#c8321e', 0.3, 'crack1'); e.light(0, -15, 9, '#c8321e', 0.3, 'crack2'); e.light(0.5, -3, 8, '#c8321e', 0.25, 'crack3'); }
+      crackPaint(g, flip ? 0.55 : 1);
+      if (flip) return;
+      // (its red light: on the house's right half, where the fissure is widest; the moon's red through the tall windows of
+      // both halves — their glows)
+      if (sd > 0) { e.light(1.5, -30, 9, '#c8321e', 0.3, 'crack1'); e.light(0, -15, 9, '#c8321e', 0.3, 'crack2'); e.light(0.5, -3, 8, '#c8321e', 0.25, 'crack3'); }
+      MOONLIT.forEach(([x, y, k], i) => e.light(sd * x, y, 3.2, '#b8402c', k, `win${n}${i}`));
     }));
   }
 }
-function house(g, e) { clear(g, e); halves(e, 1, false, 0, null); }
+function house(g, e) { clear(g, e); halves(e, false, 0, null); }
 // the reflection: the same house upside down in the dark water (its card's top is the water line: its anchor 56 m
 // under the water, so what it paints is where the mirror shows it), the ripples breaking it; in the right hall window
 // — in the reflection only — the vision of the three of them (ghosts: the ushers module's figures, larger than life)
 const MIRROR = 56;
 function houseMirror(g, e) {
   clear(g, e);
-  halves(e, 0.42, true, -MIRROR, (g) => {
+  halves(e, true, -MIRROR, (g) => {
     // (painted upright, then turned with the half: in the reflection they hang upside down)
     g.save();
     g.translate(10.5, -12);
@@ -365,12 +375,14 @@ function houseMotion(e, flip) {
   const glow = mo * (0.78 + 0.22 * Math.sin(e.t * 1.7) * Math.sin(e.t * 0.63)) * A.glow;
   for (const sd of [-1, 1]) {
     const n = sd < 0 ? 'L' : 'R', x = (sd * A.cw) / 2, y = d * (sd < 0 ? A.sinkL : A.sinkR), r = d * sd * A.lean;
-    for (const k of [n, n + 'r', n + 'c'].concat(flip && sd > 0 ? ['ghosts'] : [])) {
+    for (const k of [n, n + 'c'].concat(flip ? [n + 'r'] : [], flip && sd > 0 ? ['ghosts'] : [])) {
       const L = e.layer(k);
       L.x = x; L.y = y; L.rotate = r;
     }
-    e.layer(n + 'r').alpha = mo;
+    if (flip) e.layer(n + 'r').alpha = mo;
     e.layer(n + 'c').alpha = glow;
+    // (the moon through the windows: as red as it is, gone as the half goes under)
+    if (!flip) MOONLIT.forEach((_, i) => e.glow(`win${n}${i}`, mo * (1 - sm(0.5, 0.8, f))));
   }
   if (flip) e.layer('ghosts').alpha = N(s.ghosts);
   else for (const k of ['crack1', 'crack2', 'crack3']) e.glow(k, f < 0.9 ? glow : 0);
@@ -380,10 +392,11 @@ function houseMotion(e, flip) {
 function aboveTarn(g, e) { g.fillStyle = '#000'; g.fillRect(-90, -100, 180, 100); }
 function belowTarn(g, e) { g.fillStyle = '#000'; g.fillRect(-90, -MIRROR - 4, 180, MIRROR + 4); }
 
-// ── the mist over the tarn: long banks drifting (wrapping round its card); paler and thicker in the morning ──
+// ── the mist over the tarn: long banks drifting (wrapping round its card), in its own pale colour (the night and the
+// morning are the light's); thicker in the morning ──
 function mist(g, e) {
   clear(g, e);
-  const mn = mornOf(e.state), col = [70 + 80 * mn, 64 + 86 * mn, 72 + 82 * mn].map(Math.round).join(','), a = 0.22 + 0.14 * mn;
+  const mn = mornOf(e.state), col = '172,166,178', a = 0.22 + 0.14 * mn;
   e.layer('banks', { drift: [0.5, 0] }, (g) => {
     for (let i = 0; i < 12; i++) {
       const r1 = Math.sin(i * 91.7) * 0.5 + 0.5, x = ((i * 31) % 360) - 180, y = -2 - 3 * r1, w = 26 + 20 * r1, h = 3 + 2.5 * r1;
@@ -402,45 +415,35 @@ function mist(g, e) {
   });
 }
 
-// ── the old causeway (a plane 146 m long, seen from above: y −73 at the house, +73 at the near shore): its boards, as the
-// moon at 0 and at 1 paints them (`boards`, `boardsR`), and what is left beyond the break (`sunk`: slabs askew, posts) —
-// its shader shows the boards from the break to the shore, the sunk beyond it, and the hot crack running ahead of it ──
-function boards(g, e, red) {
-  const mn = mornOf(e.state);
-  g.fillStyle = C([18, 20, 24].map((c) => c + (46 - c) * mn), 1);
+// ── the old causeway (a plane 146 m long, seen from above: y −73 at the house, +73 at the near shore): its wet boards
+// (`boards`) and what is left beyond the break (`sunk`: slabs askew, posts) — its shader shows the boards from the break
+// to the shore, the sunk beyond it, and the hot crack running ahead of it ──
+function boards(g) {
+  g.fillStyle = C([18, 20, 24].map((c) => c * DAY), 1);
   g.fillRect(-0.8, -73, 1.6, 146);
+  // (the planks' worn middle, paler)
   const gr = g.createLinearGradient(0, -73, 0, 73);
-  gr.addColorStop(0, `rgba(170,60,46,${0.5 * red})`);
-  gr.addColorStop(0.6, `rgba(150,54,44,${0.4 * red})`);
-  gr.addColorStop(1, `rgba(110,44,40,${0.22 * red})`);
+  gr.addColorStop(0, 'rgba(96,92,96,0.35)');
+  gr.addColorStop(1, 'rgba(96,92,96,0.15)');
   g.fillStyle = gr;
   g.fillRect(-0.55, -73, 1.1, 146);
   g.fillStyle = 'rgba(8,9,11,0.35)';
   for (let y = -73, i = 0; y < 73; i++) { g.fillRect(-0.8, y, 1.6, 0.16); y += 1.0 + 0.7 * H(i + 40); }
-  g.fillStyle = `rgba(220,96,70,${0.22 * red})`;
-  for (let i = 0; i < 46; i++) {
-    const y = -73 + H(i + 700) * 146, x = (H(i + 701) - 0.5) * 0.7, w = 0.15 + 0.35 * H(i + 702);
-    g.fillRect(x - w / 2, y, w, 0.6 + 1.8 * H(i + 703));
-  }
   g.fillStyle = '#08090b';
   g.fillRect(-0.8, -73, 0.2, 146);
   g.fillRect(0.6, -73, 0.2, 146);
 }
 function causeway(g, e) {
-  const s = e.state, mn = mornOf(s);
   clear(g, e);
-  e.layer('boards', {}, (g) => boards(g, e, 0));
-  e.layer('boardsR', {}, (g) => boards(g, e, 1 - mn));
+  e.layer('boards', {}, (g) => boards(g));
   e.layer('sunk', {}, (g) => {
     for (let i = 0; i < 40; i++) {
       const y = -73 + H(i + 300) * 146, w = 0.5 + 0.7 * H(i + 301), h = 0.6 + 1.4 * H(i + 302);
       g.save();
       g.translate((H(i + 303) - 0.5) * 1.4, y);
       g.rotate((H(i + 304) - 0.5) * 1.4);
-      g.fillStyle = `rgba(14,15,19,${0.35 + 0.4 * H(i + 305)})`;
+      g.fillStyle = `rgba(36,38,46,${0.35 + 0.4 * H(i + 305)})`;
       g.fillRect(-w / 2, -h / 2, w, h);
-      g.fillStyle = `rgba(170,60,46,${0.18 * (1 - mn) * H(i + 306)})`;
-      g.fillRect(-w / 2, -h / 2, w * 0.6, h);
       g.restore();
     }
     g.fillStyle = '#08090b';
@@ -460,12 +463,13 @@ function clear(g, e) {
   g.fillRect(l, t, r - l, b - t);
 }
 
-// ── the near shore (a plane: its middle 6 m off, 7 m deep): wet black earth to the water line, which catches the red;
-// puddles holding the sky; the causeway's end comes ashore through a gap left in it ──
+// ── the near shore (a plane: its middle 6 m off, 7 m deep): wet dark earth to the water line, which holds the sky's red
+// (what the wet edge and the puddles show of the sky is painted: the engine mirrors no sky); the causeway's end comes
+// ashore through a gap left in it ──
 function shore(g, e) {
   const s = e.state, mo = s.moon == null ? 1 : N(s.moon), mn = mornOf(s), MID = 6;
   const edge = (x) => MID - SHORE + 0.3 * Math.sin(x * 0.7) + 0.18 * Math.sin(x * 1.9 + 1) - 0.5 * Math.exp(-Math.pow((x - across(SHORE)) / 2.2, 2));
-  const earth = mixc([13, 13, 16], [40, 42, 44], mn);
+  const earth = [13, 13, 16].map((c) => c * DAY);
   g.beginPath();
   g.moveTo(-18, 3.5);
   for (let x = -18; x <= 18.01; x += 0.25) g.lineTo(x, edge(x));
@@ -485,7 +489,7 @@ function shore(g, e) {
   }
   for (let i = 0; i < 70; i++) {
     const x = -18 + H(i + 10) * 36, y = edge(x) + 0.6 + H(i + 11) * 3.6;
-    g.fillStyle = C(mixc([6, 7, 9], [24, 26, 28], mn), 0.6);
+    g.fillStyle = C([6, 7, 9].map((c) => c * DAY), 0.6);
     g.beginPath(); g.ellipse(x, y, 0.2 + 0.5 * H(i + 12), 0.15 + 0.3 * H(i + 13), H(i + 14) * 3, 0, 6.283); g.fill();
   }
   for (let i = 0; i < 9; i++) {
@@ -507,11 +511,10 @@ function shore(g, e) {
 }
 
 // ── sedge along the near shore's water line, in clumps either side of where they stand: each clump a layer bending in
-// the wind (the storm's look blows harder); the tips catch the red ──
+// the wind (the storm's look blows harder) ──
 function reeds(g, e) {
   clear(g, e);
-  const s = e.state, mo = s.moon == null ? 1 : N(s.moon), mn = mornOf(s);
-  const dark = C([8, 9, 11].map((c) => c + (36 - c) * mn), 1);
+  const dark = C([8, 9, 11].map((c) => c * DAY), 1);
   g.lineCap = 'round';
   for (let c = 0; c < 16; c++) {
     const side = c % 2 ? 1 : -1, cx = side * (side < 0 ? 5.5 : 3.2) + side * H(c + 1) * 15, n = 8 + Math.floor(H(c + 2) * 12);
@@ -525,9 +528,6 @@ function reeds(g, e) {
         g.quadraticCurveTo(x + w * 0.5 + bend * 0.3, -h * 0.6, x + w, 0.05);
         g.closePath();
         g.fill();
-        g.strokeStyle = `rgba(190,60,44,${0.35 * mo * (1 - mn)})`;
-        g.lineWidth = 0.02;
-        g.beginPath(); g.moveTo(x + bend * 0.55, -h * 0.75); g.lineTo(x + bend, -h); g.stroke();
       }
     });
   }
@@ -562,7 +562,8 @@ function ringsMotion(e) {
 // ── the run: where everyone is from where the narrator is (his place: the game's `run` sends him on at his own pace —
 // script.js): Madeline at his right hand, Roderick at his left, a stride behind, their hands in his; one stumbling
 // (`trip`) drops back and lets go. The camera goes back before them along the causeway (the narrator 12 m away at
-// first, 9 m at the end) and stands on the shore. ──
+// first, 9 m at the end) and stands on the shore: camOf(d) — where it is for the narrator at d (moved there over time,
+// as he runs: script.js). ──
 const soft = (x, k) => k * Math.log1p(Math.exp(x / k));
 const within = (x, lo, hi, k) => lo + soft(x - lo, k) - soft(x - hi, k);
 const BEHIND_M = 0.8, BEHIND_R = 0.95, ASIDE = 0.45;
@@ -571,8 +572,11 @@ const toward = ([a, d], [a2, d2]) => (Math.atan2(a2 - a, d2 - d) * 180) / Math.P
 const RUNNING = toward([across(20), 20], [across(10), 10]);
 function around(d, trip, md, rd) {
   const dm = d + BEHIND_M + (md ? 0.7 * trip : 0), dr = d + BEHIND_R + (!md && rd ? 0.7 * trip : 0);
+  return { mad_a: across(dm) - ASIDE, mad_d: dm, rod_a: across(dr) + ASIDE, rod_d: dr };
+}
+function camOf(d) {
   const cz = within(d - 9 - (3 * (d - runAt(1))) / (runAt(0) - runAt(1)), 0, 82, 3);
-  return { mad_a: across(dm) - ASIDE, mad_d: dm, rod_a: across(dr) + ASIDE, rod_d: dr, camera_z: cz, camera_x: across(14 + cz) - across(14) };
+  return { camera_z: cz, camera_x: across(14 + cz) - across(14) };
 }
 // their hands: in his while they run (the one stumbling lets go, and takes it again as they are up)
 function holding(trip, md, rd) {
@@ -606,7 +610,7 @@ function film(scene) {
     return {
       ...night, fade: 1, fall: 0.15, storm: 0.75, narrator_here: true, madeline_here: md, roderick_here: rd, running: true, run: r,
       narrator_turn: RUNNING, madeline_turn: RUNNING, roderick_turn: RUNNING, narrator_gait: 'flee', madeline_gait: 'flee', roderick_gait: 'flee',
-      nar_a: across(d) + 0.05, nar_d: d, ...around(d, 0, md, rd), ...holding(0, md, rd),
+      nar_a: across(d) + 0.05, nar_d: d, ...around(d, 0, md, rd), ...camOf(d), ...holding(0, md, rd),
     };
   };
   // an ending: the last of the house going under, them on the near shore
@@ -811,7 +815,7 @@ function film(scene) {
 }
 
 return {
-  film, SHOWCASE, N, across, SHORE, runAt, runOf, breakAt, fallOf, sm, around, holding,
+  film, SHOWCASE, N, across, SHORE, runAt, runOf, breakAt, fallOf, sm, around, camOf, holding,
   sky, skyMotion, house, houseMirror, houseMotion, aboveTarn, belowTarn, mist, causeway, causewayMotion, clear, shore, reeds,
   breach, breachMotion, ringsMotion,
 };

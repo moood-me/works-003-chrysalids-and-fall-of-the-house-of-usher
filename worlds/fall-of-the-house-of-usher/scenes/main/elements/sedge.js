@@ -1,6 +1,6 @@
 // Sedge at the water's edge, right of the causeway's start: tufts in groups, each group a layer the wind bends.
 const rn = (i) => { const s = Math.sin(i * 63.7 + 1.3) * 43758.5453; return s - Math.floor(s); };
-const col = e.lib.tone(e.lib.light(e.state || {}), "#0c1014", "#1f2528");
+const col = e.lib.paint("#1f2528");
 const groups = new Map();
 for (let i = 0; i < 60; i++) {
   const cx = -9 + rn(i) * 18;

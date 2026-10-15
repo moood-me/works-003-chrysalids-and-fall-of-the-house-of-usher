@@ -173,7 +173,7 @@ const tack = face => kit.chrysalids.horse.tack('horse', face, HORSE.kind);
 // while it is open; its paintings are laid out in their own
 // units (as when the iris was 0.46 of the frame's height round the stage's middle), `k` of the stage's, the point
 // (ox, oy) of them in the iris's middle
-const CU = { x: 1.05, y: 0.3, r: 0.25, k: 0.25 / 0.46, ox: -0.2, oy: -0.09 };
+const CU = { x: 1.05, y: 0.37, r: 0.24, k: 0.24 / 0.46, ox: -0.2, oy: -0.09 }; // (its top under the language's plate)
 const cuFrame = q => { q.translate(CU.x - CU.k * CU.ox, CU.y - CU.k * CU.oy); q.scale(CU.k, CU.k); };
 const cuAt = (x, y) => [CU.x + CU.k * (x - CU.ox), CU.y + CU.k * (y - CU.oy)];
 const cuBox = (x0, y0, x1, y1) => [...cuAt(x0, y0), ...cuAt(x1, y1)];

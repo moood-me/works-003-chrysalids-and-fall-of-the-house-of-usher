@@ -380,12 +380,15 @@ const FILM = {
       await s.wait(1.3);
       await s.move('arrow', 1, { over: 0.45, ease: 'linear' });
       s.set('arrow', 0);
+      // (out of the saddle where his horse stands — his own place set there first: off it he would be wherever his keys
+      // last were — then forward, off the track onto the ridge's near face, before the shoulder's card: seen lying)
+      s.set('searcher_a', s.state.h1_a);
+      s.set('searcher_d', D);
       sr.on(null);
       sr.with(null);
       s.move('lamp', 0, { over: 1.2 });
       s.tell('kill:shot'); // (he falls — forward, down the near side of the crest: seen lying there)
       const falls = sr.do('collapse');
-      // (out of the saddle forward, off the track onto the ridge's near face — before the shoulder's card: seen lying)
       s.move('searcher_d', D - 0.75, { over: 0.9, ease: 'out' });
       await s.wait(0.3);
       await turnHorse(s, 'horse1', 270, 0.6);

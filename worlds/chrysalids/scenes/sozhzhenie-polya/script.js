@@ -32,7 +32,7 @@ function turned() {
       P(m.id).turn(on ? (m.face + half * 0.7 + 360) % 360 : m.face);
       P(m.id).look(on ? 'dv' : L.TORCH);
       if (on) P(m.id).do('stand');
-      else if (s.get('beat') && /hymn/.test(s.get('beat'))) P(m.id).do('sing_stand', { loop: true });
+      else if (s.get('beat') && /hymn/.test(s.get('beat'))) P(m.id).do(m.shade ? 'sing_stand' : 'sing_book', { loop: true });
     });
   });
 }

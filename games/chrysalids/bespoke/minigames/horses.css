@@ -1,0 +1,10 @@
+/* «Тише, кони» (horses.js): over each head in the fog a breath-mark that warms as the horse frets;
+   the hand where it rests on a neck (rough — moving too fast). */
+#layer .veil-light.horses-fret { width: 70px; height: 70px; border: 1.5px solid rgba(190, 204, 230, 0.5);
+  background: radial-gradient(circle, rgba(190, 204, 230, 0.12), rgba(190, 204, 230, 0) 70%); transition: border-color 0.5s ease; }
+#layer .veil-light.horses-fret.hot { border-color: rgba(255, 196, 130, 0.85); animation: horses-fret 0.5s ease-in-out infinite alternate;
+  background: radial-gradient(circle, rgba(255, 196, 130, 0.22), rgba(255, 196, 130, 0) 70%); }
+@keyframes horses-fret { to { border-width: 3px; } }
+#layer .veil-light.horses-hand { width: 70px; height: 70px;
+  background: radial-gradient(circle, rgba(255, 236, 206, 0.5), rgba(255, 228, 190, 0.16) 45%, rgba(255, 228, 190, 0) 70%); }
+#layer .veil-light.horses-hand.rough { background: radial-gradient(circle, rgba(255, 150, 110, 0.6), rgba(255, 150, 110, 0) 70%); }

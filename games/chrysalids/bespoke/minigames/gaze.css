@@ -1,0 +1,8 @@
+/* Найди раньше него (gaze.js): the dim yard, clear where one looks; what is seen, in a few words. */
+#layer .mg-gaze { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; cursor: crosshair; animation: mg-gaze-in 2s ease; transition: opacity 1.4s ease; }
+#layer .mg-gaze-notes { position: absolute; inset: 0; pointer-events: none; transition: opacity 1.4s ease; }
+#layer .mg-gaze-notes p { position: absolute; margin: 0; transform: translate(-50%, -100%); white-space: nowrap; padding: 3px 10px; border-radius: 9px;
+  background: rgba(8, 10, 16, 0.6); color: #efe6d2; font: italic 14px/1.3 Georgia, 'Times New Roman', serif; opacity: 0.85; animation: mg-gaze-in 0.8s ease; }
+#layer .mg-gaze-notes p.wrong { color: #ffd9a0; opacity: 1; }
+#layer .mg-gaze.gone, #layer .mg-gaze-notes.gone { opacity: 0; pointer-events: none; }
+@keyframes mg-gaze-in { from { opacity: 0; } }

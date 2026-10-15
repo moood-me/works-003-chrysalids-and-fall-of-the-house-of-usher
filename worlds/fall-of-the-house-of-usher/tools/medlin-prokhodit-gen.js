@@ -95,8 +95,6 @@ const spec = {
     cu_inhale: { range: [0, 1], smooth: true, means: "лицо крупно: глубокий вдох (0→1→0)" },
     cu_blink: { range: [0, 1], smooth: true, means: "лицо крупно: моргание вручную (0 — моргает само, если не застыла)" },
     speak: { range: [0, 1], means: "губы на крупном плане шевелятся: игра ставит 1, пока говорит реплику, потом 0" },
-    doctor_present: { range: [0, 1], means: "игра ставит при открытии: 1 — глава II, врач (свет и люди ставит кусок doctor)" },
-    madeline: { range: [0, 1], means: "игра ставит при открытии: 0 — Мэдлин нет (люди ставит кусок)" },
   },
   objects,
   modules: ["cast", "beats", "closeups"],

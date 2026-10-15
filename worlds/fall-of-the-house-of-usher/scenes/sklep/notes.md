@@ -1,4 +1,4 @@
-# Склеп (движок 2)
+# Склеп (движок 3)
 
 Глава III. Гроб вносят в склеп под домом, открывают, смотрят на неё, закрывают, завинчивают; её глазами — изнутри;
 железная дверь закрывается. Другой ночью — снаружи у этой двери, стук. Перенос сцены мира v1 (тот же `sklep`) на движок 2.
@@ -67,11 +67,11 @@
 
 ## Что поменялось против v1 (для игры)
 - Точки винтов: были элементы `screw1…4` (пустые карточки на месте винтов) — теперь точки вставки `closeup#screw1…4`:
-  «Винты» зовёт `b.where('closeup#screw1')`.
+  на них стоят метки «Винтов».
 - `shot: ''|'inside'|'outside'` — теперь отдельные вставки: `shot` выбирает только крупный план модуля (`closeup` 1).
 - Куска `vault` нет в игре (он и раньше был только в монтаже), `film` → показ (`showcase.js`); `beat` — те же имена.
 - `open`: её лицо — когда крышку сдвинули в темпе Родерика (≈ 5 с от начала куска, как и было ≈ 5.5); сцена говорит
-  `shot:face` (`scene.tell`) в миг склейки — игре лучше ждать этого, а не 5.8 с.
+  `open:face` (`scene.tell`) в миг склейки — игра ждёт этого, а не секунд.
 
 ## Элементы для выбора
 - `madeline`, `roderick`, `coffin`, `lid` — после `open`/`touch`/`mirror` (склеп у гроба, крышка сдвинута).
@@ -107,3 +107,158 @@
 Подобрано по листам против v1 (настроение — холодный сине-зелёный свод, маленький тёплый факел; не жёлтая пещера во
 тьме): `ambient` 0.12 → 0.65, `ambientColor` `#4f6f86` → `#7fa3b4`, `hazeColor` `#1a272d` → `#27404a`, факел (`fire`,
 `holder`) `strength` 1.2 → 1.0. Оба несущих гроб видны (в прежнем свете Родерик у изголовья тонул в темноте).
+
+## Движок 3 (v3, 2026-10-15)
+
+- `"engine": 3`, шейдеры `inside.wgsl`, `outside.wgsl`. Крупные планы `touch`, `mirror`, `check` — склейкой, сказанной в
+  начале куска (секунда до неё); `screws` начинается склейкой (`after: []`): игра называет его в `beat_next` (ключ модуля
+  `beats`), и склейка готова заранее; так же `inside` после винтов или после `insist`. Назад из крупного плана — ключом
+  `closeup` (вставка закрывается).
+- Моменты: `open:face` (было `shot:face`), `touch:hand`, `mirror:up`.
+- Точки игры: `closeup#screw1…4` (винты в средних 4:3: модуль closeups), `closeup#leave` (между винтами — «оставить»),
+  `outside#door` (створка — «Стук»), `outside#away` (проход — «Уйти»); выборы — `madeline`, `roderick`, `door`.
+
+## Контракт для проверки
+
+```json
+{
+  "beats": {
+    "vault": {
+      "after": [],
+      "tells": [],
+      "seconds": 4,
+      "show": false
+    },
+    "enter": {
+      "after": [],
+      "tells": [],
+      "seconds": 22
+    },
+    "open": {
+      "after": [
+        "enter"
+      ],
+      "tells": [
+        "open:face"
+      ],
+      "seconds": 12
+    },
+    "touch": {
+      "after": [
+        "open",
+        "mirror"
+      ],
+      "tells": [
+        "touch:hand"
+      ],
+      "seconds": 6.5
+    },
+    "mirror": {
+      "after": [
+        "open",
+        "touch"
+      ],
+      "tells": [
+        "mirror:up"
+      ],
+      "seconds": 6.5
+    },
+    "say": {
+      "after": [
+        "open",
+        "touch",
+        "mirror"
+      ],
+      "tells": [],
+      "seconds": 5
+    },
+    "shut": {
+      "after": [
+        "say"
+      ],
+      "tells": [],
+      "seconds": 9
+    },
+    "insist": {
+      "after": [
+        "open",
+        "touch",
+        "mirror"
+      ],
+      "tells": [],
+      "seconds": 7.5
+    },
+    "close": {
+      "after": [
+        "open",
+        "touch",
+        "mirror"
+      ],
+      "tells": [],
+      "seconds": 8
+    },
+    "screws": {
+      "after": [],
+      "tells": [],
+      "seconds": 1.4
+    },
+    "check": {
+      "after": [
+        "screws"
+      ],
+      "tells": [],
+      "seconds": 6
+    },
+    "inside": {
+      "after": [],
+      "tells": [],
+      "seconds": 10.5
+    },
+    "leave": {
+      "after": [],
+      "tells": [],
+      "seconds": 13
+    },
+    "door_close": {
+      "after": [
+        "leave"
+      ],
+      "tells": [],
+      "seconds": 4.5
+    },
+    "at_door": {
+      "after": [],
+      "tells": [],
+      "seconds": 3
+    },
+    "knock": {
+      "after": [
+        "at_door"
+      ],
+      "tells": [],
+      "seconds": 8,
+      "show": false
+    }
+  },
+  "points": [
+    "closeup#screw1",
+    "closeup#screw2",
+    "closeup#screw3",
+    "closeup#screw4",
+    "closeup#leave",
+    "outside#door",
+    "outside#away"
+  ],
+  "offers": [
+    "madeline",
+    "roderick",
+    "door"
+  ],
+  "party": {
+    "crack": 0.1
+  },
+  "speakers": [
+    "roderick"
+  ]
+}
+```

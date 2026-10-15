@@ -1,4 +1,4 @@
-# Комната Родерика — движок 2
+# Комната Родерика — движок 3
 
 Главы I–III. Игра играет куски по одному (ключ `beat` = имя; кончился — сцена говорит `beat:<имя>`; модуль мира
 `beats`); вне игры — свой показ (`showcase.js`): все куски по порядку `lib.js ORDER`, склейки готовятся заранее. Куски —
@@ -82,3 +82,144 @@
 ночь `night_listen`, баллада), `hazeGlow` 0.5 → 0.8 (ореол свечей), взгляд `window_dusk`: `ambient` 0.6 → 0.8,
 `ambientColor` `#b89a9c` → `#a8a0b4` (вечер холодный, не бурый). Холод окон сильнее — им и освещена ночь: взгляд `window_day`
 `ambient` 0.85 → 1.0, свет `window` `strength` 0.5 → 1.0, `sky_day` 1.6 → 2.0. Светлее v1: ночью двое у стены видны.
+
+## Движок 3 (v3, 2026-10-15)
+
+- `"engine": 3`, шейдеры `candles.wgsl`, `fissure.wgsl`. Склейки в крупный план и из него — начала кусков: `meet`, `room`,
+  `plan` начинаются склейкой (`after: []`, всё в `from`), модуль `beats` готовит её заранее, пока идёт кусок перед ними.
+- Моменты: `meet:lips`, `news:lips` (губы на крупном плане — реплика игры), `portrait:before`, `night_listen:beside`
+  (друг встал рядом у стены).
+- Точки игры: `candles@`, `window#glass`, `clock#dial`, `portrait#face` («Тише или светлее»), `roderick#hand_r` (знак доли —
+  его удары по струнам) и `narrator#hand_r` («Струна»: на каждое касание рассказчик отбивает ладонью по бедру — движение
+  каста `keep_time`).
+
+## Контракт для проверки
+
+```json
+{
+  "beats": {
+    "enter": {
+      "after": [],
+      "tells": [],
+      "seconds": 16
+    },
+    "meet": {
+      "after": [],
+      "tells": [
+        "meet:lips"
+      ],
+      "seconds": 7
+    },
+    "room": {
+      "after": [],
+      "tells": [],
+      "seconds": 6
+    },
+    "flinch": {
+      "after": [
+        "room",
+        "flinch",
+        "ease"
+      ],
+      "tells": [],
+      "seconds": 3
+    },
+    "ease": {
+      "after": [
+        "room",
+        "flinch",
+        "ease"
+      ],
+      "tells": [],
+      "seconds": 3
+    },
+    "portrait": {
+      "after": [
+        "room",
+        "flinch",
+        "ease"
+      ],
+      "tells": [
+        "portrait:before"
+      ],
+      "seconds": 10
+    },
+    "turn_away": {
+      "after": [
+        "portrait"
+      ],
+      "tells": [],
+      "seconds": 7
+    },
+    "dusk": {
+      "after": [],
+      "tells": [],
+      "seconds": 4
+    },
+    "guitar": {
+      "after": [
+        "dusk"
+      ],
+      "tells": [],
+      "seconds": 8
+    },
+    "frenzy": {
+      "after": [
+        "guitar"
+      ],
+      "tells": [],
+      "seconds": 16,
+      "show": false
+    },
+    "ballad": {
+      "after": [
+        "guitar",
+        "frenzy"
+      ],
+      "tells": [],
+      "seconds": 10
+    },
+    "guitar_down": {
+      "after": [
+        "ballad"
+      ],
+      "tells": [],
+      "seconds": 5
+    },
+    "news": {
+      "after": [],
+      "tells": [
+        "news:lips"
+      ],
+      "seconds": 9
+    },
+    "plan": {
+      "after": [],
+      "tells": [],
+      "seconds": 8
+    },
+    "night_listen": {
+      "after": [],
+      "tells": [
+        "night_listen:beside"
+      ],
+      "seconds": 9
+    }
+  },
+  "points": [
+    "candles@",
+    "window#glass",
+    "clock#dial",
+    "portrait#face",
+    "roderick#hand_r",
+    "narrator#hand_r"
+  ],
+  "offers": [],
+  "party": {
+    "crack": 0.1
+  },
+  "speakers": [
+    "roderick"
+  ]
+}
+```

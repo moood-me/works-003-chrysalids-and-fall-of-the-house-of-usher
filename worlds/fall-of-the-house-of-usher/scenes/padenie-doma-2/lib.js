@@ -649,6 +649,8 @@ function film(scene) {
         await s.wait(2);
         s.move('moon', 1, { over: 3.5, ease: 'inOut' });
         await s.wait(3);
+        // (the fissure opening: the house splits — the game's roar from here)
+        s.sequence(async (q) => { await q.wait(4 * 0.75); q.tell('prologue:split'); });
         await s.move('fall', 0.3, { over: 4, ease: 'in' });
         await s.move('fall', 0.55, { over: 3.5, ease: 'inOut' });
         await s.move('fall', 0.88, { over: 5.5, ease: 'inOut' });
@@ -703,6 +705,8 @@ function film(scene) {
           await q.move('fall', 0.52, { over: 4.6, ease: 'inOut' });
           await q.move('fall', 0.9, { over: 6, ease: 'inOut' });
           await q.move('fall', 1, { over: 2, ease: 'out' });
+          // (the tarn closed over it: the game's last line from here)
+          q.tell('end_alone:under');
           await q.move('storm', 0.45, { over: 2, ease: 'inOut' });
         });
         await nar.walk(OFF_WAY);
@@ -727,6 +731,8 @@ function film(scene) {
         await s.wait(1.5);
         await mad.walk([[-0.8, 8.4], MAD_WATER]);
         await mad.turn(2);
+        // (she at the very water: the game's line from here)
+        s.tell('end_madeline:water');
         await s.wait(0.5);
         await nar.walk([NAR_BESIDE]);
         nar.look('madeline');
@@ -758,6 +764,8 @@ function film(scene) {
         await s.wait(2.5);
         await nar.walk([NAR_BEHIND]);
         nar.look('roderick');
+        // (he come up behind him: the game's line from here)
+        s.tell('end_roderick:behind');
         await house;
       },
     },
@@ -780,6 +788,8 @@ function film(scene) {
         rod.look('madeline');
         await s.wait(1);
         nar.look('roderick#hand_r');
+        // (his eyes on their hands: the game's line from here)
+        s.tell('end_both:hands');
         await house;
       },
     },
@@ -797,6 +807,8 @@ function film(scene) {
         await s.wait(3);
         s.move('ghosts', 0, { over: 1.5, ease: 'in' });
         await s.move('fall', 1, { over: 6.5, ease: 'inOut' });
+        // (the tarn closed: the game's line from here)
+        s.tell('end_stayed:under');
         await s.move('storm', 0.45, { over: 2, ease: 'inOut' });
       },
     },

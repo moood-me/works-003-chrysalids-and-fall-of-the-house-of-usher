@@ -1,0 +1,687 @@
+{
+  "engine": 3,
+  "title": "Подъезд к дому",
+  "caption": "Я не знаю, отчего, но при первом взгляде на дом невыносимая тоска овладела моей душой.",
+  "horizon": 0.5,
+  "camera": {
+    "mode": "picture"
+  },
+  "captions": [
+    {
+      "at": 12,
+      "for": 8,
+      "text": "Ни ветра, ни звука — только чёрная вода и пустые окна."
+    }
+  ],
+  "light": {
+    "grain": 0.2,
+    "haze": 0.12,
+    "hazeColor": "#5d6a75",
+    "tint": "#1f2e36",
+    "tintStrength": 0.12,
+    "vignette": 0.55,
+    "ambient": 1,
+    "ambientColor": "#a2aeb8",
+    "hazeGlow": 0.5,
+    "looks": {
+      "day": {
+        "ambientColor": "#e2e5e6",
+        "tintStrength": 0.05,
+        "lights": {
+          "fill": 0.35
+        }
+      },
+      "gloom": {
+        "brightness": 0.86,
+        "saturation": 0.8,
+        "haze": 0.16,
+        "tintStrength": 0.2
+      }
+    }
+  },
+  "lights": [
+    {
+      "id": "sky",
+      "from": [
+        10,
+        35
+      ],
+      "color": "#c3ccd2",
+      "strength": 0.9,
+      "on": "day"
+    },
+    {
+      "id": "hall",
+      "across": 0,
+      "distance": 82,
+      "elevation": 2,
+      "color": "#c4874c",
+      "strength": 1.2,
+      "reach": 5,
+      "on": "door"
+    },
+    {
+      "id": "fill",
+      "from": [
+        175,
+        18
+      ],
+      "color": "#aebccc",
+      "strength": 1.0
+    }
+  ],
+  "state": {
+    "beat": null,
+    "closeup": 0,
+    "crack": 0.5,
+    "crack_trace": 0,
+    "cu_inhale": 0,
+    "day": 0,
+    "door": 0,
+    "dusk": 0.4,
+    "follow": false,
+    "gloom": 0,
+    "horse_toss": 0,
+    "mist": 0.6,
+    "reflection_figure": 0,
+    "resist": 0,
+    "walk": 0,
+    "walk_at": 0,
+    "window_light": 0.45,
+    "rider_present": true,
+    "rider_a": -4.72,
+    "rider_d": 10,
+    "rider_face": 128,
+    "narrator_on": "rider#stirrups",
+    "narrator_do": {
+      "motion": "ride",
+      "loop": true
+    },
+    "narrator_turn": 52,
+    "narrator_look": [
+      0,
+      80,
+      15
+    ],
+    "narrator_a": -4.72,
+    "narrator_d": 10,
+    "roderick_here": false,
+    "roderick_a": -0.35,
+    "roderick_d": 81.95,
+    "lead_a": 0.15,
+    "lead_d": 80
+  },
+  "states": {
+    "beat": {
+      "type": "string",
+      "means": "кусок фильма (модуль beats): arrive, look, trace, tarn, to_door, walk_out, walk, walk_on, breathe, to_shore, turn_back, morning, ride_away; по концу сцена говорит beat:<имя>; моменты — walk_out:door, breathe:close, morning:toss"
+    },
+    "closeup": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "крупный план лица Родерика (вставка): 1 — открыт"
+    },
+    "crack": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "насколько глубока трещина"
+    },
+    "crack_trace": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "сколько трещины прошёл палец сверху: светлеет, у конца следа свет"
+    },
+    "cu_inhale": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "глубокий вдох на крупном плане (0 → 1 → 0)"
+    },
+    "day": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "серый день (глава II: 1; утро главы III: 0.75); 0 — сумерки. Взгляд света day; небо пишет своё"
+    },
+    "door": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "дверь открыта: створки уходят внутрь, за ними зал и его тёплый свет"
+    },
+    "dusk": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "сумерки на небе (0.4 — глава I): небо пишет их само; свет сумерек — свет сцены"
+    },
+    "follow": {
+      "type": "boolean",
+      "means": "камера держит двоих в кадре, пока они идут по гати («За руку»)"
+    },
+    "gloom": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "тоска: темнее, туман гуще, окно со светом тусклее («Причина» поднимает её ступенями)"
+    },
+    "horse_toss": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "конь вскидывает голову"
+    },
+    "mist": {
+      "range": [
+        0,
+        1.2
+      ],
+      "means": "туман над водой"
+    },
+    "reflection_figure": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "бледная фигура в верхнем окне — только в отражении"
+    },
+    "resist": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "Родерик упирается: с 0.6 стоит, откинувшись, лицо отвёрнуто (balk); ниже 0.5 — снова стоит"
+    },
+    "walk": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "куда игра ведёт двоих по гати: 0 — в зале за дверью, 0.5 — середина, 1 — у берега; поставленное — они идут туда своим шагом (назад — пятясь)"
+    },
+    "walk_at": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "где двое на гати сейчас, в единицах walk (по рассказчику); ставит сцена, пока они идут — для игры"
+    },
+    "window_light": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "свет в верхнем левом окне"
+    },
+    "rider_present": {
+      "type": "boolean",
+      "means": "конь у пруда"
+    },
+    "rider_a": {
+      "type": "number",
+      "smooth": true,
+      "means": "конь: метры вправо"
+    },
+    "rider_d": {
+      "type": "number",
+      "smooth": true,
+      "means": "конь: метры вперёд"
+    },
+    "rider_face": {
+      "type": "number",
+      "smooth": true,
+      "means": "куда обращён конь, градусы: 0 — к нам, 90 — вправо, 180 — от нас"
+    },
+    "lead_a": {
+      "type": "number",
+      "means": "точка lead — на гати перед рассказчиком, к нам (куда тянут их руки): метры вправо; ставит сцена"
+    },
+    "lead_d": {
+      "type": "number",
+      "means": "точка lead: метры вперёд; ставит сцена"
+    }
+  },
+  "objects": [
+    {
+      "id": "sky",
+      "name": "Небо",
+      "sky": true
+    },
+    {
+      "id": "clouds",
+      "name": "Низкие тучи",
+      "sky": true
+    },
+    {
+      "id": "far_shore",
+      "name": "Дальний берег",
+      "across": 0,
+      "distance": 95,
+      "elevation": -0.03,
+      "height": 4,
+      "box": [
+        -170,
+        -12,
+        170,
+        1
+      ]
+    },
+    {
+      "id": "tarn",
+      "name": "Пруд",
+      "plane": true,
+      "across": 0,
+      "distance": 51.5,
+      "elevation": -0.03,
+      "width": 240,
+      "depth": 97,
+      "reflect": {
+        "strength": 0.7,
+        "fade": 0,
+        "rough": 0.22,
+        "ripple": 0.12
+      }
+    },
+    {
+      "id": "house",
+      "name": "Дом Ашеров",
+      "across": 0,
+      "distance": 80,
+      "height": 29,
+      "box": [
+        -30,
+        -31,
+        30,
+        3
+      ]
+    },
+    {
+      "id": "hall",
+      "name": "Зал за дверью",
+      "across": 0,
+      "distance": 83,
+      "height": 7,
+      "box": [
+        -4,
+        -7.6,
+        4,
+        0.5
+      ],
+      "glows": true
+    },
+    {
+      "id": "windows",
+      "name": "Окна",
+      "across": 0,
+      "distance": 80,
+      "height": 29,
+      "box": [
+        -25,
+        -24,
+        25,
+        0.5
+      ],
+      "inFront": [
+        "house"
+      ]
+    },
+    {
+      "id": "lamp",
+      "name": "Окно со светом",
+      "across": 0,
+      "distance": 79.95,
+      "height": 29,
+      "box": [
+        -13.2,
+        -14.2,
+        -10.8,
+        -9.2
+      ],
+      "glows": true,
+      "inFront": [
+        "house",
+        "windows"
+      ]
+    },
+    {
+      "id": "crack",
+      "name": "Трещина",
+      "across": 5.8,
+      "distance": 80,
+      "height": 24,
+      "box": [
+        -2,
+        -24,
+        2,
+        1
+      ],
+      "inFront": [
+        "house",
+        "windows"
+      ]
+    },
+    {
+      "id": "vision",
+      "name": "Фигура в окне (только в воде)",
+      "across": 0,
+      "distance": 79.9,
+      "height": 29,
+      "box": [
+        -25,
+        -24,
+        25,
+        0.5
+      ],
+      "seen": "reflection"
+    },
+    {
+      "id": "mist_far",
+      "name": "Туман у дома",
+      "across": 0,
+      "distance": 72,
+      "elevation": -0.03,
+      "height": 5,
+      "box": [
+        -140,
+        -6,
+        140,
+        2
+      ]
+    },
+    {
+      "id": "causeway",
+      "name": "Гать",
+      "plane": true,
+      "across": -3,
+      "distance": 42,
+      "elevation": 0,
+      "width": 14,
+      "depth": 78,
+      "walk": true
+    },
+    {
+      "id": "shore",
+      "name": "Ближний берег",
+      "plane": true,
+      "across": 0,
+      "distance": 4.5,
+      "elevation": 0,
+      "width": 140,
+      "depth": 5
+    },
+    {
+      "id": "mist_mid",
+      "name": "Туман над водой",
+      "across": 0,
+      "distance": 34,
+      "elevation": -0.03,
+      "height": 2,
+      "box": [
+        -70,
+        -3.5,
+        70,
+        1
+      ]
+    },
+    {
+      "id": "reeds_mid",
+      "name": "Осока в воде",
+      "across": 0,
+      "distance": 24,
+      "elevation": -0.03,
+      "height": 1,
+      "box": [
+        -26,
+        -1.6,
+        26,
+        0.3
+      ]
+    },
+    {
+      "id": "mist_near",
+      "name": "Туман у берега",
+      "across": 0,
+      "distance": 17,
+      "elevation": -0.03,
+      "height": 1.5,
+      "box": [
+        -40,
+        -2,
+        40,
+        1
+      ]
+    },
+    {
+      "id": "trees",
+      "name": "Мёртвые деревья",
+      "across": 0,
+      "distance": 12,
+      "elevation": -0.03,
+      "height": 10,
+      "box": [
+        -16,
+        -11.5,
+        14.5,
+        0.8
+      ]
+    },
+    {
+      "id": "sedge",
+      "name": "Осока у воды",
+      "across": 0,
+      "distance": 5.6,
+      "height": 1,
+      "box": [
+        -10,
+        -1.4,
+        10,
+        0.6
+      ]
+    },
+    {
+      "id": "rider",
+      "name": "Конь",
+      "height": 2.4,
+      "box": [
+        -2.5,
+        -3.3,
+        2.5,
+        0.3
+      ],
+      "across": -4.72,
+      "distance": 10,
+      "place": {
+        "across": "rider_a",
+        "distance": "rider_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "roderick",
+      "name": "Родерик",
+      "person": {
+        "cast": "cast",
+        "who": "roderick",
+        "turn": 180,
+        "gait": "led_walk"
+      },
+      "across": -0.35,
+      "distance": 81.95,
+      "place": {
+        "across": "roderick_a",
+        "distance": "roderick_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "narrator",
+      "name": "Рассказчик",
+      "person": {
+        "cast": "cast",
+        "who": "narrator",
+        "look": {
+          "hat": "top"
+        },
+        "turn": 180
+      },
+      "across": 0.3,
+      "distance": 81.15,
+      "place": {
+        "across": "narrator_a",
+        "distance": "narrator_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "grass_fg",
+      "name": "Сухая трава",
+      "across": 0,
+      "distance": 4,
+      "height": 1,
+      "box": [
+        -7,
+        -1.6,
+        7,
+        0.8
+      ]
+    },
+    {
+      "id": "lead",
+      "name": "Перед ними на гати",
+      "unseen": true,
+      "across": 0.15,
+      "distance": 80,
+      "elevation": 0.7,
+      "height": 0.2,
+      "box": [
+        -0.1,
+        -0.1,
+        0.1,
+        0.1
+      ],
+      "place": {
+        "across": "lead_a",
+        "distance": "lead_d"
+      }
+    },
+    {
+      "id": "closeup",
+      "name": "Крупный план",
+      "insert": "closeup"
+    }
+  ],
+  "modules": [
+    "cast",
+    "ushers",
+    "closeups",
+    "beats"
+  ],
+  "music": {
+    "bpm": 60,
+    "brightness": 0.2,
+    "density": 0.2,
+    "prompts": [
+      {
+        "text": "low sustained drone, dark ambient, cold and vast, barely moving",
+        "weight": 2
+      },
+      {
+        "text": "distant wind over still water and dead reeds, field recording blended with soft noise",
+        "weight": 2
+      },
+      {
+        "text": "slow solo cello, long mournful bow strokes, minor mode, sparse and close",
+        "weight": 2
+      },
+      {
+        "text": "ominous church organ pedal tone, deep sub-bass, held for minutes, gothic",
+        "weight": 2
+      },
+      {
+        "text": "bowed double bass harmonics, eerie and thin, long reverb",
+        "weight": 0
+      },
+      {
+        "text": "muffled funeral bell tolling far away across a marsh",
+        "weight": 0
+      },
+      {
+        "text": "string quartet sul ponticello, trembling, unsettled, quiet",
+        "weight": 0
+      },
+      {
+        "text": "romantic-era piano, single low notes with long decay, melancholic nocturne",
+        "weight": 0
+      },
+      {
+        "text": "gothic chamber music, harpsichord and viola da gamba, slow and grave",
+        "weight": 0
+      },
+      {
+        "text": "dark choir hum, wordless low voices, solemn and distant",
+        "weight": 0
+      },
+      {
+        "text": "glass harmonica tones, fragile, uncanny, 19th century parlour",
+        "weight": 0
+      },
+      {
+        "text": "slow heartbeat on a muted timpani, tension under the surface",
+        "weight": 0
+      },
+      {
+        "text": "cold tape-saturated synth pad, slowly evolving, desolate",
+        "weight": 0
+      },
+      {
+        "text": "creaking timbers and faint dripping water, haunted house ambience",
+        "weight": 0
+      },
+      {
+        "text": "lone horse hooves on a stone causeway, slow, echoing",
+        "weight": 0
+      },
+      {
+        "text": "detuned music box fragment, faint, decaying memory",
+        "weight": 0
+      },
+      {
+        "text": "bowed cymbals and scraped metal, long reverb, dread",
+        "weight": 0
+      },
+      {
+        "text": "low clarinet melody, sombre, Victorian lament",
+        "weight": 0
+      },
+      {
+        "text": "granular fog textures, almost silent, crows far away",
+        "weight": 0
+      },
+      {
+        "text": "slow minor-key string orchestra swell, tragic and restrained",
+        "weight": 0
+      }
+    ],
+    "scale": "A_MAJOR_G_FLAT_MINOR"
+  }
+}

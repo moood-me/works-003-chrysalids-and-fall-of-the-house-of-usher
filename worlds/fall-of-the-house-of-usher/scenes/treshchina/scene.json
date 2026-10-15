@@ -1,0 +1,74 @@
+{
+  "engine": 3,
+  "title": "Трещина",
+  "caption": "",
+  "camera": {
+    "mode": "picture"
+  },
+  "horizon": 0.5,
+  "light": {
+    "grain": 0.22,
+    "vignette": 0.7
+  },
+  "state": {
+    "chapter_number": "I",
+    "chapter_title": "Приезд",
+    "map": null,
+    "reveal": 1,
+    "knot": 1
+  },
+  "states": {
+    "chapter_number": {
+      "type": "string",
+      "means": "номер главы над её названием («I»…; пусто — пролог, эпилог)"
+    },
+    "chapter_title": {
+      "type": "string",
+      "means": "название главы, высеченное на стене"
+    },
+    "map": {
+      "means": "null — только титул; иначе строки выборов главы: [{title, weight '⚑'|'~', options: [{label, state: 'chosen'|'open'|'unseen'}]}] — трещина идёт через выбранное, волосок к открытому, едва видная линия к недостигнутому"
+    },
+    "reveal": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "как далеко трещина спустилась по стене: 0 — её нет, 1 — до низа кадра; слова строки — когда она до них дошла"
+    },
+    "knot": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "яркость конца трещины (элемент knot), когда трещина до него дошла"
+    }
+  },
+  "objects": [
+    {
+      "id": "wall",
+      "sky": true,
+      "name": "Стена дома"
+    },
+    {
+      "id": "crack",
+      "sky": true,
+      "name": "Трещина",
+      "uniforms": {
+        "reveal": 1,
+        "title": 1
+      }
+    },
+    {
+      "id": "knot",
+      "sky": true,
+      "name": "Конец трещины",
+      "uniforms": {
+        "reveal": 1,
+        "knot": 1
+      }
+    }
+  ]
+}

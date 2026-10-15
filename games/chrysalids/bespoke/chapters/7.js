@@ -20,11 +20,11 @@ function play(g, beat) {
   g.beat(beat, { wait: false });
   return ended;
 }
-// the scene, opened at a beat; → once it is open: { ended } — the beat's end, to wait for (a promise
-// returned bare would be awaited too)
+// the scene, opened at a beat — the father as the web left him (covered: his thread barely taken, joseph_th); → once it
+// is open: { ended } — the beat's end, to wait for (a promise returned bare would be awaited too)
 async function open(g, beat) {
   const ended = g.heard(`beat:${beat}`);
-  await g.scene(SHIP, { beat });
+  await g.scene(SHIP, { beat, joseph_th: g.state.marks.father === 'saved' ? 0.97 : 0 });
   return { ended };
 }
 const WEB = { none: 'web', petra: 'web_petra', rosalind: 'web_rosalind', father: 'web_father', self: 'web_alone' };
@@ -145,7 +145,6 @@ export default {
       const run = choices.father === 'run';
       const down = g.told(run ? 'landing_run:down' : 'landing:down');
       const { ended: landing } = await open(g, run ? 'landing_run' : 'landing');
-      if (marks.father === 'saved') g.set('joseph_th', 0.97);
       await down;
       await g.say('narrator', 'Стало тихо. Корабль опустился посреди поляны.');
       await landing;
@@ -168,8 +167,7 @@ export default {
       } else await g.say('sealand', '— Не жалей их. Их время прошло.');
       await back;
       await g.think('michael', 'Я остаюсь, Дэвид. Кто-то должен рассказать нашим, что мы есть.');
-      const leave = await g.choose('leave', { ship: [{ id: 'fly', label: 'Улететь' }], michael: [{ id: 'stay', label: 'Остаться с Майклом' }] }, { seconds: 60, late: 'fly' });
-      if (leave === 'fly') g.set('beat_next', 'board'); // (its opening, a cut to the ramp, made ready meanwhile)
+      await g.choose('leave', { ship: [{ id: 'fly', label: 'Улететь' }], michael: [{ id: 'stay', label: 'Остаться с Майклом' }] }, { seconds: 60, late: 'fly' });
     },
     // the door closes; the ship goes — with me, or without me
     async g => {

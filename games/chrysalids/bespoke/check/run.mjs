@@ -43,7 +43,7 @@ const several = (stem, n, tail = '') => Array.from({ length: n }, (_, i) => `${s
 // The minigames (minigames/*.js heads): the scene a minigame is played on, the keys it moves and listens to, the moments
 // it waits for, the points its marks stand on, the fields of its opts and of its result
 const MINIGAMES = {
-  podol: { scene: 'bank', keys: ['hem', 'r_near'], points: ['closeup#hem', 'closeup#foot'], tells: ['ridge:seen'], result: ['hid'] },
+  podol: { scene: 'bank', keys: ['hem', 'r_near', 'r_wait'], opts: ['onRide'], points: ['closeup#hem', 'closeup#foot'], tells: ['ridge:seen'], result: ['hid'] },
   dig: { scene: 'ruins', keys: ['dig', 'bell'], points: ['glint#plate'], result: ['cleared', 'bell'] },
   gaze: { scene: 'inspector', keys: ['inspector_look'], points: ['calf', 'calf#head', 'calf#back', 'calf#tail', 'calf#legs'], result: ['found', 'left'] },
   hymn: { scene: 'burning', keys: ['turned'], points: ['jo', 'dv'], result: ['hymn', 'turned'] },
@@ -405,7 +405,7 @@ play = null;
 const out = [];
 const say = (text = '') => out.push(text);
 const met = set => (set.size && set.size < plays.length ? ` (партий: ${set.size})` : '');
-const clock = s => `${Math.floor(s / 60)}:${String(Math.round(s % 60)).padStart(2, '0')}`;
+const clock = s => { const r = Math.round(s); return `${Math.floor(r / 60)}:${String(r % 60).padStart(2, '0')}`; };
 const span = all => { const lo = Math.min(...all), hi = Math.max(...all); return lo === hi ? clock(lo) : `${clock(lo)}…${clock(hi)}`; };
 const seconds = events => events.reduce((sum, e) => sum + (e[0] === 'beat' || e[0] === 'play' ? e[2] : e[0] === 'say' ? e[1] : 0), 0);
 

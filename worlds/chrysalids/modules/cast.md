@@ -73,7 +73,8 @@ hand, on the anvil), `think` (a hand to the chin), `limp` and `limp_back` (gaits
 A child on a high seat (with `on` its top — a chair's sitting; the legs hang): `perch`, `perch_still`, `perch_talk`,
 `perch_hunch`, `perch_slump`, `perch_laugh`, `perch_shake`, `perch_point` (up ahead, the right hand); `hop_down` (once:
 slides forward onto the feet). `pull_lever` (once: both hands up, pulling down), `run` (a gait).
-The man with a lantern: `whistle` (two fingers of the left hand), `fall_back` (struck, onto the back), `lie_back`.
+The man with a lantern: `whistle` (two fingers of the left hand), `fall_back` (struck, onto the back), `lie_back` (lying
+still on the back, one knee a little up — looped: the fallen, the dead, the children under the web; Бегство, Корабль).
 Waving sitting is a reach to and fro (the scene's `wave`), a nod a look down and up (`nod`).
 On a chair (loops): `read_seated` (an open book in both hands), `sit_still` (hands forward — on a table's edge with
 `reach`), `sit_grip` (holding the table's edge), `sit_tremble` (holding it, shaking), `sit_fidget`, `eat_seated` (a

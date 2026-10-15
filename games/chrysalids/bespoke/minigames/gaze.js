@@ -8,7 +8,7 @@
 //   → { found, left: seconds he still had to go }
 import { until } from '../hands.js';
 
-const LOOK = ['inspector#hand_l', 'barn#corner', [3.5, 10, 1.0], 'horse', 'calf#head', 'calf#back', 'calf#tail', 'calf#legs'];
+const LOOK = ['inspector#hand_l', 'barn#corner', 'fence#pen', 'horse', 'calf#head', 'calf#back', 'calf#tail', 'calf#legs'];
 const STEP = 4; // s: his look on each thing
 const PLACES = ['calf#head', 'calf#back', 'calf#tail', 'calf#legs'], LEGS = 3;
 
@@ -34,7 +34,7 @@ export default {
         if (s.place === LEGS) found = true;
         else mg.sound('found');
       }
-      mg.plate.set({ fill: s.place === LEGS ? s.fill : s.fill * 0.3, glow: s.fill > 0 ? 'good' : 'idle' });
+      mg.plate.set({ fill: s.place === LEGS ? s.fill : 0, glow: s.fill > 0 ? 'good' : 'idle' }); // (the bar: what is wrong, seen)
       return found || (t - t0) >= all;
     });
     if (!done) return this.skipped;

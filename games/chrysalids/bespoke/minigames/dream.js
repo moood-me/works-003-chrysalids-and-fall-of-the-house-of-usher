@@ -23,7 +23,7 @@ export default {
     let near = 0, waking = 0, jerked = -1;
     const done = await until(mg, ({ t, dt }) => {
       const u = Math.min(1, (t - t0) / TIME), at = 2 * u - 1, s = eyes.state;
-      g.set('lead', u);
+      send('lead', u);
       eyes.set({ zone: { at, width: WIDTH } });
       send('gaze', s.arrow);
       if (s.in) near += dt;

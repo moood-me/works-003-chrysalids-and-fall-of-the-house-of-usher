@@ -46,10 +46,6 @@ export default async function (b) {
   const view = ui(b.layer);
   view.pausing(b);
   let kept = { ...structuredClone(RUN), starts: {}, replay: null, ...b.saved };
-  // (a play kept before: its chapter's start as it was kept; nothing of what came since)
-  kept.starts ??= kept.start ? { [kept.chapter]: kept.start } : {};
-  kept.replay ??= null;
-  for (const k of ['start', 'left', 'results']) delete kept[k];
   // the minigames a step plays (as one who chose nothing before plays it: its first options) — the step played through
   // unseen, once
   const listed = new Map();
@@ -166,8 +162,8 @@ export default async function (b) {
     }
     // a replay played to its end: kept or not — how things would stand either way, side by side
     const i = done.chapter, mainAfter = kept.starts[i + 1] ?? (i === main() && mainDone() ? kept : null);
-    const next = await niti(i, [{ id: 'save', label: 'Оставить так — дальше история пойдёт отсюда' },
-      { id: 'drop', label: 'Не оставлять — вернуться к истории' }, { id: 'again', label: 'Сыграть ещё раз' }], { reveal: true,
+    const next = await niti(i, [{ id: 'save', label: 'Оставить так' },
+      { id: 'drop', label: 'Вернуться к истории' }, { id: 'again', label: 'Сыграть ещё раз' }], { reveal: true,
       compare: mainAfter && { main: now(mainAfter), replay: now(done), people: differ(mainAfter.marks, done.marks) } });
     if (next === 'save') {
       // the replay is the main run now, from the next chapter on: what came after this chapter in the main run is gone

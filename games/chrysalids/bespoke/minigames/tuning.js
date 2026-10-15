@@ -20,7 +20,7 @@ export default {
     const mg = g.minigame({ phrase: 'В долине кто-то звал меня — без слов' });
     const t0 = mg.t, target = PLACES.indexOf(find);
     const spot = mg.mark({ at: 'cart', kind: 'spot', ...(watch ? { danger: 0 } : {}) });
-    const seek = mg.seek({ on: spot, places: PLACES, radius: 460, hold: 1.4 });
+    const seek = mg.seek({ on: spot, places: PLACES, radius: Math.round(0.42 * innerHeight), hold: 1.4 }); // (the search's reach: by the window's size)
     b.minigame.tricks.teach(mg, [seek], { id: 'seek' });
     let turned = false, back = false, danger = 0, seen = false, last = null;
     const done = await until(mg, ({ t, dt }) => {

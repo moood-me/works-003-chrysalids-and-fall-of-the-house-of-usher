@@ -5,13 +5,13 @@
 // The language's rhythm: the beat's sign on the hammer (axel#hand_l), the player's ring on the bellows' lever
 // (pump#handle). The game drives the hammer (the scene's ax_blow — a blow from the lift, IMPACT s before the beat) and
 // the lever (pump); BEATS beats (in V fewer), the first two a soft try. A beat missed — the fire sinks, the lantern comes
-// up and onto the boy (st_lamp, st_lx, st_lz).
+// up and onto the boy (st_lamp above 1: the scene turns it on him), and down again a while after. The bar — the beats
+// hit.
 //   opts: { watched: the man has his eye on him already — fewer slips pass; night: V — the key, the stranger at the gate }
 //   → { broke: more slips than pass }
 import { until } from '../hands.js';
 
-const IMPACT = 1.17, FREE = 2;
-const BELLOWS = [-6.15, 6.3]; // where the boy is (the scene's lib.BELLOWS)
+const IMPACT = 1.17, FREE = 2, GLARE = 2.5;
 
 export default {
   title: 'Ритм мехов', // (as the author's ☰ lists it)
@@ -28,14 +28,14 @@ export default {
     const rh = mg.rhythm({ on: lever, show: [hammer], times });
     b.minigame.tricks.teach(mg, [rh], { id: 'rhythm' });
     const hit = new Set();
-    let slips = 0, blows = 0, fire = g.get('fire') ?? 0.75, pump = 0;
+    let slips = 0, blows = 0, fire = g.get('fire') ?? 0.75, pump = 0, glare = null;
     const slip = k => {
       if (k < FREE) return;
       slips++;
       fire = Math.max(0.35, fire - 0.12);
       g.set('fire', fire, 0.6);
-      g.set('st_lx', BELLOWS[0]); g.set('st_lz', BELLOWS[1]); g.set('st_lamp', 1.3, 0.5);
-      setTimeout(() => g.set('st_lamp', 1, 1.5), 2500);
+      g.set('st_lamp', 1.3, 0.5);
+      glare = mg.t + GLARE;
       mg.plate.set({ shade: Math.min(1, slips / (pass + 1)) });
     };
     rh.on('tap', ({ k, hit: on }) => {
@@ -48,7 +48,8 @@ export default {
       // the hammer: each blow from its lift, so that it lands on the beat
       while (blows < n && t >= times[blows] - IMPACT) { g.set('ax_blow', blows + 1); blows++; }
       for (let k = 0; k < n; k++) if (!judged.has(k) && t > times[k] + 0.3) { judged.add(k); if (!hit.has(k)) slip(k); }
-      mg.plate.set({ fill: Math.min(1, judged.size / n), glow: slips ? 'bad' : 'good' });
+      if (glare != null && mg.t >= glare) { glare = null; g.set('st_lamp', 1, 1.5); }
+      mg.plate.set({ fill: hit.size / n, glow: slips ? 'bad' : 'good' });
       return judged.size >= n;
     });
     if (!done) return this.skipped;

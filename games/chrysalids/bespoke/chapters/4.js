@@ -5,7 +5,7 @@
 //
 // Reads: choices.calf, marks.sophie_night, marks.anne (a line each), choices.newcomer (how many windows
 // on the hill), scales.petra (how bright she is, how far she is heard).
-// Leaves: choices.river quiet|loud (seen in the film: quiet — only Rosalind runs to the river; loud — the
+// Leaves: choices.river quiet|loud (seen in the beats: quiet — only Rosalind runs to the river; loud — the
 // rakers see her run, one follows her down, people come along the top to stare), choices.petra hush|free (⚑),
 // choices.far answer|listen; marks.petra hushed|free (Petra remembers); marks.sealand answered|heard
 // (the far voice: she answered it / only listened); scales: suspicion (+1 if loud), group (hush +1 /
@@ -31,7 +31,7 @@ export default {
   ],
   titles: ['Река', 'Берег', 'Голоса: дар Петры', 'Сон о городе'], // the steps, as the author's ☰ lists them
   steps: [
-    // the river (the film «Петра у реки»): her cry in every head of ours; breathing with her while running
+    // the river («Петра у реки», in beats): her cry in every head of ours; breathing with her while running
     // down to the water and swimming after her — how loud she is when he has her is seen on the far field
     async g => {
       await g.scene(RIVER, { beat: 'pool' });
@@ -42,15 +42,16 @@ export default {
       await g.say('narrator', 'И тут в голову ударило. Не голос — страх, огромный, без слов.');
       await g.think('petra', 'Дэвид!..', 'petra');
       await struck;
-      // down to her and after her, breathing for both: the film runs the minigame's time
+      // down to her and after her, breathing for both: the beats run the minigame's time (what he tells her — before it)
+      await g.think('david', 'Петра, я здесь. Дыши со мной.', 'david');
       const run = (async () => { await g.beat('edge'); await g.beat('run'); })();
-      g.think('david', 'Петра, я здесь. Дыши со мной.', 'david');
       const { cry } = await g.play(calm, { until: run });
       await run;
       const river = cry <= 0.3 ? 'quiet' : 'loud';
       g.state.choices.river = river;
       // the far field: only Rosalind — or everyone sees her run
       const field = g.beat(`field_${river}`);
+      g.set('beat_next', 'out'); // (its opening, a cut back to the pool, made ready meanwhile)
       if (river === 'quiet') await g.say('narrator', 'Она стихла. Дальше Розалинды её никто не услышал.');
       else await g.say('narrator', 'Взрослые не слышали ни звука. Они видели, как она бежит.');
       await field;
@@ -106,7 +107,7 @@ export default {
       else await g.think('rosalind', 'Научи её прятать мысли. Иначе её услышит кто-нибудь не тот.');
       await g.think('michael', 'Мы прячемся всю жизнь. Пусть хоть она будет как есть.');
       const petra = await g.choose('petra', 'home', [
-        { id: 'hush', label: 'Учить её прятать мысли' }, { id: 'free', label: 'Пусть зовёт, как умеет' }]);
+        { id: 'hush', label: 'Учить прятать мысли' }, { id: 'free', label: 'Пусть зовёт' }]);
       if (petra === 'hush') {
         if (g.state.choices.calf === 'show') await g.say('narrator', 'Отец учил меня замечать отклонения. Теперь я учил сестру их прятать.');
         else await g.say('narrator', 'Каждый вечер я учил её: думай тихо, совсем тихо, будто шепчешь.');
@@ -153,7 +154,8 @@ export default {
       else if (p >= 1) await g.think('sealand', '…кто ты… где…', 'city');
       else await g.say('petra', '— Я не слышу слов. Только что там кто-то есть.', 'narrator');
       const far = await g.choose('far', 'city', [
-        { id: 'answer', label: '— Ответь ей, Петра.' }, { id: 'listen', label: '— Не отвечай. Мы не знаем, кто это.' }]);
+        { id: 'answer', label: 'Ответь ей' }, { id: 'listen', label: 'Не отвечай' }]);
+      await g.say('david', far === 'answer' ? '— Ответь ей, Петра.' : '— Не отвечай. Мы не знаем, кто это.', 'narrator');
       if (far === 'answer') {
         await g.think('petra', 'Я Петра! Я здесь!', 'narrator');
         if (p >= 1) await g.think('sealand', 'Слышу тебя. Зови меня ещё.', 'city');

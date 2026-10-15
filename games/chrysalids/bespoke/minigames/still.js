@@ -24,11 +24,11 @@ export default {
     const hand = mg.mark({ at: 'david#hand_r', kind: 'groove', danger: 0 });
     const hold = mg.hold({ on: hand, seconds: 1.2, drain: 0 });
     b.minigame.tricks.teach(mg, [hold], { id: 'hold' });
-    let danger = 0, looks = 0, lookedAt = -Infinity, from = null;
+    let danger = 0, looks = 0, lookedAt = -Infinity, away = null;
     const done = await until(mg, ({ t, dt }) => {
       const s = hold.state;
-      if (s.held && from == null) from = s.at;
-      if (!s.held) from = null;
+      // (the father's look on him a while, by the mini-game's clock — it stands with the pause)
+      if (away != null && t >= away) { away = null; g.set('father_look', 0); }
       const moved = s.held && s.moved > MOVED;
       send('david_grip', s.held ? 1 : 0);
       send('david_stir', moved ? 1 : 0);
@@ -39,7 +39,7 @@ export default {
         lookedAt = t;
         danger = 0.4;
         g.set('father_look', 1);
-        setTimeout(() => g.set('father_look', 0), 2200);
+        away = t + 2.2;
         mg.error('danger', { at: hand, chip: looks > 1 });
       }
       mg.plate.set({ fill: s.held ? s.fill : 0, glow: s.held && !moved ? 'good' : 'bad' });

@@ -9,7 +9,7 @@
 //   (caught: ≥ 4 fleeing, ≥ 3 at the forge — a broken rhythm of the bellows adds 1 —, ≥ 2 if the farmhand
 //   knows), group (≥ 3: the friends come), petra (the far voice).
 // Leaves for VI–VII: choices.night flee|rescue, forge calm|force, caught free|caught, answer
-//   deny|silent|truth, trial friends|dark|fire, rider kill|warn|hide, shadow hid|seen (seen: the
+//   deny|silent|truth, trial friends|dark|fire, sheba let|take, rider kill|warn|hide, shadow hid|seen (seen: the
 //   pursuers know where we went into the Fringes); marks.sally left|tried|freed (Katherine and Sally:
 //   freed — they went to the Fringes another way), marks.father disowned, marks.sheba let|took (Sheba
 //   sent home from the ridge, or with us on a rope behind the pack horse: a horse more — and a loud one);
@@ -45,6 +45,8 @@ export default {
       options: [{ id: 'deny', label: 'отпираться' }, { id: 'silent', label: 'молчать' }, { id: 'truth', label: 'сказать правду' }] },
     { id: 'trial', weight: '⚑', title: 'Суд',
       options: [{ id: 'friends', label: 'вытащили свои' }, { id: 'dark', label: 'задул лампу' }, { id: 'fire', label: 'смахнул лампу' }] },
+    { id: 'sheba', weight: '~', title: 'Шеба',
+      options: [{ id: 'let', label: 'отпустить домой' }, { id: 'take', label: 'взять с собой' }] },
     { id: 'rider', weight: '~', title: 'Всадник на гребне',
       options: [{ id: 'kill', label: 'стрелять в него' }, { id: 'warn', label: 'над головой' }, { id: 'hide', label: 'замереть в тумане' }] },
     { id: 'shadow', weight: '~', title: 'По тени',
@@ -52,7 +54,7 @@ export default {
   ],
   titles: ['Ночь: нас выдали', 'Кузница: ключ', 'Суд', 'Бегство', 'По тени'], // the steps, as the author's ☰ lists them
   steps: [
-    // the kitchen at night, years on (the film's tableau `late`): Michael's news in my head, the father reading longer
+    // the kitchen at night, years on (the kitchen's tableau `late`): Michael's news in my head, the father reading longer
     // than he used to — and, if he has grown suspicious, lifting his head from the Book (`asks`). Flee now, or get
     // them out; either way David goes up to bed as on any night (`to_bed`)
     async g => {
@@ -73,7 +75,7 @@ export default {
       }
       await g.think('michael', 'Уходи этой ночью. С Петрой. Розалинда будет ждать у брода.');
       const night = await g.choose('night', 'david', [
-        { id: 'flee', label: 'Уйти этой ночью — с Петрой' }, { id: 'rescue', label: 'Сначала вытащить Кэтрин и Салли' }]);
+        { id: 'flee', label: 'Уйти с Петрой' }, { id: 'rescue', label: 'Вытащить девочек' }]);
       const up = g.beat('to_bed');
       if (night === 'rescue') {
         await g.think('rosalind', 'Тогда я жду у брода. До рассвета — не дольше.');
@@ -90,7 +92,7 @@ export default {
       await g.think('petra', 'Дэвид, мы куда?');
       await g.think('david', 'Далеко. Только думай тихо.');
       if (marks.petra === 'free') await g.think('petra', 'Я не умею тихо!');
-      const look = await g.choose(null, { 'house#window': [{ id: 'look', label: 'Оглянуться на дом' }], david: [{ id: 'go', label: 'Уйти не оглядываясь' }] });
+      const look = await g.choose(null, { 'house#window': [{ id: 'look', label: 'Оглянуться' }], david: [{ id: 'go', label: 'Не оглядываться' }] });
       if (look === 'look' && marks.sophie === 'told') await g.say('narrator', 'В окне стояла мать. Она смотрела, как мы уходим, и не позвала отца.');
       else if (look === 'look') { g.set('window_lit', 0, 3); await g.say('narrator', 'Окно погасло. В доме никто не проснулся.'); }
       if (scales.suspicion >= 4) {
@@ -124,12 +126,8 @@ export default {
       await g.say('narrator', 'В воротах остановился человек с фонарём.');
       if (marks.calf === 'hidden') await g.say('narrator', 'Работник отца. Тот, что видел телёнка.');
       await came;
-      const forge = await Promise.race([
-        g.choose('forge', { david: [{ id: 'calm', label: 'Качать мехи, как ни в чём не бывало' }], axel: [{ id: 'force', label: 'Кивнуть дяде на молот' }] }),
-        g.wait(20000).then(() => 'calm'),
-      ]);
-      g.withdraw();
-      g.state.choices.forge = forge;
+      const forge = await g.choose('forge', { david: [{ id: 'calm', label: 'Качать мехи' }], axel: [{ id: 'force', label: 'Кивнуть на молот' }] },
+        { seconds: 20, late: 'calm' });
       if (forge === 'calm') {
         // the rhythm, and hope: he watches the anvil, the boy, the bellows
         const { broke } = await g.play(bellows, { watched: marks.calf === 'hidden', night: true });
@@ -179,7 +177,8 @@ export default {
       await g.say('narrator', 'Мужчины входили по одному и садились вдоль стен. Отец стоял отдельно.');
       await g.say('inspector', '— Девочки назвали тебя, Дэвид. Ты слышишь их без слов?');
       const answer = await g.choose('answer', 'david', [
-        { id: 'deny', label: '— Не понимаю, о чём вы.' }, { id: 'silent', label: 'Молчать' }, { id: 'truth', label: '— Слышу. И греха в этом нет.' }]);
+        { id: 'deny', label: 'Не понимаю' }, { id: 'silent', label: 'Молчать' }, { id: 'truth', label: 'Слышу' }]);
+      if (answer !== 'silent') await g.say('david', answer === 'deny' ? '— Не понимаю, о чём вы.' : '— Слышу. И греха в этом нет.');
       if (answer === 'deny') await g.say('inspector', '— Они тоже сначала не понимали.');
       if (answer === 'silent') {
         g.set('david_look', 'father');
@@ -211,7 +210,7 @@ export default {
         g.state.choices.trial = 'friends';
       } else {
         await g.think('michael', 'Нас слишком мало, Дэвид. Выбирайся сам.');
-        const trial = await g.choose('trial', 'lamp#flame', [{ id: 'dark', label: 'Задуть лампу' }, { id: 'fire', label: 'Смахнуть лампу на пол' }]);
+        const trial = await g.choose('trial', 'lamp#flame', [{ id: 'dark', label: 'Задуть лампу' }, { id: 'fire', label: 'Смахнуть лампу' }]);
         if (trial === 'dark') {
           g.set('lamp', 0, 0.3);
           await g.say('narrator', 'В темноте отец схватил меня за рукав. Я вырвался.');
@@ -250,7 +249,7 @@ export default {
       // Sheba: home — or with us
       await g.beat('sheba_turn');
       await g.think('rosalind', 'Отпусти её, Дэвид. Большим коням она не пара. И ржёт на всю округу.');
-      const sheba = await g.choose(null, 'david', [{ id: 'let', label: 'Отпустить Шебу домой' }, { id: 'take', label: 'Взять Шебу с собой' }]);
+      const sheba = await g.choose('sheba', 'david', [{ id: 'let', label: 'Отпустить Шебу' }, { id: 'take', label: 'Взять Шебу' }]);
       marks.sheba = sheba === 'take' ? 'took' : 'let';
       if (sheba === 'let') {
         const off = g.told('sheba_go:gone');
@@ -294,16 +293,14 @@ export default {
         await g.say('narrator', 'Они долго светили в туман. Потом задний повернул назад, за остальными, а передний остался стеречь дорогу.');
         await g.think('rosalind', 'Скоро рассвет. Туман сойдёт — и он нас увидит.');
       }
-      let timed = false;
-      const rider = await Promise.race([
-        g.choose('rider', {
-          searcher: [{ id: 'kill', label: '— Стреляй в него.' }, { id: 'warn', label: '— Стреляй над головой!' }],
-          david: [{ id: 'hide', label: 'Замереть в тумане' }],
-        }),
-        g.wait(20000).then(() => (timed = true, seen ? 'kill' : 'hide')), // she will not wait for him to reach us
-      ]);
-      g.withdraw();
+      const said = await g.choose('rider', {
+        searcher: [{ id: 'kill', label: 'Стреляй в него' }, { id: 'warn', label: 'Над головой' }],
+        david: [{ id: 'hide', label: 'Замереть' }],
+      }, { seconds: 20 });
+      // (the time out: she will not wait for him to reach us)
+      const timed = said == null, rider = said ?? (seen ? 'kill' : 'hide');
       g.state.choices.rider = rider;
+      if (rider !== 'hide' && !timed) await g.say('david', rider === 'kill' ? '— Стреляй в него.' : '— Стреляй над головой!');
       const shot = rider === 'hide' ? null : g.told(`${rider}:shot`);
       const done = g.beat(rider);
       if (rider === 'kill') {

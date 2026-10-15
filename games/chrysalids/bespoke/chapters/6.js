@@ -80,7 +80,7 @@ export default {
       await g.say('spider', '— Твой отец ведёт их сюда. Вы слышите друг друга без слов — будете моими глазами.', 'spider');
       if (tied) await g.say('spider', '— Будешь с нами — отпущу твоих.', 'spider');
       await g.think('rosalind', 'Он такой же, как твой отец, Дэвид. Только с другой стороны.');
-      const fringes = await g.choose('fringes', { spider: [{ id: 'fight', label: 'Встать с Окраинами' }], sophie: [{ id: 'flee', label: tied ? 'Ночью развязать своих и уйти' : 'Уйти в лес, к пещере' }] });
+      const fringes = await g.choose('fringes', { spider: [{ id: 'fight', label: 'Встать с Окраинами' }], sophie: [{ id: 'flee', label: tied ? 'Развязать своих' : 'Уйти к пещере' }] });
       if (fringes === 'fight') {
         g.scale('path', -1, true);
         if (tied) { g.set('captives', 0, 3); await g.say('narrator', 'Он кивнул, и верёвки у столба разрезали.'); }

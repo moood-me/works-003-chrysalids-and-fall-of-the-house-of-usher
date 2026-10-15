@@ -1,7 +1,8 @@
 // The check of the game's branches: node bespoke/check/run.mjs <a clone of the world>. No browser, no engine,
 // nothing drawn. Every step of every chapter is played unseen, the way the author's ☰ plays it (jump.js: a dry run,
 // story.js context(…, j)), on a page that only knows the scenes' specs (fake.mjs): no time passes, the choices are
-// those of the play walked, a minigame gives the result put in for it, a point asked for (g.spot) is answered with one.
+// those of the play walked (a choice on time: its moment passed, if that is what the play has), a minigame gives the
+// result put in for it.
 // Walked (the chapters' choices are too many to walk every combination of): the play of the first options with the
 // minigames played cleanly; then each other option of each choice once, the rest as in the first play; then the first
 // play with each minigame's other outcome (OTHER); then the plays that lead to each ending (ENDS) and those where David
@@ -10,7 +11,7 @@
 // Noted, by a wrapper over the step's g (an unseen step's lines and offers never reach j) and over the sounds j plays:
 // each scene opened and its keys, each beat, moment waited for, key set / moved / read, point asked, offer and its
 // options, line (who, text, over what), minigame with its opts and the fields of its result the chapter reads, sound.
-// A minigame is not run: what it takes of its scene is the table of game.md §7 below (MINIGAMES); the functions a
+// A minigame is not run: what it takes of its scene is the table below (MINIGAMES; the spec v3.md §4); the functions a
 // chapter gives it in opts are each called once — so the lines they say are heard.
 // Compared with each scene's scene.json and the block «Контракт для проверки» that ends its notes.md (v3.md §2):
 // {beats: {name: {after, tells, seconds, show}}, points, offers, party, speakers}. A person's own keys (<id>_look …)
@@ -60,7 +61,7 @@ const MINIGAMES = {
 const NITI = { keys: ['chapters', 'shown', 'reveal', 'knot', 'camera_x'], offers: Array.from({ length: 8 }, (_, i) => `k${i}#knot`) };
 // the results put in: the outcomes a chapter branches on — clean, and each one's other
 const CLEAN = {};
-const OTHER = [{ podol: { hid: false } }, { dig: { cleared: 0.3, bell: true } }, { gaze: { found: false, left: 0 } }, { hymn: { hymn: 'silent', turned: 0.7 } },
+const OTHER = [{ podol: { hid: false } }, { dig: { cleared: 0.3, bell: true } }, { gaze: { found: false, left: 0 } }, { hymn: { hymn: 'silent', turned: 0.7 } }, { hymn: { hymn: 'loud', turned: 0.1 } },
   { still: { stirred: 2 } }, { bellows: { broke: true } }, { tuning: { caught: false, seen: true } }, { layers: { looked: true } },
   { windows: { links: 7, caught: true } }, { calm: { cry: 0.8 } }, { dream: { held: 0.2, broke: true } }, { horses: { seen: true } }, { shadow: { seen: true } }];
 
@@ -148,10 +149,10 @@ for (const entry of readdirSync(join(game, 'minigames')).filter(f => f.endsWith(
   const source = readFileSync(join(game, file), 'utf8');
   GAMES.set(m, { file, name, source });
   const T = MINIGAMES[name];
-  if (!T) { miss(file, 'мини-игры нет в таблице game.md §7'); continue; }
+  if (!T) { miss(file, 'мини-игры нет в таблице MINIGAMES'); continue; }
   if (typeof m.title !== 'string' || !(m.about > 0) || typeof m.run !== 'function') miss(file, 'нет title, about или run');
   if (!m.skipped || !same(Object.keys(m.skipped), T.result)) miss(file, `skipped: поля {${Object.keys(m.skipped ?? {}).join(', ')}}, в таблице итог {${T.result.join(', ')}}`);
-  for (const key of T.opts ?? []) if (!new RegExp(`\\b${key}\\b`).test(source)) miss(file, `поле opts «${key}» (§7) в файле не названо`);
+  for (const key of T.opts ?? []) if (!new RegExp(`\\b${key}\\b`).test(source)) miss(file, `поле opts «${key}» (MINIGAMES) в файле не названо`);
   for (const [, s] of source.matchAll(/\bsound\.(\w+)/g)) if (!(s in sound) || !(s in sound.unheard().sounds)) miss(file, `звука «${s}» нет в sound.js или в unheard()`);
 }
 for (const name in MINIGAMES) if (![...GAMES.values()].some(m => m.name === name)) miss(`minigames/${name}.js`, 'файла нет');
@@ -279,15 +280,10 @@ function watched(g, j, ch, here, events) {
     heard(text, ms) { return w.told(text, ms); },
     set(k, value, seconds) { key(k, 'g.set'); return g.set(k, value, seconds); },
     get(k) { key(k, 'g.get'); return g.get(k); },
-    move(k, value, seconds, ease) { key(k, 'g.move'); return g.move(k, value, seconds, ease); },
-    when(k, test, ms) { key(k, 'g.when'); return g.when(k, test, ms); },
-    watch(k, fn) { key(k, 'g.watch'); return g.watch(k, fn); },
-    arrived(who, ms) { if (shown(`g.arrived «${who}»`)) element(who, 'g.arrived'); return g.arrived(who, ms); },
-    // (unseen, no point is on the screen: answered with one — the step goes the way it does with the scene seen)
-    async spot(ref) { if (shown(`g.spot «${ref}»`)) point(ref, 'g.spot'); return (await g.spot(ref)) ?? { x: 0, y: 0 }; },
     say(who, text, at = who) { said(who, text, at); return g.say(who, text, at); },
     think(who, text, at = 'narrator') { said(who, text, at); return g.think(who, text, at); },
-    choose(choice, ref, options) {
+    choose(choice, ref, options, timed) {
+      if (typeof ref !== 'string') timed = options;
       const offers = typeof ref === 'string' ? { [ref]: options } : ref;
       const what = `выбор «${choice ?? Object.keys(offers).join(', ')}»`, ids = Object.values(offers).flat().map(o => o.id);
       if (shown(what)) for (const ref in offers) offer(ref, what);
@@ -295,20 +291,24 @@ function watched(g, j, ch, here, events) {
         const declared = ch.choices.find(c => c.id === choice);
         if (!declared) bad(`${what}: его нет в choices главы`);
         else if (!ids.every(id => declared.options.some(o => o.id === id))) bad(`${what}: предложено {${ids.join(', ')}}, в choices главы {${declared.options.map(o => o.id).join(', ')}}`);
+        else if (timed?.late != null && !declared.options.some(o => o.id === timed.late)) bad(`${what}: late «${timed.late}» — нет в choices главы`);
       }
+      // (the language's window: a choice on time lasts no less than 6 s; its words — one to three)
+      if (timed && !(timed.seconds >= 6)) bad(`${what}: на время ${timed.seconds} с — меньше 6`);
+      for (const o of Object.values(offers).flat()) if (o.label.split(/\s+/).filter(w => /[\p{L}\d]/u.test(w)).length > 3) bad(`${what}: подпись «${o.label}» длиннее трёх слов`);
       events.push(['act']);
-      return g.choose(choice, offers);
+      return g.choose(choice, offers, timed);
     },
     async play(minigame, opts = {}) {
       const m = GAMES.get(minigame), T = m && MINIGAMES[m.name];
       if (!T) {
-        bad('g.play: мини-игра не из minigames/ или её нет в §7');
+        bad('g.play: мини-игра не из minigames/ или её нет в MINIGAMES');
         return g.play(minigame, opts);
       }
       const what = `мини-игра «${m.name}»`;
       events.push(['play', m.name, minigame.about ?? 0]);
       if (shown(what)) {
-        if (cur.title !== SCENES[T.scene]) bad(`${what} идёт в сцене «${cur.title}», в §7 — «${SCENES[T.scene]}»`);
+        if (cur.title !== SCENES[T.scene]) bad(`${what} идёт в сцене «${cur.title}», в MINIGAMES — «${SCENES[T.scene]}»`);
         else {
           for (const k of T.keys) key(k, what);
           for (const ref of T.points ?? []) point(ref, what);
@@ -316,7 +316,7 @@ function watched(g, j, ch, here, events) {
         }
       }
       for (const k in opts) {
-        if (!(T.opts ?? []).includes(k)) bad(`${what}: поля opts «${k}» нет в §7`);
+        if (!(T.opts ?? []).includes(k)) bad(`${what}: поля opts «${k}» нет в MINIGAMES`);
         else if (!new RegExp(`\\b${k}\\b`).test(m.source)) bad(`${what}: поле opts «${k}» в ${m.file} не названо`);
       }
       const result = await g.play(minigame, opts);
@@ -379,12 +379,21 @@ const ENDS = [
   { ...first, river: 'loud', petra: 'free', far: 'answer', leave: 'stay' },
   { ...first, river: 'loud', petra: 'free', far: 'answer', leave: 'stay', glance: 'away', father: 'run', cover: 'self' },
   { ...first, far: 'listen' },
+  // (the ship come, the father let be: the web over us on the ledge — over Petra, over Rosalind; with Rosalind after; and
+  // over the father)
+  { ...first, river: 'loud', petra: 'free', far: 'answer', father: 'stay', cover: 'petra', leave: 'fly' },
+  { ...first, river: 'loud', petra: 'free', far: 'answer', father: 'stay', cover: 'rosalind', glance: 'looked', leave: 'stay' },
+  { ...first, river: 'loud', petra: 'free', far: 'answer', cover: 'father', leave: 'fly' },
+  { ...first, river: 'loud', petra: 'free', far: 'answer', father: 'stay', cover: 'none', leave: 'fly' },
 ];
 // the plays where David is caught (suspicion high enough: at the gate, or at the forge) — the trial
 const CAUGHT = [
   [{ ...first, secret: 'told', hand: 'lie', calf: 'hide', night: 'flee', trial: 'dark' }, { podol: { hid: false }, hymn: { hymn: 'silent', turned: 0.7 } }],
   [{ ...first, secret: 'told', hand: 'lie', calf: 'hide', night: 'flee', answer: 'truth', trial: 'fire' }, { podol: { hid: false }, hymn: { hymn: 'silent', turned: 0.7 }, layers: { looked: true } }],
   [{ ...first, secret: 'told', hand: 'lie', calf: 'hide', night: 'rescue', forge: 'calm', trial: 'dark' }, { podol: { hid: false }, bellows: { broke: true } }],
+  // (the group holds — Anne told to Axel, Petra taught to hide: the friends pull him out; and at the forge the hammer)
+  [{ ...first, secret: 'told', hand: 'lie', calf: 'hide', night: 'flee', anne: 'axel', petra: 'hush', trial: 'friends' }, { podol: { hid: false }, hymn: { hymn: 'silent', turned: 0.7 } }],
+  [{ ...first, secret: 'told', hand: 'lie', calf: 'hide', night: 'rescue', forge: 'force', trial: 'fire' }, { podol: { hid: false }, bellows: { broke: true } }],
 ];
 const plays = [];
 for (const choices of [...combos, ...ENDS]) { play = plays.length; plays.push(await walk(choices, CLEAN)); }

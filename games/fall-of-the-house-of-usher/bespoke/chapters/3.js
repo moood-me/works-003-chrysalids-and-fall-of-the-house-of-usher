@@ -3,7 +3,8 @@
 // door; the nights: «Слушать» (the lower the sanity, the clearer she is), ⚑ go down and knock («Стук»),
 // go to him, or call it the wind; ⚑ the morning — the last chance to leave. design.md, scenes.md.
 // Reads: marks.doctor, marks.promise. Leaves: choices.check, coffin, screws, night, morning; heard.said,
-// insisted, loose, knocked; marks.loose (the screws stayed loose), marks.key (he told of the key).
+// insisted, loose, knocked; marks.loose (the screws stayed loose), marks.key (he told of the key), marks.knocks (how many
+// times he knocked at the vault's door).
 import { SCALES, SCENES } from '../story.js';
 import vinty from '../minigames/vinty.js';
 import stuk from '../minigames/stuk.js';
@@ -155,8 +156,9 @@ export default {
       }
       await g.scene(VAULT, { beat: 'at_door' });
       await g.beat('at_door');
-      await g.play(stuk, {});
+      const { knocks } = await g.play(stuk, {});
       g.overheard('knocked');
+      g.mark('knocks', knocks);
       await g.say('narrator', 'Оттуда ответили.');
       await g.say('narrator', 'Утром я попросил у него ключ.');
       await g.say('roderick', 'Я бросил ключ в пруд. Иначе я бы открыл — и увидел её глаза.', 'narrator');

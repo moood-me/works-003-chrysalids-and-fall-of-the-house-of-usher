@@ -14,7 +14,7 @@ import { until, keys } from '../hands.js';
 
 // the causeway in `walk`'s units (0 — the door, 1 — the near shore): where they are is the scene's `walk_at`
 const MIDDLE = 0.5, STEP = 0.02, BACK = 0.01, NEAR = 0.0015;
-const ON = 0.75; // the hand drawn this far along its way: a step on
+const ON = 0.6; // the hand drawn this far along its way: a step on
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 
 export default {
@@ -46,7 +46,7 @@ export default {
       if (started != null && t > nextJerk) {
         jerk = 0.55 + 0.25 * Math.random();
         nextJerk = t + 2.8 + 2 * Math.random();
-        if (s.held) pull.set({ u: Math.max(0, s.u - 0.35) });
+        if (s.held) pull.set({ u: Math.max(0, s.u - 0.25) });
       }
       jerk *= Math.exp(-dt / 0.6);
       resist += (clamp(0.2 + (0.35 * (w - w0)) / (MIDDLE - w0 || 1) + jerk) - resist) * (1 - Math.exp(-dt / 0.2));

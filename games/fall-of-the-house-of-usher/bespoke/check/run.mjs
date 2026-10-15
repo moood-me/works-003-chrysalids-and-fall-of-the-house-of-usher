@@ -11,7 +11,7 @@
 // Noted, by a wrapper over the step's g (an unseen step's lines and offers never reach j) and over the sounds j plays:
 // each scene opened and its keys, each beat, moment waited for, key set / moved / read, point asked, offer and its
 // options, line (who, text, over what), minigame with its opts and the fields of its result the chapter reads, sound.
-// A minigame is not run: what it takes of its scene is the table below (MINIGAMES; the spec v3.md §4); the functions a
+// A minigame is not run: what it takes of its scene is the table below (MINIGAMES; docs/asherov/v3.md §2); the functions a
 // chapter gives it in opts are each called — with each list of arguments its `calls` gives, else once with 1 — so the
 // lines they say are heard.
 // Compared with each scene's scene.json and the block «Контракт для проверки» that ends its notes.md (docs/asherov/v3.md):
@@ -42,11 +42,11 @@ const sound = await load('sound.js');
 const WATCH = 90; // a stretch of watching longer than this, s, is reported
 const several = (stem, n, tail = '') => Array.from({ length: n }, (_, i) => `${stem}${i + 1}${tail}`);
 // The minigames (minigames/*.js heads): the scene a minigame is played on, the keys it moves and listens to, the moments
-// it waits for, the points its marks stand on, the fields of its opts (and what the opts' functions are called with)
-// and of its result
+// it waits for, the beats it plays itself, the points its marks stand on, the fields of its opts (and what the opts'
+// functions are called with) and of its result
 const MINIGAMES = {
-  prichina: { scene: 'house', keys: ['gloom', 'crack_trace'], points: ['windows@', 'trees@', 'tarn@', ...Array.from({ length: 17 }, (_, i) => `crack#k${i}`)], opts: ['onLook'], calls: { onLook: [['windows', 1], ['trees', 2], ['tarn', 3]] }, result: ['looked', 'traced'] },
-  tishe: { scene: 'room', keys: ['candles', 'curtain', 'window_open', 'clock'], points: ['candles@', 'window#glass', 'clock#dial', 'portrait#face'], opts: ['onAct'], calls: { onAct: ['his', 'mine'].flatMap(kind => ['candles', 'window', 'clock'].map(which => [kind, which])) }, result: ['his', 'mine', 'order'] },
+  prichina: { scene: 'house', keys: ['gloom', 'crack_trace'], beats: ['trace'], points: ['windows@', 'trees@', 'tarn@', ...Array.from({ length: 17 }, (_, i) => `crack#k${i}`)], opts: ['onLook'], calls: { onLook: [['windows', 1], ['trees', 2], ['tarn', 3]] }, result: ['looked', 'traced'] },
+  tishe: { scene: 'room', keys: ['candles', 'curtain', 'window_open', 'clock'], beats: ['ease', 'flinch'], points: ['candles@', 'window#glass', 'clock#dial', 'portrait#face'], opts: ['onAct'], calls: { onAct: ['his', 'mine'].flatMap(kind => ['candles', 'window', 'clock'].map(which => [kind, which])) }, result: ['his', 'mine', 'order'] },
   struna: { scene: 'room', keys: ['tempo', 'wild', 'strum', 'narrator_do'], points: ['roderick#hand_r', 'narrator#hand_r'], result: ['follow', 'wild'] },
   'za-ruku': { scene: 'house', keys: ['walk', 'walk_at', 'resist'], points: ['roderick#hand_l', 'lead@'], result: ['seconds', 'letGo'] },
   vinty: { scene: 'vault', keys: ['screw1', 'screw2', 'screw3', 'screw4', 'screw_at'], points: [...several('closeup#screw', 4), 'closeup#leave'], opts: ['promised'], result: ['loose', 'seconds'] },
@@ -54,7 +54,7 @@ const MINIGAMES = {
   stuk: { scene: 'vault', keys: ['knock', 'answer'], points: ['outside#door', 'outside#away'], result: ['knocks', 'answered'] },
   chtenie: { scene: 'storm', keys: ['sound', 'rock', 'listen'], points: ['book@'], result: ['louder', 'listened'] },
   ruki: { scene: 'storm', keys: ['rod_reach', 'mad_reach', 'rod_to_mad', 'mad_to_rod', 'grab', 'grab_x', 'grab_y', 'held_rod', 'held_mad', 'quake', 'shudder'], points: ['closeup#nar_hand', 'closeup#rod_hand', 'closeup#mad_hand', 'closeup#stay'], opts: ['roderick', 'madeline', 'both', 'time'], result: ['took', 'stayed'] },
-  beg: { scene: 'fall', keys: ['run', 'run_at', 'fall', 'swim'], points: ['narrator'], opts: ['companions', 'speed', 'sanity'], result: ['escaped'] },
+  beg: { scene: 'fall', keys: ['run', 'run_at', 'fall', 'swim'], beats: ['stumble'], points: ['narrator'], opts: ['companions', 'speed', 'sanity'], result: ['escaped'] },
 };
 // what game.js itself takes of «Трещина» (it is not run here): its keys, the knot it offers
 const WALL = { keys: ['chapter_number', 'chapter_title', 'map', 'reveal', 'knot'], offers: ['knot#end'] };
@@ -145,6 +145,8 @@ for (const name of ['prologue', '1', '2', '3', '4', 'epilogue']) {
   if (!Array.isArray(ch.titles) || ch.titles.length !== ch.steps.length) miss(file, `titles: ${ch.titles?.length ?? 'нет'}, шагов: ${ch.steps.length}`);
 }
 const GAMES = new Map(); // a minigame (the module's default export) → {file, name, source}
+// what a minigame gives skipped (a clean play): its `skipped`, or skipped(opts)
+const cleanOf = (m, opts = {}) => (typeof m.skipped === 'function' ? m.skipped(opts) : m.skipped);
 for (const entry of readdirSync(join(game, 'minigames')).filter(f => f.endsWith('.js'))) {
   const file = `minigames/${entry}`, name = entry.slice(0, -3), m = (await load(file)).default;
   const source = readFileSync(join(game, file), 'utf8');
@@ -152,7 +154,8 @@ for (const entry of readdirSync(join(game, 'minigames')).filter(f => f.endsWith(
   const T = MINIGAMES[name];
   if (!T) { miss(file, 'мини-игры нет в таблице MINIGAMES'); continue; }
   if (typeof m.title !== 'string' || !(m.about > 0) || typeof m.run !== 'function') miss(file, 'нет title, about или run');
-  if (!m.skipped || !same(Object.keys(m.skipped), T.result)) miss(file, `skipped: поля {${Object.keys(m.skipped ?? {}).join(', ')}}, в таблице итог {${T.result.join(', ')}}`);
+  const clean = m.skipped && cleanOf(m);
+  if (!clean || !same(Object.keys(clean), T.result)) miss(file, `skipped: поля {${Object.keys(clean ?? {}).join(', ')}}, в таблице итог {${T.result.join(', ')}}`);
   for (const key of T.opts ?? []) if (!new RegExp(`\\b${key}\\b`).test(source)) miss(file, `поле opts «${key}» (MINIGAMES) в файле не названо`);
   for (const [, s] of source.matchAll(/\bg\.sound\.(\w+)/g)) if (!(s in sound) || !(s in sound.unheard().sounds)) miss(file, `звука «${s}» нет в sound.js или в unheard()`);
 }
@@ -314,6 +317,10 @@ function watched(g, j, ch, here, events) {
           for (const k of T.keys) key(k, what);
           for (const ref of T.points ?? []) point(ref, what);
           for (const text of T.tells ?? []) moment(text, what);
+          for (const name of T.beats ?? []) {
+            if (cur.scene.contract && !cur.scene.contract.beats[name]) bad(`${what}: куска «${name}» нет в сцене «${cur.title}»`);
+            cur.scene.named.add(`beat:${name}`);
+          }
         }
       }
       for (const k in opts) {
@@ -331,7 +338,7 @@ function watched(g, j, ch, here, events) {
       }
       return new Proxy(result, {
         get(r, field) {
-          if (typeof field === 'string' && field !== 'then' && !(field in (minigame.skipped ?? {}))) bad(`${what}: глава читает поле итога «${field}», в skipped его нет`);
+          if (typeof field === 'string' && field !== 'then' && !(field in (cleanOf(minigame, opts) ?? {}))) bad(`${what}: глава читает поле итога «${field}», в skipped его нет`);
           return r[field];
         },
       });
@@ -346,12 +353,14 @@ const b = page(WORLD, text => miss('b.trouble', text));
 async function walk(choices, results) {
   const result = m => {
     const name = GAMES.get(m)?.name;
-    return results[name] && { ...m.skipped, ...results[name] };
+    return results[name] && { ...cleanOf(m), ...results[name] };
   };
   let came = fresh();
   const chapters = [];
   for (const ch of CHAPTERS) {
     const steps = [];
+    // (the ending set: the chapters left between are not played — the epilogue comes next, game.js)
+    if (came.ending && ch !== CHAPTERS.at(-1)) { chapters.push(steps); continue; }
     for (const [n, step] of ch.steps.entries()) {
       const here = `${ch.file}, шаг ${n + 1} «${ch.titles?.[n] ?? ''}»`, events = [];
       const j = jump(Infinity, sound.unheard(), { result });
@@ -366,13 +375,10 @@ async function walk(choices, results) {
       left();
       came = { ...g.state, choices: { ...g.state.choices } };
       steps.push(events);
-      // (the ending set: the chapters end, the epilogue comes next — game.js)
+      // (the ending set: the chapter ends here)
       if (came.ending && ch !== CHAPTERS.at(-1)) break;
     }
     chapters.push(steps);
-    if (came.ending && ch !== CHAPTERS.at(-1)) {
-      while (chapters.length < CHAPTERS.length - 1) chapters.push([]);
-    }
   }
   return { ending: came.ending ?? '—', chapters };
 }
@@ -392,6 +398,9 @@ const ENDS = [
   [first, { beg: { escaped: false } }],
   [{ ...first, carriage: 'left' }, {}],
   [{ ...first, morning: 'left' }, {}],
+  // (the mind gone — sanity 0: the tarn looked into, his room his way, his music followed, back to the house, the storm
+  // watched with him — «Руки» not played)
+  [{ ...first, walk: 'back', window: 'watch' }, {}],
 ];
 const plays = [];
 for (const choices of combos) { play = plays.length; plays.push(await walk(choices, CLEAN)); }

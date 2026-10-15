@@ -20,7 +20,7 @@ export default {
   about: 40,
   skipped: { loose: [], seconds: 0 },
   async run(g, b, { promised = false } = {}, signal) {
-    const mg = g.minigame({ phrase: 'Крышку держали четыре винта, и каждый надо было довернуть до конца' });
+    const mg = g.minigame({ phrase: 'Четыре винта держали крышку над ней' });
     const send = keys(g), t0 = mg.t;
     mg.plate.set({ notches: [1 / 4, 2 / 4, 3 / 4] });
     const v = [0, 1, 2, 3, 4].map(i => (i ? g.get(`screw${i}`) ?? 0 : 0));

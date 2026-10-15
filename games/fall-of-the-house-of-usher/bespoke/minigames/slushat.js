@@ -17,7 +17,8 @@ const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
 export default {
   title: 'Слушать', // (as the author's ☰ lists it)
   about: 30,
-  skipped: { heard: 'scratch', seconds: 0 },
+  // (skipped: what a clean play gives — her song if he hears it clearly enough)
+  skipped: ({ clarity = 0.3 } = {}) => ({ heard: clarity >= 0.5 ? 'melody' : 'scratch', seconds: 0 }),
   async run(g, b, { clarity = 0.3 } = {}, signal) {
     const c = clamp(clarity), song = c >= 0.5;
     const mg = g.minigame({ phrase: 'Снизу, сквозь камень, шёл какой-то звук' });
@@ -53,7 +54,7 @@ export default {
     hum?.stop(fade);
     g.set('ripple', 0, fade);
     g.set('listen', 0, fade);
-    if (!done) return this.skipped;
+    if (!done) return this.skipped({ clarity });
     mg.snap({ at: spot });
     await mg.end({ as: 'clean' });
     return { heard: song ? 'melody' : 'scratch', seconds: Math.round(mg.t - t0) };

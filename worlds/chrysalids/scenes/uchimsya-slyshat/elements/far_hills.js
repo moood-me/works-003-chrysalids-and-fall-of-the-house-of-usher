@@ -1,5 +1,5 @@
 var s = e.state || {},
-  dk = Math.max(0, Math.min(1, +(s.dusk || 0)));
+  dk = Math.max(0, Math.min(1, 0));
 function mx(a, b, u) {
   return (
     "rgb(" +

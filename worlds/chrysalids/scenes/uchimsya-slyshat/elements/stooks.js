@@ -1,4 +1,4 @@
-var t = e.t;
+var t = 0;
 var X = [-24, -21.5, -6, -3.2, -0.5, 8, 10.8, 13.5, 24, 26.6, 29.3, 36];
 for (var i = 0; i < X.length; i++) {
   var x = X[i] + 0.2 * Math.sin(i * 2.3),

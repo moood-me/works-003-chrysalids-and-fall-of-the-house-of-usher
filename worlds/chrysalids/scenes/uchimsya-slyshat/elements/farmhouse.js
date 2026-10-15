@@ -1,6 +1,6 @@
-var t = e.t,
+var t = 0,
   s = e.state || {},
-  dk = +(s.dusk || 0);
+  dk = 0;
 g.fillStyle = "rgba(70,56,38,0.16)";
 g.beginPath();
 g.ellipse(-8, 0.05, 10, 0.3, 0, 0, 7);
@@ -63,3 +63,9 @@ for (var i = 0; i < 7; i++) {
   g.fillStyle = sg;
   g.fillRect(x - r, y - r, 2 * r, 2 * r);
 }
+
+// its two windows lit at dusk: a layer and their lights (farmhouse.animate.js: `dusk`)
+e.layer('lit', {}, q => { q.fillStyle = 'rgb(242,192,120)'; q.fillRect(1.2, -2.4, 1, 0.9); q.fillRect(-3.8, -2.4, 1, 0.9); });
+e.light(1.7, -1.95, 2.5, '#f0b870', 0.8, 'w1');
+e.light(-3.3, -1.95, 2.5, '#f0b870', 0.8, 'w2');
+e.at(-1.6, -1.1, 'door');

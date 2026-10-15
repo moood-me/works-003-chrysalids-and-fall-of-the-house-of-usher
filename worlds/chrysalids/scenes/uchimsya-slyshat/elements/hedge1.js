@@ -1,4 +1,4 @@
-var t = e.t;
+var t = 0;
 var x = -250;
 while (x < 250) {
   var L = 6 + e.rnd() * 26,

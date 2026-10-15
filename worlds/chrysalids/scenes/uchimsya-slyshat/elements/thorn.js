@@ -1,4 +1,4 @@
-var t = e.t;
+var t = 0;
 g.save();
 g.fillStyle = "rgba(50,42,28,0.22)";
 g.beginPath();

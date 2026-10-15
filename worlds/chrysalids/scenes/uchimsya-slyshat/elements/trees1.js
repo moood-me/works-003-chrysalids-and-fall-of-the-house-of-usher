@@ -1,4 +1,4 @@
-var t = e.t;
+var t = 0;
 function tr(x, h, k) {
   var sw = 0.12 * Math.sin(t * 0.3 + k) + 0.06 * Math.sin(t * 0.71 + k * 2);
   g.fillStyle = "#4e4a37";

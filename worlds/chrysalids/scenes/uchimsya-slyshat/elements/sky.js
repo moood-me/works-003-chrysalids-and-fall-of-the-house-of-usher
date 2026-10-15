@@ -1,5 +1,5 @@
 var A = e.aspect,
-  t = e.t,
+  t = 0,
   s = e.state || {},
   dk = Math.max(0, Math.min(1, +(s.dusk || 0))),
   hz = 0.33;

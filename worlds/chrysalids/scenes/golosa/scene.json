@@ -7,7 +7,7 @@
     "mode": "picture"
   },
   "light": {
-    "ambient": 0.5,
+    "ambient": 0.62,
     "ambientColor": "#6c78a8",
     "bounce": 0.5,
     "haze": 0.25,
@@ -30,6 +30,15 @@
       ],
       "color": "#9aa8d0",
       "strength": 0.35
+    },
+    {
+      "id": "fill",
+      "from": [
+        175,
+        20
+      ],
+      "color": "#9aa8d0",
+      "strength": 0.3
     }
   ],
   "state": {
@@ -38,8 +47,8 @@
     "clouds": 0.15,
     "voices": 0.6,
     "david_present": 1,
-    "david_a": -2.45,
-    "david_d": 6,
+    "david_a": -1.89,
+    "david_d": 4.6,
     "david_look": "farm1#window"
   },
   "states": {
@@ -453,8 +462,8 @@
         "turn": 70,
         "does": "sit_knees"
       },
-      "across": -2.45,
-      "distance": 6,
+      "across": -1.89,
+      "distance": 4.6,
       "place": {
         "across": "david_a",
         "distance": "david_d"

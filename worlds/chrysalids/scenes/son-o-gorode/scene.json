@@ -23,7 +23,7 @@
     ],
     "looks": {
       "waking": {
-        "ambient": 0.3,
+        "ambient": 0.5,
         "ambientColor": "#5a5870",
         "lights": {
           "city": 0.2
@@ -40,6 +40,15 @@
       ],
       "color": "#f0d8b0",
       "strength": 0.75
+    },
+    {
+      "id": "fill",
+      "from": [
+        180,
+        25
+      ],
+      "color": "#c4c0ec",
+      "strength": 0.4
     }
   ],
   "captions": [

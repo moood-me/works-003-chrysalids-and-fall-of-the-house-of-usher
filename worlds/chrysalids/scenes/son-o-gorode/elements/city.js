@@ -22,8 +22,8 @@ const T = [];
 for (let i = 0; i < 40; i++) {
   const u = (e.rnd() + e.rnd() + e.rnd() - 1.5) / 1.5, far = e.rnd();
   const x = cx + u * 0.25;
-  const h = (0.016 + 0.13 * Math.pow(1 - Math.abs(u), 1.5) * (0.3 + 0.7 * e.rnd())) * (far < 0.4 ? 0.8 : 1);
-  const wd = 0.0035 + 0.007 * e.rnd() * e.rnd() + 0.001;
+  const h = (0.024 + 0.2 * Math.pow(1 - Math.abs(u), 1.5) * (0.3 + 0.7 * e.rnd())) * (far < 0.4 ? 0.8 : 1);
+  const wd = 0.006 + 0.011 * e.rnd() * e.rnd() + 0.0015;
   T.push({ x, h, wd, kind: Math.floor(e.rnd() * 4), far: far < 0.4 ? 1 : 0, sd: e.rnd() });
 }
 T.sort((a, b) => b.far - a.far);

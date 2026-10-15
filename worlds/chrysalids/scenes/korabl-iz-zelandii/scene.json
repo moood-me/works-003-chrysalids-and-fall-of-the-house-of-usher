@@ -9,9 +9,9 @@
     "ambient": 0.85,
     "ambientColor": "#c8bcc8",
     "bounce": 0.5,
-    "haze": 0.4,
+    "haze": 0.2,
     "hazeColor": "#9a8f9e",
-    "hazeGlow": 0.6,
+    "hazeGlow": 0.4,
     "shafts": 0.3,
     "vignette": 0.4,
     "grain": 0.18,
@@ -154,7 +154,11 @@
     "sophie_down": false,
     "spider_down": false,
     "joseph_down": false,
-    "david_down": false
+    "david_down": false,
+    "petra_down": false,
+    "rosalind_down": false,
+    "michael_down": false,
+    "sealand_down": false
   },
   "states": {
     "beat": {
@@ -384,6 +388,22 @@
     "w3_fire": {
       "type": "number",
       "means": "w3: выстрел — каждый раз, как число растёт"
+    },
+    "petra_down": {
+      "type": "boolean",
+      "means": "petra: лежит (кокон лёжа)"
+    },
+    "rosalind_down": {
+      "type": "boolean",
+      "means": "rosalind: лежит (кокон лёжа)"
+    },
+    "michael_down": {
+      "type": "boolean",
+      "means": "michael: лежит (кокон лёжа)"
+    },
+    "sealand_down": {
+      "type": "boolean",
+      "means": "sealand: лежит (кокон лёжа)"
     }
   },
   "objects": [

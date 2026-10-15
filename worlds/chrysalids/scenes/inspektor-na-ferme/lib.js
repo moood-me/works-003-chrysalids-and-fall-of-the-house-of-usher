@@ -8,5 +8,5 @@ const CALF_OFF = 1.15;
 // his look, in order: his ledger, the barn's corner, the pen's fence, his horse, the calf's head, its back, its tail, its legs
 const LOOK = ['inspector#hand_l', 'barn#corner', 'fence#pen', 'horse', 'calf#head', 'calf#back', 'calf#tail', 'calf#legs'];
 // where the farmhand leads the calf at the verdict (to the barn), and where David goes when he is not at the corner
-const TO_BARN = [-5.25, 7.95], DAVID = { peek: [-3.2, 15.5], gone: [-3.95, 15.6] };
+const TO_BARN = [-4.2, 8.6], DAVID = { peek: [-3.2, 15.5], gone: [-3.95, 15.6] };
 return { HORSE, CALF_OFF, LOOK, TO_BARN, DAVID };

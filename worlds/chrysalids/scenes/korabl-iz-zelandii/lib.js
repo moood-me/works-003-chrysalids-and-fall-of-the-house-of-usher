@@ -53,10 +53,10 @@ const HORSE = { kind: 'horse', across: 'horse_a', distance: 'horse_d', face: 'ho
 
 // ── the camera's places (camera_x, camera_z, camera_h, camera_look) ──
 const CAM = {
-  children: [-3.3, 3.6, 0.35, 0], clearing: [2.2, 7.5, 0.15, 0], wide: [0, 0, 0, 0], below: [-0.6, 4.6, 0.1, 0], ledge_wide: [-2.5, 5.0, 0.35, 0],
+  children: [-3.3, 3.6, 0.35, 0], clearing: [2.2, 7.5, 0.15, 0], wide: [0, 3, 0, 0.04], below: [-0.6, 4.6, 0.1, 0], ledge_wide: [-2.5, 5.0, 0.35, 0],
   over_them: [-2.5, 2.6, 1.4, 0.17], on_ledge: [-2.5, 3.2, 1.4, 0], by_father: [-0.4, 5.2, 0.05, 0], web_near: [0, 2.0, 0, 0],
   land: [0, 0.6, 0, 0], door: [2.6, 8.5, 0.15, 0], free: [-2.0, 3.0, 0.3, 0], back: [0.4, 1.4, 0, 0], at_father: [0.5, 7.4, 0, 0.04],
-  wide2: [0.6, 1.0, 0, 0], ramp: [2.8, 9.6, 0.1, 0], michael: [-2.2, 4.6, 0.4, 0], stay: [-0.6, 1.2, 0.05, 0], stay_far: [-1.8, 3.0, 0.3, -0.06],
+  wide2: [0.6, 3, 0, 0.03], ramp: [2.8, 9.6, 0.1, 0], michael: [-2.2, 4.6, 0.4, 0], stay: [-0.6, 1.2, 0.05, 0], stay_far: [-1.8, 3.0, 0.3, -0.06],
 };
 const camOf = c => ({ camera_x: c[0], camera_z: c[1], camera_h: c[2], camera_look: c[3] });
 const cam = (s, c, over) => s.all(...['camera_x', 'camera_z', 'camera_h', 'camera_look'].map((k, i) => s.move(k, c[i], { over, ease: 'inOut' })));

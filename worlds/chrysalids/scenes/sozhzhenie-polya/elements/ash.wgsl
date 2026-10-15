@@ -10,6 +10,8 @@ fn shade(painted: vec4f, at: vec2f, uv: vec2f) -> vec4f {
   let hot = lit * (1.0 - burnt);
   let speck = step(0.82, hash2(floor(at / 0.12))) * (0.6 + 0.4 * sin(2.0 * PI * (cycle(0.4 + 0.5 * hash2(floor(at / 0.12) + 3.0)) + hash2(floor(at / 0.12) + 7.0))));
   emission = vec3f(1.0, 0.35, 0.1) * speck * hot * u_fire * 2.0;
-  let shown = max(burnt, hot * 0.7);
+  // (soft at the burnt field's own edges — by the track and its near row —, no plate's edge)
+  let edge = smoothstep(9.2, 10.6, d) * smoothstep(-3.0, -1.6, a);
+  let shown = max(burnt, hot * 0.35) * edge;
   return painted * shown;
 }

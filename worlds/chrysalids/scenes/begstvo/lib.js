@@ -67,7 +67,7 @@ const START = {
   h1_a: -20, h1_d: D, h1_face: 90, h1_toss: 0, h1_here: false, h2_a: -23.4, h2_d: D, h2_face: 90, h2_here: false,
   rosalind_on: seat('great'), rosalind_do: loop('perch_still'), rosalind_turn: 90, rosalind_look: [-6, D, 1.5], rosalind_with: null, rosalind_here: true,
   petra_on: spot('sheba', 90, BEFORE), petra_do: loop('perch_still'), petra_turn: 90, petra_look: null, petra_reach: null, petra_peek: 0,
-  david_on: seat('sheba'), david_do: loop('perch_still'), david_turn: 90, david_look: null, david_with: null, david_steps: true, david_here: true,
+  david_on: seat('sheba'), david_do: loop('perch_still'), david_turn: 90, david_look: null, david_with: null, david_steps: false, david_here: true,
   searcher_on: seat('horse1'), searcher_do: loop('perch_still'), searcher_turn: 90, searcher_with: ['lantern'], searcher_wear: { hat: 'hat' }, searcher_here: false, searcher_look: null,
   searcher2_on: seat('horse2'), searcher2_do: loop('perch_still'), searcher2_turn: 90, searcher2_with: ['lantern'], searcher2_wear: { hat: 'hat' }, searcher2_here: false,
   lamp: 0, lamp_x: 6, search_point: 0, arrow: 0, arrow_high: false,
@@ -385,6 +385,8 @@ const FILM = {
       s.move('lamp', 0, { over: 1.2 });
       s.tell('kill:shot'); // (he falls — forward, down the near side of the crest: seen lying there)
       const falls = sr.do('collapse');
+      // (out of the saddle forward, off the track onto the ridge's near face — before the shoulder's card: seen lying)
+      s.move('searcher_d', D - 0.75, { over: 0.9, ease: 'out' });
       await s.wait(0.3);
       await turnHorse(s, 'horse1', 270, 0.6);
       ride(s, 'horse1', -16, 'canter', 'in');

@@ -99,7 +99,7 @@
       "r": "plough#handle_r",
       "l": "plough#handle_l"
     },
-    "camera_z": 12
+    "camera_z": 4
   },
   "states": {
     "dusk": {
@@ -709,6 +709,7 @@
         "weight": 0
       }
     ],
-    "brightness": 0.6
+    "brightness": 0.6,
+    "scale": "C_MAJOR_A_MINOR"
   }
 }

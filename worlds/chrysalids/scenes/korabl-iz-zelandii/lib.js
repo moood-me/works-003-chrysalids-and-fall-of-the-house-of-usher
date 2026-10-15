@@ -53,7 +53,7 @@ const HORSE = { kind: 'horse', across: 'horse_a', distance: 'horse_d', face: 'ho
 
 // ── the camera's places (camera_x, camera_z, camera_h, camera_look) ──
 const CAM = {
-  children: [-3.3, 3.6, 0.35, 0], clearing: [2.2, 7.5, 0.15, 0], wide: [0, 3, 0, 0.04], below: [-0.6, 4.6, 0.1, 0], ledge_wide: [-2.5, 5.0, 0.35, 0],
+  children: [-3.3, 3.6, 0.35, 0], clearing: [2.2, 7.5, 0.15, 0], wide: [0, 3, 0, 0.04], battle: [1.0, 6.5, 0.1, 0], below: [-0.6, 4.6, 0.1, 0], ledge_wide: [-2.5, 5.0, 0.35, 0],
   over_them: [-2.5, 2.6, 1.4, 0.17], on_ledge: [-2.5, 3.2, 1.4, 0], by_father: [-0.4, 5.2, 0.05, 0], web_near: [0, 2.0, 0, 0],
   land: [0, 0.6, 0, 0], door: [2.6, 8.5, 0.15, 0], free: [-2.0, 3.0, 0.3, 0], back: [0.4, 1.4, 0, 0], at_father: [0.5, 7.4, 0, 0.04],
   wide2: [0.6, 3, 0, 0.03], ramp: [2.8, 9.6, 0.1, 0], michael: [-2.2, 4.6, 0.4, 0], stay: [-0.6, 1.2, 0.05, 0], stay_far: [-1.8, 3.0, 0.3, -0.06],
@@ -151,7 +151,7 @@ const FILM = {
     run: async s => {
       const jo = P(s, 'joseph'), sp = P(s, 'spider');
       const next = ahead(s, [CAM.clearing, CAM.children]);
-      cam(s, CAM.wide, 4.8);
+      cam(s, CAM.battle, 4.8);
       await s.wait(1.0);
       shoot(s, 'w3');
       jo.reach({ r: [2, 18, 2.6] });
@@ -402,8 +402,8 @@ const FILM = {
     },
   },
   // board — (cut: the ramp) they go into the light, one by one; David looks back once at the clearing. (cut: wide) The craft
-  // goes; Michael on the rock watches it go, looks once at the clearing of cocoons — and walks away along the rock; the still
-  // clearing
+  // goes; Michael on the rock watches it go, a few steps along the rock, and stands looking down at the clearing of
+  // cocoons — the film ends on him
   // (opened by the game as its own step: it opens on the ramp)
   board: {
     after: [],
@@ -428,8 +428,10 @@ const FILM = {
       next();
       s.tell('board:michael'); // (Michael on the rock)
       await s.wait(1.5);
-      await walk(s, 'michael', [[-3.4, 8.7], [-9.5, 9.0]]);
-      await cam(s, CAM.wide, 5);
+      // (a few steps along the rock, and he stays there, looking down at the clearing: the film ends on him)
+      await walk(s, 'michael', [[-3.4, 8.7]]);
+      P(s, 'michael').look([0, 14, 0]);
+      await s.wait(2.5);
     },
   },
   // stay — David lets go of Rosalind's hand and goes back up to Michael on the ledge, with Rosalind (stay_ros) or alone,

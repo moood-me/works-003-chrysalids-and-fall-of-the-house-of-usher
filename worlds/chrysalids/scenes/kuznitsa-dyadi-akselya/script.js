@@ -94,6 +94,8 @@ function man() {
 function lamp() {
   const who = s.get('st_who') || 'joseph', a = s.get('st_a'), d = s.get('st_d'), v = s.get('st_lamp') || 0, boy = v > 1.01;
   const lx = boy ? s.get('dv_a') : s.get('st_lx'), lz = boy ? s.get('dv_d') : s.get('st_lz');
+  // (raised on him: its beam lies on the boy — st_glare, the light `glare` at him)
+  s.set('st_glare', Math.max(0, Math.min(1, (v - 1) / 0.3)));
   const dx = lx - a, dz = lz - d, n = Math.hypot(dx, dz) || 1, up = (s.get('st_drop') || 0) < 0.5 && v > 0.05;
   P(who).reach(up ? { r: [a + 0.38 * dx / n, d + 0.38 * dz / n, 1.3 + 0.38 * Math.min(v, 1.3)] } : null);
   P(who).look([lx, lz, 1.0]);

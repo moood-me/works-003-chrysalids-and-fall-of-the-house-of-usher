@@ -12,7 +12,11 @@ for (let i = 0; i < 120; i++) {
   g.ellipse(-70 + e.rnd() * 140, -50 + e.rnd() * 80, 1 + e.rnd() * 3, 0.4 + e.rnd() * 1, e.rnd() * 3, 0, 7);
   g.fill();
 }
-g.fillStyle = '#3e3a34';
-g.beginPath();
-g.ellipse(-1.2, 40, 1.4, 0.9, 0, 0, 7);
-g.fill();
+// the burnt ground under the fire (lib.FIRE: 6.2 m off — the plane's middle at 50), soft at its edge
+{
+  const [fa, fd] = e.lib.FIRE, y = 50 - fd;
+  const rg = g.createRadialGradient(fa, y, 0, fa, y, 1.1);
+  rg.addColorStop(0, 'rgba(62,58,52,0.9)'); rg.addColorStop(0.6, 'rgba(62,58,52,0.6)'); rg.addColorStop(1, 'rgba(62,58,52,0)');
+  g.save(); g.translate(fa, y); g.scale(1, 0.75); g.translate(-fa, -y);
+  g.fillStyle = rg; g.beginPath(); g.arc(fa, y, 1.1, 0, 7); g.fill(); g.restore();
+}

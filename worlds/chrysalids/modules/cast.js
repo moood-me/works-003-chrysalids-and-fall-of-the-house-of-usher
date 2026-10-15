@@ -54,7 +54,7 @@ return {
     // of doors his wide-brimmed hat: wear {hat: 'hat'})
     joseph: { kind: 'shapes', style: 'chrysalids', who: 'man', garment: 'longcoat', hair: 'short', parts: ['beard'],
       body: { height: 1.08, shoulders: 1.04, thick: 1.0 },
-      colors: { skin: '#b88d6e', hair: '#2a2420', top: '#24232a', garment: '#24232a', bottom: '#222026', shoes: '#1c1b1f', hat: '#1c1b1f' } },
+      colors: { skin: '#b88d6e', hair: '#2a2420', top: '#36343c', garment: '#36343c', bottom: '#2e2c33', shoes: '#1c1b1f', hat: '#1c1b1f' } },
     // the inspector: a lean man from the government in a grey frock coat to the knee, a starched collar, spectacles (out of
     // doors his hat: wear {hat: 'hat'})
     inspector: { kind: 'shapes', style: 'chrysalids', who: 'man', garment: 'longcoat', hair: 'short', face: 'spectacles',
@@ -85,7 +85,7 @@ return {
     // (`bow`, in the left hand) where she has it
     rosalind: { kind: 'shapes', style: 'chrysalids', who: 'woman', garment: 'dress', hair: 'long',
       body: { height: 0.97, shoulders: 0.88, hips: 1.0, thick: 0.84 },
-      colors: { skin: '#c49a7c', hair: '#5e3424', top: '#5b6152', garment: '#5b6152', shoes: '#2e2620' } },
+      colors: { skin: '#c49a7c', hair: '#5e3424', top: '#717a66', garment: '#717a66', shoes: '#2e2620' } },
     // Petra, ~6: small, fair hair, a grey dress, a plum shawl over the shoulders (the accent — `shawl_dress`)
     petra: { kind: 'shapes', style: 'chrysalids', who: 'child', garment: 'shawl_dress', hair: 'bob',
       body: { height: 0.62, head: 1.12, thick: 0.86 },

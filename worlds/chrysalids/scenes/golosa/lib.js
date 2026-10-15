@@ -50,7 +50,7 @@ function pane(g, e, w, h) {
   g.fillStyle = '#4a3828';
   g.fillRect(-w / 2, -h, w, h);
   e.layer('lit', {}, q => { q.fillStyle = '#eeba70'; q.fillRect(-w / 2, -h, w, h); });
-  e.light(0, -h / 2, 0.035 * e.spot.distance, '#e8b06a', 1.4, 'win');
+  e.light(0, -h / 2, 0.035 * e.spot.distance, '#e8b06a', 3, 'win');
   e.at(0, -h / 2, 'window');
   e.at(0, -h / 2);
 }

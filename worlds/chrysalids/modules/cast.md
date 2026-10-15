@@ -20,13 +20,35 @@ List it in a scene's `modules` with the others.
 - `mary` — Mary, his older sister: a grey-blue dress and apron, a kerchief (`kerchief`).
 - `farmhand` — the farmhand: a broad man in a fawn smock, bare-headed in the house; out of doors his brimmed hat
   (`wear: {hat: 'hat'}`). `villager` — a man of Waknuk: a dark jacket, a hat.
+- `rider` — a rider of the community: a long dark riding coat (`longcoat`), a brimmed hat; in the saddle of a horse of the module
+  `chrysalids` (`<id>_on` its `seat`, a seated loop — `perch_still` —, the feet reaching for its stirrups, the hands for
+  its reins).
 - `inspector` — the government's inspector: a lean man in a grey frock coat to the knee (`longcoat`), round spectacles
   (the face `spectacles`, in the look's `accent`); out of doors his hat (`wear: {hat: 'hat'}`).
+
+- `rosalind` — Rosalind, ~16 (III–VII): tall, slender, long dark-auburn hair, a plain grey-green dress; her bow the part
+  `bow` (in the left hand; the string to the right hand as it draws).
+- `petra` — Petra, ~6: small, fair hair, a grey dress, a plum shawl over the shoulders (`shawl_dress`; the accent).
+- `michael` — Michael, ~15: a dark jacket, a cap.
+- `sealand` — the woman from Sealand: tall, upright, a close pale suit, short pale hair.
+- `sophie_adult` — Sophie grown, with the Fringes people: a worn dark jacket, trousers, her hair tied back, a rust kerchief
+  at the neck (`scarf`, the look's `accent`).
+- `spider` — the Spider-man of the Fringes: very tall, the arms far too long, a ragged dark coat, long grey hair, a beard.
+- The Fringes' people: `guard` (broad, a spear — `spear`), `hunchback` (a hump — `hump`), `fringe_man`, `fringe_woman`.
+- The community of Waknuk, each in their own colours (a crowd is never one person ten times): `man_a` (jacket, hat),
+  `man_b` (long coat, hat, beard, heavy), `man_c` (smock, cap), `woman_a` (dress and apron, bonnet), `woman_b` (dress,
+  kerchief), `woman_c` (dress and apron, kerchief), `boy`, `girl`, `old_man` (long coat, hat, grey beard), `old_woman`
+  (bonnet, shawl).
+- David's nightshirt (the dream): `<id>_wear: {garment: 'nightshirt', barefoot: 'both'}`.
+
+Parts and their points are drawn at the person's size: `F.fit.h` is their height as a share of a man's 1.76 m — a man's
+`x` metres are `x * F.fit.h` on them.
 
 All in the world's style `chrysalids` (the engine's `graphic`, toned, a fine line, the engine's face `simple` — at rest,
 or as `<id>_mood` says; the inspector's `spectacles` over it). Parts in the hands (`with`): `shoe` — Sophie's shoe, `bundle` — a cloth bundle, `rag_loose` — a rag wound
 anyhow round the right hand, an end hanging, blood through it, `rag` — the same bound neat, `book` — the Book shut in the
-left hand, `book_open` — open in both hands, `book_open_l` — open on the left hand alone, `ladle` — a long wooden ladle,
+left hand, `book_open` — open in both hands, `torch` — a torch held up in the right hand (its point `flame`: the scene's fire particles and light there),
+`book_open_l` — open on the left hand alone, `ladle` — a long wooden ladle,
 `spoon`, `hammer` — the smith's hammer in the left hand (on along the forearm, its face the way the arm swings),
 `tongs` — tongs in the right hand, `lantern` — a lantern hanging from the right hand (its light is the scene's: a light
 `"at": "<who>#hand_r"`). `beard` — a full beard, `staff` — a tall walking staff in the right hand (a look's `parts`).

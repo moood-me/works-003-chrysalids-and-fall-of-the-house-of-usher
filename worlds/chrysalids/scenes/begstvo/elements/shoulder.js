@@ -6,12 +6,14 @@ const { cr, track } = e.lib, X0 = 2, k = 8.85 / 9, LIP = 0.45;
 const lip = x => Math.min(cr(x), track(Math.min(x, 12.5)) + LIP);
 g.translate(0, (k - 1) * 1.7);
 g.scale(k, k);
-const prof = () => { g.beginPath(); g.moveTo(X0, 2); for (let x = X0; x <= 80; x += 0.2) g.lineTo(x, -lip(x)); g.lineTo(80, 2); g.closePath(); };
+// (a band DEEP under its lip all along: as deep as the crest's was over the land behind it)
+const DEEP = 1.6;
+const prof = () => { g.beginPath(); g.moveTo(X0, -lip(X0)); for (let x = X0; x <= 80; x += 0.2) g.lineTo(x, -lip(x)); for (let x = 80; x >= X0; x -= 0.2) g.lineTo(x, DEEP - lip(x)); g.closePath(); };
 g.fillStyle = '#5e6a4e';
 for (let j = 0; j < 24; j++) {
   g.save();
   g.beginPath();
-  g.rect(X0 + j * 0.125, -4, j < 23 ? 0.125 : 80, 6);
+  g.rect(X0 + j * 0.125, -4, j < 23 ? 0.125 : 80, 7);
   g.clip();
   g.globalAlpha = (j + 1) / 24;
   prof();

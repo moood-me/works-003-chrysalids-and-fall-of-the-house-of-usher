@@ -7,6 +7,7 @@
 // arc on the mark: the rider coming (r_near). Done: the hem on the foot before he has come (ridge:seen) — hid; else late.
 // The ghost shows the pull once, at the start, while the scene holds the rider at the meadow's edge (its key r_wait, which
 // the chapter sets): the showing is not the player's time — he rides on once it is over or a finger is down.
+//   opts: { onRide() — said as he rides on }
 //   → { hid }
 import { until, keys } from '../hands.js';
 
@@ -14,7 +15,7 @@ export default {
   title: 'Подол', // (as the author's ☰ lists it)
   about: 9,
   skipped: { hid: true },
-  async run(g, b, opts, signal) {
+  async run(g, b, { onRide } = {}, signal) {
     const seen = g.told('ridge:seen');
     let late = false;
     seen.then(ok => { if (ok) late = true; });
@@ -23,7 +24,7 @@ export default {
     const hem = mg.mark({ at: 'closeup#hem', kind: 'dash', time: 1 });
     const pull = mg.pull({ on: hem, to: 'closeup#foot', release: 'spring' });
     let held = true;
-    const ride = () => { if (held) { held = false; g.set('r_wait', false); } };
+    const ride = () => { if (held) { held = false; g.set('r_wait', false); onRide?.(); } };
     mg.show({ gestures: [pull] }).finished.then(ride);
     const off = mg.on('down', ride);
     const done = await until(mg, () => {

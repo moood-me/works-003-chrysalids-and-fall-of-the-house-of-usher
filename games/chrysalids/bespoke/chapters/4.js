@@ -51,7 +51,6 @@ export default {
       g.state.choices.river = river;
       // the far field: only Rosalind — or everyone sees her run
       const field = g.beat(`field_${river}`);
-      g.set('beat_next', 'out'); // (its opening, a cut back to the pool, made ready meanwhile)
       if (river === 'quiet') await g.say('narrator', 'Она стихла. Дальше Розалинды её никто не услышал.');
       else await g.say('narrator', 'Взрослые не слышали ни звука. Они видели, как она бежит.');
       await field;

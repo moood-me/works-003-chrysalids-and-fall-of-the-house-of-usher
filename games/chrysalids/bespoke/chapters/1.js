@@ -71,10 +71,14 @@ export default {
       horse.loud(0.15, 2);
       horse.loud(0.8, 16);
       await rider;
+      horse.halt(); // (he stands at the meadow's edge till «Подол» lets him ride on)
       await g.say('narrator', 'Копыта. Нельзя, чтобы её ногу увидели.');
       await hem;
-      const { hid } = await g.play(podol);
+      let rides = false;
+      const ride = () => { if (!rides) { rides = true; horse.gait('walk'); } };
+      const { hid } = await g.play(podol, { onRide: ride });
       g.set('r_wait', false);
+      ride();
       g.state.choices.hooves = hid ? 'hid' : 'late';
       if (hid) {
         await g.beat('cover'); // (it ends once he has come to where the stones are seen)

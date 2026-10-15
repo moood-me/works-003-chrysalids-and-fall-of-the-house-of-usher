@@ -340,21 +340,20 @@ function houseMirror(g, e) {
   clear(g, e);
   halves(e, true, -MIRROR, (g) => {
     // (painted upright, then turned with the half: in the reflection they hang upside down)
+    // (the window's red light spreading round it in the water, and the three standing in it larger than the window —
+    // larger than life — their feet at its sill)
     g.save();
     g.translate(10.5, -12);
-    const rg = g.createRadialGradient(0, -4, 0, 0, -4, 6);
-    rg.addColorStop(0, 'rgba(200,58,40,0.85)');
-    rg.addColorStop(1, 'rgba(150,40,30,0.3)');
+    const rg = g.createRadialGradient(0, -7, 0, 0, -7, 11);
+    rg.addColorStop(0, 'rgba(200,58,40,0.8)');
+    rg.addColorStop(0.6, 'rgba(170,46,34,0.4)');
+    rg.addColorStop(1, 'rgba(150,40,30,0)');
     g.fillStyle = rg;
-    g.beginPath();
-    g.moveTo(-2, 0); g.lineTo(-2, -9.4 + 3.2); g.quadraticCurveTo(-2, -9.4 + 0.6, 0, -9.4); g.quadraticCurveTo(2, -9.4 + 0.6, 2, -9.4 + 3.2); g.lineTo(2, 0);
-    g.closePath();
-    g.fill();
-    g.clip();
+    g.beginPath(); g.arc(0, -7, 11, 0, Math.PI * 2); g.fill();
     g.translate(0, -0.4);
-    g.scale(7, 7);
+    g.scale(9, 9);
     ['madeline', 'narrator', 'roderick'].forEach((who, i) => e.kit.ushers.figure(g, e, {
-      id: 'ghost_' + who, who, x: (i - 1) * 0.22, face: (i - 1) * -12, wear: who === 'madeline' ? { blood: 1 } : undefined,
+      id: 'ghost_' + who, who, x: (i - 1) * 0.3, face: (i - 1) * -12, wear: who === 'madeline' ? { blood: 1 } : undefined,
       light: 0.32, dark: '#0b0c10', rim: '#e04a36', rimDir: -90,
     }));
     g.restore();
@@ -804,10 +803,10 @@ function film(scene) {
         s.move('camera_look', 0.12, { over: 5, ease: 'inOut' });
         s.move('fall', 0.5, { over: 5.5, ease: 'inOut' });
         await s.wait(3.5);
-        // (nearer, onto the reflected window: the three of them filling it)
-        s.move('camera_z', 100, { over: 2.5, ease: 'inOut' });
-        s.move('camera_x', 11, { over: 2.5, ease: 'inOut' });
-        s.move('camera_look', 0.42, { over: 2.5, ease: 'inOut' });
+        // (a little nearer, toward the reflected window: the three of them in it)
+        s.move('camera_z', 75, { over: 2.5, ease: 'inOut' });
+        s.move('camera_x', 6, { over: 2.5, ease: 'inOut' });
+        s.move('camera_look', 0.22, { over: 2.5, ease: 'inOut' });
         await s.wait(1);
         s.move('ghosts', 1, { over: 1, ease: 'out' });
         await s.wait(3.5);

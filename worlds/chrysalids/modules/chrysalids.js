@@ -440,10 +440,17 @@ function tack(id, face, kind) {
   const reins = at(REINS);
   return { foot_l: at([-STIRRUP[0], STIRRUP[1], STIRRUP[2]]), foot_r: at(STIRRUP), r: reins, l: reins };
 }
+// spot(id, face, kind, p): a point of horse `id` turned `face` degrees — p in its own frame (× its height: x to its right,
+// y up, z ahead) — as a point in its frame ({ on: id, at }: someone's `on`, `reach`, `look`): a child in front of the rider
+// on the saddle, the crupper a rein is tied to
+function spot(id, face, kind, p) {
+  const Hw = (HORSES[kind] ?? HORSES.horse).Hw, q = seen(Number(face) || 0)(mul(p, Hw));
+  return { on: id, at: [q[0], q[2], -q[1]] };
+}
 // pace(gait, kind): a gait's own pace, m/s — how fast a scene moves a horse that walks, trots, canters, gallops
 function pace(gait = 'walk', kind) {
   const Hw = (HORSES[kind] ?? HORSES.horse).Hw;
   return (GAITS.find(G => G.name === gait) ?? GAITS[0]).pace * Math.sqrt(Hw / 1.55);
 }
 
-return { horse: { paint, animate: animateHorse, tack, pace }, HORSES };
+return { horse: { paint, animate: animateHorse, tack, spot, pace }, HORSES };

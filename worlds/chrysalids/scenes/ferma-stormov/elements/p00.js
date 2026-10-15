@@ -1,0 +1,10 @@
+g.fillStyle = e.color;
+g.beginPath();
+g.moveTo(-0.06, 0);
+g.lineTo(-0.06, -1.28);
+g.lineTo(0.06, -1.32);
+g.lineTo(0.06, 0);
+g.closePath();
+g.fill();
+g.fillStyle = "rgba(190,150,140,0.12)";
+g.fillRect(-0.06, -1.3, 0.03, 1.3);

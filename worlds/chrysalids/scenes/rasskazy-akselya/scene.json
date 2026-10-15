@@ -1,0 +1,296 @@
+{
+  "light": {
+    "haze": 0.35,
+    "tint": "#141a2c",
+    "grain": 0.25,
+    "vignette": 0.5,
+    "hazeColor": "#34405e",
+    "tintStrength": 0.08
+  },
+  "music": {
+    "bpm": 64,
+    "density": 0.25,
+    "prompts": [
+      {
+        "text": "an old sea shanty hummed very softly on a slow wheezing accordion, tender and far away",
+        "weight": 2
+      },
+      {
+        "text": "crackling campfire ambience at night, soft pops, embers hissing",
+        "weight": 2
+      },
+      {
+        "text": "distant waves breaking slowly on an unseen shore, deep and calm",
+        "weight": 1
+      },
+      {
+        "text": "low sustained strings, wide and open, a sense of vast horizons and doubt",
+        "weight": 2
+      },
+      {
+        "text": "solo concertina waltz, slow, half-remembered, salt-worn",
+        "weight": 1
+      },
+      {
+        "text": "warm solo cello, long low phrases, a storyteller's voice without words",
+        "weight": 0
+      },
+      {
+        "text": "night crickets in a summer field, field recording blended with soft pads",
+        "weight": 0
+      },
+      {
+        "text": "ethereal choir pads, wordless, dreamlike, images rising in smoke",
+        "weight": 0
+      },
+      {
+        "text": "sparse celesta notes like stars appearing one by one",
+        "weight": 0
+      },
+      {
+        "text": "Celtic low whistle, breathy and slow, open night sky",
+        "weight": 0
+      },
+      {
+        "text": "post-apocalyptic folk, sparse acoustic guitar, worn and gentle",
+        "weight": 0
+      },
+      {
+        "text": "muted fiddle playing a slow air, sailor's lament, very quiet",
+        "weight": 0
+      },
+      {
+        "text": "deep drone of a pump organ heard from a distant chapel, stern and cold",
+        "weight": 0
+      },
+      {
+        "text": "slow ambient synth swells, analog warmth, wonder and unease",
+        "weight": 0
+      },
+      {
+        "text": "creaking ship timbers and rigging, slow rolling swell, ambient",
+        "weight": 0
+      },
+      {
+        "text": "hammered dulcimer, gentle, notes drifting up like sparks",
+        "weight": 0
+      },
+      {
+        "text": "chamber strings in a minor key, hushed, curiosity and forbidden thought",
+        "weight": 0
+      },
+      {
+        "text": "harmonium chords swelling slowly, nostalgic and candlelit",
+        "weight": 0
+      },
+      {
+        "text": "lullaby melody on a music box, slightly out of tune, fragile",
+        "weight": 0
+      },
+      {
+        "text": "faint glassy bowed metal textures, eerie ruins of an ancient city",
+        "weight": 0
+      }
+    ],
+    "brightness": 0.3
+  },
+  "state": {
+    "dawn": 0,
+    "fire": 0.8,
+    "story": 0.7,
+    "vision": 1,
+    "david_present": true
+  },
+  "title": "Рассказы Акселя",
+  "camera": {
+    "mode": "picture"
+  },
+  "caption": "— Там, за морем, они тоже считают себя истинным образом, — сказал дядя.",
+  "horizon": 0.64,
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Звёздное небо"
+    },
+    {
+      "id": "far",
+      "box": [
+        -900,
+        -20,
+        900,
+        2
+      ],
+      "name": "Дальние перелески",
+      "across": 40,
+      "height": 10,
+      "distance": 400
+    },
+    {
+      "id": "field",
+      "name": "Поле",
+      "depth": 400,
+      "plane": true,
+      "width": 900,
+      "across": 0,
+      "distance": 205,
+      "elevation": 0
+    },
+    {
+      "id": "rise",
+      "box": [
+        -20,
+        -1.6,
+        20,
+        2.6
+      ],
+      "name": "Пригорок за кузницей",
+      "across": 0,
+      "height": 1,
+      "distance": 6
+    },
+    {
+      "id": "barn",
+      "box": [
+        -6,
+        -7,
+        3,
+        0.3
+      ],
+      "name": "Угол кузницы",
+      "across": -7.5,
+      "height": 4,
+      "distance": 7.5,
+      "elevation": 0.7
+    },
+    {
+      "id": "smoke",
+      "box": [
+        -3,
+        -15,
+        18,
+        0.2
+      ],
+      "name": "Дым костра",
+      "across": -0.7,
+      "height": 8,
+      "distance": 5.7,
+      "elevation": 0.7
+    },
+    {
+      "id": "fire",
+      "box": [
+        -3,
+        -2.5,
+        3,
+        0.4
+      ],
+      "name": "Костёр",
+      "across": -0.7,
+      "height": 0.6,
+      "flicker": 0.3,
+      "distance": 5.6,
+      "elevation": 0.7
+    },
+    {
+      "id": "axel",
+      "box": [
+        -0.9,
+        -2.1,
+        1.6,
+        0.15
+      ],
+      "name": "Дядя Аксель",
+      "across": -2.1,
+      "height": 1.5,
+      "distance": 5.6,
+      "elevation": 0.7
+    },
+    {
+      "id": "david",
+      "box": [
+        -0.7,
+        -1.6,
+        0.9,
+        0.2
+      ],
+      "name": "Дэвид",
+      "across": -2.95,
+      "height": 1.3,
+      "distance": 5.8,
+      "elevation": 0.7
+    },
+    {
+      "id": "grass",
+      "box": [
+        -6,
+        -1,
+        6,
+        1.2
+      ],
+      "name": "Трава у ног",
+      "across": 0,
+      "height": 0.5,
+      "distance": 4,
+      "elevation": 0.5
+    },
+    {
+      "id": "mid",
+      "box": [
+        -140,
+        -6,
+        140,
+        1
+      ],
+      "name": "Межа в поле",
+      "across": 20,
+      "height": 3,
+      "distance": 90
+    },
+    {
+      "id": "vis_city",
+      "sky": true,
+      "name": "Видение: город Старых людей"
+    },
+    {
+      "id": "vis_coast",
+      "sky": true,
+      "name": "Видение: странный берег"
+    },
+    {
+      "id": "vis_mist",
+      "sky": true,
+      "name": "Дымка видений"
+    },
+    {
+      "id": "vis_ship",
+      "sky": true,
+      "name": "Видение: корабль"
+    }
+  ],
+  "widgets": [
+    {
+      "x": 0.3,
+      "y": 0.27,
+      "at": 6,
+      "id": "line1",
+      "for": 9,
+      "name": "Строка 1",
+      "width": 620,
+      "anchor": "left",
+      "height": 50
+    },
+    {
+      "x": 0.3,
+      "y": 0.27,
+      "at": 21,
+      "id": "line2",
+      "for": 9,
+      "name": "Строка 2",
+      "width": 460,
+      "anchor": "left",
+      "height": 50
+    }
+  ],
+  "captions": []
+}

@@ -1,0 +1,215 @@
+{
+  "light": {
+    "haze": 0.06,
+    "tint": "#6e68a0",
+    "grain": 0.2,
+    "vignette": 0.6,
+    "hazeColor": "#4a4870",
+    "tintStrength": 0.05
+  },
+  "music": {
+    "bpm": 60,
+    "density": 0.25,
+    "prompts": [
+      {
+        "text": "dreamy celesta, slow falling notes with long reverb, childlike wonder",
+        "weight": 2
+      },
+      {
+        "text": "soft wordless choir, distant voices across water, sustained and tender",
+        "weight": 2
+      },
+      {
+        "text": "slow glassy synth pads, shimmering and luminous, night by the sea",
+        "weight": 2
+      },
+      {
+        "text": "distant sea, gentle waves on sand blended with a soft ambient drone",
+        "weight": 1
+      },
+      {
+        "text": "music box melody slowed and stretched, half-remembered, nostalgic",
+        "weight": 1
+      },
+      {
+        "text": "glass harmonica tones drifting, fragile and otherworldly",
+        "weight": 0
+      },
+      {
+        "text": "bowed vibraphone with long tails, crystalline shimmer",
+        "weight": 0
+      },
+      {
+        "text": "solo piano, sparse high notes, lullaby with lots of silence",
+        "weight": 0
+      },
+      {
+        "text": "warm analog synth arpeggio, slow and hypnotic, 1970s sci-fi dream",
+        "weight": 0
+      },
+      {
+        "text": "Vangelis-like cinematic pads, longing for a faraway city",
+        "weight": 0
+      },
+      {
+        "text": "airy flute harmonics over a soft drone, blue dusk",
+        "weight": 0
+      },
+      {
+        "text": "slow harp glissandi, soft and gentle wonder",
+        "weight": 0
+      },
+      {
+        "text": "granular shimmering textures, sparkling lights in slow motion",
+        "weight": 0
+      },
+      {
+        "text": "low warm cello sustained, quiet longing",
+        "weight": 0
+      },
+      {
+        "text": "tape-warped ambient pad, wavering pitch, a fading memory",
+        "weight": 0
+      },
+      {
+        "text": "distant bells across water at night, soft and irregular",
+        "weight": 0
+      },
+      {
+        "text": "austere rural hymn on harmonium, slow, far away",
+        "weight": 0
+      },
+      {
+        "text": "sub-bass hum like a distant rotor, slow phasing",
+        "weight": 0
+      },
+      {
+        "text": "Brian Eno style ambient, gentle loops, weightless",
+        "weight": 0
+      },
+      {
+        "text": "Icelandic ambient post-rock, slowly swelling strings, hopeful",
+        "weight": 0
+      }
+    ],
+    "brightness": 0.5
+  },
+  "state": {
+    "craft": 0.6,
+    "dream": 0.75,
+    "lead_x": null,
+    "lead_y": null,
+    "lights": 0.75,
+    "waking": 0,
+    "boy_present": 1
+  },
+  "title": "Сон о городе",
+  "camera": {
+    "mode": "picture"
+  },
+  "caption": "Мне снился город, которого не было ни на одной карте.",
+  "horizon": 0.6,
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Ночное небо сна"
+    },
+    {
+      "id": "clouds",
+      "sky": true,
+      "name": "Облачные пряди"
+    },
+    {
+      "id": "craft",
+      "sky": true,
+      "name": "Сияющие рыбы"
+    },
+    {
+      "id": "city",
+      "sky": true,
+      "name": "Город у моря"
+    },
+    {
+      "x": 0.3,
+      "y": 0.84,
+      "id": "dune",
+      "box": [
+        -9,
+        -2.5,
+        14,
+        1.6
+      ],
+      "name": "Дюна и край поля",
+      "height": 1
+    },
+    {
+      "x": 0.3,
+      "y": 0.841,
+      "id": "david",
+      "box": [
+        -0.6,
+        -1.4,
+        0.6,
+        0.15
+      ],
+      "name": "Дэвид",
+      "height": 1.15,
+      "elevation": 0.7
+    },
+    {
+      "x": 0.06,
+      "y": 0.97,
+      "id": "wheat_front",
+      "box": [
+        -4,
+        -1.8,
+        3,
+        0.4
+      ],
+      "name": "Колосья у края",
+      "height": 1.2
+    },
+    {
+      "id": "motes",
+      "sky": true,
+      "name": "Пылинки сна"
+    },
+    {
+      "x": 0.5,
+      "y": 0.999,
+      "id": "waking",
+      "box": [
+        -7,
+        -5,
+        7,
+        0.6
+      ],
+      "name": "Пробуждение",
+      "height": 4
+    }
+  ],
+  "captions": [
+    {
+      "at": 6,
+      "for": 9,
+      "text": "Башни у самой воды, и в каждом окне — свет."
+    },
+    {
+      "at": 18,
+      "for": 9,
+      "text": "А над ними медленно плыли блестящие рыбы."
+    },
+    {
+      "at": 30,
+      "for": 10,
+      "text": "Я не знал, где это. Знал только, что мне — туда."
+    }
+  ],
+  "directions": [
+    {
+      "key": "waking",
+      "name": "Проснуться"
+    }
+  ]
+}

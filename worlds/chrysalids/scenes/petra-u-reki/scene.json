@@ -1,0 +1,327 @@
+{
+  "light": {
+    "haze": 0.4,
+    "tint": "#a9b1b0",
+    "grain": 0.25,
+    "vignette": 0.4,
+    "hazeColor": "#9ea29c",
+    "tintStrength": 0.05
+  },
+  "music": {
+    "bpm": 72,
+    "density": 0.4,
+    "prompts": [
+      {
+        "text": "tense low strings, sustained cello and double bass tremolo, slow swelling dread",
+        "weight": 2
+      },
+      {
+        "text": "rushing river ambience, steady rain on water, close and wide",
+        "weight": 2
+      },
+      {
+        "text": "muffled heartbeat-like low drum, slow pulse, felt mallet, intimate",
+        "weight": 2
+      },
+      {
+        "text": "sparse felt piano, single high notes falling like drops, unresolved",
+        "weight": 1
+      },
+      {
+        "text": "distant galloping hoofbeats rhythm, soft timpani rolls, approaching",
+        "weight": 1
+      },
+      {
+        "text": "high glassy violin harmonics, a thin piercing whisper, telepathic shimmer",
+        "weight": 1
+      },
+      {
+        "text": "grey English folk lament on solo viola, austere, 1950s British film score",
+        "weight": 0
+      },
+      {
+        "text": "dark ambient drone, wide stereo, overcast and cold",
+        "weight": 0
+      },
+      {
+        "text": "string quartet, nervous ostinato, Bernard Herrmann suspense",
+        "weight": 0
+      },
+      {
+        "text": "prepared piano clusters, muted strings, uneasy and quiet",
+        "weight": 0
+      },
+      {
+        "text": "choir of breathy wordless voices far away, eerie, no lyrics",
+        "weight": 0
+      },
+      {
+        "text": "low brass swells under rain, ominous, slow",
+        "weight": 0
+      },
+      {
+        "text": "bowed cymbal and glass harmonica, shimmering psychic resonance",
+        "weight": 0
+      },
+      {
+        "text": "post-apocalyptic pastoral, harmonium and cello, sparse and grave",
+        "weight": 0
+      },
+      {
+        "text": "minimal electronic pulse, analog synth, cold 1970s sci-fi",
+        "weight": 0
+      },
+      {
+        "text": "tremolo guitar reverb swells, slowcore, gray afternoon",
+        "weight": 0
+      },
+      {
+        "text": "solo clarinet, hesitant phrase, fragile child theme",
+        "weight": 0
+      },
+      {
+        "text": "orchestral rising tension, strings ascending, urgent but restrained",
+        "weight": 0
+      },
+      {
+        "text": "music box melody slowed and detuned, childhood under threat",
+        "weight": 0
+      },
+      {
+        "text": "deep river rumble sub-bass, distant thunder, no melody",
+        "weight": 0
+      }
+    ],
+    "brightness": 0.3
+  },
+  "state": {
+    "beat": "film",
+    "rain": 0.6,
+    "danger": 0.35,
+    "branch": 0.2,
+    "cry": 0,
+    "pt_x": 5.3,
+    "pt_sink": 0,
+    "pt_held": 0,
+    "pt_look": 0,
+    "pt_wx": 3.3,
+    "pt_sit": 0,
+    "pt_face": -90,
+    "pt_cry": 0,
+    "dv_a": -17.5,
+    "dv_face": 90,
+    "dv_swim": 0,
+    "dv_wade": 0,
+    "dv_kneel": 0,
+    "dv_lunge": 0,
+    "dv_look": 0,
+    "dv_hand": 0,
+    "dv_shoulder": 0,
+    "dv_scoop": 0,
+    "dv_carry": 0,
+    "ro_x": 6.2,
+    "ro_down": 0,
+    "ro_face": 90,
+    "ro_rake": 1,
+    "ro_struck": 0,
+    "ro_hands": 0,
+    "ro_drop": 0,
+    "ro_wade": 0,
+    "ro_away": 0,
+    "heard": 0,
+    "stare": 0,
+    "follow": 0,
+    "bond": 0,
+    "crowd": 0,
+    "after": 0,
+    "camera_x": 0,
+    "camera_h": 0,
+    "camera_z": 0,
+    "camera_look": 0,
+    "fade": 1
+  },
+  "title": "Петра у реки",
+  "camera": {
+    "mode": "picture"
+  },
+  "caption": "",
+  "horizon": 0.42,
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Пасмурное небо"
+    },
+    {
+      "x": 0.5,
+      "id": "treeline",
+      "box": [
+        -3000,
+        -40,
+        3000,
+        5
+      ],
+      "name": "Дальняя кромка леса",
+      "height": 30,
+      "distance": 900
+    },
+    {
+      "x": 0.5,
+      "id": "fields",
+      "name": "Поля за рекой",
+      "depth": 540,
+      "plane": true,
+      "width": 3000,
+      "distance": 330,
+      "elevation": 0.6
+    },
+    {
+      "x": 0.5,
+      "id": "far_bank",
+      "box": [
+        -60,
+        -12,
+        60,
+        1
+      ],
+      "name": "Дальний берег с ольхами",
+      "height": 8,
+      "reflect": true,
+      "distance": 20
+    },
+    {
+      "x": 0.5,
+      "id": "far_people",
+      "box": [
+        -25,
+        -4.2,
+        14,
+        1
+      ],
+      "name": "Розалинда и люди на поле",
+      "height": 1.7,
+      "distance": 19.6
+    },
+    {
+      "x": 0.5,
+      "id": "river",
+      "name": "Река",
+      "depth": 19,
+      "plane": true,
+      "width": 90,
+      "distance": 10.5,
+      "elevation": 0
+    },
+    {
+      "x": 0.5,
+      "id": "mist",
+      "box": [
+        -55,
+        -4,
+        55,
+        1
+      ],
+      "name": "Туман над водой",
+      "height": 4,
+      "distance": 19.2
+    },
+    {
+      "x": 1.03,
+      "id": "alder_near",
+      "box": [
+        -7,
+        -9,
+        3,
+        1
+      ],
+      "name": "Ольха над водой",
+      "height": 8,
+      "distance": 11
+    },
+    {
+      "x": 0.35,
+      "id": "bank",
+      "box": [
+        -14,
+        -3.5,
+        12,
+        4.5
+      ],
+      "name": "Ближний глинистый берег",
+      "height": 2,
+      "distance": 9.05
+    },
+    {
+      "x": 0.35,
+      "id": "willow",
+      "box": [
+        1.5,
+        -3.2,
+        9.5,
+        1.0
+      ],
+      "name": "Ива у воды",
+      "height": 2.5,
+      "distance": 9.06
+    },
+    {
+      "x": 0.35,
+      "id": "petra",
+      "box": [
+        3.8,
+        -2.2,
+        9.6,
+        2.0
+      ],
+      "name": "Петра",
+      "height": 1.2,
+      "distance": 9.04
+    },
+    {
+      "id": "david",
+      "box": [
+        -1.7,
+        -2.7,
+        1.7,
+        1.6
+      ],
+      "name": "Дэвид",
+      "place": {
+        "across": "dv_a"
+      },
+      "across": -17.5,
+      "height": 1.5,
+      "distance": 9.0
+    },
+    {
+      "x": 0.35,
+      "id": "rings",
+      "box": [
+        -26,
+        -16,
+        30,
+        10
+      ],
+      "name": "То, что слышат свои",
+      "height": 3,
+      "distance": 8.9
+    },
+    {
+      "x": 0.5,
+      "id": "rain",
+      "box": [
+        -4,
+        -3.4,
+        4,
+        0.8
+      ],
+      "name": "Дождь",
+      "height": 3,
+      "distance": 3
+    }
+  ],
+  "modules": [
+    "chrysalids",
+    "film"
+  ]
+}

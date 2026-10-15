@@ -1,0 +1,564 @@
+{
+  "light": {
+    "haze": 0.22,
+    "tint": "#2a1c24",
+    "grain": 0.28,
+    "vignette": 0.55,
+    "hazeColor": "#2a2530",
+    "tintStrength": 0.08
+  },
+  "music": {
+    "bpm": 60,
+    "density": 0.25,
+    "prompts": [
+      {
+        "text": "Low wordless male choir humming a slow Protestant hymn in a cold wooden chapel",
+        "weight": 2
+      },
+      {
+        "text": "Dark ambient drone, deep sustained cello and bowed bass, solemn and heavy",
+        "weight": 1.5
+      },
+      {
+        "text": "Distant crackling bonfire ambience with slow organ pedal tones",
+        "weight": 1.5
+      },
+      {
+        "text": "Sparse harmonium chords, austere 19th-century rural hymn, very slow",
+        "weight": 0
+      },
+      {
+        "text": "Solo viola lament, restrained, minor key, long silences",
+        "weight": 0
+      },
+      {
+        "text": "Funeral bell tolling far away over empty fields at night",
+        "weight": 0
+      },
+      {
+        "text": "Shimmering high string harmonics like heat haze, eerie and beautiful",
+        "weight": 0
+      },
+      {
+        "text": "Slow pulsing timpani rolls, ritual procession, ominous",
+        "weight": 0
+      },
+      {
+        "text": "Minimalist piano, sparse low notes, cold righteousness",
+        "weight": 0
+      },
+      {
+        "text": "Shape-note congregation singing heard from far away, reverent and stern",
+        "weight": 0
+      },
+      {
+        "text": "Tape-warped choir pad, post-apocalyptic pastoral melancholy",
+        "weight": 0
+      },
+      {
+        "text": "Wind over a burnt field, soft low rumble, ash and embers",
+        "weight": 0
+      },
+      {
+        "text": "Bowed metal and glass, unsettling tones, quiet horror",
+        "weight": 0
+      },
+      {
+        "text": "Slow folk fiddle drone in open fifths, pioneer farm at night",
+        "weight": 0
+      },
+      {
+        "text": "Requiem-like strings, slow swell and fade, sacred dread",
+        "weight": 0
+      },
+      {
+        "text": "Hammered dulcimer single notes ringing in darkness, sparse",
+        "weight": 0
+      },
+      {
+        "text": "Deep ritual undertone, ancient fire ceremony, hypnotic",
+        "weight": 0
+      },
+      {
+        "text": "Grey dawn ambient, soft pads and distant birds after a disaster",
+        "weight": 0
+      },
+      {
+        "text": "Reed organ sustained cluster, claustrophobic puritan chapel",
+        "weight": 0
+      },
+      {
+        "text": "Low brass chorale, muted horns, slow and grave",
+        "weight": 0
+      }
+    ],
+    "brightness": 0.25
+  },
+  "state": {
+    "beat": "film"
+  },
+  "title": "Сожжение поля",
+  "camera": {
+    "mode": "picture"
+  },
+  "caption": "",
+  "horizon": 0.55,
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Небо"
+    },
+    {
+      "x": 0.5,
+      "id": "far",
+      "box": [
+        -1400,
+        -70,
+        1400,
+        3
+      ],
+      "name": "Дальние холмы и Вакнук",
+      "height": 30,
+      "distance": 700
+    },
+    {
+      "x": 0.5,
+      "id": "ground",
+      "name": "Земля, поля и дорога",
+      "depth": 800,
+      "plane": true,
+      "width": 1600,
+      "distance": 400
+    },
+    {
+      "x": 0.5,
+      "id": "smoke",
+      "box": [
+        -140,
+        -125,
+        80,
+        3
+      ],
+      "name": "Дым",
+      "height": 60,
+      "distance": 35
+    },
+    {
+      "x": 0.5,
+      "id": "wheat60",
+      "box": [
+        -78.5,
+        -4.5,
+        78.5,
+        0.4
+      ],
+      "name": "Поле, ряд 60 м",
+      "height": 3,
+      "distance": 60
+    },
+    {
+      "x": 0.5,
+      "id": "wheat40",
+      "box": [
+        -53.5,
+        -4.5,
+        53.5,
+        0.4
+      ],
+      "name": "Поле, ряд 40 м",
+      "height": 3,
+      "distance": 40
+    },
+    {
+      "x": 0.5,
+      "id": "wheat29",
+      "box": [
+        -39.75,
+        -4.5,
+        39.75,
+        0.4
+      ],
+      "name": "Поле, ряд 29 м",
+      "height": 3,
+      "distance": 29
+    },
+    {
+      "x": 0.5,
+      "id": "wheat22",
+      "box": [
+        -31.0,
+        -4.5,
+        31.0,
+        0.4
+      ],
+      "name": "Поле, ряд 22 м",
+      "height": 3,
+      "distance": 22
+    },
+    {
+      "x": 0.5,
+      "id": "wheat17.5",
+      "box": [
+        -25.375,
+        -4.5,
+        25.375,
+        0.4
+      ],
+      "name": "Поле, ряд 17.5 м",
+      "height": 3,
+      "distance": 17.5
+    },
+    {
+      "x": 0.5,
+      "id": "wheat14",
+      "box": [
+        -21.0,
+        -5.5,
+        21.0,
+        0.4
+      ],
+      "name": "Поле, ряд 14 м",
+      "height": 3,
+      "distance": 14
+    },
+    {
+      "x": 0.5,
+      "id": "wheat11.5",
+      "box": [
+        -17.875,
+        -5.5,
+        17.875,
+        0.4
+      ],
+      "name": "Поле, ряд 11.5 м",
+      "height": 3,
+      "distance": 11.5
+    },
+    {
+      "x": 0.5,
+      "id": "wheat_front",
+      "box": [
+        -15.375,
+        -5.5,
+        15.375,
+        0.4
+      ],
+      "name": "Неправильная пшеница, передний край",
+      "height": 3,
+      "distance": 9.5
+    },
+    {
+      "x": 0.5,
+      "id": "embers",
+      "box": [
+        -30,
+        -16,
+        40,
+        1
+      ],
+      "name": "Искры",
+      "height": 15,
+      "distance": 14
+    },
+    {
+      "id": "jo",
+      "box": [
+        -1.3,
+        -2.9,
+        1.3,
+        0.35
+      ],
+      "name": "Джозеф Строрм, отец",
+      "place": {
+        "across": "jo_a",
+        "distance": "jo_d"
+      },
+      "across": -0.5,
+      "height": 1.9,
+      "distance": 6.8,
+      "after": [
+        "in"
+      ]
+    },
+    {
+      "id": "in",
+      "box": [
+        -1.6,
+        -2.9,
+        1.6,
+        0.35
+      ],
+      "name": "Инспектор",
+      "place": {
+        "across": "in_a",
+        "distance": "in_d"
+      },
+      "across": 1.35,
+      "height": 1.85,
+      "distance": 7.0
+    },
+    {
+      "id": "em",
+      "box": [
+        -1.1,
+        -2.3,
+        1.1,
+        0.35
+      ],
+      "name": "Эмили, мать Дэвида",
+      "place": {
+        "across": "em_a",
+        "distance": "em_d"
+      },
+      "across": -1.6,
+      "height": 1.7,
+      "distance": 4.95
+    },
+    {
+      "id": "dv",
+      "box": [
+        -0.9,
+        -1.9,
+        0.9,
+        0.3
+      ],
+      "name": "Дэвид",
+      "place": {
+        "across": "dv_a",
+        "distance": "dv_d"
+      },
+      "across": -1.05,
+      "height": 1.35,
+      "distance": 4.55,
+      "after": [
+        "em"
+      ]
+    },
+    {
+      "id": "p0",
+      "box": [
+        -1.1,
+        -2.5,
+        1.1,
+        0.35
+      ],
+      "name": "Община: мужчина",
+      "place": {
+        "across": "p0_a",
+        "distance": "p0_d"
+      },
+      "across": -5.0,
+      "height": 1.8,
+      "distance": 7.6
+    },
+    {
+      "id": "p1",
+      "box": [
+        -1.1,
+        -2.5,
+        1.1,
+        0.35
+      ],
+      "name": "Община: женщина",
+      "place": {
+        "across": "p1_a",
+        "distance": "p1_d"
+      },
+      "across": -4.3,
+      "height": 1.8,
+      "distance": 7.0
+    },
+    {
+      "id": "p2",
+      "box": [
+        -1.1,
+        -2.5,
+        1.1,
+        0.35
+      ],
+      "name": "Община: старик",
+      "place": {
+        "across": "p2_a",
+        "distance": "p2_d"
+      },
+      "across": -5.7,
+      "height": 1.8,
+      "distance": 6.4
+    },
+    {
+      "id": "p3",
+      "box": [
+        -1.1,
+        -2.5,
+        1.1,
+        0.35
+      ],
+      "name": "Община: женщина",
+      "place": {
+        "across": "p3_a",
+        "distance": "p3_d"
+      },
+      "across": -3.6,
+      "height": 1.8,
+      "distance": 6.6
+    },
+    {
+      "id": "p4",
+      "box": [
+        -1.1,
+        -2.5,
+        1.1,
+        0.35
+      ],
+      "name": "Община: работник",
+      "place": {
+        "across": "p4_a",
+        "distance": "p4_d"
+      },
+      "across": -4.8,
+      "height": 1.8,
+      "distance": 5.6
+    },
+    {
+      "id": "p5",
+      "box": [
+        -1.1,
+        -2.5,
+        1.1,
+        0.35
+      ],
+      "name": "Община: старуха",
+      "place": {
+        "across": "p5_a",
+        "distance": "p5_d"
+      },
+      "across": -6.0,
+      "height": 1.8,
+      "distance": 4.8
+    },
+    {
+      "id": "p6",
+      "box": [
+        -1.1,
+        -2.5,
+        1.1,
+        0.35
+      ],
+      "name": "Община: девочка",
+      "place": {
+        "across": "p6_a",
+        "distance": "p6_d"
+      },
+      "across": -2.9,
+      "height": 1.8,
+      "distance": 7.7
+    },
+    {
+      "id": "p7",
+      "box": [
+        -1.1,
+        -2.5,
+        1.1,
+        0.35
+      ],
+      "name": "Община: мужчина",
+      "place": {
+        "across": "p7_a",
+        "distance": "p7_d"
+      },
+      "across": 3.4,
+      "height": 1.8,
+      "distance": 7.8
+    },
+    {
+      "id": "p8",
+      "box": [
+        -1.1,
+        -2.5,
+        1.1,
+        0.35
+      ],
+      "name": "Община: женщина",
+      "place": {
+        "across": "p8_a",
+        "distance": "p8_d"
+      },
+      "across": 4.3,
+      "height": 1.8,
+      "distance": 7.1
+    },
+    {
+      "id": "p9",
+      "box": [
+        -1.1,
+        -2.5,
+        1.1,
+        0.35
+      ],
+      "name": "Община: мальчик",
+      "place": {
+        "across": "p9_a",
+        "distance": "p9_d"
+      },
+      "across": 2.7,
+      "height": 1.8,
+      "distance": 6.8
+    },
+    {
+      "id": "p10",
+      "box": [
+        -1.1,
+        -2.5,
+        1.1,
+        0.35
+      ],
+      "name": "Община: работник",
+      "place": {
+        "across": "p10_a",
+        "distance": "p10_d"
+      },
+      "across": 5.2,
+      "height": 1.8,
+      "distance": 6.2
+    },
+    {
+      "id": "p11",
+      "box": [
+        -1.1,
+        -2.5,
+        1.1,
+        0.35
+      ],
+      "name": "Община: старуха",
+      "place": {
+        "across": "p11_a",
+        "distance": "p11_d"
+      },
+      "across": 3.7,
+      "height": 1.8,
+      "distance": 5.5
+    },
+    {
+      "id": "p12",
+      "box": [
+        -1.1,
+        -2.5,
+        1.1,
+        0.35
+      ],
+      "name": "Община: мужчина",
+      "place": {
+        "across": "p12_a",
+        "distance": "p12_d"
+      },
+      "across": 4.7,
+      "height": 1.8,
+      "distance": 4.8
+    }
+  ],
+  "modules": [
+    "chrysalids",
+    "film"
+  ]
+}

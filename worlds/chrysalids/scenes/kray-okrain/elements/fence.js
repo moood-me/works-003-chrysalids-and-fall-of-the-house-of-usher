@@ -17,4 +17,3 @@ for (const r of [0.42, 0.9]) {
     g.stroke();
   }
 }
-e.at(GAP, -0.7, 'gap');

@@ -16,7 +16,9 @@ gossamer (спрайт — нить с бусиной), на людях — ко
 КУСКИ (lib.FILM; `from` — всё состояние): cave, fight (выбор «бежать к отцу» — на david), hold | run, ship (выбор «кого
 заслонить» — на rosalind, petra или joseph), noship (если корабля нет), web | web_petra | web_rosalind (Дэвид на уступе) |
 web_father | web_alone (Дэвид у отца), landing | landing_run, free | free_run, back | back_run (выбор «улететь или остаться» —
-на ship и michael), board | stay_ros | stay_alone → stay_alone_away. «кино»-кусок stay_alone (32 с) разделён по своей склейке:
+на ship и michael), board | stay_ros | stay_alone → stay_alone_away. free, free_run и board — всегда склейка (after пуст): free
+и free_run стоят в таблице сразу за своей посадкой — их начало модуль beats готовит заранее; board — когда игра назовёт его
+в beat_next. Склейки внутри кусков сказаны заранее (lib.ahead). «кино»-кусок stay_alone (32 с) разделён по своей склейке:
 stay_alone — Дэвид уходит наверх к Майклу, Розалинда входит за Петрой, оборачивается из света и исчезает; stay_alone_away —
 корабль уходит, они на уступе смотрят вслед.
 
@@ -35,25 +37,25 @@ horse_a/d/face/toss, <id>_th, <id>_down, w<i>_fire. Убраны ключи ку
     "run": { "after": ["fight"], "tells": ["run:by"], "seconds": 12 },
     "ship": { "after": ["hold", "run"], "tells": ["ship:petra"], "seconds": 14 },
     "noship": { "after": ["hold", "run"], "tells": ["noship:sky", "noship:flee"], "seconds": 18 },
-    "web": { "after": ["ship"], "tells": [], "seconds": 12 },
-    "web_petra": { "after": ["ship"], "tells": [], "seconds": 12 },
-    "web_rosalind": { "after": ["ship"], "tells": [], "seconds": 12 },
-    "web_father": { "after": ["ship"], "tells": [], "seconds": 12 },
-    "web_alone": { "after": ["ship"], "tells": [], "seconds": 12 },
-    "landing": { "after": ["web", "web_petra", "web_rosalind"], "tells": ["landing:down"], "seconds": 17 },
-    "landing_run": { "after": ["web_father", "web_alone"], "tells": ["landing_run:down"], "seconds": 17 },
-    "free": { "after": ["landing"], "tells": ["free:petra"], "seconds": 14 },
-    "free_run": { "after": ["landing_run"], "tells": ["free_run:petra"], "seconds": 13 },
-    "back": { "after": ["free"], "tells": ["back:father"], "seconds": 26 },
-    "back_run": { "after": ["free_run"], "tells": ["back_run:free"], "seconds": 26 },
-    "board": { "after": ["back", "back_run"], "tells": ["board:look", "board:michael"], "seconds": 28 },
+    "web": { "after": ["ship"], "tells": [], "seconds": 9 },
+    "web_petra": { "after": ["ship"], "tells": [], "seconds": 9 },
+    "web_rosalind": { "after": ["ship"], "tells": [], "seconds": 9 },
+    "web_father": { "after": ["ship"], "tells": [], "seconds": 9 },
+    "web_alone": { "after": ["ship"], "tells": [], "seconds": 9 },
+    "landing": { "after": ["web", "web_petra", "web_rosalind"], "tells": ["landing:down"], "seconds": 13 },
+    "landing_run": { "after": ["web_father", "web_alone"], "tells": ["landing_run:down"], "seconds": 13 },
+    "free": { "after": [], "tells": ["free:petra"], "seconds": 12 },
+    "free_run": { "after": [], "tells": ["free_run:petra"], "seconds": 11 },
+    "back": { "after": ["free"], "tells": ["back:father"], "seconds": 22 },
+    "back_run": { "after": ["free_run"], "tells": ["back_run:free"], "seconds": 21 },
+    "board": { "after": [], "tells": ["board:look", "board:michael"], "seconds": 28 },
     "stay_ros": { "after": ["back", "back_run"], "tells": [], "seconds": 28 },
     "stay_alone": { "after": ["back", "back_run"], "tells": ["stay_alone:turn"], "seconds": 14 },
     "stay_alone_away": { "after": ["stay_alone"], "tells": [], "seconds": 18 }
   },
   "points": ["david", "rosalind", "petra", "joseph", "ship", "michael", "sealand", "ship#door"],
   "offers": ["david", "rosalind", "petra", "joseph", "ship", "michael"],
-  "party": { "beat": null },
+  "party": { "beat": null, "beat_next": null },
   "speakers": ["david", "rosalind", "petra", "michael", "joseph", "sealand", "spider"]
 }
 ```

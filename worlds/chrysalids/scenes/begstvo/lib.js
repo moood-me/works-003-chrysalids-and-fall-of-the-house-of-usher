@@ -301,7 +301,7 @@ const FILM = {
     after: 'bow',
     from: () => ARMED,
     run: async s => {
-      cam(s, CAM.hollow, 9);
+      const framed = cam(s, CAM.hollow, 9);
       s.move('dawn', 0.25, { over: 9 });
       s.move('fog', 0.6, { over: 6 });
       s.person('rosalind').do('perch_still', { loop: true });
@@ -312,6 +312,7 @@ const FILM = {
       s.move('petra_peek', 0.5, { over: 1.5 });
       await lead(s, HOLLOW);
       await s.wait(0.6);
+      await framed; // (the beat ends with the camera standing)
     },
   },
   // (game) the search comes up onto the crest above the hollow; the front one raises his lantern toward the fog. The camera

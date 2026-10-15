@@ -89,12 +89,17 @@
     "c0_here": false,
     "c1_here": false,
     "c2_here": false,
-    "c3_here": false
+    "c3_here": false,
+    "beat_next": null
   },
   "states": {
     "beat": {
       "type": "string",
       "means": "кусок фильма (модуль beats): pool → struck → edge → run → field_quiet | field_loud → out → bank_quiet | bank_loud → home"
+    },
+    "beat_next": {
+      "type": "string",
+      "means": "кусок, который игра поставит следующим (модуль beats готовит его начало заранее)"
     },
     "fade": {
       "range": [

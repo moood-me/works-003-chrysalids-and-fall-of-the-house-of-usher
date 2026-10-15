@@ -29,8 +29,8 @@ function turned() {
       if (((s.get('turned') || 0) > m.mark) !== on) return;
       const to = toward(m.at, L.DV);
       let half = (((to - m.face) % 360) + 540) % 360 - 180;
-      P(m.id).turn(on ? (m.face + half * 0.5 + 360) % 360 : m.face);
-      P(m.id).look(on ? 'dv' : [m.at[0], m.at[1] + 4, 3.5]);
+      P(m.id).turn(on ? (m.face + half * 0.7 + 360) % 360 : m.face);
+      P(m.id).look(on ? 'dv' : L.TORCH);
       if (on) P(m.id).do('stand');
       else if (s.get('beat') && /hymn/.test(s.get('beat'))) P(m.id).do('sing_stand', { loop: true });
     });
@@ -38,3 +38,4 @@ function turned() {
 }
 s.on('change', 'turned', turned);
 s.on('move', 'turned', turned);
+turned(); // (opened, or restored: the ones in front as the key has them)

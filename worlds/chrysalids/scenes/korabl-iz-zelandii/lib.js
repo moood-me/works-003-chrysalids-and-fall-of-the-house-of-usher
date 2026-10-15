@@ -60,7 +60,12 @@ const CAM = {
 };
 const camOf = c => ({ camera_x: c[0], camera_z: c[1], camera_h: c[2], camera_look: c[3] });
 const cam = (s, c, over) => s.all(...['camera_x', 'camera_z', 'camera_h', 'camera_look'].map((k, i) => s.move(k, c[i], { over, ease: 'inOut' })));
-const cut = (s, c) => s.cut(camOf(c));
+// a beat's cuts said ahead (scene-format: a shot made ready while the one before plays is shown whole at once):
+// ahead(s, [CAM.…]) → next() — cuts to the next of them, and makes the one after it ready
+function ahead(s, list) {
+  let i = 0, ready = s.shot(camOf(list[0]));
+  return () => { const now = ready; i++; now.cut(); ready = i < list.length ? s.shot(camOf(list[i])) : null; };
+}
 const loop = motion => ({ motion, loop: true });
 const aside = (s, fn) => s.sequence(fn);
 const P = (s, id) => s.person(id);
@@ -109,6 +114,8 @@ const OVER = (from) => ({ ...from, ship_vis: 1, ship_a: 4.6, ship_d: 21, ship_h:
   ...Object.fromEntries(['w1', 'w2', 'w3', 'f2', 'f3', 'rosalind', 'michael', 'david'].map(id => [`${id}_look`, [4.6, 21, 9]])) });
 // under the web, the craft landed, the door open (landing's end): the woman walking toward the ledge
 const LANDED = (from) => ({ ...from, ship_h: 0, spin: 0.12, fall: 0, web: 1, cave_web: 1, door: 1, dust: 0, sealand_here: true, sealand_a: 1.5, sealand_d: 15.9 });
+// (cut) she is already by the cave, the camera on the ledge
+const FREE = (from) => ({ ...LANDED(from), ...camOf(CAM.free), sealand_a: -0.45, sealand_d: 10.4, sealand_turn: 330 });
 
 const FILM = {
   // cave — close on the children behind the stone. A shot: Petra hides in Rosalind's arms
@@ -141,7 +148,7 @@ const FILM = {
     from: () => ({ ...START, petra_do: loop('kneel'), petra_turn: 260, rosalind_reach: { r: 'petra#back' } }),
     run: async s => {
       const jo = P(s, 'joseph'), sp = P(s, 'spider');
-      const toChildren = s.shot(camOf(CAM.children));
+      const next = ahead(s, [CAM.clearing, CAM.children]);
       cam(s, CAM.wide, 4.8);
       await s.wait(1.0);
       shoot(s, 'w3');
@@ -150,7 +157,7 @@ const FILM = {
       shoot(s, 'w1');
       jo.reach({ r: [3, 18, 2.2] });
       await s.wait(1.0);
-      cut(s, CAM.clearing);
+      next();
       s.tell('fight:clearing'); // (the clearing: Joseph ahead, by his horse)
       const comes = walk(s, 'spider', [[6.8, 17.6]], toward([6.8, 17.6], [-0.6, 14.2]));
       shoot(s, 'w2');
@@ -171,7 +178,7 @@ const FILM = {
       jo.do('lie_back', { loop: true });
       s.set('joseph_down', true);
       // (cut: the children. David up off the stone, his eyes on his father; Rosalind's on him)
-      toChildren.cut();
+      next();
       P(s, 'david').look('joseph');
       await s.wait(0.6);
       P(s, 'david').do('stand');
@@ -192,7 +199,7 @@ const FILM = {
     after: 'fight',
     from: () => STARED,
     run: async s => {
-      const d = P(s, 'david'), r = P(s, 'rosalind');
+      const d = P(s, 'david'), r = P(s, 'rosalind'), next = ahead(s, [CAM.clearing, CAM.wide]);
       const goes = walk(s, 'david', [[-1.85, 8.15]]);
       await s.wait(0.2);
       await walk(s, 'rosalind', [[-2.55, 8.4]]);
@@ -205,7 +212,7 @@ const FILM = {
       r.do('kneel', { loop: true });
       r.reach({ r: 'david#shoulder_l' });
       P(s, 'petra').turn(70);
-      await returnFire(s);
+      await returnFire(s, next);
     },
   },
   // run — David tears out of Rosalind's hand and runs down to his father, across the open clearing; drops by him, his hands
@@ -214,7 +221,7 @@ const FILM = {
     after: 'fight',
     from: () => STARED,
     run: async s => {
-      const d = P(s, 'david'), r = P(s, 'rosalind');
+      const d = P(s, 'david'), r = P(s, 'rosalind'), next = ahead(s, [CAM.below, CAM.clearing, CAM.wide]);
       s.set('david_th', 0.3);
       const runs = walk(s, 'david', [[-1.5, 8.4], [-1.05, 9.0], [-0.5, 10.8], [-0.15, 13.35]], null, 'run');
       await s.wait(0.2);
@@ -223,7 +230,7 @@ const FILM = {
       r.look('david');
       P(s, 'petra').turn(70);
       await s.wait(0.6);
-      cut(s, CAM.below);
+      next();
       shoot(s, 'w3');
       await runs;
       await d.go('kneel_one', { to: [-0.15, 13.35], turn: toward([-0.15, 13.35], [-0.6, 14.2]) });
@@ -233,7 +240,7 @@ const FILM = {
       s.tell('run:by'); // (David down by his father)
       // (meanwhile, out of sight, Rosalind goes back to Petra)
       aside(s, async q => { r.reach(null); await walk(q, 'rosalind', [[-2.6, 8.5]], 90); r.do('kneel', { loop: true }); r.reach({ r: 'petra#back' }); r.look('petra'); });
-      await returnFire(s);
+      await returnFire(s, next);
     },
   },
   // ship — a glint over the forest grows into a fish with a spiral; the fight stops, all look up, each in their time. Petra
@@ -326,13 +333,14 @@ const FILM = {
     }, CAM.by_father),
   },
   // landing — silence; it comes down, dust, the rotor slows. (cut: closer, the door) Warm light, the ramp. The woman in white
-  // comes out, looks toward the cave, starts her sprayer and walks toward the ledge
-  landing: { after: ['web', 'web_petra', 'web_rosalind'], from: () => ({ ...OVER(HELD), fall: 0, web: 1, cave_web: 1 }), run: s => landing(s, 'landing') },
-  landing_run: { after: ['web_father', 'web_alone'], from: () => ({ ...OVER(RAN), fall: 0, web: 1, cave_web: 1 }), run: s => landing(s, 'landing_run') },
+  // comes out, looks toward the cave, starts her sprayer and points toward the ledge
   // free — (cut) she is already by the cave: up onto the ledge, she sprays — the web melts; Petra runs to her, the woman on
-  // one knee holds her; the others get up (in free_run David is not among them: Rosalind looks down at the clearing)
-  free: { after: 'landing', from: () => LANDED(OVER(HELD)), run: s => free(s, true) },
-  free_run: { after: 'landing_run', from: () => LANDED(OVER(RAN)), run: s => free(s, false) },
+  // one knee holds her; the others get up (in free_run David is not among them: Rosalind looks down at the clearing). A cut
+  // always (after none): each stands right after its landing in the table, so the module beats says its opening ahead
+  landing: { after: ['web', 'web_petra', 'web_rosalind'], from: () => ({ ...OVER(HELD), fall: 0, web: 1, cave_web: 1 }), run: s => landing(s, 'landing') },
+  free: { after: [], from: () => FREE(OVER(HELD)), run: s => free(s, true) },
+  landing_run: { after: ['web_father', 'web_alone'], from: () => ({ ...OVER(RAN), fall: 0, web: 1, cave_web: 1 }), run: s => landing(s, 'landing_run') },
+  free_run: { after: [], from: () => FREE(OVER(RAN)), run: s => free(s, false) },
   // back — down across the clearing, the woman leading Petra by the hand, not looking back; David looks back. (cut, close)
   // David by his father's cocoon, on one knee, touching it; Rosalind comes back, her hand on his shoulder; he gets up, she
   // takes his hand. (cut: wide) To the ramp. (cut) Petra waves to Michael on the ledge; (cut) he answers; (cut) wide. (Here
@@ -342,16 +350,17 @@ const FILM = {
     from: () => ({ ...LANDED(OVER(HELD)), cave_web: 0, sealand_a: -1.42, sealand_d: 8.5, petra_a: -1.92, petra_d: 8.3, david_a: -2.8, david_d: 8.75,
       david_do: 'stand', rosalind_do: 'stand', petra_do: 'stand', michael_do: 'stand', rosalind_reach: null, ...camOf(CAM.free) }),
     run: async s => {
+      const next = ahead(s, AFTER);
       cam(s, CAM.back, 7);
       const led = lead(s);
       aside(s, async q => { await q.wait(0.6); await walk(q, 'michael', [[-2.2, 8.15]]); P(q, 'michael').look('sealand'); });
-      const r1 = aside(s, async q => { await q.wait(1.4); await walk(q, 'rosalind', [[-1.3, 9.2], [-0.4, 10.8], [1.25, 13.6]]); });
-      await s.wait(1.9);
+      const r1 = aside(s, async q => { await q.wait(0.8); await walk(q, 'rosalind', [[-1.3, 9.2], [-0.4, 10.8], [1.25, 13.6]]); });
+      await s.wait(1.0);
       P(s, 'david').look([-0.6, 14.2, 0.3]);
       await walk(s, 'david', [[-1.6, 9.1], [-0.6, 11.0], [0.25, 13.0]]);
       s.tell('back:father'); // (David by his father's cocoon)
-      await father(s, r1);
-      await ramp(s, led);
+      await father(s, r1, next);
+      await ramp(s, led, next);
     },
   },
   // back_run — on the way the woman stops by David's cocoon and sprays it: it melts, he goes down on his knees by his
@@ -361,7 +370,7 @@ const FILM = {
     from: () => ({ ...LANDED(OVER(RAN)), cave_web: 0, sealand_a: -1.42, sealand_d: 8.5, petra_a: -1.92, petra_d: 8.3, rosalind_do: 'stand', petra_do: 'stand',
       michael_do: 'stand', rosalind_reach: null, ...camOf(CAM.free) }),
     run: async s => {
-      const sl = P(s, 'sealand'), pt = P(s, 'petra');
+      const sl = P(s, 'sealand'), pt = P(s, 'petra'), next = ahead(s, AFTER);
       cam(s, CAM.back, 7);
       pt.reach({ r: 'sealand#hand_l' });
       const pts = aside(s, q => walk(q, 'petra', [[-1.5, 8.75], [-0.65, 10.25], [0.4, 12.1]]));
@@ -369,35 +378,36 @@ const FILM = {
       const r1 = aside(s, async q => { await q.wait(1.4); P(q, 'rosalind').look('david'); await walk(q, 'rosalind', [[-1.3, 9.2], [-0.4, 10.8], [0.6, 13.9]]); });
       await walk(s, 'sealand', [[-1.05, 9.1], [-0.2, 10.6], [0.75, 12.6]], toward([0.75, 12.6], [-0.15, 13.35]));
       await pts;
-      cut(s, CAM.at_father);
+      next();
       sl.look('david');
       sl.reach({ r: 'david#chest' });
       await s.wait(0.4);
       s.move('david_th', 2, { over: 2.5 });
       s.tell('back_run:free'); // (she frees him by his father)
-      await s.wait(2.2);
+      await s.wait(1.6);
       sl.reach(null);
       sl.look(null);
       P(s, 'david').still(false);
       P(s, 'david').look('joseph');
       P(s, 'david').do('kneel_one_still', { loop: true });
-      await s.wait(1.1);
+      await s.wait(0.6);
       P(s, 'david').reach({ r: 'joseph#back' });
       const led = aside(s, async q => { await walk(q, 'sealand', [RAMP_FOOT]); await walk(q, 'petra', [[RAMP_FOOT[0] - 0.45, RAMP_FOOT[1] - 0.35]]); });
       await r1;
       P(s, 'rosalind').reach({ r: 'david#shoulder_r' });
-      await s.wait(2.4);
-      await ramp(s, led);
+      await s.wait(1.2);
+      await ramp(s, led, next);
     },
   },
   // board — (cut: the ramp) they go into the light, one by one; David looks back once at the clearing. (cut: wide) The craft
   // goes; Michael on the rock watches it go, looks once at the clearing of cocoons — and walks away along the rock; the still
   // clearing
+  // (a cut, always: its opening said ahead by the module beats — the game names it in beat_next once it is chosen)
   board: {
-    after: ['back', 'back_run'],
-    from: () => ATRAMP,
+    after: [],
+    from: () => ({ ...ATRAMP, ...camOf(CAM.ramp) }),
     run: async s => {
-      cut(s, CAM.ramp);
+      const next = ahead(s, [CAM.wide, CAM.michael]);
       P(s, 'michael').do('stand');
       await goIn(s, 'sealand');
       aside(s, q => goIn(q, 'petra'));
@@ -408,12 +418,12 @@ const FILM = {
       await s.wait(1.5);
       P(s, 'david').look(null);
       await goIn(s, 'david');
-      cut(s, CAM.wide);
+      next();
       await away(s);
       const m = P(s, 'michael');
       await m.turn(150);
       m.look(null);
-      cut(s, CAM.michael);
+      next();
       s.tell('board:michael'); // (Michael on the rock)
       await s.wait(1.5);
       await walk(s, 'michael', [[-3.4, 8.7], [-9.5, 9.0]]);
@@ -501,8 +511,9 @@ const FILM = {
   },
 };
 // the clearing: Waknuk answers; the Spider falls back; a woman (Sophie) runs out to him and kneels over him
-async function returnFire(s) {
-  cut(s, CAM.clearing);
+//   (next — the beat's cuts said ahead: to the clearing, then wide)
+async function returnFire(s, next) {
+  next();
   shoot(s, 'w1');
   await s.wait(0.3);
   shoot(s, 'w2');
@@ -523,31 +534,32 @@ async function returnFire(s) {
   shoot(s, 'w3');
   s.move('fight', 0.5, { over: 1.5 });
   await s.wait(1.6);
-  cut(s, CAM.wide);
+  next();
   await s.wait(1.0);
 }
 // the web: the threads pour down; the field's web spreads; the ledge's children lie down under it (lie); the camera — near
 // (slowly), after a cut first if there is one (close on whom David covers)
 async function web(s, lie, near = CAM.web_near, first) {
+  const close = first && ahead(s, [first]);
   s.move('fall', 1, { over: 2.5 });
   const lying = lie();
   await s.wait(1.0);
   s.move('web', 1, { over: 9, ease: 'linear' });
-  if (first) cut(s, first);
+  close?.();
   await s.wait(0.7);
   cam(s, near, 10);
   await s.wait(2.5);
   s.move('cave_web', 1, { over: 5.5 });
   await lying;
-  await s.wait(4.5);
-  await s.move('fall', 0, { over: 3.5 });
+  await s.wait(2.5);
+  await s.move('fall', 0, { over: 2.5 });
 }
 // it comes down, dust, the rotor slows; (cut: the door) warm light, the ramp; she comes out, looks toward the cave, starts her
-// sprayer and walks toward the ledge
+// sprayer and points toward the ledge
 async function landing(s, beat) {
   const door = s.shot(camOf(CAM.door));
-  cam(s, CAM.land, 5.5);
-  const down = fly(s, SHIP_AT, 5.5);
+  cam(s, CAM.land, 4.5);
+  const down = fly(s, SHIP_AT, 4.5);
   await s.wait(2.0);
   s.move('dust', 1, { over: 2 });
   await down;
@@ -562,27 +574,21 @@ async function landing(s, beat) {
   sl.here(true);
   await walk(s, 'sealand', [RAMP_FOOT]);
   sl.look([-6, 9, 1.2]);
-  await s.wait(0.8);
+  await s.wait(0.5);
   sl.reach({ r: [0, 15, 1.2] });
   await s.wait(0.6);
-  sl.look(null);
-  await walk(s, 'sealand', [[1.5, 15.9]]);
 }
 // (cut) she is already by the cave: up onto the ledge; she sprays — the web melts; Petra runs to her, she kneels and holds
 // her; the others get up
 async function free(s, withDavid) {
   const sl = P(s, 'sealand'), pt = P(s, 'petra');
-  s.set('sealand_a', 0.3);
-  s.set('sealand_d', 11.9);
-  s.set('sealand_turn', 330);
-  cut(s, CAM.free);
-  await walk(s, 'sealand', [[-0.45, 10.4], [-1.05, 9.0], [-1.42, 8.5]], 270);
+  await walk(s, 'sealand', [[-1.05, 9.0], [-1.42, 8.5]], 270);
   sl.reach({ r: [-3, 8.5, 1.4] });
   sl.look([-3, 8.5, 1.0]);
   await s.move('cave_web', 0, { over: 3.2 });
   sl.reach(null);
   for (const id of withDavid ? ['petra', 'rosalind', 'michael', 'david'] : ['petra', 'rosalind', 'michael']) { P(s, id).do('get_up_ground'); await s.wait(0.35); }
-  await s.wait(1.0);
+  await s.wait(0.6);
   s.tell(`${withDavid ? 'free' : 'free_run'}:petra`); // (Petra runs to her)
   pt.look('sealand');
   await walk(s, 'petra', [[-1.92, 8.3]]);
@@ -595,7 +601,7 @@ async function free(s, withDavid) {
   await walk(s, 'rosalind', [[-3.35, 8.5]]);
   if (withDavid) { P(s, 'david').look('sealand'); await walk(s, 'david', [[-2.8, 8.75]]); }
   P(s, 'michael').look('sealand');
-  await s.wait(1.6);
+  await s.wait(1.0);
   sl.reach(null);
   pt.reach(null);
   await sl.do('kneel_one_rise');
@@ -610,9 +616,9 @@ function lead(s) {
 }
 // (cut, close) David by his father's cocoon: on one knee, touching it; Rosalind comes back for him (her walk: r1), her hand on
 // his shoulder
-async function father(s, r1) {
+async function father(s, r1, next) {
   const d = P(s, 'david');
-  cut(s, CAM.at_father);
+  next();
   d.look('joseph');
   await d.go('kneel_one', { to: [0.25, 13.0], turn: toward([0.25, 13.0], [-0.6, 14.2]) });
   d.do('kneel_one_still', { loop: true });
@@ -622,41 +628,43 @@ async function father(s, r1) {
   await walk(s, 'rosalind', [[0.75, 13.35]]);
   P(s, 'rosalind').reach({ r: 'david#shoulder_r' });
   P(s, 'rosalind').look('david');
-  await s.wait(2.4);
+  await s.wait(1.2);
 }
 // he gets up, she takes his hand; (cut: wide) to the ramp, where the woman waits turned back to them; (cut) Petra waves to
 // Michael on the ledge; (cut) he answers; (cut) wide
-async function ramp(s, led) {
+async function ramp(s, led, next) {
   const d = P(s, 'david'), r = P(s, 'rosalind');
   d.reach(null);
   await d.do('kneel_one_rise');
   d.look('rosalind');
   r.reach({ r: 'david#hand_l' });
   r.look(null);
-  cut(s, CAM.wide2);
+  next();
   const goes = s.all(walk(s, 'rosalind', [[2.25, 18.05]]), walk(s, 'david', [[1.8, 17.8]]));
   await led;
   await P(s, 'sealand').turn(200);
   P(s, 'sealand').look('david');
   await goes;
-  cut(s, CAM.ramp);
+  next();
   P(s, 'petra').reach(null);
   await P(s, 'petra').turn(290);
   P(s, 'petra').look('michael');
   P(s, 'petra').reach({ l: [RAMP_FOOT[0] - 1, RAMP_FOOT[1] - 1, 2.2] });
-  await s.wait(1.2);
-  cut(s, CAM.michael);
+  await s.wait(0.9);
+  next();
   P(s, 'michael').reach({ r: [-2.2, 9, 3.2] });
   P(s, 'michael').look('petra');
-  await s.wait(1.8);
-  cut(s, CAM.wide2);
+  await s.wait(1.3);
+  next();
   d.look('michael');
   r.look('david');
   P(s, 'michael').reach(null);
   P(s, 'petra').reach(null);
-  await s.wait(1.0);
+  await s.wait(0.5);
 }
 // at the ramp, ready to go in (back's / back_run's end)
+// the cuts of back and back_run, in order (by the father, then wide to the ramp, the ramp, Michael, wide)
+const AFTER = [CAM.at_father, CAM.wide2, CAM.ramp, CAM.michael, CAM.wide2];
 const ATRAMP = { ...LANDED(OVER(HELD)), cave_web: 0, ...camOf(CAM.wide2), sealand_a: RAMP_FOOT[0], sealand_d: RAMP_FOOT[1], sealand_turn: 200, sealand_look: 'david',
   petra_a: RAMP_FOOT[0] - 0.45, petra_d: RAMP_FOOT[1] - 0.35, petra_do: 'stand', petra_turn: 290, rosalind_a: 2.25, rosalind_d: 18.05, rosalind_do: 'stand',
   rosalind_look: 'david', rosalind_reach: { r: 'david#hand_l' }, david_a: 1.8, david_d: 17.8, david_do: 'stand', david_look: 'michael', david_th: -1, david_down: false,

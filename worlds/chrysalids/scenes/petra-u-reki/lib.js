@@ -104,6 +104,9 @@ const AT_EDGE = { ...STRUCK, ...camOf(CAM.edge), heard: 0, rosalind_still: false
 const HAS_HER = { ...AT_EDGE, ...camOf(CAM.swim), branch: 1.1, david_a: CAUGHT, david_d: NEAR, david_do: loop('swim'), david_turn: 270, david_look: 'petra',
   petra_a: CAUGHT + 0.25, petra_d: NEAR + 0.15, petra_turn: 90, petra_reach: { r: 'david#nape', l: 'david#nape' } };
 // on the field after the cry (field_quiet's end): Rosalind gone down to the water, the rake on the ground
+// the far field cut to after the swim (the cry left as the game's «Успокоить» left it)
+const without = (o, key) => { const { [key]: _, ...rest } = o; return rest; };
+const FIELD = () => ({ ...without(HAS_HER, 'cry'), ...camOf(CAM.field) });
 const DOWN = { ...HAS_HER, ...camOf(CAM.field), rosalind_a: RO_WATER[0], rosalind_d: RO_WATER[1], rosalind_turn: 200, rosalind_do: 'stand',
   rosalind_with: null, ro_drop: 1, cry: 0 };
 // by the water's edge on the near bank: she sits and cries, he kneels by her, his hand on her shoulder (out's end)
@@ -141,11 +144,10 @@ const FILM = {
   },
   // the far field, from below the bank: Rosalind stops dead among the rakers — nobody else hears; she turns to the river
   struck: {
-    after: 'pool',
-    from: () => CRYING,
+    after: [],
+    from: () => ({ ...CRYING, ...camOf(CAM.field) }),
     run: async s => {
       const ro = s.person('rosalind');
-      s.cut({ ...camOf(CAM.field) });
       s.move('heard', 1, { over: 0.8, ease: 'out' });
       await s.wait(0.6);
       ro.do('stand');
@@ -161,11 +163,10 @@ const FILM = {
   // the near bank: David bursts in along the top, running, and stops at the edge — he sees her; a breath, his eyes on her,
   // on the water. (While edge and run play the game's «Успокоить» drives `cry`: the beats leave it alone; the camera goes.)
   edge: {
-    after: 'struck',
-    from: () => ({ ...STRUCK, heard: 0 }),
+    after: [],
+    from: () => ({ ...STRUCK, ...camOf(CAM.edge), heard: 0, rosalind_still: false }),
     run: async s => {
       const david = s.person('david');
-      s.cut({ ...camOf(CAM.edge), heard: 0 });
       await walk(s, 'david', [[EDGE, NEAR - 0.3]], 90, 'run');
       david.look('petra');
       await s.wait(1.4);
@@ -213,11 +214,10 @@ const FILM = {
   // the far field: the cry has died down — Rosalind lets the rake fall and runs down to the river alone; the rakers never
   // look up
   field_quiet: {
-    after: 'run',
-    from: () => HAS_HER,
+    after: [],
+    from: () => FIELD(),
     run: async s => {
       const ro = s.person('rosalind');
-      s.cut({ ...camOf(CAM.field) });
       s.move('heard', 0.35, { over: 0.6, ease: 'out' });
       await s.wait(0.4);
       await ro.turn(0);
@@ -232,11 +232,10 @@ const FILM = {
   // the far field: the cry hits hard — her hands to her head, the rake falls; the rakers stop and look at her, each in his
   // own time (they hear nothing — they see her); she runs down to the river, and one of them goes down after her
   field_loud: {
-    after: 'run',
-    from: () => HAS_HER,
+    after: [],
+    from: () => FIELD(),
     run: async s => {
       const ro = s.person('rosalind');
-      s.cut({ ...camOf(CAM.field) });
       s.move('heard', 1, { over: 0.5, ease: 'out' });
       await s.wait(0.3);
       ro.do('stand');
@@ -267,11 +266,10 @@ const FILM = {
   // on the bank and only now cries, her face in her hands; he kneels by her, his hand on her shoulder. Across the water,
   // Rosalind wades in
   out: {
-    after: ['field_quiet', 'field_loud'],
-    from: () => DOWN,
+    after: [],
+    from: () => ({ ...without(DOWN, 'cry'), ...camOf(CAM.swim) }),
     run: async s => {
       const david = s.person('david'), petra = s.person('petra');
-      s.cut({ ...camOf(CAM.swim) });
       cam(s, CAM.out, 5);
       s.move('rain', 0.35, { over: 12 });
       s.move('cry', 0, { over: 3 });
@@ -307,10 +305,9 @@ const FILM = {
   },
   // wide, across the water: he and Rosalind hear each other (warm rings); only the rain
   bank_quiet: {
-    after: 'out',
-    from: () => SAT,
+    after: [],
+    from: () => ({ ...SAT, ...camOf(CAM.across) }),
     run: async s => {
-      s.cut({ ...camOf(CAM.across) });
       await s.wait(0.8);
       s.move('bond', 1, { over: 2 });
       s.tell('bank_quiet:across'); // (Rosalind across the water: they hear each other)
@@ -321,10 +318,9 @@ const FILM = {
   },
   // the same — but the others come along the far top, late, one by one, and stand staring; the raker at the water's edge
   bank_loud: {
-    after: 'out',
-    from: () => ({ ...SAT, r1_a: 4.7, r1_d: 19.8, r1_do: 'stand', r1_look: 'rosalind', r0_do: 'stand', r2_do: 'stand' }),
+    after: [],
+    from: () => ({ ...SAT, ...camOf(CAM.across), r1_a: 4.7, r1_d: 19.8, r1_do: 'stand', r1_look: 'rosalind', r0_do: 'stand', r2_do: 'stand' }),
     run: async s => {
-      s.cut({ ...camOf(CAM.across) });
       await s.wait(0.8);
       s.move('bond', 1, { over: 2 });
       s.tell('bank_loud:across'); // (Rosalind across the water: they hear each other)

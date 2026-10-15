@@ -145,12 +145,26 @@
     "michael_do": {
       "motion": "crouch",
       "loop": true
-    }
+    },
+    "beat_next": null,
+    "w1_down": false,
+    "w3_down": false,
+    "w2_down": false,
+    "f2_down": false,
+    "f3_down": false,
+    "sophie_down": false,
+    "spider_down": false,
+    "joseph_down": false,
+    "david_down": false
   },
   "states": {
     "beat": {
       "type": "string",
       "means": "кусок (модуль beats): cave → fight → hold | run → ship | noship → web | web_petra | web_rosalind | web_father | web_alone → landing | landing_run → free | free_run → back | back_run → board | stay_ros | stay_alone → stay_alone_away"
+    },
+    "beat_next": {
+      "type": "string",
+      "means": "кусок, который игра поставит следующим (модуль beats готовит его начало заранее)"
     },
     "fade": {
       "range": [
@@ -655,7 +669,7 @@
     },
     {
       "id": "joseph",
-      "name": "Джозеф Строрм",
+      "name": "Джозеф Сторм",
       "person": {
         "cast": "cast",
         "who": "joseph",
@@ -925,7 +939,7 @@
     },
     {
       "id": "cocoon_joseph",
-      "name": "Паутина: Джозеф Строрм",
+      "name": "Паутина: Джозеф Сторм",
       "across": -0.6,
       "distance": 14.149999999999999,
       "height": 2,

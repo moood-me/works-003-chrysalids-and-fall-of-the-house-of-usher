@@ -31,6 +31,12 @@ const fresh = () => ({
 });
 
 export default async function (b) {
+  // seconds of the play's own: standing while it is paused (⏸), as the scene's time does
+  const played = seconds => new Promise(ok => {
+    let left = seconds * 1000, last = performance.now();
+    const tick = now => { if (!b.paused) left -= now - last; last = now; if (left <= 0) ok(); else requestAnimationFrame(tick); };
+    requestAnimationFrame(tick);
+  });
   await Promise.all([b.css('fonts.css'), b.css('ui.css')]);
   // the language of mini-games in this game's hand: the world's key (A major and F♯ minor, as its scenes' music), the
   // book's serif, ink and bone, the red of the crack
@@ -52,7 +58,7 @@ export default async function (b) {
     await b.show(SCENES.wall, { state: { chapter_number: number, chapter_title: title, map, reveal: 0, knot: 1 }, captions: false });
     const over = map ? 2.5 + map.length * 1.2 : 3.5;
     b.set('reveal', 1, over);
-    await new Promise(ok => setTimeout(ok, over * 1000));
+    await played(over);
   };
   let kept = { ...fresh(), ...b.saved };
   // the minigames a step plays (as one who chose nothing before plays it: its first options) — the step played through

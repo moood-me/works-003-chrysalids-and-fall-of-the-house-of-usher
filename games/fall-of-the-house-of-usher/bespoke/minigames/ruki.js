@@ -7,7 +7,8 @@
 // his own hand (closeup#nar_hand: the scene draws it where the finger has it — grab, grab_x, grab_y); let go on a hand
 // (closeup#rod_hand, closeup#mad_hand), he takes it (held_rod, held_mad) — and the other too, if both may be taken; and
 // the language's hold on his own place (closeup#stay): held full, he stays. No hand reaching to him: only staying, or
-// letting the time go by (the ghost shows both). The time — the arc on the marks: the house
+// letting the time go by (the ghost shows both). The time — the arc on the marks, from when the ghost has shown the way
+// (or the first touch): the house
 // shakes harder as it runs out (quake; a jolt and the wood giving now and then); out — whatever is held is taken
 // (nothing: nobody). It leaves the house trembling (quake 0.4).
 //   opts: { roderick: bool, madeline: bool — each reaches to the narrator; both: bool — both may be taken (else the first
@@ -39,13 +40,16 @@ export default {
     const reach = mine ? mg.pull({ on: mine, targets: targets.map(w => `closeup#${w}_hand`) }) : null;
     const place = mg.mark({ at: 'closeup#stay', kind: 'groove', time: 1 });
     const stay = mg.hold({ on: place, seconds: STAY, drain: 0.5 });
-    if (reach) mg.show({ gestures: [reach, stay] });
-    else (async () => { await mg.show({ gestures: [stay] }).finished; mg.show({ handsOff: true }); })();
+    // (the showing is not the player's time: the time runs from when it is over, or from the first touch)
+    const shown = reach ? mg.show({ gestures: [reach, stay] }).finished
+      : (async () => { await mg.show({ gestures: [stay] }).finished; await mg.show({ handsOff: true }).finished; })();
     const held = { rod: false, mad: false };
-    let taken = null, shake = 0, wasHeld = false;
+    let taken = null, shake = 0, wasHeld = false, t0 = null;
     // the house: harder as the time runs out (the scene moves it)
     g.set('quake', 0.25);
-    g.set('quake', 1, time);
+    const go = () => { if (t0 != null) return; t0 = mg.t; g.set('quake', 1, time); };
+    shown.then(go);
+    mg.on('down', go);
     const f = b.frame();
     // the hand the finger has, in the close-up's units: the frame's height 1 from its middle, y down (the wrist; the palm
     // 0.2 above it)
@@ -58,9 +62,8 @@ export default {
       mg.snap({ at: `closeup#${who}_hand` });
       if (!both || targets.every(w => held[w])) taken = mg.t;
     });
-    const t0 = mg.t;
     const done = await until(mg, ({ t, dt }) => {
-      const u = t - t0, left = Math.max(0, 1 - u / time);
+      const u = t0 == null ? 0 : t - t0, left = Math.max(0, 1 - u / time);
       mine?.set({ time: left });
       place.set({ time: left });
       // a jolt and the wood giving now and then, more often as the time runs out

@@ -288,6 +288,7 @@ const FILM = {
       const leads = walk(s, 'petra', [[SITS + 0.6, NEAR + 0.05], [SITS, NEAR + 0.05]]);
       await walk(s, 'david', [[SHALLOW, NEAR], [KNEELS, NEAR]]);
       await leads;
+      s.tell('out:bank'); // (on the bank)
       cam(s, CAM.kneel, 3.5);
       david.reach(null);
       petra.reach(null);
@@ -312,6 +313,7 @@ const FILM = {
       s.cut({ ...camOf(CAM.across) });
       await s.wait(0.8);
       s.move('bond', 1, { over: 2 });
+      s.tell('bank_quiet:across'); // (Rosalind across the water: they hear each other)
       s.person('david').look('rosalind');
       await s.wait(1.2);
       await cam(s, CAM.across_in, 11);
@@ -325,6 +327,7 @@ const FILM = {
       s.cut({ ...camOf(CAM.across) });
       await s.wait(0.8);
       s.move('bond', 1, { over: 2 });
+      s.tell('bank_loud:across'); // (Rosalind across the water: they hear each other)
       s.person('david').look('rosalind');
       const come = LATE.map((c, i) => aside(s, async q => {
         await q.wait(1.7 + i * 1.6);

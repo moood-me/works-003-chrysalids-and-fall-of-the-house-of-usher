@@ -1,12 +1,513 @@
 {
-  "light": {
-    "haze": 0.3,
-    "tint": "#1a2236",
-    "grain": 0.25,
-    "vignette": 0.55,
-    "hazeColor": "#1a2234",
-    "tintStrength": 0.12
+  "engine": 3,
+  "title": "Лагерь Окраин",
+  "caption": "Здесь никто не спрашивал, сколько у тебя пальцев.",
+  "horizon": 0.6,
+  "camera": {
+    "mode": "picture"
   },
+  "light": {
+    "ambient": 0.75,
+    "ambientColor": "#b0b8cc",
+    "bounce": 0.5,
+    "haze": 0.25,
+    "hazeColor": "#7a8298",
+    "hazeGlow": 0.7,
+    "vignette": 0.4,
+    "grain": 0.18,
+    "saturation": 0.85,
+    "wind": [
+      1,
+      0,
+      0.35
+    ]
+  },
+  "lights": [
+    {
+      "id": "fire",
+      "across": -1.2,
+      "distance": 10,
+      "elevation": 0.7,
+      "color": "#ff9a50",
+      "strength": 2.0,
+      "reach": 9,
+      "flicker": 0.35,
+      "glow": 0.5,
+      "on": "fire"
+    },
+    {
+      "id": "dawn",
+      "from": [
+        40,
+        6
+      ],
+      "color": "#d8d2cc",
+      "strength": 0.4
+    }
+  ],
+  "state": {
+    "fire": 0.8,
+    "alarm": 0,
+    "people": 0.8,
+    "captives": 0,
+    "sophie_present": 1,
+    "rosalind_here": false,
+    "petra_here": false,
+    "guard_with": [
+      "spear"
+    ],
+    "guard2_with": [
+      "spear"
+    ]
+  },
+  "states": {
+    "fire": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "как горит костёр (пламя, искры, свет)"
+    },
+    "alarm": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "тревога: сидящий встаёт, стражи смотрят в лес, высокий страж трубит в рог"
+    },
+    "people": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "сколько людей Окраин у огня: страж всегда, Паук с 0.2, горбун 0.4, сидящий 0.6, женщина 0.7, второй страж 0.8"
+    },
+    "captives": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "Розалинда и Петра привязаны у столба"
+    },
+    "sophie_present": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "Софи на краю света у своего шалаша (выходит из него, уходит в него)"
+    }
+  },
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Небо на рассвете"
+    },
+    {
+      "id": "forest_back",
+      "name": "Дальний лес",
+      "x": 0.5,
+      "distance": 42,
+      "height": 18,
+      "box": [
+        -120,
+        -34,
+        120,
+        1
+      ]
+    },
+    {
+      "id": "forest_mid",
+      "name": "Кривые деревья у поляны",
+      "x": 0.5,
+      "distance": 26,
+      "height": 16,
+      "box": [
+        -75,
+        -34,
+        75,
+        1
+      ]
+    },
+    {
+      "id": "fog",
+      "name": "Дым и туман над поляной",
+      "x": 0.5,
+      "distance": 24,
+      "height": 8,
+      "box": [
+        -80,
+        -10,
+        80,
+        4
+      ]
+    },
+    {
+      "id": "hut_back",
+      "name": "Дальний шалаш",
+      "across": 2.4,
+      "distance": 19,
+      "height": 2.6,
+      "box": [
+        -2.2,
+        -3.2,
+        2.2,
+        0.3
+      ]
+    },
+    {
+      "id": "hut_left",
+      "name": "Шалаш слева",
+      "across": -7.6,
+      "distance": 15,
+      "height": 2.8,
+      "box": [
+        -2.2,
+        -3.4,
+        2.2,
+        0.3
+      ]
+    },
+    {
+      "id": "pale_plants",
+      "name": "Бледные растения",
+      "x": 0.5,
+      "distance": 19,
+      "height": 2,
+      "box": [
+        -26,
+        -4,
+        26,
+        0.3
+      ]
+    },
+    {
+      "id": "ground",
+      "name": "Земля поляны",
+      "plane": true,
+      "x": 0.5,
+      "distance": 50,
+      "width": 140,
+      "depth": 100
+    },
+    {
+      "id": "post",
+      "name": "Столб",
+      "across": -5.9,
+      "distance": 11.4,
+      "height": 2.3,
+      "box": [
+        -0.4,
+        -2.5,
+        0.4,
+        0.2
+      ],
+      "shadow": {
+        "light": "fire",
+        "strength": 0.7
+      }
+    },
+    {
+      "id": "fire",
+      "name": "Костёр",
+      "across": -1.2,
+      "distance": 10,
+      "height": 1,
+      "box": [
+        -1.0,
+        -1.0,
+        1.0,
+        0.3
+      ]
+    },
+    {
+      "id": "flames",
+      "name": "Огонь костра",
+      "across": -1.2,
+      "distance": 10,
+      "elevation": 0.15,
+      "particles": {
+        "kind": "fire",
+        "source": [
+          0.6,
+          0.4,
+          0.05
+        ],
+        "size": [
+          0.45,
+          0.1
+        ],
+        "amount": "fire"
+      }
+    },
+    {
+      "id": "embers",
+      "name": "Искры костра",
+      "across": -1.2,
+      "distance": 10,
+      "elevation": 0.3,
+      "particles": {
+        "kind": "embers",
+        "source": [
+          0.6,
+          0.4,
+          0.1
+        ],
+        "rate": 5,
+        "amount": "fire"
+      }
+    },
+    {
+      "id": "smoke",
+      "name": "Дым костра",
+      "across": -1.2,
+      "distance": 10,
+      "elevation": 1.2,
+      "particles": {
+        "kind": "smoke",
+        "source": [
+          0.4,
+          0.4,
+          0.2
+        ],
+        "rate": 2,
+        "size": [
+          0.4,
+          3.0
+        ],
+        "opacity": 0.3,
+        "color": "#a8a49c",
+        "shadow": 0.4
+      }
+    },
+    {
+      "id": "guard",
+      "name": "Страж с копьём и рогом",
+      "person": {
+        "cast": "cast",
+        "who": "guard",
+        "turn": 160,
+        "does": "stand"
+      },
+      "across": -3.6,
+      "distance": 11.4,
+      "place": {
+        "across": "guard_a",
+        "distance": "guard_d"
+      },
+      "shadow": {
+        "light": "fire",
+        "strength": 0.7
+      }
+    },
+    {
+      "id": "spider",
+      "name": "Паук",
+      "person": {
+        "cast": "cast",
+        "who": "spider",
+        "turn": 200,
+        "does": "arms_folded"
+      },
+      "across": 0.6,
+      "distance": 11.0,
+      "place": {
+        "across": "spider_a",
+        "distance": "spider_d"
+      },
+      "shadow": {
+        "light": "fire",
+        "strength": 0.7
+      }
+    },
+    {
+      "id": "hunch",
+      "name": "Горбун",
+      "person": {
+        "cast": "cast",
+        "who": "hunchback",
+        "turn": 120,
+        "does": "stand"
+      },
+      "across": -2.4,
+      "distance": 9.2,
+      "place": {
+        "across": "hunch_a",
+        "distance": "hunch_d"
+      },
+      "shadow": {
+        "light": "fire",
+        "strength": 0.7
+      }
+    },
+    {
+      "id": "sitter",
+      "name": "Сидящий у костра",
+      "person": {
+        "cast": "cast",
+        "who": "fringe_man",
+        "turn": 180,
+        "does": "sit_knees"
+      },
+      "across": -1.1,
+      "distance": 11.2,
+      "place": {
+        "across": "sitter_a",
+        "distance": "sitter_d"
+      },
+      "shadow": {
+        "light": "fire",
+        "strength": 0.7
+      }
+    },
+    {
+      "id": "woman",
+      "name": "Женщина Окраин",
+      "person": {
+        "cast": "cast",
+        "who": "fringe_woman",
+        "turn": 210,
+        "does": "stand"
+      },
+      "across": 1.8,
+      "distance": 12.4,
+      "place": {
+        "across": "woman_a",
+        "distance": "woman_d"
+      },
+      "shadow": {
+        "light": "fire",
+        "strength": 0.7
+      }
+    },
+    {
+      "id": "guard2",
+      "name": "Второй страж",
+      "person": {
+        "cast": "cast",
+        "who": "guard",
+        "turn": 220,
+        "does": "stand"
+      },
+      "across": 3.8,
+      "distance": 10.4,
+      "place": {
+        "across": "guard2_a",
+        "distance": "guard2_d"
+      },
+      "shadow": {
+        "light": "fire",
+        "strength": 0.7
+      }
+    },
+    {
+      "id": "rosalind",
+      "name": "Розалинда у столба",
+      "person": {
+        "cast": "cast",
+        "who": "rosalind",
+        "turn": 170,
+        "does": "hide_stand"
+      },
+      "across": -5.5,
+      "distance": 11.6,
+      "place": {
+        "across": "rosalind_a",
+        "distance": "rosalind_d"
+      },
+      "shadow": {
+        "light": "fire",
+        "strength": 0.7
+      }
+    },
+    {
+      "id": "petra",
+      "name": "Петра у столба",
+      "person": {
+        "cast": "cast",
+        "who": "petra",
+        "turn": 190,
+        "does": "hide_stand"
+      },
+      "across": -6.3,
+      "distance": 11.6,
+      "place": {
+        "across": "petra_a",
+        "distance": "petra_d"
+      },
+      "shadow": {
+        "light": "fire",
+        "strength": 0.7
+      }
+    },
+    {
+      "id": "hut_right",
+      "name": "Шалаш Софи",
+      "across": 5.6,
+      "distance": 9.4,
+      "height": 2.6,
+      "box": [
+        -2.2,
+        -3.2,
+        2.2,
+        0.3
+      ]
+    },
+    {
+      "id": "sophie",
+      "name": "Софи",
+      "person": {
+        "cast": "cast",
+        "who": "sophie_adult",
+        "turn": 200,
+        "does": "stand"
+      },
+      "across": 2.25,
+      "distance": 6.6,
+      "place": {
+        "across": "sophie_a",
+        "distance": "sophie_d"
+      },
+      "shadow": {
+        "light": "fire",
+        "strength": 0.7
+      }
+    },
+    {
+      "id": "near_tree",
+      "name": "Вздутое дерево",
+      "across": -4.8,
+      "distance": 5.6,
+      "height": 8,
+      "box": [
+        -3,
+        -9,
+        9,
+        0.5
+      ]
+    },
+    {
+      "id": "foreground",
+      "name": "Травы у ног",
+      "x": 0.5,
+      "distance": 4.2,
+      "height": 1.2,
+      "box": [
+        -14.5,
+        -2,
+        14.5,
+        0.4
+      ]
+    }
+  ],
+  "modules": [
+    "cast"
+  ],
   "music": {
     "bpm": 72,
     "density": 0.35,
@@ -93,243 +594,5 @@
       }
     ],
     "brightness": 0.3
-  },
-  "state": {
-    "fire": 0.8,
-    "alarm": 0,
-    "people": 0.8,
-    "captives": 0,
-    "sophie_present": 1
-  },
-  "title": "Лагерь Окраин",
-  "camera": {
-    "area": [
-      -2,
-      2,
-      0,
-      7
-    ],
-    "mode": "walk"
-  },
-  "caption": "Здесь никто не спрашивал, сколько у тебя пальцев.",
-  "horizon": 0.6,
-  "objects": [
-    {
-      "id": "sky",
-      "sky": true,
-      "name": "Ночное небо"
-    },
-    {
-      "x": 0.5,
-      "id": "forest_back",
-      "box": [
-        -120,
-        -34,
-        120,
-        1
-      ],
-      "name": "Дальний лес",
-      "height": 18,
-      "distance": 42
-    },
-    {
-      "x": 0.5,
-      "id": "forest_mid",
-      "box": [
-        -70,
-        -30,
-        70,
-        1
-      ],
-      "name": "Кривые деревья у поляны",
-      "height": 16,
-      "distance": 26
-    },
-    {
-      "x": 0.5,
-      "id": "fog",
-      "box": [
-        -80,
-        -10,
-        80,
-        4
-      ],
-      "name": "Дым и туман над поляной",
-      "height": 8,
-      "distance": 24
-    },
-    {
-      "x": 0.5,
-      "id": "hut_back",
-      "box": [
-        -2.2,
-        -3.2,
-        2.2,
-        0.3
-      ],
-      "name": "Дальний шалаш",
-      "across": 2.4,
-      "height": 2.6,
-      "distance": 19
-    },
-    {
-      "x": 0.5,
-      "id": "hut_left",
-      "box": [
-        -2.2,
-        -3.2,
-        2.2,
-        0.3
-      ],
-      "name": "Шалаш слева",
-      "across": -7.6,
-      "height": 2.8,
-      "distance": 15
-    },
-    {
-      "x": 0.5,
-      "id": "pale_plants",
-      "box": [
-        -26,
-        -4,
-        26,
-        0.3
-      ],
-      "name": "Бледные растения",
-      "height": 2,
-      "distance": 19
-    },
-    {
-      "x": 0.5,
-      "id": "ground",
-      "name": "Земля поляны",
-      "color": "#0c1017",
-      "depth": 100,
-      "plane": true,
-      "width": 140,
-      "distance": 50,
-      "elevation": 0
-    },
-    {
-      "x": 0.5,
-      "id": "captives",
-      "box": [
-        -1.5,
-        -2.6,
-        1.5,
-        0.3
-      ],
-      "name": "Пленники у столба",
-      "across": -5.9,
-      "height": 2.3,
-      "distance": 11.2
-    },
-    {
-      "x": 0.5,
-      "id": "people",
-      "box": [
-        -6,
-        -3.9,
-        6,
-        0.3
-      ],
-      "name": "Люди Окраин у костра",
-      "across": -1.2,
-      "height": 2.4,
-      "distance": 10.3
-    },
-    {
-      "x": 0.5,
-      "id": "fire",
-      "box": [
-        -2.5,
-        -6.5,
-        2.5,
-        0.4
-      ],
-      "name": "Костёр",
-      "across": -1.2,
-      "height": 2,
-      "distance": 10
-    },
-    {
-      "x": 0.5,
-      "id": "smoke",
-      "box": [
-        -4,
-        -13,
-        8,
-        0
-      ],
-      "name": "Дым",
-      "across": -1.1,
-      "height": 10,
-      "distance": 10.1
-    },
-    {
-      "x": 0.5,
-      "id": "hut_right",
-      "box": [
-        -2.2,
-        -3.2,
-        2.2,
-        0.3
-      ],
-      "name": "Шалаш Софи",
-      "across": 5.6,
-      "height": 2.6,
-      "distance": 9.4
-    },
-    {
-      "x": 0.5,
-      "id": "sophie",
-      "box": [
-        -0.9,
-        -2,
-        0.9,
-        0.2
-      ],
-      "name": "Софи",
-      "across": 2.25,
-      "height": 1.7,
-      "distance": 6.6
-    },
-    {
-      "x": 0.5,
-      "id": "near_tree",
-      "box": [
-        -3,
-        -9,
-        9,
-        0.5
-      ],
-      "name": "Вздутое дерево",
-      "across": -4.8,
-      "height": 8,
-      "distance": 5.6
-    },
-    {
-      "x": 0.5,
-      "id": "foreground",
-      "box": [
-        -14,
-        -2,
-        14,
-        0.4
-      ],
-      "name": "Травы у ног",
-      "height": 1.2,
-      "distance": 4.2
-    }
-  ],
-  "directions": [
-    {
-      "key": "alarm",
-      "name": "Тревога в лагере"
-    },
-    {
-      "key": "captives",
-      "name": "Привели пленников"
-    }
-  ]
+  }
 }

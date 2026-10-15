@@ -8,14 +8,14 @@
 //   view.letter({text, highlight, sign}, {signal}) — a folded letter on the dark: the player unfolds
 //     it, reads it, folds it again; → then. text: its lines ('\n'); highlight: words of it underlined
 //   view.title(text, {signal}) — words over the scene, as a film's title; → once they have gone
-//   view.hint(text, after) — a hand's word low on the screen, after `after` ms (what to do, for one who
-//     waits); → a function that takes it away
-//   view.onSkip(fn) → off — what the author's ⏭ does now (the latest one, until off())
+//   view.onSkip(fn) → off — fn is what ⏭ does now (the latest one, until off()); none — the ⏭ not shown. A minigame's
+//     is every player's (a safety net if it glitches, not a way through: story.js g.play), a step's the author's only
+//     (game.js)
 //   view.pausing(b) — ⏸ in the corner, for every player: the play paused (bespoke.pause, and the game's own sounds:
 //     sound.js pause) and going on again
 //   view.author({chapters, at() → {chapter, step}, plays(chapter, step) → [titles of its minigames], go(chapter, step,
-//     minigame)}) — the author's tools: ⏭ skips (a minigame, else the step), ☰ lists the chapters, their steps and
-//     the steps' minigames, to go to any (a minigame: its index among the step's)
+//     minigame)}) — the author's tools: ☰ lists the chapters, their steps and the steps' minigames, to go to any (a
+//     minigame: its index among the step's)
 // Whatever is shown is taken away when `signal` aborts (the step was left).
 import { CRACK_FULL, SCALES } from './story.js';
 import { paper, pause } from './sound.js';
@@ -40,9 +40,13 @@ export function ui(layer) {
   const crack = crackGauge(layer);
   const flame = candle(layer);
   const toasts = el('div', 'toasts', layer);
-  // the corner's tools: ⏸ for everyone, ⏭ and ☰ for the author
+  // the corner's tools: ⏸ for everyone, ⏭ while something can be skipped, ☰ for the author
   const tools = el('div', 'tools', layer);
-  const skips = [];
+  const skips = []; // what ⏭ does, the latest last
+  // (a button is never focused: the keys are the page's)
+  const skip = Object.assign(el('button', '', tools), { type: 'button', textContent: '⏭', title: 'пропустить', onclick: () => skips.at(-1)?.(), onmousedown: e => e.preventDefault() });
+  const skipShown = () => { skip.hidden = !skips.length; };
+  skipShown();
   return {
     gauges(kept) {
       crack.show(!!kept?.shown.crack, kept ? 0.06 + 0.94 * Math.min(1, kept.scales.crack / CRACK_FULL) : 0);
@@ -76,19 +80,10 @@ export function ui(layer) {
         signal?.addEventListener('abort', () => { timers.forEach(clearTimeout); t.remove(); });
       });
     },
-    hint(text, after = 0) {
-      const h = el('p', 'hint', layer);
-      h.textContent = text;
-      const timer = setTimeout(() => h.classList.add('on'), after);
-      return () => {
-        clearTimeout(timer);
-        h.classList.remove('on');
-        setTimeout(() => h.remove(), 1200);
-      };
-    },
     onSkip(fn) {
       skips.push(fn);
-      return () => { const i = skips.indexOf(fn); if (i >= 0) skips.splice(i, 1); };
+      skipShown();
+      return () => { const i = skips.indexOf(fn); if (i >= 0) skips.splice(i, 1); skipShown(); };
     },
     pausing(b) {
       const p = Object.assign(el('button'), { type: 'button' });
@@ -126,8 +121,7 @@ export function ui(layer) {
         map.replaceChildren(panel);
         map.hidden = false;
       };
-      tools.append(button('⏭', 'пропустить (мини-игру, иначе шаг)', () => skips.at(-1)?.()),
-        button('☰', 'главы и шаги', () => (map.hidden ? open() : close())));
+      tools.append(button('☰', 'главы и шаги', () => (map.hidden ? open() : close())));
     },
   };
 }

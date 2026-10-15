@@ -4,12 +4,12 @@
 // she heard and on his trust; the time — on the crack. The flight («Бег»). Sets the ending.
 // design.md: «Финал: руки», «Концовки».
 // Reads: scales; heard.*; marks.loose, key; choices.night, coffin. Leaves: choices.window, reading, hands.
-import { CRACK_FULL, SCALES } from '../story.js';
+import { CRACK_FULL, SCALES, SCENES } from '../story.js';
 import chtenie from '../minigames/chtenie.js';
 import ruki from '../minigames/ruki.js';
 import beg from '../minigames/beg.js';
 
-const STORM = 'Буря и чтение', FALL = 'Падение дома';
+const STORM = SCENES.storm, FALL = SCENES.fall;
 
 // what decides the hands: she reaches to him if he tried to save her; Roderick — if he trusts him;
 // both hands are within reach only with time to spare and her screws loose (she can walk)
@@ -31,7 +31,7 @@ export default {
     // the storm: his lamp, the window
     async g => {
       // (said in the close-up of his face, lit from below)
-      const close = g.when('closeup', 1);
+      const close = g.told('enter_lamp:close');
       await g.scene(STORM, { beat: 'enter_lamp' });
       g.sound.rain(0.9, 3);
       g.sound.thunder(0.7);
@@ -44,7 +44,7 @@ export default {
       await g.beat('window_open');
       const w = await g.choose('window', {
         window: [{ id: 'close', label: 'Закрыть окно' }],
-        roderick: [{ id: 'watch', label: 'Смотреть вместе с ним' }],
+        roderick: [{ id: 'watch', label: 'Смотреть с ним' }],
       });
       if (w === 'close') {
         await g.beat('window_close');
@@ -68,7 +68,7 @@ export default {
     // the confession
     async g => {
       // (said in the close-up of his face)
-      const close = g.when('closeup', 1);
+      const close = g.told('confess:close');
       await g.scene(STORM, { beat: 'confess' });
       const confess = g.beat('confess');
       await close;
@@ -88,7 +88,7 @@ export default {
     // the door: Madeline; ⚑ the hands
     async g => {
       // (said as the close-up of the confession is left: he turns to the door and points)
-      const out = g.when('closeup', 0);
+      const out = g.told('door_opens:out');
       await g.scene(STORM, { beat: 'door_opens' });
       const door = g.beat('door_opens');
       await out;
@@ -108,10 +108,11 @@ export default {
       } else {
         // the mind gone: the hands reach, and his own does not move
         g.set('quake', 0.6, 2);
-        await Promise.all([
-          g.move('rod_reach', roderick ? 1 : 0, 1.4), g.move('rod_to_mad', roderick ? 0 : 1, 1.4),
-          g.move('mad_reach', madeline ? 1 : 0, 1.6), g.move('mad_to_rod', madeline ? 0 : 1, 1.6),
-        ]);
+        g.set('rod_reach', roderick ? 1 : 0, 1.4);
+        g.set('rod_to_mad', roderick ? 0 : 1, 1.4);
+        g.set('mad_reach', madeline ? 1 : 0, 1.6);
+        g.set('mad_to_rod', madeline ? 0 : 1, 1.6);
+        await g.wait(1600);
         await g.say('narrator', 'Я не мог отвести глаз.');
       }
       if (stayed) {
@@ -134,7 +135,8 @@ export default {
       await g.beat('run');
       const { escaped } = await g.play(beg, { companions, speed: Math.min(1, scales.crack / CRACK_FULL), sanity: scales.sanity / SCALES.sanity.max });
       if (!escaped) {
-        await g.move('fade', 1, 1.5);
+        g.set('fade', 1, 1.5);
+        await g.wait(1500);
       }
       g.end(!escaped ? 'stayed' : { none: 'poe', madeline: 'madeline', roderick: 'roderick', both: 'both' }[choices.hands]);
     },

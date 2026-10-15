@@ -1,67 +1,66 @@
-// «Стук» (III, the nights): alone at the shut iron door, by one candle (the scene «Склеп», beat
-// `at_door`). The player knocks — a tap on the door is a knock (`knock` pulse, heard on the iron);
-// when the knocking stops, silence — and then from the other side as many knocks back (`answer`
-// pulses, muffled). The player may knock again; it answers again. Leaving is the player's: after
-// the first answer, «Уйти»; or nothing more for a long while.
+// «Стук» (III, the nights; «Склеп», after the beat `at_door`): alone at the shut iron door, by one candle.
+//   1. what he does — knocks on the door of the vault, and listens; 2. wants — to know whether she is alive; 3. horror,
+//   and the hope he dares not have; 4. the player — knocking, and waiting in the silence for an answer.
+// The language's press on the door (outside#door, the insert's point): each touch a knock — the scene's `knock` pulse
+// (the door trembles, dust falls) and the knock heard on the iron. When the knocking stops, silence — the scene's turn,
+// the marks hidden — and then from the other side as many knocks back (`answer`, muffled). The player may knock again; it
+// answers again. After the first answer, a quiet mark on the way up (outside#away) with its word, «Уйти»; or nothing more
+// for a long while — he has stood there long enough.
 //   → { knocks: how many times the player knocked, answered: true }
 import { knock as heard } from '../sound.js';
+import { until, once } from '../hands.js';
 
-const PULSE = 1.5; // s: a knock's tremor running down (the scene's dust falls along it)
-const WAIT = 3200; // ms of silence after the last knock before the answer
-const APART = 750; // ms between the answer's knocks
-const IDLE = 14000; // ms after an answer with no knock: the player has stood long enough
-
-let styled = null;
+const PULSE = 1.5; // s: a knock's tremor running down
+const WAIT = 3.2; // s of silence after the last knock before the answer
+const APART = 0.75; // s between the answer's knocks
+const IDLE = 14; // s after an answer with no knock: he has stood long enough
 
 export default {
   title: 'Стук', // (as the author's ☰ lists it)
-  skipped: { knocks: 0, answered: true },
+  about: 25,
+  skipped: { knocks: 1, answered: true },
   async run(g, b, opts, signal) {
-    styled ||= b.css('minigames/stuk.css');
-    await styled;
-    if (signal.aborted) return this.skipped;
-    let knocks = 0, owed = 0, timers = [], finish;
-    const later = (fn, ms) => timers.push(setTimeout(fn, ms));
-    const quiet = () => { timers.forEach(clearTimeout); timers = []; };
-    const pulse = key => { b.set(key, 1); b.set(key, 0, PULSE); };
-
-    const box = document.createElement('div');
-    box.className = 'mg-stuk';
-    box.innerHTML = '<p>Постучи.</p><button type="button">Уйти</button>';
-    b.layer.append(box);
-    const hint = box.querySelector('p'), leave = box.querySelector('button');
-
-    // the answer: as many knocks as were knocked (three at most), each a while apart; then the
-    // player may go, or stand there until IDLE has passed
-    const answer = () => {
-      const n = Math.min(3, owed);
-      owed = 0;
-      for (let i = 0; i < n; i++) later(() => { pulse('answer'); heard('there', 1); }, i * APART);
-      later(() => {
-        leave.classList.add('on');
-        later(finish, IDLE);
-      }, n * APART);
-    };
-    // a knock cuts short whatever was coming: the answer waits for the knocking to stop
-    const tap = e => {
-      if (e.button > 0 || e.target === leave) return;
-      e.preventDefault();
+    const mg = g.minigame({ phrase: 'Железная дверь была заперта, и за ней было тихо' });
+    const door = mg.mark({ at: 'outside#door', kind: 'ring' });
+    const press = mg.press({ on: door });
+    b.minigame.tricks.teach(mg, [press], { id: 'press' });
+    const pulse = key => { g.set(key, 1); g.set(key, 0, PULSE); };
+    // (seconds by the mini-game's clock: it stands with the play's pause)
+    const after = s => { const t1 = mg.t + s; return until(mg, () => mg.t >= t1); };
+    let knocks = 0, owed = 0, last = null, answered = null, leave = null, gone = false;
+    press.on('press', () => {
       knocks++; owed++;
+      last = mg.t;
       pulse('knock');
       heard('here', 1);
-      hint.classList.add('gone');
-      quiet();
-      later(answer, WAIT);
-    };
-    box.addEventListener('pointerdown', tap);
-    leave.addEventListener('click', () => finish());
-
-    await new Promise(ok => {
-      finish = ok;
-      signal.addEventListener('abort', ok);
     });
-    quiet();
-    box.remove();
-    return signal.aborted ? this.skipped : { knocks, answered: true };
+    // the answer, once the knocking has stopped: as many knocks as were knocked (three at most), a while apart
+    const answer = async () => {
+      mg.sceneTurn(true);
+      const n = Math.min(3, owed);
+      owed = 0;
+      for (let i = 0; i < n; i++) {
+        pulse('answer');
+        heard('there', 1);
+        if (!(await after(APART))) return;
+      }
+      mg.sceneTurn(false);
+      answered = mg.t;
+      mg.plate.set({ fill: 1, phrase: 'Оттуда, из-за двери, ответили' });
+      if (!leave) {
+        const away = mg.mark({ at: 'outside#away', kind: 'ring', quiet: true });
+        leave = mg.press({ on: away, petals: [{ id: 'go', label: 'Уйти' }] });
+        once(mg, leave, 'choose').then(x => { if (x) gone = true; });
+      }
+    };
+    let answering = null;
+    const done = await until(mg, () => {
+      if (!answering && owed && mg.t - last >= WAIT) answering = answer().then(() => { answering = null; });
+      if (!answered) mg.plate.set({ fill: knocks ? 0.5 : 0 });
+      return gone || (answered != null && !answering && mg.t - Math.max(answered, last ?? 0) >= IDLE);
+    });
+    if (!done) return this.skipped;
+    await mg.end({ as: 'neutral' });
+    return { knocks, answered: true };
   },
 };

@@ -95,3 +95,13 @@ chair pushing on the table, 2.5 s), `lean_table` (standing bent over a table, th
 `bench_down` (once: down onto a bench behind, 2.9 s), `bench_sit`, `bench_rise` (once); standing: `arms_folded`,
 `hands_behind`, `staff_lean` (on a staff in the right hand: the part `staff`), `child_stand` (a boy, the arms at his
 sides), `turn_away` (once: a turn away, the head bowed).
+
+For «Хризалиды v3» (2026-10-15): `scoop` (once: crouches, gathers a child up from the ground, stands holding it — the
+child `on` the hands; then `carry`), `carry` (the hold, standing — carry_stand's recording), `collapse` (once: struck,
+staggers, down — onto the back), `cling` (a loop: hanging by both hands from something overhead, the knees drawn up — a
+child holding a branch in the water), `sing_stand` (a loop: standing, hands clasped, the head raised — a hymn; kneeling,
+the hymn is `kneel_pray` with the look up), `draw_bow` (once: the left arm out with the bow, the right drawn to the
+chin, held, loosed — with the part `bow`), `mount` (once: down into a high seat beside — then `on` the horse's seat),
+`dismount` (once: down off something high onto the feet — `on(null)` as it begins), `lift_into` (once: crouches, lifts
+a child up high before them — into a pannier), `pull_out` (once: crouching at an edge, both hands down and drawn back
+toward the chest — pulling someone out of the water).

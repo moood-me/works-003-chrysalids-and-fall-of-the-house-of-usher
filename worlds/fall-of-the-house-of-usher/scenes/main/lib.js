@@ -209,8 +209,9 @@ const causeway = (d) => -5.5 * Math.pow(clamp((HOUSE - d) / 77, 0, 2), 1.6);
 // game sends them; `walk_at`: where they are). The narrator a step ahead of Roderick (towards us) and to the right of him
 // on the screen, his right hand holding Roderick's left.
 const DOOR_D = 81.6, SHORE = 8.5, OUT = 0.15, MIDDLE = 0.5, RIDER = 10, AHEAD_OF = 0.45;
-// (the point their joined hands are pulled toward — the element `lead` — so far before the narrator, towards us)
-const LEAD = 1.6;
+// (the point their joined hands are pulled toward — the element `lead`, low — so far before the narrator, towards us:
+// the way a long one on the screen)
+const LEAD = 2.4;
 const dist = (w) => DOOR_D + (SHORE - DOOR_D) * w;
 const NARRATOR = (w) => [causeway(dist(w)) + 0.3, dist(w) - AHEAD_OF], RODERICK = (w) => [causeway(dist(w)) - 0.35, dist(w) + 0.35];
 // where along the causeway the two are, from where the narrator stands (his distance)
@@ -242,7 +243,7 @@ const back = (w) => toward(NARRATOR(w), RODERICK(w));
 const AHEAD = 5;
 const tracking = (w) => [causeway(dist(w)), dist(w) - AHEAD];
 const camera = (w) => ({ camera_target: null, camera_x: tracking(w)[0], camera_z: tracking(w)[1], camera_h: -0.2, camera_look: 0.06 });
-const NEAR = { camera_target: null, camera_x: causeway(dist(MIDDLE)), camera_z: dist(MIDDLE) - AHEAD + 1.4, camera_h: 0, camera_look: 0.1 };
+const NEAR = { camera_target: null, camera_x: causeway(dist(MIDDLE)) - 0.02, camera_z: dist(MIDDLE) - AHEAD + 0.5, camera_h: 0, camera_look: 0.1 };
 const ZERO = { camera_target: null, camera_x: 0, camera_z: 0, camera_h: 0, camera_look: 0, camera_pitch: 0 };
 
 const DUSK = {

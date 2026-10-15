@@ -55,7 +55,7 @@ function pulse(e) {
   const f = ((((+e.state.strum || 0) - 0.25) % 1) + 1) % 1;
   return (1 - f) ** 3 * (0.55 + 0.45 * num(e.state.wild));
 }
-// a flame's flicker (≈1) at t, livelier with `wild`, a jump at each stroke — candles.glsl has the same
+// a flame's flicker (≈1) at t, livelier with `wild`, a jump at each stroke — candles.wgsl has the same
 function flicker(t, k, wild, p) {
   return (
     1 +

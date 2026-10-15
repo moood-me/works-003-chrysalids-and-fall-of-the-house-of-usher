@@ -1,6 +1,6 @@
 // The fissure in the back wall, right of the windows, from the vault down: `crack` 0…1 how far down it has run and how
 // deep it gapes (past 0.35 it branches). Its lines (layer 1) are lit as the wall is; a glow along it (layer 2) is what
-// shines from within while he sings (fissure.glsl, `song`). Painted again only as `crack` steps (redraw) — a small card.
+// shines from within while he sings (fissure.wgsl, `song`). Painted again only as `crack` steps (redraw) — a small card.
 const K = e.lib.num(e.state.crack);
 const pts = [
   [2.75, -11], [2.5, -10.2], [2.85, -9.5], [2.55, -8.7], [2.72, -8.0], [2.28, -7.3], [2.52, -6.6], [2.16, -5.9],

@@ -299,6 +299,15 @@
       "color": "#b07a72",
       "strength": 1.2,
       "on": "window_dusk"
+    },
+    {
+      "id": "fill",
+      "across": 0.6,
+      "distance": 0.8,
+      "elevation": 1.8,
+      "color": "#e6d4bc",
+      "strength": 0.9,
+      "reach": 13
     }
   ],
   "directions": [

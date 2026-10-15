@@ -185,6 +185,15 @@
       "reach": 10,
       "on": "rift",
       "glow": 0.6
+    },
+    {
+      "id": "fill",
+      "across": 0.2,
+      "distance": 0.6,
+      "elevation": 1.8,
+      "color": "#c4d0dc",
+      "strength": 0.85,
+      "reach": 10
     }
   ],
   "modules": [
@@ -298,9 +307,6 @@
         8,
         0.1
       ],
-      "redraw": {
-        "crack": 0.02
-      },
       "shadow": {
         "onto": [
           "floor"
@@ -308,6 +314,19 @@
         "soft": 0.03,
         "strength": 0.9
       }
+    },
+    {
+      "id": "crack",
+      "name": "Трещина в стене",
+      "across": 0,
+      "distance": 6.49,
+      "height": 5,
+      "box": [
+        -3.7,
+        -5.7,
+        3.0,
+        -2.0
+      ]
     },
     {
       "id": "fissure",

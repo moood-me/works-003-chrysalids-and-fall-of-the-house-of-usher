@@ -21,15 +21,18 @@
     "tintStrength": 0.12,
     "vignette": 0.55,
     "ambient": 1,
-    "ambientColor": "#8f9ba6",
+    "ambientColor": "#a2aeb8",
     "hazeGlow": 0.5,
     "looks": {
       "day": {
         "ambientColor": "#e2e5e6",
-        "tintStrength": 0.05
+        "tintStrength": 0.05,
+        "lights": {
+          "fill": 0.35
+        }
       },
       "gloom": {
-        "brightness": 0.78,
+        "brightness": 0.86,
         "saturation": 0.8,
         "haze": 0.2,
         "tintStrength": 0.2
@@ -56,6 +59,15 @@
       "strength": 1.2,
       "reach": 5,
       "on": "door"
+    },
+    {
+      "id": "fill",
+      "from": [
+        175,
+        18
+      ],
+      "color": "#aebccc",
+      "strength": 0.75
     }
   ],
   "state": {
@@ -286,7 +298,6 @@
       "reflect": {
         "strength": 0.7,
         "fade": 0,
-        "blur": 0.01,
         "rough": 0.22,
         "ripple": 0.12
       }
@@ -332,6 +343,24 @@
       ],
       "inFront": [
         "house"
+      ]
+    },
+    {
+      "id": "lamp",
+      "name": "Окно со светом",
+      "across": 0,
+      "distance": 79.95,
+      "height": 29,
+      "box": [
+        -13.2,
+        -14.2,
+        -10.8,
+        -9.2
+      ],
+      "glows": true,
+      "inFront": [
+        "house",
+        "windows"
       ]
     },
     {
@@ -542,7 +571,7 @@
       "unseen": true,
       "across": 0.15,
       "distance": 80,
-      "elevation": 1.0,
+      "elevation": 0.7,
       "height": 0.2,
       "box": [
         -0.1,

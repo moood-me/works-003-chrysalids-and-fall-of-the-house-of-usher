@@ -76,13 +76,13 @@ function cardDark(g, col) {
   g.fillRect(-1.4, -0.7, 2.8, 1.4);
 }
 // inside the coffin: the seam (the lid's edge, its hairline of light) — and the four screws' points coming through the
-// wood [x, y, from, to]: each comes through over its span of `tip` (inside.glsl has them too)
+// wood [x, y, from, to]: each comes through over its span of `tip` (inside.wgsl has them too)
 const SEAM = -0.2;
 const SCREWS = [[-0.5, SEAM + 0.09, 0, 0.4], [0.38, SEAM + 0.08, 0.4, 0.6], [-0.05, SEAM + 0.05, 0.6, 0.78], [0.78, SEAM + 0.06, 0.78, 0.9]];
 // (how big a point looks: the nearer her eyes — the lower — the bigger)
 const near = y => 0.6 + 4 * (y - SEAM);
 // outside the door: where the candle stands, how strongly it burns steadily (its flicker and the knocks move it from
-// there: outside.glsl has them too)
+// there: outside.wgsl has them too)
 const CANDLE = [-0.55, 0.3], FL = 0.85;
 
 // The module closeups' shots (`closeup` open, `shot` which): 'face' — her face in the coffin: the faint blush on cheek
@@ -128,8 +128,9 @@ function closeup(s) {
         { name: "nar_hand", who: "narrator", pose: "touch", on: true, at: [0.34, 0.2], angle: -1.2, size: 0.48 },
       ],
     };
-  // (its point `leave`: between the screws, above them — where a screw is left as it is)
-  if (s.shot === "lid") return { light: "torch", screws: { who: s.driver_rod ? "roderick" : "narrator" }, points: [[0, 0, "leave"]] };
+  // (the lid seen a little higher — pan — its screws in the middle of the frame; its point `leave`: between the screws,
+  // above them — where a screw is left as it is)
+  if (s.shot === "lid") return { light: "torch", pan: [0, 0.15], screws: { who: s.driver_rod ? "roderick" : "narrator" }, points: [[0, 0, "leave"]] };
   return null;
 }
 const STILL = { frozen: 1 };

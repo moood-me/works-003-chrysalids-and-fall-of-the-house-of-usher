@@ -104,7 +104,7 @@ function layout(A, st, measure) {
     var X0 = M + 0.4;
     var X1 = A - M;
     var head = L.titleY + L.titleSize * 0.75; // the rows begin below the inscription
-    var floor = 0.9; // and end above this (the knot under them)
+    var floor = 0.74; // and end above this (the knot under them, above the band the speech is shown in)
     var PAD = 0.025; // between the rows
     // the rows at a size (fit: of the full one), each its words measured: where they stand around
     // its line (up, down), the trunk's way through them left to right
@@ -241,7 +241,7 @@ function layout(A, st, measure) {
       y += R.down + pad;
     }
     var last = anchors[anchors.length - 1];
-    L.knot = [last[0] + (hash(n, 71) - 0.5) * 0.06, Math.min(0.95, last[1] + 0.07)];
+    L.knot = [last[0] + (hash(n, 71) - 0.5) * 0.06, Math.min(0.78, last[1] + 0.07)];
   }
   anchors.push(L.knot);
   var trunk = [];
@@ -263,7 +263,7 @@ function layout(A, st, measure) {
 }
 
 
-// how far down the wall the crack has come for `reveal` 0…1 (stage heights) — the shaders' (crack.glsl, knot.glsl) the
+// how far down the wall the crack has come for `reveal` 0…1 (stage heights) — the shaders' (crack.wgsl, knot.wgsl) the
 // same: from above the frame to the frame's foot, easing in and out; the knot lies above it
 var REVEAL = [-0.04, 0.98];
 // the finest line drawn: a hair of the stone (about a pixel of a 1080-px frame)

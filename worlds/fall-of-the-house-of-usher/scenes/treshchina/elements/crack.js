@@ -1,7 +1,7 @@
 // the chapter written on the wall and the crack of its choices: the trunk through what was chosen — a deep fissure,
 // red deep inside; a hairline to what could have been; barely a line to what was never reached. Painted whole, once a
 // map: the base — the red glow deep in it (its shader's emission); layer 1 — the inscription; 2 — the rows' words;
-// 3 — the crack. How far down the wall it has come (`reveal`) is its shader's (crack.glsl): nothing is painted again as
+// 3 — the crack. How far down the wall it has come (`reveal`) is its shader's (crack.wgsl): nothing is painted again as
 // it comes down.
 var A = e.aspect;
 var st = e.state;

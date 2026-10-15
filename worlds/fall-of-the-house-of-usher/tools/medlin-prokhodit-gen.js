@@ -16,7 +16,7 @@ const { W, CE, END, BACK, DEEP, HW, SPRING, bay, BAYS, ARC_STRIPS, strip, DOORS,
 const LEN = END - BACK, MID = (END + BACK) / 2;
 
 add({ id: "floor", name: "Пол", plane: true, across: 0, distance: MID, elevation: 0, width: 2 * W, depth: LEN,
-  reflect: { strength: 0.22, fade: 5, blur: 0.04, rough: 0.2 } }, "e.lib.floor(g, e);");
+  reflect: { strength: 0.22, fade: 5, rough: 0.2 } }, "e.lib.floor(g, e);");
 add({ id: "ceiling", name: "Свод", plane: true, across: 0, distance: MID, elevation: CE, width: 2 * W, depth: LEN, tilt: 180 }, "e.lib.ceiling(g, e);");
 add({ id: "wall_l", name: "Левая стена", across: -W, distance: BACK, facing: 90, height: CE, box: [0, -CE - 0.1, LEN, 0.1] }, "e.lib.leftWall(g, e);");
 add({ id: "wall_r", name: "Правая стена с окнами", across: W, distance: END, facing: 270, height: CE, box: [0, -CE - 0.1, LEN, 0.1] }, "e.lib.rightWall(g, e);");

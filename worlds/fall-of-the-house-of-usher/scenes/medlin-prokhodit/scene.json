@@ -1386,7 +1386,6 @@
       "reflect": {
         "strength": 0.22,
         "fade": 5,
-        "blur": 0.04,
         "rough": 0.2
       }
     },

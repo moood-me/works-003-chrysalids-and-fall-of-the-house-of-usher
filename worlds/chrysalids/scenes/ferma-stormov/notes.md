@@ -18,7 +18,7 @@ house — над ним реплики матери), david, house#chimney (ды
 ```json
 {
   "beats": {},
-  "points": ["well#bucket", "barn#door", "house#door", "house#window", "house", "david", "well", "barn"],
+  "points": ["well#bucket", "barn#door", "house#door", "house#window", "house", "david"],
   "offers": ["well#bucket", "barn#door", "house#door", "house#window", "david"],
   "party": { "dusk": 0.5, "wind": 0.4, "window_lit": 1, "boy_present": true, "older": false },
   "speakers": ["house", "david"]

@@ -25,12 +25,12 @@
   "lights": [
     {
       "id": "fire",
-      "across": -1.2,
-      "distance": 10,
+      "across": -0.74,
+      "distance": 6.2,
       "elevation": 0.7,
       "color": "#ff9a50",
       "strength": 2.0,
-      "reach": 9,
+      "reach": 6,
       "flicker": 0.35,
       "glow": 0.5,
       "on": "fire"
@@ -198,8 +198,8 @@
     {
       "id": "post",
       "name": "Столб",
-      "across": -5.9,
-      "distance": 11.4,
+      "across": -3.66,
+      "distance": 7.07,
       "height": 2.3,
       "box": [
         -0.4,
@@ -215,8 +215,8 @@
     {
       "id": "fire",
       "name": "Костёр",
-      "across": -1.2,
-      "distance": 10,
+      "across": -0.74,
+      "distance": 6.2,
       "height": 1,
       "box": [
         -1.0,
@@ -228,8 +228,8 @@
     {
       "id": "flames",
       "name": "Огонь костра",
-      "across": -1.2,
-      "distance": 10,
+      "across": -0.74,
+      "distance": 6.2,
       "elevation": 0.15,
       "particles": {
         "kind": "fire",
@@ -248,8 +248,8 @@
     {
       "id": "embers",
       "name": "Искры костра",
-      "across": -1.2,
-      "distance": 10,
+      "across": -0.74,
+      "distance": 6.2,
       "elevation": 0.3,
       "particles": {
         "kind": "embers",
@@ -265,8 +265,8 @@
     {
       "id": "smoke",
       "name": "Дым костра",
-      "across": -1.2,
-      "distance": 10,
+      "across": -0.74,
+      "distance": 6.2,
       "elevation": 1.2,
       "particles": {
         "kind": "smoke",
@@ -294,8 +294,8 @@
         "turn": 160,
         "does": "stand"
       },
-      "across": -3.6,
-      "distance": 11.4,
+      "across": -2.23,
+      "distance": 7.07,
       "place": {
         "across": "guard_a",
         "distance": "guard_d"
@@ -314,8 +314,8 @@
         "turn": 200,
         "does": "arms_folded"
       },
-      "across": 0.6,
-      "distance": 11.0,
+      "across": 0.37,
+      "distance": 6.82,
       "place": {
         "across": "spider_a",
         "distance": "spider_d"
@@ -334,8 +334,8 @@
         "turn": 120,
         "does": "stand"
       },
-      "across": -2.4,
-      "distance": 9.2,
+      "across": -1.49,
+      "distance": 5.7,
       "place": {
         "across": "hunch_a",
         "distance": "hunch_d"
@@ -354,8 +354,8 @@
         "turn": 180,
         "does": "sit_knees"
       },
-      "across": -1.1,
-      "distance": 11.2,
+      "across": -0.68,
+      "distance": 6.94,
       "place": {
         "across": "sitter_a",
         "distance": "sitter_d"
@@ -374,8 +374,8 @@
         "turn": 210,
         "does": "stand"
       },
-      "across": 1.8,
-      "distance": 12.4,
+      "across": 1.12,
+      "distance": 7.69,
       "place": {
         "across": "woman_a",
         "distance": "woman_d"
@@ -394,8 +394,8 @@
         "turn": 220,
         "does": "stand"
       },
-      "across": 3.8,
-      "distance": 10.4,
+      "across": 2.36,
+      "distance": 6.45,
       "place": {
         "across": "guard2_a",
         "distance": "guard2_d"
@@ -414,8 +414,8 @@
         "turn": 170,
         "does": "hide_stand"
       },
-      "across": -5.5,
-      "distance": 11.6,
+      "across": -3.41,
+      "distance": 7.19,
       "place": {
         "across": "rosalind_a",
         "distance": "rosalind_d"
@@ -434,8 +434,8 @@
         "turn": 190,
         "does": "hide_stand"
       },
-      "across": -6.3,
-      "distance": 11.6,
+      "across": -3.91,
+      "distance": 7.19,
       "place": {
         "across": "petra_a",
         "distance": "petra_d"
@@ -467,8 +467,8 @@
         "turn": 200,
         "does": "stand"
       },
-      "across": 2.25,
-      "distance": 6.6,
+      "across": 2.9,
+      "distance": 5.0,
       "place": {
         "across": "sophie_a",
         "distance": "sophie_d"

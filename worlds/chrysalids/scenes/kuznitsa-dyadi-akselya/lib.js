@@ -120,6 +120,7 @@ const START = {
   axel_do: 'stand', axel_turn: 270, axel_look: ANVIL, axel_reach: null, axel_with: TOOLS, axel_steps: true, axel_gait: null,
   dv_a: BARREL[0], dv_d: BARREL[1], dv_chat: 0, dv_glow: 0, dv_pump: 0, pump_work: 0,
   david_on: BARREL, david_do: loop('perch'), david_turn: 90, david_look: [12, 40, 5], david_reach: null, david_steps: true, david_gait: null, david_here: true,
+  david_wear: null,
   th_amp: 1, tho_a: HEAD[0], tho_e: HEAD[1], tho_d: HEAD[2], thi_a: HEAD[0], thi_e: HEAD[1], thi_d: HEAD[2],
   st_on: 0, st_who: 'joseph', st_a: 5.8, st_d: 8.4, st_lamp: 0, st_lx: -5, st_lz: 8.4, st_drop: 0, st_glow: 1, st_lanx: 2.9, st_more: 0,
   joseph_do: 'stand', joseph_turn: 270, joseph_steps: true, farmhand_do: 'stand', farmhand_turn: 270, farmhand_steps: true,
@@ -150,8 +151,9 @@ const LEFT = { ...AT_BELLOWS, st_on: 0, st_lamp: 0, ax_work: 1, pump_work: 0 };
 // to him, telling
 const ANNE = { ...START, fire: 0.35, door: 0.7, ax_a: 0.3, ax_d: 4.7, axel_turn: 90, axel_with: null, axel_look: DAVF, axel_do: 'stand',
   david_turn: 270, david_do: loop('perch_talk'), david_look: [0.3, 4.7, 1.6] };
-// the night of the key: the door half shut, the fire up; Axel at the anvil, quick light blows; the boy at the bellows
-const KEY = { ...START, fire: 0.6, door: 0.7, ...camOf(CAM.bellows), ax_work: 1, ax_pace: 1.4, axel_look: ANVIL,
+// the night of the key (years later: David nearly grown — the cast's david_teen over him): the door half shut, the fire
+// up; Axel at the anvil, quick light blows; David at the bellows
+const KEY = { ...START, fire: 0.6, door: 0.7, ...camOf(CAM.bellows), ax_work: 1, ax_pace: 1.4, axel_look: ANVIL, david_wear: kit.cast.characters.david_teen,
   david_on: null, dv_a: BELLOWS[0], dv_d: BELLOWS[1], david_turn: 90, david_do: 'stand', dv_pump: 1, pump_work: 1.3, david_look: FIRE, st_who: 'farmhand' };
 // …the man in the gap with his lantern up, looking at the boy (where stranger_go, caught and strike begin)
 const LOOKED = { ...KEY, fade: 0, st_on: 1, st_a: JOSG[0], st_d: JOSG[1], farmhand_turn: 180, st_lamp: 1, st_lx: BELLOWS[0], st_lz: BELLOWS[1], axel_look: JOSG };

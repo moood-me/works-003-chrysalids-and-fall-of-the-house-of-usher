@@ -80,7 +80,7 @@ s.on('change', 'pump', (v, was) => {
 });
 // the man with the lantern (st_who: joseph | farmhand): in the yard while st_on, its light his while it is in his hand
 // (st_drop: it has fallen); his look at st_lx/st_lz (where on the floor), the lantern up by st_lamp (1 — up, toward where
-// he looks; 1.3 — higher, on the boy)
+// he looks; above 1 — higher, on the boy: his look and the light on David, wherever he is — dv_a/dv_d)
 const MEN = ['joseph', 'farmhand'];
 function man() {
   const who = s.get('st_who') || 'joseph', on = (s.get('st_on') || 0) > 0.01, dropped = (s.get('st_drop') || 0) > 0.5;
@@ -92,7 +92,8 @@ function man() {
   lamp();
 }
 function lamp() {
-  const who = s.get('st_who') || 'joseph', a = s.get('st_a'), d = s.get('st_d'), v = s.get('st_lamp') || 0, lx = s.get('st_lx'), lz = s.get('st_lz');
+  const who = s.get('st_who') || 'joseph', a = s.get('st_a'), d = s.get('st_d'), v = s.get('st_lamp') || 0, boy = v > 1.01;
+  const lx = boy ? s.get('dv_a') : s.get('st_lx'), lz = boy ? s.get('dv_d') : s.get('st_lz');
   const dx = lx - a, dz = lz - d, n = Math.hypot(dx, dz) || 1, up = (s.get('st_drop') || 0) < 0.5 && v > 0.05;
   P(who).reach(up ? { r: [a + 0.38 * dx / n, d + 0.38 * dz / n, 1.3 + 0.38 * Math.min(v, 1.3)] } : null);
   P(who).look([lx, lz, 1.0]);

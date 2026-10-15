@@ -22,9 +22,10 @@ play → play_again → stuck → let → toes → ask → promise → mother �
              вдвоём. Все четыре кончаются одинаково: башмак у Дэвида, Софи — колено к груди, нога голая.
  toes        (канон) Диафрагма, крупно: шесть пальцев, поджимаются; её рука натягивает подол. Снаружи — обхватила колени.
  toes_bare   То же, но подол не натягивается: пальцы шевелятся дважды; нога остаётся голой (игра: всадник ещё впереди).
- ridge       Камера отходит; слева по лугу шагом едет всадник (сцена говорит ridge:rider — он показался); Софи замирает
+ ridge       Камера отходит; слева, на краю луга, всадник (сцена говорит ridge:rider — он показался); Софи замирает
              и смотрит на него, потом Дэвид; он становится на колени и тянется к её ноге — открывается крупный план
-             (справа от середины кадра, луг и всадник видны): ступня, подол, его рука на краю подола (ridge:hem). Здесь
+             (справа от середины кадра, луг и всадник видны): ступня, подол, его рука на краю подола (ridge:hem). Тут
+             всадник трогает шагом (если игра не держит его ключом r_wait — тогда, когда отпустит), ≈ 11 с до камней. Здесь
              игра ведёт «Подол»: ключ hem (его рука тянет подол на ступню). Конец — всадник там, откуда видно камни:
              сцена говорит ridge:seen; крупный план открыт, пока его не закроет cover или ridge_stop.
  cover       Подол на ступне (игра: успел — может начаться посреди ridge): крупный план закрывается, он отпускает ногу,
@@ -63,6 +64,8 @@ ridge:hem — крупный план открыт, рука Дэвида на �
 КЛЮЧИ (states — что каждый значит): beat; hem 0…1 (подол, который тянет рука Дэвида: его ведёт игра — «Подол»; куски его
 не пишут), cu_cover (рука Дэвида на подоле — её ставит ridge), r_near 0…1 (всадник приближается: идёт вместе с r_a, r_d от
 края луга до места, откуда видно камни — по нему игра ведёт дугу времени «Подола», чисел сцены ей знать не нужно);
+r_wait (игра держит всадника на краю луга после ridge:hem, пока «Подол» показывает жест: показ не идёт в срок; куски его
+не пишут, по умолчанию false — едет сразу; от края до камней шагом ≈ 11 с);
 evening 0…1 (вечер — взгляд света и солнце ниже), night 0…1 (взгляд ночи,
 звёзды, луна); someone_coming; shoe (и с ним david_with, sophie_with, sophie_wear — их ставят куски); closeup, cu_pull,
 cu_wig, cu_hide (вставки крупного плана); puff/puff_a (пыль: всплеск, когда число растёт), splash (брызги), ring/ring_a
@@ -81,7 +84,7 @@ lib.willow), облака — дрейф, солнце — sky.animate (ниже
 пылинки, дым — частицы, круги на воде и стрекоза — animate, всадник на гребне — слои ridge (едет по гребню шагом коня
 своего роста, ноги — четыре такта шага по пройденному пути; нарисован в 3.6 роста, чтобы читался за 260 м).
 СВЕТ: сцена освещённая и днём (ambient 0.95, тёплый; bounce, shafts). Солнце низко и впереди (sky#sun), всё, что к нам
-лицом, — в контровом: его держит свет вокруг (ambient), солнце добавляет на землю и даёт тени; тени мягкие (size 1.5),
+лицом, — в контровом: его держит свет вокруг (ambient), солнце добавляет на землю и даёт тени; тени мягкие,
 людей и коня — strength 0.8. Насыпь (рельеф) сама закрывает солнце: её скат к нам и берег под ней — в её тени (это не
 пятно, а тень земли; без ambient она была чёрной). Вечер и ночь — light.looks.
 Крупный план — четыре вставки по ключу closeup с одной диафрагмой (lib.CU: середина 1.2 / 0.52 высоты кадра, радиус
@@ -103,13 +106,13 @@ closeup#hem — край подола, closeup#foot — куда он ложит
     "play": { "after": [], "tells": ["play:girl"], "seconds": 21 },
     "play_again": { "after": ["play"], "tells": [], "seconds": 12 },
     "stuck": { "after": ["play_again"], "tells": [], "seconds": 10 },
-    "let": { "after": ["stuck"], "tells": [], "seconds": 7 },
+    "let": { "after": ["stuck"], "tells": [], "seconds": 7, "show": false },
     "talk_hurt": { "after": ["stuck"], "tells": [], "seconds": 10 },
     "talk_whose": { "after": ["stuck"], "tells": [], "seconds": 11 },
     "talk_sit": { "after": ["stuck"], "tells": [], "seconds": 18 },
-    "toes": { "after": ["let", "talk_hurt", "talk_whose", "talk_sit"], "tells": [], "seconds": 7 },
+    "toes": { "after": ["let", "talk_hurt", "talk_whose", "talk_sit"], "tells": [], "seconds": 7, "show": false },
     "toes_bare": { "after": ["let", "talk_hurt", "talk_whose", "talk_sit"], "tells": [], "seconds": 6 },
-    "ridge": { "after": ["toes_bare"], "tells": ["ridge:rider", "ridge:hem", "ridge:seen"], "seconds": 13 },
+    "ridge": { "after": ["toes_bare"], "tells": ["ridge:rider", "ridge:hem", "ridge:seen"], "seconds": 18 },
     "cover": { "after": ["ridge"], "tells": ["ridge:seen"], "seconds": 3 },
     "ridge_pass": { "after": ["cover"], "tells": [], "seconds": 16 },
     "ridge_stop": { "after": ["ridge"], "tells": ["ridge_stop:held", "ridge_stop:on"], "seconds": 27 },
@@ -118,13 +121,13 @@ closeup#hem — край подола, closeup#foot — куда он ложит
     "mother": { "after": ["promise"], "tells": ["mother:wave"], "seconds": 24 },
     "nod": { "after": ["mother"], "tells": ["nod:nod"], "seconds": 10 },
     "away": { "after": ["mother"], "tells": ["away:gone"], "seconds": 11 },
-    "alone": { "after": ["nod", "away"], "tells": [], "seconds": 9 },
+    "alone": { "after": ["nod", "away"], "tells": [], "seconds": 9, "show": false },
     "night_warn": { "after": [], "tells": [], "seconds": 5 },
     "night_warn_bye": { "after": ["night_warn"], "tells": [], "seconds": 12 }
   },
   "points": ["closeup#hem", "closeup#foot", "sophie", "mother", "david"],
   "offers": ["sophie", "mother", "david"],
-  "party": { "beat": null, "hem": 0, "r_near": 0, "r_a": -18 },
+  "party": { "beat": null, "hem": 0, "r_near": 0, "r_wait": false },
   "speakers": ["david", "sophie", "mother"]
 }
 ```

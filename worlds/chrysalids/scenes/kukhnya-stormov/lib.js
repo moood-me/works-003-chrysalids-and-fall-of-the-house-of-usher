@@ -513,10 +513,9 @@ const FILM = {
   },
   // ---- 4''. (cut: the mother at the hearth, the boy before her) She lifts her eyes to the father — and lowers them.
   lie_mother: {
-    after: 'lie',
-    from: () => LIED,
+    after: [], // (a cut: its opening said ahead by the module beats — it stands after lie in the table)
+    from: () => ({ ...LIED, ...camOf(CAM.mother) }),
     run: async s => {
-      s.cut({ ...camOf(CAM.mother) });
       await s.wait(0.6);
       s.person('emily').look('joseph');
       await s.wait(1.8);
@@ -528,11 +527,10 @@ const FILM = {
   // the long way round the table. On the threshold he looks back: his mother stands as she stood, under the father's
   // eyes. The door shuts. Only then she turns to the pot.
   lie_up: {
-    after: 'lie_mother',
-    from: () => ({ ...LIED, ...camOf(CAM.mother) }),
+    after: [], // (a cut, said ahead so: it stands after lie_mother in the table)
+    from: () => ({ ...LIED, ...camOf(CAM.room) }),
     run: async s => {
       const david = s.person('david'), emily = s.person('emily');
-      s.cut({ ...camOf(CAM.room) });
       s.move('dusk', 1, { over: 20, ease: 'linear' });
       s.move('steam', 0.15, { over: 20, ease: 'in' });
       await s.wait(0.9);

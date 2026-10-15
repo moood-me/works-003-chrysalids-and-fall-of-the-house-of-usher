@@ -64,7 +64,6 @@
     "figure_on_path": 0,
     "lantern_in_field": 0,
     "lantern_turn": 150,
-    "lantern_still": false,
     "walkers": 0,
     "walk_u": 0,
     "walk_shade": 0,
@@ -118,11 +117,7 @@
         360
       ],
       "smooth": true,
-      "means": "куда светит фонарь отца, градусы (0 — от нас, 90 — вправо): луч — пятно света в 5.5 м от него; ходит сам, может ставить игра"
-    },
-    "lantern_still": {
-      "type": "boolean",
-      "means": "луч не ходит сам (игра ведёт lantern_turn)"
+      "means": "куда светит фонарь отца, градусы (0 — от нас, 90 — вправо): луч — пятно света в 5.5 м от него; ходит сам"
     },
     "walkers": {
       "type": "number",
@@ -370,8 +365,8 @@
         "who": "david_teen",
         "turn": 0
       },
-      "across": -2.82,
-      "distance": 1.5,
+      "across": -1.38,
+      "distance": 5.5,
       "place": {
         "across": "david_a",
         "distance": "david_d"
@@ -389,8 +384,8 @@
         "who": "rosalind",
         "turn": 0
       },
-      "across": -3.252,
-      "distance": 0.3,
+      "across": -1.74,
+      "distance": 4.5,
       "place": {
         "across": "rosalind_a",
         "distance": "rosalind_d"

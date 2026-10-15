@@ -25,18 +25,18 @@ farmhand (с фонарём), watch0/watch1 (man_a, man_c — ещё двое). 
  lantern_bellows (III.1, после hush) Фонарь отца; Аксель к наковальне; Дэвид соскальзывает с бочки и бегом к рычагу мехов;
            камера на план мехов и наковальни (оба в середине кадра: CAM.bellows), стоит. Отец в щели, фонарь вверх, на Акселя,
            на мальчика. Дальше «Ритм мехов»: игра ведёт ax_blow и pump; метки — axel#hand_l (молот), pump#handle; промах —
-           фонарь выше и на мальчика (st_lamp 1.3, st_lx/st_lz).
+           фонарь выше и на мальчика (st_lamp выше 1: сцена сама светит на Дэвида).
  lantern_go | lantern_linger  Отец опускает фонарь и уходит | фонарь выше, отец шагает в щель, долго смотрит, уходит.
  rest      Аксель опускает молот, смотрит на мальчика у мехов; медленный кивок; Дэвид кивает.
  night_anne Ночь, огонь низкий, дверь полузадвинута; Дэвид на бочке рассказывает, Аксель у верстака, рука у бороды.
  night_anne_end «Иди спать»: кивок; Дэвид соскальзывает с бочки и уходит в ночь; Аксель к огню.
- key       (V.2) Ночь; Аксель частыми ударами делает ключ (ax_pace 1.4); Дэвид у мехов (pump_work 1.3).
+ key       (V.2; Дэвид — david_teen: годы спустя) Ночь; Аксель частыми ударами делает ключ (ax_pace 1.4); Дэвид у мехов (pump_work 1.3).
  stranger  Работник в щели поднимает фонарь, смотрит на наковальню, на мальчика.
  stranger_go | caught | strike  Уходит (ритм удержан) | свистит, ещё двое с фонарями; Дэвид мотает головой «не надо» |
            Дэвид кивает; Аксель к щели, удар: работник падает на спину во двор, фонарь гаснет; огонь оседает.
 
 КЛЮЧИ: beat, fade, fire, sparks, door, pump; само по себе: ax_work, ax_pace, dv_chat, pump_work, dv_pump; игра: ax_blow
-(момент ax:hit), pump, st_lamp, st_lx, st_lz; человек с фонарём: st_on, st_who, st_a/st_d, st_drop, st_glow, st_lanx,
+(момент ax:hit), pump, st_lamp (выше 1 — на Дэвида); куски: st_lx, st_lz; человек с фонарём: st_on, st_who, st_a/st_d, st_drop, st_glow, st_lanx,
 st_more; мысли — th_amp, tho_*, thi_* (элементы thought_out, thought_in: слои, animate гасит их по пути); лошадь — hz_*.
 Точки: pump#handle (мехи — свой элемент pump), anvil#iron, door#grip_low, door#grip_high, morton#window, forge#fire.
 
@@ -51,8 +51,8 @@ st_more; мысли — th_amp, tho_*, thi_* (элементы thought_out, thou
     "lie": { "after": ["notice"], "tells": ["lie:ask"], "seconds": 14 },
     "door": { "after": ["truth", "lie"], "tells": [], "seconds": 16 },
     "hush": { "after": ["door"], "tells": ["hush:finger"], "seconds": 16 },
-    "lantern": { "after": ["hush"], "tells": [], "seconds": 16 },
-    "after": { "after": ["lantern"], "tells": [], "seconds": 14 },
+    "lantern": { "after": ["hush"], "tells": [], "seconds": 16, "show": false },
+    "after": { "after": ["lantern"], "tells": [], "seconds": 14, "show": false },
     "lantern_bellows": { "after": ["hush"], "tells": [], "seconds": 12 },
     "lantern_go": { "after": ["lantern_bellows"], "tells": ["lantern_go:away"], "seconds": 8 },
     "lantern_linger": { "after": ["lantern_bellows"], "tells": [], "seconds": 12 },
@@ -68,7 +68,7 @@ st_more; мысли — th_amp, tho_*, thi_* (элементы thought_out, thou
   "tells": ["ax:hit"],
   "points": ["pump#handle", "axel#hand_l", "anvil#iron", "david", "axel", "joseph", "farmhand"],
   "offers": ["david", "axel"],
-  "party": { "beat": null, "ax_blow": 0, "pump": 0, "fire": 0.75, "sparks": 0.5, "st_lamp": 0, "st_lx": -5, "st_lz": 8.4, "ax_work": 0, "pump_work": 0, "ax_pace": 2 },
+  "party": { "beat": null, "ax_blow": 0, "pump": 0, "fire": 0.75, "sparks": 0.5, "st_lamp": 0, "ax_work": 0, "pump_work": 0, "ax_pace": 2 },
   "speakers": ["david", "axel", "joseph", "farmhand"]
 }
 ```

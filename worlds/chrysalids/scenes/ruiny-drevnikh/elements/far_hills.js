@@ -1,5 +1,3 @@
-const S = e.state || {},
-  b = S.bell ?? 0;
 const R1 = (x) =>
   55 + 35 * Math.exp(-Math.pow((x + 500) / 350, 2)) + 18 * Math.sin(x * 0.0035 + 1) + 8 * Math.sin(x * 0.011);
 const R2 = (x) =>

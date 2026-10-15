@@ -1,6 +1,5 @@
 // Край Окраин — its mechanics, all of them the game's keys turned into what happens: the father with his lantern in the
-// field (lantern_in_field), its beam going over the field by itself (lantern_turn, moved every few seconds) — the game may
-// set it too; the fugitives (david first, rosalind behind) walking the path while `walkers` is up and standing still when
+// field (lantern_in_field), its beam going over the field by itself (lantern_turn, moved every few seconds); the fugitives (david first, rosalind behind) walking the path while `walkers` is up and standing still when
 // it is down («По тени»: held — they go, let go — they freeze); where they are on it (walk_u 0…1), whether they are in a
 // tree's shadow (walk_shade) and how much the beam is on them (walk_lit) — set every frame they move, and every tenth of a
 // second; at the end (figure_on_path) on into the wood.
@@ -26,7 +25,7 @@ s.on('move', 'lantern_turn', beam);
 father();
 // the beam goes over the field by itself while he is there: to a new place every few seconds, slowly
 s.every(6.5, () => {
-  if ((s.get('lantern_in_field') || 0) < 0.5 || s.get('lantern_still')) return;
+  if ((s.get('lantern_in_field') || 0) < 0.5) return;
   const to = 95 + s.random() * 110;
   s.move('lantern_turn', to, { over: 3.5 + s.random() * 1.5, ease: 'inOut' });
 });

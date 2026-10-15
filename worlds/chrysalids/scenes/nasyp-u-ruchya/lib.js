@@ -294,9 +294,10 @@ const person = (id, a, d, more = {}) => ({ [`${id}_a`]: a, [`${id}_d`]: d, [`${i
   [`${id}_reach`]: null, [`${id}_with`]: null, [`${id}_gait`]: null, [`${id}_steps`]: true, [`${id}_here`]: true,
   ...Object.fromEntries(Object.entries(more).map(([k, v]) => [`${id}_${k}`, v])) });
 // the rider in the saddle, his feet in the stirrups, the reins in his hands, his horse at the meadow's left edge (r_a,
-// r_d: where; r_face: its heading — 0 toward us, 90 right; r_toss: it tosses its head); not on the meadow yet
+// r_d: where; r_face: its heading — 0 toward us, 90 right; r_toss: it tosses its head); not on the meadow yet (r_wait —
+// the game's key, no beat sets it: the game holds him at the meadow's edge while its «Подол» shows its gesture)
 const RIDER = { rider_on: { at: 'horse#seat', up: -0.5 }, rider_do: loop('perch_still'), rider_turn: 110, rider_look: null, rider_here: false,
-  rider_reach: tack(70), r_a: -18, r_d: 17, r_face: 70, r_toss: 0, r_near: 0 };
+  rider_reach: tack(70), r_a: -20, r_d: 18, r_face: 70, r_toss: 0, r_near: 0 };
 const START = {
   evening: 0, night: 0, fade: 0, fade_color: '#000000', someone_coming: 0, closeup: 0, cu_pull: 0, cu_wig: 0, cu_hide: 0, cu_cover: false, hem: 0,
   camera_x: 0, camera_z: 0, camera_h: 0, camera_look: 0, puff: 0, puff_a: 1, splash: 0, ring: 0, ring_a: 2.72,
@@ -604,7 +605,6 @@ const FILM = {
       await s.wait(2.6);
       s.person('rider').here();
       s.tell('ridge:rider');
-      const riding = s.path(['r_a', 'r_d', 'r_near'], [[-18, 17, 0], [-11, 13, NEAR_MID], [...SEEN, 1]], { speed: RIDE, ease: 'linear' });
       await s.wait(1.6);
       s.person('sophie').do('sit_knees', { loop: true });
       s.person('sophie').look('rider');
@@ -622,7 +622,9 @@ const FILM = {
       await s.wait(0.5);
       await s.move('closeup', 1, { over: 0.8, ease: 'out' });
       s.tell('ridge:hem');
-      await riding;
+      // (he rides on from the meadow's edge once the game lets him: r_wait)
+      await s.until(() => !s.state.r_wait);
+      await s.path(['r_a', 'r_d', 'r_near'], [[...EDGE, 0], [-11, 13, NEAR_MID], [...SEEN, 1]], { speed: RIDE, ease: 'linear' });
       s.tell('ridge:seen');
     },
   },
@@ -1020,8 +1022,10 @@ async function lift(s, ease) {
 // where the rider sees the foot from (on the meadow, the stones in view across the stream); where he reins his horse in
 // (from, to: right behind the children)
 const SEEN = [-4, 10.5], HALT = [[-1, 10.1], [1.2, 9.9]];
+// where he shows, at the meadow's left edge (≈ 11 s at a walk from there to SEEN)
+const EDGE = [-20, 18];
 // how near he has come at the bend of his way (its share of the way from where he shows to SEEN: r_near)
-const NEAR_MID = Math.hypot(7, 4) / (Math.hypot(7, 4) + Math.hypot(7, 2.5));
+const NEAR_MID = Math.hypot(9, 5) / (Math.hypot(9, 5) + Math.hypot(7, 2.5));
 // the camera on the meadow's shot (the children by the stones, the meadow behind them open, the rider's way over it
 // within the frame's middle), from wherever it is
 const MEADOW = [1.5, 1.1, 0.06];

@@ -94,30 +94,6 @@
       "means": "Дэвид у костра"
     }
   },
-  "widgets": [
-    {
-      "x": 0.3,
-      "y": 0.27,
-      "at": 6,
-      "id": "line1",
-      "for": 9,
-      "name": "Строка 1",
-      "width": 620,
-      "anchor": "left",
-      "height": 50
-    },
-    {
-      "x": 0.3,
-      "y": 0.27,
-      "at": 21,
-      "id": "line2",
-      "for": 9,
-      "name": "Строка 2",
-      "width": 460,
-      "anchor": "left",
-      "height": 50
-    }
-  ],
   "captions": [],
   "objects": [
     {

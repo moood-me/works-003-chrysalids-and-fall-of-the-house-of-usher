@@ -97,28 +97,34 @@ function wheatMove(e, RD) {
 }
 
 // ── where everyone stands (across, distance, turn) ──
-// the congregation in two wings either side of the track's end; who each is (the cast); the six in front who turn round
-// to David as `turned` passes their mark (each late in its own way)
+// the congregation in two wings either side of the track's end, turned to the field's front where Strorm lights it (and
+// sings before it); who each is (the cast); the six in front who turn round to David, behind them, as `turned` passes
+// their mark (each late in its own way)
 const MEMBERS = [
-  { id: 'p0', who: 'man_a', at: [-5.0, 7.6], face: 140, mark: 0.85 },
-  { id: 'p1', who: 'woman_a', at: [-4.3, 7.0], face: 145, mark: 0.4 },
-  { id: 'p2', who: 'old_man', at: [-5.7, 6.4], face: 135 },
-  { id: 'p3', who: 'woman_b', at: [-3.6, 6.6], face: 150, mark: 0.05 },
-  { id: 'p4', who: 'farmhand', at: [-4.8, 5.6], face: 140, mark: 0.7 },
-  { id: 'p5', who: 'old_woman', at: [-6.0, 4.8], face: 130 },
-  { id: 'p6', who: 'girl', at: [-2.9, 7.7], face: 155, mark: 0.25 },
-  { id: 'p7', who: 'man_b', at: [3.4, 7.8], face: 212 },
-  { id: 'p8', who: 'woman_c', at: [4.3, 7.1], face: 215, shade: true },
-  { id: 'p9', who: 'boy', at: [2.7, 6.8], face: 205, mark: 0.55 },
+  { id: 'p0', who: 'man_a', at: [-5.0, 7.6], face: 77, mark: 0.85 },
+  { id: 'p1', who: 'woman_a', at: [-4.3, 7.0], face: 67, mark: 0.4 },
+  { id: 'p2', who: 'old_man', at: [-5.7, 6.4], face: 67 },
+  { id: 'p3', who: 'woman_b', at: [-3.6, 6.6], face: 57, mark: 0.05 },
+  { id: 'p4', who: 'farmhand', at: [-4.8, 5.6], face: 55, mark: 0.7 },
+  { id: 'p5', who: 'old_woman', at: [-6.0, 4.8], face: 55 },
+  { id: 'p6', who: 'girl', at: [-2.9, 7.7], face: 69, mark: 0.25 },
+  { id: 'p7', who: 'man_b', at: [3.4, 7.8], face: 282 },
+  { id: 'p8', who: 'woman_c', at: [4.3, 7.1], face: 287, shade: true },
+  { id: 'p9', who: 'boy', at: [2.7, 6.8], face: 299, mark: 0.55 },
 ];
 // (the front ones step back from the heat)
 const back = d => (d > 6.2 ? d - 0.55 : d);
+// where one of them looks: down before their feet (heads bowed), or up at Strorm's torch in the hymn
+const bowed = m => [m.at[0] + 0.8 * Math.sin((m.face * Math.PI) / 180), m.at[1] + 0.8 * Math.cos((m.face * Math.PI) / 180), 0.2];
 // the left ones go home by the track toward Waknuk, the right ones across the fields
 const homeL = i => -3.45 + 0.3 * Math.sin(i * 2.1);
 const home = (m, i) => (m.at[0] < 0 ? [homeL(i), 34] : [m.at[0] + 9, m.at[1] + 3]);
 const JO = [-0.5, 6.8], IN = [1.35, 7.0], EM = [-1.6, 4.95], DV = [-1.05, 4.55];
 // where the Inspector breaks off the ear; where he shows it to Strorm; where Strorm lights the field, stands for the hymn
 const EDGE_IN = [1.0, 8.85], SHOW = [0.4, 7.0], FIELD = [0.4, 8.95], HYMN_AT = [-1.0, 7.6], ALONG = [-2.0, 8.95];
+const TORCH = [HYMN_AT[0], HYMN_AT[1], 3.0];
+// in the hymn David and his mother stand turned toward Strorm and the fire (their faces seen from the side)
+const SING = 80;
 // where David and his mother go by the stalk; the stalk
 const STALK = [-2.72, 9.5], BY_STALK = { em: [-3.6, 9.0], dv: [-3.15, 8.3] };
 // the camera's places (camera_x, camera_z)
@@ -168,22 +174,22 @@ const S0 = {
   ...person('in', IN, 180, { with: ['lantern'], wear: { hat: 'hat' } }),
   ...person('em', EM, 150, { reach: { r: 'dv#hand_l' } }),
   ...person('dv', DV, 150, { reach: { l: 'em#hand_r' }, still: false }),
-  ...congregation(m => person(m.id, m.at, m.face, { look: [m.at[0], m.at[1] - 0.8, 0.2] })),
+  ...congregation(m => person(m.id, m.at, m.face, { look: bowed(m) })),
 };
 const DAWN = { ...S0, fade: 0, dawn: 0.25, ...person('in', EDGE_IN, 180, { with: ['lantern'], wear: { hat: 'hat' } }), in_ear: true };
 const EAR = { ...DAWN, dawn: 0.28, ...person('in', SHOW, 170, { with: ['lantern'], wear: { hat: 'hat' } }), in_ear: false, in_toss: 1, jo_turn: 100,
   ...congregation(m => ({ [`${m.id}_look`]: null })) };
 const KNELT = { ...EAR, jo_turn: 180, jo_reach: { r: [JO[0], JO[1], 3.0] }, jo_look: [JO[0], JO[1] + 3, 5], in_turn: 200, in_look: [SHOW[0], SHOW[1] - 0.8, 0.2],
-  ...congregation(m => ({ [`${m.id}_do`]: loop('kneel_pray'), [`${m.id}_look`]: [m.at[0], m.at[1] - 0.8, 0.2] })),
+  ...congregation(m => ({ [`${m.id}_do`]: loop('kneel_pray'), [`${m.id}_look`]: bowed(m) })),
   em_do: loop('kneel_pray') };
 const RISEN = { ...EAR, jo_turn: 180 };
 const LIT = { ...RISEN, ...camOf(CAM.light), in_turn: 280, jo_turn: 100, jo_torch: 1 };
 const BURNING = { ...LIT, ...camOf(CAM.wide), ...person('jo', ALONG, 270, { with: ['torch'], wear: { hat: 'hat' } }), jo_torch: 1,
   ...person('in', [2.3, 7.6], 200, { with: ['lantern'], wear: { hat: 'hat' } }), fire: 1, ignite: 0.07, smoke: 0.35 };
-const HYMN = { ...BURNING, ...camOf(CAM.hymn), ...person('jo', HYMN_AT, 0, { with: ['torch'], wear: { hat: 'hat' }, reach: { r: [HYMN_AT[0], HYMN_AT[1] - 0.3, 2.9] } }), jo_torch: 1,
-  ignite: 0.4, smoke: 0.75, ...congregation(m => ({ [`${m.id}_d`]: back(m.at[1]), [`${m.id}_do`]: loop('sing_stand'), [`${m.id}_look`]: [m.at[0], m.at[1] + 4, 3.5] })),
-  em_do: loop('sing_stand') };
-const HID = { ...HYMN, dv_a: -1.66, dv_d: 4.68, dv_turn: 172, dv_reach: { r: 'em#hips', l: 'em#hips' }, dv_look: 'em#chest', em_reach: null };
+const HYMN = { ...BURNING, ...camOf(CAM.hymn), ...person('jo', HYMN_AT, 180, { with: ['torch'], wear: { hat: 'hat' }, reach: { r: [HYMN_AT[0], HYMN_AT[1] - 0.3, 2.9] } }), jo_torch: 1,
+  ignite: 0.4, smoke: 0.75, ...congregation(m => ({ [`${m.id}_d`]: back(m.at[1]), [`${m.id}_do`]: loop('sing_stand'), [`${m.id}_look`]: TORCH })),
+  em_do: loop('sing_stand'), em_turn: SING, em_look: TORCH, dv_turn: SING };
+const HID = { ...HYMN, dv_a: -1.66, dv_d: 4.68, dv_turn: 13, dv_reach: { r: 'em#hips', l: 'em#hips' }, dv_look: 'em#chest', em_reach: null };
 // the grey morning after (set at once under the black)
 const GREY = { ash: 1, ignite: 1, fire: 0.12, smoke: 0.42, dawn: 0.82, morning: 1, jo_torch: 0, jo_reach: null, jo_turn: 180, jo_look: null,
   ...congregation(m => ({ [`${m.id}_do`]: 'stand', [`${m.id}_look`]: null })), em_do: 'stand' };
@@ -237,7 +243,7 @@ const FILM = {
       s.set('in_ear', false);
       await thrown;
       jo.look(null);
-      await each(s, 1.0, async (q, m) => { q.person(m.id).look([m.at[0], m.at[1] - 0.8, 0.2]); });
+      await each(s, 1.0, async (q, m) => { q.person(m.id).look(bowed(m)); });
       await cam(s, CAM.wide, 3.0);
     },
   },
@@ -250,10 +256,10 @@ const FILM = {
       const jo = s.person('jo');
       await jo.turn(180);
       jo.reach({ r: [JO[0], JO[1], 3.0] });
-      jo.look([JO[0], JO[1] + 3, 5]);
+      jo.look([JO[0], JO[1] - 1, 5]);
       const ins = aside(s, async q => { await q.wait(1.0); await q.person('in').turn(200); q.person('in').look([SHOW[0], SHOW[1] - 0.8, 0.2]); });
       await s.wait(0.8);
-      const down = q => async (sq, m) => { await sq.person(m.id).go('kneel_down', { from: m.at, turn: m.face }); sq.person(m.id).do('kneel_pray', { loop: true }); sq.person(m.id).look([m.at[0], m.at[1] - 0.8, 0.2]); };
+      const down = q => async (sq, m) => { await sq.person(m.id).go('kneel_down', { from: m.at, turn: m.face }); sq.person(m.id).do('kneel_pray', { loop: true }); sq.person(m.id).look(bowed(m)); };
       const em = aside(s, async q => { await q.wait(0.6); await q.person('em').go('kneel_down', { from: EM, turn: 150 }); q.person('em').do('kneel_pray', { loop: true }); });
       await each(s, 1.4, down(s));
       await s.all(ins, em);
@@ -363,19 +369,24 @@ const FILM = {
     from: () => BURNING,
     run: async s => {
       const jo = s.person('jo');
-      s.move('ignite', 0.4, { over: 12, ease: 'inOut' });
+      // (the fire goes on spreading the while the hymn is sung — on after the beat, in its pose)
+      s.move('ignite', 0.75, { over: 36, ease: 'inOut' });
       s.move('smoke', 0.75, { over: 12 });
-      await walk(s, 'jo', [HYMN_AT], 0);
+      await walk(s, 'jo', [HYMN_AT], 180);
       jo.reach({ r: [HYMN_AT[0], HYMN_AT[1] - 0.3, 2.9] });
       jo.look([HYMN_AT[0], HYMN_AT[1] - 3, 2.5]);
       s.person('em').do('sing_stand', { loop: true });
+      s.person('em').turn(SING);
+      s.person('em').look(TORCH);
+      s.person('dv').turn(SING);
       const sings = each(s, 1.2, async (q, m) => {
         q.person(m.id).do('sing_stand', { loop: true });
-        q.person(m.id).look([m.at[0], m.at[1] + 4, 3.5]);
+        q.person(m.id).look(TORCH);
         if (m.at[1] > 6.2) await walk(q, m.id, [[m.at[0], back(m.at[1])]], m.face);
         if (m.shade) q.person(m.id).do('shade', { loop: true });
       });
       await cam(s, CAM.hymn, 4.5);
+      s.tell('hymn:still'); // (the camera stands: the game's hymn may begin)
       await sings;
     },
   },
@@ -386,16 +397,15 @@ const FILM = {
     from: () => HYMN,
     run: async s => {
       const jo = s.person('jo'), dv = s.person('dv'), em = s.person('em');
-      s.move('turned', 0, { over: 1.5 });
       dv.do('sing_stand', { loop: true });
-      dv.look([DV[0], DV[1] + 4, 3.5]);
+      dv.look(TORCH);
       cam(s, CAM.wide, 5);
       await s.wait(0.6);
       jo.look([-4.5, 6.2, 1.4]);
       await s.wait(0.2);
       em.look('dv');
       await s.wait(1.8);
-      em.look([EM[0], EM[1] + 4, 3.5]);
+      em.look(TORCH);
       jo.look([4.5, 6.2, 1.4]);
       await s.wait(3.6);
       jo.look([HYMN_AT[0], HYMN_AT[1] - 3, 2.5]);
@@ -404,13 +414,13 @@ const FILM = {
   },
   // David does not sing: the ones in front have turned round (at least three); his father's eyes go slowly over the
   // people and stop on his side; David looks up at him, goes still — lets go of his mother's hand, turns and hides his face
-  // in her skirt; she sings on; the eyes move on, the heads go back to the fire
+  // in her skirt; she sings on; the eyes move on (the heads go back to the fire as the game lets `turned` fall: the beats
+  // never set it)
   hymn_hide: {
     after: 'hymn',
     from: () => HYMN,
     run: async s => {
       const jo = s.person('jo'), dv = s.person('dv');
-      if ((s.state.turned ?? 0) < 0.45) s.move('turned', 0.45, { over: 1.2 });
       jo.look([-4.5, 6.2, 1.4]);
       await s.wait(1.4);
       dv.look('jo');
@@ -420,15 +430,12 @@ const FILM = {
       await s.wait(1.2);
       dv.still(false);
       hands(s, false);
-      await dv.turn(190);
-      await walk(s, 'dv', [[-1.66, 4.68]], 172);
+      await walk(s, 'dv', [[-1.66, 4.68]], 13);
       dv.reach({ r: 'em#hips', l: 'em#hips' });
       dv.look('em#chest');
       await s.wait(1.0);
       jo.look([4.5, 6.2, 1.4]);
-      await s.wait(0.6);
-      s.move('turned', 0, { over: 3 });
-      await s.wait(3.2);
+      await s.wait(3.8);
       jo.look([HYMN_AT[0], HYMN_AT[1] - 3, 2.5]);
     },
   },
@@ -518,4 +525,4 @@ const FILM = {
 };
 const SHOWCASE = ['dawn', 'ear', 'raise', 'kneel_late', 'light', 'fire', 'hymn', 'hymn_hide', 'burn', 'morning', 'stalk_stay'];
 
-return { wheat, wheatMove, fireLight, X0, FIELD_L, MEMBERS, DV, FILM, SHOWCASE, clamp };
+return { wheat, wheatMove, fireLight, X0, FIELD_L, MEMBERS, DV, TORCH, FILM, SHOWCASE, clamp };

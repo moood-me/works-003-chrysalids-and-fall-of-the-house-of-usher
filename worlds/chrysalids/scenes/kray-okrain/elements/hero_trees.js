@@ -1,7 +1,7 @@
 // The guardians of the way (on the left, 14…30 m): five tall, wrong trees at their own depths (parts), their crowns broad
 // and low on twisted trunks. The moon behind them on the left throws their shadows across the last field and the path —
-// the dark pools the fugitives go by (lib.TREES: where each stands and how its crown is; the pools on the path are worked
-// out from them, lib.POOLS)
+// the dark pools the fugitives go by (lib.TREES: where each stands and how its crown is; whether a point is in their
+// shadow is worked out from them, lib.shaded)
 const { TREES, CROWN } = e.lib;
 for (const t of TREES) {
   e.part(t.a - e.spot.across, t.d - e.spot.distance, q => {

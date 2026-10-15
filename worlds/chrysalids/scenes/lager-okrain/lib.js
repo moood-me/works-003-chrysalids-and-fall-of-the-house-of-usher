@@ -30,15 +30,15 @@ function hut(g, e, h) {
 // the people of the camp: who each is, where they stand (across, distance), turned how, doing what; from what `people` each
 // is there (the tall guard always; the long-armed one at 0.2; the hunchback 0.4; the one sitting by the fire 0.6; the
 // second guard 0.8); on `alarm` the sitting one gets up, the guards' spears come round, the tall guard blows his horn
-const FIRE = [-1.2, 10];
+const FIRE = [-0.74, 6.2];
 const PEOPLE = [
-  { id: 'guard', who: 'guard', at: [-3.6, 11.4], turn: 160, does: 'stand', from: 0 },
-  { id: 'spider', who: 'spider', at: [0.6, 11.0], turn: 200, does: 'arms_folded', from: 0.2 },
-  { id: 'hunch', who: 'hunchback', at: [-2.4, 9.2], turn: 120, does: 'stand', from: 0.4 },
-  { id: 'sitter', who: 'fringe_man', at: [-1.1, 11.2], turn: 180, does: 'sit_knees', from: 0.6 },
-  { id: 'woman', who: 'fringe_woman', at: [1.8, 12.4], turn: 210, does: 'stand', from: 0.7 },
-  { id: 'guard2', who: 'guard', at: [3.8, 10.4], turn: 220, does: 'stand', from: 0.8 },
+  { id: 'guard', who: 'guard', at: [-2.23, 7.07], turn: 160, does: 'stand', from: 0 },
+  { id: 'spider', who: 'spider', at: [0.37, 6.82], turn: 200, does: 'arms_folded', from: 0.2 },
+  { id: 'hunch', who: 'hunchback', at: [-1.49, 5.7], turn: 120, does: 'stand', from: 0.4 },
+  { id: 'sitter', who: 'fringe_man', at: [-0.68, 6.94], turn: 180, does: 'sit_knees', from: 0.6 },
+  { id: 'woman', who: 'fringe_woman', at: [1.12, 7.69], turn: 210, does: 'stand', from: 0.7 },
+  { id: 'guard2', who: 'guard', at: [2.36, 6.45], turn: 220, does: 'stand', from: 0.8 },
 ];
-const POST = [-5.9, 11.2];
-const SOPHIE = { at: [2.25, 6.6], hut: [5.0, 9.6] };
+const POST = [-3.66, 6.94];
+const SOPHIE = { at: [2.9, 5.0], hut: [5.0, 9.6] };
 return { hut, FIRE, PEOPLE, POST, SOPHIE };

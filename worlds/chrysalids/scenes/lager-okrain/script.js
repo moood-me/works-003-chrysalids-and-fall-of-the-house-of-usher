@@ -31,8 +31,17 @@ function captives() {
   const on = (s.get('captives') || 0) > 0.5;
   for (const id of ['rosalind', 'petra']) { P(id).here(on); if (on) P(id).do('hide_stand', { loop: true }); }
 }
-function sophie() {
+// Sophie: out of her hut to the edge of the light, or back into it; at once — opened (or restored): where the key says
+function sophie(once) {
   const on = (s.get('sophie_present') || 0) > 0.5, was = s.get('sophie_here') !== false;
+  if (once) {
+    s.set('sophie_a', L.SOPHIE.at[0]);
+    s.set('sophie_d', L.SOPHIE.at[1]);
+    s.set('sophie_turn', 200);
+    P('sophie').here(on);
+    P('sophie').look('fire');
+    return;
+  }
   if (on === was) return;
   s.sequence(async q => {
     if (on) {
@@ -51,7 +60,8 @@ function sophie() {
 s.on('change', 'people', people);
 s.on('change', 'alarm', alarm);
 s.on('change', 'captives', captives);
-s.on('change', 'sophie_present', sophie);
+s.on('change', 'sophie_present', () => sophie(false));
 people();
 captives();
+sophie(true);
 if ((s.get('alarm') || 0) > 0.5) alarm();

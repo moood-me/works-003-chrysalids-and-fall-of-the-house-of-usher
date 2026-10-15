@@ -12,11 +12,7 @@
   },
   "title": "Нити",
   "camera": {
-    "mode": "panorama",
-    "span": [
-      0,
-      49
-    ]
+    "mode": "picture"
   },
   "caption": "",
   "horizon": 0.83,
@@ -33,100 +29,100 @@
       "distance": 10,
       "height": 10,
       "box": [
-        -5,
+        -4,
         -10,
-        12,
+        6,
         0
       ]
     },
     {
       "id": "t1",
       "name": "Нити главы",
-      "across": 7,
+      "across": 5,
       "distance": 10,
       "height": 10,
       "box": [
-        -5,
+        -4,
         -10,
-        12,
+        6,
         0
       ]
     },
     {
       "id": "t2",
       "name": "Нити главы",
-      "across": 14,
+      "across": 10,
       "distance": 10,
       "height": 10,
       "box": [
-        -5,
+        -4,
         -10,
-        12,
+        6,
         0
       ]
     },
     {
       "id": "t3",
       "name": "Нити главы",
-      "across": 21,
+      "across": 15,
       "distance": 10,
       "height": 10,
       "box": [
-        -5,
+        -4,
         -10,
-        12,
+        6,
         0
       ]
     },
     {
       "id": "t4",
       "name": "Нити главы",
-      "across": 28,
+      "across": 20,
       "distance": 10,
       "height": 10,
       "box": [
-        -5,
+        -4,
         -10,
-        12,
+        6,
         0
       ]
     },
     {
       "id": "t5",
       "name": "Нити главы",
-      "across": 35,
+      "across": 25,
       "distance": 10,
       "height": 10,
       "box": [
-        -5,
+        -4,
         -10,
-        12,
+        6,
         0
       ]
     },
     {
       "id": "t6",
       "name": "Нити главы",
-      "across": 42,
+      "across": 30,
       "distance": 10,
       "height": 10,
       "box": [
-        -5,
+        -4,
         -10,
-        12,
+        6,
         0
       ]
     },
     {
       "id": "t7",
       "name": "Нити главы",
-      "across": 49,
+      "across": 35,
       "distance": 10,
       "height": 10,
       "box": [
-        -5,
+        -4,
         -10,
-        12,
+        6,
         0
       ]
     },
@@ -150,7 +146,7 @@
     {
       "id": "k1",
       "name": "Глава",
-      "across": 7,
+      "across": 5,
       "distance": 10,
       "elevation": 7.2,
       "height": 1.6,
@@ -167,7 +163,7 @@
     {
       "id": "k2",
       "name": "Глава",
-      "across": 14,
+      "across": 10,
       "distance": 10,
       "elevation": 7.2,
       "height": 1.6,
@@ -184,7 +180,7 @@
     {
       "id": "k3",
       "name": "Глава",
-      "across": 21,
+      "across": 15,
       "distance": 10,
       "elevation": 7.2,
       "height": 1.6,
@@ -201,7 +197,7 @@
     {
       "id": "k4",
       "name": "Глава",
-      "across": 28,
+      "across": 20,
       "distance": 10,
       "elevation": 7.2,
       "height": 1.6,
@@ -218,7 +214,7 @@
     {
       "id": "k5",
       "name": "Глава",
-      "across": 35,
+      "across": 25,
       "distance": 10,
       "elevation": 7.2,
       "height": 1.6,
@@ -235,7 +231,7 @@
     {
       "id": "k6",
       "name": "Глава",
-      "across": 42,
+      "across": 30,
       "distance": 10,
       "elevation": 7.2,
       "height": 1.6,
@@ -252,7 +248,7 @@
     {
       "id": "k7",
       "name": "Глава",
-      "across": 49,
+      "across": 35,
       "distance": 10,
       "elevation": 7.2,
       "height": 1.6,
@@ -266,5 +262,31 @@
         "t7"
       ]
     }
-  ]
+  ],
+  "engine": 3,
+  "states": {
+    "chapters": {
+      "means": "главы по порядку: {number, title, kind: here | played | next | future | end, map: строки выборов [{title, weight, options: [{label, state: chosen | tried | both | open | unseen}]}]} — ставится при открытии"
+    },
+    "shown": {
+      "type": "number",
+      "means": "глава, на которой игрок (её узел ярче, её нити растут по reveal)"
+    },
+    "reveal": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "сколько нитей показанной главы видно (строка за строкой)"
+    },
+    "knot": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "яркость узлов"
+    }
+  }
 }

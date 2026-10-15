@@ -127,7 +127,7 @@ const TORCH = [HYMN_AT[0], HYMN_AT[1], 3.0];
 // singing a little up, over our heads (SING_UP: before them, a little higher than their eyes — their faces still to us;
 // looking steeply up turned them to their chins and bonnets); hiding, David presses into his mother's side (HIDE: at her
 // left, turned to her — seen in profile, not behind her)
-const SING = 150, SING_UP = [-1.0, 1.0, 2.2], HIDE = [-1.2, 4.85, 284];
+const SING = 150, SING_UP = [-1.0, 1.0, 2.2], HIDE = [-1.05, 4.9, 275];
 // where David and his mother go by the stalk; the stalk
 const STALK = [-2.72, 9.5], BY_STALK = { em: [-3.6, 9.0], dv: [-3.15, 8.3] };
 // the camera's places (camera_x, camera_z)

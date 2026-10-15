@@ -82,6 +82,36 @@ export function toll(times = 3) {
   }
 }
 
+// the community's hymn (Сожжение поля, «Петь со всеми»): low voices a little apart — the crowd; David an octave up
+//   now() — its clock (s); voice(f, at, dur, vol, 'crowd' | 'david') — a syllable sung; stop() — it fades
+export function choir() {
+  const a = audio(), out = a.createGain(), lp = a.createBiquadFilter();
+  lp.type = 'lowpass'; lp.frequency.value = 850;
+  out.gain.value = 0.9;
+  lp.connect(out).connect(sink);
+  return {
+    now: () => a.currentTime,
+    voice(f, at, dur, vol, kind) {
+      const e = a.createGain();
+      e.gain.setValueAtTime(0, at);
+      e.gain.linearRampToValueAtTime(vol, at + 0.12);
+      e.gain.setValueAtTime(vol * 0.8, at + dur * 0.85);
+      e.gain.linearRampToValueAtTime(0, at + dur + 0.1);
+      e.connect(kind === 'crowd' ? lp : out);
+      for (const [k, cents] of kind === 'crowd' ? [[1, -7], [1, 6], [0.5, 0]] : [[1, 0]]) {
+        const o = a.createOscillator();
+        o.type = kind === 'crowd' ? 'sawtooth' : 'triangle';
+        o.frequency.value = f * k; o.detune.value = cents;
+        o.connect(e); o.start(at); o.stop(at + dur + 0.15);
+      }
+    },
+    stop() {
+      out.gain.setTargetAtTime(0, a.currentTime, 0.3);
+      setTimeout(() => out.disconnect(), 1500);
+    },
+  };
+}
+
 // the sounds of a step played unseen (a jump: jump.js): nothing heard meanwhile — the bell not rung; a horse still
 // there when it is seen, heard from then as near as it was left, at the gait it was left at
 export function unheard() {
@@ -89,6 +119,7 @@ export function unheard() {
   return {
     sounds: {
       toll() {},
+      choir() { return { now: () => performance.now() / 1000, voice() {}, stop() {} }; },
       hooves(opts) {
         let level = 0, real = null, stopped = false, gait = opts?.gait, halted = false;
         const h = {

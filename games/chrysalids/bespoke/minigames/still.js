@@ -1,71 +1,54 @@
-// Не шелохнуться (Кухня Стормов, tableau `night`): while the father reads, David must not stir. The player holds a
-// press (anywhere — a finger, the mouse button; or a key): that is David's hands on the table's edge (the scene's
-// david_grip). Let go, and he is a boy who fidgets — sways, looks about; hold and move, and a shiver goes through
-// him (david_stir) — and either way, stirred too much, the father lowers the Book and looks at him (father_look),
-// then reads on. Not holding at all is fidgeting slowly, and the first look it brings is only a warning (it doesn't
-// count): the one who never presses learns from it; only fidgeting on through the reading counts.
-// → { stirred: how many times the father looked up — the warning not counted }
-//   opts: { while: a promise — the reading; the game lasts until it is over }
-const GRACE = 3000, FIDGET = 0.1; // fidgeting: a look per 10 s not held (stirring when held: per move)
+// «Не шелохнуться» (II.5, «Кухня Стормов», the night): David holds the table's edge while his father reads the
+// Definitions.
+//   1. what he does — holds the table's edge and does not stir; 2. wants — not to give away that he knows of the raid;
+//   3. restraint to trembling; 4. the player — holding and not moving.
+// The language's hold with danger on a groove at his hand (david#hand_r): held, he grips (david_grip); the finger moved —
+// a shiver goes through him (david_stir), let go — he fidgets; either way the danger arc grows, held still it ebbs. Full —
+// his father lifts his eyes from the Book (father_look) and reads on; the first time is only a warning.
+//   opts: { while: the reading (a promise): it lasts as long }
+//   → { stirred: how many times the father looked up, the warning not counted }
+import { until, keys } from '../hands.js';
+
+const MOVED = 14; // px the finger may stray
+const RISE = 0.35, FIDGET = 0.12, EBB = 0.25; // a second: moved, let go, held still
 
 export default {
   title: 'Не шелохнуться', // (as the author's ☰ lists it)
+  about: 25,
   skipped: { stirred: 0 },
-  async run(g, b, opts, signal) {
-    if (signal.aborted) return;
-    const catcher = document.createElement('div');
-    Object.assign(catcher.style, { position: 'absolute', inset: '0', touchAction: 'none', cursor: 'pointer' });
-    b.layer.prepend(catcher);
-    let held = false, at = null, restless = 0, stirred = 0, warned = false, looking = false, calm = performance.now() + GRACE;
-    const grip = h => { if (h !== held) b.set('david_grip', h ? 1 : 0, h ? 0.25 : 0.5); held = h; };
-    b.set('david_grip', 0, 0.8);
-    const hold = e => { grip(true); at = e.clientX != null ? [e.clientX, e.clientY] : null; if (e.pointerId != null) catcher.setPointerCapture?.(e.pointerId); };
-    const free = () => { grip(false); at = null; };
-    const move = e => {
-      if (!held || !at) return;
-      const d = Math.hypot(e.clientX - at[0], e.clientY - at[1]);
-      if (d > 2) { restless += d * 0.012; at = [e.clientX, e.clientY]; }
-    };
-    const key = e => {
-      if (e.repeat || e.ctrlKey || e.metaKey || e.altKey || (e.key !== 'Enter' && e.key.length !== 1)) return;
-      e.preventDefault();
-      if (e.type === 'keydown') { grip(true); at = null; } else free();
-    };
-    const on = [[catcher, 'pointerdown', hold], [catcher, 'pointermove', move], [catcher, 'pointerup', free], [catcher, 'pointercancel', free],
-      [window, 'keydown', key], [window, 'keyup', key], [window, 'blur', free]];
-    for (const [t, ev, fn] of on) t.addEventListener(ev, fn);
-    // the father looks up from the Book at him, and after a while reads on
-    const look = () => {
-      looking = true;
-      if (held || warned) stirred++;
-      warned = true; // fidgeting brings a warning first; after it every look counts
-      b.set('father_look', 1, 0.8);
-      setTimeout(() => { if (!signal.aborted) b.set('father_look', 0, 1.0); }, 2600);
-      setTimeout(() => { looking = false; calm = performance.now() + 1500; }, 3600);
-    };
-    let last = performance.now(), raf = 0, shown = 0;
-    await new Promise(ok => {
-      opts.while?.then(ok, ok);
-      signal.addEventListener('abort', ok);
-      const frame = now => {
-        const dt = Math.min(0.5, (now - last) / 1000); // slow frames still count
-        last = now;
-        if (now > calm && !looking) restless += held ? -0.08 * dt : FIDGET * dt;
-        restless = Math.max(0, restless);
-        if (restless >= 1 && !looking) { restless = 0; look(); }
-        // the shiver in him: how restless he is, while he holds on
-        const stir = Math.round(Math.min(1, restless) * 10) / 10;
-        if (stir !== shown) { shown = stir; b.set('david_stir', stir, 0.3); }
-        raf = requestAnimationFrame(frame);
-      };
-      raf = requestAnimationFrame(frame);
+  async run(g, b, { while: reading } = {}, signal) {
+    let over = false;
+    reading?.then(() => { over = true; });
+    const mg = g.minigame({ phrase: 'Отец читал Определения, и в кухне никто не шевелился' });
+    const send = keys(g);
+    const hand = mg.mark({ at: 'david#hand_r', kind: 'groove', danger: 0 });
+    const hold = mg.hold({ on: hand, seconds: 1.2, drain: 0 });
+    b.minigame.tricks.teach(mg, [hold], { id: 'hold' });
+    let danger = 0, looks = 0, lookedAt = -Infinity, from = null;
+    const done = await until(mg, ({ t, dt }) => {
+      const s = hold.state;
+      if (s.held && from == null) from = s.at;
+      if (!s.held) from = null;
+      const moved = s.held && s.moved > MOVED;
+      send('david_grip', s.held ? 1 : 0);
+      send('david_stir', moved ? 1 : 0);
+      danger = Math.max(0, Math.min(1, danger + dt * (moved ? RISE : !s.held ? FIDGET : -EBB)));
+      hand.set({ danger });
+      if (danger >= 1 && t - lookedAt > 4) {
+        looks++;
+        lookedAt = t;
+        danger = 0.4;
+        g.set('father_look', 1);
+        setTimeout(() => g.set('father_look', 0), 2200);
+        mg.error('danger', { at: hand, chip: looks > 1 });
+      }
+      mg.plate.set({ fill: s.held ? s.fill : 0, glow: s.held && !moved ? 'good' : 'bad' });
+      return over;
     });
-    cancelAnimationFrame(raf);
-    for (const [t, ev, fn] of on) t.removeEventListener(ev, fn);
-    catcher.remove();
-    b.set('father_look', 0, 0.8);
-    b.set('david_stir', 0, 1);
-    b.set('david_grip', 1, 0.6);
+    if (!done) return this.skipped;
+    g.set('father_look', 0);
+    const stirred = Math.max(0, looks - 1);
+    await mg.end({ as: stirred ? 'flawed' : 'clean' });
     return { stirred };
   },
 };

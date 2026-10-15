@@ -1,126 +1,94 @@
-// Петь со всеми (Сожжение поля): the crowd's hymn, heard (made in the page) — its words come up over the
-// smoke a syllable at a time, a small light hopping to each as it is sung. The player sings with them:
-// a press (anywhere; or a key) on each syllable as it comes, and David's voice joins the crowd's. Out
-// of time, or silent, the people in front turn to look (the scene's `turned`, 0..1); in time, they
-// turn back to the fire. → { sung: 0..1 of the syllables in time, presses, turned, hymn: loud | lips | silent }
-let styled = null, ctx = null;
-// (the site's "sounds" slider: MooodVolume.output — what this page makes goes to the speakers through it)
-let sink = null;
-const audio = () => { if (!ctx) { ctx = new AudioContext(); sink = MooodVolume.output(ctx); sink.connect(ctx.destination); } if (ctx.state === 'suspended') ctx.resume(); return ctx; };
+// «Петь со всеми» (II.4, «Сожжение поля», while the beat `hymn` holds): the community's hymn over the burning field.
+//   1. what he does — sings with the crowd; 2. wants — not to stand out, or not to sing «Проклят, кто не по образу Его»;
+//   3. Sophie's and Rosalind's voices in his head, fear; 4. the player — singing along with the crowd, or falling silent.
+// A choice, both ways seen from the start: the language's rhythm on David (dv) — the beats are the syllables (uneven:
+// their moments are the hymn's), the sign of the beat on his father (jo: he leads); a touch in the beat — David's voice
+// joins the crowd's; the ghost shows both ways — the beat, and hands off. The hymn's words go along the speech band (the
+// game's own line, unvoiced), the choir is the game's sound. Neutral: a touch out of the beat is not shown as an error;
+// the plate's ways show it — sang / his own / silent. The people in front turn round (the scene's `turned`) the more he
+// is silent or out of the beat.
+//   → { hymn: loud | lips | silent, turned }
+import { until } from '../hands.js';
 
 // the lines: syllables (a space after — the word ends) and their notes, semitones above D
 const A = ['Да ', 'бу', 'дет ', 'чист ', 'об', 'раз ', 'Е', 'го'], B = ['Про', 'клят, ', 'кто ', 'не ', 'по ', 'об', 'ра', 'зу ', 'Е', 'го'];
 const LINES = [[A, [0, 0, 3, 5, 7, 5, 3, 2]], [A, [0, 0, 3, 5, 7, 5, 3, 0]], [B, [7, 7, 5, 7, 10, 7, 5, 3, 2, 0]], [A, [0, 0, 3, 5, 7, 5, 3, 0]]];
-const BEAT = 0.75, WINDOW = 0.28, D3 = 146.83;
+const BEAT = 0.75, LEAD = 2, D3 = 146.83;
 
 export default {
   title: 'Петь со всеми', // (as the author's ☰ lists it)
-  skipped: { sung: 0.5, presses: 10, turned: 0, hymn: 'lips' },
+  about: 32,
+  skipped: { hymn: 'loud', turned: 0 },
   async run(g, b, opts, signal) {
-    styled ||= b.css('minigames/hymn.css');
-    await styled;
-    if (signal.aborted) return;
-    const a = audio(), out = a.createGain(), lp = a.createBiquadFilter();
-    lp.type = 'lowpass'; lp.frequency.value = 850;
-    out.gain.value = 0.9;
-    lp.connect(out).connect(sink);
-    // the syllables on the clock of the sound
-    const start = a.currentTime + 2;
+    // the syllables on the rhythm's own clock (from LEAD s on)
     const syl = [];
-    let t = start;
+    let t = LEAD;
     LINES.forEach(([words, notes], line) => {
       words.forEach((w, i) => {
         const beats = i === words.length - 1 ? 2 : 1;
-        syl.push({ w, line, at: t, dur: beats * BEAT, f: D3 * 2 ** (notes[i] / 12), judged: false });
+        syl.push({ w, line, at: t, dur: beats * BEAT, f: D3 * 2 ** (notes[i] / 12), as: null });
         t += beats * BEAT;
       });
       t += BEAT;
     });
-    const end = t;
-    // the crowd: low voices, a little apart; David — an octave up, when he sings
-    const voice = (f, at, dur, vol, type, to = lp) => {
-      const e = a.createGain();
-      e.gain.setValueAtTime(0, at);
-      e.gain.linearRampToValueAtTime(vol, at + 0.12);
-      e.gain.setValueAtTime(vol * 0.8, at + dur * 0.85);
-      e.gain.linearRampToValueAtTime(0, at + dur + 0.1);
-      e.connect(to);
-      for (const [k, cents] of type === 'crowd' ? [[1, -7], [1, 6], [0.5, 0]] : [[1, 0]]) {
-        const o = a.createOscillator();
-        o.type = type === 'crowd' ? 'sawtooth' : 'triangle';
-        o.frequency.value = f * k; o.detune.value = cents;
-        o.connect(e); o.start(at); o.stop(at + dur + 0.15);
-      }
-    };
-    let queued = 0;
-    const timer = setInterval(() => { while (queued < syl.length && syl[queued].at < a.currentTime + 0.4) { const s = syl[queued++]; voice(s.f, s.at, s.dur, 0.035, 'crowd'); } }, 100);
-
-    const words = document.createElement('div'), dot = document.createElement('i'), catcher = document.createElement('div');
-    words.className = 'mg-hymn'; catcher.className = 'mg-hymn-catch';
-    b.layer.prepend(catcher, words);
-    let shown = -1;
-    const show = line => {
-      shown = line;
-      words.replaceChildren(...syl.filter(s => s.line === line).map(s => { s.el = Object.assign(document.createElement('span'), { textContent: s.w }); return s.el; }), dot);
-    };
-    let attention = 0, sung = 0, presses = 0, told = 0;
+    const end = t + 0.5;
+    const mg = g.minigame({ phrase: 'Гимн шёл над полем, и громче всех пел отец' });
+    const choir = g.sound.choir();
+    const sign = mg.mark({ at: 'jo', kind: 'light' });
+    const me = mg.mark({ at: 'dv', kind: 'ring' });
+    const rh = mg.rhythm({ on: me, show: [sign], times: syl.map(s => s.at) });
+    // the ghost: both ways — in the beat, and hands off
+    (async () => { await mg.show({ gestures: [rh] }).finished; mg.show({ handsOff: true }); })();
+    // the words along the speech band (the game's own line, unvoiced)
+    const words = document.createElement('div');
+    Object.assign(words.style, { position: 'absolute', left: '50%', bottom: '12%', transform: 'translateX(-50%)', whiteSpace: 'nowrap',
+      pointerEvents: 'none', font: 'italic clamp(18px, 2.8vw, 30px)/1.4 Georgia, "Times New Roman", serif', color: '#efe6d2',
+      textShadow: '0 1px 8px rgba(0, 0, 0, 0.75)', transition: 'opacity 1.2s ease' });
+    b.layer.append(words);
+    signal.addEventListener('abort', () => words.remove());
+    let shown = -1, attention = 0, told = 0, presses = 0, sung = 0, queued = 0;
+    const a0 = choir.now() - rh.state.t; // (the choir's clock at the rhythm's 0)
     const turn = d => {
       attention = Math.max(0, Math.min(1, attention + d));
-      if (Math.abs(attention - told) > 0.03) { told = attention; b.set('turned', attention, 0.8); }
+      if (Math.abs(attention - told) > 0.03) { told = attention; g.set('turned', attention, 0.8); }
     };
-    const press = e => {
-      if (e.type === 'keydown' && (e.repeat || e.ctrlKey || e.metaKey || e.altKey || (e.key !== 'Enter' && e.key.length !== 1))) return;
-      e.preventDefault();
-      const now = a.currentTime;
+    rh.on('tap', ({ k, hit }) => {
       presses++;
-      const s = syl.find(s => !s.judged && Math.abs(now - s.at) <= WINDOW);
-      if (s) {
-        s.judged = true; sung++;
-        s.el?.classList.add('sung');
-        voice(s.f * 2, Math.max(now, s.at), s.dur - Math.max(0, now - s.at), 0.05, 'david', out);
+      const s = syl[k];
+      if (hit && s && !s.as) {
+        s.as = 'theirs';
+        sung++;
+        choir.voice(s.f * 2, a0 + Math.max(rh.state.t, s.at), s.dur, 0.05, 'david');
         turn(-0.06);
-      } else if (now > start - BEAT) {
-        voice(D3 * 2 * 2 ** (1 / 12) * (1 + Math.random() * 0.03), now, 0.3, 0.025, 'david', out);
+      } else {
+        if (s && !s.as) s.as = 'own';
+        choir.voice(D3 * 2 * 2 ** (1 / 12), choir.now(), 0.3, 0.025, 'david');
         turn(0.12);
       }
-    };
-    catcher.addEventListener('pointerdown', press);
-    addEventListener('keydown', press);
-    let raf = 0;
-    await new Promise(ok => {
-      const frame = () => {
-        if (signal.aborted) return ok();
-        const now = a.currentTime;
-        if (now > end + 0.5) return ok();
-        const cur = syl.findIndex(s => now < s.at + s.dur);
-        const next = syl[cur];
-        if (next && next.line !== shown && now > next.at - BEAT * 1.5) show(next.line);
-        for (const s of syl) if (!s.judged && now > s.at + WINDOW) { s.judged = true; s.el?.classList.add('missed'); turn(0.04); }
-        for (const s of syl) if (s.el) s.el.classList.toggle('now', now >= s.at - 0.05 && now < s.at + s.dur);
-        // the light: hops from the syllable before to the one coming, landing on it as it is sung
-        const to = syl.find(s => s.at > now - 0.05 && s.line === shown), from = to && syl[syl.indexOf(to) - 1];
-        if (to?.el) {
-          const r1 = to.el.getBoundingClientRect(), box = words.getBoundingClientRect();
-          const r0 = from?.el && from.line === to.line ? from.el.getBoundingClientRect() : { left: r1.left - 30, width: 0 };
-          const span = from && from.line === to.line ? to.at - from.at : BEAT, k = Math.max(0, Math.min(1, 1 - (to.at - now) / span));
-          const x0 = r0.left + r0.width / 2 - box.left, x1 = r1.left + r1.width / 2 - box.left;
-          dot.style.transform = `translate(${x0 + (x1 - x0) * k}px, ${-Math.sin(Math.PI * k) * 16}px)`;
-          dot.style.opacity = 1;
-        } else dot.style.opacity = 0;
-        raf = requestAnimationFrame(frame);
-      };
-      raf = requestAnimationFrame(frame);
-      signal.addEventListener('abort', () => ok());
     });
-    cancelAnimationFrame(raf);
-    clearInterval(timer);
-    removeEventListener('keydown', press);
-    out.gain.setTargetAtTime(0, a.currentTime, 0.3);
-    setTimeout(() => out.disconnect(), 1500);
-    words.classList.add('gone'); catcher.remove();
-    setTimeout(() => words.remove(), signal.aborted ? 0 : 1500);
-    if (signal.aborted) { b.set('turned', 0, 2); return; }
+    const ways = () => {
+      const out = [];
+      syl.forEach((s, i) => { if (s.as) out.push({ from: i / syl.length, to: (i + 1) / syl.length, as: s.as }); });
+      return out;
+    };
+    const done = await until(mg, () => {
+      const now = rh.state.t;
+      while (queued < syl.length && syl[queued].at < now + 0.4) { const s = syl[queued++]; choir.voice(s.f, a0 + s.at, s.dur, 0.035, 'crowd'); }
+      for (const s of syl) if (!s.as && now > s.at + 0.35) { s.as = 'none'; turn(0.04); }
+      const next = syl.find(s => now < s.at + s.dur);
+      if (next && next.line !== shown && now > next.at - BEAT * 1.5) {
+        shown = next.line;
+        words.textContent = syl.filter(s => s.line === shown).map(s => s.w).join('');
+      }
+      mg.plate.set({ fill: Math.min(1, now / end), ways: ways(), glow: null });
+      return now > end;
+    });
+    choir.stop();
+    words.style.opacity = '0';
+    setTimeout(() => words.remove(), 1300);
+    if (!done) { g.set('turned', 0, 2); return this.skipped; }
     const share = sung / syl.length;
-    return { sung: share, presses, turned: attention, hymn: presses <= 3 ? 'silent' : share >= 0.6 && attention < 0.5 ? 'loud' : 'lips' };
+    await mg.end({ as: 'neutral' });
+    return { hymn: presses <= 3 ? 'silent' : share >= 0.6 && attention < 0.5 ? 'loud' : 'lips', turned: attention };
   },
 };

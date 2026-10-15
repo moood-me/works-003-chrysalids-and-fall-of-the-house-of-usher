@@ -9,7 +9,9 @@
 //   (⚑ fight: we stand with the Fringes — path −1; flee: to the cave above the clearing);
 //   marks.sophie_camp hid|gave; scales.path.
 
-const CAMP = 'Лагерь Окраин';
+import { SCENES } from '../story.js';
+
+const CAMP = SCENES.camp;
 
 // whether Sophie hides us: what she remembers of me
 const trust = ({ marks }) => (marks.sophie === 'kept' ? 1 : 0) + (marks.sophie_night === 'warned' ? 1 : 0)
@@ -75,10 +77,10 @@ export default {
       await g.say('narrator', 'Вечером к огню вышел высокий человек с длинными, как у паука, руками.');
       await g.say('narrator', 'Он долго разглядывал меня. Потом сказал, что он брат моего отца.');
       if (marks.sally === 'freed') await g.think('sally', 'Мы здесь, Дэвид, Кэтрин и я. Нас не трогают, пока мы им нужны.');
-      await g.say('spider', '— Твой отец ведёт их сюда. Вы слышите друг друга без слов — будете моими глазами.', 'people');
-      if (tied) await g.say('spider', '— Будешь с нами — отпущу твоих.', 'people');
+      await g.say('spider', '— Твой отец ведёт их сюда. Вы слышите друг друга без слов — будете моими глазами.', 'spider');
+      if (tied) await g.say('spider', '— Будешь с нами — отпущу твоих.', 'spider');
       await g.think('rosalind', 'Он такой же, как твой отец, Дэвид. Только с другой стороны.');
-      const fringes = await g.choose('fringes', { people: [{ id: 'fight', label: 'Встать с Окраинами' }], sophie: [{ id: 'flee', label: tied ? 'Ночью развязать своих и уйти' : 'Уйти в лес, к пещере' }] });
+      const fringes = await g.choose('fringes', { spider: [{ id: 'fight', label: 'Встать с Окраинами' }], sophie: [{ id: 'flee', label: tied ? 'Ночью развязать своих и уйти' : 'Уйти в лес, к пещере' }] });
       if (fringes === 'fight') {
         g.scale('path', -1, true);
         if (tied) { g.set('captives', 0, 3); await g.say('narrator', 'Он кивнул, и верёвки у столба разрезали.'); }

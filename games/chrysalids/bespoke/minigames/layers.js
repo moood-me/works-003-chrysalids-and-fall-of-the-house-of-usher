@@ -1,42 +1,44 @@
-// «Два слоя» (III, the square): talking with Rosalind mind to mind, David must not look at her. Where
-// his eyes are is a soft light the pointer leads; it is drawn to her the more, the warmer the talk —
-// and his head turns with it (glance). The old woman glances at him now and then (someone_watching):
-// turned toward Rosalind just then — or right round at any time — and he has looked.
-//   opts: { watched: she watches from the start, warm() → 0…1 how warm the talk is now, until: the
-//   talk is over (a promise) } → { looked }
-import { veil, playing, clamp } from './veil.js';
+// «Два слоя» (III.4, «Дэвид и Розалинда»): on the square David talks with Rosalind mind to mind and keeps his eyes off
+// her.
+//   1. what he does — talks without words, his eyes kept away; 2. wants — not to give them away before everyone; 3. drawn
+//   to her, and not allowed; 4. the player — holding the gaze aside while it goes there by itself.
+// The language's lead, keeping away: the arrow — David's gaze (the scene's `glance`: 0 the church, 1 on her; his head
+// turns, the thread brightens the nearer), the zone — Rosalind, away. Steered by rate: without the finger the gaze drifts
+// to her (the push the warmer the talk). The old woman at the well looks now and then (someone_watching). Looked: his
+// eyes on her long, or under the old woman's look.
+//   opts: { watched: she watches from the start, warm() → 0…1 how warm the talk is, until: the talk over (a promise) }
+//   → { looked }
+import { until, keys } from '../hands.js';
+
+const LONG = 2.0, CAUGHT = 0.5; // s: on her so long — looked; under her look so long — looked
 
 export default {
   title: 'Два слоя', // (as the author's ☰ lists it)
+  about: 30,
   skipped: { looked: false },
-  run: (g, b, { watched = false, warm = () => 0, until }, signal) => playing(signal, { looked: false }, done => {
-    const v = veil(b, signal), eyes = v.light('veil-eyes');
-    const D = b.where('david') || { x: innerWidth * 0.25, y: innerHeight * 0.55 };
-    let gx = D.x + 30, gy = D.y + 90, px = gx, py = gy, t0 = 0, sent = 0, beat = 0, eye = watched ? 1 : 0, next = 3, over = false;
-    v.on('pointermove', e => { px = e.clientX; py = e.clientY; });
-    v.on('pointerdown', e => { v.el.setPointerCapture(e.pointerId); px = e.clientX; py = e.clientY; });
-    until?.then(() => { over = true; });
-    v.loop((dt, t) => {
-      t0 ||= t;
-      const time = t - t0, R = b.where('rosalind') || { x: innerWidth * 0.7, y: innerHeight * 0.5 }, w = clamp(warm());
-      // the eyes go where they are led — and to her, harder the warmer it is
-      const k = Math.min(1, dt * 3), pull = Math.min(1, dt * (0.2 + 1.8 * w));
-      gx += (px - gx) * k + (R.x - gx) * pull;
-      gy += (py - gy) * k + (R.y - gy) * pull;
-      const look = clamp(1 - Math.hypot(R.x - gx, R.y - gy) / Math.max(1, Math.hypot(R.x - D.x, R.y - D.y)));
-      const glance = clamp((look - 0.5) / 0.4);
-      v.put(eyes, gx, gy, 1 + 0.4 * look, 0.45 + 0.5 * look);
-      // the heart, louder and quicker the nearer she is
-      if (time > beat) { beat = time + 1.1 - 0.45 * look; v.tone(62, 0, 0.18, 0.05 + 0.12 * look); v.tone(55, 0.17, 0.2, 0.04 + 0.08 * look); }
-      // the old woman glances over now and then (watching from the start: looks away only a little)
-      if (time > next) {
-        eye = eye ? 0 : 1;
-        next = time + (eye ? (watched ? 4 : 2.5) : (watched ? 1.5 : 4 + 4 * Math.random()));
-        g.set('someone_watching', eye, eye ? 1.2 : 1.6);
-      }
-      if (t - sent > 0.25) { sent = t; g.set('glance', glance, 0.25); }
-      const seen = glance >= 0.9 || (glance >= 0.35 && (g.get('someone_watching') || 0) > 0.6);
-      if (seen || over) { v.end(); done({ looked: seen }); }
+  async run(g, b, { watched = false, warm = () => 0, until: talk } = {}, signal) {
+    let over = false;
+    talk?.then(() => { over = true; });
+    const mg = g.minigame({ phrase: 'Она стояла через площадь, и на нас смотрели' });
+    const send = keys(g);
+    const gaze = mg.lead({ zone: { at: 0.8, width: 0.4 }, away: true, steer: 'rate', release: 'stay' });
+    b.minigame.tricks.teach(mg, [gaze], { id: 'lead' });
+    let on = 0, under = 0, looked = false, watching = watched, next = mg.t + (watched ? 3 : 6);
+    const done = await until(mg, ({ t, dt }) => {
+      gaze.set({ push: 0.15 + 0.5 * warm() });
+      const s = gaze.state, u = (s.arrow + 1) / 2;
+      send('glance', u);
+      // (the old woman: her eyes on him a while, then on the men again)
+      if (t >= next) { watching = !watching; next = t + (watching ? 3.5 : watched ? 4 : 7); g.set('someone_watching', watching ? 1 : 0, 0.8); }
+      const there = !s.in;
+      on = there ? on + dt : 0;
+      under = there && watching ? under + dt : 0;
+      if (!looked && (on >= LONG || under >= CAUGHT)) { looked = true; mg.error('off', { chip: true }); }
+      mg.plate.set({ fill: warm(), glow: there ? 'bad' : 'good' });
+      return over || looked;
     });
-  }),
+    if (!done) return this.skipped;
+    await mg.end({ as: looked ? 'loss' : 'clean' });
+    return { looked };
+  },
 };

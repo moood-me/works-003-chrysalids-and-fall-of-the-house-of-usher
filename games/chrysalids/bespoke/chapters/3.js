@@ -12,10 +12,10 @@
 import bellows from '../minigames/bellows.js';
 import tuning from '../minigames/tuning.js';
 import layers from '../minigames/layers.js';
-import smoke from '../minigames/smoke.js';
 import windows from '../minigames/windows.js';
+import { SCENES } from '../story.js';
 
-const FORGE = 'Кузница дяди Акселя', STORIES = 'Рассказы Акселя', HEAR = 'Учимся слышать', SQUARE = 'Дэвид и Розалинда', VOICES = 'Голоса';
+const FORGE = SCENES.forge, STORIES = SCENES.stories, HEAR = SCENES.hear, SQUARE = SCENES.square, VOICES = SCENES.voices;
 
 export default {
   number: 'III',
@@ -35,42 +35,43 @@ export default {
     // the forge: chattering without words with someone far away — and uncle Axel sees the boy laugh at nothing
     async g => {
       await g.scene(FORGE, { beat: 'chatter' });
-      await g.wait(2500);
+      const chatter = g.beat('chatter');
       await g.say('narrator', 'Дядя Аксель когда-то ходил в море. Потом повредил ногу и стал у отца кузнецом.');
       await g.say('narrator', 'Я любил сидеть у него на бочке. И болтать — с той, кого, кроме меня, никто не слышал.');
       await g.think('rosalind', 'Дэвид? Ты опять в кузнице?');
       await g.think('david', 'Ага. Дядя куёт подковы. Тут тепло.');
       await g.think('rosalind', 'А у нас корова отвязалась. Ловили всем домом.');
+      await chatter;
       // the hammer stops at the top; he comes over, down on his knee: "who?"
       const noticed = g.beat('notice');
-      await g.wait(1200);
       await g.say('narrator', 'Я засмеялся вслух. Молот у дяди замер.');
       await noticed;
       await g.say('axel', '— С кем это ты, Дэви?');
       const axel = await g.choose('axel', 'david', [
         { id: 'truth', label: 'Показать на её окно' }, { id: 'lie', label: 'Помотать головой: ни с кем' }]);
       // the truth: a shape out to the window and back, under his eyes; the lie: the answer comes anyway, and my eyes jump to it
+      const far = axel === 'truth' ? g.told('truth:window') : null, ask = g.told(`${axel}:ask`);
       const shown = g.beat(axel);
       if (axel === 'truth') {
-        await g.wait(2500);
+        await far;
         await g.say('narrator', 'За полем светилось окно Мортонов. Там жила Розалинда.');
-        await g.wait(3500);
+        await ask;
         await g.say('axel', '— Через всё поле? Без слов?');
       } else {
-        await g.wait(7500);
+        await ask;
         await g.say('axel', '— Ни с кем, значит. А смотришь — туда.');
       }
       await shown;
       // the door half shut; close, on his knee: finger to the lips, a tap at the temple
       await g.beat('door');
+      const finger = g.told('hush:finger');
       const hushed = g.beat('hush');
-      await g.wait(7000);
+      await finger;
       await g.say('axel', '— Никому, слышишь? Ни отцу, ни матери. Ни одной живой душе.');
       await g.say('axel', '— И тем, другим, скажи то же самое.');
       await hushed;
       // a lantern in the yard: the father. Off the barrel, to the bellows — as if I'd been at them all along
       const lantern = g.beat('lantern_bellows');
-      await g.wait(600);
       await g.say('axel', '— Отец. К мехам, Дэви. Живо.');
       await lantern;
       // the farmhand saw the calf go behind the barn (II): the father has his eye on me
@@ -83,43 +84,42 @@ export default {
         g.scale('suspicion', 1);
         await lingered;
       } else {
+        const away = g.told('lantern_go:away');
         const gone = g.beat('lantern_go');
-        await g.wait(2500);
+        await away;
         await g.say('narrator', 'Отец постоял, кивнул дяде и ушёл.');
         await gone;
       }
+      const nod = g.told('rest:nod');
       const rest = g.beat('rest');
-      await g.wait(1500);
+      await nod;
       await g.say('narrator', 'Дядя ничего не сказал. Только кивнул мне через всю кузницу.');
       await rest;
       await g.wait(2000);
     },
-    // Axel's stories by the fire: the world is bigger than Labrador — gathered out of the smoke as he tells it
+    // Axel's stories by the fire: the world is bigger than Labrador — seen in the smoke as he tells it (the scene shows
+    // the vision: vision, story; only watched)
     async g => {
       await g.scene(STORIES, { fire: 0.8, story: 0, vision: 0, dawn: 0, david_present: true });
       await g.wait(1500);
       await g.say('narrator', 'По вечерам дядя рассказывал мне о том, что видел за морем.');
       const ASK = { sea: { id: 'sea', label: '— А какое оно, море?' }, city: { id: 'city', label: '— Ты видел, где жили Древние?' }, coast: { id: 'coast', label: '— А люди там какие?' } };
-      const asked = [], exact = [];
+      const asked = [];
       while (asked.length < 2) {
         const q = await g.choose(null, 'axel', Object.values(ASK).filter(a => !asked.includes(a.id)));
         asked.push(q);
         g.set('story', 0, 1);
         await g.wait(1000);
         g.set('vision', { sea: 1, city: 2, coast: 3 }[q]);
-        g.set('story', 0.25, 3);
+        g.set('story', 0.7, 4);
         if (q === 'sea') await g.say('axel', '— Больше всей нашей земли. Неделями плывёшь — и ни одного берега.');
         else if (q === 'city') await g.say('axel', '— Видел. Чёрное стекло на многие мили. Там до сих пор ничего не растёт.');
         else await g.say('axel', '— Разные. На юге есть берег, где у всех по шесть пальцев. И неправильными они считают нас.');
-        // what it looked like: the smoke goes up there, and I gather it into that while he tells
-        const told = q === 'sea' ? g.say('axel', '— А корабль у нас был высокий, на три мачты. Паруса — один над другим.')
+        // what it looked like: the vision clear in the smoke while he tells it, a while after
+        await (q === 'sea' ? g.say('axel', '— А корабль у нас был высокий, на три мачты. Паруса — один над другим.')
           : q === 'city' ? g.say('axel', '— А над стеклом — башни. Выше нашей колокольни, и все надломлены.')
-          : g.say('axel', '— Берег у них зелёный. Деревья тонкие, высокие, а макушки — как зонты.');
-        const e = (await g.play(smoke, { vision: { sea: 1, city: 2, coast: 3 }[q], hint: asked.length === 1 })).exact;
-        exact.push(e);
-        await told;
-        // as exactly as it was gathered, so long it holds
-        const held = g.wait(2000 + 9000 * e).then(() => g.set('story', 0.1, 4));
+          : g.say('axel', '— Берег у них зелёный. Деревья тонкие, высокие, а макушки — как зонты.'));
+        const held = g.wait(6000).then(() => g.set('story', 0.1, 4));
         if (q === 'city' && g.state.choices.find === 'took') {
           await g.say('narrator', 'Я показал ему пластинку из руин.');
           await g.say('axel', '— Спрячь. И отцу не показывай.');
@@ -127,9 +127,6 @@ export default {
         await held;
         await g.wait(1500);
       }
-      const seen = (exact[0] + exact[1]) / 2;
-      if (seen >= 0.8) await g.say('narrator', 'Я видел всё это так ясно, будто сам там побывал.');
-      else if (seen < 0.4) await g.say('narrator', 'Дым расползался раньше, чем я успевал разглядеть.');
       g.set('story', 0.15, 5);
       g.set('fire', 0.4, 12);
       g.set('dawn', 1, 14);
@@ -149,8 +146,8 @@ export default {
       g.set('children', 3);
       await g.say('narrator', anne.caught ? 'Энн.' : 'Энн. Она нашла меня сама.');
       await g.think('michael', 'Овцы разбрелись по всему холму. Дэвид, ты где?');
-      // and while I search, the ploughman turns: not a move, before he sees
-      const michael = await g.play(tuning, { find: 'shepherd', watch: true, onTurn: () => g.say('narrator', 'Пахарь внизу остановил лошадь и обернулся.') });
+      // and while I search, the ploughman turns: not a move, before he sees (the plate says it)
+      const michael = await g.play(tuning, { find: 'shepherd', watch: true });
       if (michael.seen) {
         await g.say('narrator', 'Пахарь долго смотрел на меня из-под ладони. А я стоял и смотрел в небо.');
         g.scale('suspicion', 1);
@@ -236,17 +233,17 @@ export default {
       const all = g.state.choices.newcomer === 'took' ? 7 : 6;
       const anne = `farm${all + 1}`;
       const { caught } = await g.play(windows, {
-        targets: Array.from({ length: all + 1 }, (_, i) => `farm${i + 1}`), petra: 0, voices: 0.4, hint: true,
+        targets: Array.from({ length: all + 1 }, (_, i) => `farm${i + 1}`), petra: 0, voices: 0.4,
         onLink: async n => {
           if (n === 1) await g.think('rosalind', 'Я здесь.');
           else if (n === 2) await g.think('michael', 'Здесь. Что так поздно?');
-          else if (n === 3) await g.say('narrator', 'Потом Салли и Кэтрин. Марк. Рейчел.');
           else if (n === 7 && all === 7) await g.think('newcomer', 'И я.');
         },
-        onPetra: () => g.say('narrator', 'Из нашего дома вдруг ответили — тонко и так громко, что зазвенело в ушах. И сразу стихло.'),
       });
+      if (caught) await g.say('narrator', 'Из нашего дома вдруг ответили — тонко и так громко, что зазвенело в ушах. И сразу стихло.');
       g.set('count', all + 1);
       g.set('voices', 0.7, 4);
+      await g.say('narrator', 'Потом Салли и Кэтрин. Марк. Рейчел.');
       await g.think('anne', 'Не зовите меня больше. Я выхожу за Алана Эрвина.');
       await g.think('anne', 'Я хочу жить как все. Слышите? Как все.');
       g.set('count', all);
@@ -260,13 +257,11 @@ export default {
         g.mark('anne', 'free', 'Энн это запомнит.');
       } else {
         // the forge at night: he listens, his hand in his beard; then sends me to bed
-        const told = g.heard('beat:night_anne');
         await g.scene(FORGE, { beat: 'night_anne' });
-        await g.wait(2500);
+        const told = g.beat('night_anne');
         await g.say('narrator', 'Я рассказал дяде про Энн и Алана.');
         await told;
         const sent = g.beat('night_anne_end');
-        await g.wait(1200);
         await g.say('axel', '— Ладно. Иди спать, Дэви.');
         await sent;
         await g.say('narrator', 'Через неделю Алана нашли у дороги. Со стрелой в горле.');

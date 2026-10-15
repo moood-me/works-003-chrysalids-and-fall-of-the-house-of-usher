@@ -1,8 +1,0 @@
-/* Раскопки до колокола (dig.js): the patch of earth over the find, and the plate under it. */
-#layer .mg-dig { position: absolute; touch-action: none; cursor: grab; animation: mg-dig-in 1.6s ease; transition: opacity 4s ease; }
-#layer .mg-dig:active { cursor: grabbing; }
-#layer .mg-dig canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
-#layer .mg-dig canvas:last-child { transition: opacity 1.2s ease; }
-#layer .mg-dig.clean canvas:last-child { opacity: 0; }
-#layer .mg-dig.gone { opacity: 0; pointer-events: none; }
-@keyframes mg-dig-in { from { opacity: 0; } }

@@ -63,6 +63,7 @@ export const PEOPLE = {
   inspector: { voice: 'Iapetus', how: 'сухо, неторопливо, без злобы, как чиновник', name: 'инспектор', short: 'инспектор' },
   spider: { voice: 'Algieba', how: 'медленно, хрипло, с насмешкой', name: 'Паук, вожак Окраин, брат Джозефа Строрма', short: 'Паук' },
   sally: { voice: 'Achernar', how: 'тихо, сбивчиво, через силу, будто от боли', name: 'Салли, из группы', short: 'Салли' },
+  author: { name: 'слово автору игры (не история)', short: 'автору' }, // (no voice: a word to the author — chapters' onlyIf)
 };
 export const THOUGHT = ', но беззвучно, мысленно: шёпотом, будто прямо в голове'; // how a thought is heard
 export const thought = (who, text) => `«${text}» — ${PEOPLE[who]?.short || ''}`; // and shown

@@ -7,7 +7,7 @@
     "mode": "picture"
   },
   "light": {
-    "ambient": 0.48,
+    "ambient": 0.6,
     "ambientColor": "#a898a8",
     "bounce": 0.55,
     "haze": 0.05,
@@ -180,6 +180,15 @@
       ],
       "color": "#a8b8e0",
       "strength": 0.35
+    },
+    {
+      "id": "fill",
+      "from": [
+        175,
+        20
+      ],
+      "color": "#8c9ac4",
+      "strength": 0.3
     }
   ],
   "captions": [
@@ -813,10 +822,10 @@
           0
         ],
         "amount": "spill",
-        "rate": 40,
+        "rate": 70,
         "size": [
-          0.3,
-          0.08
+          0.55,
+          0.14
         ]
       }
     },
@@ -852,15 +861,15 @@
           0.02
         ],
         "amount": "lamp_smoke",
-        "rate": 4,
-        "color": "#8a8486",
+        "rate": 7,
+        "color": "#c4bec0",
         "size": [
-          0.04,
-          0.5
+          0.06,
+          0.9
         ],
         "life": [
-          3,
-          5
+          4,
+          6
         ]
       }
     },
@@ -1016,6 +1025,7 @@
     ],
     "bpm": 56,
     "density": 0.2,
-    "brightness": 0.2
+    "brightness": 0.2,
+    "scale": "C_MAJOR_A_MINOR"
   }
 }

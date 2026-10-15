@@ -7,7 +7,7 @@
     "mode": "picture"
   },
   "light": {
-    "ambient": 0.62,
+    "ambient": 0.74,
     "ambientColor": "#6c78a8",
     "bounce": 0.5,
     "haze": 0.25,
@@ -38,7 +38,7 @@
         20
       ],
       "color": "#9aa8d0",
-      "strength": 0.3
+      "strength": 0.4
     }
   ],
   "state": {
@@ -572,6 +572,7 @@
         "weight": 0
       }
     ],
-    "brightness": 0.4
+    "brightness": 0.4,
+    "scale": "C_MAJOR_A_MINOR"
   }
 }

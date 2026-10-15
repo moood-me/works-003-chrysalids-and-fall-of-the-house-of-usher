@@ -510,6 +510,7 @@
         "weight": 0
       }
     ],
-    "brightness": 0.25
+    "brightness": 0.25,
+    "scale": "C_MAJOR_A_MINOR"
   }
 }

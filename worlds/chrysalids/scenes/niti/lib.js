@@ -1,9 +1,10 @@
-// «Нити»: the play's chapters, a tree each, standing side by side across the night sky; the game brings the sky to a
-// chapter with camera_x (chapter i at i·SPACING m: the one shown and both its neighbours within the language's window).
+// «Нити»: the play's chapters, a tree each, standing side by side across the night sky; the sky comes to the chapter
+// `shown` (script.js: camera_x — chapter i at i·SPACING m: the one shown and both its neighbours within the language's
+// window).
 // A tree: the chapter's knot at the top, its choices row by row below it, the threads going down through what was
 // chosen (the main run's — bright; a replay's — pale). Each tree (t0…t7) and knot (k0…k7) is an element standing in the
 // world, painted once (from `chapters` — set as the scene opens); what moves — the rows coming as `reveal` grows, the
-// shown knot brighter (`shown`, `knot`), its rings turning — is their animate's. Drawn in "frame units": the frame's
+// shown knot brighter (`shown`, `knot`) — is their animate's; the sky going to the chapter shown is the script's. Drawn in "frame units": the frame's
 // height 1, as the tree fills it from where the viewer stands (U metres).
 const U = 10; // metres a frame unit is, at the trees' distance (10 m: the horizon low, the ground at the frame's foot)
 const KY = 0.2; // the knot's height, from the top
@@ -148,7 +149,8 @@ const treeAnim = (e, i) => {
   for (let k = 0; k < map.length; k++) e.layer('r' + k).alpha = Math.max(0, Math.min(1, rev * map.length - k));
 };
 // the element k<i>: chapter i's knot, at the top of its tree (its point `knot`) — a chapter not reached yet has none:
-// its halo and its three turning rings layers, its glow (knotAnim: the shown one bright, the others dimmer)
+// its halo layer, its bright middle, its glow (knotAnim: the shown one bright, the others dimmer) — the language's mark
+// stands on it: no rings of its own
 const knot = (g, e, i) => {
   const st = e.state || {}, chapters = Array.isArray(st.chapters) ? st.chapters : null;
   if (!chapters ? i !== 0 : !chapters[i] || chapters[i].kind === 'future') return;
@@ -162,13 +164,6 @@ const knot = (g, e, i) => {
     q.fillStyle = halo; q.beginPath(); q.arc(0, 0, 0.07, 0, 6.283); q.fill();
     q.restore();
   });
-  e.layer('rings', { pivot: [0, -0.08 * U] }, q => {
-    q.save(); frame(q, 0.08);
-    q.strokeStyle = 'rgba(255, 224, 180, 0.9)';
-    q.lineWidth = 0.0025;
-    for (let j = 0; j < 3; j++) { q.beginPath(); q.ellipse(0, 0, 0.016, 0.007, j * 1.047, 0, 6.283); q.stroke(); }
-    q.restore();
-  });
   g.save(); frame(g, 0.08);
   g.beginPath(); g.arc(0, 0, 0.005, 0, 6.283); g.fillStyle = 'rgba(255, 240, 215, 1)'; g.fill();
   g.restore();
@@ -179,9 +174,6 @@ const knotAnim = (e, i) => {
   if (!chapters ? i !== 0 : !chapters[i] || chapters[i].kind === 'future') return;
   const b = (st.knot == null ? 1 : +st.knot) * (i === st.shown ? 1 : 0.6), p = 0.8 + 0.2 * Math.sin(e.t * 1.3 + i);
   e.layer('halo').alpha = b * p;
-  const R = e.layer('rings');
-  R.rotate = e.t * 0.4;
-  R.alpha = 0.45 + 0.55 * b;
   e.glow('k', b);
 };
 return { U, D, SPACING, tree, treeAnim, knot, knotAnim };

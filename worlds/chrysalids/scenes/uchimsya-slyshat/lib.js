@@ -17,9 +17,9 @@ function LIS(k, t, s) {
   return con * (1 - an) * Math.min(1, th * 1.6) * p;
 }
 // the threads (between whom), and a head as seen on the threads' card (at D m, at the eye's line: x right, y down) from
-// the eye — EYE m ahead of the scene's start (the camera dollied in: camera_z, its state, so the valley's children are
-// nearer and larger)
+// the eye — EYE m ahead of the scene's start (the camera dollied in: camera_z, its state — as far as the valley's
+// children, the far right and left ones too, stay within the middle 4:3)
 const LINKS = [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [2, 4], [3, 5], [1, 2]];
-const D = 20, EYE = 12;
+const D = 20, EYE = 4;
 const P = i => { const p = HD[i], k = (D - EYE) / (p[1] - EYE); return [p[0] * k, -(1.7 + (p[2] - 1.7) * k)]; };
 return { KIDS, HD, LIS, LINKS, D, EYE, P };

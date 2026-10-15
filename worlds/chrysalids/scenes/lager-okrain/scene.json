@@ -352,11 +352,11 @@
       "person": {
         "cast": "cast",
         "who": "fringe_man",
-        "turn": 180,
+        "turn": 140,
         "does": "sit_knees"
       },
-      "across": -0.68,
-      "distance": 6.94,
+      "across": -1.8,
+      "distance": 6.7,
       "place": {
         "across": "sitter_a",
         "distance": "sitter_d"
@@ -594,6 +594,7 @@
         "weight": 0
       }
     ],
-    "brightness": 0.3
+    "brightness": 0.3,
+    "scale": "C_MAJOR_A_MINOR"
   }
 }

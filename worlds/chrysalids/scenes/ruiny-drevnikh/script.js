@@ -48,9 +48,10 @@ function home() {
     const p = q.person(id);
     p.reach(null);
     p.look(null);
-    if (id === 'sophie') await q.wait(0.3);
+    // (Sophie a moment later and a little apart — two children running, not one shape)
+    if (id === 'sophie') await q.wait(0.9);
     p.gait('run');
-    await p.walk(L.HOME);
+    await p.walk(id === 'sophie' ? L.HOME.map(([a, d]) => [a + 0.2, d + 1.4]) : L.HOME);
     p.here(false);
   }, { name: id });
 }

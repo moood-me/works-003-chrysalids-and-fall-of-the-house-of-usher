@@ -45,7 +45,7 @@ const several = (stem, n, tail = '') => Array.from({ length: n }, (_, i) => `${s
 // it waits for, the beats it plays itself, the points its marks stand on, the fields of its opts (and what the opts'
 // functions are called with) and of its result
 const MINIGAMES = {
-  prichina: { scene: 'house', keys: ['gloom', 'crack_trace'], beats: ['trace'], points: ['windows@', 'trees@', 'tarn@', ...Array.from({ length: 17 }, (_, i) => `crack#k${i}`)], opts: ['onLook'], calls: { onLook: [['windows', 1], ['trees', 2], ['tarn', 3]] }, result: ['looked', 'traced'] },
+  prichina: { scene: 'house', keys: ['gloom', 'crack_trace'], beats: ['trace'], points: ['windows@', 'trees#trunk', 'tarn@', ...Array.from({ length: 17 }, (_, i) => `crack#k${i}`)], opts: ['onLook'], calls: { onLook: [['windows', 1], ['trees', 2], ['tarn', 3]] }, result: ['looked', 'traced'] },
   tishe: { scene: 'room', keys: ['candles', 'curtain', 'window_open', 'clock'], beats: ['ease', 'flinch'], points: ['candles@', 'window#glass', 'clock#dial', 'portrait#face'], opts: ['onAct'], calls: { onAct: ['his', 'mine'].flatMap(kind => ['candles', 'window', 'clock'].map(which => [kind, which])) }, result: ['his', 'mine', 'order'] },
   struna: { scene: 'room', keys: ['tempo', 'wild', 'strum', 'narrator_do'], points: ['roderick#hand_r', 'narrator#hand_r'], result: ['follow', 'wild'] },
   'za-ruku': { scene: 'house', keys: ['walk', 'walk_at', 'resist'], points: ['roderick#hand_l', 'lead@'], result: ['seconds', 'letGo'] },

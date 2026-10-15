@@ -13,6 +13,8 @@
 import { until, once, keys } from '../hands.js';
 
 const LOOKS = ['windows', 'trees', 'tarn'];
+// where each is pressed (the trees: a point the scene names on the nearer one)
+const AT = { windows: 'windows@', trees: 'trees#trunk', tarn: 'tarn@' };
 const LINE = Array.from({ length: 17 }, (_, i) => `crack#k${i}`);
 
 export default {
@@ -26,7 +28,7 @@ export default {
     const looked = [];
     // the three looks, in any order: each a touch — the line, the gloom a step deeper
     const marks = LOOKS.map(which => {
-      const mark = mg.mark({ at: `${which}@`, kind: 'ring' });
+      const mark = mg.mark({ at: AT[which], kind: 'ring' });
       return { which, mark, press: mg.press({ on: mark }) };
     });
     b.minigame.tricks.teach(mg, marks.map(m => m.press), { id: 'press' });

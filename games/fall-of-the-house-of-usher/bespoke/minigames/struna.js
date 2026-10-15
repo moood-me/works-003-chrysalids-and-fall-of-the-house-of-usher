@@ -8,7 +8,8 @@
 // each touch his palm slaps his thigh (narrator_do keep_time). Touched on his strokes — going with him — he plays
 // wilder; a steady beat of one's own, slower than his, pulls him back, and once he has come down to it he keeps it with
 // his friend and calms, until it is let go. Neutral: the plate's ways show each touch as with him or one's own; ~45 s,
-// sooner once he has calmed or reached his peak. The ghost shows both ways: in his beat, and a slower one's own.
+// sooner once he has calmed or reached his peak. Both ways are seen from the start: his beat's sign on his hand, a slower
+// beat's sign on the narrator's (till a few touches are made); the ghost shows both.
 //   → { follow: 0…1 — how much the player went with him (0.5: they never kept a beat), wild: 0…1 at the end }
 import { guitar, SONG } from '../sound.js';
 import { until } from '../hands.js';
@@ -33,6 +34,10 @@ export default {
     const slow = mg.rhythm({ on: me, show: [], bpm: bpmOf(tempo) / 2 });
     (async () => { await mg.show({ gestures: [rh] }).finished; await mg.show({ gestures: [slow] }).finished; slow.remove(); })();
     mg.on('down', () => slow.remove());
+    // and the second way seen from the start: a slower beat's sign of its own on his hand (no mark: it only shows),
+    // there till the player has kept a beat a while
+    const ownSign = mg.mark({ at: 'narrator#hand_r', kind: 'light' });
+    mg.rhythm({ on: ownSign, bpm: bpmOf(tempo) / 2 });
     const strings = guitar();
     signal.addEventListener('abort', () => strings.stop(0.3));
     let n = Math.floor((g.get('strum') || 0) - 0.25) + 1; // his strokes (the scene's strum: the n-th crosses at n + 0.25)
@@ -85,6 +90,7 @@ export default {
         if (Math.abs(tempo - theirs) < 0.05) held = true;
       }
       if (kind) ways.push(kind === 'with' ? 'theirs' : 'own');
+      if (ways.length >= 4) ownSign.remove();
     });
     const done = await until(mg, ({ t }) => {
       const k = ways.length;

@@ -37,7 +37,7 @@ for (let i = 0; i < 900; i++) {
   const y0 = -R(x) + 0.05 + e.rnd() * 0.2;
   const h = (0.15 + e.rnd() * 0.45) * (0.6 + 0.8 * ov);
   const ph = e.rnd() * 6.28;
-  const l = (e.rnd() - 0.5) * 0.5 + 0.06 * Math.sin(e.t * 0.4 + ph + x * 0.05);
+  const l = (e.rnd() - 0.5) * 0.5 + 0.06 * Math.sin(0 * 0.4 + ph + x * 0.05);
   g.fillStyle = e.rnd() < 0.25 ? "#a49d72" : e.rnd() < 0.5 ? "#7c8763" : "#8a9470";
   g.beginPath();
   g.moveTo(x - 0.05, y0);

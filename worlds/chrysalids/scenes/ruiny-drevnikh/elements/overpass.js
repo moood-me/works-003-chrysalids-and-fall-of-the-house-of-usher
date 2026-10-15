@@ -1,6 +1,6 @@
 const S = e.state || {};
 const ov = S.overgrowth ?? 0.6;
-const s = S.sun ?? 0.2;
+const s = 0;
 const L = (a, b, t) => "rgb(" + a.map((v, i) => Math.round(v + (b[i] - v) * t)).join(",") + ")";
 const lit = L([206, 198, 180], [220, 192, 152], s),
   mid = L([170, 164, 150], [172, 150, 126], s),
@@ -173,7 +173,7 @@ for (let i = 0; i < nv; i++) {
   for (let st = 0; st < strands; st++) {
     const sx = x + (st / (strands - 1) - 0.5) * wid;
     const sl = len * (0.4 + 0.6 * Math.abs(Math.sin(st * 2.3 + ph)));
-    const sw = (0.18 * Math.sin(e.t * 0.41 + ph + st * 0.4) + 0.07 * Math.sin(e.t * 1.07 + ph * 2)) * (sl / 4);
+    const sw = (0.18 * Math.sin(0 * 0.41 + ph + st * 0.4) + 0.07 * Math.sin(0 * 1.07 + ph * 2)) * (sl / 4);
     const n = Math.max(2, Math.round(sl * 4));
     for (let j = 0; j <= n; j++) {
       const t = j / n;
@@ -191,7 +191,7 @@ for (let i = 0; i < Math.round(40 + 80 * ov); i++) {
   const x = -8 + e.rnd() * 23.5;
   const y0 = top(x) + 0.05;
   const h = (0.15 + 0.6 * ov) * (0.3 + 0.7 * e.rnd());
-  const l = (e.rnd() - 0.5) * 0.8 + 0.1 * Math.sin(e.t * 0.5 + i);
+  const l = (e.rnd() - 0.5) * 0.8 + 0.1 * Math.sin(0 * 0.5 + i);
   g.fillStyle = e.rnd() < 0.3 ? "#a19a6c" : "#7d8a5c";
   g.beginPath();
   g.moveTo(x - 0.05, y0);
@@ -204,7 +204,7 @@ if (ov > 0.2) {
   const bx = 9.6,
     by = top(9.6) + 0.05,
     h = 0.6 + 2.6 * k;
-  const sw = 0.05 * h * Math.sin(e.t * 0.5) + 0.025 * h * Math.sin(e.t * 1.3);
+  const sw = 0.05 * h * Math.sin(0 * 0.5) + 0.025 * h * Math.sin(0 * 1.3);
   g.fillStyle = "#ddd8c8";
   g.beginPath();
   g.moveTo(bx - 0.07, by);
@@ -250,7 +250,7 @@ for (let i = 0; i < 300; i++) {
   const nearP = Math.abs(x + 5.2) < 1.4 || Math.abs(x - 5) < 1.4 ? 1.6 : 1;
   const h = (0.25 + 0.9 * ov) * (0.25 + 0.75 * e.rnd()) * nearP;
   const ph = e.rnd() * 6.28;
-  const l = (e.rnd() - 0.5) * 0.7 + 0.09 * Math.sin(e.t * 0.45 + ph) + 0.04 * Math.sin(e.t * 1.1 + ph);
+  const l = (e.rnd() - 0.5) * 0.7 + 0.09 * Math.sin(0 * 0.45 + ph) + 0.04 * Math.sin(0 * 1.1 + ph);
   const c = e.rnd();
   g.fillStyle = c < 0.25 ? "#a69f72" : c < 0.6 ? "#7c8860" : "#6c7853";
   g.beginPath();

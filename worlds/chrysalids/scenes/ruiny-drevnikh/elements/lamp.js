@@ -1,6 +1,6 @@
 const S = e.state || {};
 const ov = S.overgrowth ?? 0.6;
-const s = S.sun ?? 0.2;
+const s = 0;
 g.save();
 g.rotate(0.17);
 const gr = g.createLinearGradient(-0.14, 0, 0.14, 0);
@@ -38,7 +38,7 @@ g.fillStyle = "rgba(204,204,190,0.35)";
 g.beginPath();
 g.moveTo(1.3, -6.14);
 g.lineTo(1.62, -6.16);
-g.lineTo(1.48, -5.98 + 0.02 * Math.sin(e.t * 0.6));
+g.lineTo(1.48, -5.98 + 0.02 * Math.sin(0 * 0.6));
 g.closePath();
 g.fill();
 g.fillStyle = "rgba(122,86,64,0.35)";
@@ -53,7 +53,7 @@ const n = Math.round(26 * ov);
 for (let i = 0; i < n; i++) {
   const t = Math.pow(e.rnd(), 1.4);
   const y = 0.2 - t * 6.0 * Math.min(1, ov * 1.3);
-  const x = (e.rnd() - 0.5) * 0.35 + 0.03 * Math.sin(e.t * 0.4 + i);
+  const x = (e.rnd() - 0.5) * 0.35 + 0.03 * Math.sin(0 * 0.4 + i);
   const k = 1 + Math.floor(e.rnd() * 3);
   for (let m = 0; m < k; m++) {
     g.fillStyle = leafC[(i + m) % 4];
@@ -67,7 +67,7 @@ if (ov > 0.5) {
   for (let i = 0; i < Math.round(12 * k); i++) {
     const x = 0.4 + i * 0.07,
       len = 0.3 + 1.2 * k * (((i * 37) % 10) / 10);
-    const sw = 0.05 * Math.sin(e.t * 0.5 + i);
+    const sw = 0.05 * Math.sin(0 * 0.5 + i);
     g.fillStyle = leafC[i % 4];
     for (let j = 0; j < 4; j++) {
       g.beginPath();
@@ -81,7 +81,7 @@ for (let i = 0; i < 70; i++) {
   const x = -0.9 + e.rnd() * 1.8;
   const y0 = 0.3 + e.rnd() * 0.15;
   const h = (0.25 + 0.7 * ov) * (0.3 + 0.7 * e.rnd());
-  const l = x * 0.6 + 0.08 * Math.sin(e.t * 0.42 + i);
+  const l = x * 0.6 + 0.08 * Math.sin(0 * 0.42 + i);
   g.fillStyle = e.rnd() < 0.3 ? "#a39c70" : "#788458";
   g.beginPath();
   g.moveTo(x - 0.04, y0);

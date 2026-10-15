@@ -1,9 +1,9 @@
 const S = e.state || {};
 const ov = S.overgrowth ?? 0.6;
-const s = S.sun ?? 0.2;
+const s = 0;
 const LC = ["#6f7d58", "#859168", "#a2a978", "#7a8760", "#b8b07a"];
 function birch(x, h, lean, sd) {
-  const sw = (k) => k * k * (0.05 * h) * (Math.sin(e.t * 0.33 + sd) + 0.45 * Math.sin(e.t * 0.87 + sd * 2));
+  const sw = (k) => k * k * (0.05 * h) * (Math.sin(0 * 0.33 + sd) + 0.45 * Math.sin(0 * 0.87 + sd * 2));
   const tx = x + lean * h;
   const tg = g.createLinearGradient(x - 0.15, 0, x + 0.15, 0);
   tg.addColorStop(0, "#e4dfcf");
@@ -62,7 +62,7 @@ function birch(x, h, lean, sd) {
         d = Math.sqrt(e.rnd()) * rr;
       const dx = Math.cos(a) * d * 1.3,
         dy = Math.sin(a) * d * 0.8 + d * 0.5;
-      const lx = b[0] + dx + 0.02 * h * Math.sin(e.t * 0.6 + k + sd) * (dy / rr + 0.5),
+      const lx = b[0] + dx + 0.02 * h * Math.sin(0 * 0.6 + k + sd) * (dy / rr + 0.5),
         ly = b[1] + dy;
       const sz = h * (0.007 + 0.007 * e.rnd());
       const lt = (-dx - dy) / rr;

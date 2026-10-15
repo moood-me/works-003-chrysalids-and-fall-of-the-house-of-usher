@@ -1,6 +1,6 @@
 const S = e.state || {};
 const ov = S.overgrowth ?? 0.6;
-const s = S.sun ?? 0.2;
+const s = 0;
 const topf = (x) =>
   x < 1.6 ? -3.7 + 0.15 * Math.sin(x * 2.3) + 0.08 * Math.sin(x * 5.1) : -3.7 + (x - 1.6) * 1.5 + 0.1 * Math.sin(x * 6);
 function wall() {
@@ -104,7 +104,7 @@ for (let i = 0; i < 200; i++) {
   const y0 = 0.35 + e.rnd() * 0.2;
   const h = (0.2 + 0.7 * ov) * (0.3 + 0.7 * e.rnd());
   const ph = e.rnd() * 6.28;
-  const l = (e.rnd() - 0.5) * 0.7 + 0.09 * Math.sin(e.t * 0.45 + ph);
+  const l = (e.rnd() - 0.5) * 0.7 + 0.09 * Math.sin(0 * 0.45 + ph);
   const c = e.rnd();
   g.fillStyle = c < 0.3 ? "#a69f72" : c < 0.65 ? "#7c8860" : "#6c7853";
   g.beginPath();

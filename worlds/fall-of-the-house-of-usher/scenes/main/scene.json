@@ -34,7 +34,7 @@
       "gloom": {
         "brightness": 0.86,
         "saturation": 0.8,
-        "haze": 0.2,
+        "haze": 0.16,
         "tintStrength": 0.2
       }
     }
@@ -67,7 +67,7 @@
         18
       ],
       "color": "#aebccc",
-      "strength": 0.75
+      "strength": 1.0
     }
   ],
   "state": {

@@ -243,7 +243,7 @@ const back = (w) => toward(NARRATOR(w), RODERICK(w));
 const AHEAD = 5;
 const tracking = (w) => [causeway(dist(w)), dist(w) - AHEAD];
 const camera = (w) => ({ camera_target: null, camera_x: tracking(w)[0], camera_z: tracking(w)[1], camera_h: -0.2, camera_look: 0.06 });
-const NEAR = { camera_target: null, camera_x: causeway(dist(MIDDLE)) - 0.02, camera_z: dist(MIDDLE) - AHEAD + 0.5, camera_h: 0, camera_look: 0.1 };
+const NEAR = { camera_target: null, camera_x: causeway(dist(MIDDLE)) - 0.02, camera_z: dist(MIDDLE) - AHEAD - 1.2, camera_h: 0.1, camera_look: 0.08 };
 const ZERO = { camera_target: null, camera_x: 0, camera_z: 0, camera_h: 0, camera_look: 0, camera_pitch: 0 };
 
 const DUSK = {

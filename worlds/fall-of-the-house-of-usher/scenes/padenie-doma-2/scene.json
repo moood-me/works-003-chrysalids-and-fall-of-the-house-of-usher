@@ -68,12 +68,12 @@
     {
       "id": "glow",
       "from": [
-        -25,
-        32
+        -70,
+        20
       ],
       "color": "#b8452f",
       "on": "moon",
-      "strength": 0.9
+      "strength": 1.0
     },
     {
       "id": "breach",
@@ -87,8 +87,8 @@
         178,
         14
       ],
-      "color": "#d0a8a8",
-      "strength": 0.7
+      "color": "#d8b8b8",
+      "strength": 1.1
     }
   ],
   "modules": [

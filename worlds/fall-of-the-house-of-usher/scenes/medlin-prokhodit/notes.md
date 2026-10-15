@@ -1,4 +1,4 @@
-# Мэдлин проходит — галерея (движок 2)
+# Мэдлин проходит — галерея (движок 3)
 
 ## Как устроено
 - Галерея построена в метрах мира, каждая поверхность там, где она есть (lib.js). Объекты scene.json
@@ -48,7 +48,6 @@
 | `closeup`, `shot` | крупный план 0/1; чей: `roderick`, `madeline`, `doctor` |
 | `cu_turn`, `cu_tear`, `cu_inhale`, `cu_blink` | лицо крупно: поворот (+ к окну), слеза, вдох, моргание (0 — само) |
 | `speak` | губы на крупном плане — **игра ставит 1, пока говорит реплику, потом 0** |
-| `doctor_present`, `madeline` | игра ставит при открытии (как в v1, сцена людей и свет берёт из кусков) |
 
 ## Элементы для выбора
 `madeline`, `roderick`, `doctor` (и `narrator`) — там, где стоят. После `weep` Мэдлин стоит в свете у окна (≈ 23 м),
@@ -84,3 +83,115 @@
 ## Реплики (говорит игра)
 Мэдлин после `wake` — «Когда я такая — я всё слышу. Не дай им меня закрыть»; Родерик в `stay` (с `stay:talk`); врач после `doctor`
 и после `beside`. Губы шевелятся на крупном плане, пока `speak` 1.
+
+## Движок 3 (v3, 2026-10-15)
+
+- `"engine": 3` (генератор `tools/medlin-prokhodit-gen.js` пишет движок 3 и `crack.wgsl`). Склейки уже были сказаны
+  заранее. Момент `freeze:still` — она застыла на полушаге (реплика игры). Ключи `doctor_present`, `madeline` убраны: людей
+  и свет ставят куски.
+
+## Контракт для проверки
+
+```json
+{
+  "beats": {
+    "pass": {
+      "after": [],
+      "tells": [],
+      "seconds": 13
+    },
+    "weep": {
+      "after": [
+        "pass"
+      ],
+      "tells": [],
+      "seconds": 7
+    },
+    "follow": {
+      "after": [
+        "weep"
+      ],
+      "tells": [],
+      "seconds": 9
+    },
+    "freeze": {
+      "after": [
+        "follow"
+      ],
+      "tells": [
+        "freeze:still"
+      ],
+      "seconds": 8
+    },
+    "wake": {
+      "after": [
+        "freeze"
+      ],
+      "tells": [],
+      "seconds": 4
+    },
+    "look": {
+      "after": [
+        "wake"
+      ],
+      "tells": [],
+      "seconds": 1.2
+    },
+    "gone": {
+      "after": [
+        "look"
+      ],
+      "tells": [],
+      "seconds": 10
+    },
+    "stay": {
+      "after": [
+        "weep"
+      ],
+      "tells": [
+        "stay:talk"
+      ],
+      "seconds": 9
+    },
+    "doctor": {
+      "after": [],
+      "tells": [],
+      "seconds": 12
+    },
+    "beside": {
+      "after": [
+        "doctor"
+      ],
+      "tells": [],
+      "seconds": 1.2
+    },
+    "doctor_leaves": {
+      "after": [
+        "beside"
+      ],
+      "tells": [],
+      "seconds": 7
+    },
+    "leave_with": {
+      "after": [
+        "beside"
+      ],
+      "tells": [],
+      "seconds": 6
+    }
+  },
+  "points": [],
+  "offers": [
+    "madeline",
+    "roderick",
+    "doctor"
+  ],
+  "party": {
+    "crack": 0.1
+  },
+  "speakers": [
+    "roderick",
+    "doctor"
+  ]
+}
+```

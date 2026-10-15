@@ -1,5 +1,6 @@
-// The crack from the roof down to the water (the tarn mirrors it on). Stands at its line (CRACK_X, at the water line):
-// b.where('crack', h) is the crack at h metres up. Painted once, as layers its animate shows: the crack thin and deep
+// The crack from the roof down to the water (the tarn mirrors it on). Stands at its line (CRACK_X, at the water line).
+// Its points k0 (at the roof's edge) … k16 (at the water) — the line a game traces (crack#k0 …). Painted once, as layers
+// its animate shows: the crack thin and deep
 // (`crack` 0…1 — how deep: the one into the other), each stretch of it paled as if lit from inside (`crack_trace` 0…1
 // — how far down from the roof it has been traced: trace0…), and a light where the trace has got to (tip).
 const L = e.lib, X = -L.CRACK_X;
@@ -32,5 +33,7 @@ for (let i = 0; i < L.CK.length - 1; i++) {
     g.strokeStyle = "rgba(170,190,202,0.32)"; g.lineWidth = 0.11; L.crackPath(g, i, i + 1); g.stroke();
   });
 }
+// its line, point by point, from the roof down
+L.CK.forEach(([x, y], i) => e.at(x + X, y, `k${i}`));
 // where the trace has got to glows (its animate carries it down)
 e.layer("tip", {}, () => e.light(L.CK[0][0] + X, L.CK[0][1], 1.4, "#c8dae4", 0.35, "tip"));

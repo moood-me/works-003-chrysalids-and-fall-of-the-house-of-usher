@@ -1,6 +1,6 @@
 // Sedge standing in the water mid-tarn, in clusters — each cluster a layer the wind bends (the tarn mirrors them).
 const rn = (i) => { const s = Math.sin(i * 29.3 + 8.1) * 43758.5453; return s - Math.floor(s); };
-const col = e.lib.tone(e.lib.light(e.state || {}), "#1a2128", "#343c41");
+const col = e.lib.paint("#343c41");
 const C = [[-6.0, 0.9], [-5.1, 0.6], [-1.6, 0.7], [-1.0, 0.5], [9, 0.8], [11.5, 1.1], [15, 0.7], [-14, 1.0], [-18, 0.8], [20, 0.9]];
 C.forEach((cl, i) => {
   e.layer(`cluster${i}`, { pivot: [cl[0], 0.05], wind: { strength: 0.3, gust: 0.4 } }, (g) => {

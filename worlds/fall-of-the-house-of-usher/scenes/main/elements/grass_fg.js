@@ -1,7 +1,7 @@
 // Dry grass at the eye's feet, in clumps (the causeway's start left clear): each group of clumps a layer the wind
 // bends, more toward the tips.
 const rn = (i) => { const s = Math.sin(i * 17.3 + 5.1) * 43758.5453; return s - Math.floor(s); };
-const col = e.lib.tone(e.lib.light(e.state || {}), "#080b0e", "#181d20");
+const col = e.lib.paint("#181d20");
 const groups = new Map();
 for (let i = 0; i < 50; i++) {
   const cx = -6 + rn(i) * 12;

@@ -185,17 +185,18 @@ const FILM = {
       await s.all(out, s.wait(3.2));
     },
   },
-  // close: his face — the eyes huge and wet, glad; he speaks (the game's line from 0.9 s; his lips 0.9–4.4 s); the smile
-  // tightens into strain
+  // close: his face — the eyes huge and wet, glad; he speaks (his lips from 0.9 s: the scene tells meet:lips — the game's
+  // line from there); the smile tightens into strain. It begins with a cut (said ahead by the module beats as `enter`
+  // begins): its `from` is the close-up
   meet: {
-    after: "enter",
+    after: [],
     from: () => ({ ...SEATED, ...SHOT, ...DAY, ...FACE, ...MET, roderick_do: { motion: "take_hand", from: 3.9 }, closeup: 1, closeup_shot: "glad" }),
     run: async (s) => {
-      if (!s.get("closeup")) s.cut({ closeup: 1, closeup_shot: "glad", ...FACE });
       await s.wait(0.5);
       s.move("closeup_smile", 1, { over: 0.6, ease: "out" });
       await s.wait(0.4);
       s.move("closeup_speak", 1, { over: 0.2 });
+      s.tell("meet:lips");
       await s.wait(3.1);
       s.move("closeup_strain", 1, { over: 2.0 });
       await s.wait(0.2);
@@ -203,12 +204,12 @@ const FILM = {
       await s.wait(1.6);
     },
   },
-  // the whole room again: he lets go, goes back to his chair and sits; the narrator is free
+  // the whole room again (a cut, said ahead as `meet` begins): he lets go, goes back to his chair and sits; the narrator
+  // is free
   room: {
-    after: "meet",
-    from: () => ({ ...SEATED, ...SHOT, ...DAY, ...MET, roderick_do: "stand" }),
+    after: [],
+    from: () => ({ ...SEATED, ...SHOT, ...DAY, ...FACE, ...MET, roderick_do: "stand" }),
     run: async (s) => {
-      if (s.get("closeup")) s.cut({ closeup: 0, ...FACE });
       const rod = s.person("roderick"), nar = s.person("narrator");
       await s.wait(0.6);
       rod.reach(null);
@@ -344,7 +345,8 @@ const FILM = {
       rod.do("tremble", { loop: true });
     },
   },
-  // another evening: he stands under the window, his back to the room; turns. Close: dry eyes (the game's line from 5.0 s)
+  // another evening: he stands under the window, his back to the room; turns. Close: dry eyes; his lips (the scene tells
+  // news:lips — the game's line from there)
   news: {
     from: () => ({ ...SEATED, ...SHOT, ...EVENING, ...FACE, fade: 1, ...AT_WINDOW, roderick_turn: 0 }),
     run: async (s) => {
@@ -357,18 +359,19 @@ const FILM = {
       await s.wait(1.8);
       close.cut();
       await s.wait(0.8);
+      s.tell("news:lips");
       await s.move("closeup_speak", 1, { over: 0.2 });
       await s.wait(1.2);
       s.move("closeup_speak", 0, { over: 0.3 });
       await s.move("closeup_grief", 1, { over: 1.2 });
     },
   },
-  // he talks fast, pacing the room past his chair, and stops at the table, talking on
+  // the room again (a cut, said ahead as `news` begins): he talks fast, pacing the room past his chair, and stops at the
+  // table, talking on
   plan: {
-    after: "news",
-    from: () => ({ ...SEATED, ...SHOT, ...EVENING, ...AT_WINDOW, roderick_turn: toward(...WINDOW, ...FRIEND), roderick_look: "narrator" }),
+    after: [],
+    from: () => ({ ...SEATED, ...SHOT, ...EVENING, ...FACE, ...AT_WINDOW, roderick_turn: toward(...WINDOW, ...FRIEND), roderick_look: "narrator" }),
     run: async (s) => {
-      if (s.get("closeup")) s.cut({ closeup: 0, ...FACE, roderick_turn: toward(...WINDOW, ...FRIEND), roderick_look: "narrator" });
       const rod = s.person("roderick");
       await s.wait(0.7);
       await rod.walk([[1.6, 7.6], [0.9, 5.3], [-0.6, 5.6]]);
@@ -388,8 +391,9 @@ const FILM = {
       s.move("fade", 0, { over: 3.0 });
       await s.wait(1.2);
       await walkTo(s, "narrator", BESIDE, 10);
-      // (his head bowed to the stone, listening too)
+      // (his head bowed to the stone, listening too: the game's line from here)
       s.person("narrator").look([AT_WALL[0] + 0.4, AT_WALL[1] + 0.3, 1.3]);
+      s.tell("night_listen:beside");
       await s.wait(3);
     },
   },

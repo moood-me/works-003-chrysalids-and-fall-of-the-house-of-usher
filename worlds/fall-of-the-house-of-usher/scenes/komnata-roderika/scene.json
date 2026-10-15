@@ -1,5 +1,5 @@
 {
-  "engine": 2,
+  "engine": 3,
   "title": "Комната Родерика",
   "caption": "Он не выносил ни яркого света, ни громкого звука.",
   "captions": [
@@ -757,7 +757,7 @@
     },
     "beat": {
       "type": "string",
-      "means": "кусок фильма, который играть (модуль beats; notes.md); null — ничего"
+      "means": "кусок фильма, который играть (модуль beats; notes.md); null — ничего; моменты — meet:lips, portrait:before, news:lips, night_listen:beside"
     },
     "closeup": {
       "range": [
@@ -951,6 +951,7 @@
         "text": "Lo-fi tape hiss, warped music box in a far room, haunted and slow",
         "weight": 0
       }
-    ]
+    ],
+    "scale": "A_MAJOR_G_FLAT_MINOR"
   }
 }

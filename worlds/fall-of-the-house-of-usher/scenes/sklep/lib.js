@@ -90,7 +90,8 @@ const CANDLE = [-0.55, 0.3], FL = 0.85;
 // (`mirror` 0 below the frame … 1 at her lips): it stays clear; 'hands' — her hand at rest and the narrator's coming to
 // rest on it (`touch` 0 below the frame … 1 on hers); 'lid' — the shut lid, its four screws (`screw1…4` how far each is
 // in; their points closeup#screw1…4 — the game's «Винты») and the driver on screw `screw_at` (1…4; between — the hand on
-// its way) while `driver` is 1, in the narrator's hand or Roderick's (`driver_rod` 1). All in the torch's light (the
+// its way) while `driver` is 1, in the narrator's hand or Roderick's (`driver_rod` 1); its point closeup#leave between
+// them, above (the game's «оставить»). All in the torch's light (the
 // hands near it: softer). closeup — what the picture is painted from (only those keys); closeupNow — what moves in it
 // without a repaint (its animate's): the mirror coming up, his hand coming down onto hers, her stillness
 const HER = { who: "madeline", lying: true, eyes: 0, smile: 0.55, breath: 0, frozen: 1 };
@@ -127,7 +128,8 @@ function closeup(s) {
         { name: "nar_hand", who: "narrator", pose: "touch", on: true, at: [0.34, 0.2], angle: -1.2, size: 0.48 },
       ],
     };
-  if (s.shot === "lid") return { light: "torch", screws: { who: s.driver_rod ? "roderick" : "narrator" } };
+  // (its point `leave`: between the screws, above them — where a screw is left as it is)
+  if (s.shot === "lid") return { light: "torch", screws: { who: s.driver_rod ? "roderick" : "narrator" }, points: [[0, 0, "leave"]] };
   return null;
 }
 const STILL = { frozen: 1 };
@@ -365,34 +367,46 @@ const FILM = {
       await raise;
       await s.wait(0.3);
       face.cut();
-      s.tell("shot:face");
+      // (her face, close: the game's line from here)
+      s.tell("open:face");
       await s.wait(4.6);
-      s.cut({ closeup: 0, shot: "" });
+      // (back: the insert shut, the vault going on under it)
+      s.set("closeup", 0);
     },
   },
-  // close: the narrator's hand on hers — warm; back to the coffin
+  // close: the narrator's hand on hers — warm; back to the coffin. (The close-up said ahead as the beat begins: a breath
+  // over the coffin, then the cut; his hand going to hers — the scene tells touch:hand, the game's line from there)
   touch: {
     after: ["open", "mirror"],
     from: () => OPEN,
     run: async s => {
-      s.cut({ closeup: 1, shot: "hands", touch: 0 });
+      const close = s.shot({ closeup: 1, shot: "hands", touch: 0 });
+      await s.wait(1.0);
+      close.cut();
       await s.wait(1.2);
+      s.tell("touch:hand");
       await s.move("touch", 1, { over: 2.0, ease: "inOut" });
       await s.wait(1.4);
-      s.cut({ closeup: 0, shot: "", touch: 0 });
+      s.set("closeup", 0);
+      s.set("touch", 0);
       await s.wait(0.8);
     },
   },
-  // close: the small mirror at her lips — it stays clear; back to the coffin
+  // close: the small mirror at her lips — it stays clear; back to the coffin (said ahead as touch's; the mirror going up —
+  // the scene tells mirror:up)
   mirror: {
     after: ["open", "touch"],
     from: () => OPEN,
     run: async s => {
-      s.cut({ closeup: 1, shot: "mirror", mirror: 0 });
+      const close = s.shot({ closeup: 1, shot: "mirror", mirror: 0 });
       await s.wait(1.0);
+      close.cut();
+      await s.wait(1.0);
+      s.tell("mirror:up");
       await s.move("mirror", 1, { over: 1.6, ease: "inOut" });
       await s.wait(2.4);
-      s.cut({ closeup: 0, shot: "", mirror: 0 });
+      s.set("closeup", 0);
+      s.set("mirror", 0);
       await s.wait(0.8);
     },
   },
@@ -499,22 +513,25 @@ const FILM = {
     },
   },
   // close: the lid, its four screws standing proud, the screwdriver in the narrator's hand on the first — «Винты»
-  // turns them
+  // turns them. It begins with a cut (said ahead by the module beats as the beat before it begins: the game names it in
+  // beat_next)
   screws: {
-    after: ["shut", "insist", "close"],
+    after: [],
     from: () => at(SHUT, LID),
     run: async s => {
-      s.cut(LID);
       await s.wait(1.35);
     },
   },
-  // close: Roderick takes the driver and drives home the screws left loose; to black
+  // close: Roderick takes the driver (a cut, said ahead as the beat begins: his hand on the lid) and drives home the
+  // screws left loose; to black
   check: {
     after: "screws",
     from: () => at(SHUT, { closeup: 1, shot: "lid", driver: 1, driver_rod: 0, screw_at: 1 }),
     run: async s => {
       const loose = [1, 2, 3, 4].filter(i => (s.state["screw" + i] ?? 0) < 1);
-      s.cut({ driver_rod: 1, driver: 1, screw_at: loose[0] ?? 1 });
+      const his = s.shot({ driver_rod: 1, driver: 1, screw_at: loose[0] ?? 1 });
+      await s.wait(1.0);
+      his.cut();
       await s.wait(1.1);
       const each = loose.length ? 4.2 / loose.length : 0;
       for (const [n, i] of loose.entries()) {

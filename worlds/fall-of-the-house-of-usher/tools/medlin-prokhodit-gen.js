@@ -1,6 +1,7 @@
 // Builds scenes/medlin-prokhodit/scene.json and its elements/ from the scene's lib.js geometry (the arches, their soffit
 // strips, the walls, the rooms behind the doorways, the window panes the light comes through) — run from the world's
-// root: node tools/medlin-prokhodit-gen.js. The caption and the music are kept from the current scene.json.
+// root: node tools/medlin-prokhodit-gen.js. The caption and the music (its key, `scale`, too) are kept from the current
+// scene.json.
 const fs = require("fs"), path = require("path");
 const DIR = path.join(__dirname, "../scenes/medlin-prokhodit"), EL = path.join(DIR, "elements");
 const anim = { noise: () => 0 };
@@ -35,7 +36,7 @@ for (let k = 0; k < BAYS; k++) {
 add({ id: "crack", name: "Трещина", across: 0, distance: r3(bay(2) - 0.015), facing: 180, height: 9, box: [1.6, -10.8, 3.4, -2.0], uniforms: { reach: 0, wide: 0 } },
   "e.lib.crack(g, e);",
   { "animate.js": "const c = e.lib.crackNow(e.state.crack);\ne.uniform('reach', c.reach);\ne.uniform('wide', c.wide);",
-    glsl: "// the crack as far as it has run (reach: metres up the pier), the thin one widening into the wide one\nvec4 shade(vec4 painted, vec2 at, vec2 uv) {\n  float shown = 1.0 - smoothstep(reach - 0.03, reach + 0.03, -at.y);\n  return mix(layer(1, at), layer(2, at), wide) * shown;\n}" });
+    wgsl: "// the crack as far as it has run (reach: metres up the pier), the thin one widening into the wide one\nfn shade(painted: vec4f, at: vec2f, uv: vec2f) -> vec4f {\n  let shown = 1.0 - smoothstep(u_reach - 0.03, u_reach + 0.03, -at.y);\n  return mix(layer(1, at), layer(2, at), u_wide) * shown;\n}" });
 DOORS.forEach(([a, b], i) => {
   const k = DOOR_BAYS[i], x0 = -W, x1 = -W - ROOM, z0 = a - 2, z1 = b + 2, H = 4.5;
   add({ id: `room${k}_floor`, name: "Тёмная комната", plane: true, across: r3((x0 + x1) / 2), distance: r3((z0 + z1) / 2), elevation: 0, width: ROOM, depth: r3(z1 - z0) }, `e.lib.room(g, e, ${ROOM}, ${r3(z1 - z0)}, true);`);
@@ -59,7 +60,7 @@ add({ id: "closeup", name: "Крупный план", insert: "closeup" },
 const pane = (k) => L.windowOf(k, 2).map(([z, y]) => [W, r3(z), r3(y)]);
 const panes = L.WINDOW_BAYS.map(pane);
 const spec = {
-  engine: 2,
+  engine: 3,
   title: "Мэдлин проходит",
   caption: v1.caption,
   horizon: 0.56,
@@ -82,7 +83,7 @@ const spec = {
     madeline_a: -4.6, madeline_d: 20.4, madeline_turn: 85, doctor_a: -4.6, doctor_d: 20.4, doctor_here: false,
   },
   states: {
-    beat: { type: "string", means: "кусок фильма (модуль beats): имя — он играется с начала, в конце сцена говорит beat:<имя>. Куски: " + L.SHOWCASE.join(", ") },
+    beat: { type: "string", means: "кусок фильма (модуль beats): имя — он играется с начала, в конце сцена говорит beat:<имя>. Куски: " + L.SHOWCASE.join(", ") + "; моменты — freeze:still, stay:talk" },
     crack: { range: [0, 1], smooth: true, means: "трещина на правом столбе арки 2: 0 — нет, 1 — прошла до свода и широкая (игра ставит по шкале)" },
     light_shafts: { range: [0, 1], smooth: true, means: "вечерний свет окон (и его лучи в воздухе): 0 — нет, 1 — полный" },
     low_sun: { range: [0, 1], smooth: true, means: "0 — вечер, холодный свет окон; 1 — другой день, низкое тёплое солнце (врач)" },
@@ -94,8 +95,6 @@ const spec = {
     cu_inhale: { range: [0, 1], smooth: true, means: "лицо крупно: глубокий вдох (0→1→0)" },
     cu_blink: { range: [0, 1], smooth: true, means: "лицо крупно: моргание вручную (0 — моргает само, если не застыла)" },
     speak: { range: [0, 1], means: "губы на крупном плане шевелятся: игра ставит 1, пока говорит реплику, потом 0" },
-    doctor_present: { range: [0, 1], means: "игра ставит при открытии: 1 — глава II, врач (свет и люди ставит кусок doctor)" },
-    madeline: { range: [0, 1], means: "игра ставит при открытии: 0 — Мэдлин нет (люди ставит кусок)" },
   },
   objects,
   modules: ["cast", "beats", "closeups"],

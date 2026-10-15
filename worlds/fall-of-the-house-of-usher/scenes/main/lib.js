@@ -3,8 +3,8 @@
 // (FILM: the world's module beats; SHOWCASE — their order outside games). notes.md tells it.
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const hex = (c) => [1, 3, 5].map((i) => parseInt(c.slice(i, i + 2), 16));
-// a colour of the moment: as it is at dusk (`dark` — as it would be deeper into the evening), dimmed by the darkness
-// as by a veil; on the grey day `day` (#rrggbb each)
+// the sky's colour of the moment (the sky paints its own light): as it is at dusk (`dark` — as it would be deeper into
+// the evening), dimmed by the darkness as by a veil; on the grey day `day` (#rrggbb each)
 const VEIL = hex("#060a0f");
 const tone = (lt, dusk, day, alpha = 1, dark = dusk) => {
   const a = hex(dusk), b = hex(dark), c = hex(day), v = 0.42 * lt.dark;
@@ -14,7 +14,10 @@ const tone = (lt, dusk, day, alpha = 1, dark = dusk) => {
   });
   return "rgba(" + rgb.join(",") + "," + alpha + ")";
 };
-// the light of the moment, from the state — what is painted from it, the same for a whole shot: dusk (the evening), day
+// what stands in the world is painted in its daylight colours (`day`): the hour is the scene's light — its looks dusk
+// and day (scene.json)
+const paint = (day, alpha = 1) => "rgba(" + hex(day).join(",") + "," + alpha + ")";
+// the moment, from the state — what is painted from it, the same for a whole shot: dusk (the evening: the sky's), day
 // (the grey day of chapter II; 0.75 the morning of chapter III), the mist, the lamp in the upper window. The dread
 // deepening it (`gloom`) moves over it as it plays: the light's look `gloom` and the animates (the mist thicker, the lamp
 // dimmer) — nothing painted again.
@@ -29,15 +32,15 @@ const UW = [[-12, -13.6, 1.5, 4], [-7.5, -13.6, 1.5, 4], [7.5, -13.6, 1.5, 4], [
 const LW = [[-12, -8.2, 1.6, 5], [-7.5, -8.2, 1.6, 5], [7.5, -8.2, 1.6, 5], [12, -8.2, 1.6, 5], [-23.3, -5.8, 1.4, 4], [-18.2, -5.8, 1.4, 4], [18.2, -5.8, 1.4, 4], [23.3, -5.8, 1.4, 4]];
 const DOOR = [0, -5.8, 2.9, 5.9];
 // the crack: from the roof's edge down the wall beside the bay to the water (x, y); CRACK_X — the line it keeps to (the
-// crack element stands there: b.where('crack', h) is the crack h metres up)
+// crack element stands there; its points crack#k0 … k16 are these, from the roof down)
 const CK = [[5.4, -23], [4.9, -21.6], [5.9, -20.4], [5.3, -19.1], [6.3, -17.6], [5.5, -16.2], [6.1, -15], [5.2, -13.4], [6.2, -11.9], [5.7, -10.6], [6.6, -9.1], [5.9, -7.6], [6.4, -6.1], [5.6, -4.6], [6.3, -3], [5.8, -1.6], [6.2, 0.3]];
 const CRACK_X = 5.8, CRACK_TOP = 23, HOUSE = 80;
-// the house's colours at dusk and on the grey day (colours(light) — of the moment)
+// the house's colours (its daylight ones are painted: the dusk is the scene's light)
 const C = {
   wall: ["#2b343d", "#4c5458"], wall2: ["#252d35", "#454d52"], bay: ["#303a44", "#535b60"], roof: ["#151b21", "#2a3034"],
   win: ["#0b0f13", "#191e22"], trim: ["#1f262d", "#363d42"], sill: ["#3a4550", "#5e666b"], chimney: ["#1d242b", "#363c40"],
 };
-const colours = (lt) => Object.fromEntries(Object.entries(C).map(([k, [a, b]]) => [k, tone(lt, a, b)]));
+const colours = () => Object.fromEntries(Object.entries(C).map(([k, [, day]]) => [k, paint(day)]));
 
 function arch(g, cx, top, w, h) {
   g.beginPath();
@@ -206,6 +209,8 @@ const causeway = (d) => -5.5 * Math.pow(clamp((HOUSE - d) / 77, 0, 2), 1.6);
 // game sends them; `walk_at`: where they are). The narrator a step ahead of Roderick (towards us) and to the right of him
 // on the screen, his right hand holding Roderick's left.
 const DOOR_D = 81.6, SHORE = 8.5, OUT = 0.15, MIDDLE = 0.5, RIDER = 10, AHEAD_OF = 0.45;
+// (the point their joined hands are pulled toward — the element `lead` — so far before the narrator, towards us)
+const LEAD = 1.6;
 const dist = (w) => DOOR_D + (SHORE - DOOR_D) * w;
 const NARRATOR = (w) => [causeway(dist(w)) + 0.3, dist(w) - AHEAD_OF], RODERICK = (w) => [causeway(dist(w)) - 0.35, dist(w) + 0.35];
 // where along the causeway the two are, from where the narrator stands (his distance)
@@ -334,6 +339,8 @@ const FILM = {
     run: async (s) => {
       s.move("fade", 0, { over: 2.5, ease: "out" });
       await s.wait(0.6);
+      // (the door begins to open: the game's line from here)
+      s.tell("walk_out:door");
       await s.move("door", 1, { over: 2.2 });
       await s.all(s.person("narrator").walk(way(NARRATOR, 0, OUT)), s.person("roderick").walk(way(RODERICK, 0, OUT)));
     },
@@ -373,14 +380,14 @@ const FILM = {
       s.person("roderick").look(AIR(MIDDLE));
       s.camera({ target: null });
       await s.all(...["camera_x", "camera_z", "camera_h", "camera_look"].map((k) => s.move(k, NEAR[k], { over: 3.6, ease: "inOut" })));
-      const close = s.shot({ closeup: 1 });
-      await s.wait(0.4);
-      close.cut();
+      // (the close-up: an insert — made ready while closed, it opens finished; the game's line on it from here)
+      s.set("closeup", 1);
+      s.tell("breathe:close");
       await s.wait(1);
       await s.move("cu_inhale", 1, { over: 1.8, ease: "inOut" });
       await s.move("cu_inhale", 0, { over: 2.2, ease: "inOut" });
       await s.wait(0.6);
-      s.cut({ closeup: 0 });
+      s.set("closeup", 0);
       await s.wait(0.8);
     },
   },
@@ -392,12 +399,12 @@ const FILM = {
     from: () => ({ ...BREATHED }),
     run: async (s) => {
       const nar = s.person("narrator"), rod = s.person("roderick");
+      // (the cut nearer the shore, said ahead: made ready while they walk)
+      const near = s.shot({ ...places(0.88), narrator_turn: heading(0.56, 1), roderick_turn: heading(0.56, 1), camera_target: null, camera_x: -4, camera_z: 4, camera_h: 0.2, camera_look: 0.1 });
       rod.look(null);
       await s.wait(0.3);
       s.move("resist", 0.35, { over: 1.5 });
       await s.all(nar.walk(way(NARRATOR, MIDDLE, 0.56, 3)), rod.walk(way(RODERICK, MIDDLE, 0.56, 3)));
-      const near = s.shot({ ...places(0.88), narrator_turn: heading(0.56, 1), roderick_turn: heading(0.56, 1), camera_target: null, camera_x: -4, camera_z: 4, camera_h: 0.2, camera_look: 0.1 });
-      await s.wait(0.3);
       near.cut();
       s.move("resist", 1, { over: 4, ease: "in" });
       await s.all(nar.walk(way(NARRATOR, 0.88, 0.975, 3)), rod.walk(way(RODERICK, 0.88, 0.975, 3)));
@@ -446,6 +453,8 @@ const FILM = {
       await s.wait(0.5);
       s.move("camera_z", 3.5, { over: 7, ease: "inOut" });
       await s.wait(3.7);
+      // (the horse tosses its head: the game's line from here)
+      s.tell("morning:toss");
       await s.move("horse_toss", 1, { over: 0.4, ease: "out" });
       await s.wait(0.4);
       s.move("horse_toss", 0, { over: 1.2 });
@@ -462,13 +471,13 @@ const FILM = {
     from: () => ({ ...MORNING, camera_z: 3.5, narrator_look: [0, 80, 10] }),
     run: async (s) => {
       const nar = s.person("narrator");
+      // (the cut into the saddle, said ahead: made ready while he goes to the stirrup)
+      const up = s.shot({ ...mounted(100) });
       nar.look(null);
       await nar.walk([STIRRUP]);
       await nar.turn(toward(STIRRUP, HORSE));
       nar.reach({ l: "rider#saddle" });
       await s.wait(0.6);
-      const up = s.shot({ ...mounted(100) });
-      await s.wait(0.4);
       up.cut();
       nar.reach(null);
       await s.wait(0.8);
@@ -491,6 +500,6 @@ const SHOT = { light: "day", faces: [{ who: "roderick", eyes: 0, nod: -0.5 }] };
 const closeup = () => SHOT;
 
 return {
-  closeup, clamp, tone, light, colours, UW, LW, CK, DOOR, CRACK_X, CRACK_TOP, HOUSE, walls, windows, doorLeaf, lampWindow, hallLight, figure, arch,
-  crackPath, crackX, causeway, FILM, SHOWCASE, places, walkOf, tracking, NARRATOR, RODERICK, dist, OUT, MIDDLE, SHORE, AHEAD,
+  closeup, clamp, tone, paint, light, colours, UW, LW, CK, DOOR, CRACK_X, CRACK_TOP, HOUSE, walls, windows, doorLeaf, lampWindow, hallLight, figure, arch,
+  crackPath, crackX, causeway, FILM, SHOWCASE, places, walkOf, tracking, NARRATOR, RODERICK, dist, OUT, MIDDLE, SHORE, AHEAD, LEAD,
 };

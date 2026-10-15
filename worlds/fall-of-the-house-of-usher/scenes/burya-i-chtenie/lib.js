@@ -448,7 +448,7 @@ function curtainMotion(e) {
   e.uniform('gust', m.w);
 }
 
-// ── the stone floor (a plane: x across, y toward the eye; its far edge at the back wall) ──
+// ── the stone floor (a plane: x across, y toward the eye; its far edge at the back wall); its point `mid` ──
 function floor(g, e) {
   g.fillStyle = '#4f575d';
   g.fillRect(-8, -3.2, 16, 6.4);
@@ -471,6 +471,8 @@ function floor(g, e) {
     g.fillStyle = `rgba(30,32,34,${0.15 + 0.2 * e.rnd()})`;
     g.fillRect(-8 + e.rnd() * 16, -3.2 + e.rnd() * 6.4, 0.01 + 0.02 * e.rnd(), 0.01 + 0.02 * e.rnd());
   }
+  // the middle of the room's floor between the table and the door (where a game searches it: floor#mid)
+  e.at(0.3, -1.4, 'mid');
 }
 
 // ── the furniture ──
@@ -790,7 +792,8 @@ const SHOTS = {
   rod_lamp: { light: 'lamp', flash: true, faces: [{ who: 'roderick', eyes: 1.3, fear: 0.8, wind: 1 }] },
   rod_confess: { light: 'candle', flash: true, faces: [{ who: 'roderick', eyes: 1.25, fear: 0.55, grief: 0.7, wet: 0.9, strain: 0.4, wind: 0.5 }] },
   mad_door: { light: 'door', flash: true, faces: [{ who: 'madeline', blood: 1, sway: 1, eyes: 1.15, size: 0.5, at: [-0.1, -0.12], hands: 'reach' }] },
-  hands: { light: 'candle', flash: true, hands: HANDS },
+  // (its point `stay`: between the reaching hands, above the narrator's own — where he stays as he is)
+  hands: { light: 'candle', flash: true, hands: HANDS, points: [[0, -0.12, 'stay']] },
 };
 const closeup = (s) => SHOTS[s.shot] ?? null;
 function closeupNow(s) {
@@ -891,8 +894,8 @@ function film(scene) {
   });
   // a close-up made ready (an insert: closeup.js) — cut to with .cut()
   const closeUp = (s, shot) => s.shot({ closeup: 1, shot, cu_push: 0, cu_reach: 0, cu_speak: 0 });
-  // out of the close-up the beat began on: held a moment, then the room
-  const outOf = async (s) => { await s.wait(0.4); s.cut({ closeup: 0 }); };
+  // out of the close-up the beat began on: held a moment, then the room (the insert shut: the room went on under it)
+  const outOf = async (s) => { await s.wait(0.4); s.set('closeup', 0); };
   // the end: whoever is not taken sinks to the floor where they stand (unless already fallen); the taken run behind
   // the narrator off to the left
   const leftBehind = (s) => {
@@ -998,6 +1001,8 @@ function film(scene) {
         rod.turn(toward(INSIDE, stood()));
         await s.wait(0.3);
         next.cut();
+        // (his face, close: the game's line from here)
+        s.tell('enter_lamp:close');
         await s.move('cu_push', 1, { over: 3.6, ease: 'inOut' });
         await s.wait(0.4);
       },
@@ -1133,6 +1138,8 @@ function film(scene) {
         await rod.turn(toward(BEFORE_CHAIR, SEAT));
         await s.wait(0.3);
         next.cut();
+        // (his face, close: the confession from here)
+        s.tell('confess:close');
         await s.move('cu_push', 1, { over: 4.0, ease: 'inOut' });
         await s.wait(0.4);
       },
@@ -1145,6 +1152,8 @@ function film(scene) {
       run: async (s) => {
         const nar = s.person('narrator'), rod = s.person('roderick'), mad = s.person('madeline');
         await outOf(s);
+        // (out of the close-up, he turns to the door: the game's «Безумец!…» from here)
+        s.tell('door_opens:out');
         await s.wait(0.3);
         rod.turn(toward(BEFORE_CHAIR, DOOR_AT));
         rod.look(DOOR_AT);

@@ -1571,7 +1571,8 @@ function mirror(c, o) {
 // closing as the screws go in), screwN:shaft (its thread standing out of the hole), screwN:head (its head, rising
 // with it; its point screwN), screwN:slot (turning), driver (the driver and the hand round its handle), test (the
 // fingers on a screw's head). o: { who (whose hand), hand: false (none) }
-const SCREW_TURNS = 3, SCREW_X = [-0.66, -0.22, 0.22, 0.66], SCREW_Y = 0.17, GAP = 0.021;
+// (the four within the middle 4:3 of the frame, clear of its edges: a game's marks stand on them)
+const SCREW_TURNS = 3, SCREW_X = [-0.5, -0.17, 0.17, 0.5], SCREW_Y = 0.17, GAP = 0.021;
 const screwR = x => 0.042 + 0.006 * (1 - Math.abs(x));
 function screws(c, o) {
   const { L } = c, wood = rgb('#4e3626');
@@ -1711,7 +1712,7 @@ function profile(c, o) {
 // wide screens, y −0.5…0.5), moved by the shot's zoom and pan. The dark (or the sky) on its base; the light's glow,
 // each face, hand, mirror, the lid, the profile, the lightning and the edges sinking into the dark as layers — what
 // live() moves. shot: { light, zoom, pan, flash (true: lightning may strike), faces: [o…], hands: [o…], mirror: o,
-// screws: o, profile: o, under: (g, L) => … } (closeups.md); null — nothing.
+// screws: o, profile: o, under: (g, L) => …, points: [[x, y, name]…] } (closeups.md); null — nothing.
 const STAGE = 16 / 9;
 function paint(g, e, shot) {
   if (!shot) return;
@@ -1759,6 +1760,12 @@ function paint(g, e, shot) {
   }
   if (shot.screws) screws(c, shot.screws);
   if (shot.profile) c.layer(shot.profile.name || 'profile', { pivot: c.stage(shot.profile.at || [0.15, 0]) }, () => profile(c, shot.profile));
+  // the scene's own named points in the frame, in the card's units (where a game's marks stand on nothing painted)
+  if (shot.points) {
+    g.save(); g.translate(cx - pan[0] * z, cy - pan[1] * z); g.scale(z, z);
+    for (const [x, y, name] of shot.points) e.at(x, y, name);
+    g.restore();
+  }
   // the lightning: a cold white flash from the window side, over all — the faces lit by it alone (added as much as
   // live() says)
   if (shot.flash) {

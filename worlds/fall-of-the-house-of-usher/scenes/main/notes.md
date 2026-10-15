@@ -1,4 +1,4 @@
-# Подъезд к дому — на движке 2, фильм кусками
+# Подъезд к дому — на движке 3, фильм кусками
 
 Глава I (сумерки): всадник подъезжает по гати, «Причина», отражение, к двери. Глава II (серый день): рассказчик выводит
 Родерика за руку из зала по гати к нам, «За руку», вдох на середине, к берегу или назад. Глава III (утро): конь у
@@ -61,8 +61,8 @@ to_door, walk_out, walk_on, breathe, to_shore, morning, ride_away — ~2 мин 
 
 ## Элементы для выбора
 
-`rider`, `house`, `windows`, `trees`, `tarn` (вода), `crack` (якорь у воды: `b.where('crack', h)` — точка трещины на
-высоте h, 0…23), `roderick`, `narrator`.
+`rider`, `house`, `windows`, `trees`, `tarn` (вода), `crack` (у воды; его точки `crack#k0` … `k16` — трещина от крыши до
+воды), `roderick`, `narrator`.
 
 ## Как устроено
 
@@ -72,3 +72,158 @@ to_door, walk_out, walk_on, breathe, to_shore, morning, ride_away — ~2 мин 
 берег — `shore`. Туман (`mist_*`) и тучи (`clouds`) — слои с `drift`, их краски — от момента; трава, осока —
 слои с `wind`; мёртвые деревья — свой наклон в анимации. Конь — `ushers.horse` (круги и конечности слоями, двигает
 `horseLive`). Ничего не перерисовывается, пока кусок идёт: всё движущееся — слои и анимации.
+
+## Движок 3 (v3, 2026-10-15)
+
+- `"engine": 3`. Свет — движка: всё, что стоит в мире, написано в своих (дневных) цветах (`lib.paint`), сумерки — свет
+  сцены (`ambient` и холодный `ambientColor`), серый день — взгляд `day`; небо и тучи пишут свой час сами (`lib.tone`). Зал
+  за дверью светится (`glows`). Конь — в своих цветах (`light: 1`). Ключа `people` больше нет.
+- Склейки сказаны заранее (`to_shore`, `ride_away` — в начале куска); крупный план — вставка, открывается и закрывается
+  ключом `closeup` (не склейкой).
+- Моменты: `walk_out:door` (дверь начинает открываться), `breathe:close` (крупный план вдоха), `morning:toss` (конь
+  вскидывает голову).
+- Точки игры: `windows@`, `trees@`, `tarn@` («Причина»), `crack#k0` … `crack#k16` (линия трещины от крыши к воде — «Причина»
+  ведёт по ней), `roderick#hand_l` и `lead@` («За руку»: элемент `lead` — точка на гати перед рассказчиком, к нам, её
+  места `lead_a`, `lead_d` ставит сцена), выборы — `tarn`, `house`, `roderick`, `rider#saddle`.
+
+## Контракт для проверки
+
+```json
+{
+  "beats": {
+    "arrive": {
+      "after": [],
+      "tells": [],
+      "seconds": 14
+    },
+    "look": {
+      "after": [
+        "arrive"
+      ],
+      "tells": [],
+      "seconds": 3
+    },
+    "trace": {
+      "after": [
+        "look"
+      ],
+      "tells": [],
+      "seconds": 3
+    },
+    "tarn": {
+      "after": [
+        "look",
+        "trace"
+      ],
+      "tells": [],
+      "seconds": 12
+    },
+    "to_door": {
+      "after": [
+        "look",
+        "trace",
+        "tarn"
+      ],
+      "tells": [],
+      "seconds": 10
+    },
+    "walk_out": {
+      "after": [],
+      "tells": [
+        "walk_out:door"
+      ],
+      "seconds": 10
+    },
+    "walk": {
+      "after": [
+        "walk_out"
+      ],
+      "tells": [],
+      "seconds": 1
+    },
+    "walk_on": {
+      "after": [
+        "walk_out",
+        "walk"
+      ],
+      "tells": [],
+      "seconds": 18,
+      "show": false
+    },
+    "breathe": {
+      "after": [
+        "walk",
+        "walk_on"
+      ],
+      "tells": [
+        "breathe:close"
+      ],
+      "seconds": 12
+    },
+    "to_shore": {
+      "after": [
+        "breathe"
+      ],
+      "tells": [],
+      "seconds": 14
+    },
+    "turn_back": {
+      "after": [
+        "breathe"
+      ],
+      "tells": [],
+      "seconds": 9
+    },
+    "morning": {
+      "after": [],
+      "tells": [
+        "morning:toss"
+      ],
+      "seconds": 9
+    },
+    "ride_away": {
+      "after": [
+        "morning"
+      ],
+      "tells": [],
+      "seconds": 12
+    }
+  },
+  "points": [
+    "windows@",
+    "trees@",
+    "tarn@",
+    "crack#k0",
+    "crack#k1",
+    "crack#k2",
+    "crack#k3",
+    "crack#k4",
+    "crack#k5",
+    "crack#k6",
+    "crack#k7",
+    "crack#k8",
+    "crack#k9",
+    "crack#k10",
+    "crack#k11",
+    "crack#k12",
+    "crack#k13",
+    "crack#k14",
+    "crack#k15",
+    "crack#k16",
+    "roderick#hand_l",
+    "lead@"
+  ],
+  "offers": [
+    "tarn",
+    "house",
+    "roderick",
+    "rider#saddle"
+  ],
+  "party": {
+    "crack": 0.1
+  },
+  "speakers": [
+    "roderick"
+  ]
+}
+```

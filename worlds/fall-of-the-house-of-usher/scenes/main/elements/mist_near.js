@@ -1,7 +1,7 @@
 // The mist near the shore: soft banks drifting slowly along it, some one way, some the other — two layers drifting round
 // their box (their ends meet), painted as thick as the gloom can make it (K): its animate thins them to the mist
 // of the moment.
-const lt = e.lib.light(e.state || {}), m = lt.mist, K = 1.8, mist = (a) => e.lib.tone(lt, "#8c98a2", "#b2b8be", Math.min(1, a));
+const lt = e.lib.light(e.state || {}), m = lt.mist, K = 1.8, mist = (a) => e.lib.paint("#b2b8be", Math.min(1, a));
 if (m < 0.01) return;
 const rn = (i) => { const s = Math.sin(i * 21.7 + 2.3) * 43758.5453; return s - Math.floor(s); };
 const W = 80, BOX = [-40, -1.97, 40, 1];

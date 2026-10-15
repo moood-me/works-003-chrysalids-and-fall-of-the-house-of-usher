@@ -1,4 +1,4 @@
-# Буря и чтение — the narrator's room: the nights (III) and the storm (IV). Engine 2
+# Буря и чтение — the narrator's room: the nights (III) and the storm (IV). Engine 3
 
 The game plays one beat at a time (`beat` = its name; the scene tells `beat:<name>` when it ends — the world's module
 `beats`); outside games the showcase plays them all (night, lamp_pass, enter_lamp, window_open, window_close, read,
@@ -68,16 +68,15 @@ scene); a beat that follows its `after` goes on from what is there. After a beat
 | `flee` | collapse, hands | the narrator runs out left — with whoever he took; whoever is left sinks down; the room shakes, the crack splits on the red moon, the candle goes out | the empty room shaking, red |
 | `stay` | collapse, hands | the same end around the narrator, who stays; to black | black |
 
-Beat lengths follow the people (their walks and motions take what they take): the game's waits measured on the old
-scene (5.3 s to «И ты не видел?», 3.6 s to the confession) are close but not exact — a game for v2 should wait for the
-close-up (`closeup` 1) instead of seconds.
+Beat lengths follow the people (their walks and motions take what they take): the game waits for the beats' moments
+(`enter_lamp:close`, `confess:close`, `door_opens:out`), never for seconds.
 
 ## Keys the game sets
 
 - `crack` 0…1; `rod_reach`, `mad_reach`, `rod_to_mad`, `mad_to_rod` 0…1; `with_madeline`, `with_roderick`; `cu_speak`
   0/1; «Слушать»: `ripple`, `listen`; «Чтение»: `sound`, `listen`, `rock`; «Руки»: the reaching keys, `grab`,
   `grab_x`, `grab_y`, `held_rod`, `held_mad`, `quake`, `shudder`.
-- «Руки» finds the palms as the insert's named points: `b.where('closeup#rod_hand')`, `b.where('closeup#mad_hand')`
+- «Руки» finds the palms as the insert's named points: `closeup#rod_hand`, `closeup#mad_hand` (its marks stand on them)
   (no longer the old card's geometry from `closeup`'s distance); `grab_x`, `grab_y` — card units: the frame's height 1,
   origin its middle, y down (the wrist; the palm ~0.2 above).
 
@@ -91,7 +90,7 @@ longer elements: they are the close-up's points.
 ## Elements for choices
 
 `door`, `window`, `book` (on the table; in his hands while reading), `roderick`, `madeline`, `narrator`; points:
-`ripple` (the plane: `b.where('ripple')`), `closeup#rod_hand`, `closeup#mad_hand`, `casement_l#handle`,
+`ripple` (the plane: `ripple@`), `closeup#rod_hand`, `closeup#mad_hand`, `casement_l#handle`,
 `casement_r#handle`, `door#ring`.
 
 ## Свет после правки тональной кривой (2026-10-11)
@@ -100,3 +99,135 @@ longer elements: they are the close-up's points.
 лужи света): `ambient` 0.06 → 0.5, `ambientColor` `#7d8f9c` → `#8aa3b8`; взгляд `lightning`: `ambient` 0.4 → 0.7 (над
 новой базой); `rift`: `tintStrength` 0.22 → 0.15, свет `rift` `strength` 1.6 → 1.2 (красное — зарево в комнате, не
 заливка кадра).
+
+## Движок 3 (v3, 2026-10-15)
+
+- `"engine": 3`, шейдеры `sky.wgsl`, `curtain.wgsl`, `ripple.wgsl`. Из крупного плана — ключом `closeup` (вставка
+  закрывается, комната шла под ней), в него — склейкой, сказанной заранее (как было).
+- Моменты: `enter_lamp:close`, `confess:close` (крупный план — реплики игры), `door_opens:out` (из крупного плана: он
+  поворачивается к двери).
+- Точки игры: `floor#mid` (середина пола — «Слушать» ищет по нему), `ripple@` (откуда звук), `book@` («Чтение»),
+  `closeup#nar_hand`, `closeup#rod_hand`, `closeup#mad_hand`, `closeup#stay` (вставка рук — «Руки»; `stay` — между руками,
+  над его рукой: «остаться»); выборы — `door`, `window`, `roderick`.
+
+## Контракт для проверки
+
+```json
+{
+  "beats": {
+    "night": {
+      "after": [],
+      "tells": [],
+      "seconds": 7
+    },
+    "lamp_pass": {
+      "after": [
+        "night"
+      ],
+      "tells": [],
+      "seconds": 7
+    },
+    "enter_lamp": {
+      "after": [],
+      "tells": [
+        "enter_lamp:close"
+      ],
+      "seconds": 9
+    },
+    "window_open": {
+      "after": [
+        "enter_lamp"
+      ],
+      "tells": [],
+      "seconds": 7
+    },
+    "window_close": {
+      "after": [
+        "window_open"
+      ],
+      "tells": [],
+      "seconds": 12
+    },
+    "watch": {
+      "after": [
+        "window_open"
+      ],
+      "tells": [],
+      "seconds": 6
+    },
+    "read": {
+      "after": [],
+      "tells": [],
+      "seconds": 4
+    },
+    "confess": {
+      "after": [
+        "read"
+      ],
+      "tells": [
+        "confess:close"
+      ],
+      "seconds": 9
+    },
+    "door_opens": {
+      "after": [
+        "confess"
+      ],
+      "tells": [
+        "door_opens:out"
+      ],
+      "seconds": 10
+    },
+    "hands": {
+      "after": [
+        "door_opens"
+      ],
+      "tells": [],
+      "seconds": 4
+    },
+    "collapse": {
+      "after": [
+        "hands"
+      ],
+      "tells": [],
+      "seconds": 8
+    },
+    "flee": {
+      "after": [
+        "collapse",
+        "hands"
+      ],
+      "tells": [],
+      "seconds": 7
+    },
+    "stay": {
+      "after": [
+        "collapse",
+        "hands"
+      ],
+      "tells": [],
+      "seconds": 9
+    }
+  },
+  "points": [
+    "floor#mid",
+    "ripple@",
+    "book@",
+    "closeup#nar_hand",
+    "closeup#rod_hand",
+    "closeup#mad_hand",
+    "closeup#stay"
+  ],
+  "offers": [
+    "door",
+    "window",
+    "roderick"
+  ],
+  "party": {
+    "crack": 0.1
+  },
+  "speakers": [
+    "roderick"
+  ]
+}
+```

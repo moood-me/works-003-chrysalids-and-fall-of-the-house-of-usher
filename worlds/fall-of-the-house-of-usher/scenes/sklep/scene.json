@@ -1,5 +1,5 @@
 {
-  "engine": 2,
+  "engine": 3,
   "title": "Склеп",
   "caption": "На её лице застыл слабый румянец — как это бывает при каталепсии.",
   "horizon": 0.46,
@@ -113,12 +113,13 @@
       "foot_r": "coffin_foot#foot_r",
       "foot_l": "coffin_foot#foot_l"
     },
-    "madeline_do": "lie"
+    "madeline_do": "lie",
+    "beat_next": null
   },
   "states": {
     "beat": {
       "type": "string",
-      "means": "кусок фильма (модуль beats): имя — кусок играется с начала; в конце сцена говорит beat:<имя>. Куски: enter, open, touch, mirror, say, shut, insist, close, screws, check, inside, leave, door_close, at_door (и для показа — vault, knock)"
+      "means": "кусок фильма (модуль beats): имя — кусок играется с начала; в конце сцена говорит beat:<имя>. Куски: enter, open, touch, mirror, say, shut, insist, close, screws, check, inside, leave, door_close, at_door (и для показа — vault, knock); моменты — open:face, touch:hand, mirror:up"
     },
     "shot": {
       "values": [
@@ -340,6 +341,10 @@
       ],
       "smooth": true,
       "means": "у двери: ответ с той стороны — импульс 1 → 0, как knock, сильнее"
+    },
+    "beat_next": {
+      "type": "string",
+      "means": "кусок, который игра сыграет следующим (модуль beats: его склейка готовится заранее) — screws, inside; null — следующий по таблице"
     }
   },
   "objects": [
@@ -867,6 +872,7 @@
         "text": "tape-hiss ambient with granular whispers, unsettling",
         "weight": 0
       }
-    ]
+    ],
+    "scale": "A_MAJOR_G_FLAT_MINOR"
   }
 }

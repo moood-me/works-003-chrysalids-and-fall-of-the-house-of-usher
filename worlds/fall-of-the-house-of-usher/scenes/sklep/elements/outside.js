@@ -9,6 +9,9 @@
 var L = e.lib, A = e.anim, X = L.CARD[0], M = L.CARD[1], C = L.CANDLE, cx = C[0], cy = C[1], FL = L.FL;
 g.translate(X, M);
 L.cardDark(g, "#030405");
+// its points: the door's leaf (where it is knocked on) and the passage beside it, the way up (where one goes from it)
+e.at(0.03, -0.05, "door");
+e.at(0.62, 0.0, "away");
 // the candle's glow (its animate: as it flickers and dips)
 e.light(cx, cy + 0.01, 0.6, "#ffb870", 0.7 * FL);
 e.layer("room", { box: [X - 1.42, M - 0.72, X + 1.42, M + 0.72] }, function (g) {

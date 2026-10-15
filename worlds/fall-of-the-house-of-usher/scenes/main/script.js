@@ -28,10 +28,13 @@ const put = (w) => {
   scene.move("camera_z", z, { over });
 };
 scene.on("change", "walk", put);
-// where the two are along the causeway, in `walk`'s units (from where the narrator stands): kept as they move
+// where the two are along the causeway, in `walk`'s units (from where the narrator stands): kept as they move; and the
+// point a game pulls their joined hands toward (the element `lead`: on the causeway a little before them, towards us)
 const at = () => {
-  const d = scene.get("narrator_d");
-  if (typeof d === "number") scene.set("walk_at", L.walkOf(d));
+  const d = scene.get("narrator_d"), a = scene.get("narrator_a");
+  if (typeof d !== "number") return;
+  scene.set("walk_at", L.walkOf(d));
+  if (typeof a === "number") { scene.set("lead_a", a - 0.15); scene.set("lead_d", d - L.LEAD); }
 };
 scene.on("change", "narrator_d", at);
 scene.on("move", "narrator_d", at);

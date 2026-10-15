@@ -56,7 +56,8 @@ export default {
     if (!done) return this.skipped;
     send('search_point', seen ? 1 : 0);
     if (seen) mg.error('danger', { at: who.reduce((a, w) => (w.danger > a.danger ? w : a)).mark });
-    await mg.end({ as: seen ? 'loss' : 'clean' });
+    // (clean only with the bar full — the horses quiet all the while; else kept from being seen, but with slips)
+    await mg.end({ as: seen ? 'loss' : quiet >= TIME * 0.97 ? 'clean' : 'flawed' });
     return { seen };
   },
 };

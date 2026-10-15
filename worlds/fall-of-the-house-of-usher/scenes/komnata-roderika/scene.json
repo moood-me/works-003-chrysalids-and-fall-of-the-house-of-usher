@@ -1,0 +1,956 @@
+{
+  "engine": 2,
+  "title": "Комната Родерика",
+  "caption": "Он не выносил ни яркого света, ни громкого звука.",
+  "captions": [
+    {
+      "at": 10,
+      "for": 7,
+      "text": "Свет едва сочился сквозь решётчатые стёкла."
+    }
+  ],
+  "horizon": 0.6,
+  "camera": {
+    "mode": "picture"
+  },
+  "light": {
+    "grain": 0.2,
+    "vignette": 0.7,
+    "haze": 0.12,
+    "hazeColor": "#141c22",
+    "hazeGlow": 0.8,
+    "shafts": 0.6,
+    "tint": "#1a2a33",
+    "tintStrength": 0.08,
+    "ambient": 0.5,
+    "ambientColor": "#aab9c6",
+    "bounce": 0.5,
+    "wind": [
+      1,
+      0.3,
+      0
+    ],
+    "looks": {
+      "window_day": {
+        "ambient": 1.0
+      },
+      "window_dusk": {
+        "ambient": 0.8,
+        "ambientColor": "#a8a0b4"
+      },
+      "evening": {
+        "tint": "#3a1c1c",
+        "tintStrength": 0.1
+      },
+      "song": {
+        "tintStrength": 0.14
+      },
+      "window_open": {
+        "wind": [
+          1,
+          0.4,
+          1.2
+        ]
+      }
+    }
+  },
+  "lights": [
+    {
+      "id": "candle0",
+      "of": "candles#c0",
+      "color": "#ffb066",
+      "strength": 1.2,
+      "reach": 6
+    },
+    {
+      "id": "candle1",
+      "of": "candles#c1",
+      "color": "#ffb066",
+      "strength": 1.2,
+      "reach": 6
+    },
+    {
+      "id": "candle2",
+      "of": "candles#c2",
+      "color": "#ffb066",
+      "strength": 1.2,
+      "reach": 6
+    },
+    {
+      "id": "candle3",
+      "of": "candles#c3",
+      "color": "#ffb066",
+      "strength": 1.2,
+      "reach": 6
+    },
+    {
+      "id": "candle4",
+      "of": "candles#c4",
+      "color": "#ffb066",
+      "strength": 1.2,
+      "reach": 6
+    },
+    {
+      "id": "window",
+      "across": 0,
+      "distance": 10.2,
+      "elevation": 5,
+      "color": "#8da2b8",
+      "strength": 1.0,
+      "reach": 13,
+      "on": "window_day"
+    },
+    {
+      "id": "dusk",
+      "across": 0,
+      "distance": 10.2,
+      "elevation": 5,
+      "color": "#a07070",
+      "strength": 0.5,
+      "reach": 13,
+      "on": "window_dusk"
+    },
+    {
+      "id": "sky_day",
+      "from": [
+        0,
+        55
+      ],
+      "through": [
+        [
+          [
+            -1.76,
+            10.45,
+            4.25
+          ],
+          [
+            -1.24,
+            10.45,
+            4.25
+          ],
+          [
+            -1.24,
+            10.45,
+            5.626
+          ],
+          [
+            -1.5,
+            10.45,
+            6.25
+          ],
+          [
+            -1.76,
+            10.45,
+            5.626
+          ]
+        ],
+        [
+          [
+            -0.3,
+            10.45,
+            4.1
+          ],
+          [
+            0.3,
+            10.45,
+            4.1
+          ],
+          [
+            0.3,
+            10.45,
+            5.98
+          ],
+          [
+            0,
+            10.45,
+            6.7
+          ],
+          [
+            -0.3,
+            10.45,
+            5.98
+          ]
+        ],
+        [
+          [
+            1.24,
+            10.45,
+            4.25
+          ],
+          [
+            1.76,
+            10.45,
+            4.25
+          ],
+          [
+            1.76,
+            10.45,
+            5.626
+          ],
+          [
+            1.5,
+            10.45,
+            6.25
+          ],
+          [
+            1.24,
+            10.45,
+            5.626
+          ]
+        ]
+      ],
+      "soft": 0.3,
+      "size": 4,
+      "color": "#9fb2c4",
+      "strength": 2.0,
+      "on": "window_day"
+    },
+    {
+      "id": "sky_dusk",
+      "from": [
+        0,
+        40
+      ],
+      "through": [
+        [
+          [
+            -1.76,
+            10.45,
+            4.25
+          ],
+          [
+            -1.24,
+            10.45,
+            4.25
+          ],
+          [
+            -1.24,
+            10.45,
+            5.626
+          ],
+          [
+            -1.5,
+            10.45,
+            6.25
+          ],
+          [
+            -1.76,
+            10.45,
+            5.626
+          ]
+        ],
+        [
+          [
+            -0.3,
+            10.45,
+            4.1
+          ],
+          [
+            0.3,
+            10.45,
+            4.1
+          ],
+          [
+            0.3,
+            10.45,
+            5.98
+          ],
+          [
+            0,
+            10.45,
+            6.7
+          ],
+          [
+            -0.3,
+            10.45,
+            5.98
+          ]
+        ],
+        [
+          [
+            1.24,
+            10.45,
+            4.25
+          ],
+          [
+            1.76,
+            10.45,
+            4.25
+          ],
+          [
+            1.76,
+            10.45,
+            5.626
+          ],
+          [
+            1.5,
+            10.45,
+            6.25
+          ],
+          [
+            1.24,
+            10.45,
+            5.626
+          ]
+        ]
+      ],
+      "soft": 0.3,
+      "size": 4,
+      "color": "#b07a72",
+      "strength": 1.2,
+      "on": "window_dusk"
+    }
+  ],
+  "directions": [
+    {
+      "key": "crack",
+      "name": "Трещина ползёт по стене"
+    }
+  ],
+  "objects": [
+    {
+      "id": "sky",
+      "name": "Тьма за стенами",
+      "sky": true
+    },
+    {
+      "id": "wall",
+      "name": "Задняя стена и своды",
+      "across": 0,
+      "distance": 10.5,
+      "height": 12,
+      "box": [
+        -14,
+        -12,
+        14,
+        0.3
+      ],
+      "facing": 180
+    },
+    {
+      "id": "fissure",
+      "name": "Трещина в стене",
+      "across": 0,
+      "distance": 10.48,
+      "height": 11,
+      "box": [
+        1.5,
+        -11.3,
+        3.3,
+        -0.5
+      ],
+      "facing": 180,
+      "redraw": {
+        "crack": 0.02
+      },
+      "uniforms": {
+        "song": 0
+      }
+    },
+    {
+      "id": "window",
+      "name": "Окно",
+      "across": 0,
+      "distance": 10.45,
+      "height": 4,
+      "box": [
+        -2.8,
+        -7.5,
+        2.8,
+        -3.4
+      ],
+      "facing": 180,
+      "glows": true
+    },
+    {
+      "id": "curtain",
+      "name": "Занавес",
+      "across": 0,
+      "distance": 10.4,
+      "height": 4,
+      "box": [
+        -2.6,
+        -7.2,
+        2.6,
+        -3.3
+      ],
+      "facing": 180,
+      "translucent": 0.15
+    },
+    {
+      "id": "portrait",
+      "name": "Портрет Мэдлин",
+      "across": -3.05,
+      "distance": 10.4,
+      "elevation": 2.05,
+      "height": 1.72,
+      "box": [
+        -0.7,
+        -1.76,
+        0.7,
+        0.04
+      ],
+      "facing": 180
+    },
+    {
+      "id": "clock",
+      "name": "Часы",
+      "across": 3.75,
+      "distance": 8.1,
+      "height": 2.35,
+      "box": [
+        -0.32,
+        -2.42,
+        0.32,
+        0.05
+      ],
+      "shadow": {
+        "onto": [
+          "floor"
+        ],
+        "soft": 0.15
+      }
+    },
+    {
+      "id": "floor",
+      "name": "Каменный пол",
+      "plane": true,
+      "across": 0,
+      "distance": 5.75,
+      "width": 28,
+      "depth": 9.5
+    },
+    {
+      "id": "table",
+      "name": "Стол с книгами и свечами",
+      "across": -1.39,
+      "distance": 6,
+      "height": 0.95,
+      "box": [
+        -1.2,
+        -1.9,
+        1.2,
+        0.1
+      ],
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall"
+        ],
+        "soft": 0.15
+      }
+    },
+    {
+      "id": "candles",
+      "name": "Свечи",
+      "across": -1.01,
+      "distance": 5.99,
+      "height": 0.95,
+      "box": [
+        -0.62,
+        -1.62,
+        0.3,
+        -0.78
+      ],
+      "uniforms": {
+        "l0": 1,
+        "l1": 1,
+        "l2": 1,
+        "l3": 0,
+        "l4": 0,
+        "wild": 0,
+        "pulse": 0
+      }
+    },
+    {
+      "id": "smoke_l",
+      "name": "Дымок погасшей свечи",
+      "particles": {
+        "kind": "smoke",
+        "at": "candles#wick0",
+        "amount": "wick_smoke",
+        "rate": 7,
+        "life": [
+          2,
+          3.5
+        ],
+        "size": [
+          0.006,
+          0.05
+        ],
+        "speed": [
+          0.04,
+          0.1
+        ],
+        "opacity": 0.3,
+        "turbulence": 0.04,
+        "swirl": 0.08,
+        "wind": 0.1,
+        "shadow": 0
+      }
+    },
+    {
+      "id": "smoke_r",
+      "name": "Дымок погасшей свечи",
+      "particles": {
+        "kind": "smoke",
+        "at": "candles#wick2",
+        "amount": "wick_smoke",
+        "rate": 7,
+        "life": [
+          2,
+          3.5
+        ],
+        "size": [
+          0.006,
+          0.05
+        ],
+        "speed": [
+          0.04,
+          0.1
+        ],
+        "opacity": 0.3,
+        "turbulence": 0.04,
+        "swirl": 0.08,
+        "wind": 0.1,
+        "shadow": 0
+      }
+    },
+    {
+      "id": "guitar",
+      "name": "Гитара",
+      "across": -0.12,
+      "distance": 5.85,
+      "height": 1,
+      "box": [
+        -0.5,
+        -1.1,
+        0.5,
+        0.1
+      ],
+      "shadow": {
+        "onto": [
+          "floor"
+        ],
+        "soft": 0.1
+      }
+    },
+    {
+      "id": "chair",
+      "name": "Кресло",
+      "across": 0.32,
+      "distance": 6.05,
+      "height": 2.05,
+      "box": [
+        -0.5,
+        -2.1,
+        0.5,
+        0.1
+      ],
+      "shadow": {
+        "onto": [
+          "floor",
+          "wall"
+        ],
+        "soft": 0.15
+      }
+    },
+    {
+      "id": "roderick",
+      "name": "Родерик Ашер",
+      "person": {
+        "cast": "cast",
+        "who": "roderick",
+        "does": "seated",
+        "turn": 180
+      },
+      "across": 0.32,
+      "distance": 5.8,
+      "place": {
+        "across": "roderick_a",
+        "distance": "roderick_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "chair_front",
+      "name": "Подлокотники",
+      "across": 0.32,
+      "distance": 5.7,
+      "height": 0.75,
+      "box": [
+        -0.5,
+        -0.8,
+        0.5,
+        0.05
+      ]
+    },
+    {
+      "id": "narrator",
+      "name": "Рассказчик",
+      "person": {
+        "cast": "cast",
+        "who": "narrator",
+        "turn": 255
+      },
+      "across": 2.2,
+      "distance": 6.4,
+      "place": {
+        "across": "narrator_a",
+        "distance": "narrator_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "valet",
+      "name": "Слуга",
+      "person": {
+        "cast": "cast",
+        "who": "valet",
+        "turn": 270
+      },
+      "across": 7.6,
+      "distance": 7.2,
+      "place": {
+        "across": "valet_a",
+        "distance": "valet_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "dust",
+      "name": "Пылинки",
+      "across": 0,
+      "distance": 7.5,
+      "elevation": 2,
+      "particles": {
+        "kind": "dust",
+        "source": [
+          7,
+          5,
+          4
+        ]
+      }
+    },
+    {
+      "id": "closeup",
+      "name": "Крупный план",
+      "insert": "closeup"
+    }
+  ],
+  "state": {
+    "candles": 1,
+    "crack": 0,
+    "window_light": 0.5,
+    "curtain": 0,
+    "window_open": 0,
+    "clock": 0.5,
+    "evening": 0,
+    "song": 0,
+    "wild": 0,
+    "tempo": 0,
+    "strum": 0,
+    "beat": null,
+    "fade": 0,
+    "roderick_a": 0.32,
+    "roderick_d": 5.8,
+    "narrator_a": 2.2,
+    "narrator_d": 6.4,
+    "valet_a": 7.6,
+    "valet_d": 7.2,
+    "closeup": 0,
+    "closeup_smile": 0,
+    "closeup_strain": 0,
+    "closeup_grief": 0,
+    "closeup_speak": 0,
+    "window_day": 1,
+    "window_dusk": 0,
+    "closeup_shot": null,
+    "valet_here": false,
+    "wick_smoke": 0
+  },
+  "states": {
+    "crack": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "трещина в задней стене: как далеко сверху спустилась и как зияет (после 0.35 ветвится); светится изнутри, пока он поёт"
+    },
+    "candles": {
+      "range": [
+        0,
+        1.6
+      ],
+      "smooth": true,
+      "means": "свечи: 0.3 — притушены (боковые погасли, тонкий дымок), 1 — как застали, 1.6 — зажжены ещё две высокие"
+    },
+    "curtain": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "занавес задёрнут через окна (1 — остаётся щёлочка света)"
+    },
+    "window_open": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "створки среднего окна распахнуты внутрь: туманный воздух, сквозняк колышет занавес"
+    },
+    "window_light": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "сколько света снаружи сквозь стёкла (0.5 — как застали)"
+    },
+    "clock": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "часы: 0 — остановлены, 0.5 — идут, как застали, 1 — заведены (гири вверху, маятник во весь размах)"
+    },
+    "evening": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "вечер: стёкла багрово-серые, свет из окон ниже (ставят куски)"
+    },
+    "song": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "баллада: свет комнаты тонет, трещина светится (ставят куски)"
+    },
+    "tempo": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "как быстро он играет (ведёт «Струна»)"
+    },
+    "wild": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "как неистово он играет: пламя мечется (ведёт «Струна»)"
+    },
+    "strum": {
+      "type": "number",
+      "smooth": true,
+      "means": "счёт его ударов по струнам (n-й — на n + 0.25); каждый удар подбрасывает пламя"
+    },
+    "beat": {
+      "type": "string",
+      "means": "кусок фильма, который играть (модуль beats; notes.md); null — ничего"
+    },
+    "closeup": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "крупный план его лица (вставка): 1 — открыт"
+    },
+    "closeup_smile": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "крупный план glad: улыбка приходит"
+    },
+    "closeup_strain": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "крупный план glad: улыбка сжимается в напряжение"
+    },
+    "closeup_grief": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "крупный план news: горе проступает"
+    },
+    "closeup_shot": {
+      "values": [
+        null,
+        "glad",
+        "news"
+      ],
+      "means": "какой крупный план: glad — встреча (улыбка, потом напряжение), news — «её больше нет» (горе)"
+    },
+    "closeup_speak": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "крупный план: губы шевелятся (реплика)"
+    },
+    "window_day": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "свет окон днём (1 — как застали и светлее) — ставит скрипт сцены из window_light, curtain, window_open, evening, song"
+    },
+    "window_dusk": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "свет окон вечером — ставит скрипт сцены"
+    },
+    "wick_smoke": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "дымок от погасших боковых свечей — ставит скрипт сцены из candles"
+    },
+    "roderick_a": {
+      "type": "number",
+      "smooth": true,
+      "means": "где стоит (roderick), метры"
+    },
+    "roderick_d": {
+      "type": "number",
+      "smooth": true,
+      "means": "где стоит (roderick), метры"
+    },
+    "narrator_a": {
+      "type": "number",
+      "smooth": true,
+      "means": "где стоит (narrator), метры"
+    },
+    "narrator_d": {
+      "type": "number",
+      "smooth": true,
+      "means": "где стоит (narrator), метры"
+    },
+    "valet_a": {
+      "type": "number",
+      "smooth": true,
+      "means": "где стоит (valet), метры"
+    },
+    "valet_d": {
+      "type": "number",
+      "smooth": true,
+      "means": "где стоит (valet), метры"
+    }
+  },
+  "modules": [
+    "cast",
+    "ushers",
+    "closeups",
+    "beats"
+  ],
+  "music": {
+    "bpm": 62,
+    "brightness": 0.2,
+    "density": 0.18,
+    "prompts": [
+      {
+        "text": "Sparse fingerpicked nylon-string guitar, slow arpeggios with long silences, a sick man playing alone in a vast dark room",
+        "weight": 2
+      },
+      {
+        "text": "Dark ambient drone, cold stone hall reverb, barely audible, hypersensitive stillness",
+        "weight": 2
+      },
+      {
+        "text": "Faint ticking of an old clock in an enormous silent room, distant creak of timber, no melody",
+        "weight": 1.5
+      },
+      {
+        "text": "Low sustained strings sul tasto, pianissimo, one chord breathing slowly, gothic dread",
+        "weight": 1.5
+      },
+      {
+        "text": "Solo cello holding a low note with slow bow changes, morbid and tender",
+        "weight": 0
+      },
+      {
+        "text": "Romantic-era parlour guitar improvisation, wild rhapsodic fragments, played very softly",
+        "weight": 0
+      },
+      {
+        "text": "Glass harmonica, fragile eerie tones, 18th century, extremely quiet",
+        "weight": 0
+      },
+      {
+        "text": "Muted harpsichord notes plucked one at a time, decaying into a cavernous room",
+        "weight": 0
+      },
+      {
+        "text": "Viola d'amore with sympathetic strings resonating, melancholic baroque lament",
+        "weight": 0
+      },
+      {
+        "text": "Distant wind moaning around a crumbling manor, low rumble beneath",
+        "weight": 0
+      },
+      {
+        "text": "Felt piano, single low notes left to decay, nocturnal and fragile",
+        "weight": 0
+      },
+      {
+        "text": "String quartet, slow dissonant suspensions, Schubertian melancholy, almost silent",
+        "weight": 0
+      },
+      {
+        "text": "Aeolian harp tones drifting, ghostly and unresolved",
+        "weight": 0
+      },
+      {
+        "text": "Candle-lit chamber, soft crackle, breath of a sleeping house, room tone",
+        "weight": 0
+      },
+      {
+        "text": "Minimal neoclassical, pianissimo violin harmonics over a bass drone",
+        "weight": 0
+      },
+      {
+        "text": "Slow modal lute melody, archaic and sorrowful, sparse",
+        "weight": 0
+      },
+      {
+        "text": "Dark cinematic pad slowly swelling and receding, a distant bell once",
+        "weight": 0
+      },
+      {
+        "text": "Bass clarinet low breathy tones, chamber silence, unease",
+        "weight": 0
+      },
+      {
+        "text": "Gothic organ held very softly in a far chapel, muffled through walls",
+        "weight": 0
+      },
+      {
+        "text": "Lo-fi tape hiss, warped music box in a far room, haunted and slow",
+        "weight": 0
+      }
+    ]
+  }
+}

@@ -1,0 +1,809 @@
+{
+  "engine": 2,
+  "title": "Падение дома",
+  "caption": "Кроваво-красная луна вспыхнула в трещине — и тёмные воды пруда сомкнулись над домом Ашеров.",
+  "captions": [
+    {
+      "at": 5,
+      "for": 9,
+      "text": "Позади — долгий, смятенный гул, подобный голосу тысячи вод."
+    }
+  ],
+  "horizon": 0.58,
+  "camera": {
+    "mode": "picture"
+  },
+  "directions": [
+    {
+      "key": "fall",
+      "name": "Дом рушится"
+    }
+  ],
+  "light": {
+    "ambientColor": "#5a4a58",
+    "grain": 0.3,
+    "haze": 0.08,
+    "hazeColor": "#2e333d",
+    "people": 0.3,
+    "vignette": 0.6,
+    "wind": [
+      1,
+      0,
+      0.3
+    ],
+    "looks": {
+      "storm": {
+        "wind": [
+          1.5,
+          0.2,
+          1.4
+        ]
+      }
+    }
+  },
+  "lights": [
+    {
+      "id": "moon",
+      "from": [
+        0,
+        7
+      ],
+      "color": "#d0402c",
+      "on": "moon",
+      "strength": 1.1
+    },
+    {
+      "id": "glow",
+      "from": [
+        -25,
+        32
+      ],
+      "color": "#b8452f",
+      "on": "moon",
+      "strength": 0.9
+    },
+    {
+      "id": "breach",
+      "of": "breach#glow",
+      "on": "breaking",
+      "reach": 6
+    }
+  ],
+  "modules": [
+    "cast",
+    "ushers",
+    "beats"
+  ],
+  "objects": [
+    {
+      "id": "sky",
+      "name": "Небо, луна и пруд",
+      "sky": true,
+      "uniforms": {
+        "cloud": 0,
+        "moon": 0.55,
+        "storm": 0.6,
+        "width": 3.378,
+        "hz": 0.592,
+        "morning": 0
+      }
+    },
+    {
+      "id": "above_tarn",
+      "name": "Над водой",
+      "unseen": true,
+      "x": 0.5,
+      "distance": 149.9,
+      "height": 100,
+      "box": [
+        -90,
+        -100,
+        90,
+        0
+      ]
+    },
+    {
+      "id": "below_tarn",
+      "name": "Под водой",
+      "unseen": true,
+      "x": 0.5,
+      "distance": 149.9,
+      "elevation": -60,
+      "height": 60,
+      "box": [
+        -90,
+        -60,
+        90,
+        0
+      ]
+    },
+    {
+      "id": "house_mirror",
+      "name": "Дом в пруду",
+      "x": 0.5,
+      "distance": 150,
+      "elevation": -56,
+      "height": 56,
+      "box": [
+        -46,
+        -57,
+        46,
+        0
+      ],
+      "clip": {
+        "inside": [
+          "below_tarn"
+        ]
+      }
+    },
+    {
+      "id": "house",
+      "name": "Дом Ашеров",
+      "x": 0.5,
+      "distance": 150,
+      "height": 50,
+      "box": [
+        -46,
+        -56,
+        46,
+        1
+      ],
+      "clip": {
+        "inside": [
+          "above_tarn"
+        ]
+      }
+    },
+    {
+      "id": "rings",
+      "name": "Круги на воде",
+      "plane": true,
+      "across": 0,
+      "distance": 150,
+      "elevation": 0.02,
+      "width": 130,
+      "depth": 130,
+      "uniforms": {
+        "rings": 0,
+        "moon": 1
+      }
+    },
+    {
+      "id": "house_dust",
+      "name": "Пыль из трещины",
+      "particles": {
+        "kind": "puff",
+        "at": [
+          0,
+          150,
+          20
+        ],
+        "source": [
+          4,
+          1,
+          36
+        ],
+        "rate": 6,
+        "amount": "house_dust",
+        "size": [
+          1.6,
+          9
+        ],
+        "life": [
+          6,
+          10
+        ],
+        "speed": [
+          0.2,
+          0.8
+        ],
+        "gravity": -0.05,
+        "drag": 0.6,
+        "color": "#8c605a",
+        "opacity": 0.25,
+        "direction": [
+          0,
+          0,
+          1
+        ],
+        "spread": 90,
+        "wind": 0.5,
+        "burst": null,
+        "soft": 2
+      }
+    },
+    {
+      "id": "stones",
+      "name": "Камни",
+      "particles": {
+        "kind": "sparks",
+        "at": [
+          0,
+          150,
+          20
+        ],
+        "source": [
+          4,
+          1,
+          30
+        ],
+        "rate": 14,
+        "amount": "stones",
+        "glow": [
+          0,
+          0
+        ],
+        "color": "#15171c",
+        "shape": "dot",
+        "size": [
+          0.6,
+          0.6
+        ],
+        "blend": "over",
+        "gravity": 9.8,
+        "speed": [
+          0.5,
+          2
+        ],
+        "spread": 60,
+        "direction": [
+          0,
+          0,
+          -0.2
+        ],
+        "ground": "pass",
+        "life": [
+          2,
+          3.5
+        ],
+        "burst": null
+      }
+    },
+    {
+      "id": "house_spray",
+      "name": "Брызги",
+      "particles": {
+        "kind": "splashes",
+        "at": [
+          0,
+          150,
+          0
+        ],
+        "source": [
+          76,
+          1,
+          1
+        ],
+        "rate": 20,
+        "amount": "spray",
+        "size": [
+          4,
+          9
+        ],
+        "life": [
+          1.5,
+          2.8
+        ],
+        "speed": [
+          3,
+          7
+        ],
+        "gravity": 4,
+        "color": "#6e5a5c",
+        "opacity": 0.3,
+        "shape": "puff",
+        "spread": 30,
+        "ground": "pass",
+        "burst": null,
+        "soft": 2
+      }
+    },
+    {
+      "id": "mist",
+      "name": "Туман над прудом",
+      "x": 0.5,
+      "distance": 110,
+      "height": 14,
+      "box": [
+        -180,
+        -14,
+        180,
+        6
+      ]
+    },
+    {
+      "id": "causeway",
+      "name": "Старая гать",
+      "plane": true,
+      "across": -10,
+      "distance": 76,
+      "elevation": 0.05,
+      "width": 1.6,
+      "depth": 146,
+      "rotation": 6.3,
+      "uniforms": {
+        "brk": -70,
+        "moon": 1,
+        "hot": 0
+      }
+    },
+    {
+      "id": "breach",
+      "name": "Гать рушится",
+      "across": -17,
+      "distance": 146,
+      "height": 3,
+      "box": [
+        -3,
+        -4.5,
+        3,
+        0.5
+      ],
+      "place": {
+        "across": "brk_a",
+        "distance": "brk_d"
+      }
+    },
+    {
+      "id": "breach_spray",
+      "name": "Брызги у пролома",
+      "place": {
+        "across": "brk_a",
+        "distance": "brk_d"
+      },
+      "across": -17,
+      "distance": 146,
+      "particles": {
+        "kind": "splashes",
+        "rate": 25,
+        "amount": "breaking",
+        "size": [
+          0.3,
+          0.9
+        ],
+        "speed": [
+          2,
+          4.5
+        ],
+        "color": "#6e5e60",
+        "opacity": 0.5,
+        "life": [
+          0.6,
+          1.2
+        ],
+        "source": [
+          1.6,
+          1.6,
+          0
+        ],
+        "burst": null
+      }
+    },
+    {
+      "id": "breach_boards",
+      "name": "Доски падают",
+      "place": {
+        "across": "brk_a",
+        "distance": "brk_d"
+      },
+      "across": -17,
+      "distance": 146,
+      "particles": {
+        "kind": "sparks",
+        "rate": 6,
+        "amount": "breaking",
+        "glow": [
+          0,
+          0
+        ],
+        "color": "#101216",
+        "shape": "dot",
+        "size": [
+          0.3,
+          0.3
+        ],
+        "blend": "over",
+        "ground": "pass",
+        "speed": [
+          1.5,
+          3.5
+        ],
+        "spread": 50,
+        "spin": 200,
+        "source": [
+          1.4,
+          1.4,
+          0.2
+        ],
+        "burst": null
+      }
+    },
+    {
+      "id": "shore",
+      "name": "Ближний берег",
+      "plane": true,
+      "across": 0,
+      "distance": 6,
+      "width": 36,
+      "depth": 7,
+      "redraw": {
+        "moon": 0.1,
+        "morning": 0.5
+      }
+    },
+    {
+      "id": "reeds",
+      "name": "Осока у воды",
+      "across": 0,
+      "distance": 9.3,
+      "height": 1.2,
+      "box": [
+        -22,
+        -2,
+        22,
+        0.3
+      ],
+      "redraw": {
+        "moon": 0.1,
+        "morning": 0.5
+      }
+    },
+    {
+      "id": "roderick",
+      "name": "Родерик",
+      "person": {
+        "cast": "cast",
+        "who": "roderick",
+        "turn": 180
+      },
+      "across": -0.6,
+      "distance": 8.6,
+      "place": {
+        "across": "rod_a",
+        "distance": "rod_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "madeline",
+      "name": "Леди Мэдлин",
+      "person": {
+        "cast": "cast",
+        "who": "madeline",
+        "turn": 180,
+        "does": "still"
+      },
+      "across": -0.7,
+      "distance": 8.8,
+      "place": {
+        "across": "mad_a",
+        "distance": "mad_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "narrator",
+      "name": "Рассказчик",
+      "person": {
+        "cast": "cast",
+        "who": "narrator",
+        "turn": 180
+      },
+      "across": -2,
+      "distance": 7.6,
+      "place": {
+        "across": "nar_a",
+        "distance": "nar_d"
+      },
+      "shadow": true
+    }
+  ],
+  "state": {
+    "beat": null,
+    "brk_a": -17,
+    "brk_d": 146,
+    "camera_h": 0,
+    "camera_look": 0,
+    "camera_x": 0,
+    "camera_z": 0,
+    "fade": 1,
+    "fall": 0,
+    "ghosts": 0,
+    "hand_in_hand": false,
+    "mad_a": 0.4,
+    "mad_d": 11.6,
+    "madeline_here": false,
+    "moon": 0.55,
+    "morning": 0,
+    "nar_a": -2.4,
+    "nar_d": 10.4,
+    "narrator_here": false,
+    "rod_a": -0.6,
+    "rod_d": 11.6,
+    "roderick_here": false,
+    "run": 0,
+    "run_at": 0,
+    "running": false,
+    "storm": 0.6,
+    "swim": 0,
+    "trip": 0,
+    "with_madeline": false,
+    "with_roderick": false,
+    "breaking": 0,
+    "house_dust": 0.3,
+    "stones": 0,
+    "spray": 0,
+    "rings": 0,
+    "narrator_do": "stand",
+    "madeline_do": "still",
+    "roderick_do": "stand"
+  },
+  "states": {
+    "beat": {
+      "type": "string",
+      "means": "кусок фильма (модуль beats): имя — он играется с начала, в конце сцена говорит beat:<имя>. Куски: prologue, run, dash, stumble, ashore, end_alone, end_madeline, end_roderick, end_both, end_stayed, gone"
+    },
+    "fall": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "дом рушится: 0 цел, трещина горит; 0.3 щель шире, пыль и камни; 0.45–0.6 половины расходятся, кренятся, тонут, брызги; 0.8 над водой шпили; 1 — дома нет, кольца на воде; гать уходит под воду от дома к берегу"
+    },
+    "moon": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "кровавая луна в трещине: краснота луны, неба, воды, отсветов на стенах и гати"
+    },
+    "storm": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "буря: тучи гуще и быстрее, осока клонится"
+    },
+    "morning": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "серое утро: луны нет, небо и вода серые"
+    },
+    "ghosts": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "в отражении правого окна зала — трое (видение, только в воде)"
+    },
+    "narrator_here": {
+      "type": "boolean",
+      "means": "рассказчик здесь"
+    },
+    "with_madeline": {
+      "type": "boolean",
+      "means": "Мэдлин с ним (от игры)"
+    },
+    "with_roderick": {
+      "type": "boolean",
+      "means": "Родерик с ним (от игры)"
+    },
+    "madeline_here": {
+      "type": "boolean",
+      "means": "Мэдлин здесь (ставит сцена по with_madeline)"
+    },
+    "roderick_here": {
+      "type": "boolean",
+      "means": "Родерик здесь (ставит сцена по with_roderick)"
+    },
+    "running": {
+      "type": "boolean",
+      "means": "бег по гати: люди и камера — от того, где рассказчик; run шлёт его вперёд"
+    },
+    "run": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "куда по гати он бежит: 0 — 60 м перед домом, 1 — сошёл на берег; бежит туда своим бегом (не быстрее); run там, где он (или позади), — остановиться: добегает шаг и стоит"
+    },
+    "run_at": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "где рассказчик на гати сейчас, в единицах run; ставит сцена, пока он бежит — для игры"
+    },
+    "trip": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "споткнувшийся отстаёт и выпускает руку"
+    },
+    "hand_in_hand": {
+      "type": "boolean",
+      "means": "брат и сестра держатся за руки"
+    },
+    "swim": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "взгляд плывёт (рассудок)"
+    },
+    "brk_a": {
+      "type": "number",
+      "means": "где гать сейчас рушится, метры поперёк (ставит сцена по fall)"
+    },
+    "brk_d": {
+      "type": "number",
+      "means": "где гать сейчас рушится, метры вглубь (ставит сцена по fall)"
+    },
+    "breaking": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "как сильно рушится гать сейчас — брызги, доски, красный свет (ставит сцена, пока fall движется)"
+    },
+    "house_dust": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "пыль из трещины (ставит сцена по fall)"
+    },
+    "stones": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "падающие камни (ставит сцена по fall)"
+    },
+    "spray": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "брызги от тонущих половин (ставит сцена по fall)"
+    },
+    "rings": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "кольца на воде (ставит сцена по fall и morning)"
+    },
+    "nar_a": {
+      "type": "number",
+      "means": "где рассказчик, метры поперёк"
+    },
+    "nar_d": {
+      "type": "number",
+      "means": "где рассказчик, метры вглубь"
+    },
+    "mad_a": {
+      "type": "number",
+      "means": "где Мэдлин, метры поперёк"
+    },
+    "mad_d": {
+      "type": "number",
+      "means": "где Мэдлин, метры вглубь"
+    },
+    "rod_a": {
+      "type": "number",
+      "means": "где Родерик, метры поперёк"
+    },
+    "rod_d": {
+      "type": "number",
+      "means": "где Родерик, метры вглубь"
+    }
+  },
+  "music": {
+    "bpm": 60,
+    "brightness": 0.2,
+    "density": 0.45,
+    "prompts": [
+      {
+        "text": "Rising orchestral drone, low strings and contrabasses swelling slowly, dark and vast",
+        "weight": 2
+      },
+      {
+        "text": "Roaring wind through ruined stone halls, howling gusts, cinematic storm texture",
+        "weight": 2
+      },
+      {
+        "text": "Deep sub-bass rumbling like distant thunder and groaning earth, slow and immense",
+        "weight": 2
+      },
+      {
+        "text": "Wordless dark choir swell in cathedral reverb, sustained minor chord, Gothic requiem",
+        "weight": 2
+      },
+      {
+        "text": "Sudden silence after a crescendo, one reverberant low piano note fading into nothing",
+        "weight": 1
+      },
+      {
+        "text": "Romantic-era Gothic orchestra in the manner of Berlioz, ominous and theatrical",
+        "weight": 0
+      },
+      {
+        "text": "Cold cathedral pipe organ pedal tone, 32-foot stop, trembling",
+        "weight": 0
+      },
+      {
+        "text": "High tremolo strings, anxious and shivering, sul ponticello",
+        "weight": 0
+      },
+      {
+        "text": "Slow timpani rolls and bass drum, ominous, building",
+        "weight": 0
+      },
+      {
+        "text": "Bowed metal and waterphone, eerie ghostly glissandi",
+        "weight": 0
+      },
+      {
+        "text": "Dark ambient drone, vast subterranean space, Lustmord style",
+        "weight": 0
+      },
+      {
+        "text": "Solo cello lament, slow minor melody, 19th century melancholy",
+        "weight": 0
+      },
+      {
+        "text": "Glass harmonica, ghostly 1830s parlour, fragile and haunted",
+        "weight": 0
+      },
+      {
+        "text": "Storm and rain field recording over a low synth pad",
+        "weight": 0
+      },
+      {
+        "text": "Funeral march with muted brass, slow and heavy",
+        "weight": 0
+      },
+      {
+        "text": "Micropolyphonic string cluster in the manner of Ligeti, unsettling and shimmering",
+        "weight": 0
+      },
+      {
+        "text": "Distant church bells tolling through a storm",
+        "weight": 0
+      },
+      {
+        "text": "Rushing water roar swelling like a thousand waters, white-noise crescendo",
+        "weight": 0
+      },
+      {
+        "text": "Viola da gamba and lute, an old melancholy ballad, candle-lit",
+        "weight": 0
+      },
+      {
+        "text": "Dissonant brass chorale crescendo, apocalyptic",
+        "weight": 0
+      },
+      {
+        "text": "Deep tam-tam swells and scraped cymbals, metallic shimmer",
+        "weight": 0
+      }
+    ]
+  }
+}

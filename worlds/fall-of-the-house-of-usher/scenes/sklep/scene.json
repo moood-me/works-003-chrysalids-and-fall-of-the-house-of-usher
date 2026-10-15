@@ -1,0 +1,872 @@
+{
+  "engine": 2,
+  "title": "Склеп",
+  "caption": "На её лице застыл слабый румянец — как это бывает при каталепсии.",
+  "horizon": 0.46,
+  "camera": {
+    "mode": "picture"
+  },
+  "light": {
+    "ambient": 0.65,
+    "ambientColor": "#7fa3b4",
+    "bounce": 0.35,
+    "haze": 0.4,
+    "hazeColor": "#27404a",
+    "hazeGlow": 0.25,
+    "tint": "#1b2d35",
+    "tintStrength": 0.15,
+    "vignette": 0.7,
+    "grain": 0.2
+  },
+  "lights": [
+    {
+      "id": "fire",
+      "at": "narrator#flame",
+      "color": "#f0a860",
+      "strength": 1.0,
+      "reach": 6,
+      "flicker": 0.3,
+      "on": "torch",
+      "glow": 0.35
+    },
+    {
+      "id": "holder",
+      "of": "torch",
+      "color": "#f0a860",
+      "strength": 1.0,
+      "reach": 6,
+      "flicker": 0.3,
+      "on": "torch"
+    }
+  ],
+  "modules": [
+    "cast",
+    "beats",
+    "closeups"
+  ],
+  "state": {
+    "beat": null,
+    "shot": "",
+    "closeup": 0,
+    "inside": 0,
+    "outside": 0,
+    "fade": 0,
+    "camera_x": -0.35,
+    "camera_z": 0.9,
+    "camera_h": 0.9,
+    "camera_look": 0.3,
+    "crack": 0.2,
+    "blush": 0.75,
+    "torch": 1,
+    "door_turn": 280,
+    "lid_x": 0.75,
+    "lid_h": 0.37,
+    "coffin_a": -0.5,
+    "coffin_d": 4.3,
+    "coffin_h": 0.43,
+    "coffin_turn": 180,
+    "mirror": 0,
+    "touch": 0,
+    "screw1": 0,
+    "screw2": 0,
+    "screw3": 0,
+    "screw4": 0,
+    "screw_at": 1,
+    "driver": 0,
+    "driver_rod": 0,
+    "seam": 1,
+    "shade": 0,
+    "tip": 0,
+    "knock": 0,
+    "answer": 0,
+    "roderick_a": -0.5,
+    "roderick_d": 4.98,
+    "roderick_do": {
+      "motion": "lean_over",
+      "loop": true
+    },
+    "roderick_turn": 180,
+    "roderick_look": "madeline",
+    "roderick_reach": {
+      "r": "lid#r",
+      "l": "lid#l"
+    },
+    "roderick_gait": null,
+    "roderick_here": true,
+    "narrator_a": 0.45,
+    "narrator_d": 5.02,
+    "narrator_do": {
+      "motion": "hold_high",
+      "loop": true
+    },
+    "narrator_turn": 180,
+    "narrator_look": "madeline",
+    "narrator_reach": null,
+    "narrator_gait": "torch_walk",
+    "narrator_with": [
+      "torch"
+    ],
+    "madeline_on": "coffin_floor#bed",
+    "madeline_reach": {
+      "r": "coffin_foot#hand_r",
+      "l": "coffin_foot#hand_l",
+      "foot_r": "coffin_foot#foot_r",
+      "foot_l": "coffin_foot#foot_l"
+    },
+    "madeline_do": "lie"
+  },
+  "states": {
+    "beat": {
+      "type": "string",
+      "means": "кусок фильма (модуль beats): имя — кусок играется с начала; в конце сцена говорит beat:<имя>. Куски: enter, open, touch, mirror, say, shut, insist, close, screws, check, inside, leave, door_close, at_door (и для показа — vault, knock)"
+    },
+    "shot": {
+      "values": [
+        "",
+        "face",
+        "mirror",
+        "hands",
+        "lid"
+      ],
+      "means": "какой крупный план показывает вставка closeup: face — её лицо в гробу, mirror — зеркальце у губ, hands — его рука на её руке, lid — крышка и четыре винта"
+    },
+    "closeup": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "вставка крупного плана (модуль closeups) открыта: 1 — во весь кадр, 0 — склеп"
+    },
+    "inside": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "вставка «изнутри»: её глазами из закрытого гроба (seam, shade, tip)"
+    },
+    "outside": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "вставка «у двери»: другая ночь, снаружи у закрытой железной двери, одна свеча на полу (knock, answer)"
+    },
+    "crack": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "трещина на задней стене (и у двери снаружи): насколько прошла и раскрылась; ставит игра по шкале"
+    },
+    "blush": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "румянец на её щеках и груди (крупно, face)"
+    },
+    "torch": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "сколько света факела в склепе: 1 — горит, 0 — отрезан дверью (огонь и свет гаснут)"
+    },
+    "door_turn": {
+      "range": [
+        180,
+        280
+      ],
+      "smooth": true,
+      "means": "железная дверь: 180 — закрыта, 280 — распахнута в склеп"
+    },
+    "lid_x": {
+      "range": [
+        0,
+        0.75
+      ],
+      "smooth": true,
+      "means": "крышка сдвинута к ногам: 0 — закрыта, 0.75 — лицо и грудь открыты"
+    },
+    "lid_h": {
+      "range": [
+        0.37,
+        0.45
+      ],
+      "smooth": true,
+      "means": "высота крышки над дном гроба: 0.37 — лежит на стенках, 0.4 — приподнята"
+    },
+    "coffin_a": {
+      "range": [
+        -3,
+        4
+      ],
+      "smooth": true,
+      "means": "где гроб: вправо (м)"
+    },
+    "coffin_d": {
+      "range": [
+        3,
+        9
+      ],
+      "smooth": true,
+      "means": "где гроб: вдаль (м)"
+    },
+    "coffin_h": {
+      "range": [
+        0,
+        1.2
+      ],
+      "smooth": true,
+      "means": "высота дна гроба: 0.43 — на помосте, 0.96 — несут"
+    },
+    "coffin_turn": {
+      "range": [
+        0,
+        360
+      ],
+      "smooth": true,
+      "means": "куда повёрнут гроб, градусы: 180 — вдоль склепа, изголовьем влево"
+    },
+    "mirror": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "крупно (mirror): зеркальце поднимается к её губам — 1 у губ; оно чистое"
+    },
+    "touch": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "крупно (hands): его рука поднимается в кадр и ложится на её — 1 легла"
+    },
+    "screw1": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "винт 1 (крупно, lid): насколько завинчен — 0 торчит резьбой, 1 вошёл; точка closeup#screw1"
+    },
+    "screw2": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "винт 2: как screw1; точка closeup#screw2"
+    },
+    "screw3": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "винт 3: как screw1; точка closeup#screw3"
+    },
+    "screw4": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "винт 4: как screw1; точка closeup#screw4"
+    },
+    "screw_at": {
+      "range": [
+        1,
+        4
+      ],
+      "smooth": true,
+      "means": "на каком винте отвёртка (дробное — рука в пути между винтами)"
+    },
+    "driver": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "рука с отвёрткой в кадре (крупно, lid)"
+    },
+    "driver_rod": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "отвёртка в руке Родерика (1) или рассказчика (0)"
+    },
+    "seam": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "изнутри: волосок света факела по краю крышки — 1 горит, 0 погас"
+    },
+    "shade": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "изнутри: как далеко прошли двое над крышкой (их тени гасят волосок)"
+    },
+    "tip": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "изнутри: острия винтов сквозь дерево по одному — первое к 0.4, второе к 0.6, третье к 0.78, четвёртое к 0.9"
+    },
+    "knock": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "у двери: стук с этой стороны — импульс 1 → 0 (~1.5 с): дверь дрожит, сыплется пыль, пламя свечи пригибается"
+    },
+    "answer": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "у двери: ответ с той стороны — импульс 1 → 0, как knock, сильнее"
+    }
+  },
+  "objects": [
+    {
+      "id": "dark",
+      "name": "Тьма",
+      "sky": true
+    },
+    {
+      "box": [
+        -2.5,
+        -3,
+        5.1,
+        0.15
+      ],
+      "across": 2.35,
+      "distance": 7.6,
+      "height": 2.6,
+      "id": "passage",
+      "name": "Проход",
+      "facing": 180
+    },
+    {
+      "box": [
+        -10,
+        -5.3,
+        10.1,
+        0.15
+      ],
+      "distance": 6.8,
+      "height": 4,
+      "id": "wall",
+      "name": "Задняя стена",
+      "x": 0.5,
+      "facing": 180
+    },
+    {
+      "across": 2.35,
+      "box": [
+        -1.1,
+        -2.5,
+        1.1,
+        0.1
+      ],
+      "distance": 6.8,
+      "height": 2.2,
+      "id": "doorway",
+      "name": "Проём двери",
+      "facing": 180
+    },
+    {
+      "id": "door",
+      "name": "Железная дверь",
+      "across": 1.8,
+      "distance": 6.79,
+      "height": 2.0,
+      "facing": 280,
+      "box": [
+        -0.08,
+        -2.02,
+        1.18,
+        0.3
+      ],
+      "place": {
+        "facing": "door_turn"
+      },
+      "shadow": true
+    },
+    {
+      "depth": 10,
+      "distance": 5,
+      "elevation": 0,
+      "id": "floor",
+      "name": "Пол",
+      "plane": true,
+      "width": 20,
+      "x": 0.5
+    },
+    {
+      "box": [
+        -9,
+        -1.4,
+        9,
+        0.3
+      ],
+      "distance": 6.2,
+      "height": 1,
+      "id": "mist_back",
+      "name": "Туман у стены",
+      "x": 0.5
+    },
+    {
+      "box": [
+        -14,
+        -8,
+        14,
+        1.05
+      ],
+      "distance": 4.7,
+      "height": 3,
+      "id": "arch2",
+      "name": "Дальняя арка",
+      "x": 0.5,
+      "facing": 180
+    },
+    {
+      "across": 3.0,
+      "box": [
+        -0.3,
+        -2.2,
+        0.3,
+        0.1
+      ],
+      "distance": 4.68,
+      "flicker": 0.3,
+      "height": 2.0,
+      "id": "torch",
+      "name": "Факел"
+    },
+    {
+      "id": "holder_fire",
+      "name": "Огонь факела в держателе",
+      "particles": {
+        "kind": "fire",
+        "at": "torch#flame",
+        "amount": "torch",
+        "rate": 36,
+        "size": [
+          0.15,
+          0.04
+        ],
+        "source": [
+          0.04,
+          0.04,
+          0.02
+        ],
+        "life": [
+          0.3,
+          0.7
+        ]
+      }
+    },
+    {
+      "id": "plinth_step",
+      "name": "Нижняя ступень помоста",
+      "plane": true,
+      "across": -0.5,
+      "distance": 4.3,
+      "elevation": 0.17,
+      "width": 1.9,
+      "depth": 0.94
+    },
+    {
+      "id": "plinth_top",
+      "name": "Верх помоста",
+      "plane": true,
+      "across": -0.5,
+      "distance": 4.3,
+      "elevation": 0.43,
+      "width": 1.7,
+      "depth": 0.7
+    },
+    {
+      "across": -0.5,
+      "box": [
+        -1.05,
+        -0.5,
+        1.05,
+        0.12
+      ],
+      "distance": 3.83,
+      "height": 0.5,
+      "id": "plinth",
+      "name": "Помост",
+      "facing": 180,
+      "shadow": true
+    },
+    {
+      "id": "coffin_box",
+      "name": "Гроб (где он)",
+      "unseen": true,
+      "across": -0.5,
+      "distance": 4.3,
+      "elevation": 0.43,
+      "height": 0.4,
+      "facing": 180,
+      "box": [
+        -1.1,
+        -0.4,
+        1.1,
+        0.05
+      ],
+      "place": {
+        "across": "coffin_a",
+        "distance": "coffin_d",
+        "elevation": "coffin_h",
+        "facing": "coffin_turn"
+      }
+    },
+    {
+      "id": "coffin_far",
+      "name": "Гроб: дальняя стенка",
+      "on": "coffin_box",
+      "height": 0.4,
+      "distance": 0.3,
+      "facing": 180,
+      "box": [
+        -1.05,
+        -0.38,
+        1.05,
+        0.02
+      ],
+      "shadow": true
+    },
+    {
+      "id": "coffin_head",
+      "name": "Гроб: изголовье",
+      "on": "coffin_box",
+      "height": 0.4,
+      "across": -1.0,
+      "facing": 90,
+      "box": [
+        -0.34,
+        -0.38,
+        0.34,
+        0.02
+      ],
+      "shadow": true
+    },
+    {
+      "id": "coffin_foot",
+      "name": "Гроб: ноги",
+      "on": "coffin_box",
+      "height": 0.4,
+      "across": 1.0,
+      "facing": 270,
+      "box": [
+        -0.34,
+        -0.38,
+        0.34,
+        0.02
+      ],
+      "shadow": true
+    },
+    {
+      "id": "coffin_floor",
+      "name": "Гроб: дно",
+      "plane": true,
+      "on": "coffin_box",
+      "elevation": 0.04,
+      "width": 1.96,
+      "depth": 0.56
+    },
+    {
+      "id": "madeline",
+      "name": "Мэдлин",
+      "person": {
+        "cast": "cast",
+        "who": "madeline",
+        "does": "lie",
+        "turn": 90
+      },
+      "across": -0.5,
+      "distance": 4.3,
+      "shadow": false
+    },
+    {
+      "id": "coffin",
+      "name": "Гроб",
+      "on": "coffin_box",
+      "height": 0.4,
+      "distance": -0.3,
+      "facing": 180,
+      "box": [
+        -1.05,
+        -0.38,
+        1.05,
+        0.02
+      ],
+      "shadow": true
+    },
+    {
+      "id": "lid",
+      "name": "Крышка",
+      "plane": true,
+      "on": "coffin_box",
+      "elevation": 0.37,
+      "width": 2.06,
+      "depth": 0.64,
+      "place": {
+        "across": "lid_x",
+        "elevation": "lid_h"
+      },
+      "shadow": true
+    },
+    {
+      "id": "lid_edge",
+      "name": "Крышка: край",
+      "on": "lid",
+      "distance": 0.32,
+      "elevation": -0.035,
+      "facing": 180,
+      "height": 0.05,
+      "box": [
+        -1.04,
+        -0.04,
+        1.04,
+        0.005
+      ]
+    },
+    {
+      "id": "roderick",
+      "name": "Родерик",
+      "person": {
+        "cast": "cast",
+        "who": "roderick",
+        "turn": 180
+      },
+      "across": -1.25,
+      "distance": 4.98,
+      "place": {
+        "across": "roderick_a",
+        "distance": "roderick_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "narrator",
+      "name": "Рассказчик",
+      "person": {
+        "cast": "cast",
+        "who": "narrator",
+        "turn": 180,
+        "does": "hold_torch"
+      },
+      "across": 0.45,
+      "distance": 5.02,
+      "place": {
+        "across": "narrator_a",
+        "distance": "narrator_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "flame",
+      "name": "Пламя факела",
+      "particles": {
+        "kind": "fire",
+        "at": "narrator#flame",
+        "amount": "torch",
+        "rate": 36,
+        "size": [
+          0.15,
+          0.04
+        ],
+        "source": [
+          0.04,
+          0.04,
+          0.02
+        ],
+        "life": [
+          0.3,
+          0.7
+        ]
+      }
+    },
+    {
+      "id": "embers",
+      "name": "Искры факела",
+      "particles": {
+        "kind": "embers",
+        "at": "narrator#flame",
+        "amount": "torch",
+        "rate": 2.5,
+        "size": [
+          0.02,
+          0.008
+        ]
+      }
+    },
+    {
+      "box": [
+        -7,
+        -1,
+        7,
+        0.3
+      ],
+      "distance": 3.4,
+      "height": 1,
+      "id": "mist_front",
+      "name": "Туман у пола",
+      "x": 0.5
+    },
+    {
+      "box": [
+        -14,
+        -8,
+        14,
+        1.05
+      ],
+      "distance": 2.6,
+      "height": 3,
+      "id": "arch1",
+      "name": "Ближняя арка",
+      "x": 0.5,
+      "facing": 180
+    },
+    {
+      "id": "closeup",
+      "name": "Крупный план",
+      "insert": "closeup"
+    },
+    {
+      "id": "inside",
+      "name": "Изнутри",
+      "insert": "inside",
+      "uniforms": {
+        "fl": 1,
+        "seam": 1,
+        "m1": -1.15,
+        "m2": 1.2,
+        "n1": 1,
+        "n2": 1,
+        "u1": 0,
+        "u2": 0,
+        "u3": 0,
+        "u4": 0
+      }
+    },
+    {
+      "id": "outside",
+      "name": "У двери",
+      "insert": "outside",
+      "uniforms": {
+        "fl": 0.85,
+        "kn": 0,
+        "an": 0,
+        "shake": 0,
+        "sway": 0
+      }
+    }
+  ],
+  "music": {
+    "bpm": 60,
+    "brightness": 0.2,
+    "density": 0.2,
+    "prompts": [
+      {
+        "text": "deep sub-bass drone, endless and still, underground cathedral resonance",
+        "weight": 2
+      },
+      {
+        "text": "slow dripping water in a stone vault, sparse echoing drops, dark ambient",
+        "weight": 2
+      },
+      {
+        "text": "low wordless choir hum, distant and muffled, as if through stone",
+        "weight": 2
+      },
+      {
+        "text": "heartbeat-slow muffled frame drum, one beat every few seconds",
+        "weight": 1.5
+      },
+      {
+        "text": "bowed double bass harmonics, tense and quiet",
+        "weight": 0
+      },
+      {
+        "text": "glass harmonica single notes, eerie and fragile",
+        "weight": 0
+      },
+      {
+        "text": "Victorian chamber strings playing a slow funeral lament",
+        "weight": 0
+      },
+      {
+        "text": "cold reverberant cello sul ponticello, whispering",
+        "weight": 0
+      },
+      {
+        "text": "faint pipe organ pedal tone in an empty crypt",
+        "weight": 0
+      },
+      {
+        "text": "metallic rumble of an iron door, dark industrial ambient",
+        "weight": 0
+      },
+      {
+        "text": "gothic dark ambient, damp air, claustrophobic, 1840s",
+        "weight": 0
+      },
+      {
+        "text": "soft crackle of a torch flame, warm noise over cold drone",
+        "weight": 0
+      },
+      {
+        "text": "detuned music box, slow and broken, very quiet",
+        "weight": 0
+      },
+      {
+        "text": "low brass swell, mournful, fading into silence",
+        "weight": 0
+      },
+      {
+        "text": "prepared piano low notes, muted, sparse and ominous",
+        "weight": 0
+      },
+      {
+        "text": "distant thunder felt through the ground, subsonic",
+        "weight": 0
+      },
+      {
+        "text": "breathy bass flute long tones, hollow and cold",
+        "weight": 0
+      },
+      {
+        "text": "slow tolling bell heard from far above, muffled",
+        "weight": 0
+      },
+      {
+        "text": "string quartet cluster chords, sustained, barely audible",
+        "weight": 0
+      },
+      {
+        "text": "tape-hiss ambient with granular whispers, unsettling",
+        "weight": 0
+      }
+    ]
+  }
+}

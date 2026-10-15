@@ -1,6 +1,6 @@
 const S = e.state || {};
 const ov = S.overgrowth ?? 0.6;
-const s = S.sun ?? 0.2;
+const s = 0;
 const L = (a, b, t) => "rgb(" + a.map((v, i) => Math.round(v + (b[i] - v) * t)).join(",") + ")";
 let sg = g.createRadialGradient(0, 0, 0, 0, 0, 1);
 sg.addColorStop(0, "rgba(58,64,44,0.32)");
@@ -106,7 +106,7 @@ for (const W of [W1, W2]) {
     const h = 0.04 + e.rnd() * (0.1 + 0.2 * ov);
     g.beginPath();
     g.moveTo(x - 0.015, -0.88);
-    g.lineTo(x + 0.03 * Math.sin(e.t * 0.5 + i), -0.88 - h);
+    g.lineTo(x + 0.03 * Math.sin(0 * 0.5 + i), -0.88 - h);
     g.lineTo(x + 0.015, -0.88);
     g.fill();
   }
@@ -134,7 +134,7 @@ for (let i = 0; i < 280; i++) {
   const y0 = 0.1 + e.rnd() * 0.2;
   const h = (0.2 + 0.55 * ov) * (0.3 + 0.7 * e.rnd()) * (1 - (0.25 * Math.abs(x)) / 2.7);
   const ph = e.rnd() * 6.28;
-  const l = (e.rnd() - 0.5) * 0.7 + 0.08 * Math.sin(e.t * 0.43 + ph) + 0.03 * Math.sin(e.t * 1.07 + ph);
+  const l = (e.rnd() - 0.5) * 0.7 + 0.08 * Math.sin(0 * 0.43 + ph) + 0.03 * Math.sin(0 * 1.07 + ph);
   g.fillStyle = gc[Math.floor(e.rnd() * 4)];
   g.beginPath();
   g.moveTo(x - 0.025, y0);
@@ -152,7 +152,7 @@ if (ov > 0.1) {
     const bx = -2.7 + u * (1.2 + 1.4 * k);
     const top = -0.15 - (0.55 + 0.5 * k) * Math.sin(Math.PI * Math.min(1, u * 1.1)) * (0.6 + 0.4 * e.rnd());
     const by = 0.25 + (top - 0.25) * Math.sqrt(v);
-    const sw = 0.02 * Math.sin(e.t * 0.5 + i * 0.7) * (0.25 - by);
+    const sw = 0.02 * Math.sin(0 * 0.5 + i * 0.7) * (0.25 - by);
     g.fillStyle = BC[i % 4];
     g.beginPath();
     g.ellipse(bx + sw, by, 0.05 + 0.03 * e.rnd(), 0.032 + 0.015 * e.rnd(), e.rnd() * 3, 0, 7);
@@ -170,7 +170,7 @@ if (ov > 0.1) {
   for (let c2 = 0; c2 < 3; c2++) {
     if (c2 > k * 3) break;
     const x0 = -2.3 + c2 * 0.5;
-    const sw = 0.03 * Math.sin(e.t * 0.4 + c2);
+    const sw = 0.03 * Math.sin(0 * 0.4 + c2);
     g.beginPath();
     g.moveTo(x0, -0.2);
     g.quadraticCurveTo(x0 + 0.4, -1.1 - 0.2 * c2 + sw, x0 + 0.9 + 0.3 * c2, -0.75 + sw);
@@ -190,7 +190,7 @@ if (ov > 0.1) {
 for (let i = 0; i < 9; i++) {
   const x = -2.4 + e.rnd() * 5;
   const h = 0.35 + 0.4 * e.rnd() * (0.5 + ov);
-  const sw = 0.04 * Math.sin(e.t * 0.5 + i * 1.3);
+  const sw = 0.04 * Math.sin(0 * 0.5 + i * 1.3);
   g.strokeStyle = "rgba(106,118,82,0.9)";
   g.lineWidth = 0.012;
   g.beginPath();
@@ -204,3 +204,4 @@ for (let i = 0; i < 9; i++) {
     g.fill();
   }
 }
+e.at(2.35, -0.1, 'stern');

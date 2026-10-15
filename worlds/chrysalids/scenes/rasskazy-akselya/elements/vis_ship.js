@@ -1,42 +1,26 @@
-const S = e.state || {};
+// The vision ship (Axel's story, `vision` 1): painted once into its layer at the middle of the smoke; its
+// animate (vis_ship.animate.js) moves it there, sizes it and shows it as `story`, `vision` and `dawn` say
 const A = e.aspect;
-const t = e.t;
-const st = Math.max(0, Math.min(1, S.story ?? 0.7));
-const dw = S.dawn ?? 0;
-const v = Math.max(0, Math.min(3, S.vision ?? 1));
-if (st < 0.01) return;
+const t = 0;
 const C = "190,200,224";
 const lerp = (a, b, k) => a + (b - a) * k;
 function soft(body, a, B, rule) {
-  const bp = g.beginPath,
-    fl = g.fill,
-    sk = g.stroke;
-  const nop = function () {};
+  // the outlines the body draws, gathered into one path (its own fills and strokes are not drawn), filled once blurred
+  const P = new Path2D();
+  const sh = { lineWidth: 0, lineCap: 'butt', beginPath() {}, fill() {}, stroke() {},
+    closePath: () => P.closePath(), moveTo: (x, y) => P.moveTo(x, y), lineTo: (x, y) => P.lineTo(x, y),
+    quadraticCurveTo: (...q) => P.quadraticCurveTo(...q), bezierCurveTo: (...q) => P.bezierCurveTo(...q),
+    arc: (...q) => P.arc(...q), ellipse: (...q) => P.ellipse(...q), rect: (...q) => P.rect(...q) };
+  body(sh);
   g.save();
-  g.filter = "blur(" + B + "px)";
+  g.filter = 'blur(' + B / 1080 + 'px)';
   g.globalAlpha = a;
-  bp.call(g);
-  g.beginPath = nop;
-  g.fill = nop;
-  g.stroke = nop;
-  try {
-    body();
-  } finally {
-    delete g.beginPath;
-    delete g.fill;
-    delete g.stroke;
-    if (g.fill !== fl) {
-      g.beginPath = bp;
-      g.fill = fl;
-      g.stroke = sk;
-    }
-  }
-  g.fill(rule || "nonzero");
+  g.fill(P, rule || 'nonzero');
   g.globalAlpha = a * 0.45;
   g.lineWidth = 0.005;
-  g.stroke();
+  g.stroke(P);
   g.restore();
-  g.filter = "none";
+  g.filter = 'none';
 }
 function grad(top) {
   const gr = g.createLinearGradient(0, top, 0, 0.02);
@@ -94,7 +78,7 @@ function draw(a, s) {
   g.rotate(rk);
   grad(-0.28);
   soft(
-    () => {
+    (g) => {
       g.beginPath();
       g.moveTo(-0.14, -0.032);
       g.quadraticCurveTo(0.0, -0.026, 0.16, -0.04);
@@ -147,23 +131,13 @@ function draw(a, s) {
   smoke(a, 0.17, -0.28);
   g.restore();
 }
-const K = 1;
-const sp = [A * 0.55, 0.57, 0.62];
-const dom = [A * 0.7, 0.5, 1.0];
-const base = Math.max(0, 1 - v);
-const pulse = 0.85 + 0.15 * Math.sin(t * 0.21 + K) * Math.sin(t * 0.13 + 1);
-const fade = st * (1 - dw * 0.75) * pulse;
-const d = Math.max(0, 1 - Math.abs(v - K));
-const w = Math.max(d, 0.55 * base);
-const a = fade * 0.3 * w;
-if (a < 0.004) return;
-const dr = 0.012 * Math.sin(t * 0.05 + K * 2) + 0.006 * Math.sin(t * 0.13 + K);
-const x = lerp(sp[0], dom[0], d) + dr,
-  y = lerp(sp[1], dom[1], d) + 0.004 * Math.sin(t * 0.09 + K * 1.3),
-  s = lerp(sp[2], dom[2], d);
-g.save();
-g.translate(x, y);
-g.scale(s, s);
-draw(a, s);
-g.restore();
-g.globalAlpha = 1;
+const dom = [A * 0.7, 0.41];
+const plain = g;
+e.layer('v', { pivot: dom, box: [dom[0] - 0.5, dom[1] - 0.5, dom[0] + 0.5, dom[1] + 0.2] }, q => {
+  g = q;
+  g.save();
+  g.translate(dom[0], dom[1]);
+  draw(0.3, 1);
+  g.restore();
+  g = plain;
+});

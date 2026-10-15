@@ -1,6 +1,6 @@
 const S = e.state || {};
 const ov = S.overgrowth ?? 0.6;
-const s = S.sun ?? 0.2;
+const s = 0;
 const L = (a, b, t) => "rgb(" + a.map((v, i) => Math.round(v + (b[i] - v) * t)).join(",") + ")";
 let sg = g.createRadialGradient(0, 0, 0, 0, 0, 1);
 sg.addColorStop(0, "rgba(58,64,44,0.3)");
@@ -65,7 +65,7 @@ for (let i = 0; i < Math.round(20 + 40 * ov); i++) {
   const x = left ? -1.3 + e.rnd() * 0.4 : 0.8 + e.rnd() * 0.5;
   const y0 = left ? -0.52 - e.rnd() * 0.08 : -0.64 - e.rnd() * 0.06;
   const h = (0.05 + 0.18 * ov) * (0.4 + 0.6 * e.rnd());
-  const l = (e.rnd() - 0.5) * 0.8 + 0.1 * Math.sin(e.t * 0.5 + i);
+  const l = (e.rnd() - 0.5) * 0.8 + 0.1 * Math.sin(0 * 0.5 + i);
   g.fillStyle = gc[i % 4];
   g.beginPath();
   g.moveTo(x - 0.015, y0);
@@ -78,7 +78,7 @@ for (let i = 0; i < 200; i++) {
   const y0 = 0.08 + e.rnd() * 0.12;
   const h = (0.12 + 0.3 * ov) * (0.3 + 0.7 * e.rnd());
   const ph = e.rnd() * 6.28;
-  const l = (e.rnd() - 0.5) * 0.7 + 0.08 * Math.sin(e.t * 0.43 + ph);
+  const l = (e.rnd() - 0.5) * 0.7 + 0.08 * Math.sin(0 * 0.43 + ph);
   g.fillStyle = gc[Math.floor(e.rnd() * 4)];
   g.beginPath();
   g.moveTo(x - 0.02, y0);

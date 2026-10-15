@@ -1,12 +1,234 @@
 {
-  "light": {
-    "haze": 0.06,
-    "tint": "#6e68a0",
-    "grain": 0.2,
-    "vignette": 0.6,
-    "hazeColor": "#4a4870",
-    "tintStrength": 0.05
+  "engine": 3,
+  "title": "Сон о городе",
+  "caption": "Мне снился город, которого не было ни на одной карте.",
+  "horizon": 0.6,
+  "camera": {
+    "mode": "picture"
   },
+  "light": {
+    "ambient": 0.55,
+    "ambientColor": "#8a86b8",
+    "bounce": 0.5,
+    "haze": 0.06,
+    "hazeColor": "#4a4870",
+    "vignette": 0.55,
+    "grain": 0.2,
+    "tint": "#6e68a0",
+    "tintStrength": 0.05,
+    "wind": [
+      1,
+      0,
+      0.3
+    ],
+    "looks": {
+      "waking": {
+        "ambient": 0.3,
+        "ambientColor": "#5a5870",
+        "lights": {
+          "city": 0.2
+        }
+      }
+    }
+  },
+  "lights": [
+    {
+      "id": "city",
+      "from": [
+        20,
+        5
+      ],
+      "color": "#f0d8b0",
+      "strength": 0.75
+    }
+  ],
+  "captions": [
+    {
+      "at": 6,
+      "for": 9,
+      "text": "Башни у самой воды, и в каждом окне — свет."
+    },
+    {
+      "at": 18,
+      "for": 9,
+      "text": "А над ними медленно плыли блестящие рыбы."
+    },
+    {
+      "at": 30,
+      "for": 10,
+      "text": "Я не знал, где это. Знал только, что мне — туда."
+    }
+  ],
+  "directions": [
+    {
+      "key": "waking",
+      "name": "Проснуться"
+    }
+  ],
+  "state": {
+    "craft": 0.6,
+    "dream": 0.75,
+    "lights": 0.75,
+    "waking": 0,
+    "boy_present": 1,
+    "lead": null,
+    "gaze": null,
+    "david_a": -2.2,
+    "david_d": 5.6,
+    "david_wear": {
+      "garment": "nightshirt",
+      "barefoot": "both"
+    }
+  },
+  "states": {
+    "craft": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "сила Петры: сколько блестящих рыб над городом (до трёх) и какие большие"
+    },
+    "dream": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "сон ясен (меньше — туман над водой, город бледнее)"
+    },
+    "lights": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "огни города: окна, свет на воде"
+    },
+    "waking": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "пробуждение: башни оседают искрами, темнеет, проступает окно спальни с рамой"
+    },
+    "boy_present": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "Дэвид на дюне"
+    },
+    "lead": {
+      "type": "number",
+      "means": "«Удержать сон»: где ведущая рыба на своём пути над городом, 0…1 (игра ведёт за 40 с); null — дрейфует сама"
+    },
+    "gaze": {
+      "type": "number",
+      "means": "«Удержать сон»: куда вдоль пути рыбы смотрит Дэвид, −1…1 (место (gaze + 1) / 2 того же пути): его голова и светлое пятно на небе; null — на город"
+    }
+  },
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Ночное небо сна",
+      "redraw": {
+        "dream": 0.1,
+        "lights": 0.1
+      }
+    },
+    {
+      "id": "clouds",
+      "sky": true,
+      "name": "Облачные пряди",
+      "redraw": {
+        "lights": 0.1
+      }
+    },
+    {
+      "id": "city",
+      "sky": true,
+      "name": "Город у моря",
+      "redraw": {
+        "dream": 0.1,
+        "lights": 0.1
+      }
+    },
+    {
+      "id": "craft",
+      "sky": true,
+      "name": "Сияющие рыбы",
+      "redraw": {
+        "craft": 0.1
+      }
+    },
+    {
+      "id": "motes",
+      "sky": true,
+      "name": "Пылинки сна"
+    },
+    {
+      "id": "sand",
+      "name": "Дюна",
+      "plane": true,
+      "drape": true,
+      "across": 0,
+      "distance": 8,
+      "width": 40,
+      "depth": 16
+    },
+    {
+      "id": "david",
+      "name": "Дэвид",
+      "person": {
+        "cast": "cast",
+        "who": "david",
+        "turn": 16,
+        "does": "stand"
+      },
+      "across": -2.2,
+      "distance": 5.6,
+      "place": {
+        "across": "david_a",
+        "distance": "david_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "wheat_front",
+      "name": "Колосья у края",
+      "across": -3.6,
+      "distance": 4.6,
+      "height": 1.2,
+      "box": [
+        -4.5,
+        -1.8,
+        3,
+        0.45
+      ]
+    },
+    {
+      "id": "waking",
+      "name": "Пробуждение",
+      "across": 0,
+      "distance": 1.5,
+      "elevation": 1.1,
+      "height": 1.5,
+      "glows": true,
+      "box": [
+        -2.465,
+        -2.113,
+        2.465,
+        0.493
+      ]
+    }
+  ],
+  "modules": [
+    "cast"
+  ],
   "music": {
     "bpm": 60,
     "density": 0.25,
@@ -93,123 +315,5 @@
       }
     ],
     "brightness": 0.5
-  },
-  "state": {
-    "craft": 0.6,
-    "dream": 0.75,
-    "lead_x": null,
-    "lead_y": null,
-    "lights": 0.75,
-    "waking": 0,
-    "boy_present": 1
-  },
-  "title": "Сон о городе",
-  "camera": {
-    "mode": "picture"
-  },
-  "caption": "Мне снился город, которого не было ни на одной карте.",
-  "horizon": 0.6,
-  "objects": [
-    {
-      "id": "sky",
-      "sky": true,
-      "name": "Ночное небо сна"
-    },
-    {
-      "id": "clouds",
-      "sky": true,
-      "name": "Облачные пряди"
-    },
-    {
-      "id": "craft",
-      "sky": true,
-      "name": "Сияющие рыбы"
-    },
-    {
-      "id": "city",
-      "sky": true,
-      "name": "Город у моря"
-    },
-    {
-      "x": 0.3,
-      "y": 0.84,
-      "id": "dune",
-      "box": [
-        -9,
-        -2.5,
-        14,
-        1.6
-      ],
-      "name": "Дюна и край поля",
-      "height": 1
-    },
-    {
-      "x": 0.3,
-      "y": 0.841,
-      "id": "david",
-      "box": [
-        -0.6,
-        -1.4,
-        0.6,
-        0.15
-      ],
-      "name": "Дэвид",
-      "height": 1.15,
-      "elevation": 0.7
-    },
-    {
-      "x": 0.06,
-      "y": 0.97,
-      "id": "wheat_front",
-      "box": [
-        -4,
-        -1.8,
-        3,
-        0.4
-      ],
-      "name": "Колосья у края",
-      "height": 1.2
-    },
-    {
-      "id": "motes",
-      "sky": true,
-      "name": "Пылинки сна"
-    },
-    {
-      "x": 0.5,
-      "y": 0.999,
-      "id": "waking",
-      "box": [
-        -7,
-        -5,
-        7,
-        0.6
-      ],
-      "name": "Пробуждение",
-      "height": 4
-    }
-  ],
-  "captions": [
-    {
-      "at": 6,
-      "for": 9,
-      "text": "Башни у самой воды, и в каждом окне — свет."
-    },
-    {
-      "at": 18,
-      "for": 9,
-      "text": "А над ними медленно плыли блестящие рыбы."
-    },
-    {
-      "at": 30,
-      "for": 10,
-      "text": "Я не знал, где это. Знал только, что мне — туда."
-    }
-  ],
-  "directions": [
-    {
-      "key": "waking",
-      "name": "Проснуться"
-    }
-  ]
+  }
 }

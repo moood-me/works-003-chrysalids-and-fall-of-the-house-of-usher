@@ -1,6 +1,6 @@
 const S = e.state || {};
 const ov = S.overgrowth ?? 0.6;
-const s = S.sun ?? 0.2;
+const s = 0;
 const edgeY = (x) => -0.04 + 0.05 * Math.sin(x * 1.3) + 0.03 * Math.sin(x * 3.1);
 let gr = g.createLinearGradient(0, -0.1, 0, 1.8);
 gr.addColorStop(0, "rgba(100,112,80,0)");
@@ -14,21 +14,26 @@ for (let x = -10; x <= 10; x += 0.25) g.lineTo(x, edgeY(x));
 g.lineTo(10, 1.9);
 g.closePath();
 g.fill();
-const D = 5.5;
+const D = 4.6;
 const cl = [];
 for (let i = 0; i < 520; i++) {
-  const d = 2.3 + Math.pow(e.rnd(), 0.8) * 3.9;
+  const d = 2.3 + Math.pow(e.rnd(), 0.8) * 2.3;
   cl.push([d, e.rnd(), e.rnd(), e.rnd(), e.rnd()]);
 }
 cl.sort((a, b) => b[0] - a[0]);
 const near = ["#56613f", "#4e5939", "#5f6a45", "#48522f"],
   far = ["#6f7b55", "#76815a", "#6a7550"];
-for (const c of cl) {
+const BANDS = 8, bands = Array.from({ length: BANDS }, () => []);
+for (const c of cl) bands[Math.min(BANDS - 1, Math.floor(c[1] * BANDS))].push(c);
+bands.forEach((band, bk) => {
+  const bx = ((bk + 0.5) / BANDS - 0.5) * 2.1 * D;
+  e.layer('b' + bk, { pivot: [bx, 0.4], wind: { strength: 0.3, gust: 0.4 }, box: [bx - 1.4, -1.5, bx + 1.4, 1.9] }, g => {
+    for (const c of band) {
   const [d, r0, r1, r2, r3] = c;
   const k = D / d;
   const cy = (1.7 / d - 1.7 / D) * D;
   const cx = (r0 - 0.5) * 2.1 * D;
-  const edge = Math.min(1, Math.max(0, (Math.abs(cx) - 3.4) / 3));
+  const edge = Math.min(1, Math.max(0, (Math.abs(cx) - 2.6) / 3));
   const dp = Math.min(1, Math.max(0, (D - d) / 2.5));
   const H = (0.12 + 0.2 * ov) * (0.6 + 1.8 * edge * edge) * (0.45 + 0.55 * r1) * k;
   const n = 9 + Math.floor(r2 * 12);
@@ -40,8 +45,8 @@ for (const c of cl) {
     const l =
       ((x - cx) / k) * 1.1 +
       (e.rnd() - 0.5) * 0.35 +
-      0.07 * Math.sin(e.t * 0.42 + ph + j * 0.3) +
-      0.03 * Math.sin(e.t * 1.13 + ph);
+      0.07 * Math.sin(0 * 0.42 + ph + j * 0.3) +
+      0.03 * Math.sin(0 * 1.13 + ph);
     const dd = e.rnd() < 0.12;
     g.fillStyle = dd ? (dp > 0.3 ? "#7c7553" : "#968e66") : pal[Math.floor(e.rnd() * pal.length)];
     const w = 0.011 * k;
@@ -58,7 +63,7 @@ for (const c of cl) {
   }
   if (r1 > 0.975) {
     const h = H * 1.25;
-    const sw = (0.05 * Math.sin(e.t * 0.5 + ph) + 0.02 * Math.sin(e.t * 1.3 + ph)) * k;
+    const sw = (0.05 * Math.sin(0 * 0.5 + ph) + 0.02 * Math.sin(0 * 1.3 + ph)) * k;
     g.strokeStyle = "rgba(104,116,80,0.95)";
     g.lineWidth = 0.009 * k;
     g.beginPath();
@@ -79,7 +84,9 @@ for (const c of cl) {
       g.fill();
     }
   }
-}
+    }
+  });
+});
 const bg = g.createLinearGradient(0, 0.6, 0, 1.9);
 bg.addColorStop(0, "rgba(52,60,40,0)");
 bg.addColorStop(1, "rgba(52,60,40,0.45)");
@@ -96,8 +103,10 @@ const canes = [
 ];
 g.lineCap = "round";
 for (let c = 0; c < canes.length; c++) {
+  e.layer('c' + c, { pivot: [canes[c][0], canes[c][1]], wind: { strength: 0.25, gust: 0.4 }, box: [-10, -1.5, 10, 1.9] }, g => {
+
   const q = canes[c];
-  const sw = 0.04 * Math.sin(e.t * 0.35 + c * 1.7) + 0.015 * Math.sin(e.t * 0.9 + c);
+  const sw = 0.04 * Math.sin(0 * 0.35 + c * 1.7) + 0.015 * Math.sin(0 * 0.9 + c);
   g.strokeStyle = "#40472f";
   g.lineWidth = 0.03;
   g.beginPath();
@@ -132,4 +141,6 @@ for (let c = 0; c < canes.length; c++) {
       g.fill();
     }
   }
+
+  });
 }

@@ -56,39 +56,6 @@ for (let i = 0; i < 9; i++) {
   g.ellipse(tx, ty - 6, 5 + e.rnd() * 4, 7 + e.rnd() * 4, 0, 0, 7);
   g.fill();
 }
-if (b > 0.01) {
-  const bx = CX - 2,
-    by = CY - 30;
-  for (let i = 0; i < 2; i++) {
-    const a = (e.t * 0.22 + i / 2) % 1;
-    const r = 6 + a * 60;
-    const al = b * 0.22 * (1 - a) * Math.min(1, a * 6);
-    const rg = g.createRadialGradient(bx, by, r * 0.7, bx, by, r);
-    rg.addColorStop(0, "rgba(250,240,220,0)");
-    rg.addColorStop(0.75, "rgba(250,240,220," + al + ")");
-    rg.addColorStop(1, "rgba(250,240,220,0)");
-    g.fillStyle = rg;
-    g.beginPath();
-    g.arc(bx, by, r, 0, 7);
-    g.fill();
-  }
-  g.fillStyle = "rgba(120,124,112," + Math.min(1, b * 1.5) * 0.9 + ")";
-  for (let i = 0; i < 7; i++) {
-    const ph = i * 0.9;
-    const ang = e.t * 0.25 + ph;
-    const rad = 14 + 6 * Math.sin(i * 1.7);
-    const x = bx + Math.cos(ang) * rad * (1 + i * 0.1),
-      y = by - 12 - b * 18 - Math.sin(ang) * rad * 0.35 - i * 1.5;
-    const w = Math.sin(e.t * 6 + i * 2);
-    g.beginPath();
-    g.moveTo(x - 3, y - 1.6 * w);
-    g.quadraticCurveTo(x - 1.2, y - 0.5, x, y + 0.6);
-    g.quadraticCurveTo(x + 1.2, y - 0.5, x + 3, y - 1.6 * w);
-    g.quadraticCurveTo(x + 1.2, y + 0.4, x, y + 1.2);
-    g.quadraticCurveTo(x - 1.2, y + 0.4, x - 3, y - 1.6 * w);
-    g.fill();
-  }
-}
 g.fillStyle = "#b0b6a7";
 g.beginPath();
 g.moveTo(-1700, 40);
@@ -96,3 +63,23 @@ for (let x = -1700; x <= 1700; x += 20) g.lineTo(x, -R2(x));
 g.lineTo(1700, 40);
 g.closePath();
 g.fill();
+// the bell (far_hills.animate.js: `bell`): two soft rings spreading from the belfry, and a flock of birds rising and
+// wheeling over it — layers; the belfry's point `belfry` (the children look round to it)
+const BX = CX - 2, BY = CY - 30;
+e.at(BX, BY, 'belfry');
+for (let i = 0; i < 2; i++) e.layer('ring' + i, { pivot: [BX, BY], box: [BX - 70, BY - 70, BX + 70, BY + 70] }, q => {
+  const rg = q.createRadialGradient(BX, BY, 46, BX, BY, 66);
+  rg.addColorStop(0, 'rgba(250,240,220,0)');
+  rg.addColorStop(0.75, 'rgba(250,240,220,0.22)');
+  rg.addColorStop(1, 'rgba(250,240,220,0)');
+  q.fillStyle = rg;
+  q.beginPath(); q.arc(BX, BY, 66, 0, 7); q.fill();
+});
+for (let i = 0; i < 7; i++) e.layer('bird' + i, { pivot: [BX, BY - 12], box: [BX - 4, BY - 16, BX + 4, BY - 8] }, q => {
+  const x = BX, y = BY - 12;
+  q.fillStyle = 'rgba(120,124,112,0.9)';
+  q.beginPath();
+  q.moveTo(x - 3, y - 1.2); q.quadraticCurveTo(x - 1.2, y - 0.5, x, y + 0.6); q.quadraticCurveTo(x + 1.2, y - 0.5, x + 3, y - 1.2);
+  q.quadraticCurveTo(x + 1.2, y + 0.4, x, y + 1.2); q.quadraticCurveTo(x - 1.2, y + 0.4, x - 3, y - 1.2);
+  q.fill();
+});

@@ -4,7 +4,7 @@ const D = 19,
   N = 260;
 const S = e.state || {};
 const ov = S.overgrowth ?? 0.6;
-const s = S.sun ?? 0.2;
+const s = 0;
 const pal = ["#6f7b55", "#7a865d", "#66724e", "#838d63"],
   dry = ["#9d9569", "#a8a074"];
 const C = [];
@@ -40,8 +40,8 @@ for (const c of C) {
     const l =
       ((x - cx) / k) * 1.2 +
       (e.rnd() - 0.5) * 0.3 +
-      0.08 * Math.sin(e.t * 0.42 + ph + j * 0.2) +
-      0.03 * Math.sin(e.t * 1.1 + ph);
+      0.08 * Math.sin(0 * 0.42 + ph + j * 0.2) +
+      0.03 * Math.sin(0 * 1.1 + ph);
     g.fillStyle = e.rnd() < 0.16 ? dry[j % 2] : pal[Math.floor(e.rnd() * 4)];
     const w = 0.011 * k;
     g.beginPath();
@@ -52,7 +52,7 @@ for (const c of C) {
   }
   if (r5 > 0.972) {
     const h = H * 1.5 + 0.1 * k;
-    const sw = 0.04 * k * Math.sin(e.t * 0.5 + ph);
+    const sw = 0.04 * k * Math.sin(0 * 0.5 + ph);
     g.strokeStyle = "rgba(110,122,84,0.9)";
     g.lineWidth = 0.008 * k;
     g.beginPath();

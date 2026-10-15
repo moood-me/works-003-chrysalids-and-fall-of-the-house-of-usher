@@ -107,6 +107,7 @@ chin, held, loosed — with the part `bow`), `mount` (once: down into a high sea
 a child up high before them — into a pannier), `pull_out` (once: crouching at an edge, both hands down and drawn back
 toward the chest — pulling someone out of the water).
 `throw_back` (once: turns and flings something back over the right shoulder, the arm high), `rake` (a loop: bent
-forward, both hands low drawing toward the body — raking hay, with the part `rake`), `aim_rifle` (a loop: standing, both
-arms straight out before the chest — a gun along them, the part `gun`), `kneel_aim` (a loop: down on the right knee, a gun
-at the shoulder).
+forward, both hands low drawing toward the body — raking hay, with the part `rake`), `aim_rifle` (a loop: standing, the
+right hand at the shoulder, the left forward, the head down to the sights — the part `gun`), `kneel_aim` (a loop: down on the right knee, a gun
+at the shoulder). `swim` (a loop: in the water to the chest, the arms sweeping out
+in a breaststroke, walking forward on the bottom — Kimodo makes no swimming; under the water's surface it reads as it).

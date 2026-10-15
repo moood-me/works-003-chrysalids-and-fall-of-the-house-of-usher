@@ -1,26 +1,23 @@
-const dk = Math.max(0, Math.min(1, typeof e.state.dusk === "number" ? e.state.dusk : 0)),
-  t = e.t;
-const mix = (a, b) => Math.round(a + (b - a) * dk);
-let gr = g.createLinearGradient(0, -0.35, 0, 0.6);
-gr.addColorStop(0, "rgb(" + mix(26, 8) + "," + mix(34, 10) + "," + mix(54, 18) + ")");
-gr.addColorStop(0.6, "rgb(" + mix(58, 16) + "," + mix(76, 20) + "," + mix(108, 34) + ")");
-gr.addColorStop(1, "rgb(" + mix(112, 22) + "," + mix(110, 28) + "," + mix(128, 44) + ")");
+// What is seen of the sky through the window: the evening, pale low over the fields — and the night over it (a layer
+// its animate brings in as `dusk` grows), a few stars
+const A = e.aspect;
+const gr = g.createLinearGradient(0, -0.35, 0, 0.6);
+gr.addColorStop(0, '#4a5a7a');
+gr.addColorStop(0.6, '#7c8aa6');
+gr.addColorStop(1, '#c4b8b0');
 g.fillStyle = gr;
-g.fillRect(-0.3, -0.35, e.aspect + 0.6, 1.6);
-g.fillStyle = "rgba(220,225,235," + dk * (0.55 + 0.25 * Math.sin(t * 1.3)) + ")";
-for (let i = 0; i < 16; i++) {
-  const x = e.rnd() * (e.aspect + 0.6) - 0.3,
-    y = -0.3 + e.rnd() * 0.5;
-  g.beginPath();
-  g.arc(x, y, 0.0012 + e.rnd() * 0.001, 0, 7);
-  g.fill();
-}
-g.fillStyle = "rgba(" + mix(70, 20) + "," + mix(66, 24) + "," + mix(80, 34) + ",0.6)";
-for (let i = 0; i < 5; i++) {
-  const x = e.rnd() * e.aspect,
-    y = 0.05 + e.rnd() * 0.25,
-    w = 0.2 + e.rnd() * 0.3;
-  g.beginPath();
-  g.ellipse(x + 0.01 * Math.sin(t * 0.05 + i), y, w, 0.012, 0, 0, 7);
-  g.fill();
-}
+g.fillRect(-0.3, -0.35, A + 0.6, 1.6);
+e.layer('night', { box: [-0.3, -0.35, A + 0.3, 1.25] }, q => {
+  const ng = q.createLinearGradient(0, -0.35, 0, 0.6);
+  ng.addColorStop(0, '#0e1528');
+  ng.addColorStop(0.6, '#1c2742');
+  ng.addColorStop(1, '#2e3a56');
+  q.fillStyle = ng;
+  q.fillRect(-0.3, -0.35, A + 0.6, 1.6);
+  q.fillStyle = '#dfe5f2';
+  for (let i = 0; i < 24; i++) {
+    q.beginPath();
+    q.arc(e.rnd() * (A + 0.6) - 0.3, -0.3 + e.rnd() * 0.6, 0.0015 + e.rnd() * 0.0012, 0, 7);
+    q.fill();
+  }
+});

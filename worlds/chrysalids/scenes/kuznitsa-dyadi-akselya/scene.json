@@ -104,12 +104,12 @@
     },
     {
       "id": "glare",
-      "across": -5.5,
-      "distance": 6.1,
-      "elevation": 1.5,
-      "color": "#ffc46a",
-      "strength": 1.1,
-      "reach": 2.6,
+      "across": -5.6,
+      "distance": 5.7,
+      "elevation": 1.6,
+      "color": "#ffd08a",
+      "strength": 2.6,
+      "reach": 3.2,
       "on": "st_glare"
     }
   ],

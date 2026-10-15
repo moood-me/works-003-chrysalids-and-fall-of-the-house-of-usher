@@ -101,7 +101,7 @@ function lamp() {
   P(who).look([lx, lz, 1.0]);
 }
 for (const k of ['st_on', 'st_who', 'st_drop']) s.on('change', k, man);
-for (const k of ['st_lamp', 'st_lx', 'st_lz']) s.on('change', k, lamp);
+for (const k of ['st_lamp', 'st_lx', 'st_lz']) { s.on('change', k, lamp); s.on('move', k, lamp); }
 for (const k of ['st_a', 'st_d']) s.on('move', k, lamp);
 // the two called out of the dark (st_more 1: they come; 0: not there): along the yard from the right, a lantern each,
 // held up a little as they stop and look in

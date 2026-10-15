@@ -1,12 +1,788 @@
 {
-  "light": {
-    "haze": 0.22,
-    "tint": "#2a1c24",
-    "grain": 0.28,
-    "vignette": 0.55,
-    "hazeColor": "#2a2530",
-    "tintStrength": 0.08
+  "engine": 3,
+  "title": "Сожжение поля",
+  "horizon": 0.55,
+  "camera": {
+    "mode": "picture"
   },
+  "light": {
+    "ambient": 0.55,
+    "ambientColor": "#7c88b8",
+    "bounce": 0.5,
+    "haze": 0.22,
+    "hazeColor": "#3a3a52",
+    "hazeGlow": 0.8,
+    "shafts": 0.3,
+    "vignette": 0.45,
+    "grain": 0.2,
+    "saturation": 0.85,
+    "looks": {
+      "dawn": {
+        "ambient": 0.85,
+        "ambientColor": "#c8c4c4",
+        "hazeColor": "#9a948e",
+        "saturation": 0.9
+      },
+      "morning": {
+        "ambient": 0.95,
+        "ambientColor": "#d0ccc8",
+        "hazeColor": "#a8a49e",
+        "haze": 0.3,
+        "saturation": 0.75
+      }
+    }
+  },
+  "lights": [
+    {
+      "id": "torch",
+      "at": "jo#flame",
+      "color": "#ffa45a",
+      "strength": 1.6,
+      "reach": 8,
+      "flicker": 0.3,
+      "glow": 0.4,
+      "on": "jo_torch"
+    },
+    {
+      "id": "lantern",
+      "at": "in#hand_r",
+      "color": "#ffc878",
+      "strength": 1.0,
+      "reach": 5,
+      "flicker": 0.1,
+      "glow": 0.25
+    },
+    {
+      "id": "fire_r",
+      "across": 2,
+      "distance": 11,
+      "elevation": 1.2,
+      "place": {
+        "across": "front_r"
+      },
+      "color": "#ff8a40",
+      "strength": 2.4,
+      "reach": 22,
+      "flicker": 0.35,
+      "on": "fire_light"
+    },
+    {
+      "id": "fire_l",
+      "across": 0,
+      "distance": 10.5,
+      "elevation": 1.0,
+      "place": {
+        "across": "front_l"
+      },
+      "color": "#ff8a40",
+      "strength": 1.6,
+      "reach": 14,
+      "flicker": 0.35,
+      "on": "fire_light"
+    }
+  ],
+  "state": {
+    "beat": null,
+    "fade": 0,
+    "dawn": 0.22,
+    "morning": 0,
+    "fire": 0,
+    "ignite": 0,
+    "ash": 0,
+    "smoke": 0,
+    "jo_torch": 0,
+    "turned": 0,
+    "in_ear": false,
+    "in_toss": 0,
+    "front_r": 0.6,
+    "front_l": 0.4,
+    "fire_light": 0,
+    "jo_with": [
+      "torch"
+    ],
+    "jo_wear": {
+      "hat": "hat"
+    },
+    "in_with": [
+      "lantern"
+    ],
+    "in_wear": {
+      "hat": "hat"
+    }
+  },
+  "states": {
+    "beat": {
+      "type": "string",
+      "means": "кусок фильма (модуль beats): dawn → ear → raise → rise | kneel_late → light → fire → hymn → hymn_loud | hymn_hide → burn → morning → stalk_stay | stalk_go"
+    },
+    "fade": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "затемнение"
+    },
+    "dawn": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "рассвет: 0.22 — синь перед зарёй … 0.82 — серое утро (взгляд света dawn, небо)"
+    },
+    "morning": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "серое утро после (взгляд света morning)"
+    },
+    "fire": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "огонь на поле: как сильно горит"
+    },
+    "ignite": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "фронт огня: 50·ignite м от кромки в обе стороны (влево — до дороги); дальние ряды позже"
+    },
+    "ash": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "пепел: 60·ash м за огнём"
+    },
+    "smoke": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "дым над полем"
+    },
+    "jo_torch": {
+      "range": [
+        0,
+        1.5
+      ],
+      "smooth": true,
+      "means": "факел отца горит (1.5 — вспышка)"
+    },
+    "turned": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "игра («Петь со всеми»): сколько передних заметили, что Дэвид не поёт — шестеро оборачиваются по одному, каждый со своим порогом и задержкой"
+    },
+    "in_ear": {
+      "type": "boolean",
+      "means": "колос в руке Инспектора"
+    },
+    "in_toss": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "колос брошен: летит дугой в поле"
+    },
+    "front_r": {
+      "type": "number",
+      "means": "где правый фронт огня (сцена ставит сама по ignite)"
+    },
+    "front_l": {
+      "type": "number",
+      "means": "где левый фронт огня"
+    },
+    "fire_light": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "как сильно огонь освещает мир (сцена ставит сама по fire, ignite, ash)"
+    }
+  },
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Небо"
+    },
+    {
+      "id": "far",
+      "name": "Дальние холмы и Вакнук",
+      "x": 0.5,
+      "distance": 700,
+      "height": 30,
+      "box": [
+        -1400,
+        -70,
+        1400,
+        3
+      ]
+    },
+    {
+      "id": "ground",
+      "name": "Земля, поля и дорога",
+      "plane": true,
+      "x": 0.5,
+      "distance": 400,
+      "width": 1600,
+      "depth": 800
+    },
+    {
+      "id": "ash",
+      "name": "Пепелище",
+      "plane": true,
+      "across": 13.5,
+      "distance": 19.7,
+      "elevation": 0.02,
+      "width": 33,
+      "depth": 21,
+      "uniforms": {
+        "ash": 0,
+        "ignite": 0,
+        "fire": 0
+      }
+    },
+    {
+      "id": "smoke",
+      "name": "Дым над полем",
+      "across": 8,
+      "distance": 18,
+      "elevation": 1.0,
+      "particles": {
+        "kind": "smoke",
+        "source": [
+          24,
+          12,
+          1
+        ],
+        "rate": 4,
+        "amount": "smoke",
+        "size": [
+          2.0,
+          9.0
+        ],
+        "life": [
+          8,
+          14
+        ],
+        "color": "#8a8480",
+        "opacity": 0.4,
+        "shadow": 0.5
+      }
+    },
+    {
+      "id": "embers",
+      "name": "Искры над огнём",
+      "across": 8,
+      "distance": 14,
+      "elevation": 0.5,
+      "particles": {
+        "kind": "embers",
+        "source": [
+          24,
+          8,
+          1
+        ],
+        "rate": 30,
+        "amount": "fire_light"
+      }
+    },
+    {
+      "id": "flames_r",
+      "name": "Огонь на кромке, справа",
+      "across": 1,
+      "distance": 11,
+      "place": {
+        "across": "front_r"
+      },
+      "particles": {
+        "kind": "fire",
+        "source": [
+          1.2,
+          3.0,
+          0.1
+        ],
+        "size": [
+          0.8,
+          0.2
+        ],
+        "amount": "fire_light"
+      }
+    },
+    {
+      "id": "flames_l",
+      "name": "Огонь на кромке, слева",
+      "across": 0,
+      "distance": 10.5,
+      "place": {
+        "across": "front_l"
+      },
+      "particles": {
+        "kind": "fire",
+        "source": [
+          0.8,
+          2.0,
+          0.1
+        ],
+        "size": [
+          0.7,
+          0.2
+        ],
+        "amount": "fire_light"
+      }
+    },
+    {
+      "id": "wheat60",
+      "name": "Поле, ряд 60 м",
+      "x": 0.5,
+      "distance": 60,
+      "height": 3,
+      "box": [
+        -78.5,
+        -4.5,
+        78.5,
+        0.4
+      ],
+      "uniforms": {
+        "rd": 60,
+        "ignite": 0,
+        "ash": 0,
+        "fire": 0
+      }
+    },
+    {
+      "id": "wheat40",
+      "name": "Поле, ряд 40 м",
+      "x": 0.5,
+      "distance": 40,
+      "height": 3,
+      "box": [
+        -53.5,
+        -4.5,
+        53.5,
+        0.4
+      ],
+      "uniforms": {
+        "rd": 40,
+        "ignite": 0,
+        "ash": 0,
+        "fire": 0
+      }
+    },
+    {
+      "id": "wheat29",
+      "name": "Поле, ряд 29 м",
+      "x": 0.5,
+      "distance": 29,
+      "height": 3,
+      "box": [
+        -39.75,
+        -4.5,
+        39.75,
+        0.4
+      ],
+      "uniforms": {
+        "rd": 29,
+        "ignite": 0,
+        "ash": 0,
+        "fire": 0
+      }
+    },
+    {
+      "id": "wheat22",
+      "name": "Поле, ряд 22 м",
+      "x": 0.5,
+      "distance": 22,
+      "height": 3,
+      "box": [
+        -31.0,
+        -4.5,
+        31.0,
+        0.4
+      ],
+      "uniforms": {
+        "rd": 22,
+        "ignite": 0,
+        "ash": 0,
+        "fire": 0
+      }
+    },
+    {
+      "id": "wheat17",
+      "name": "Поле, ряд 17.5 м",
+      "x": 0.5,
+      "distance": 17.5,
+      "height": 3,
+      "box": [
+        -25.375,
+        -4.5,
+        25.375,
+        0.4
+      ],
+      "uniforms": {
+        "rd": 17.5,
+        "ignite": 0,
+        "ash": 0,
+        "fire": 0
+      }
+    },
+    {
+      "id": "wheat14",
+      "name": "Поле, ряд 14 м",
+      "x": 0.5,
+      "distance": 14,
+      "height": 3,
+      "box": [
+        -21.0,
+        -5.5,
+        21.0,
+        0.4
+      ],
+      "uniforms": {
+        "rd": 14,
+        "ignite": 0,
+        "ash": 0,
+        "fire": 0
+      }
+    },
+    {
+      "id": "wheat11",
+      "name": "Поле, ряд 11.5 м",
+      "x": 0.5,
+      "distance": 11.5,
+      "height": 3,
+      "box": [
+        -17.875,
+        -5.5,
+        17.875,
+        0.4
+      ],
+      "uniforms": {
+        "rd": 11.5,
+        "ignite": 0,
+        "ash": 0,
+        "fire": 0
+      }
+    },
+    {
+      "id": "wheat9",
+      "name": "Поле, ряд 9.5 м",
+      "x": 0.5,
+      "distance": 9.5,
+      "height": 3,
+      "box": [
+        -15.375,
+        -5.5,
+        15.375,
+        0.4
+      ],
+      "uniforms": {
+        "rd": 9.5,
+        "ignite": 0,
+        "ash": 0,
+        "fire": 0
+      }
+    },
+    {
+      "id": "stalk",
+      "name": "Уцелевший колос",
+      "across": -2.72,
+      "distance": 9.45,
+      "height": 2.2,
+      "box": [
+        -0.4,
+        -2.6,
+        0.7,
+        0.1
+      ]
+    },
+    {
+      "id": "torch_fire",
+      "name": "Огонь факела",
+      "particles": {
+        "kind": "fire",
+        "at": "jo#flame",
+        "size": [
+          0.18,
+          0.05
+        ],
+        "amount": "jo_torch"
+      }
+    },
+    {
+      "id": "torch_smoke",
+      "name": "Дым факела",
+      "particles": {
+        "kind": "smoke",
+        "at": "jo#flame",
+        "rate": 2,
+        "size": [
+          0.1,
+          0.8
+        ],
+        "opacity": 0.25,
+        "amount": "jo_torch"
+      }
+    },
+    {
+      "id": "ear",
+      "name": "Колос в руке Инспектора",
+      "across": 0.4,
+      "distance": 7.0,
+      "height": 2,
+      "box": [
+        -30,
+        -12,
+        30,
+        3
+      ]
+    },
+    {
+      "id": "jo",
+      "name": "Джозеф Строрм, отец",
+      "person": {
+        "cast": "cast",
+        "who": "joseph",
+        "turn": 180
+      },
+      "across": -0.5,
+      "distance": 6.8,
+      "place": {
+        "across": "jo_a",
+        "distance": "jo_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "in",
+      "name": "Инспектор",
+      "person": {
+        "cast": "cast",
+        "who": "inspector",
+        "turn": 180
+      },
+      "across": 1.35,
+      "distance": 7.0,
+      "place": {
+        "across": "in_a",
+        "distance": "in_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "em",
+      "name": "Эмили, мать Дэвида",
+      "person": {
+        "cast": "cast",
+        "who": "emily",
+        "turn": 150
+      },
+      "across": -1.6,
+      "distance": 4.95,
+      "place": {
+        "across": "em_a",
+        "distance": "em_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "dv",
+      "name": "Дэвид",
+      "person": {
+        "cast": "cast",
+        "who": "david",
+        "turn": 150
+      },
+      "across": -1.05,
+      "distance": 4.55,
+      "place": {
+        "across": "dv_a",
+        "distance": "dv_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "p0",
+      "name": "Община: мужчина",
+      "person": {
+        "cast": "cast",
+        "who": "man_a",
+        "turn": 140
+      },
+      "across": -5.0,
+      "distance": 7.6,
+      "place": {
+        "across": "p0_a",
+        "distance": "p0_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "p1",
+      "name": "Община: женщина",
+      "person": {
+        "cast": "cast",
+        "who": "woman_a",
+        "turn": 145
+      },
+      "across": -4.3,
+      "distance": 7.0,
+      "place": {
+        "across": "p1_a",
+        "distance": "p1_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "p2",
+      "name": "Община: старик",
+      "person": {
+        "cast": "cast",
+        "who": "old_man",
+        "turn": 135
+      },
+      "across": -5.7,
+      "distance": 6.4,
+      "place": {
+        "across": "p2_a",
+        "distance": "p2_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "p3",
+      "name": "Община: женщина",
+      "person": {
+        "cast": "cast",
+        "who": "woman_b",
+        "turn": 150
+      },
+      "across": -3.6,
+      "distance": 6.6,
+      "place": {
+        "across": "p3_a",
+        "distance": "p3_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "p4",
+      "name": "Община: работник",
+      "person": {
+        "cast": "cast",
+        "who": "farmhand",
+        "turn": 140
+      },
+      "across": -4.8,
+      "distance": 5.6,
+      "place": {
+        "across": "p4_a",
+        "distance": "p4_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "p5",
+      "name": "Община: старуха",
+      "person": {
+        "cast": "cast",
+        "who": "old_woman",
+        "turn": 130
+      },
+      "across": -6.0,
+      "distance": 4.8,
+      "place": {
+        "across": "p5_a",
+        "distance": "p5_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "p6",
+      "name": "Община: девочка",
+      "person": {
+        "cast": "cast",
+        "who": "girl",
+        "turn": 155
+      },
+      "across": -2.9,
+      "distance": 7.7,
+      "place": {
+        "across": "p6_a",
+        "distance": "p6_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "p7",
+      "name": "Община: мужчина",
+      "person": {
+        "cast": "cast",
+        "who": "man_b",
+        "turn": 212
+      },
+      "across": 3.4,
+      "distance": 7.8,
+      "place": {
+        "across": "p7_a",
+        "distance": "p7_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "p8",
+      "name": "Община: женщина",
+      "person": {
+        "cast": "cast",
+        "who": "woman_c",
+        "turn": 215
+      },
+      "across": 4.3,
+      "distance": 7.1,
+      "place": {
+        "across": "p8_a",
+        "distance": "p8_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "p9",
+      "name": "Община: мальчик",
+      "person": {
+        "cast": "cast",
+        "who": "boy",
+        "turn": 205
+      },
+      "across": 2.7,
+      "distance": 6.8,
+      "place": {
+        "across": "p9_a",
+        "distance": "p9_d"
+      },
+      "shadow": true
+    }
+  ],
+  "modules": [
+    "cast",
+    "beats"
+  ],
   "music": {
     "bpm": 60,
     "density": 0.25,
@@ -93,472 +869,5 @@
       }
     ],
     "brightness": 0.25
-  },
-  "state": {
-    "beat": "film"
-  },
-  "title": "Сожжение поля",
-  "camera": {
-    "mode": "picture"
-  },
-  "caption": "",
-  "horizon": 0.55,
-  "objects": [
-    {
-      "id": "sky",
-      "sky": true,
-      "name": "Небо"
-    },
-    {
-      "x": 0.5,
-      "id": "far",
-      "box": [
-        -1400,
-        -70,
-        1400,
-        3
-      ],
-      "name": "Дальние холмы и Вакнук",
-      "height": 30,
-      "distance": 700
-    },
-    {
-      "x": 0.5,
-      "id": "ground",
-      "name": "Земля, поля и дорога",
-      "depth": 800,
-      "plane": true,
-      "width": 1600,
-      "distance": 400
-    },
-    {
-      "x": 0.5,
-      "id": "smoke",
-      "box": [
-        -140,
-        -125,
-        80,
-        3
-      ],
-      "name": "Дым",
-      "height": 60,
-      "distance": 35
-    },
-    {
-      "x": 0.5,
-      "id": "wheat60",
-      "box": [
-        -78.5,
-        -4.5,
-        78.5,
-        0.4
-      ],
-      "name": "Поле, ряд 60 м",
-      "height": 3,
-      "distance": 60
-    },
-    {
-      "x": 0.5,
-      "id": "wheat40",
-      "box": [
-        -53.5,
-        -4.5,
-        53.5,
-        0.4
-      ],
-      "name": "Поле, ряд 40 м",
-      "height": 3,
-      "distance": 40
-    },
-    {
-      "x": 0.5,
-      "id": "wheat29",
-      "box": [
-        -39.75,
-        -4.5,
-        39.75,
-        0.4
-      ],
-      "name": "Поле, ряд 29 м",
-      "height": 3,
-      "distance": 29
-    },
-    {
-      "x": 0.5,
-      "id": "wheat22",
-      "box": [
-        -31.0,
-        -4.5,
-        31.0,
-        0.4
-      ],
-      "name": "Поле, ряд 22 м",
-      "height": 3,
-      "distance": 22
-    },
-    {
-      "x": 0.5,
-      "id": "wheat17.5",
-      "box": [
-        -25.375,
-        -4.5,
-        25.375,
-        0.4
-      ],
-      "name": "Поле, ряд 17.5 м",
-      "height": 3,
-      "distance": 17.5
-    },
-    {
-      "x": 0.5,
-      "id": "wheat14",
-      "box": [
-        -21.0,
-        -5.5,
-        21.0,
-        0.4
-      ],
-      "name": "Поле, ряд 14 м",
-      "height": 3,
-      "distance": 14
-    },
-    {
-      "x": 0.5,
-      "id": "wheat11.5",
-      "box": [
-        -17.875,
-        -5.5,
-        17.875,
-        0.4
-      ],
-      "name": "Поле, ряд 11.5 м",
-      "height": 3,
-      "distance": 11.5
-    },
-    {
-      "x": 0.5,
-      "id": "wheat_front",
-      "box": [
-        -15.375,
-        -5.5,
-        15.375,
-        0.4
-      ],
-      "name": "Неправильная пшеница, передний край",
-      "height": 3,
-      "distance": 9.5
-    },
-    {
-      "x": 0.5,
-      "id": "embers",
-      "box": [
-        -30,
-        -16,
-        40,
-        1
-      ],
-      "name": "Искры",
-      "height": 15,
-      "distance": 14
-    },
-    {
-      "id": "jo",
-      "box": [
-        -1.3,
-        -2.9,
-        1.3,
-        0.35
-      ],
-      "name": "Джозеф Строрм, отец",
-      "place": {
-        "across": "jo_a",
-        "distance": "jo_d"
-      },
-      "across": -0.5,
-      "height": 1.9,
-      "distance": 6.8,
-      "after": [
-        "in"
-      ]
-    },
-    {
-      "id": "in",
-      "box": [
-        -1.6,
-        -2.9,
-        1.6,
-        0.35
-      ],
-      "name": "Инспектор",
-      "place": {
-        "across": "in_a",
-        "distance": "in_d"
-      },
-      "across": 1.35,
-      "height": 1.85,
-      "distance": 7.0
-    },
-    {
-      "id": "em",
-      "box": [
-        -1.1,
-        -2.3,
-        1.1,
-        0.35
-      ],
-      "name": "Эмили, мать Дэвида",
-      "place": {
-        "across": "em_a",
-        "distance": "em_d"
-      },
-      "across": -1.6,
-      "height": 1.7,
-      "distance": 4.95
-    },
-    {
-      "id": "dv",
-      "box": [
-        -0.9,
-        -1.9,
-        0.9,
-        0.3
-      ],
-      "name": "Дэвид",
-      "place": {
-        "across": "dv_a",
-        "distance": "dv_d"
-      },
-      "across": -1.05,
-      "height": 1.35,
-      "distance": 4.55,
-      "after": [
-        "em"
-      ]
-    },
-    {
-      "id": "p0",
-      "box": [
-        -1.1,
-        -2.5,
-        1.1,
-        0.35
-      ],
-      "name": "Община: мужчина",
-      "place": {
-        "across": "p0_a",
-        "distance": "p0_d"
-      },
-      "across": -5.0,
-      "height": 1.8,
-      "distance": 7.6
-    },
-    {
-      "id": "p1",
-      "box": [
-        -1.1,
-        -2.5,
-        1.1,
-        0.35
-      ],
-      "name": "Община: женщина",
-      "place": {
-        "across": "p1_a",
-        "distance": "p1_d"
-      },
-      "across": -4.3,
-      "height": 1.8,
-      "distance": 7.0
-    },
-    {
-      "id": "p2",
-      "box": [
-        -1.1,
-        -2.5,
-        1.1,
-        0.35
-      ],
-      "name": "Община: старик",
-      "place": {
-        "across": "p2_a",
-        "distance": "p2_d"
-      },
-      "across": -5.7,
-      "height": 1.8,
-      "distance": 6.4
-    },
-    {
-      "id": "p3",
-      "box": [
-        -1.1,
-        -2.5,
-        1.1,
-        0.35
-      ],
-      "name": "Община: женщина",
-      "place": {
-        "across": "p3_a",
-        "distance": "p3_d"
-      },
-      "across": -3.6,
-      "height": 1.8,
-      "distance": 6.6
-    },
-    {
-      "id": "p4",
-      "box": [
-        -1.1,
-        -2.5,
-        1.1,
-        0.35
-      ],
-      "name": "Община: работник",
-      "place": {
-        "across": "p4_a",
-        "distance": "p4_d"
-      },
-      "across": -4.8,
-      "height": 1.8,
-      "distance": 5.6
-    },
-    {
-      "id": "p5",
-      "box": [
-        -1.1,
-        -2.5,
-        1.1,
-        0.35
-      ],
-      "name": "Община: старуха",
-      "place": {
-        "across": "p5_a",
-        "distance": "p5_d"
-      },
-      "across": -6.0,
-      "height": 1.8,
-      "distance": 4.8
-    },
-    {
-      "id": "p6",
-      "box": [
-        -1.1,
-        -2.5,
-        1.1,
-        0.35
-      ],
-      "name": "Община: девочка",
-      "place": {
-        "across": "p6_a",
-        "distance": "p6_d"
-      },
-      "across": -2.9,
-      "height": 1.8,
-      "distance": 7.7
-    },
-    {
-      "id": "p7",
-      "box": [
-        -1.1,
-        -2.5,
-        1.1,
-        0.35
-      ],
-      "name": "Община: мужчина",
-      "place": {
-        "across": "p7_a",
-        "distance": "p7_d"
-      },
-      "across": 3.4,
-      "height": 1.8,
-      "distance": 7.8
-    },
-    {
-      "id": "p8",
-      "box": [
-        -1.1,
-        -2.5,
-        1.1,
-        0.35
-      ],
-      "name": "Община: женщина",
-      "place": {
-        "across": "p8_a",
-        "distance": "p8_d"
-      },
-      "across": 4.3,
-      "height": 1.8,
-      "distance": 7.1
-    },
-    {
-      "id": "p9",
-      "box": [
-        -1.1,
-        -2.5,
-        1.1,
-        0.35
-      ],
-      "name": "Община: мальчик",
-      "place": {
-        "across": "p9_a",
-        "distance": "p9_d"
-      },
-      "across": 2.7,
-      "height": 1.8,
-      "distance": 6.8
-    },
-    {
-      "id": "p10",
-      "box": [
-        -1.1,
-        -2.5,
-        1.1,
-        0.35
-      ],
-      "name": "Община: работник",
-      "place": {
-        "across": "p10_a",
-        "distance": "p10_d"
-      },
-      "across": 5.2,
-      "height": 1.8,
-      "distance": 6.2
-    },
-    {
-      "id": "p11",
-      "box": [
-        -1.1,
-        -2.5,
-        1.1,
-        0.35
-      ],
-      "name": "Община: старуха",
-      "place": {
-        "across": "p11_a",
-        "distance": "p11_d"
-      },
-      "across": 3.7,
-      "height": 1.8,
-      "distance": 5.5
-    },
-    {
-      "id": "p12",
-      "box": [
-        -1.1,
-        -2.5,
-        1.1,
-        0.35
-      ],
-      "name": "Община: мужчина",
-      "place": {
-        "across": "p12_a",
-        "distance": "p12_d"
-      },
-      "across": 4.7,
-      "height": 1.8,
-      "distance": 4.8
-    }
-  ],
-  "modules": [
-    "chrysalids",
-    "film"
-  ]
+  }
 }

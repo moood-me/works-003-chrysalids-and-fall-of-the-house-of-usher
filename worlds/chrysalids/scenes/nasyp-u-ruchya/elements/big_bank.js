@@ -1,55 +1,9 @@
-function mix(a, b, t) {
-  t = Math.max(0, Math.min(1, t));
-  const p = parseInt(a.slice(1), 16),
-    q = parseInt(b.slice(1), 16);
-  return (
-    "rgb(" +
-    ((((p >> 16) & 255) * (1 - t) + ((q >> 16) & 255) * t) | 0) +
-    "," +
-    ((((p >> 8) & 255) * (1 - t) + ((q >> 8) & 255) * t) | 0) +
-    "," +
-    (((p & 255) * (1 - t) + (q & 255) * t) | 0) +
-    ")"
-  );
-}
-const S = e.state,
-  ev = 1 - (S.sun ?? 1),
-  T = e.t;
-const lerp = (a, b, t) => a + (b - a) * t,
-  clamp = (v, a, b) => Math.max(a, Math.min(b, v));
-// the action plane (6 m away): the big bank's profile, metres above the sand, x = metres across
-const TOPX = -3.6,
-  TOPH = 2.2,
-  LIP = -1.2,
-  LIPH = 0.48,
-  HC = -0.1,
-  HW = 0.85;
-function bankH(x) {
-  if (x <= TOPX) return TOPH + 0.05 * Math.sin(x * 1.3 + 1) + 0.03 * Math.sin(x * 3.1) + (x < -6 ? 0.08 * (-6 - x) : 0);
-  if (x <= LIP) {
-    const u = (LIP - x) / (LIP - TOPX);
-    return LIPH + (TOPH + 0.05 * Math.sin(TOPX * 1.3 + 1) + 0.03 * Math.sin(TOPX * 3.1) - LIPH) * Math.pow(u, 1.3);
-  }
-  if (x <= LIP + 0.26) {
-    const u = (x - LIP) / 0.26;
-    return LIPH * (1 - u * u * (3 - 2 * u));
-  }
-  if (Math.abs(x - HC) < HW) {
-    const q = Math.cos((Math.PI * (x - HC)) / (2 * HW));
-    return 0.16 * q * q;
-  }
-  return 0;
-}
-const SX = 1.3;
-// the big bank, seen across the stream: a grassy top on the left, its steep sandy face sloping down to the right
-// (the children's slide), a soft heap of sand at its foot; it is lit from behind, so its face is in soft shade
-const dk = mix("#56603b", "#585036", ev),
-  mid = mix("#6f7748", "#736846", ev),
-  sand = mix("#c2ad7c", "#cba574", ev),
-  sandD = mix("#97865f", "#9b7f5a", ev),
-  sandL = mix("#ddca98", "#e6bf88", ev),
-  lit = mix("#f1e4b2", "#f8ca92", ev);
-const top = (x) => -bankH(x);
+// the big bank, seen across the stream (onLand false: a picture of the land — relief.js lays its profile, lib.bankL):
+// a grassy top on the left, its steep sandy face sloping down to the right (the children's slide), a soft heap of sand
+// at its foot; lit from behind by the low sun, its face in soft shade, the light along its top
+const { TOPX, LIP, HC, HW, bankL } = e.lib;
+const top = x => -bankL(x);
+const dk = '#56603b', mid = '#6f7748', sand = '#c2ad7c', sandD = '#97865f', sandL = '#ddca98', lit = '#f1e4b2';
 function outline(x0, x1) {
   g.beginPath();
   g.moveTo(x0, 0.07);
@@ -59,7 +13,7 @@ function outline(x0, x1) {
 }
 // grassy body under the top
 outline(-14, 1.2);
-let gr = g.createLinearGradient(0, -2.6, 0, 0.1);
+const gr = g.createLinearGradient(0, -2.6, 0, 0.1);
 gr.addColorStop(0, mid);
 gr.addColorStop(1, dk);
 g.fillStyle = gr;
@@ -78,10 +32,10 @@ g.lineTo(1.3, 0.07);
 g.lineTo(1.3, -3);
 g.lineTo(TOPX - 0.35, -3);
 g.closePath();
-let sg = g.createLinearGradient(0, -2.4, 0, 0.1);
+const sg = g.createLinearGradient(0, -2.4, 0, 0.1);
 sg.addColorStop(0, sand);
 sg.addColorStop(0.6, sandD);
-sg.addColorStop(1, mix("#7f7552", "#82704f", ev));
+sg.addColorStop(1, '#7f7552');
 g.fillStyle = sg;
 g.fill();
 // light catching the slope's surface, fading down into the face
@@ -89,7 +43,7 @@ g.beginPath();
 for (let x = TOPX - 0.2; x <= LIP + 0.3; x += 0.04) g.lineTo(x, top(x));
 for (let x = LIP + 0.3; x >= TOPX - 0.2; x -= 0.04) g.lineTo(x, top(x) + 0.28);
 g.closePath();
-let lg = g.createLinearGradient(0, -2.2, 0, 0.4);
+const lg = g.createLinearGradient(0, -2.2, 0, 0.4);
 lg.addColorStop(0, sandL);
 lg.addColorStop(1, sand);
 g.globalAlpha = 0.8;
@@ -145,14 +99,14 @@ for (let i = 0; i < 30; i++) {
 g.restore();
 g.globalAlpha = 1;
 // overhang of turf at the lip of the top, with hanging roots
-g.fillStyle = mix("#4d5733", "#504a33", ev);
+g.fillStyle = '#4d5733';
 g.beginPath();
 g.moveTo(-14, top(-14));
 for (let x = -14; x <= TOPX + 0.15; x += 0.05) g.lineTo(x, top(x));
 for (let x = TOPX + 0.15; x >= -14; x -= 0.05) g.lineTo(x, top(x) + 0.12 + 0.03 * Math.sin(x * 7));
 g.closePath();
 g.fill();
-g.strokeStyle = mix("#3c3a28", "#3d3226", ev);
+g.strokeStyle = '#3c3a28';
 g.lineWidth = 0.01;
 for (let i = 0; i < 12; i++) {
   const x = TOPX - 1.6 + e.rnd() * 1.7,
@@ -177,12 +131,12 @@ g.globalAlpha = 1;
 g.beginPath();
 g.moveTo(LIP - 0.1, 0.07);
 for (let x = LIP - 0.1; x <= HC + HW + 0.1; x += 0.04) {
-  const h = x < LIP + 0.26 ? 0.02 : bankH(x);
+  const h = x < LIP + 0.26 ? 0.02 : bankL(x);
   g.lineTo(x, -h - 0.005);
 }
 g.lineTo(HC + HW + 0.1, 0.07);
 g.closePath();
-let hg = g.createLinearGradient(0, -0.22, 0, 0.08);
+const hg = g.createLinearGradient(0, -0.22, 0, 0.08);
 hg.addColorStop(0, lit);
 hg.addColorStop(0.3, sandL);
 hg.addColorStop(1, sandD);
@@ -190,7 +144,7 @@ g.fillStyle = hg;
 g.fill();
 for (let i = 0; i < 16; i++) {
   const x = HC - HW * 0.8 + e.rnd() * HW * 1.6,
-    y = -bankH(x) + 0.03 + e.rnd() * 0.08;
+    y = -bankL(x) + 0.03 + e.rnd() * 0.08;
   g.globalAlpha = 0.3;
   g.fillStyle = "#9c8a5e";
   g.beginPath();
@@ -199,7 +153,7 @@ for (let i = 0; i < 16; i++) {
 }
 // the far bank of the stream going on to the right: a low grassy edge
 g.globalAlpha = 1;
-g.fillStyle = mix("#5b6640", "#5c5440", ev);
+g.fillStyle = '#5b6640';
 const eg = (x) => -0.04 - 0.03 * Math.sin(x * 1.3) - Math.min(0.07, Math.max(0, (x - 1.9) * 0.1));
 g.beginPath();
 g.moveTo(1.0, 0.07);

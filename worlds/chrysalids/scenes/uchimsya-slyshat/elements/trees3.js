@@ -1,4 +1,4 @@
-var t = e.t;
+var t = 0;
 function tr(x, h, k) {
   var rx = h * 0.42,
     ry = h * 0.3,

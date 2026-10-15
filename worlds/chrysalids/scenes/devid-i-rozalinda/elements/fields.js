@@ -1,6 +1,6 @@
-g.fillStyle = "#6f5a5c";
+g.fillStyle = "#eac3c6";
 g.fillRect(-2000, -600, 4000, 1200);
-var cols = ["#76605f", "#6a5558", "#7b6461", "#655257"];
+var cols = ["#f8cecc", "#e1b9bf", "#ffd6d0", "#d7b3bd"];
 for (var i = 0; i < 220; i++) {
   var x = -2000 + e.rnd() * 4000,
     y = -600 + e.rnd() * 1200,

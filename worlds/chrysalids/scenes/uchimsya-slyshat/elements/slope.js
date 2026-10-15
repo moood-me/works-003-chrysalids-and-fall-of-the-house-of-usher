@@ -1,4 +1,4 @@
-var t = e.t;
+var t = 0;
 function hh(x) {
   return 6 + 6 / (1 + Math.exp((x - 2) / 7)) + 0.3 * Math.sin(x * 0.37 + 1) * (1 - Math.exp((-(x + 8) * (x + 8)) / 20));
 }

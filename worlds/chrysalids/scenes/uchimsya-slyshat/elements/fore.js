@@ -1,4 +1,4 @@
-var t = e.t;
+var t = 0;
 g.fillStyle = "#3c3829";
 g.strokeStyle = "#3c3829";
 g.lineCap = "round";

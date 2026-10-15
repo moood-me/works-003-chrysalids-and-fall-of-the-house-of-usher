@@ -1,4 +1,4 @@
-var t = e.t;
+var t = 0;
 function hh(x) {
   return (
     6 * Math.exp((-x * x) / 260) +

@@ -1,10 +1,484 @@
 {
-  "light": {
-    "haze": 0.35,
-    "grain": 0.25,
-    "vignette": 0.45,
-    "hazeColor": "#2a2d48"
+  "engine": 3,
+  "title": "Голоса",
+  "caption": "Мы слышали друг друга через все поля.",
+  "horizon": 0.66,
+  "camera": {
+    "mode": "picture"
   },
+  "light": {
+    "ambient": 0.5,
+    "ambientColor": "#6c78a8",
+    "bounce": 0.5,
+    "haze": 0.25,
+    "hazeColor": "#2a2d48",
+    "hazeGlow": 0.5,
+    "vignette": 0.45,
+    "grain": 0.22,
+    "wind": [
+      1,
+      0,
+      0.35
+    ]
+  },
+  "lights": [
+    {
+      "id": "night",
+      "from": [
+        -30,
+        40
+      ],
+      "color": "#9aa8d0",
+      "strength": 0.35
+    }
+  ],
+  "state": {
+    "count": 4,
+    "petra": 0,
+    "clouds": 0.15,
+    "voices": 0.6,
+    "david_present": 1,
+    "david_a": -2.45,
+    "david_d": 6,
+    "david_look": "farm1#window"
+  },
+  "states": {
+    "count": {
+      "range": [
+        0,
+        8
+      ],
+      "means": "сколько окон позвано (farm1…farmN горят, к каждому нить); −1 — окно ушедшего гаснет"
+    },
+    "petra": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "сила Петры: свечение её окна, кольца, тёплая нить к Дэвиду"
+    },
+    "clouds": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "облака на небе"
+    },
+    "voices": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "как громко голоса: нити и свечение вокруг Дэвида"
+    },
+    "david_present": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "Дэвид на холме (0 — нити идут от окна к окну)"
+    }
+  },
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Звёздное небо"
+    },
+    {
+      "id": "far_land",
+      "name": "Дальние холмы",
+      "across": 0,
+      "distance": 3000,
+      "height": 60,
+      "box": [
+        -8000,
+        -80,
+        8000,
+        80
+      ]
+    },
+    {
+      "id": "ground",
+      "name": "Поля",
+      "plane": true,
+      "across": 0,
+      "distance": 708,
+      "width": 6000,
+      "depth": 1384
+    },
+    {
+      "id": "hedges",
+      "name": "Лесополосы",
+      "across": 213.34,
+      "distance": 2400,
+      "height": 20,
+      "box": [
+        -6000,
+        -40,
+        6000,
+        6
+      ]
+    },
+    {
+      "id": "specks",
+      "name": "Крошечные дальние окна",
+      "across": 195.56,
+      "distance": 2200,
+      "height": 4,
+      "box": [
+        -4000,
+        -8,
+        4000,
+        2
+      ],
+      "glows": true
+    },
+    {
+      "id": "specks2",
+      "name": "Огоньки поближе",
+      "across": 277.34,
+      "distance": 1300,
+      "height": 4,
+      "box": [
+        -3000,
+        -8,
+        3000,
+        2
+      ],
+      "glows": true
+    },
+    {
+      "id": "farm1_b",
+      "name": "Ферма с амбаром",
+      "across": 14.93,
+      "distance": 420,
+      "height": 8,
+      "box": [
+        -16,
+        -10,
+        8,
+        1
+      ]
+    },
+    {
+      "id": "farm2_b",
+      "name": "Ферма с ветряком",
+      "across": 128.0,
+      "distance": 300,
+      "height": 10,
+      "box": [
+        -6,
+        -13,
+        10,
+        1
+      ]
+    },
+    {
+      "id": "farm3_b",
+      "name": "Ферма с тополями",
+      "across": 256.0,
+      "distance": 480,
+      "height": 12,
+      "box": [
+        -11,
+        -15,
+        5,
+        1
+      ]
+    },
+    {
+      "id": "farm4_b",
+      "name": "Ферма с силосной башней",
+      "across": 96.0,
+      "distance": 600,
+      "height": 9,
+      "box": [
+        -4,
+        -10,
+        8,
+        1
+      ]
+    },
+    {
+      "id": "farm5_b",
+      "name": "Длинный дом под вязами",
+      "across": -62.22,
+      "distance": 700,
+      "height": 9,
+      "box": [
+        -12,
+        -11,
+        6,
+        1
+      ]
+    },
+    {
+      "id": "farm6_b",
+      "name": "Хутор с тополем",
+      "across": 234.67,
+      "distance": 800,
+      "height": 10,
+      "box": [
+        -4,
+        -12,
+        8,
+        1
+      ]
+    },
+    {
+      "id": "farm7_b",
+      "name": "Дальний ветряк",
+      "across": -278.76,
+      "distance": 560,
+      "height": 10,
+      "box": [
+        -8,
+        -12,
+        4,
+        1
+      ]
+    },
+    {
+      "id": "farm8_b",
+      "name": "Совсем дальний хутор",
+      "across": -248.89,
+      "distance": 1000,
+      "height": 8,
+      "box": [
+        -8,
+        -12,
+        4,
+        1
+      ]
+    },
+    {
+      "id": "home_b",
+      "name": "Дом Стормов, окно Петры",
+      "across": 60.45,
+      "distance": 170,
+      "height": 10,
+      "box": [
+        -12,
+        -14,
+        10,
+        1
+      ]
+    },
+    {
+      "id": "farm1",
+      "name": "Окно: Ферма с амбаром",
+      "across": 14.9,
+      "distance": 419,
+      "elevation": 1.1,
+      "height": 1.0,
+      "box": [
+        -0.55,
+        -1.1,
+        0.55,
+        0.1
+      ],
+      "glows": true
+    },
+    {
+      "id": "farm2",
+      "name": "Окно: Ферма с ветряком",
+      "across": 127.57,
+      "distance": 299,
+      "elevation": 1.0,
+      "height": 1.0,
+      "box": [
+        -0.55,
+        -1.1,
+        0.55,
+        0.1
+      ],
+      "glows": true
+    },
+    {
+      "id": "farm3",
+      "name": "Окно: Ферма с тополями",
+      "across": 255.47,
+      "distance": 479,
+      "elevation": 1.0,
+      "height": 1.0,
+      "box": [
+        -0.55,
+        -1.1,
+        0.55,
+        0.1
+      ],
+      "glows": true
+    },
+    {
+      "id": "farm4",
+      "name": "Окно: Ферма с силосной башней",
+      "across": 95.84,
+      "distance": 599,
+      "elevation": 0.9,
+      "height": 1.1,
+      "box": [
+        -0.6,
+        -1.2000000000000002,
+        0.6,
+        0.1
+      ],
+      "glows": true
+    },
+    {
+      "id": "farm5",
+      "name": "Окно: Длинный дом под вязами",
+      "across": -62.13,
+      "distance": 699,
+      "elevation": 0.8,
+      "height": 1.1,
+      "box": [
+        -0.6,
+        -1.2000000000000002,
+        0.6,
+        0.1
+      ],
+      "glows": true
+    },
+    {
+      "id": "farm6",
+      "name": "Окно: Хутор с тополем",
+      "across": 234.38,
+      "distance": 799,
+      "elevation": 0.7,
+      "height": 1.2,
+      "box": [
+        -0.65,
+        -1.3,
+        0.65,
+        0.1
+      ],
+      "glows": true
+    },
+    {
+      "id": "farm7",
+      "name": "Окно: Дальний ветряк",
+      "across": -278.26,
+      "distance": 559,
+      "elevation": 0.8,
+      "height": 1.1,
+      "box": [
+        -0.6,
+        -1.2000000000000002,
+        0.6,
+        0.1
+      ],
+      "glows": true
+    },
+    {
+      "id": "farm8",
+      "name": "Окно: Совсем дальний хутор",
+      "across": -248.64,
+      "distance": 999,
+      "elevation": 0.6,
+      "height": 1.2,
+      "box": [
+        -0.7,
+        -1.3,
+        0.7,
+        0.1
+      ],
+      "glows": true
+    },
+    {
+      "id": "home",
+      "name": "Окно Петры",
+      "across": 60.09,
+      "distance": 169,
+      "elevation": 1.4,
+      "height": 1.0,
+      "box": [
+        -0.5,
+        -1.1,
+        0.5,
+        0.1
+      ],
+      "glows": true
+    },
+    {
+      "id": "hedge_b",
+      "name": "Дальняя живая изгородь",
+      "across": 21.33,
+      "distance": 120,
+      "height": 2,
+      "box": [
+        -260,
+        -8,
+        320,
+        1
+      ]
+    },
+    {
+      "id": "hedge_a",
+      "name": "Ближняя живая изгородь",
+      "across": 20.0,
+      "distance": 45,
+      "height": 1,
+      "box": [
+        -60,
+        -3,
+        120,
+        1
+      ]
+    },
+    {
+      "id": "mist",
+      "sky": true,
+      "name": "Туман над полями"
+    },
+    {
+      "id": "hillside",
+      "name": "Холм",
+      "plane": true,
+      "drape": true,
+      "across": -2,
+      "distance": 8,
+      "width": 40,
+      "depth": 16
+    },
+    {
+      "id": "david",
+      "name": "Дэвид",
+      "person": {
+        "cast": "cast",
+        "who": "david",
+        "turn": 70,
+        "does": "sit_knees"
+      },
+      "across": -2.45,
+      "distance": 6,
+      "place": {
+        "across": "david_a",
+        "distance": "david_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "fore",
+      "name": "Трава и колосья у ног",
+      "across": 0.4,
+      "distance": 4.2,
+      "height": 1,
+      "box": [
+        -9,
+        -1.6,
+        9,
+        0.5
+      ]
+    }
+  ],
+  "modules": [
+    "cast"
+  ],
   "music": {
     "bpm": 60,
     "density": 0.2,
@@ -91,315 +565,5 @@
       }
     ],
     "brightness": 0.4
-  },
-  "state": {
-    "count": 4,
-    "petra": 0,
-    "clouds": 0.15,
-    "voices": 0.6,
-    "david_present": 1
-  },
-  "title": "Голоса",
-  "camera": {
-    "mode": "picture"
-  },
-  "caption": "Мы слышали друг друга через все поля.",
-  "horizon": 0.66,
-  "objects": [
-    {
-      "id": "sky",
-      "sky": true,
-      "name": "Звёздное небо"
-    },
-    {
-      "x": 0.5,
-      "id": "far_land",
-      "box": [
-        -8000,
-        -80,
-        8000,
-        80
-      ],
-      "name": "Дальние холмы",
-      "height": 60,
-      "distance": 3000
-    },
-    {
-      "x": 0.5,
-      "id": "ground",
-      "name": "Поля",
-      "depth": 1400,
-      "plane": true,
-      "width": 6000,
-      "distance": 700,
-      "elevation": 0
-    },
-    {
-      "id": "e707d6ae5",
-      "distance": 420
-    },
-    {
-      "id": "e7fb1f13d",
-      "distance": 300
-    },
-    {
-      "id": "effe3ac47",
-      "distance": 480
-    },
-    {
-      "id": "e830ff787",
-      "distance": 600
-    },
-    {
-      "id": "e64353769",
-      "distance": 700
-    },
-    {
-      "id": "ec7b88d00",
-      "distance": 800
-    },
-    {
-      "id": "e3f5a56f0",
-      "distance": 560
-    },
-    {
-      "id": "ea8813024",
-      "distance": 170
-    },
-    {
-      "x": 0.27,
-      "id": "hill",
-      "box": [
-        -30,
-        -3,
-        16,
-        8
-      ],
-      "name": "Холм",
-      "height": 2.4,
-      "distance": 8
-    },
-    {
-      "x": 0.27,
-      "id": "david",
-      "box": [
-        -1.2,
-        -0.7,
-        1.1,
-        0.15
-      ],
-      "name": "Дэвид",
-      "height": 0.6,
-      "distance": 8,
-      "elevation": 2.28
-    },
-    {
-      "x": 0.55,
-      "id": "hedges",
-      "box": [
-        -6000,
-        -40,
-        6000,
-        6
-      ],
-      "name": "Лесополосы",
-      "height": 20,
-      "distance": 2400
-    },
-    {
-      "id": "ee1399fce",
-      "distance": 1000
-    },
-    {
-      "x": 0.55,
-      "y": 1,
-      "id": "fore",
-      "box": [
-        -9,
-        -1.6,
-        9,
-        0.5
-      ],
-      "name": "Трава и колосья у ног",
-      "height": 1
-    },
-    {
-      "x": 0.75,
-      "id": "hedge_a",
-      "box": [
-        -60,
-        -3,
-        120,
-        1
-      ],
-      "name": "Ближняя живая изгородь",
-      "height": 1,
-      "distance": 45
-    },
-    {
-      "x": 0.6,
-      "id": "hedge_b",
-      "box": [
-        -260,
-        -8,
-        320,
-        1
-      ],
-      "name": "Дальняя живая изгородь",
-      "height": 2,
-      "distance": 120
-    },
-    {
-      "x": 0.55,
-      "id": "specks",
-      "box": [
-        -4000,
-        -8,
-        4000,
-        2
-      ],
-      "name": "Крошечные дальние окна",
-      "height": 4,
-      "distance": 2200
-    },
-    {
-      "id": "e3bf59691",
-      "distance": 1300
-    },
-    {
-      "x": 0.52,
-      "id": "farm1",
-      "box": [
-        -16,
-        -10,
-        8,
-        1
-      ],
-      "name": "Ферма с амбаром",
-      "height": 8,
-      "distance": 420
-    },
-    {
-      "x": 0.8,
-      "id": "farm2",
-      "box": [
-        -6,
-        -13,
-        10,
-        1
-      ],
-      "name": "Ферма с ветряком",
-      "height": 10,
-      "distance": 300
-    },
-    {
-      "x": 0.905,
-      "id": "farm3",
-      "box": [
-        -11,
-        -15,
-        5,
-        1
-      ],
-      "name": "Ферма с тополями",
-      "height": 12,
-      "distance": 480
-    },
-    {
-      "x": 0.6,
-      "id": "farm4",
-      "box": [
-        -4,
-        -10,
-        8,
-        1
-      ],
-      "name": "Ферма с силосной башней",
-      "height": 9,
-      "distance": 600
-    },
-    {
-      "x": 0.44,
-      "id": "farm5",
-      "box": [
-        -12,
-        -11,
-        6,
-        1
-      ],
-      "name": "Длинный дом под вязами",
-      "height": 9,
-      "distance": 700
-    },
-    {
-      "x": 0.665,
-      "id": "farm6",
-      "box": [
-        -4,
-        -12,
-        8,
-        1
-      ],
-      "name": "Хутор с тополем",
-      "height": 10,
-      "distance": 800
-    },
-    {
-      "x": 0.97,
-      "id": "farm7",
-      "box": [
-        -8,
-        -12,
-        4,
-        1
-      ],
-      "name": "Дальний ветряк",
-      "height": 10,
-      "distance": 560
-    },
-    {
-      "x": 0.815,
-      "id": "farm8",
-      "box": [
-        -8,
-        -12,
-        4,
-        1
-      ],
-      "name": "Совсем дальний хутор",
-      "height": 8,
-      "distance": 1000
-    },
-    {
-      "x": 0.735,
-      "id": "home",
-      "box": [
-        -12,
-        -14,
-        10,
-        1
-      ],
-      "name": "Дом Стормов, окно Петры",
-      "height": 10,
-      "distance": 170
-    },
-    {
-      "id": "mist",
-      "sky": true,
-      "name": "Туман над полями"
-    },
-    {
-      "x": 0.62,
-      "id": "specks2",
-      "box": [
-        -3000,
-        -8,
-        3000,
-        2
-      ],
-      "name": "Огоньки поближе",
-      "height": 4,
-      "distance": 1300
-    }
-  ]
+  }
 }

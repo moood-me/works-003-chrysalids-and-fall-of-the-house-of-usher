@@ -1,4 +1,4 @@
-var t = e.t,
+var t = 0,
   C = "#2a2028";
 var vg = g.createLinearGradient(0, -0.6, 0, 0);
 vg.addColorStop(0, "rgba(42,32,40,0)");

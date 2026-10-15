@@ -1,4 +1,4 @@
-var t = e.t;
+var t = 0;
 var C = "#5a5040";
 g.fillStyle = C;
 g.strokeStyle = C;

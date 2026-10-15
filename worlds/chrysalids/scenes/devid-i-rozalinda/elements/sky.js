@@ -1,5 +1,5 @@
 var A = e.aspect,
-  t = e.t,
+  t = 0,
   s = e.state || {},
   hz = 0.62,
   dk = s.dusk == null ? 0.2 : +s.dusk;

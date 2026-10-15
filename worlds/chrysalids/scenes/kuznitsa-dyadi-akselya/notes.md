@@ -67,7 +67,7 @@ st_more; мысли — th_amp, tho_*, thi_* (элементы thought_out, thou
   },
   "tells": ["ax:hit"],
   "points": ["pump#handle", "axel#hand_l", "anvil#iron", "david", "axel", "joseph", "farmhand"],
-  "offers": ["david"],
+  "offers": ["david", "axel"],
   "party": { "beat": null, "ax_blow": 0, "pump": 0, "fire": 0.75, "sparks": 0.5, "st_lamp": 0, "st_lx": -5, "st_lz": 8.4, "ax_work": 0, "pump_work": 0, "ax_pace": 2 },
   "speakers": ["david", "axel", "joseph", "farmhand"]
 }

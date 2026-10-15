@@ -327,8 +327,8 @@ const FILM = {
   },
   // landing — silence; it comes down, dust, the rotor slows. (cut: closer, the door) Warm light, the ramp. The woman in white
   // comes out, looks toward the cave, starts her sprayer and walks toward the ledge
-  landing: { after: ['web', 'web_petra', 'web_rosalind'], from: () => ({ ...OVER(HELD), fall: 0, web: 1, cave_web: 1 }), run: s => landing(s) },
-  landing_run: { after: ['web_father', 'web_alone'], from: () => ({ ...OVER(RAN), fall: 0, web: 1, cave_web: 1 }), run: s => landing(s) },
+  landing: { after: ['web', 'web_petra', 'web_rosalind'], from: () => ({ ...OVER(HELD), fall: 0, web: 1, cave_web: 1 }), run: s => landing(s, 'landing') },
+  landing_run: { after: ['web_father', 'web_alone'], from: () => ({ ...OVER(RAN), fall: 0, web: 1, cave_web: 1 }), run: s => landing(s, 'landing_run') },
   // free — (cut) she is already by the cave: up onto the ledge, she sprays — the web melts; Petra runs to her, the woman on
   // one knee holds her; the others get up (in free_run David is not among them: Rosalind looks down at the clearing)
   free: { after: 'landing', from: () => LANDED(OVER(HELD)), run: s => free(s, true) },
@@ -544,14 +544,14 @@ async function web(s, lie, near = CAM.web_near, first) {
 }
 // it comes down, dust, the rotor slows; (cut: the door) warm light, the ramp; she comes out, looks toward the cave, starts her
 // sprayer and walks toward the ledge
-async function landing(s) {
+async function landing(s, beat) {
   const door = s.shot(camOf(CAM.door));
   cam(s, CAM.land, 5.5);
   const down = fly(s, SHIP_AT, 5.5);
   await s.wait(2.0);
   s.move('dust', 1, { over: 2 });
   await down;
-  s.tell('landing:down'); // (the craft down on the clearing)
+  s.tell(`${beat}:down`); // (the craft down on the clearing)
   s.move('spin', 0.12, { over: 3 });
   s.move('dust', 0, { over: 4 });
   door.cut();
@@ -583,7 +583,7 @@ async function free(s, withDavid) {
   sl.reach(null);
   for (const id of withDavid ? ['petra', 'rosalind', 'michael', 'david'] : ['petra', 'rosalind', 'michael']) { P(s, id).do('get_up_ground'); await s.wait(0.35); }
   await s.wait(1.0);
-  s.tell('free:petra'); // (Petra runs to her)
+  s.tell(`${withDavid ? 'free' : 'free_run'}:petra`); // (Petra runs to her)
   pt.look('sealand');
   await walk(s, 'petra', [[-1.92, 8.3]]);
   await sl.go('kneel_one', { to: [-1.42, 8.5], turn: 270 });

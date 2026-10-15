@@ -1,11 +1,24 @@
 // Sounds of the game's own, made in the page (Web Audio): nothing to load. A step plays them as g.sound (story.js).
-let ctx = null;
+let ctx = null, held = false;
 // (the site's "sounds" slider: MooodVolume.output — what this page makes goes to the speakers through it)
 let sink = null;
-const audio = () => { if (!ctx) { ctx = new AudioContext(); sink = MooodVolume.output(ctx); sink.connect(ctx.destination); } if (ctx.state === 'suspended') ctx.resume(); return ctx; };
+const audio = () => {
+  if (!ctx) { ctx = new AudioContext(); sink = MooodVolume.output(ctx); sink.connect(ctx.destination); }
+  if (!held && ctx.state === 'suspended') ctx.resume();
+  return ctx;
+};
+// the play paused (ui.js ⏸): the game's own sounds stand with it — their audio's clock is not the page's
+export function pause(on) {
+  held = !!on;
+  if (!ctx) return;
+  if (held) ctx.suspend();
+  else ctx.resume();
+}
 
-// a horse galloping somewhere: dull thuds in threes; loud(v, seconds) — nearer or farther; stop()
-export function hooves() {
+// a horse somewhere, galloping (dull thuds in threes) or at a walk (four slow falls): loud(v, seconds) — nearer or
+// farther; gait('walk' | 'gallop') — it changes its pace; halt(seconds) — reined in: a few slower steps, then still
+// (it stays: loud again it is there, standing, till a gait is given again); stop(seconds) — it goes
+export function hooves({ gait = 'gallop' } = {}) {
   const a = audio(), out = a.createGain();
   out.gain.value = 0;
   out.connect(sink);
@@ -18,12 +31,19 @@ export function hooves() {
     s.connect(f).connect(g).connect(out);
     s.start(t);
   };
+  // a stride of each gait: its falls (seconds into it, how hard) and its length
+  const GAITS = {
+    gallop: { stride: 0.58, falls: [[0, 0.9], [0.11, 0.7], [0.2, 1]] },
+    walk: { stride: 1.15, falls: [[0, 0.55], [0.29, 0.45], [0.57, 0.55], [0.86, 0.45]] },
+  };
+  let now = GAITS[gait] ?? GAITS.gallop, slowing = 0, still = false;
   let next = a.currentTime + 0.05;
-  const STRIDE = 0.58;
   const timer = setInterval(() => {
-    while (next < a.currentTime + 0.3) {
-      thud(next, 0.9); thud(next + 0.11, 0.7); thud(next + 0.2, 1);
-      next += STRIDE * (0.96 + Math.random() * 0.08);
+    while (!still && next < a.currentTime + 0.3) {
+      const k = 1 + slowing * 0.35;
+      for (const [at, v] of now.falls) thud(next + at * k, v * (1 - slowing * 0.25));
+      next += now.stride * k * (0.96 + Math.random() * 0.08);
+      if (slowing) { slowing++; if (slowing > 3) still = true; }
     }
   }, 100);
   return {
@@ -33,6 +53,8 @@ export function hooves() {
       out.gain.setValueAtTime(out.gain.value, t);
       out.gain.linearRampToValueAtTime(v, t + Math.max(0.01, seconds));
     },
+    gait(name) { now = GAITS[name] ?? now; slowing = 0; if (still) { still = false; next = a.currentTime + 0.05; } },
+    halt() { if (!still) slowing = 1; },
     stop(seconds = 2) {
       this.loud(0, seconds);
       setTimeout(() => { clearInterval(timer); out.disconnect(); }, seconds * 1000 + 100);
@@ -61,18 +83,20 @@ export function toll(times = 3) {
 }
 
 // the sounds of a step played unseen (a jump: jump.js): nothing heard meanwhile — the bell not rung; a horse still
-// galloping when it is seen, heard from then as near as it was left
+// there when it is seen, heard from then as near as it was left, at the gait it was left at
 export function unheard() {
   const horses = [];
   return {
     sounds: {
       toll() {},
-      hooves() {
-        let level = 0, real = null, stopped = false;
+      hooves(opts) {
+        let level = 0, real = null, stopped = false, gait = opts?.gait, halted = false;
         const h = {
           loud(v) { if (real) real.loud(...arguments); else level = v; },
+          gait(name) { if (real) real.gait(name); else { gait = name; halted = false; } },
+          halt() { if (real) real.halt(); else halted = true; },
           stop(seconds) { if (real) real.stop(seconds); else stopped = true; },
-          wake() { if (!stopped && level > 0) { real = hooves(); real.loud(level, 1); } },
+          wake() { if (!stopped && !halted && level > 0) { real = hooves({ gait }); real.loud(level, 1); } },
         };
         horses.push(h);
         return h;

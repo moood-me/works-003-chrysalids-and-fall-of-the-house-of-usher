@@ -1,9 +1,10 @@
-// Хризалиды — по роману Джона Уиндема. A bespoke game (moood/engines/bespoke) on the world «Хризалиды»:
+// Хризалиды — по роману Джона Уиндема. A bespoke game (moood/engines/bespoke) on the world «Хризалиды v3» (engine 3):
 // the player is David; chapters one after another, each a row of steps on the world's scenes; their
 // choices, the scales (suspicion, the group, Petra's strength, the path) and what people remember
 // carry from chapter to chapter. Between the chapters, the scene «Нити»: the whole play on the night sky —
-// the chapters left to right, a tree of each one's choices; the player passes along them (the scene's panorama: a drag,
-// a swipe) and picks a chapter's knot: begin it, go on, play it again. In the corner, how things stand now (ui.js now).
+// the chapters left to right, a tree of each one's choices; the sky comes to a chapter (camera_x, moved over a second)
+// and its knot offers its words (begin it, go on, play it again); a neighbour's knot — its title: chosen, the sky goes
+// to it. In the corner, how things stand now (ui.js now). Choices are the language of mini-games' (story.js hub).
 //
 // The play is one — its main run, as far as the player has come: never mixed with anything. A chapter
 // passed may be played again: a replay, on its own, from how the chapter began in the main run (its threads drawn
@@ -15,9 +16,9 @@
 // marks, choices } —, starts: {chapter: the main run as the chapter began}, replay: a run of its own (the same fields)
 // or null. A step cut short (the page closed) is played again from its beginning. Its author may go to any step of any
 // chapter (☰: a replay — the main run untouched) or straight to a minigame of one (the step played up to it unseen:
-// jump.js), and skip a step or a minigame (⏭) — to try them: what is gone to begins as if nothing was chosen before
-// it; a step skipped leaves nothing chosen.
-import { context, listen } from './story.js';
+// jump.js), and skip a step (⏭) — to try them: what is gone to begins as if nothing was chosen before it; a step
+// skipped leaves nothing chosen. A minigame's ⏭ is every player's (story.js g.play): it counts as played.
+import { SCENES, context, listen } from './story.js';
 import { jump } from './jump.js';
 import { unheard } from './sound.js';
 import { ui } from './ui.js';
@@ -32,13 +33,16 @@ import seven, { ENDINGS, epilogue } from './chapters/7.js';
 
 const CHAPTERS = [one, two, three, four, five, six, seven];
 const END = CHAPTERS.length; // «Нити»'s last place: how the play ended
-const NITI = 'Нити';
-const APART = 7; // metres between the chapters along «Нити»: the sky opened at chapter i — camera_x i·APART
+const NITI = SCENES.niti;
+const APART = 5; // metres between the chapters along «Нити» (its lib.SPACING): the sky at chapter i — camera_x i·APART
+const GO = 1; // s: the sky going from one chapter to the next
 const RUN = { chapter: 0, step: 0, scales: { suspicion: 0, group: 0, petra: 0, path: 0 }, marks: {}, choices: {} };
 
 export default async function (b) {
   await b.css('ui.css');
-  listen(b);
+  // the language of mini-games in this game's hand: the book's serif, muted colours
+  b.minigame.style({ font: 'Georgia, "Times New Roman", serif', colors: { mark: '#efe6d2', fill: '#d9b878', good: '#a9c79a', danger: '#c8604a', fork: '#a8b4cc', ghost: 'rgba(239, 230, 210, 0.5)' } });
+  const hub = listen(b);
   const view = ui(b.layer);
   view.pausing(b);
   let kept = { ...structuredClone(RUN), starts: {}, replay: null, ...b.saved };
@@ -52,7 +56,7 @@ export default async function (b) {
   const plays = (chapter, step) => {
     const k = `${chapter}:${step}`;
     if (!listed.has(k)) {
-      const j = jump(Infinity, unheard()), g = context(b, view, structuredClone({ ...RUN, chapter, step }), j);
+      const j = jump(Infinity, unheard()), g = context(b, view, hub, structuredClone({ ...RUN, chapter, step }), j);
       listed.set(k, Promise.race([CHAPTERS[chapter].steps[step](g).catch(() => {}), j.idle]).then(() => j.plays.map(m => m.title || '…')));
     }
     return listed.get(k);
@@ -68,17 +72,29 @@ export default async function (b) {
   const open = () => [...new Set([...Object.keys(kept.starts).map(Number), main(), ...(mainDone() ? [main() + 1] : [])])].filter(i => i <= END);
   const replayOf = i => ({ ...run(kept.starts[i]), step: 0 });
 
-  // «Нити»: the play on the sky, chapter `shown` in the middle; its knot offers `options`, the other chapters' knots
-  // what can be done there (go back to the main run, the next chapter, play one again); how
-  // things stand (of run r) in the corner. → what was chosen: an option's id, or `chapter:i`
+  // «Нити»: the play on the sky, chapter `shown` in the middle; its knot offers `options`; a neighbour's knot (a chapter
+  // one may go to) — its title: chosen, the sky goes to it (camera_x, over GO s) and its knot offers what can be done
+  // there (go back to the main run, the next chapter, play one again); how things stand (of run r) in the corner.
+  // → what was chosen: an option's id, or `chapter:i`
   async function niti(shown, options, { reveal = false, r = kept.replay ?? kept, compare = null } = {}) {
     await b.show(NITI, { state: { chapters: sky(), shown, reveal: reveal ? 0 : 1, knot: 1, camera_x: shown * APART } });
     if (reveal) b.set('reveal', 1, 6);
-    const offers = { [`k${shown}`]: options };
-    for (const i of open()) if (i !== shown && i < END) offers[`k${i}`] = [{ id: `chapter:${i}`, label: i === main() ? 'Продолжить историю' : i < main() ? 'Сыграть ещё раз' : 'Дальше' }];
-    const g = context(b, view, r);
+    const g = context(b, view, hub, r);
     const hideNow = view.now(now(r)), hideCompare = compare ? view.compare(compare) : () => {};
-    try { return await g.choose(null, offers); } finally { hideNow(); hideCompare(); }
+    const words = i => (i === shown ? options : [{ id: `chapter:${i}`, label: i === main() ? 'Продолжить историю' : i < main() ? 'Сыграть ещё раз' : 'Дальше' }]);
+    const places = [...new Set([shown, ...open()])].filter(i => i <= END);
+    try {
+      for (let at = shown; ;) {
+        const offers = { [`k${at}#knot`]: words(at) };
+        for (const i of [at - 1, at + 1]) if (i !== at && places.includes(i)) offers[`k${i}#knot`] = [{ id: `to:${i}`, label: i === END ? 'Конец' : CHAPTERS[i].title }];
+        const picked = await g.choose(null, offers);
+        if (!picked.startsWith('to:')) return picked;
+        at = Number(picked.slice(3));
+        b.set('camera_x', at * APART, GO);
+        b.set('shown', at);
+        await g.wait(GO * 1000);
+      }
+    } finally { hideNow(); hideCompare(); }
   }
   // the chapters as «Нити» draws them: each one's threads — the main run's, and the replay's where it is
   function sky() {
@@ -106,7 +122,7 @@ export default async function (b) {
       // kept — or any chapter
       const ending = ENDINGS.find(e => e.id === kept.marks.ending);
       await b.show(NITI, { state: { chapters: sky(), shown: END, reveal: 1, knot: 0.6, camera_x: END * APART } });
-      await epilogue(context(b, view, kept), ending?.id);
+      await epilogue(context(b, view, hub, kept), ending?.id);
       const next = await niti(END, [{ id: 'again', label: 'Сыграть сначала' }]);
       straight = true;
       await (next === 'again' ? keep({ ...kept, replay: replayOf(0) }) : goTo(Number(next.slice(8))));
@@ -125,11 +141,16 @@ export default async function (b) {
     while ((kept.replay ?? kept).step < ch.steps.length) {
       const at = kept.replay ?? kept;
       // (gone to a minigame of it: the step played up to it unseen)
-      const g = context(b, view, structuredClone(run(at)), at.play != null ? jump(at.play, unheard()) : null);
+      const g = context(b, view, hub, structuredClone(run(at)), at.play != null ? jump(at.play, unheard()) : null);
+      // (the ⏭ skips a step for the author only: a player has it inside a minigame — story.js g.play)
       let skip;
-      const off = view.onSkip(() => { g.leave(); skip(); });
-      const skipped = await Promise.race([ch.steps[at.step](g).then(() => false), new Promise(ok => { skip = () => ok(true); })]);
+      const off = b.game.mine ? view.onSkip(() => skip()) : () => {};
+      const skipped = await Promise.race([
+        ch.steps[at.step](g).then(() => false, e => { b.trouble(`шаг сломался: ${e.message || e}`); return true; }),
+        new Promise(ok => { skip = () => ok(true); }),
+      ]);
       off();
+      if (skipped) g.leave();
       const after = { ...run(skipped ? at : g.state), step: at.step + 1 };
       await keep(replaying ? { ...kept, replay: after } : { ...kept, ...after });
     }

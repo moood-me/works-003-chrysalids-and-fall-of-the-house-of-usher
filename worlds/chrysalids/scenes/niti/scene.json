@@ -1,0 +1,292 @@
+{
+  "light": {
+    "grain": 0.18,
+    "vignette": 0.55
+  },
+  "state": {
+    "chapters": null,
+    "shown": 0,
+    "reveal": 1,
+    "knot": 1,
+    "camera_x": 0
+  },
+  "title": "Нити",
+  "camera": {
+    "mode": "picture"
+  },
+  "caption": "",
+  "horizon": 0.83,
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Ночное небо"
+    },
+    {
+      "id": "t0",
+      "name": "Нити главы",
+      "across": 0,
+      "distance": 10,
+      "height": 10,
+      "box": [
+        -4,
+        -10,
+        6,
+        0
+      ]
+    },
+    {
+      "id": "t1",
+      "name": "Нити главы",
+      "across": 5,
+      "distance": 10,
+      "height": 10,
+      "box": [
+        -4,
+        -10,
+        6,
+        0
+      ]
+    },
+    {
+      "id": "t2",
+      "name": "Нити главы",
+      "across": 10,
+      "distance": 10,
+      "height": 10,
+      "box": [
+        -4,
+        -10,
+        6,
+        0
+      ]
+    },
+    {
+      "id": "t3",
+      "name": "Нити главы",
+      "across": 15,
+      "distance": 10,
+      "height": 10,
+      "box": [
+        -4,
+        -10,
+        6,
+        0
+      ]
+    },
+    {
+      "id": "t4",
+      "name": "Нити главы",
+      "across": 20,
+      "distance": 10,
+      "height": 10,
+      "box": [
+        -4,
+        -10,
+        6,
+        0
+      ]
+    },
+    {
+      "id": "t5",
+      "name": "Нити главы",
+      "across": 25,
+      "distance": 10,
+      "height": 10,
+      "box": [
+        -4,
+        -10,
+        6,
+        0
+      ]
+    },
+    {
+      "id": "t6",
+      "name": "Нити главы",
+      "across": 30,
+      "distance": 10,
+      "height": 10,
+      "box": [
+        -4,
+        -10,
+        6,
+        0
+      ]
+    },
+    {
+      "id": "t7",
+      "name": "Нити главы",
+      "across": 35,
+      "distance": 10,
+      "height": 10,
+      "box": [
+        -4,
+        -10,
+        6,
+        0
+      ]
+    },
+    {
+      "id": "k0",
+      "name": "Глава",
+      "across": 0,
+      "distance": 10,
+      "elevation": 7.2,
+      "height": 1.6,
+      "box": [
+        -0.8,
+        -1.6,
+        0.8,
+        0
+      ],
+      "inFront": [
+        "t0"
+      ]
+    },
+    {
+      "id": "k1",
+      "name": "Глава",
+      "across": 5,
+      "distance": 10,
+      "elevation": 7.2,
+      "height": 1.6,
+      "box": [
+        -0.8,
+        -1.6,
+        0.8,
+        0
+      ],
+      "inFront": [
+        "t1"
+      ]
+    },
+    {
+      "id": "k2",
+      "name": "Глава",
+      "across": 10,
+      "distance": 10,
+      "elevation": 7.2,
+      "height": 1.6,
+      "box": [
+        -0.8,
+        -1.6,
+        0.8,
+        0
+      ],
+      "inFront": [
+        "t2"
+      ]
+    },
+    {
+      "id": "k3",
+      "name": "Глава",
+      "across": 15,
+      "distance": 10,
+      "elevation": 7.2,
+      "height": 1.6,
+      "box": [
+        -0.8,
+        -1.6,
+        0.8,
+        0
+      ],
+      "inFront": [
+        "t3"
+      ]
+    },
+    {
+      "id": "k4",
+      "name": "Глава",
+      "across": 20,
+      "distance": 10,
+      "elevation": 7.2,
+      "height": 1.6,
+      "box": [
+        -0.8,
+        -1.6,
+        0.8,
+        0
+      ],
+      "inFront": [
+        "t4"
+      ]
+    },
+    {
+      "id": "k5",
+      "name": "Глава",
+      "across": 25,
+      "distance": 10,
+      "elevation": 7.2,
+      "height": 1.6,
+      "box": [
+        -0.8,
+        -1.6,
+        0.8,
+        0
+      ],
+      "inFront": [
+        "t5"
+      ]
+    },
+    {
+      "id": "k6",
+      "name": "Глава",
+      "across": 30,
+      "distance": 10,
+      "elevation": 7.2,
+      "height": 1.6,
+      "box": [
+        -0.8,
+        -1.6,
+        0.8,
+        0
+      ],
+      "inFront": [
+        "t6"
+      ]
+    },
+    {
+      "id": "k7",
+      "name": "Глава",
+      "across": 35,
+      "distance": 10,
+      "elevation": 7.2,
+      "height": 1.6,
+      "box": [
+        -0.8,
+        -1.6,
+        0.8,
+        0
+      ],
+      "inFront": [
+        "t7"
+      ]
+    }
+  ],
+  "engine": 3,
+  "states": {
+    "chapters": {
+      "means": "главы по порядку: {number, title, kind: here | played | next | future | end, map: строки выборов [{title, weight, options: [{label, state: chosen | tried | both | open | unseen}]}]} — ставится при открытии"
+    },
+    "shown": {
+      "type": "number",
+      "means": "глава, на которой игрок (её узел ярче, её нити растут по reveal)"
+    },
+    "reveal": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "сколько нитей показанной главы видно (строка за строкой)"
+    },
+    "knot": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "яркость узлов"
+    }
+  }
+}

@@ -1,0 +1,406 @@
+{
+  "engine": 3,
+  "title": "Рассказы Акселя",
+  "caption": "— Там, за морем, они тоже считают себя истинным образом, — сказал дядя.",
+  "horizon": 0.55,
+  "camera": {
+    "mode": "picture"
+  },
+  "light": {
+    "ambient": 0.68,
+    "ambientColor": "#8090c0",
+    "bounce": 0.55,
+    "haze": 0.3,
+    "hazeColor": "#34405e",
+    "hazeGlow": 0.6,
+    "vignette": 0.45,
+    "grain": 0.22,
+    "tint": "#141a2c",
+    "tintStrength": 0.06,
+    "wind": [
+      1,
+      0.15,
+      0.5
+    ],
+    "looks": {
+      "dawn": {
+        "ambient": 0.72,
+        "ambientColor": "#c8b4b4",
+        "hazeColor": "#9a8a9a"
+      }
+    }
+  },
+  "lights": [
+    {
+      "id": "fire",
+      "of": "fire#flame",
+      "color": "#ff9a50",
+      "strength": 1.9,
+      "reach": 7,
+      "flicker": 0.35,
+      "on": "fire"
+    },
+    {
+      "id": "fill",
+      "from": [
+        170,
+        20
+      ],
+      "color": "#a8b4dc",
+      "strength": 0.3
+    }
+  ],
+  "state": {
+    "dawn": 0,
+    "fire": 0.8,
+    "story": 0.7,
+    "vision": 1,
+    "david_present": true,
+    "axel_a": -1.35,
+    "axel_d": 4.05,
+    "axel_on": [
+      -1.35,
+      4.05,
+      0.45
+    ],
+    "david_a": 0.8,
+    "david_d": 4.4
+  },
+  "states": {
+    "dawn": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "рассвет: светлеет небо справа, гаснут звёзды, бледнеют видения"
+    },
+    "fire": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "костёр: пламя, искры, дым и его свет"
+    },
+    "story": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "Аксель рассказывает (> 0.2: говорит, рука к дыму; оба смотрят туда): сила видения в дыму"
+    },
+    "vision": {
+      "range": [
+        0,
+        3
+      ],
+      "means": "какое видение: 1 — корабль, 2 — город Древних, 3 — берег; 0 — ни одно (все три малы)"
+    },
+    "david_present": {
+      "type": "boolean",
+      "means": "Дэвид у костра"
+    }
+  },
+  "captions": [],
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Звёздное небо"
+    },
+    {
+      "id": "vis_mist",
+      "sky": true,
+      "name": "Дымка видений"
+    },
+    {
+      "id": "vis_ship",
+      "sky": true,
+      "name": "Видение: корабль"
+    },
+    {
+      "id": "vis_city",
+      "sky": true,
+      "name": "Видение: город Старых людей"
+    },
+    {
+      "id": "vis_coast",
+      "sky": true,
+      "name": "Видение: странный берег"
+    },
+    {
+      "id": "far",
+      "name": "Дальние перелески",
+      "across": 40,
+      "distance": 400,
+      "height": 10,
+      "box": [
+        -900,
+        -20,
+        900,
+        2
+      ]
+    },
+    {
+      "id": "field",
+      "name": "Поле",
+      "plane": true,
+      "across": 0,
+      "distance": 205,
+      "width": 900,
+      "depth": 400
+    },
+    {
+      "id": "mid",
+      "name": "Межа в поле",
+      "across": 20,
+      "distance": 90,
+      "height": 3,
+      "box": [
+        -140,
+        -6,
+        140,
+        1
+      ]
+    },
+    {
+      "id": "rise",
+      "name": "Пригорок за кузницей",
+      "plane": true,
+      "drape": true,
+      "across": 0,
+      "distance": 15,
+      "width": 40,
+      "depth": 30
+    },
+    {
+      "id": "barn",
+      "name": "Угол кузницы",
+      "across": -6.3,
+      "distance": 7.2,
+      "facing": 160,
+      "height": 4,
+      "box": [
+        -6.2,
+        -5.5,
+        3.2,
+        0.3
+      ],
+      "shadow": true
+    },
+    {
+      "id": "log",
+      "name": "Бревно",
+      "across": -1.35,
+      "distance": 4.15,
+      "height": 0.45,
+      "box": [
+        -0.85,
+        -0.5,
+        0.85,
+        0.05
+      ],
+      "shadow": true
+    },
+    {
+      "id": "fire",
+      "name": "Костёр",
+      "across": -0.3,
+      "distance": 4.3,
+      "height": 0.3,
+      "box": [
+        -0.55,
+        -0.45,
+        0.55,
+        0.05
+      ]
+    },
+    {
+      "id": "flames",
+      "name": "Пламя",
+      "particles": {
+        "kind": "fire",
+        "at": "fire#flame",
+        "amount": "fire",
+        "size": [
+          0.3,
+          0.06
+        ],
+        "source": [
+          0.4,
+          0.3,
+          0
+        ]
+      }
+    },
+    {
+      "id": "sparks",
+      "name": "Искры",
+      "particles": {
+        "kind": "embers",
+        "at": "fire#flame",
+        "amount": "fire",
+        "rate": 5
+      }
+    },
+    {
+      "id": "smoke",
+      "name": "Дым костра",
+      "particles": {
+        "kind": "smoke",
+        "at": "fire#flame",
+        "amount": "fire",
+        "rate": 3,
+        "size": [
+          0.3,
+          2.6
+        ],
+        "color": "#9aa0b4",
+        "life": [
+          8,
+          12
+        ]
+      }
+    },
+    {
+      "id": "axel",
+      "name": "Дядя Аксель",
+      "person": {
+        "cast": "cast",
+        "who": "axel",
+        "turn": 100,
+        "does": "perch_still"
+      },
+      "across": -1.35,
+      "distance": 4.05,
+      "place": {
+        "across": "axel_a",
+        "distance": "axel_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "david",
+      "name": "Дэвид",
+      "person": {
+        "cast": "cast",
+        "who": "david",
+        "turn": 250,
+        "does": "hug_knees"
+      },
+      "across": 0.8,
+      "distance": 4.4,
+      "place": {
+        "across": "david_a",
+        "distance": "david_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "grass",
+      "name": "Трава у ног",
+      "across": 0,
+      "distance": 2.2,
+      "height": 0.5,
+      "box": [
+        -6,
+        -1,
+        6,
+        1.2
+      ]
+    }
+  ],
+  "modules": [
+    "cast"
+  ],
+  "music": {
+    "bpm": 64,
+    "density": 0.25,
+    "prompts": [
+      {
+        "text": "an old sea shanty hummed very softly on a slow wheezing accordion, tender and far away",
+        "weight": 2
+      },
+      {
+        "text": "crackling campfire ambience at night, soft pops, embers hissing",
+        "weight": 2
+      },
+      {
+        "text": "distant waves breaking slowly on an unseen shore, deep and calm",
+        "weight": 1
+      },
+      {
+        "text": "low sustained strings, wide and open, a sense of vast horizons and doubt",
+        "weight": 2
+      },
+      {
+        "text": "solo concertina waltz, slow, half-remembered, salt-worn",
+        "weight": 1
+      },
+      {
+        "text": "warm solo cello, long low phrases, a storyteller's voice without words",
+        "weight": 0
+      },
+      {
+        "text": "night crickets in a summer field, field recording blended with soft pads",
+        "weight": 0
+      },
+      {
+        "text": "ethereal choir pads, wordless, dreamlike, images rising in smoke",
+        "weight": 0
+      },
+      {
+        "text": "sparse celesta notes like stars appearing one by one",
+        "weight": 0
+      },
+      {
+        "text": "Celtic low whistle, breathy and slow, open night sky",
+        "weight": 0
+      },
+      {
+        "text": "post-apocalyptic folk, sparse acoustic guitar, worn and gentle",
+        "weight": 0
+      },
+      {
+        "text": "muted fiddle playing a slow air, sailor's lament, very quiet",
+        "weight": 0
+      },
+      {
+        "text": "deep drone of a pump organ heard from a distant chapel, stern and cold",
+        "weight": 0
+      },
+      {
+        "text": "slow ambient synth swells, analog warmth, wonder and unease",
+        "weight": 0
+      },
+      {
+        "text": "creaking ship timbers and rigging, slow rolling swell, ambient",
+        "weight": 0
+      },
+      {
+        "text": "hammered dulcimer, gentle, notes drifting up like sparks",
+        "weight": 0
+      },
+      {
+        "text": "chamber strings in a minor key, hushed, curiosity and forbidden thought",
+        "weight": 0
+      },
+      {
+        "text": "harmonium chords swelling slowly, nostalgic and candlelit",
+        "weight": 0
+      },
+      {
+        "text": "lullaby melody on a music box, slightly out of tune, fragile",
+        "weight": 0
+      },
+      {
+        "text": "faint glassy bowed metal textures, eerie ruins of an ancient city",
+        "weight": 0
+      }
+    ],
+    "brightness": 0.3,
+    "scale": "C_MAJOR_A_MINOR"
+  }
+}

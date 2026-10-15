@@ -98,7 +98,8 @@
     "ploughman_reach": {
       "r": "plough#handle_r",
       "l": "plough#handle_l"
-    }
+    },
+    "camera_z": 12
   },
   "states": {
     "dusk": {

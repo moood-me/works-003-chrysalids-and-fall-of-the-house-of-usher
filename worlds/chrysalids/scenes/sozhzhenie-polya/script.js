@@ -39,3 +39,13 @@ function turned() {
 s.on('change', 'turned', turned);
 s.on('move', 'turned', turned);
 turned(); // (opened, or restored: the ones in front as the key has them)
+// dv_kneel (the game's: «Встать на колени» chosen while the others go down): David goes down on his knees at once, with
+// them — not when the beat that raised the torch has ended
+function kneel() {
+  if (!s.get('dv_kneel')) return;
+  s.sequence(async q => {
+    await q.person('dv').go('kneel_down', { from: L.DV, turn: 150 });
+    q.person('dv').do('kneel_pray', { loop: true });
+  }, { name: 'dv_kneel' });
+}
+s.on('change', 'dv_kneel', kneel);

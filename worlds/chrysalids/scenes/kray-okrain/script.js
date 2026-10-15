@@ -36,11 +36,11 @@ function walkers() {
   for (const g of going) g.cancel();
   going = [];
   if (!on) { P('david').do('stand'); P('rosalind').do('stand'); return; }
-  const d0 = s.get('david_d'), end = (s.get('figure_on_path') || 0) > 0.5 ? L.BEYOND_D : L.END_D;
+  const d0 = s.get('david_d') ?? L.START_D, r0 = s.get('rosalind_d') ?? L.START_D - 1, end = (s.get('figure_on_path') || 0) > 0.5 ? L.BEYOND_D : L.END_D;
   if (d0 >= end - 0.05) return;
   s.set('david_steps', true);
   s.set('rosalind_steps', true);
-  going = [P('david').walk(L.WAY(Math.ceil(d0 + 0.01), end)), P('rosalind').walk(L.WAY(Math.ceil(s.get('rosalind_d') + 0.01), end - 1.2))];
+  going = [P('david').walk(L.WAY(Math.ceil(d0 + 0.01), end)), P('rosalind').walk(L.WAY(Math.ceil(r0 + 0.01), end - 1.2))];
 }
 s.on('change', 'walkers', walkers);
 // on into the wood once it is over (figure_on_path): they walk on whatever `walkers` says

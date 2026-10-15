@@ -3,15 +3,15 @@
 // frame at the end — layers (waking.animate.js moves them by `waking`). Drawn in the units of «кино»'s card (its frame
 // 4.26 high), scaled to where it stands (1.5 m).
 const K = 1.5 / 4.26, Hm = 4.26, cy = -0.5 * Hm;
-const wood = a => `rgba(30,24,30,${a})`;
+const wood = a => `rgba(72,60,66,${a})`;
 e.layer('vig', { box: [-7 * K, -5 * K, 7 * K, 0.6 * K] }, q => {
   q.scale(K, K);
   q.save(); q.translate(0, cy); q.scale(1.35, 1);
   const rg = q.createRadialGradient(0, 0, Hm * 0.22, 0, 0, Hm * 0.7);
-  rg.addColorStop(0, 'rgba(10,10,18,0)'); rg.addColorStop(1, 'rgba(10,10,18,0.92)');
+  rg.addColorStop(0, 'rgba(10,10,18,0)'); rg.addColorStop(1, 'rgba(10,10,18,0.7)');
   q.fillStyle = rg; q.fillRect(-5, -3, 10, 6);
   q.restore();
-  q.fillStyle = 'rgba(10,10,18,0.35)'; q.fillRect(-7, -5, 14, 5.6);
+  q.fillStyle = 'rgba(10,10,18,0.15)'; q.fillRect(-7, -5, 14, 5.6);
 });
 for (const s of [-1, 1]) e.layer(s < 0 ? 'postL' : 'postR', { box: [-7 * K, -5 * K, 7 * K, 0.6 * K] }, q => {
   q.scale(K, K);

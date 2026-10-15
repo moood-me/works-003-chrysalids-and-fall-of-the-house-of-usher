@@ -6,13 +6,13 @@
     "mode": "picture"
   },
   "light": {
-    "haze": 0.2,
+    "haze": 0.12,
     "hazeColor": "#e6dcbc",
     "tint": "#f2d9a0",
     "tintStrength": 0.05,
     "grain": 0.2,
     "vignette": 0.35,
-    "ambient": 0.95,
+    "ambient": 0.7,
     "ambientColor": "#fff8ea",
     "bounce": 0.6,
     "shafts": 0.25,
@@ -27,7 +27,7 @@
         "tintStrength": 0.13,
         "saturation": 0.95,
         "hazeColor": "#e9cfac",
-        "ambient": 0.88,
+        "ambient": 0.65,
         "ambientColor": "#ffe6c8",
         "lights": {
           "sun": 0.72
@@ -54,7 +54,7 @@
       "id": "sun",
       "from": "sky#sun",
       "color": "#ffe2b0",
-      "strength": 1.3
+      "strength": 1.7
     },
     {
       "id": "moon",
@@ -79,9 +79,9 @@
     "splash": 0,
     "ring": 0,
     "ring_a": 2.72,
-    "r_a": -20,
-    "r_d": 18,
-    "r_face": 70,
+    "r_a": -10,
+    "r_d": 19.5,
+    "r_face": 35,
     "r_toss": 0,
     "david_a": -1.95,
     "david_d": 5.0,
@@ -670,10 +670,10 @@
       "name": "Крупный план: ступня",
       "insert": "closeup",
       "iris": [
-        1.2,
-        0.52,
+        1.05,
         0.3,
-        0.3
+        0.25,
+        0.25
       ]
     },
     {
@@ -681,10 +681,10 @@
       "name": "Крупный план: блики на воде",
       "insert": "closeup",
       "iris": [
-        1.2,
-        0.52,
+        1.05,
         0.3,
-        0.3
+        0.25,
+        0.25
       ],
       "uniforms": {
         "cx": 0,
@@ -697,10 +697,10 @@
       "name": "Крупный план: ступня, подол, руки",
       "insert": "closeup",
       "iris": [
-        1.2,
-        0.52,
+        1.05,
         0.3,
-        0.3
+        0.25,
+        0.25
       ]
     },
     {
@@ -708,16 +708,16 @@
       "name": "Крупный план: тёмное кольцо вокруг диафрагмы",
       "insert": "closeup",
       "iris": [
-        1.2,
-        0.52,
-        0.42,
-        0.42
+        1.05,
+        0.3,
+        0.37,
+        0.37
       ],
       "uniforms": {
         "open": 0,
-        "cx": 1.2,
-        "cy": 0.52,
-        "r": 0.3
+        "cx": 1.05,
+        "cy": 0.3,
+        "r": 0.25
       }
     }
   ],

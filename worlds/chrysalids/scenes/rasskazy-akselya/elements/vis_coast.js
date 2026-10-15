@@ -150,7 +150,7 @@ function draw(a, s) {
   );
   smoke(a, 0.3, -0.3);
 }
-const dom = [A * 0.7, 0.41];
+const dom = [A * 0.5 + 0.2, 0.41];
 const plain = g;
 e.layer('v', { pivot: dom, box: [dom[0] - 0.5, dom[1] - 0.5, dom[0] + 0.5, dom[1] + 0.2] }, q => {
   g = q;

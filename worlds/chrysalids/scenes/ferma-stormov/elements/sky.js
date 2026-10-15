@@ -22,10 +22,12 @@ e.layer('night', { box: [-0.4, -0.4, A + 0.4, 1.3] }, q => {
   q.fillStyle = '#5a5682';
   q.fillRect(-0.4, 0.65, A + 0.8, 0.65);
 });
-e.layer('stars', { box: [-0.3, -0.35, A + 0.3, 0.45] }, q => {
+// (in three layers, forty stars each: sky.animate.js twinkles each layer in its own time)
+for (let k = 0; k < 3; k++) e.layer(`stars${k}`, { box: [-0.3, -0.35, A + 0.3, 0.45] }, q => {
   q.fillStyle = '#e4e6f4';
   for (let i = 0; i < 120; i++) {
     const r = e.rnd(), x = -0.3 + e.rnd() * (A + 0.6), y = -0.32 + e.rnd() * 0.72;
+    if (i % 3 !== k) continue;
     q.globalAlpha = 0.25 + 0.6 * r * r;
     q.fillRect(x, y, 0.0015 + r * 0.0013, 0.0015 + r * 0.0013);
   }

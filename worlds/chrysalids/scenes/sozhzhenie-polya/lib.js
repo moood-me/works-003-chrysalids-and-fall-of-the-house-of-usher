@@ -123,8 +123,9 @@ const JO = [-0.5, 6.8], IN = [1.35, 7.0], EM = [-1.6, 4.95], DV = [-1.05, 4.55];
 // where the Inspector breaks off the ear; where he shows it to Strorm; where Strorm lights the field, stands for the hymn
 const EDGE_IN = [1.0, 8.85], SHOW = [0.4, 7.0], FIELD = [0.4, 8.95], HYMN_AT = [-1.0, 7.6], ALONG = [-2.0, 8.95];
 const TORCH = [HYMN_AT[0], HYMN_AT[1], 3.0];
-// in the hymn David and his mother stand turned toward Strorm and the fire (their faces seen from the side)
-const SING = 80;
+// in the hymn David and his mother stand as they stood (their faces to us, a little toward the fire), heads lifted,
+// singing up into the light (SING_UP: before them, high)
+const SING = 150, SING_UP = [-1.0, 3.6, 3.4];
 // where David and his mother go by the stalk; the stalk
 const STALK = [-2.72, 9.5], BY_STALK = { em: [-3.6, 9.0], dv: [-3.15, 8.3] };
 // the camera's places (camera_x, camera_z)
@@ -147,7 +148,7 @@ async function walk(s, id, pts, turn, gait) {
 }
 const cam = (s, c, over) => s.all(s.move('camera_x', c[0], { over }), s.move('camera_z', c[1], { over }));
 const aside = (s, fn) => s.sequence(fn);
-const lower = (p, by) => (typeof p === 'string' ? `${p}#chest` : [p[0], p[1], p[2] - by]);
+const lower = (p, by) => (typeof p === 'string' ? `${p.split('#')[0]}#chest` : [p[0], p[1], p[2] - by]);
 async function nod(s, id, p, n = 1, slow = 1) {
   for (let i = 0; i < n; i++) {
     s.person(id).look(lower(p, 0.32));
@@ -187,12 +188,12 @@ const LIT = { ...RISEN, ...camOf(CAM.light), in_turn: 280, jo_turn: 100, jo_torc
 const BURNING = { ...LIT, ...camOf(CAM.wide), ...person('jo', ALONG, 270, { with: ['torch'], wear: { hat: 'hat' } }), jo_torch: 1,
   ...person('in', [2.3, 7.6], 200, { with: ['lantern'], wear: { hat: 'hat' } }), fire: 1, ignite: 0.07, smoke: 0.35 };
 const HYMN = { ...BURNING, ...camOf(CAM.hymn), ...person('jo', HYMN_AT, 180, { with: ['torch'], wear: { hat: 'hat' }, reach: { r: [HYMN_AT[0], HYMN_AT[1] - 0.3, 2.9] } }), jo_torch: 1,
-  ignite: 0.4, smoke: 0.75, ...congregation(m => ({ [`${m.id}_d`]: back(m.at[1]), [`${m.id}_do`]: loop('sing_stand'), [`${m.id}_look`]: TORCH })),
-  em_do: loop('sing_stand'), em_turn: SING, em_look: TORCH, dv_turn: SING };
+  ignite: 0.4, smoke: 0.75, ...congregation(m => ({ [`${m.id}_d`]: back(m.at[1]), [`${m.id}_do`]: loop('sing_stand'), [`${m.id}_look`]: TORCH, [`${m.id}_with`]: m.shade ? null : ['book_open_l'] })),
+  em_do: loop('sing_stand'), em_turn: SING, em_look: SING_UP, dv_turn: SING };
 const HID = { ...HYMN, dv_a: -1.66, dv_d: 4.68, dv_turn: 13, dv_reach: { r: 'em#hips', l: 'em#hips' }, dv_look: 'em#chest', em_reach: null };
 // the grey morning after (set at once under the black)
 const GREY = { ash: 1, ignite: 1, fire: 0.12, smoke: 0.42, dawn: 0.82, morning: 1, jo_torch: 0, jo_reach: null, jo_turn: 180, jo_look: null,
-  ...congregation(m => ({ [`${m.id}_do`]: 'stand', [`${m.id}_look`]: null })), em_do: 'stand' };
+  ...congregation(m => ({ [`${m.id}_do`]: 'stand', [`${m.id}_look`]: null, [`${m.id}_with`]: null })), em_do: 'stand' };
 const STALKED = { ...HID, ...GREY, fade: 0, ...camOf(CAM.stalk), ...congregation((m, i) => person(m.id, home(m, i), 0)),
   ...person('in', [5.2, 26], 0, { with: ['lantern'], wear: { hat: 'hat' } }), ...person('em', BY_STALK.em, 180, { reach: { r: 'dv#hand_l' } }),
   ...person('dv', BY_STALK.dv, 125, { reach: { l: 'em#hand_r' }, look: 'stalk#ear' }) };
@@ -271,8 +272,11 @@ const FILM = {
     from: () => KNELT,
     run: async s => {
       const dv = s.person('dv'), jo = s.person('jo');
-      await dv.go('kneel_down', { from: DV, turn: 150 });
-      dv.do('kneel_pray', { loop: true });
+      // (on his knees already if the game sent him down with the others: dv_kneel)
+      if (!s.state.dv_kneel) {
+        await dv.go('kneel_down', { from: DV, turn: 150 });
+        dv.do('kneel_pray', { loop: true });
+      }
       await s.wait(2.4);
       jo.reach(null);
       jo.look(null);
@@ -377,11 +381,12 @@ const FILM = {
       jo.look([HYMN_AT[0], HYMN_AT[1] - 3, 2.5]);
       s.person('em').do('sing_stand', { loop: true });
       s.person('em').turn(SING);
-      s.person('em').look(TORCH);
+      s.person('em').look(SING_UP);
       s.person('dv').turn(SING);
       const sings = each(s, 1.2, async (q, m) => {
         q.person(m.id).do('sing_stand', { loop: true });
         q.person(m.id).look(TORCH);
+        if (!m.shade) q.person(m.id).with(['book_open_l']); // (the hymnal open in the left hand)
         if (m.at[1] > 6.2) await walk(q, m.id, [[m.at[0], back(m.at[1])]], m.face);
         if (m.shade) q.person(m.id).do('shade', { loop: true });
       });
@@ -398,14 +403,14 @@ const FILM = {
     run: async s => {
       const jo = s.person('jo'), dv = s.person('dv'), em = s.person('em');
       dv.do('sing_stand', { loop: true });
-      dv.look(TORCH);
+      dv.look(SING_UP);
       cam(s, CAM.wide, 5);
       await s.wait(0.6);
       jo.look([-4.5, 6.2, 1.4]);
       await s.wait(0.2);
       em.look('dv');
       await s.wait(1.8);
-      em.look(TORCH);
+      em.look(SING_UP);
       jo.look([4.5, 6.2, 1.4]);
       await s.wait(3.6);
       jo.look([HYMN_AT[0], HYMN_AT[1] - 3, 2.5]);

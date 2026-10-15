@@ -58,7 +58,8 @@
     ],
     "guard2_with": [
       "spear"
-    ]
+    ],
+    "camera_z": 0.8
   },
   "states": {
     "fire": {
@@ -312,7 +313,7 @@
         "cast": "cast",
         "who": "spider",
         "turn": 200,
-        "does": "arms_folded"
+        "does": "stand"
       },
       "across": 0.37,
       "distance": 6.82,
@@ -467,8 +468,8 @@
         "turn": 200,
         "does": "stand"
       },
-      "across": 2.9,
-      "distance": 5.0,
+      "across": 2.5,
+      "distance": 5.2,
       "place": {
         "across": "sophie_a",
         "distance": "sophie_d"

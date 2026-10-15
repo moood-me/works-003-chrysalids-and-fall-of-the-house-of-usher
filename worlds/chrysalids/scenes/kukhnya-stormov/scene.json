@@ -63,6 +63,15 @@
       "color": "#93a6cc",
       "strength": 0.45,
       "reach": 5
+    },
+    {
+      "id": "fill",
+      "across": 0.0,
+      "distance": 1.2,
+      "elevation": 1.7,
+      "color": "#ffd8b0",
+      "strength": 0.5,
+      "reach": 9
     }
   ],
   "state": {

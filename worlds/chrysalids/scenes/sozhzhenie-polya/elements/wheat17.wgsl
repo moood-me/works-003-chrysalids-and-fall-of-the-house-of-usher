@@ -11,14 +11,17 @@ fn shade(painted: vec4f, at: vec2f, uv: vec2f) -> vec4f {
   let stub = layer(1, at);
   var c = painted * (1.0 - smoothstep(0.55, 0.9, burnt)) + stub * smoothstep(0.55, 0.9, burnt);
   c = vec4f(c.rgb * (1.0 - 0.8 * lit * (1.0 - burnt)), c.a);
-  // the flames over the burning line: their height wavers along it and in time; each tongue rising and thinning
+  // the flames over the burning line: tongues — each its own height along the line, wavering in time, rising and
+  // thinning, gaps between them; bright and yellow at their roots in the stalks, orange and thin at the tips
   let front = lit * (1.0 - burnt) * u_fire;
   let n = noise2(vec2f(a * 0.9 + u_time * 0.35, u_time * 1.1 + u_rd));
-  let h = front * (0.9 + 2.2 * n) * select(1.0, 1.25, u_rd < 12.0);
+  let col = noise2(vec2f(a * 2.6, u_time * 0.9 + u_rd * 0.37));
+  let h = front * (0.5 + 1.6 * n) * (0.35 + 0.9 * col) * select(1.0, 1.25, u_rd < 12.0);
   let y = -at.y;
   let tongue = noise2(vec2f(a * 3.2, y * 2.4 - u_time * 3.0));
-  let flame = step(0.0, y) * (1.0 - smoothstep(h * 0.35, h, y + 0.35 * h * (tongue - 0.5))) * step(0.02, h);
-  let heat = mix(vec3f(1.0, 0.85, 0.5), vec3f(0.95, 0.35, 0.12), clamp(y / max(h, 0.01), 0.0, 1.0));
-  emission = heat * flame * 1.8;
+  let flame = smoothstep(-0.08, 0.06, y) * (1.0 - smoothstep(h * 0.2, h, y + 0.45 * h * (tongue - 0.5))) * step(0.02, h);
+  let up = clamp(y / max(h, 0.01), 0.0, 1.0);
+  let heat = mix(vec3f(1.0, 0.72, 0.32), vec3f(0.9, 0.28, 0.08), up);
+  emission = heat * flame * (1.15 - 0.6 * up) * (0.55 + 0.45 * tongue);
   return vec4f(c.rgb, max(c.a, 0.0));
 }

@@ -5,8 +5,8 @@
 const HZ = 0.66;
 const W = { farm1: 0.52, farm2: 0.74, farm3: 0.8, farm4: 0.59, farm5: 0.45, farm6: 0.665, farm7: 0.22, farm8: 0.36, home: 0.7 };
 const ORDER = ['farm1', 'farm2', 'farm3', 'farm4', 'farm5', 'farm6', 'farm7', 'farm8'];
-const DAVID = [-2.45, 6];
-const AURA = A => [0.27 * A, 0.56];
+const DAVID = [-1.89, 4.6];
+const AURA = A => [0.27 * A, 0.53];
 // a farm's buildings, in daylight colours (the night is the scene's): kind — 'barn', 'mill' (its sails a layer:
 // `sails`, turning), 'poplars' (layers in the wind), 'silo', 'elms', 'poplar', 'farmill' (far mill), 'tall'
 function farm(g, e, kind) {
@@ -44,12 +44,13 @@ function farm(g, e, kind) {
     g.fillRect(1.4, -6.3, 0.55, 1.8);
   }
 }
-// a farm window: the dull pane, the lit pane a layer (`lit`) and its light (`win`) — its point `window`
+// a farm window: the dull pane, the lit pane a layer (`lit`) and its light (`win`: its glow as wide on the screen near
+// or far — a warm star on the dark valley) — its point `window`
 function pane(g, e, w, h) {
   g.fillStyle = '#4a3828';
   g.fillRect(-w / 2, -h, w, h);
   e.layer('lit', {}, q => { q.fillStyle = '#eeba70'; q.fillRect(-w / 2, -h, w, h); });
-  e.light(0, -h / 2, 8, '#e8b06a', 1, 'win');
+  e.light(0, -h / 2, 0.035 * e.spot.distance, '#e8b06a', 1.4, 'win');
   e.at(0, -h / 2, 'window');
   e.at(0, -h / 2);
 }

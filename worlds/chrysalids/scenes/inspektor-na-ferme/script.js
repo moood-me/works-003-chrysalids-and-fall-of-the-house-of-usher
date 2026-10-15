@@ -35,8 +35,12 @@ function verdict(once) {
 }
 s.on('change', 'verdict', () => verdict(false));
 s.on('move', 'verdict', () => verdict(false));
+// the calf led off behind the barn (calf_present falling): it walks away to the left as it goes out of sight
+let calfGoing = (s.get('calf_present') ?? 1) < 0.95;
 function present() {
-  const here = (s.get('calf_present') ?? 1) > 0.5;
+  const here = (s.get('calf_present') ?? 1) > 0.5, going = (s.get('calf_present') ?? 1) < 0.95;
+  if (!calfGoing && going) s.move('calf_a', L.CALF_GONE, { over: 2.4 });
+  calfGoing = going;
   P('farmhand').reach(here ? { r: 'calf#ring' } : null);
   P('farmhand').look(here ? 'calf#ring' : 'barn#corner');
   if (!here) P('inspector').do('ledger_read', { loop: true });

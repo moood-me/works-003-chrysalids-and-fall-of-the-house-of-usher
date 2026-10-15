@@ -1,0 +1,117 @@
+/* The game over the scene (ui.js), in ink and paper: the crack down the edge, the candle in the
+   corner, the slips of paper, the letter, the title; the author's tools. */
+#layer { --ink: #2a1c13; --paper: #e6dac0; --bone: #e4d8bf; --hand: "Usher Hand", "Segoe Script", cursive;
+  --below-header: 46px; } /* where the site's header ends */
+/* a phone held upright: the site's header takes two lines */
+@media (max-aspect-ratio: 3/4) { #layer { --below-header: 70px; } }
+#layer .crack, #layer .candle, #layer .toasts, #layer .title { pointer-events: none; }
+
+/* the crack (crack scale): drawn whole, shown as far down as --level */
+#layer .crack { position: absolute; left: 0; top: var(--below-header); width: 40px; height: calc(100% - var(--below-header)); overflow: visible; opacity: 0;
+  clip-path: inset(0 0 calc((1 - var(--level, 0)) * 100%) 0);
+  transition: clip-path 3.2s cubic-bezier(0.3, 0.6, 0.2, 1), opacity 2s ease; }
+#layer .crack.on { opacity: 1; }
+#layer .crack path { fill: none; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+#layer .crack .core { stroke: #090506; stroke-width: calc(1.3px + var(--level, 0) * 1.9px); transition: stroke-width 3s ease; }
+#layer .crack .lip { stroke: rgba(222, 206, 178, 0.32); stroke-width: 1px; transform: translate(1.4px, 0.6px); }
+#layer .crack .glow { stroke: #b0261a; stroke-width: 7px; filter: blur(3px); transition: opacity 3s ease; animation: crack-glow 5s ease-in-out infinite; }
+@keyframes crack-glow { 50% { stroke: #7a150e; } }
+
+/* the candle (sanity) */
+#layer .candle { position: absolute; top: max(6px, calc(var(--below-header) - 40px)); right: 10px; width: 56px; height: 104px; opacity: 0; transition: opacity 2s ease; }
+#layer .candle.on { opacity: 0.95; }
+
+/* slips of paper, the words soaking in */
+#layer .toasts { position: absolute; top: min(112px, 30vh); right: 14px; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+#layer .slip { filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.55)); animation: slip-in 0.7s cubic-bezier(0.2, 0.8, 0.3, 1) both;
+  transition: opacity 1.5s ease, translate 1.5s ease; }
+#layer .slip.gone { opacity: 0; translate: 0 -6px; }
+#layer .slip p { margin: 0; padding: 7px 16px 8px; max-width: min(300px, 46vw); color: var(--ink);
+  font: clamp(16px, 4.8vh, 21px)/1.15 var(--hand);
+  background: radial-gradient(ellipse at 30% 20%, rgba(255, 250, 235, 0.5), transparent 60%),
+    radial-gradient(circle at 85% 80%, rgba(150, 105, 55, 0.18), transparent 45%), var(--paper); }
+#layer .slip p > span { animation: soak 2.2s cubic-bezier(0.25, 0.6, 0.3, 1) 0.25s both; }
+#layer .slip .arrow { font-family: Georgia, "Times New Roman", serif; font-size: 0.85em; }
+#layer .slip.rule p { font-size: clamp(15px, 4.4vh, 19px); line-height: 1.2; }
+#layer .slip.her p { color: #4a1410; }
+@keyframes slip-in { from { opacity: 0; translate: 0 -8px; } }
+@keyframes soak { from { opacity: 0; filter: blur(2.5px); } 45% { opacity: 0.75; filter: blur(0.8px); } }
+
+/* the title over the scene */
+#layer .title { position: absolute; inset: 0; display: grid; place-items: center; padding: 0 6vw; text-align: center; }
+#layer .title span { color: var(--bone); font: 400 clamp(26px, 6.2vh, 64px)/1.2 Georgia, "Times New Roman", serif; text-transform: uppercase;
+  letter-spacing: 0.32em; text-shadow: 0 0 18px rgba(0, 0, 0, 0.9), 0 0 2px rgba(0, 0, 0, 0.9); opacity: 0; filter: blur(4px);
+  transition: opacity 2.6s ease, letter-spacing 6s cubic-bezier(0.2, 0.6, 0.3, 1), filter 2.6s ease; }
+#layer .title.on span { opacity: 0.92; letter-spacing: 0.16em; filter: none; }
+
+/* the letter: three panels folded over the middle one; open-top, open-bottom unfold them */
+#layer .letter-veil { position: absolute; inset: 0; display: grid; place-items: center; padding-top: 30px; background: rgba(3, 2, 4, 0.55); opacity: 0;
+  cursor: pointer; outline: none; perspective: 1600px; transition: opacity 1.2s ease; -webkit-tap-highlight-color: transparent; }
+#layer .letter-veil.on { opacity: 1; }
+#layer .letter { --h: min(calc(86vh - 30px), 640px, 128vw); position: relative; width: calc(var(--h) * 0.7); height: var(--h);
+  font-size: calc(var(--h) * 0.041); transform-style: preserve-3d; rotate: -2.5deg; translate: 0 -10px; scale: 0.92;
+  transition: rotate 1.6s ease, translate 1.6s ease, scale 1.6s ease; }
+#layer .letter-veil.on .letter { translate: 0 0; }
+#layer .letter.open-top { rotate: -0.8deg; scale: 1; }
+#layer .panel { position: absolute; left: 0; width: 100%; height: calc(100% / 3); transform-style: preserve-3d;
+  transition: transform 1.1s cubic-bezier(0.45, 0.05, 0.25, 1); }
+#layer .panel.top { top: 0; transform-origin: 50% 100%; transform: rotateX(-180deg) translateZ(-2px); }
+#layer .panel.mid { top: calc(100% / 3); }
+#layer .panel.bottom { top: calc(200% / 3); transform-origin: 50% 0; transform: rotateX(180deg) translateZ(-1px); }
+#layer .letter.open-top .panel.top, #layer .letter.open-bottom .panel.bottom { transform: rotateX(0deg) translateZ(0); }
+#layer .face { position: absolute; inset: 0; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+#layer .face.back { transform: rotateX(180deg);
+  background: radial-gradient(ellipse at 60% 40%, rgba(255, 248, 228, 0.25), transparent 70%), radial-gradient(circle at 15% 85%, rgba(120, 85, 45, 0.25), transparent 40%), #d4c6a8;
+  box-shadow: inset 0 0 18px rgba(80, 55, 25, 0.35); }
+#layer .face.front { box-shadow: inset 0 0 14px rgba(90, 60, 25, 0.25); }
+#layer .panel.top .face.front::after, #layer .panel.mid .face.front::after, #layer .panel.bottom .face.front::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; }
+#layer .panel.top .face.front::after { box-shadow: inset 0 -5px 6px -5px rgba(70, 45, 20, 0.45); }
+#layer .panel.mid .face.front::after { box-shadow: inset 0 5px 6px -5px rgba(70, 45, 20, 0.45), inset 0 -5px 6px -5px rgba(70, 45, 20, 0.45); }
+#layer .panel.bottom .face.front::after { box-shadow: inset 0 5px 6px -5px rgba(70, 45, 20, 0.45); }
+#layer .seal { position: absolute; left: 50%; top: 58%; width: 2.6em; height: 2.6em; margin: -1.3em; border-radius: 47% 53% 50% 48%;
+  display: grid; place-items: center; color: rgba(255, 200, 190, 0.35); font: 1.4em/1 Georgia, serif;
+  background: radial-gradient(circle at 38% 35%, #8a2a26, #5a1414 60%, #3c0c0c); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), inset 0 0 0 0.25em rgba(0, 0, 0, 0.18); }
+#layer .sheet { position: absolute; left: 0; top: 0; width: 100%; height: 300%; box-sizing: border-box; padding: 1.6em 1.6em 1.6em 1.9em;
+  display: flex; flex-direction: column; justify-content: center;
+  color: var(--ink); font-family: var(--hand); line-height: 1.32;
+  background: radial-gradient(ellipse at 25% 15%, rgba(255, 252, 240, 0.55), transparent 50%), radial-gradient(circle at 80% 70%, rgba(150, 105, 55, 0.16), transparent 35%),
+    radial-gradient(circle at 12% 88%, rgba(120, 80, 40, 0.14), transparent 30%), var(--paper); }
+#layer .panel.mid .sheet { top: -100%; }
+#layer .panel.bottom .sheet { top: -200%; }
+#layer .sheet p { margin: 0 0 0.55em; transform-origin: 0 50%; }
+#layer .sheet .sign { margin: 1.1em 1.4em 0 0; text-align: right; }
+/* underlined by hand: a stroke under each line of it, drawn once the letter is read */
+#layer .sheet mark { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M1 6 C 18 3.5, 36 8, 55 5.5 S 86 4, 99 6.5' fill='none' stroke='%233a1a10' stroke-width='1.6' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") 0 100% / 0 0.42em no-repeat;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone; padding-bottom: 0.12em;
+  color: #1b0d07; font-size: 1.04em; text-shadow: 0 0 0.6px rgba(27, 13, 7, 0.8); transition: background-size 1.6s cubic-bezier(0.5, 0, 0.3, 1) 0.4s; }
+#layer .letter.read mark { background-size: 100% 0.42em; }
+#layer .letter-hint, #layer .hint { position: absolute; bottom: 1.5vh; left: 0; right: 0; margin: 0; text-align: center; color: var(--bone);
+  font: 20px/1 var(--hand); opacity: 0; transition: opacity 1.2s ease; pointer-events: none; }
+#layer .letter-hint.on, #layer .hint.on { opacity: 0.75; animation: hint 3s ease-in-out infinite; }
+@keyframes hint { 50% { opacity: 0.4; } }
+
+/* the corner's tools: ⏸ pause (everyone), ⏭ skip and ☰ the chapters and their steps (the author) — above whatever a
+   minigame spreads over the scene */
+#layer .tools { position: absolute; z-index: 10; right: 14px; bottom: 14px; display: flex; flex-direction: column; align-items: flex-end; gap: 6px;
+  font: 14px/1.3 Georgia, "Times New Roman", serif; }
+#layer .tools > button { width: 34px; height: 30px; border: 0; border-radius: 6px; background: rgba(10, 8, 9, 0.6); color: var(--bone); cursor: pointer; opacity: 0.5; }
+#layer .tools > button:hover, #layer .tools.paused > button:first-child { opacity: 1; }
+/* ☰: a window over the scene, below the site's header — the chapters side by side, each a column of its steps */
+#layer .author-map { position: absolute; inset: 0; z-index: 20; display: grid; place-items: center; padding: calc(var(--below-header) + 8px) 16px 16px;
+  background: rgba(3, 2, 4, 0.55); }
+#layer .author-map[hidden] { display: none; }
+#layer .author-panel { position: relative; box-sizing: border-box; width: min(1000px, 100%); max-height: calc(100vh - var(--below-header) - 24px); overflow: auto;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 18px 22px; padding: 22px 26px 26px; border-radius: 10px;
+  background: rgba(10, 8, 9, 0.94); box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6); font: 15px/1.35 Georgia, "Times New Roman", serif; color: var(--bone); }
+#layer .author-panel > button { position: absolute; top: 10px; right: 12px; width: 32px; height: 32px; border: 0; border-radius: 6px; background: none;
+  color: inherit; opacity: 0.6; cursor: pointer; font-size: 16px; }
+#layer .author-panel > button:hover { opacity: 1; background: rgba(228, 216, 191, 0.12); }
+#layer .author-panel section { display: flex; flex-direction: column; gap: 2px; }
+#layer .author-panel h3 { margin: 0 0 6px; font: italic 15px/1.3 Georgia, "Times New Roman", serif; color: #b9ad97; }
+#layer .author-panel section button { border: 0; border-radius: 6px; padding: 6px 10px; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+#layer .author-panel section button:hover { background: rgba(228, 216, 191, 0.12); }
+#layer .author-panel section button.here { color: #e2a07c; background: rgba(226, 160, 124, 0.08); }
+#layer .author-panel .minigames { display: flex; flex-direction: column; }
+#layer .author-panel section button.minigame { padding: 3px 10px 3px 24px; font-size: 13px; font-style: italic; color: #d9b48f; opacity: 0.85; }
+#layer .author-panel section button.minigame:hover { opacity: 1; }

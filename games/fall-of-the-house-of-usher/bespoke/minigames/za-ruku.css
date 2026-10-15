@@ -1,0 +1,12 @@
+/* «За руку» (za-ruku.js): a veil that takes the finger; a soft light where their hands hold, brighter as you
+   pull; the cord of the pull from where you pressed; a word low in the middle. */
+#layer .za-ruku-veil { position: absolute; inset: 0; pointer-events: auto; touch-action: none; cursor: grab; transition: opacity 0.9s ease; }
+#layer .za-ruku-veil:active { cursor: grabbing; }
+#layer .za-ruku-veil.gone { opacity: 0; pointer-events: none; }
+#layer .za-ruku-hands { position: absolute; left: 0; top: 0; width: 46px; height: 46px; border-radius: 50%; pointer-events: none; opacity: 0;
+  background: radial-gradient(circle, rgba(236, 226, 206, 0.55), rgba(236, 226, 206, 0.14) 40%, rgba(236, 226, 206, 0) 70%); }
+#layer .za-ruku-cord { position: absolute; left: 0; top: 0; width: 2px; height: 0; margin-left: -1px; pointer-events: none;
+  background: linear-gradient(rgba(236, 226, 206, 0), rgba(236, 226, 206, 0.45)); }
+#layer .za-ruku-word { position: absolute; left: 50%; bottom: 9%; margin: 0; translate: -50% 0; pointer-events: none; opacity: 0;
+  color: var(--bone); font: clamp(17px, 4.6vh, 21px)/1.2 var(--hand); text-shadow: 0 1px 6px rgba(0, 0, 0, 0.85);
+  transition: opacity 0.8s ease; white-space: nowrap; }

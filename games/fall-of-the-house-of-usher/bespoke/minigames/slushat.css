@@ -1,0 +1,14 @@
+/* «Слушать» (slushat.js): the whole room takes the finger; a faint ink ring where it listens; one
+   word low in the middle. */
+#layer .mg-slushat { position: absolute; inset: 0; touch-action: none; cursor: none; transition: opacity 0.9s ease; }
+#layer .mg-slushat.gone { opacity: 0; pointer-events: none; }
+#layer .mg-slushat i { position: absolute; left: 0; top: 0; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%;
+  pointer-events: none; border: 1.5px solid rgba(232, 218, 190, 0.45); opacity: 0; transition: opacity 0.6s ease;
+  animation: mg-slushat-ear 2.4s ease-in-out infinite; }
+#layer .mg-slushat i.on { opacity: 1; }
+#layer .mg-slushat p { position: absolute; left: 0; right: 0; bottom: 7vh; margin: 0; text-align: center; pointer-events: none;
+  color: var(--bone); font: clamp(17px, 4.6vh, 21px)/1.2 var(--hand); text-shadow: 0 0 10px rgba(0, 0, 0, 0.9); opacity: 0.75;
+  transition: opacity 2s ease; animation: mg-slushat-in 3s ease both; }
+#layer .mg-slushat p.gone { opacity: 0; animation: none; }
+@keyframes mg-slushat-ear { 50% { scale: 1.25; border-color: rgba(232, 218, 190, 0.2); } }
+@keyframes mg-slushat-in { from { opacity: 0; } }

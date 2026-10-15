@@ -1,0 +1,13 @@
+/* Струна (struna.js): the whole screen takes taps; low in the middle an ink ring pulses with his strokes,
+   the player's taps drop into it as dots (with him: ink; their own beat: warm); a one-line hint above. */
+#layer .mg-struna-catch { position: absolute; inset: 0; touch-action: none; cursor: pointer; }
+#layer .mg-struna { position: absolute; left: 50%; bottom: 7%; width: 44px; height: 44px; margin-left: -22px; border-radius: 50%;
+  pointer-events: none; border: 1.5px solid rgba(232, 218, 190, 0.6); opacity: 0.35; transition: opacity 1s ease; }
+#layer .mg-struna i { position: absolute; left: 50%; top: 50%; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%;
+  background: rgba(232, 218, 190, 0.5); }
+#layer .mg-struna i.with { background: rgba(232, 218, 190, 0.95); }
+#layer .mg-struna i.own { background: rgba(255, 196, 128, 0.9); }
+#layer .mg-struna.gone { opacity: 0 !important; }
+#layer .mg-struna-hint { position: absolute; left: 0; right: 0; bottom: calc(7% + 56px); margin: 0; text-align: center; pointer-events: none;
+  font: clamp(17px, 4.6vh, 22px)/1.2 var(--hand); color: var(--bone); opacity: 0.85; text-shadow: 0 0 8px rgba(0, 0, 0, 0.8); transition: opacity 1.4s ease; }
+#layer .mg-struna-hint.gone { opacity: 0; }

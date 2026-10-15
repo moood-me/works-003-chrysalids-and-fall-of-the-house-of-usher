@@ -1,0 +1,12 @@
+/* «Чтение» (chtenie.js): the whole room takes the tap that reads the next line; while it waits for
+   one, a slow ink pulse low in the middle; the first time, one word. */
+#layer .mg-chtenie { position: absolute; inset: 0; touch-action: manipulation; cursor: default; -webkit-tap-highlight-color: transparent; }
+#layer .mg-chtenie.on { cursor: pointer; }
+#layer .mg-chtenie::after { content: ""; position: absolute; left: 50%; bottom: 17vh; width: 12px; height: 12px; margin-left: -6px;
+  border-radius: 50%; background: rgba(232, 218, 190, 0.55); opacity: 0; transition: opacity 0.8s ease; pointer-events: none; }
+#layer .mg-chtenie.on::after { opacity: 1; animation: mg-chtenie-pulse 1.8s ease-in-out infinite; }
+#layer .mg-chtenie p { position: absolute; left: 0; right: 0; bottom: 20vh; margin: 0; text-align: center; pointer-events: none;
+  color: var(--bone); font: clamp(17px, 4.6vh, 21px)/1.2 var(--hand); text-shadow: 0 0 10px rgba(0, 0, 0, 0.9); opacity: 0.75;
+  transition: opacity 1.5s ease; }
+#layer .mg-chtenie p.gone { opacity: 0; }
+@keyframes mg-chtenie-pulse { 50% { scale: 1.6; opacity: 0.35; } }

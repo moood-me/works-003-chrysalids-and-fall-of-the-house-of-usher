@@ -1,0 +1,14 @@
+/* «Причина» (prichina.js): tracing the crack, a veil that takes the finger, a soft
+   light where the trace has got to, a word low in the middle. */
+#layer .prichina-veil { position: absolute; inset: 0; pointer-events: auto; touch-action: none; cursor: crosshair;
+  transition: opacity 0.9s ease; }
+#layer .prichina-veil.gone { opacity: 0; pointer-events: none; }
+#layer .prichina-tip { position: absolute; left: 0; top: 0; width: 44px; height: 44px; pointer-events: none; transition: opacity 0.8s ease; }
+#layer .prichina-tip::before { content: ''; position: absolute; inset: 0; border-radius: 50%;
+  background: radial-gradient(circle, rgba(214, 228, 236, 0.5), rgba(214, 228, 236, 0.12) 40%, rgba(214, 228, 236, 0) 70%);
+  animation: prichina-breathe 1.8s ease-in-out infinite; }
+#layer .prichina-tip.done { opacity: 0; }
+@keyframes prichina-breathe { 0%, 100% { scale: 0.8; } 50% { scale: 1.15; } }
+#layer .prichina-word { position: absolute; left: 50%; bottom: 9%; margin: 0; translate: -50% 0; pointer-events: none; opacity: 0;
+  color: var(--bone); font: clamp(17px, 4.6vh, 21px)/1.2 var(--hand); text-shadow: 0 1px 6px rgba(0, 0, 0, 0.85);
+  transition: opacity 0.8s ease; white-space: nowrap; }

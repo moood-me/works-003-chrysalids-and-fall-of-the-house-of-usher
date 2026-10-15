@@ -4,7 +4,7 @@
 // closeup_glints (the water's glints), closeup_foot (the stones, the foot, the hem, the hands), closeup_iris (a soft
 // dark ring round the iris). All four paint in the close-up's own frame (lib.cuFrame: its units as the iris's were
 // 0.46 of the frame's height).
-const { CU, cuFrame, cuBox, cuAt, FOOT_CU } = e.lib;
+const { CU, cuFrame, cuBox, FOOT_CU } = e.lib;
 cuFrame(g);
 const bg = g.createLinearGradient(0, -0.5, 0, 0.5);
 bg.addColorStop(0, '#c8b78a');
@@ -38,9 +38,10 @@ e.layer('water', { drift: [(-1.2 / 14) * CU.k, 0], box: cuBox(x0, 0.18, x1, 0.9)
   q.fill();
 });
 // the game's points (the close-up's — closeup#…): the hem's edge where it is with nothing pulled, and where it comes to
-// over the foot (the way his hand pulls it: «Подол»)
+// over the foot (the way his hand pulls it: «Подол») — in the close-up's own frame, as the canvas is now (e.at maps
+// its x, y through what was done to the canvas: cuFrame above)
 {
   const { AX, AY, ANG, HX, COVER } = FOOT_CU, c = Math.cos(ANG), s = Math.sin(ANG);
-  e.at(...cuAt(AX + HX * c, AY + HX * s), 'hem');
-  e.at(...cuAt(AX + (HX + COVER) * c, AY + (HX + COVER) * s), 'foot');
+  e.at(AX + HX * c, AY + HX * s, 'hem');
+  e.at(AX + (HX + COVER) * c, AY + (HX + COVER) * s, 'foot');
 }

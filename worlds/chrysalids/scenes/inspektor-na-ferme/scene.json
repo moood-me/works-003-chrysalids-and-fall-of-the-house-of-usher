@@ -1,14 +1,477 @@
 {
-  "light": {
-    "haze": 0.32,
-    "tint": "#c8b58a",
-    "grain": 0.2,
-    "vignette": 0.42,
-    "hazeColor": "#c2b694",
-    "tintStrength": 0.06,
-    "people": 0.75,
-    "ambientColor": "#c2b694"
+  "engine": 3,
+  "title": "Инспектор на ферме",
+  "caption": "Каждую осень он объезжал фермы и решал, что достойно жить.",
+  "horizon": 0.58,
+  "camera": {
+    "mode": "picture"
   },
+  "light": {
+    "ambient": 0.95,
+    "ambientColor": "#e8dcc4",
+    "bounce": 0.55,
+    "haze": 0.3,
+    "hazeColor": "#c2b694",
+    "vignette": 0.35,
+    "grain": 0.15,
+    "wind": [
+      1,
+      0,
+      0.45
+    ],
+    "looks": {
+      "season": {
+        "ambientColor": "#dcc8a4",
+        "hazeColor": "#b8a888",
+        "saturation": 0.9
+      },
+      "rain": {
+        "ambient": 0.8,
+        "ambientColor": "#b8bcbc",
+        "hazeColor": "#9aa0a2",
+        "haze": 0.45,
+        "saturation": 0.8,
+        "lights": {
+          "sky": 0.3
+        }
+      }
+    }
+  },
+  "lights": [
+    {
+      "id": "sky",
+      "from": [
+        -25,
+        55
+      ],
+      "color": "#f0dcb0",
+      "strength": 0.55
+    }
+  ],
+  "state": {
+    "cart": 0.5,
+    "rain": 0,
+    "season": 0,
+    "verdict": 0,
+    "calf_present": 1,
+    "david_present": 1,
+    "calf_a": -0.1,
+    "horse_a": 4.6,
+    "horse_d": 9.6,
+    "horse_face": 260,
+    "joseph_wear": {
+      "hat": "hat"
+    },
+    "farmhand_wear": {
+      "hat": "hat"
+    },
+    "inspector_wear": {
+      "hat": "hat"
+    },
+    "inspector_with": [
+      "book_open_l"
+    ],
+    "farmhand_reach": {
+      "r": "calf#ring"
+    },
+    "farmhand_look": "calf#ring",
+    "joseph_look": "calf",
+    "david_look": "calf",
+    "inspector_look": "inspector#hand_l"
+  },
+  "states": {
+    "cart": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "телега со снопами въезжает справа по дальней дороге"
+    },
+    "rain": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "дождь (и взгляд света rain)"
+    },
+    "season": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "поздняя осень: свет желтее, листья в воздухе"
+    },
+    "verdict": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "приговор: 0.3 — инспектор указывает на угол сарая, 0.55 — работник ведёт телёнка к сараю, 1 — инспектор смотрит на работника"
+    },
+    "calf_present": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "телёнок здесь (0 — Дэвид увёл его за сарай: работник отпускает верёвку и смотрит на угол сарая)"
+    },
+    "david_present": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "Дэвид выглядывает из-за дальнего угла сарая (0 — ушёл за сарай)"
+    },
+    "calf_a": {
+      "type": "number",
+      "means": "телёнок: где (сцена ставит сама — рядом с работником)"
+    },
+    "horse_a": {
+      "type": "number",
+      "means": "конь инспектора: где"
+    },
+    "horse_d": {
+      "type": "number",
+      "means": "конь: вглубь"
+    },
+    "horse_face": {
+      "range": [
+        0,
+        360
+      ],
+      "smooth": true,
+      "means": "конь: куда повёрнут"
+    }
+  },
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Пасмурное небо"
+    },
+    {
+      "id": "far_trees",
+      "name": "Дальняя кромка леса",
+      "x": 0.5,
+      "distance": 450,
+      "height": 20,
+      "box": [
+        -1600,
+        -40,
+        1600,
+        4
+      ]
+    },
+    {
+      "id": "hedge",
+      "name": "Живая изгородь и вяз",
+      "x": 0.5,
+      "distance": 170,
+      "height": 16,
+      "box": [
+        -700,
+        -24,
+        700,
+        2
+      ]
+    },
+    {
+      "id": "field",
+      "name": "Сжатые поля",
+      "plane": true,
+      "across": 0,
+      "distance": 200,
+      "width": 1200,
+      "depth": 400
+    },
+    {
+      "id": "yard",
+      "name": "Двор",
+      "plane": true,
+      "across": 0,
+      "distance": 30,
+      "elevation": 0.01,
+      "width": 120,
+      "depth": 58,
+      "reflect": {
+        "strength": 0.15,
+        "rough": 0.4
+      }
+    },
+    {
+      "id": "stooks_far",
+      "name": "Суслоны вдали",
+      "across": 0,
+      "distance": 62,
+      "height": 1.4,
+      "box": [
+        -90,
+        -2,
+        90,
+        0.3
+      ]
+    },
+    {
+      "id": "stooks_mid",
+      "name": "Суслоны",
+      "across": 0,
+      "distance": 34,
+      "height": 1.4,
+      "box": [
+        -50,
+        -2,
+        50,
+        0.3
+      ]
+    },
+    {
+      "id": "cart",
+      "name": "Телега со снопами",
+      "across": 41,
+      "distance": 55,
+      "height": 2.8,
+      "box": [
+        -4,
+        -3.6,
+        36,
+        0.6
+      ]
+    },
+    {
+      "id": "david",
+      "name": "Дэвид",
+      "person": {
+        "cast": "cast",
+        "who": "david",
+        "turn": 60,
+        "does": "peek_corner"
+      },
+      "across": -3.2,
+      "distance": 15.5,
+      "place": {
+        "across": "david_a",
+        "distance": "david_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "barn",
+      "name": "Сарай",
+      "across": -5.6,
+      "distance": 13,
+      "height": 6.3,
+      "box": [
+        -4.2,
+        -6.7,
+        3.6,
+        0.6
+      ],
+      "shadow": true
+    },
+    {
+      "id": "fence",
+      "name": "Загон",
+      "across": 0,
+      "distance": 10,
+      "height": 1.4,
+      "box": [
+        -2.5,
+        -1.7,
+        7.5,
+        0.3
+      ],
+      "shadow": true
+    },
+    {
+      "id": "horse",
+      "name": "Конь инспектора",
+      "across": 4.6,
+      "distance": 9.6,
+      "height": 1.8,
+      "box": [
+        -3.4,
+        -4.4,
+        3.4,
+        0.5
+      ],
+      "place": {
+        "across": "horse_a",
+        "distance": "horse_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "calf",
+      "name": "Телёнок",
+      "across": -0.1,
+      "distance": 8.05,
+      "height": 1.1,
+      "box": [
+        -0.9,
+        -1.35,
+        0.8,
+        0.15
+      ],
+      "place": {
+        "across": "calf_a"
+      },
+      "shadow": true
+    },
+    {
+      "id": "farmhand",
+      "name": "Работник",
+      "person": {
+        "cast": "cast",
+        "who": "farmhand",
+        "turn": 90,
+        "does": "rope_hold"
+      },
+      "across": -1.25,
+      "distance": 7.95,
+      "place": {
+        "across": "farmhand_a",
+        "distance": "farmhand_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "rope",
+      "name": "Верёвка недоуздка",
+      "across": -0.6,
+      "distance": 7.98,
+      "height": 1,
+      "box": [
+        -3,
+        -3,
+        3,
+        3
+      ]
+    },
+    {
+      "id": "inspector",
+      "name": "Инспектор",
+      "person": {
+        "cast": "cast",
+        "who": "inspector",
+        "turn": 262,
+        "does": "ledger_read"
+      },
+      "across": 1.75,
+      "distance": 7.7,
+      "place": {
+        "across": "inspector_a",
+        "distance": "inspector_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "joseph",
+      "name": "Джозеф Строрм",
+      "person": {
+        "cast": "cast",
+        "who": "joseph",
+        "turn": 255,
+        "does": "arms_folded"
+      },
+      "across": 2.5,
+      "distance": 8.6,
+      "place": {
+        "across": "joseph_a",
+        "distance": "joseph_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "tufts",
+      "name": "Трава во дворе",
+      "across": 0,
+      "distance": 6.2,
+      "height": 0.4,
+      "box": [
+        -7,
+        -0.6,
+        7,
+        0.3
+      ]
+    },
+    {
+      "id": "weeds",
+      "name": "Бурьян у ног",
+      "across": 0,
+      "distance": 4.6,
+      "height": 0.8,
+      "box": [
+        -5.5,
+        -1,
+        5.5,
+        0.3
+      ]
+    },
+    {
+      "id": "leaves",
+      "name": "Листья в воздухе",
+      "across": 0,
+      "distance": 9,
+      "elevation": 3,
+      "particles": {
+        "kind": "leaves",
+        "source": [
+          16,
+          10,
+          3
+        ],
+        "rate": 2,
+        "amount": "season",
+        "colors": [
+          "#b08a48",
+          "#9a6a3a",
+          "#c4a060"
+        ]
+      }
+    },
+    {
+      "id": "dust",
+      "name": "Пыль",
+      "across": 0,
+      "distance": 7,
+      "elevation": 1.2,
+      "particles": {
+        "kind": "dust",
+        "source": [
+          12,
+          6,
+          2
+        ],
+        "rate": 3,
+        "color": "#e8dcc0",
+        "size": [
+          0.015,
+          0.015
+        ]
+      }
+    },
+    {
+      "id": "rain",
+      "name": "Дождь",
+      "particles": {
+        "kind": "rain",
+        "amount": "rain",
+        "count": 6000,
+        "color": "#d8dcdc",
+        "opacity": 0.5
+      }
+    }
+  ],
+  "modules": [
+    "cast",
+    "chrysalids"
+  ],
   "music": {
     "bpm": 66,
     "density": 0.28,
@@ -95,354 +558,5 @@
       }
     ],
     "brightness": 0.35
-  },
-  "state": {
-    "cart": 0.5,
-    "rain": 0,
-    "season": 0,
-    "verdict": 0,
-    "calf_present": 1,
-    "david_present": 1,
-    "joseph_wear": {
-      "hat": "hat"
-    },
-    "farmhand_wear": {
-      "hat": "hat"
-    },
-    "inspector_wear": {
-      "hat": "hat"
-    },
-    "inspector_with": [
-      "book_open_l"
-    ],
-    "farmhand_reach": {
-      "r": "calf#ring"
-    },
-    "farmhand_look": "calf#ring",
-    "inspector_look": "inspector#hand_l",
-    "joseph_look": "calf",
-    "david_look": "calf",
-    "sky_light": 1
-  },
-  "title": "Инспектор на ферме",
-  "camera": {
-    "mode": "picture"
-  },
-  "caption": "Каждую осень он объезжал фермы и решал, что достойно жить.",
-  "horizon": 0.58,
-  "objects": [
-    {
-      "id": "sky",
-      "sky": true,
-      "name": "Пасмурное небо"
-    },
-    {
-      "x": 0.5,
-      "id": "far_trees",
-      "box": [
-        -1600,
-        -40,
-        1600,
-        4
-      ],
-      "name": "Дальняя кромка леса",
-      "height": 20,
-      "distance": 450
-    },
-    {
-      "x": 0.5,
-      "id": "hedge",
-      "box": [
-        -700,
-        -22,
-        700,
-        2
-      ],
-      "name": "Живая изгородь и вяз",
-      "height": 16,
-      "distance": 170
-    },
-    {
-      "id": "field",
-      "name": "Сжатые поля",
-      "color": "#b29c66",
-      "depth": 400,
-      "plane": true,
-      "width": 1200,
-      "across": 0,
-      "distance": 200,
-      "elevation": 0
-    },
-    {
-      "id": "yard",
-      "name": "Двор",
-      "color": "#7a6a52",
-      "depth": 58,
-      "plane": true,
-      "width": 120,
-      "across": 0,
-      "distance": 30,
-      "elevation": 0
-    },
-    {
-      "id": "stooks_far",
-      "box": [
-        -90,
-        -2,
-        90,
-        0.3
-      ],
-      "name": "Суслоны вдали",
-      "across": 0,
-      "height": 1.4,
-      "distance": 62
-    },
-    {
-      "id": "stooks_mid",
-      "box": [
-        -50,
-        -2,
-        50,
-        0.3
-      ],
-      "name": "Суслоны",
-      "across": 0,
-      "height": 1.4,
-      "distance": 34
-    },
-    {
-      "id": "cart",
-      "box": [
-        -3.2,
-        -3.4,
-        30,
-        0.5
-      ],
-      "name": "Телега со снопами",
-      "across": 41,
-      "height": 2.8,
-      "distance": 55
-    },
-    {
-      "id": "david",
-      "name": "Дэвид",
-      "person": {
-        "cast": "cast",
-        "who": "david",
-        "turn": 60,
-        "does": "peek_corner"
-      },
-      "across": -3.2,
-      "distance": 15.5,
-      "place": {
-        "across": "david_a",
-        "distance": "david_d"
-      },
-      "shadow": true
-    },
-    {
-      "id": "barn",
-      "box": [
-        -4.2,
-        -6.7,
-        3.6,
-        0.6
-      ],
-      "name": "Сарай",
-      "across": -5.6,
-      "height": 6.3,
-      "distance": 13
-    },
-    {
-      "id": "fence",
-      "box": [
-        -2.5,
-        -1.7,
-        7.5,
-        0.3
-      ],
-      "name": "Загон",
-      "across": 0,
-      "height": 1.4,
-      "distance": 10
-    },
-    {
-      "id": "horse",
-      "box": [
-        -1.4,
-        -2,
-        2,
-        0.2
-      ],
-      "name": "Конь инспектора",
-      "across": 4.4,
-      "height": 1.8,
-      "distance": 9.6
-    },
-    {
-      "id": "calf",
-      "box": [
-        -5.2,
-        -1.3,
-        0.8,
-        0.15
-      ],
-      "name": "Телёнок",
-      "across": -0.1,
-      "height": 1.1,
-      "distance": 8.05
-    },
-    {
-      "id": "farmhand",
-      "name": "Работник",
-      "person": {
-        "cast": "cast",
-        "who": "farmhand",
-        "turn": 90,
-        "does": "rope_hold"
-      },
-      "across": -1.25,
-      "distance": 7.95,
-      "place": {
-        "across": "farmhand_a",
-        "distance": "farmhand_d"
-      },
-      "shadow": true
-    },
-    {
-      "id": "air",
-      "box": [
-        -6.5,
-        -3.6,
-        6.5,
-        0.2
-      ],
-      "name": "Пыль и листья",
-      "across": 0,
-      "height": 3,
-      "distance": 6
-    },
-    {
-      "id": "weeds",
-      "box": [
-        -5.5,
-        -1,
-        5.5,
-        0.3
-      ],
-      "name": "Бурьян у ног",
-      "across": 0,
-      "height": 0.8,
-      "distance": 4.6
-    },
-    {
-      "id": "rain",
-      "box": [
-        -6,
-        -4.2,
-        6,
-        0.3
-      ],
-      "name": "Дождь",
-      "across": 0,
-      "height": 4,
-      "distance": 4.2
-    },
-    {
-      "id": "inspector",
-      "name": "Инспектор",
-      "person": {
-        "cast": "cast",
-        "who": "inspector",
-        "turn": 262,
-        "does": "ledger_read"
-      },
-      "across": 1.75,
-      "distance": 7.7,
-      "place": {
-        "across": "inspector_a",
-        "distance": "inspector_d"
-      },
-      "shadow": true
-    },
-    {
-      "id": "joseph",
-      "name": "Джозеф Строрм",
-      "person": {
-        "cast": "cast",
-        "who": "joseph",
-        "turn": 255,
-        "does": "arms_folded"
-      },
-      "across": 2.5,
-      "distance": 8.6,
-      "place": {
-        "across": "joseph_a",
-        "distance": "joseph_d"
-      },
-      "shadow": true
-    },
-    {
-      "id": "tufts",
-      "box": [
-        -7,
-        -0.6,
-        7,
-        0.3
-      ],
-      "name": "Трава во дворе",
-      "across": 0,
-      "height": 0.4,
-      "distance": 6.2
-    }
-  ],
-  "captions": [
-    {
-      "at": 8,
-      "for": 7,
-      "text": "Инспектор долго смотрел на ноги телёнка."
-    },
-    {
-      "at": 22,
-      "for": 7,
-      "text": "Отец стоял, сложив руки, и не говорил ни слова."
-    }
-  ],
-  "directions": [
-    {
-      "key": "verdict",
-      "name": "Приговор: телёнка уводят",
-      "excludes": []
-    },
-    {
-      "key": "season",
-      "name": "Поздняя осень",
-      "excludes": []
-    },
-    {
-      "key": "rain",
-      "name": "Дождь",
-      "excludes": []
-    },
-    {
-      "key": "cart",
-      "name": "Подъезжает телега со снопами",
-      "excludes": []
-    }
-  ],
-  "modules": [
-    "cast"
-  ],
-  "lights": [
-    {
-      "id": "sky",
-      "from": [
-        -25,
-        55
-      ],
-      "color": "#e4cfa0",
-      "strength": 0.55,
-      "on": "sky_light"
-    }
-  ]
+  }
 }

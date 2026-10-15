@@ -1,117 +1,64 @@
-var L = e.state.window_lit == null ? 1 : e.state.window_lit;
-var C = "#2b2635";
-g.fillStyle = C;
-g.fillRect(-5.5, -6, 11, 6);
-g.beginPath();
-g.moveTo(-6, -6);
-g.lineTo(0, -9.8);
-g.lineTo(6, -6);
-g.closePath();
-g.fill();
-g.fillRect(2.6, -10.7, 0.8, 2.8);
-g.fillStyle = "#24202d";
-g.fillRect(2.5, -10.9, 1.0, 0.25);
-g.strokeStyle = "rgba(70,62,82,0.5)";
-g.lineWidth = 0.03;
-g.beginPath();
-for (var y = -5.7; y < 0; y += 0.35) {
-  g.moveTo(-5.5, y);
-  g.lineTo(5.5, y);
+// The Strorms' farmhouse (18 m): two storeys of grey stone under a slate roof, the chimney on the right (its point
+// `chimney`: the smoke), dark windows, the door with its little porch on the left (`door`); the window on the right,
+// where the lamp is, is an element of its own on it (pane) — its point here, `window`, and the house's own (its lines).
+// Painted once in daylight colours: the evening is the scene's light.
+g.fillStyle = '#a0937f';
+g.fillRect(-5.5, -6, 11, 6.05);
+for (let y = -5.8; y < 0; y += 0.32) { g.fillStyle = 'rgba(84,74,62,0.2)'; g.fillRect(-5.5, y, 11, 0.025); }
+for (let i = 0; i < 160; i++) {
+  g.fillStyle = e.rnd() < 0.5 ? 'rgba(74,66,56,0.16)' : 'rgba(204,194,174,0.14)';
+  g.fillRect(-5.5 + e.rnd() * 10.6, -6 + e.rnd() * 5.9, 0.3 + e.rnd() * 0.5, 0.26);
 }
-g.stroke();
-g.strokeStyle = "rgba(170,135,135,0.35)";
-g.lineWidth = 0.07;
-g.beginPath();
-g.moveTo(-6, -6);
-g.lineTo(0, -9.8);
-g.lineTo(6, -6);
-g.stroke();
-g.fillStyle = "rgba(20,16,28,0.3)";
-g.fillRect(3.4, -6, 2.1, 6);
-function win(x, y) {
-  g.fillStyle = "#211d2a";
-  g.fillRect(x - 0.5, y - 0.75, 1, 1.5);
-  g.strokeStyle = "#38324a";
-  g.lineWidth = 0.08;
-  g.beginPath();
-  g.moveTo(x, y - 0.75);
-  g.lineTo(x, y + 0.75);
-  g.moveTo(x - 0.5, y);
-  g.lineTo(x + 0.5, y);
-  g.stroke();
+g.fillStyle = '#5c5864';
+g.beginPath(); g.moveTo(-6.1, -5.9); g.lineTo(0, -9.8); g.lineTo(6.1, -5.9); g.closePath(); g.fill();
+g.strokeStyle = 'rgba(40,38,46,0.35)';
+g.lineWidth = 0.04;
+for (let y = -9.4; y < -6; y += 0.3) { const w = (y + 9.8) / 3.9 * 6.1; g.beginPath(); g.moveTo(-w, y); g.lineTo(w, y); g.stroke(); }
+g.fillStyle = '#48444e';
+g.fillRect(-6.15, -6.04, 12.3, 0.18);
+g.fillStyle = '#8a7e70';
+g.fillRect(2.6, -10.9, 0.8, 3.2);
+g.fillStyle = '#6a6058';
+g.fillRect(2.5, -11.05, 1.0, 0.22);
+e.at(3.0, -11.1, 'chimney');
+function win(x, y, w, h) {
+  g.fillStyle = '#d2c8b4';
+  g.fillRect(x - w / 2 - 0.08, y - h / 2 - 0.08, w + 0.16, h + 0.16);
+  g.fillStyle = '#34343e';
+  g.fillRect(x - w / 2, y - h / 2, w, h);
+  g.fillStyle = '#d2c8b4';
+  g.fillRect(x - 0.03, y - h / 2, 0.06, h);
+  g.fillRect(x - w / 2, y - 0.03, w, 0.06);
+  g.fillStyle = '#7e7464';
+  g.fillRect(x - w / 2 - 0.15, y + h / 2 + 0.08, w + 0.3, 0.12);
 }
-win(-3.6, -4.4);
-win(-0.6, -4.4);
-win(2.4, -4.4);
-win(-3.6, -1.5);
-win(0.6, -7.4);
-var fl = 0.92 + 0.05 * Math.sin(e.t * 2.3) + 0.04 * Math.sin(e.t * 3.7 + 1) + 0.02 * Math.sin(e.t * 7.1);
-var wx = 3.5,
-  wy = -1.45;
-var wg = g.createRadialGradient(wx, wy, 0.2, wx, wy, 2.6);
-wg.addColorStop(0, "rgba(240,170,100," + 0.22 * L + ")");
-wg.addColorStop(1, "rgba(240,170,100,0)");
-g.fillStyle = wg;
-g.fillRect(0, -4, 5.5, 4);
-var gr = g.createRadialGradient(wx, wy, 0.1, wx, wy, 0.9);
-gr.addColorStop(0, "rgba(248,205,135," + L + ")");
-gr.addColorStop(1, "rgba(195,122,70," + L * 0.85 + ")");
-g.fillStyle = "#211d2a";
-g.fillRect(wx - 0.55, wy - 0.8, 1.1, 1.6);
-g.globalAlpha = fl;
-g.fillStyle = gr;
-g.fillRect(wx - 0.5, wy - 0.75, 1, 1.5);
-g.globalAlpha = 1;
-g.strokeStyle = "#29232f";
-g.lineWidth = 0.08;
-g.beginPath();
-g.moveTo(wx, wy - 0.75);
-g.lineTo(wx, wy + 0.75);
-g.moveTo(wx - 0.5, wy);
-g.lineTo(wx + 0.5, wy);
-g.stroke();
-g.fillStyle = "rgba(40,30,40,0.45)";
-g.fillRect(wx - 0.5, wy - 0.75, 0.22, 1.5);
-if (L > 0.01) e.light(wx, wy, 3.4, "#f0b46a", 0.6 * L * fl);
-g.fillStyle = "rgba(240,170,100," + 0.13 * L + ")";
-g.beginPath();
-g.moveTo(wx - 0.6, 0.02);
-g.lineTo(wx + 0.6, 0.02);
-g.lineTo(wx + 1.6, 0.7);
-g.lineTo(wx - 1.9, 0.7);
-g.closePath();
-g.fill();
-g.fillStyle = "#28232e";
-g.beginPath();
-g.moveTo(-0.5, -2.9);
-g.lineTo(2.6, -2.9);
-g.lineTo(2.8, -2.5);
-g.lineTo(-0.7, -2.5);
-g.closePath();
-g.fill();
-g.fillRect(-0.4, -2.5, 0.14, 2.5);
-g.fillRect(2.4, -2.5, 0.14, 2.5);
-g.fillStyle = "#1e1a25";
-g.fillRect(0.6, -2.3, 1, 2.0);
-g.fillStyle = "#352f3e";
-g.fillRect(0.0, -0.45, 2.2, 0.15);
-g.fillRect(-0.1, -0.3, 2.4, 0.15);
-g.fillRect(-0.2, -0.15, 2.6, 0.15);
-g.fillStyle = "rgba(240,170,100," + 0.12 * L + ")";
-g.fillRect(1.6, -0.45, 1.0, 0.45);
-g.fillStyle = "#3d3542";
-g.fillRect(-0.1, -3.55, 2.4, 0.55);
-g.strokeStyle = "#211c26";
-g.lineWidth = 0.05;
-g.beginPath();
-for (var i = 0; i < 9; i++) {
-  var x = 0.1 + i * 0.25,
-    k = (i * 7) % 3;
-  g.moveTo(x, -3.45);
-  g.lineTo(x + (k - 1) * 0.05, -3.1);
-  if (k == 0) {
-    g.moveTo(x - 0.07, -3.28);
-    g.lineTo(x + 0.07, -3.28);
-  }
-}
-g.stroke();
+win(-3.6, -4.4, 1, 1.5);
+win(-0.6, -4.4, 1, 1.5);
+win(2.4, -4.4, 1, 1.5);
+win(-4.5, -1.5, 1, 1.5);
+win(-0.4, -1.5, 1, 1.5);
+win(0, -7.3, 0.7, 0.9);
+// the frame round the lit window (its glass is the pane's)
+g.fillStyle = '#d2c8b4';
+g.fillRect(2.0 - 0.58, -1.45 - 0.83, 1.16, 1.66);
+g.fillStyle = '#7e7464';
+g.fillRect(2.0 - 0.65, -1.45 + 0.83, 1.3, 0.12);
+// the door and its porch
+g.fillStyle = '#5c4434';
+g.fillRect(-3.0, -2.3, 1.0, 2.32);
+g.strokeStyle = '#3e2e24';
+g.lineWidth = 0.04;
+g.strokeRect(-2.9, -2.2, 0.8, 0.9);
+g.strokeRect(-2.9, -1.15, 0.8, 1.0);
+g.fillStyle = '#c8b48a';
+g.beginPath(); g.arc(-2.15, -1.15, 0.04, 0, 7); g.fill();
+g.fillStyle = '#4c4650';
+g.beginPath(); g.moveTo(-3.6, -2.55); g.lineTo(-1.4, -2.55); g.lineTo(-1.25, -2.85); g.lineTo(-3.75, -2.85); g.closePath(); g.fill();
+g.fillStyle = '#6a5a48';
+g.fillRect(-3.5, -2.55, 0.12, 2.57);
+g.fillRect(-1.62, -2.55, 0.12, 2.57);
+g.fillStyle = '#8a8274';
+g.fillRect(-3.4, -0.18, 1.8, 0.2);
+e.at(-2.5, -1.1, 'door');
+e.at(2.0, -1.45, 'window');
+e.at(2.0, -1.45);

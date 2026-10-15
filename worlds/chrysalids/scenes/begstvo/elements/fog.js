@@ -1,8 +1,8 @@
-// The fog lying in the hollow behind the shoulder (8.9 m, across 2.5…18): soft banks in two sheets swaying each its way
+// The fog lying in the hollow behind the shoulder and behind the horses (9.15 m, across 3…18): soft banks in two sheets swaying each its way
 // (fog.animate.js thickens them with `fog` and sways them a little — whole within the card: no bank meets its edge);
-// on the hollow's floor (lib.track) where the horses stand, about their legs — their bodies and heads over it
+// on the hollow's floor (lib.track), behind those who stand there: they are seen whole against it
 const { track } = e.lib, floor = x => track(Math.min(x, 12.5));
-const reach = x => Math.max(0, Math.min(1, (x - 2.6) / 1.6)) * Math.max(0, Math.min(1, (17 - x) / 3));
+const reach = x => Math.max(0, Math.min(1, (x - 3) / 2)) * Math.max(0, Math.min(1, (17 - x) / 3));
 for (const name of ['f0', 'f1']) {
   e.layer(name, { box: [2, -4, 18, 3] }, q => {
     for (let i = 0; i < 16; i++) {
@@ -16,13 +16,13 @@ for (const name of ['f0', 'f1']) {
   });
 }
 e.layer('bank', { box: [2, -4, 18, 3] }, q => {
-  for (let x = 3; x < 18; x += 0.5) {
+  for (let x = 3; x < 18; x += 0.25) {
     const y0 = -floor(x), h = 1.1 * reach(x);
     const gr = q.createLinearGradient(0, y0 - h, 0, y0 + 0.2);
     gr.addColorStop(0, 'rgba(190,200,218,0)');
     gr.addColorStop(0.8, `rgba(190,200,218,${(0.55 * reach(x)).toFixed(3)})`);
     gr.addColorStop(1, 'rgba(190,200,218,0)');
     q.fillStyle = gr;
-    q.fillRect(x, y0 - h, 0.52, h + 0.2);
+    q.fillRect(x, y0 - h, 0.27, h + 0.2);
   }
 });

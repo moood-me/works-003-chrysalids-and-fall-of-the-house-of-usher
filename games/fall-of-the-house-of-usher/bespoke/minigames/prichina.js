@@ -33,7 +33,7 @@ export default {
     while (looked.length < LOOKS.length) {
       const left = marks.filter(m => !looked.includes(m.which));
       const touched = await Promise.race(left.map(m => once(mg, m.press, 'press').then(x => x && m)));
-      if (!touched) return this.skipped;
+      if (!touched) { g.set('gloom', 1); g.set('crack_trace', 1); return this.skipped; }
       looked.push(touched.which);
       mg.snap({ at: touched.mark });
       touched.mark.remove();
@@ -48,11 +48,11 @@ export default {
     mg.plate.set({ phrase: 'От самой крыши вниз по стене шла едва заметная трещина' });
     const top = mg.mark({ at: LINE[0], kind: 'ring' });
     const touch = mg.press({ on: top });
-    if (!(await once(mg, touch, 'press'))) return this.skipped;
+    if (!(await once(mg, touch, 'press'))) { g.set('crack_trace', 1); return this.skipped; }
     top.remove();
     mg.sceneTurn(true);
     await g.beat('trace');
-    if (signal.aborted) return this.skipped;
+    if (signal.aborted) { g.set('crack_trace', 1); return this.skipped; }
     mg.sceneTurn(false);
     const start = mg.mark({ at: LINE[0], kind: 'dash' });
     const trace = mg.trace({ on: start, line: LINE });
@@ -65,6 +65,7 @@ export default {
       return u >= 0.99;
     });
     if (!done) {
+      g.set('gloom', 1);
       g.set('crack_trace', 1);
       return this.skipped;
     }

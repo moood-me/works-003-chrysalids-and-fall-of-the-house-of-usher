@@ -26,7 +26,8 @@
 //   g.beat(name, {wait}) — a beat of the shown scene (the world's module `beats`); → once it has ended (the scene
 //     tells 'beat:<name>'), or at once with wait: false. To wait for a moment inside a beat, make the g.told before g.beat
 //   g.play(minigame, opts) — a small game of the hands: a module of minigames/ — export default {title, about,
-//     skipped, run: async (g, b, opts, signal) → its result}, made of the language of mini-games (bespoke.minigame).
+//     skipped (or skipped(opts): what a clean play of it gives with those opts), run: async (g, b, opts, signal) → its
+//     result}, made of the language of mini-games (bespoke.minigame).
 //     The signal aborts when it is skipped (the ⏭ in the game's row of tools, for every player: b.minigame.skip()) or
 //     the step is left: it stops; → `skipped` then — read as played: a skipped minigame leaves in the story the same
 //     trace as one played (the plain good outcome)
@@ -190,9 +191,10 @@ export function context(b, view, hub, state, j = null) {
     },
     async play(minigame, opts = {}) {
       if (gone()) return never;
+      const clean = typeof minigame.skipped === 'function' ? minigame.skipped(opts) : minigame.skipped;
       if (unseen()) {
         j.plays.push(minigame);
-        if (j.plays.length <= j.target) return j.result?.(minigame) ?? minigame.skipped;
+        if (j.plays.length <= j.target) return j.result?.(minigame) ?? clean;
         await seen();
       }
       // skipped — by the player (the game's ⏭ → b.minigame.skip(): g.minigame hears it; before the language's mini-game
@@ -204,7 +206,7 @@ export function context(b, view, hub, state, j = null) {
       playing = { signal: stop.signal, end };
       const skipped = new Promise(ok => stop.signal.addEventListener('abort', () => {
         off();
-        ok(minigame.skipped);
+        ok(clean);
       }));
       try {
         return await alive(Promise.race([minigame.run(g, b, opts, stop.signal), skipped]));

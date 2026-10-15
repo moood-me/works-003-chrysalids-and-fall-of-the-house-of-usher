@@ -2,7 +2,7 @@
 // the doctor in the gallery: ⚑ tell him of her fits or keep silent, and ⚑ his carriage — the first
 // chance to leave; the walk out of the house («За руку»): his breath, his fear, the house alive — on to
 // the shore or back. «Её больше нет». design.md, scenes.md (docs/usher).
-// Reads: nothing. Leaves: choices.struna, doctor, carriage, walk; marks.doctor (he was told).
+// Reads: nothing. Leaves: choices.struna, doctor, carriage, walk; marks.doctor (he was told). «За руку» let go — trust.
 import { SCENES } from '../story.js';
 import struna from '../minigames/struna.js';
 import zaRuku from '../minigames/za-ruku.js';
@@ -88,7 +88,9 @@ export default {
       await g.say('narrator', 'Он не выходил из дома много лет. Я вывел его за руку.');
       await out;
       await g.beat('walk');
-      await g.play(zaRuku, {});
+      const { letGo } = await g.play(zaRuku, {});
+      // (his hand let go on the way out: he felt it)
+      if (letGo) g.scale('trust', -1);
       // (said in the close-up of his breath)
       const close = g.told('breathe:close');
       const breathe = g.beat('breathe');

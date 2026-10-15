@@ -128,8 +128,8 @@ const rows = (choices, kept, title = c => c.title) => choices.map(c => ({
 }));
 const map = (ch, kept) => rows(ch.choices, kept);
 // the whole play: the turns (⚑) of every chapter — but those the ending tells (ends: to leave, the hands) — and how it
-// ended
+// ended (the other endings a thread each, without words: the map stays readable)
 const whole = kept => [
   ...CHAPTERS.slice(0, EPILOGUE).flatMap(ch => rows(ch.choices.filter(c => c.weight === '⚑' && !c.ends), kept, c => `${ch.number}. ${c.title}`)),
-  { title: 'Конец', weight: '⚑', options: epilogue.endings.map(e => ({ label: e.label, state: e.id === kept.ending ? 'chosen' : 'open' })) },
+  { title: 'Конец', weight: '⚑', options: epilogue.endings.map(e => ({ label: e.label, state: e.id === kept.ending ? 'chosen' : 'unseen' })) },
 ];

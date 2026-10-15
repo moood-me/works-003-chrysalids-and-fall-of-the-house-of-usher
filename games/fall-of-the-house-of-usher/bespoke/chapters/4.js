@@ -3,7 +3,7 @@
 // confession; the door opens: Madeline. ⚑ The hands («Руки»): whose hand reaches out depends on what
 // she heard and on his trust; the time — on the crack. The flight («Бег»). Sets the ending.
 // design.md: «Финал: руки», «Концовки».
-// Reads: scales; heard.*; marks.loose, key; choices.night, coffin. Leaves: choices.window, reading, hands.
+// Reads: scales; heard.*; marks.loose, key, knocks; choices.night, coffin. Leaves: choices.window, reading, hands.
 import { CRACK_FULL, SCALES, SCENES } from '../story.js';
 import chtenie from '../minigames/chtenie.js';
 import ruki from '../minigames/ruki.js';
@@ -78,6 +78,7 @@ export default {
         choices.night === 'told' && 'И ты слышал.',
         (heard.said || heard.insisted) && 'Ты хотел сказать — я не дал.',
         heard.loose && 'Ты не дотянул винты. Я знал.',
+        marks.knocks >= 3 && 'Ты стучал к ней ночью. Снова и снова. И она отвечала.',
         !marks.key && 'Я бросил ключ в пруд — чтобы не открыть.',
       ].filter(Boolean);
       g.set('cu_speak', 1);
@@ -102,7 +103,7 @@ export default {
       let took = 'none', stayed = true;
       if (scales.sanity > 0) {
         ({ took, stayed } = await g.play(ruki, {
-          madeline, roderick, both: roomy,
+          madeline, roderick, both: !!roomy,
           time: roomy ? 12 : 9 - 5 * Math.min(1, scales.crack / CRACK_FULL), // (the hands come in over its first 1.5 s)
         }));
       } else {

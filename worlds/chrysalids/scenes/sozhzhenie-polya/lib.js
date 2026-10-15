@@ -124,8 +124,10 @@ const JO = [-0.5, 6.8], IN = [1.35, 7.0], EM = [-1.6, 4.95], DV = [-1.05, 4.55];
 const EDGE_IN = [1.0, 8.85], SHOW = [0.4, 7.0], FIELD = [0.4, 8.95], HYMN_AT = [-1.0, 7.6], ALONG = [-2.0, 8.95];
 const TORCH = [HYMN_AT[0], HYMN_AT[1], 3.0];
 // in the hymn David and his mother stand as they stood (their faces to us, a little toward the fire), heads lifted,
-// singing up into the light (SING_UP: before them, high)
-const SING = 150, SING_UP = [-1.0, 3.6, 3.4];
+// singing a little up, over our heads (SING_UP: before them, a little higher than their eyes — their faces still to us;
+// looking steeply up turned them to their chins and bonnets); hiding, David presses into his mother's side (HIDE: at her
+// left, turned to her — seen in profile, not behind her)
+const SING = 150, SING_UP = [-1.0, 1.0, 2.2], HIDE = [-1.2, 4.85, 284];
 // where David and his mother go by the stalk; the stalk
 const STALK = [-2.72, 9.5], BY_STALK = { em: [-3.6, 9.0], dv: [-3.15, 8.3] };
 // the camera's places (camera_x, camera_z)
@@ -188,9 +190,9 @@ const LIT = { ...RISEN, ...camOf(CAM.light), in_turn: 280, jo_turn: 100, jo_torc
 const BURNING = { ...LIT, ...camOf(CAM.wide), ...person('jo', ALONG, 270, { with: ['torch'], wear: { hat: 'hat' } }), jo_torch: 1,
   ...person('in', [2.3, 7.6], 200, { with: ['lantern'], wear: { hat: 'hat' } }), fire: 1, ignite: 0.07, smoke: 0.35 };
 const HYMN = { ...BURNING, ...camOf(CAM.hymn), ...person('jo', HYMN_AT, 180, { with: ['torch'], wear: { hat: 'hat' }, reach: { r: [HYMN_AT[0], HYMN_AT[1] - 0.3, 2.9] } }), jo_torch: 1,
-  ignite: 0.4, smoke: 0.75, ...congregation(m => ({ [`${m.id}_d`]: back(m.at[1]), [`${m.id}_do`]: loop('sing_stand'), [`${m.id}_look`]: TORCH, [`${m.id}_with`]: m.shade ? null : ['book_open_l'] })),
-  em_do: loop('sing_stand'), em_turn: SING, em_look: SING_UP, dv_turn: SING };
-const HID = { ...HYMN, dv_a: -1.66, dv_d: 4.68, dv_turn: 13, dv_reach: { r: 'em#hips', l: 'em#hips' }, dv_look: 'em#chest', em_reach: null };
+  ignite: 0.4, smoke: 0.75, ...congregation(m => ({ [`${m.id}_d`]: back(m.at[1]), [`${m.id}_do`]: loop('sing_stand'), [`${m.id}_look`]: TORCH, [`${m.id}_with`]: m.shade ? null : ['book_open'] })),
+  em_do: loop('sing_stand'), em_turn: SING, em_look: SING_UP, em_with: ['book_open_l'], dv_turn: SING };
+const HID = { ...HYMN, dv_a: HIDE[0], dv_d: HIDE[1], dv_turn: HIDE[2], dv_reach: { r: 'em#hips', l: 'em#hips' }, dv_look: 'em#chest', em_reach: null };
 // the grey morning after (set at once under the black)
 const GREY = { ash: 1, ignite: 1, fire: 0.12, smoke: 0.42, dawn: 0.82, morning: 1, jo_torch: 0, jo_reach: null, jo_turn: 180, jo_look: null,
   ...congregation(m => ({ [`${m.id}_do`]: 'stand', [`${m.id}_look`]: null, [`${m.id}_with`]: null })), em_do: 'stand' };
@@ -382,11 +384,12 @@ const FILM = {
       s.person('em').do('sing_stand', { loop: true });
       s.person('em').turn(SING);
       s.person('em').look(SING_UP);
+      s.person('em').with(['book_open_l']); // (her right hand is David's)
       s.person('dv').turn(SING);
       const sings = each(s, 1.2, async (q, m) => {
         q.person(m.id).do('sing_stand', { loop: true });
         q.person(m.id).look(TORCH);
-        if (!m.shade) q.person(m.id).with(['book_open_l']); // (the hymnal open in the left hand)
+        if (!m.shade) q.person(m.id).with(['book_open']); // (the hymnal open in both hands)
         if (m.at[1] > 6.2) await walk(q, m.id, [[m.at[0], back(m.at[1])]], m.face);
         if (m.shade) q.person(m.id).do('shade', { loop: true });
       });
@@ -435,7 +438,7 @@ const FILM = {
       await s.wait(1.2);
       dv.still(false);
       hands(s, false);
-      await walk(s, 'dv', [[-1.66, 4.68]], 13);
+      await walk(s, 'dv', [HIDE.slice(0, 2)], HIDE[2]);
       dv.reach({ r: 'em#hips', l: 'em#hips' });
       dv.look('em#chest');
       await s.wait(1.0);

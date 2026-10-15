@@ -352,10 +352,10 @@ function houseMirror(g, e) {
     g.fill();
     g.clip();
     g.translate(0, -0.4);
-    g.scale(3.4, 3.4);
+    g.scale(7, 7);
     ['madeline', 'narrator', 'roderick'].forEach((who, i) => e.kit.ushers.figure(g, e, {
-      id: 'ghost_' + who, who, x: (i - 1) * 0.42, face: (i - 1) * -12, wear: who === 'madeline' ? { blood: 1 } : undefined,
-      light: 0.18, dark: '#0b0c10', rim: '#c0302a', rimDir: -90,
+      id: 'ghost_' + who, who, x: (i - 1) * 0.22, face: (i - 1) * -12, wear: who === 'madeline' ? { blood: 1 } : undefined,
+      light: 0.32, dark: '#0b0c10', rim: '#e04a36', rimDir: -90,
     }));
     g.restore();
   });
@@ -537,13 +537,14 @@ function reeds(g, e) {
 // (its spray and the boards falling are particles) ──
 function breach(g, e) {
   clear(g, e);
+  // (a round of light that fades to nothing within the card: no edge of it seen)
   e.layer('glow', { blend: 'add' }, (g) => {
-    const rg = g.createRadialGradient(0, -0.6, 0, 0, -0.6, 2.4);
+    const rg = g.createRadialGradient(0, -1.9, 0, 0, -1.9, 2.3);
     rg.addColorStop(0, 'rgba(200,60,40,0.35)');
     rg.addColorStop(1, 'rgba(200,60,40,0)');
     g.fillStyle = rg;
-    g.fillRect(-2.4, -3, 4.8, 3.4);
-    e.light(0, -0.6, 3.5, '#c8321e', 0.25, 'glow');
+    g.beginPath(); g.arc(0, -1.9, 2.3, 0, Math.PI * 2); g.fill();
+    e.light(0, -1.9, 3.5, '#c8321e', 0.25, 'glow');
   });
 }
 function breachMotion(e) {
@@ -803,8 +804,13 @@ function film(scene) {
         s.move('camera_look', 0.12, { over: 5, ease: 'inOut' });
         s.move('fall', 0.5, { over: 5.5, ease: 'inOut' });
         await s.wait(3.5);
+        // (nearer, onto the reflected window: the three of them filling it)
+        s.move('camera_z', 100, { over: 2.5, ease: 'inOut' });
+        s.move('camera_x', 11, { over: 2.5, ease: 'inOut' });
+        s.move('camera_look', 0.42, { over: 2.5, ease: 'inOut' });
+        await s.wait(1);
         s.move('ghosts', 1, { over: 1, ease: 'out' });
-        await s.wait(3);
+        await s.wait(3.5);
         s.move('ghosts', 0, { over: 1.5, ease: 'in' });
         await s.move('fall', 1, { over: 6.5, ease: 'inOut' });
         // (the tarn closed: the game's line from here)

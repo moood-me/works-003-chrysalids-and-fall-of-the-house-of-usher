@@ -135,12 +135,12 @@ const AT_WALL = [2.3, 10.25],
   BESIDE = [3.05, 9.75],
   DOOR = [7.6, 7.5];
 const AT_WINDOW = { roderick_do: "stand", roderick_a: WINDOW[0], roderick_d: WINDOW[1], narrator_a: FRIEND[0], narrator_d: FRIEND[1], narrator_turn: toward(...FRIEND, ...WINDOW) };
-const SHOT = { fade: 0, closeup: 0, ...shot(WIDE) };
+const SHOT = { fade: 0, closeup: 0, night_fill: 0, ...shot(WIDE) };
 // his face on the close-up, at rest
 const FACE = { closeup_smile: 0, closeup_strain: 0, closeup_grief: 0, closeup_speak: 0 };
 const DAY = { evening: 0, song: 0, tempo: 0, wild: 0 };
 // deep night: the candles all but out, only the windows' cold
-const NIGHT = { evening: 0, song: 0, tempo: 0, wild: 0, candles: 0.12, window_light: 0.3, curtain: 0, window_open: 0 };
+const NIGHT = { evening: 0, song: 0, tempo: 0, wild: 0, candles: 0.12, window_light: 0.3, curtain: 0, window_open: 0, night_fill: 1 };
 const EVENING = { evening: 1, song: 0, tempo: 0, wild: 0 };
 // mid-room, his friend's hand in both his: where they stand, and where their hands meet (between them, at the waist)
 const MEET = [1.7, 6.4],

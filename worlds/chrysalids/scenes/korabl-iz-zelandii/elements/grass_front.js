@@ -1,13 +1,8 @@
-g.fillStyle = "#1e1a24";
-for (let i = 0; i < 160; i++) {
-  const x = -6 + e.rnd() * 12;
-  if (x > -1.5 && x < 2.5 && e.rnd() < 0.7) continue;
-  const h = 0.15 + Math.pow(e.rnd(), 2) * 0.9;
-  const ph = e.rnd() * 6.28;
-  const l = (e.rnd() - 0.5) * 0.5 + 0.05 * Math.sin(e.t * 0.42 + ph) + 0.025 * Math.sin(e.t * 1.03 + ph);
-  g.beginPath();
-  g.moveTo(x - 0.02, 0.4);
-  g.quadraticCurveTo(x + l * h * 0.4, -h * 0.6, x + l * h, -h);
-  g.quadraticCurveTo(x + l * h * 0.4 + 0.008, -h * 0.5, x + 0.02, 0.4);
-  g.fill();
-}
+// grass at the clearing's near edge, below us, swaying
+e.layer('g', { pivot: [0, 0.5], wind: { strength: 0.3, gust: 0.5 }, box: [-6, -1.2, 6, 0.5] }, q => {
+  for (let i = 0; i < 60; i++) {
+    const x = -6 + e.rnd() * 12, h = 0.2 + e.rnd() * 0.8, l = (e.rnd() - 0.4) * 0.4;
+    q.fillStyle = e.rnd() < 0.5 ? '#6a7656' : '#76825e';
+    q.beginPath(); q.moveTo(x - 0.02, 0.5); q.quadraticCurveTo(x + l * h * 0.4, 0.5 - h * 0.6, x + l * h, 0.5 - h); q.quadraticCurveTo(x + l * h * 0.4 + 0.008, 0.5 - h * 0.5, x + 0.02, 0.5); q.fill();
+  }
+});

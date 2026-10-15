@@ -1,18 +1,20 @@
-const R = e.state.rain ?? 0.5;
-for (let i = 0; i < 12; i++) {
-  const W = 400;
-  const cx = ((e.rnd() * W + e.t * 0.25 * (0.5 + e.rnd())) % W) - 200,
-    cy = -0.3 - e.rnd() * 3.5,
-    w = 20 + e.rnd() * 50,
-    h = 0.5 + e.rnd() * 1.2;
-  const a = (0.12 + R * 0.18) * (0.6 + e.rnd() * 0.4);
-  g.save();
-  g.translate(cx, cy);
-  g.scale(1, h / w);
-  const rg = g.createRadialGradient(0, 0, 0, 0, 0, w);
-  rg.addColorStop(0, "rgba(196,200,194," + a + ")");
-  rg.addColorStop(1, "rgba(196,200,194,0)");
-  g.fillStyle = rg;
-  g.fillRect(-w, -w, 2 * w, 2 * w);
-  g.restore();
+// mist low over the water under the far bank, in two drifting sheets (painted once, moved by their drift)
+for (const [name, speed, y, a] of [['mist0', 0.25, -1.2, 0.22], ['mist1', 0.45, -0.6, 0.16]]) {
+  e.layer(name, { drift: [speed, 0], box: [-55, -4, 55, 1] }, q => {
+    for (let i = 0; i < 16; i++) {
+      const x = -55 + e.rnd() * 110, w = 4 + e.rnd() * 8;
+      for (const k of [-110, 0, 110]) {
+        const mg = q.createRadialGradient(x + k, y, 0, x + k, y, w);
+        mg.addColorStop(0, `rgba(214,218,212,${a})`);
+        mg.addColorStop(1, 'rgba(214,218,212,0)');
+        q.save();
+        q.translate(x + k, y);
+        q.scale(1, 0.18);
+        q.translate(-(x + k), -y);
+        q.fillStyle = mg;
+        q.fillRect(x + k - w, y - w, 2 * w, 2 * w);
+        q.restore();
+      }
+    }
+  });
 }

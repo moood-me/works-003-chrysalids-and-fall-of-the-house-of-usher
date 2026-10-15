@@ -1,544 +1,517 @@
-// What the scene's elements share: colours, the light of the night, the fire and the grey morning, a row of the wheat,
-// one of the congregation.
-const cl = (v, a, b) => (v < a ? a : v > b ? b : v);
-const sm = (v) => {
-  v = cl(v, 0, 1);
-  return v * v * (3 - 2 * v);
-};
-const hx = (c) =>
-  c[0] == "#"
-    ? [parseInt(c.slice(1, 3), 16), parseInt(c.slice(3, 5), 16), parseInt(c.slice(5, 7), 16)]
-    : c
-        .slice(c.indexOf("(") + 1, -1)
-        .split(",")
-        .slice(0, 3)
-        .map(Number);
-const mixc = (a, b, t) => {
-  const p = hx(a),
-    q = hx(b);
-  t = cl(t, 0, 1);
-  return "rgb(" + p.map((v, i) => Math.round(v + (q[i] - v) * t)).join(",") + ")";
-};
-const mixh = (a, b, t) => {
-  const p = hx(a),
-    q = hx(b);
-  t = cl(t, 0, 1);
-  return "#" + p.map((v, i) => Math.round(v + (q[i] - v) * t).toString(16).padStart(2, "0")).join("");
-};
-const rgba = (c, a) => {
-  const p = hx(c);
-  return "rgba(" + p[0] + "," + p[1] + "," + p[2] + "," + cl(a, 0, 1).toFixed(3) + ")";
-};
-// the fire starts at across X0 (on the edge of the field, 9.5 m) and spreads 50·ignite m; the ash follows, 60·ash m.
-// Left of FIELD_L — the true wheat and the track: they never burn.
-const X0 = 0.5,
-  FIELD_L = -3.0;
-// the light now: the dawn, the fire, the ash (the state), and what they make of a place and of a person
-function now(e) {
-  const S = e.state || {};
-  const st = (k, d) => (typeof S[k] === "number" ? S[k] : d);
-  const DAWN = st("dawn", 0),
-    FIRE = st("fire", 0),
-    IGN = st("ignite", 0),
-    ASH = st("ash", 0);
-  const litAt = (a, d) => (a < FIELD_L ? 0 : cl((IGN * 50 - Math.abs(a - X0) - (d - 9.5) * 0.9) / 1.2, 0, 1));
-  const burntAt = (a, d) => (a < FIELD_L ? 0 : cl((ASH * 60 - Math.abs(a - X0) - (d - 9.5) * 0.9) / 3, 0, 1));
-  // how much the fire lights the world
-  const FL = FIRE * cl(IGN * 8, 0, 1) * (1 - 0.88 * sm(ASH * 1.05));
-  // light on a person standing at (a, d): night silhouettes, the fire behind them, then the grey morning
-  const litP = (a, d) => {
-    const dir = (Math.atan2(-0.9, (3.5 - a) / 3) * 180) / Math.PI;
-    return {
-      light: 0.13 + 0.22 * DAWN + 0.05 * FL,
-      dark: mixh("#17151c", "#2a2830", DAWN * 0.5),
-      rim: mixh("#8c96b4", "#ffae6a", cl(FL * 1.4, 0, 1)),
-      rimDir: FL > 0.05 ? dir : 200,
-      rimWidth: 1.1 + 1.6 * FL,
-      rimAlpha: 0.35 + 0.6 * Math.max(FL, 0.4 * (1 - DAWN)),
-      tint: FL > 0.08 ? mixh("#c8c4d0", "#ffb37a", FL) : null,
-    };
-  };
-  return { st, T: e.t, DAWN, FIRE, IGN, ASH, FL, litAt, burntAt, litP };
-}
-// a row of the wheat across the fields at distance RD (metres from the viewer)
+// Сожжение поля (engine 3): what its elements and its scripts share — a row of the wheat (painted once; its fire is its
+// shader's, wheat.wgsl), how much the fire lights the world, where the congregation stands, and the film: the beats a
+// game plays one at a time by `beat` (script.js, the world's module beats) and the showcase plays in order (showcase.js).
+// The people are the engine's (the world's cast): jo (Joseph Strorm), in (the Inspector), em (Emily), dv (David), p0…p9
+// (the congregation) — their places <id>_a, <id>_d; _do, _turn (0 away from us, 90 right, 180 toward us), _look, _reach.
+const { clamp } = anim;
+const sm = v => { v = clamp(v, 0, 1); return v * v * (3 - 2 * v); };
+// how much the burning field lights the world now (0 … 1): the fire up, the front out, not yet ash
+const fireLight = s => (s.fire ?? 0) * clamp((s.ignite ?? 0) * 8, 0, 1) * (1 - 0.88 * sm((s.ash ?? 0) * 1.05));
+// the fire starts at across X0 (on the edge of the field, 9.5 m) and spreads 50·ignite m each way (to the left only to the
+// track, FIELD_L); the ash follows, 60·ash m
+const X0 = 0.5, FIELD_L = -3.0;
+
+// ── a row of the wheat across the fields at distance RD, painted once in its daylight colours: left of the track and beyond
+// 30 m — true wheat, even and upright; right of the track, up to 30 m — the Offence: stalks of all heights, too tall ones,
+// ears too heavy that hang like hooks, forked ears. Its layer `stubble` (layer 1 of its shader) — the black stubble the fire
+// leaves. ──
 function wheat(g, e, RD) {
-  const { T, DAWN, FIRE, IGN, litAt, burntAt } = now(e);
-  // one row of wheat across the fields at distance RD (metres from the viewer):
-  // left of the track (a < -4) and beyond 30 m — true wheat, even and upright; right of the track, up to 30 m — the Offence:
-  // stalks of all heights, too tall ones, ears too heavy that hang like hooks, forked ears. Then the fire in it, then ash.
-  const HS = RD * 1.25 + 3,
-    SP = 0.075 * Math.max(1, RD / 9.5) * (RD > 25 ? 1.3 : 1);
-  const OFF = (a) => a > -2.95 && a < 30 && RD <= 30;
-  const edge = (a) => cl((a + 2.95) / 0.7, 0, 1);
-  const lit = (a) => (OFF(a) ? litAt(a, RD) * edge(a) : 0),
-    brn = (a) => (OFF(a) ? burntAt(a, RD) : 0);
-  const fireH = (a, ph) => {
-    const l = lit(a);
-    if (l <= 0) return 0;
-    const b = brn(a);
-    if (b >= 1) return 0;
-    const n =
-      0.5 +
-      0.35 * Math.sin(a * 0.9 + T * 1.3 + ph) * Math.sin(a * 0.31 - T * 0.53) +
-      0.25 * Math.sin(a * 2.1 - T * 2.7 + ph * 2) +
-      0.6 * Math.pow(Math.max(0, Math.sin(a * 0.23 + RD + T * 0.15)), 3);
-    return FIRE * l * (1 - b) * (0.9 + 2.4 * Math.max(0.05, n)) * (RD < 12 ? 1.2 : 1);
-  };
-  // flame tongues: many ragged teardrops rising from the burning line
-  function tongues(scale, alphaK, c0, c1, c2, lighter) {
-    if (!(FIRE > 0.01 && IGN > 0)) return;
-    const st2 = 0.3 * Math.max(1, RD / 12);
-    const top = 3.6 * scale;
-    const gr = g.createLinearGradient(0, 0.1, 0, -top);
-    gr.addColorStop(0, rgba(c0, alphaK));
-    gr.addColorStop(0.3, rgba(c1, alphaK * 0.92));
-    gr.addColorStop(0.62, rgba(c2, alphaK * 0.5));
-    gr.addColorStop(1, rgba(c2, 0));
-    g.fillStyle = gr;
-    if (lighter) g.globalCompositeOperation = "lighter";
-    g.beginPath();
-    let any = false;
-    for (let a = -3.0; a < Math.min(HS, 30); a += st2) {
-      const k = Math.floor((a + 10) / st2);
-      const ph = (k * 2.399) % 6.28;
-      const h = Math.min(
-        (RD < 10 ? 2.3 : RD < 16 ? 1.3 : 1.0) * scale,
-        fireH(a, ph) * scale * (0.7 + 0.3 * Math.sin(T * (3 + (k % 5)) + ph)),
-      );
-      if (h < 0.08) continue;
-      any = true;
-      const w = st2 * (0.9 + 0.5 * Math.abs(Math.sin(k * 1.7))) + h * 0.1,
-        lean = -0.15 * h + 0.3 * h * Math.sin(T * 2.1 + ph + k * 0.9) + 0.08 * h * Math.sin(T * 5.3 + k);
-      g.moveTo(a - w, 0.1);
-      g.bezierCurveTo(a - w * 1.3, -h * 0.45, a + lean * 0.2 - w * 0.2, -h * 0.75, a + lean, -h);
-      g.bezierCurveTo(a + lean * 0.1 + w * 0.6, -h * 0.7, a + w * 1.3, -h * 0.4, a + w, 0.1);
-      g.closePath();
-    }
-    if (any) g.fill();
-    g.globalCompositeOperation = "source-over";
-  }
-  tongues(1.0, (0.5 + 0.45 * FIRE) * (RD < 12 ? 1 : 0.75), "#f8b860", "#e06a30", "#8a2a20", false);
-  // the stalks
-  const DW = DAWN * DAWN,
-    wheatC = mixc("#211d18", "#9a8450", DW * 0.9),
-    badC = mixc("#1f1c18", "#7a7652", DW * 0.9),
-    trueC = mixc("#231e18", "#c4a462", DW);
-  g.lineCap = "round";
+  const HS = RD * 1.25 + 3, SP = 0.075 * Math.max(1, RD / 9.5) * (RD > 25 ? 1.3 : 1);
+  const OFF = a => a > -2.95 && a < 30 && RD <= 30;
+  const trueC = '#c4a462', badC = '#8e8858', wheatC = '#a89058';
+  g.lineCap = 'round';
   const N = Math.floor((2 * HS) / SP);
-  const ear = (x, y, ang, L, W) => {
-    g.save();
-    g.translate(x, y);
-    g.rotate(ang);
-    g.beginPath();
-    g.moveTo(0, 0);
-    g.bezierCurveTo(W, -L * 0.25, W * 0.9, -L * 0.8, 0, -L);
-    g.bezierCurveTo(-W * 0.9, -L * 0.8, -W, -L * 0.25, 0, 0);
-    g.fill();
-    g.restore();
+  const ear = (q, x, y, ang, L, W) => {
+    q.save();
+    q.translate(x, y);
+    q.rotate(ang);
+    q.beginPath();
+    q.moveTo(0, 0);
+    q.bezierCurveTo(W, -L * 0.25, W * 0.9, -L * 0.8, 0, -L);
+    q.bezierCurveTo(-W * 0.9, -L * 0.8, -W, -L * 0.25, 0, 0);
+    q.fill();
+    q.restore();
   };
+  const stubs = [];
   for (let i = 0; i < N; i++) {
-    const a = -HS + (i + e.rnd()) * SP;
-    const r1 = e.rnd(),
-      r2 = e.rnd(),
-      r3 = e.rnd(),
-      r4 = e.rnd();
+    const a = -HS + (i + e.rnd()) * SP, r1 = e.rnd(), r2 = e.rnd(), r3 = e.rnd(), r4 = e.rnd();
     if (a > -4.05 && a < -2.95) continue;
-    const sw = 0.06 * Math.sin(T * 0.7 + a * 0.5 + r3 * 2) + 0.03 * Math.sin(T * 1.7 + a * 1.3);
+    const sw = 0.04 * Math.sin(a * 0.5 + r3 * 2);
     if (!OFF(a)) {
-      // true wheat: even, upright, full ears nodding the same way
       const h = 0.95 + 0.08 * r1;
       g.strokeStyle = trueC;
       g.fillStyle = trueC;
       g.lineWidth = 0.02 * (RD > 20 ? 1.6 : 1);
-      const tx = a + sw * h,
-        ty = -h;
+      const tx = a + sw * h, ty = -h;
       g.beginPath();
       g.moveTo(a, 0.05);
       g.quadraticCurveTo(a + sw * h * 0.3, -h * 0.5, tx, ty);
       g.stroke();
-      ear(tx, ty, sw * 1.5 + 0.12, 0.11, 0.022 * (RD > 20 ? 1.5 : 1));
+      ear(g, tx, ty, sw * 1.5 + 0.12, 0.11, 0.022 * (RD > 20 ? 1.5 : 1));
       continue;
     }
-    const l = lit(a),
-      b = brn(a);
-    if (b > 0.8) {
-      if (r2 < 0.2 && RD < 12) {
-        g.strokeStyle = "#0d0a0a";
-        g.lineWidth = 0.025;
-        g.beginPath();
-        g.moveTo(a, 0.03);
-        g.lineTo(a + 0.02, -0.05 - 0.12 * r3);
-        g.stroke();
-      }
-      continue;
-    }
-    const bad = r1 > 0.45,
-      tall = r1 > 0.66,
-      fork = r1 > 0.86 && r1 < 0.95,
-      crook = r1 >= 0.95;
-    let h = bad ? (tall ? 1.45 + r2 * 1.0 : 1.0 + r2 * 0.45) : 0.75 + r2 * 0.3;
-    h *= 1 - 0.85 * b;
-    const col = mixc(bad ? badC : wheatC, "#0a0707", cl(l * 1.6 + b, 0, 1));
+    stubs.push([a, r2, r3]);
+    const bad = r1 > 0.45, tall = r1 > 0.66, fork = r1 > 0.86 && r1 < 0.95, crook = r1 >= 0.95;
+    const h = bad ? (tall ? 1.45 + r2 * 1.0 : 1.0 + r2 * 0.45) : 0.75 + r2 * 0.3;
+    const col = bad ? badC : wheatC;
     g.strokeStyle = col;
     g.fillStyle = col;
-    const flk = l * (1 - b) * 0.05 * Math.sin(T * 7 + i);
-    const curl = l * 1.0;
     g.lineWidth = (bad ? 0.026 + 0.02 * r2 : 0.02) * (RD > 20 ? 1.5 : 1);
-    // the stalk: tall ones bow over at the top under their heads
-    const bow = (tall ? 0.25 + 0.35 * r3 : bad ? 0.12 : 0.05) + curl * 0.3;
-    const tx = a + (sw + flk) * h + bow * h * 0.25,
-      ty = -h * (1 - bow * 0.08);
+    const bow = tall ? 0.25 + 0.35 * r3 : bad ? 0.12 : 0.05;
+    const tx = a + sw * h + bow * h * 0.25, ty = -h * (1 - bow * 0.08);
     g.beginPath();
     g.moveTo(a, 0.05);
-    g.bezierCurveTo(a + (crook ? 0.12 : 0), -h * 0.45, a + (sw + flk) * h * 0.5, -h * 0.95, tx, ty);
+    g.bezierCurveTo(a + (crook ? 0.12 : 0), -h * 0.45, a + sw * h * 0.5, -h * 0.95, tx, ty);
     g.stroke();
-    // ears: normal ones nod; bad ones hang heavy, some forked, some crooked to the ground
-    if (!bad) ear(tx, ty, 0.35 + sw * 2 + curl, 0.1, 0.02);
+    if (!bad) ear(g, tx, ty, 0.35 + sw * 2, 0.1, 0.02);
     else {
-      const L = tall ? 0.24 + r4 * 0.2 : 0.16 + r4 * 0.08,
-        W = tall ? 0.05 + r4 * 0.025 : 0.035;
-      const hang = 1.9 + r3 * 0.9 + curl * 0.6 + sw * 2;
+      const L = tall ? 0.24 + r4 * 0.2 : 0.16 + r4 * 0.08, W = tall ? 0.05 + r4 * 0.025 : 0.035, hang = 1.9 + r3 * 0.9 + sw * 2;
       g.beginPath();
       g.moveTo(tx, ty);
       g.quadraticCurveTo(tx + 0.1, ty - 0.06, tx + 0.12, ty + 0.02);
       g.stroke();
-      ear(tx + 0.12, ty + 0.02, hang, L, W);
-      if (fork) ear(tx + 0.06, ty - 0.01, hang - 0.9, L * 0.8, W * 0.85);
-      if (RD < 13) {
-        g.lineWidth = 0.006;
-        g.save();
-        g.translate(tx + 0.12, ty + 0.02);
-        g.rotate(hang);
-        for (let j = 1; j < 6; j++) {
-          g.beginPath();
-          g.moveTo(0, (-L * j) / 6);
-          g.lineTo(0.06 + 0.01 * j, (-L * j) / 6 - 0.05);
-          g.moveTo(0, (-L * j) / 6);
-          g.lineTo(-0.06 - 0.01 * j, (-L * j) / 6 - 0.05);
-          g.stroke();
-        }
-        g.restore();
-      }
+      ear(g, tx + 0.12, ty + 0.02, hang, L, W);
+      if (fork) ear(g, tx + 0.06, ty - 0.01, hang - 0.9, L * 0.8, W * 0.85);
     }
   }
-  if (RD < 10) {
-    // the one stalk the fire left standing at the field's edge, by the track
-    const a = -2.72,
-      h = 2.0,
-      sw = 0.06 * Math.sin(T * 0.7 + 0.4) + 0.03 * Math.sin(T * 1.7 + 1.1);
-    const col = mixc("#221d18", "#7a7454", DAWN * 0.85);
-    g.strokeStyle = col;
-    g.fillStyle = col;
-    g.lineWidth = 0.04;
-    const tx = a + sw * h + 0.22,
-      ty = -h;
-    g.beginPath();
-    g.moveTo(a, 0.05);
-    g.bezierCurveTo(a + 0.05, -h * 0.45, a + sw * h * 0.6, -h * 0.95, tx, ty);
-    g.stroke();
-    g.beginPath();
-    g.moveTo(tx, ty);
-    g.quadraticCurveTo(tx + 0.12, ty - 0.07, tx + 0.15, ty + 0.03);
-    g.stroke();
-    ear(tx + 0.15, ty + 0.03, 2.35 + sw * 2, 0.42, 0.075);
-    ear(tx + 0.07, ty, 1.45 + sw * 2, 0.32, 0.06);
-    g.lineWidth = 0.008;
-    g.save();
-    g.translate(tx + 0.15, ty + 0.03);
-    g.rotate(2.35 + sw * 2);
-    for (let j = 1; j < 8; j++) {
-      g.beginPath();
-      g.moveTo(0, (-0.42 * j) / 8);
-      g.lineTo(0.09, (-0.42 * j) / 8 - 0.06);
-      g.moveTo(0, (-0.42 * j) / 8);
-      g.lineTo(-0.09, (-0.42 * j) / 8 - 0.06);
-      g.stroke();
+  e.layer('stubble', { box: e.area }, q => {
+    q.strokeStyle = '#1e1a18';
+    q.lineCap = 'round';
+    q.lineWidth = 0.025 * (RD > 20 ? 1.5 : 1);
+    for (const [a, r2, r3] of stubs) {
+      if (r2 > 0.45) continue;
+      q.beginPath();
+      q.moveTo(a, 0.03);
+      q.lineTo(a + 0.02, -0.05 - 0.12 * r3);
+      q.stroke();
     }
-    g.restore();
-  }
-  tongues(0.6, 0.55 * FIRE, "#fff0c0", "#f8b060", "#e07040", true);
-  if (FIRE > 0.01 && IGN > 0) {
-    // low glow of the burning line and its light
-    g.globalCompositeOperation = "lighter";
-    const gl2 = g.createLinearGradient(0, 0.15, 0, -0.5);
-    gl2.addColorStop(0, "rgba(255,170,90," + 0.4 * FIRE + ")");
-    gl2.addColorStop(1, "rgba(200,80,40,0)");
-    g.fillStyle = gl2;
-    g.beginPath();
-    g.moveTo(-3, 0.15);
-    for (let a = -3; a < Math.min(HS, 30); a += 0.5) {
-      g.lineTo(a, 0.15 - 0.65 * Math.min(1, fireH(a, 0)));
-    }
-    g.lineTo(Math.min(HS, 30), 0.15);
-    g.closePath();
-    g.fill();
-    g.globalCompositeOperation = "source-over";
-    if (RD < 15) {
-      for (let a = -2; a < Math.min(HS, 30); a += 3) {
-        const h = fireH(a, 0);
-        if (h > 0.3) e.light(a, -h * 0.4, 4 + h, "#e08040", cl(0.07 * h, 0, 0.3));
-      }
-    }
+  });
+}
+// a row's shader's uniforms, each frame: its distance, the fire, the front, the ash
+function wheatMove(e, RD) {
+  const s = e.state;
+  e.uniform('rd', RD);
+  e.uniform('ignite', s.ignite ?? 0);
+  e.uniform('ash', s.ash ?? 0);
+  e.uniform('fire', s.fire ?? 0);
+}
+
+// ── where everyone stands (across, distance, turn) ──
+// the congregation in two wings either side of the track's end; who each is (the cast); the six in front who turn round
+// to David as `turned` passes their mark (each late in its own way)
+const MEMBERS = [
+  { id: 'p0', who: 'man_a', at: [-5.0, 7.6], face: 140, mark: 0.85 },
+  { id: 'p1', who: 'woman_a', at: [-4.3, 7.0], face: 145, mark: 0.4 },
+  { id: 'p2', who: 'old_man', at: [-5.7, 6.4], face: 135 },
+  { id: 'p3', who: 'woman_b', at: [-3.6, 6.6], face: 150, mark: 0.05 },
+  { id: 'p4', who: 'farmhand', at: [-4.8, 5.6], face: 140, mark: 0.7 },
+  { id: 'p5', who: 'old_woman', at: [-6.0, 4.8], face: 130 },
+  { id: 'p6', who: 'girl', at: [-2.9, 7.7], face: 155, mark: 0.25 },
+  { id: 'p7', who: 'man_b', at: [3.4, 7.8], face: 212 },
+  { id: 'p8', who: 'woman_c', at: [4.3, 7.1], face: 215, shade: true },
+  { id: 'p9', who: 'boy', at: [2.7, 6.8], face: 205, mark: 0.55 },
+];
+// (the front ones step back from the heat)
+const back = d => (d > 6.2 ? d - 0.55 : d);
+// the left ones go home by the track toward Waknuk, the right ones across the fields
+const homeL = i => -3.45 + 0.3 * Math.sin(i * 2.1);
+const home = (m, i) => (m.at[0] < 0 ? [homeL(i), 34] : [m.at[0] + 9, m.at[1] + 3]);
+const JO = [-0.5, 6.8], IN = [1.35, 7.0], EM = [-1.6, 4.95], DV = [-1.05, 4.55];
+// where the Inspector breaks off the ear; where he shows it to Strorm; where Strorm lights the field, stands for the hymn
+const EDGE_IN = [1.0, 8.85], SHOW = [0.4, 7.0], FIELD = [0.4, 8.95], HYMN_AT = [-1.0, 7.6], ALONG = [-2.0, 8.95];
+// where David and his mother go by the stalk; the stalk
+const STALK = [-2.72, 9.5], BY_STALK = { em: [-3.6, 9.0], dv: [-3.15, 8.3] };
+// the camera's places (camera_x, camera_z)
+const CAM = { wide: [0, 0], ear: [0.15, 2.4], kneel: [-0.5, 0.9], light: [-0.05, 1.7], hymn: [-0.95, 1.45], stalk: [-2.3, 3.6] };
+const camOf = c => ({ camera_x: c[0], camera_z: c[1] });
+const loop = motion => ({ motion, loop: true });
+const toward = ([a, d], [a2, d2]) => (((Math.atan2(a2 - a, d2 - d) * 180) / Math.PI) + 360) % 360;
+// a person's state at rest
+const person = (id, [a, d], turn, more = {}) => ({ [`${id}_a`]: a, [`${id}_d`]: d, [`${id}_turn`]: turn, [`${id}_do`]: 'stand', [`${id}_look`]: null,
+  [`${id}_reach`]: null, [`${id}_steps`]: true, [`${id}_here`]: true, ...Object.fromEntries(Object.entries(more).map(([k, v]) => [`${id}_${k}`, v])) });
+const congregation = (fn) => Object.assign({}, ...MEMBERS.map((m, i) => fn(m, i)));
+
+// ── what a beat does ──
+async function walk(s, id, pts, turn, gait) {
+  s.set(`${id}_steps`, true);
+  if (gait !== undefined) s.person(id).gait(gait);
+  await s.person(id).walk(pts);
+  if (gait !== undefined) s.person(id).gait(null);
+  if (turn != null) await s.person(id).turn(turn);
+}
+const cam = (s, c, over) => s.all(s.move('camera_x', c[0], { over }), s.move('camera_z', c[1], { over }));
+const aside = (s, fn) => s.sequence(fn);
+const lower = (p, by) => (typeof p === 'string' ? `${p}#chest` : [p[0], p[1], p[2] - by]);
+async function nod(s, id, p, n = 1, slow = 1) {
+  for (let i = 0; i < n; i++) {
+    s.person(id).look(lower(p, 0.32));
+    await s.wait(0.35 * slow);
+    s.person(id).look(p);
+    await s.wait(0.35 * slow);
   }
 }
-// the congregation: who each one is and where they stand (member)
-const MEMBERS = {
-  p0: { who: "man", seed: 3, at: [-5.0, 7.6], face: 140, turn: 0.85 },
-  p1: { who: "woman", seed: 11, at: [-4.3, 7.0], face: 145, book: true, turn: 0.4 },
-  p2: { who: "old_man", seed: 5, at: [-5.7, 6.4], face: 135, book: true },
-  p3: { who: "woman", seed: 17, at: [-3.6, 6.6], face: 150, book: true, turn: 0.05 },
-  p4: { who: "farmhand", seed: 23, at: [-4.8, 5.6], face: 140, turn: 0.7 },
-  p5: { who: "old_woman", seed: 29, at: [-6.0, 4.8], face: 130, book: true },
-  p6: { who: "girl", seed: 31, at: [-2.9, 7.7], face: 155, turn: 0.25 },
-  p7: { who: "man", seed: 37, at: [3.4, 7.8], face: 212, book: true },
-  p8: { who: "woman", seed: 41, at: [4.3, 7.1], face: 215, book: true, shade: true },
-  p9: { who: "boy", seed: 43, at: [2.7, 6.8], face: 205, turn: 0.55 },
-  p10: { who: "farmhand", seed: 47, at: [5.2, 6.2], face: 220 },
-  p11: { who: "old_woman", seed: 53, at: [3.7, 5.5], face: 212, book: true },
-  p12: { who: "man", seed: 59, at: [4.7, 4.8], face: 222, book: true },
+// everyone of the congregation does it, each a little late (0 … `late` s)
+async function each(s, late, fn) {
+  await s.all(...MEMBERS.map((m, i) => s.sequence(async q => { await q.wait(late * ((i * 0.618) % 1)); await fn(q, m, i); })));
+}
+// the hands of David and his mother together (hand in hand), or apart
+const hands = (s, on) => { s.person('dv').reach(on ? { l: 'em#hand_r' } : null); s.person('em').reach(on ? { r: 'dv#hand_l' } : null); };
+// the torch lit (its fire, its light: jo_torch)
+const torch = (s, v, over) => s.move('jo_torch', v, { over });
+
+// ── the state the beats begin at ──
+// the first moment: the blue before dawn, all standing heads bowed, David holding his mother's hand
+const S0 = {
+  fade: 1, fade_color: '#000000', dawn: 0.22, morning: 0, fire: 0, ignite: 0, ash: 0, smoke: 0, jo_torch: 0, turned: 0, in_ear: false, in_toss: 0,
+  ...camOf(CAM.wide),
+  ...person('jo', JO, 180, { with: ['torch'], wear: { hat: 'hat' } }),
+  ...person('in', IN, 180, { with: ['lantern'], wear: { hat: 'hat' } }),
+  ...person('em', EM, 150, { reach: { r: 'dv#hand_l' } }),
+  ...person('dv', DV, 150, { reach: { l: 'em#hand_r' }, still: false }),
+  ...congregation(m => person(m.id, m.at, m.face, { look: [m.at[0], m.at[1] - 0.8, 0.2] })),
 };
-// one of the congregation (the module's generic people, each different by seed), standing where the state says (<id>_a,
-// _d, _f); kneels to pray (the recording), sings (from a hymnal held up — the scene's pose — or hands together),
-// looks up, steps back from the heat — each a little late.
-// turn: when `turned` (how much the people in front have noticed David not singing) passes it, this one turns its
-// head round to him — each late in its own way — and sings less.
-function member(e, id) {
-  const { who, seed, at, face, book, shade, turn } = MEMBERS[id];
-  const s = e.state,
-    K = e.kit.chrysalids,
-    a = s[id + "_a"] ?? at[0],
-    d = s[id + "_d"] ?? at[1],
-    f = s[id + "_f"] ?? face;
-  const kneel = K.delayed(e, "kneel", id, 1.4) || 0,
-    sing = K.delayed(e, "sing", id, 1.2),
-    look = K.delayed(e, "look", id, 0.9),
-    heat = K.delayed(e, "heat", id, 0.7);
-  const tw = turn == null ? 0 : sm((K.delayed(e, "turned", id, 1.1) - turn) / 0.2);
-  // turning round: the body comes round part of the way (the feet step), the head the rest
-  let to = K.faceToward(a, d, s.dv_a ?? -1.05, s.dv_d ?? 4.55) - f;
-  to = ((to + 540) % 360) - 180;
-  const body = f + to * 0.65 * tw,
-    song = sing * (1 - kneel) * (1 - 0.6 * tw);
-  return {
-    ...now(e).litP(a, d),
-    who,
-    id,
-    seed,
-    at: [a, d],
-    face: body,
-    inPlace: true,
-    poses,
-    pose: {
-      pray_kneel: kneel,
-      sing: book ? song : 0,
-      pray: book ? 0 : song * 0.5,
-      look_up: (look * 0.35 + (book ? 0 : sing * 0.35)) * (1 - tw),
-      bow: 0.12 * (1 - sing) * (1 - look) * (1 - kneel) * (1 - (s.morning || 0)),
-      shade: shade ? heat : 0,
+const DAWN = { ...S0, fade: 0, dawn: 0.25, ...person('in', EDGE_IN, 180, { with: ['lantern'], wear: { hat: 'hat' } }), in_ear: true };
+const EAR = { ...DAWN, dawn: 0.28, ...person('in', SHOW, 170, { with: ['lantern'], wear: { hat: 'hat' } }), in_ear: false, in_toss: 1, jo_turn: 100,
+  ...congregation(m => ({ [`${m.id}_look`]: null })) };
+const KNELT = { ...EAR, jo_turn: 180, jo_reach: { r: [JO[0], JO[1], 3.0] }, jo_look: [JO[0], JO[1] + 3, 5], in_turn: 200, in_look: [SHOW[0], SHOW[1] - 0.8, 0.2],
+  ...congregation(m => ({ [`${m.id}_do`]: loop('kneel_pray'), [`${m.id}_look`]: [m.at[0], m.at[1] - 0.8, 0.2] })),
+  em_do: loop('kneel_pray') };
+const RISEN = { ...EAR, jo_turn: 180 };
+const LIT = { ...RISEN, ...camOf(CAM.light), in_turn: 280, jo_turn: 100, jo_torch: 1 };
+const BURNING = { ...LIT, ...camOf(CAM.wide), ...person('jo', ALONG, 270, { with: ['torch'], wear: { hat: 'hat' } }), jo_torch: 1,
+  ...person('in', [2.3, 7.6], 200, { with: ['lantern'], wear: { hat: 'hat' } }), fire: 1, ignite: 0.07, smoke: 0.35 };
+const HYMN = { ...BURNING, ...camOf(CAM.hymn), ...person('jo', HYMN_AT, 0, { with: ['torch'], wear: { hat: 'hat' }, reach: { r: [HYMN_AT[0], HYMN_AT[1] - 0.3, 2.9] } }), jo_torch: 1,
+  ignite: 0.4, smoke: 0.75, ...congregation(m => ({ [`${m.id}_d`]: back(m.at[1]), [`${m.id}_do`]: loop('sing_stand'), [`${m.id}_look`]: [m.at[0], m.at[1] + 4, 3.5] })),
+  em_do: loop('sing_stand') };
+const HID = { ...HYMN, dv_a: -1.66, dv_d: 4.68, dv_turn: 172, dv_reach: { r: 'em#hips', l: 'em#hips' }, dv_look: 'em#chest', em_reach: null };
+// the grey morning after (set at once under the black)
+const GREY = { ash: 1, ignite: 1, fire: 0.12, smoke: 0.42, dawn: 0.82, morning: 1, jo_torch: 0, jo_reach: null, jo_turn: 180, jo_look: null,
+  ...congregation(m => ({ [`${m.id}_do`]: 'stand', [`${m.id}_look`]: null })), em_do: 'stand' };
+const STALKED = { ...HID, ...GREY, fade: 0, ...camOf(CAM.stalk), ...congregation((m, i) => person(m.id, home(m, i), 0)),
+  ...person('in', [5.2, 26], 0, { with: ['lantern'], wear: { hat: 'hat' } }), ...person('em', BY_STALK.em, 180, { reach: { r: 'dv#hand_l' } }),
+  ...person('dv', BY_STALK.dv, 125, { reach: { l: 'em#hand_r' }, look: 'stalk#ear' }) };
+
+const FILM = {
+  // out of the black: the blue before dawn; the Inspector goes to the edge of the field, goes down on one knee and breaks
+  // off an ear
+  dawn: {
+    from: () => S0,
+    run: async s => {
+      const ins = s.person('in');
+      s.move('fade', 0, { over: 2.2, ease: 'out' });
+      s.move('dawn', 0.25, { over: 9.2 });
+      await s.wait(1.0);
+      await walk(s, 'in', [EDGE_IN], 0);
+      ins.look([EDGE_IN[0], EDGE_IN[1] + 0.6, 0.3]);
+      await ins.go('kneel_one', { from: EDGE_IN, turn: 0 });
+      s.set('in_ear', true);
+      await s.wait(0.6);
+      await ins.do('kneel_one_rise');
+      await ins.turn(180);
     },
-    hold: book && sing > 0.05 && kneel < 0.5 ? { r: "open_book" } : null,
-    look: tw > 0.01 ? f + to - body : null,
-    lookW: tw,
-    lookSpeed: 0.45,
-  };
-}
-// the scene's own pose (person({ poses })): singing a hymn from a book held up before the chest, the head lifted
-const poses = {
-  sing: { lean: -3, head: [-16, 0, 0], arm: { at: ["chest", 0.035, -0.13, 0.23], pole: [0.6, -1, 0] }, hand: "open" },
+  },
+  // he brings it to Strorm and holds it up in the lantern light (the camera comes in) — the ear gold in it; the people
+  // raise their heads; a long look, two slow nods: an Offence; he turns and flings it over his shoulder back into the wheat
+  ear: {
+    after: 'dawn',
+    from: () => DAWN,
+    run: async s => {
+      const ins = s.person('in'), jo = s.person('jo');
+      cam(s, CAM.ear, 4.5);
+      s.move('dawn', 0.28, { over: 12 });
+      await walk(s, 'in', [SHOW], 285);
+      jo.turn(100);
+      ins.reach({ r: 'jo', l: [SHOW[0] - 0.3, SHOW[1], 1.5] });
+      ins.look('jo');
+      await each(s, 1.0, async (q, m) => { q.person(m.id).look('in'); });
+      jo.look('in#hand_r');
+      await s.wait(1.6);
+      await nod(s, 'jo', 'in#hand_r', 2, 2);
+      ins.reach(null);
+      await ins.turn(170);
+      // (the throw: over his shoulder, back into the wheat)
+      const thrown = ins.do('throw_back');
+      await s.wait(0.8);
+      await s.move('in_toss', 1, { over: 1.5, ease: 'linear' });
+      s.set('in_ear', false);
+      await thrown;
+      jo.look(null);
+      await each(s, 1.0, async (q, m) => { q.person(m.id).look([m.at[0], m.at[1] - 0.8, 0.2]); });
+      await cam(s, CAM.wide, 3.0);
+    },
+  },
+  // Strorm lifts the unlit torch to heaven; the people go down on their knees and pray, each in their own time. David does
+  // not: here the game asks (knees, on dv) — rise if he kneels in time, else kneel_late
+  raise: {
+    after: 'ear',
+    from: () => EAR,
+    run: async s => {
+      const jo = s.person('jo');
+      await jo.turn(180);
+      jo.reach({ r: [JO[0], JO[1], 3.0] });
+      jo.look([JO[0], JO[1] + 3, 5]);
+      const ins = aside(s, async q => { await q.wait(1.0); await q.person('in').turn(200); q.person('in').look([SHOW[0], SHOW[1] - 0.8, 0.2]); });
+      await s.wait(0.8);
+      const down = q => async (sq, m) => { await sq.person(m.id).go('kneel_down', { from: m.at, turn: m.face }); sq.person(m.id).do('kneel_pray', { loop: true }); sq.person(m.id).look([m.at[0], m.at[1] - 0.8, 0.2]); };
+      const em = aside(s, async q => { await q.wait(0.6); await q.person('em').go('kneel_down', { from: EM, turn: 150 }); q.person('em').do('kneel_pray', { loop: true }); });
+      await each(s, 1.4, down(s));
+      await s.all(ins, em);
+    },
+  },
+  // David knelt with them: a held prayer; all get up together
+  rise: {
+    after: 'raise',
+    from: () => KNELT,
+    run: async s => {
+      const dv = s.person('dv'), jo = s.person('jo');
+      await dv.go('kneel_down', { from: DV, turn: 150 });
+      dv.do('kneel_pray', { loop: true });
+      await s.wait(2.4);
+      jo.reach(null);
+      jo.look(null);
+      await s.wait(0.4);
+      const up = q => async (sq, m) => { await sq.person(m.id).do('stand_from_kneel'); sq.person(m.id).do('stand'); };
+      const ups = each(s, 1.0, up(s));
+      s.person('em').do('stand_from_kneel');
+      await s.wait(0.3);
+      await dv.do('stand_from_kneel');
+      await ups;
+    },
+  },
+  // David still standing among the kneeling: the camera finds him; his mother looks up at him and tugs his hand; he goes
+  // down, last of all — and gets up last
+  kneel_late: {
+    after: 'raise',
+    from: () => KNELT,
+    run: async s => {
+      const dv = s.person('dv'), em = s.person('em'), jo = s.person('jo');
+      cam(s, CAM.kneel, 1.6);
+      em.look('dv');
+      await s.wait(0.3);
+      em.reach({ r: [DV[0] - 0.2, DV[1] + 0.1, 0.5] });
+      await s.wait(0.5);
+      await dv.go('kneel_down', { from: DV, turn: 150 });
+      dv.do('kneel_pray', { loop: true });
+      em.reach({ r: 'dv#hand_l' });
+      em.look([EM[0], EM[1] - 0.8, 0.2]);
+      await s.wait(1.6);
+      jo.reach(null);
+      jo.look(null);
+      cam(s, CAM.wide, 2.5);
+      const up = q => async (sq, m) => { await sq.person(m.id).do('stand_from_kneel'); sq.person(m.id).do('stand'); };
+      const ups = each(s, 1.0, up(s));
+      em.do('stand_from_kneel');
+      await ups;
+      await s.wait(0.6);
+      await dv.do('stand_from_kneel');
+      hands(s, true);
+    },
+  },
+  // he turns to the Inspector and lights the torch at his lantern (the camera comes in): a flare
+  light: {
+    after: ['rise', 'kneel_late'],
+    from: () => RISEN,
+    run: async s => {
+      const jo = s.person('jo'), ins = s.person('in');
+      cam(s, CAM.light, 3.6);
+      ins.turn(280);
+      await jo.turn(100);
+      ins.reach({ r: 'jo#flame' });
+      await s.wait(0.4);
+      jo.reach({ r: 'in#hand_r' });
+      await s.wait(1.3);
+      await torch(s, 1.5, 0.35);
+      torch(s, 1, 1.0);
+      await each(s, 0.8, async (q, m) => { q.person(m.id).look('jo#flame'); });
+      await s.wait(0.6);
+      jo.reach(null);
+      ins.reach(null);
+    },
+  },
+  // to the wheat; the torch up, then down into the stalks: it catches; he drags the fire along the edge to the track
+  fire: {
+    after: 'light',
+    from: () => LIT,
+    run: async s => {
+      const jo = s.person('jo');
+      cam(s, CAM.wide, 4.2);
+      aside(s, q => walk(q, 'in', [[2.3, 7.6]], 200));
+      await walk(s, 'jo', [FIELD], 0);
+      jo.reach({ r: [FIELD[0], FIELD[1] + 0.2, 2.6] });
+      await s.wait(1.6);
+      jo.reach({ r: [FIELD[0], FIELD[1] + 0.6, 0.2] });
+      jo.look([FIELD[0], FIELD[1] + 0.6, 0]);
+      await s.wait(0.6);
+      s.move('fire', 1, { over: 3 });
+      s.move('ignite', 0.025, { over: 1.3 });
+      s.move('smoke', 0.35, { over: 6 });
+      await s.wait(1.2);
+      await jo.turn(270);
+      s.move('ignite', 0.07, { over: 4.0 });
+      await walk(s, 'jo', [ALONG]);
+      jo.reach(null);
+    },
+  },
+  // he steps back from the blaze and turns to the people, the torch high; the hymn — heads lifted, hands together, each
+  // a little late; the front ones step back from the heat, a woman shades her eyes; the camera comes to David and his
+  // mother. It holds there while the game's hymn is sung («Петь со всеми»: `turned` turns the ones in front round to him;
+  // the marks — dv, the beat's sign on jo)
+  hymn: {
+    after: 'fire',
+    from: () => BURNING,
+    run: async s => {
+      const jo = s.person('jo');
+      s.move('ignite', 0.4, { over: 12, ease: 'inOut' });
+      s.move('smoke', 0.75, { over: 12 });
+      await walk(s, 'jo', [HYMN_AT], 0);
+      jo.reach({ r: [HYMN_AT[0], HYMN_AT[1] - 0.3, 2.9] });
+      jo.look([HYMN_AT[0], HYMN_AT[1] - 3, 2.5]);
+      s.person('em').do('sing_stand', { loop: true });
+      const sings = each(s, 1.2, async (q, m) => {
+        q.person(m.id).do('sing_stand', { loop: true });
+        q.person(m.id).look([m.at[0], m.at[1] + 4, 3.5]);
+        if (m.at[1] > 6.2) await walk(q, m.id, [[m.at[0], back(m.at[1])]], m.face);
+        if (m.shade) q.person(m.id).do('shade', { loop: true });
+      });
+      await cam(s, CAM.hymn, 4.5);
+      await sings;
+    },
+  },
+  // David sings with them, head up; his mother glances down at him; the heads in front go back to the fire; the camera
+  // leaves him — one of them — and his father's eyes go over the people and past him
+  hymn_loud: {
+    after: 'hymn',
+    from: () => HYMN,
+    run: async s => {
+      const jo = s.person('jo'), dv = s.person('dv'), em = s.person('em');
+      s.move('turned', 0, { over: 1.5 });
+      dv.do('sing_stand', { loop: true });
+      dv.look([DV[0], DV[1] + 4, 3.5]);
+      cam(s, CAM.wide, 5);
+      await s.wait(0.6);
+      jo.look([-4.5, 6.2, 1.4]);
+      await s.wait(0.2);
+      em.look('dv');
+      await s.wait(1.8);
+      em.look([EM[0], EM[1] + 4, 3.5]);
+      jo.look([4.5, 6.2, 1.4]);
+      await s.wait(3.6);
+      jo.look([HYMN_AT[0], HYMN_AT[1] - 3, 2.5]);
+      await s.wait(1.0);
+    },
+  },
+  // David does not sing: the ones in front have turned round (at least three); his father's eyes go slowly over the
+  // people and stop on his side; David looks up at him, goes still — lets go of his mother's hand, turns and hides his face
+  // in her skirt; she sings on; the eyes move on, the heads go back to the fire
+  hymn_hide: {
+    after: 'hymn',
+    from: () => HYMN,
+    run: async s => {
+      const jo = s.person('jo'), dv = s.person('dv');
+      if ((s.state.turned ?? 0) < 0.45) s.move('turned', 0.45, { over: 1.2 });
+      jo.look([-4.5, 6.2, 1.4]);
+      await s.wait(1.4);
+      dv.look('jo');
+      await s.wait(1.4);
+      dv.still(true);
+      await s.wait(1.2);
+      dv.still(false);
+      hands(s, false);
+      await dv.turn(190);
+      await walk(s, 'dv', [[-1.66, 4.68]], 172);
+      dv.reach({ r: 'em#hips', l: 'em#hips' });
+      dv.look('em#chest');
+      await s.wait(1.0);
+      jo.look([4.5, 6.2, 1.4]);
+      await s.wait(0.6);
+      s.move('turned', 0, { over: 3 });
+      await s.wait(3.2);
+      jo.look([HYMN_AT[0], HYMN_AT[1] - 3, 2.5]);
+    },
+  },
+  // the camera goes back; the field burns away into the dark; to black
+  burn: {
+    after: ['hymn_loud', 'hymn_hide'],
+    from: () => HID,
+    run: async s => {
+      const jo = s.person('jo');
+      cam(s, CAM.wide, 5);
+      s.move('ignite', 1, { over: 7, ease: 'inOut' });
+      s.move('ash', 0.4, { over: 7 });
+      s.move('smoke', 1, { over: 5 });
+      await s.wait(0.4);
+      jo.reach({ r: [HYMN_AT[0], HYMN_AT[1] - 0.2, 2.0] });
+      await s.wait(0.4);
+      await jo.turn(180);
+      jo.look(null);
+      await s.wait(3.8);
+      await s.move('fade', 1, { over: 1.8, ease: 'in' });
+    },
+  },
+  // the grey morning after: ash, a little smoke. They go home; the Inspector goes off across the ash; his mother takes
+  // David's hand and leads him to the track and along it; by the edge of the ash he stops and turns to the one stalk left
+  // standing (the camera comes close). (The game's choice: stalk, on dv)
+  morning: {
+    after: 'burn',
+    from: () => ({ ...HID, fade: 1 }),
+    run: async s => {
+      const dv = s.person('dv'), em = s.person('em');
+      for (const [k, v] of Object.entries(GREY)) s.set(k, v);
+      s.move('fade', 0, { over: 2.2, ease: 'out' });
+      aside(s, q => each(q, 1.5, (sq, m, i) => walk(sq, m.id, m.at[0] < 0 ? [[home(m, i)[0], m.at[1]], home(m, i)] : [home(m, i)])));
+      aside(s, async q => { await q.wait(1.4); await walk(q, 'in', [[5.2, 26]]); });
+      await s.wait(3.4);
+      dv.reach(null);
+      dv.look(null);
+      await dv.turn(150);
+      hands(s, true);
+      await s.wait(1.2);
+      aside(s, q => walk(q, 'em', [[-3.6, 5.3], BY_STALK.em], 180));
+      await s.wait(0.2);
+      await walk(s, 'dv', [[-3.15, 5.0], BY_STALK.dv]);
+      cam(s, CAM.stalk, 4.2);
+      await s.wait(1.2);
+      await dv.turn(125);
+      dv.look('stalk#ear');
+      await s.wait(1.6);
+    },
+  },
+  // David stays by the stalk, his hand loose in hers, reaching for it; his mother looks back over her shoulder and tugs;
+  // they go. Strorm alone before the ash, his back to us; the Inspector fades far off
+  stalk_stay: {
+    after: 'morning',
+    from: () => STALKED,
+    run: async s => {
+      const dv = s.person('dv'), em = s.person('em');
+      dv.reach({ r: 'stalk#ear', l: 'em#hand_r' });
+      await s.wait(1.4);
+      em.look('dv');
+      await s.wait(1.2);
+      em.reach({ r: [BY_STALK.em[0] - 0.1, BY_STALK.em[1] + 0.5, 0.9] });
+      await s.wait(0.7);
+      s.person('in').here(false);
+      em.reach({ r: 'dv#hand_l' });
+      dv.reach({ l: 'em#hand_r' });
+      dv.look(null);
+      em.look(null);
+      cam(s, CAM.wide, 6);
+      await s.all(walk(s, 'em', [[-3.6, 34]]), s.sequence(async q => { await q.wait(0.3); await walk(q, 'dv', [[-3.15, 33.6]]); }));
+    },
+  },
+  // David looks away from the stalk and goes on with his mother; she does not look back
+  stalk_go: {
+    after: 'morning',
+    from: () => STALKED,
+    run: async s => {
+      const dv = s.person('dv');
+      dv.look(null);
+      s.person('in').here(false);
+      await dv.turn(180);
+      cam(s, CAM.wide, 6);
+      await s.all(walk(s, 'em', [[-3.6, 34]]), s.sequence(async q => { await q.wait(0.1); await walk(q, 'dv', [[-3.15, 33.6]]); }));
+    },
+  },
 };
-// The people as the state has them now — e: an element's, or beforeFrame's (with the lib, the kit, anim): moved once a frame
-// (beforeFrame), painted by their elements from the very same (e.lib.people.<element>(e)). Strorm after the Inspector (his
-// hand to the Inspector's); David after his mother (his hand in hers; hers goes where his was a frame before).
-const people = {
-  p0: (e) => member(e, "p0"),
-  p1: (e) => member(e, "p1"),
-  p2: (e) => member(e, "p2"),
-  p3: (e) => member(e, "p3"),
-  p4: (e) => member(e, "p4"),
-  p5: (e) => member(e, "p5"),
-  p6: (e) => member(e, "p6"),
-  p7: (e) => member(e, "p7"),
-  p8: (e) => member(e, "p8"),
-  p9: (e) => member(e, "p9"),
-  p10: (e) => member(e, "p10"),
-  p11: (e) => member(e, "p11"),
-  p12: (e) => member(e, "p12"),
-  // the Inspector (the module's inspector): kneels at the field's edge and breaks off an ear, holds it to his lantern
-  // before Strorm, nods twice, flings it back into the wheat; later lifts the lantern for the torch and leaves
-  in: (e) => {
-    const { litP } = e.lib.now(e);
-    const A = e.anim,
-      s = e.state;
-    const a = s.in_a ?? 1.35,
-      d = s.in_d ?? 7.0,
-      f = s.in_f ?? 180,
-      show = s.in_show || 0,
-      lift = s.in_lift || 0,
-      toss = s.in_toss || 0,
-      gone = s.in_gone || 0;
-    if (gone >= 1) return null;
-    const fx = Math.sin((f * Math.PI) / 180);
-    const hand = {},
-      hw = {};
-    // shown: the ear held up high, the lantern lifted under it, both before his face
-    if (show > 0.01) {
-      hand.r = [fx * 0.3, -1.86];
-      hand.l = [fx * 0.34, -1.6];
-      hw.r = show;
-      hw.l = show;
-    }
-    if (lift > 0.01) {
-      hand.l = [fx * 0.4, -1.32];
-      hw.l = lift;
-    }
-    // the throw: the arm drawn back over the shoulder (toward us), then flung out and up over the wheat
-    if (toss > 0 && toss < 1) {
-      const back = A.ease.out(A.span(toss, 0, 0.42)),
-        fling = A.ease.in(A.span(toss, 0.42, 0.62)),
-        settle = A.span(toss, 0.7, 1);
-      const p0 = [0.22, -1.62, 0],
-        p1 = [0.3, -2.02, -0.4],
-        p2 = [0.2, -1.95, 0.75];
-      hand.r = toss < 0.42 ? p0.map((v, i) => A.mix(v, p1[i], back)) : p1.map((v, i) => A.mix(v, p2[i], fling));
-      hw.r = 1 - settle;
-    }
-    return {
-      ...litP(a, d),
-      who: "inspector",
-      id: "inspector",
-      at: [a, d],
-      face: f,
-      mark: true,
-      inPlace: true,
-      pose: { kneel_reach: s.in_kneel || 0, nod: s.in_nod || 0, bow: 0.4 * (s.in_bow || 0) },
-      cycles: { nod: s.in_nodc || 0 },
-      hold: { l: "lantern" },
-      glow: 0.9 * (1 - gone),
-      hand,
-      handW: hw,
-    };
-  },
-  // Joseph Strorm (the module's joseph): the torch, unlit, then lit at the Inspector's lantern; his slow searching look
-  jo: (e) => {
-    const { litP } = e.lib.now(e);
-    const s = e.state,
-      K = e.kit.chrysalids,
-      a = s.jo_a ?? -0.5,
-      d = s.jo_d ?? 6.8,
-      tip = s.jo_tip || 0,
-      lw = s.jo_lookw || 0;
-    return {
-      ...litP(a, d),
-      who: "joseph",
-      id: "joseph",
-      at: [a, d],
-      face: s.jo_f ?? 180,
-      mark: true,
-      pose: { raise: s.jo_raise || 0, point_down: s.jo_down || 0, look_up: s.jo_up || 0, bow: s.jo_bow || 0 },
-      hold: { r: "torch" },
-      glow: s.jo_torch || 0,
-      look: lw > 0.01 ? s.jo_look || 0 : null,
-      lookW: lw,
-      lookSpeed: 0.35,
-      hand: tip > 0.01 ? { r: K.point("inspector", "hand_l") } : null,
-      handW: { r: tip },
-    };
-  },
-  // Emily, David's mother (the module's emily): kneels to pray (the recording), sings from the hymnal and does not look
-  // down; holds David's hand; looks round at him (em_look), tugs (em_pull)
-  em: (e) => {
-    const { litP } = e.lib.now(e);
-    const s = e.state,
-      K = e.kit.chrysalids,
-      a = s.em_a ?? -1.6,
-      d = s.em_d ?? 4.95,
-      h = s.hand ?? 1,
-      lw = s.em_lookw || 0;
-    const sing = K.delayed(e, "sing", "emily", 0.5),
-      kneel = K.delayed(e, "kneel", "emily", 0.5) || 0,
-      look = K.delayed(e, "look", "emily", 0.6);
-    return {
-      ...litP(a, d),
-      who: "emily",
-      id: "emily",
-      at: [a, d],
-      face: s.em_f ?? 150,
-      mark: true,
-      inPlace: true,
-      poses: e.lib.poses,
-      pose: {
-        pray_kneel: kneel,
-        sing: sing * (1 - kneel),
-        look_up: look * 0.3,
-        bow: 0.12 * (1 - sing) * (1 - look) * (1 - kneel) * (1 - (s.morning || 0)),
-        pull: s.em_pull || 0,
-      },
-      hold: sing > 0.05 ? { l: "open_book" } : null,
-      look: lw > 0.01 ? s.em_look || 0 : null,
-      lookW: lw,
-      lookSpeed: 0.6,
-      hand: h > 0.01 ? { r: K.point("david", "hand_l") } : null,
-      handW: { r: h * 0.85 },
-    };
-  },
-  // David (the module's david, about ten): holds his mother's hand; kneels to pray (dv_kneel — when the game says);
-  // sings with them (dv_sing: head up, a hand on his chest) — or meets his father's eyes (dv_atfa), goes still
-  // (dv_freeze) and hides his face in her skirt (dv_hide); at the end looks at the one stalk left (dv_atst) and reaches
-  // for it (dv_reach)
-  dv: (e) => {
-    const { litP } = e.lib.now(e);
-    const s = e.state,
-      K = e.kit.chrysalids,
-      a = s.dv_a ?? -1.05,
-      d = s.dv_d ?? 4.55,
-      h = s.hand ?? 1,
-      hide = s.dv_hide || 0,
-      sing = s.dv_sing || 0;
-    const look = K.delayed(e, "look", "david", 0.2);
-    // what he looks at: his father, the stalk by the track — points in this element's metres (across, up, depth)
-    const fa = s.dv_atfa || 0,
-      stalk = s.dv_atst || 0;
-    let lk = null,
-      lw = 0;
-    if (fa > 0.01) {
-      lk = [(s.jo_a ?? -1) - a, -1.75, (s.jo_d ?? 7.6) - d];
-      lw = fa;
-    }
-    if (stalk > 0.01) {
-      lk = [-2.55 - a, -1.85, 9.5 - d];
-      lw = stalk;
-    }
-    const hand =
-      h > 0.01
-        ? { l: K.point("emily", "hand_r") }
-        : hide > 0.01
-          ? { r: K.point("emily", "hip"), l: K.point("emily", "hip") }
-          : null;
-    return {
-      ...litP(a, d),
-      who: "david",
-      id: "david",
-      at: [a, d],
-      face: s.dv_f ?? 150,
-      mark: true,
-      inPlace: true,
-      pose: {
-        pray_kneel: s.dv_kneel || 0,
-        look_up: look * 0.45 + sing * 0.5,
-        hand_chest: sing * 0.7,
-        reach: s.dv_reach || 0,
-        freeze: 0.55 * (s.dv_freeze || 0),
-        hug: hide * 0.8,
-        bow: hide * 0.15,
-      },
-      look: lk,
-      lookW: lw,
-      lookSpeed: 0.8,
-      hand,
-      handW: h > 0.01 ? { l: h * 0.85 } : { r: hide * 0.9, l: hide * 0.9 },
-    };
-  },
-};
-const lib = { cl, sm, mixc, rgba, mixh, X0, now, wheat, poses, people,
-  beforeFrame: (f) => kit.chrysalids.move(people, { ...f, lib, kit, anim }) };
-return lib;
+const SHOWCASE = ['dawn', 'ear', 'raise', 'kneel_late', 'light', 'fire', 'hymn', 'hymn_hide', 'burn', 'morning', 'stalk_stay'];
+
+return { wheat, wheatMove, fireLight, X0, FIELD_L, MEMBERS, DV, FILM, SHOWCASE, clamp };

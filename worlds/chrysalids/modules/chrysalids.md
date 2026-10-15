@@ -45,7 +45,9 @@ e.kit.chrysalids.horse.animate(e, e.lib.HORSE);
   the element's own point too), `seat` (the saddle's top as the stride moves it — a rider's `on`), and a great-horse's
   `basket_l`, `basket_r` (each pannier's mouth, its left and its right — a child's `on`). Its stirrups and its reins are
   points in its frame, other ones each way it is turned: `horse.tack(id, face, kind)` → `{ foot_l, foot_r, r, l }`, each
-  `{ "on": id, "at": [across, distance, elevation] }` — a rider's `reach`.
+  `{ "on": id, "at": [across, distance, elevation] }` — a rider's `reach`. Any other point of it: `horse.spot(id, face,
+  kind, [x, y, z])` (its own frame, × its height: x to its right, y up, z ahead) — a child sat before the rider, the
+  crupper a rein is tied to.
 
 ## Its rider
 

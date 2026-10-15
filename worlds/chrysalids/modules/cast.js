@@ -252,6 +252,30 @@ return {
         const nock = Math.hypot(...pull) < 0.75 * m && dot(pull, back) > 0 ? hand : mid;
         F.tube([tip(1), nock, tip(-1)], [[0, 0.0025 * m], [2, 0.0025 * m]], [[0, gut]], 4, out);
       } },
+      // a hay rake held in both hands: its long handle through the fists, its head of tines on the ground before them
+      rake: { name: 'грабли', draw: F => {
+        const { add, sub, mul, unit, mix, cross } = MooodShapes.V, m = F.fit.h, wood = [0.48, 0.38, 0.26, 1];
+        const hands = mix(F.P('LeftHand'), F.P('RightHand'), 0.5), along = unit(sub(F.P('RightHand'), F.P('LeftHand')));
+        const head = add(add(hands, mul(along, 0.9 * m)), [0, -0.5 * m, 0]), dir = unit(sub(head, hands));
+        F.bar(add(hands, mul(dir, -0.35 * m)), head, 0.014 * m, 0.013 * m, [[0, wood]], 6, F.side('Hips'));
+        const bar = unit(cross(dir, [0, 1, 0]));
+        F.bar(add(head, mul(bar, -0.28 * m)), add(head, mul(bar, 0.28 * m)), 0.016 * m, 0.016 * m, [[0, wood]], 6, dir);
+      } },
+      // a long gun in both hands: its stock at the right hand, its barrel out past the left (a man of Waknuk in the fight)
+      gun: { name: 'ружьё', draw: F => {
+        const { add, sub, mul, unit } = MooodShapes.V, m = F.fit.h, wood = [0.4, 0.3, 0.2, 1], iron = [0.28, 0.28, 0.3, 1];
+        const r = F.P('RightHand'), l = F.P('LeftHand'), dir = unit(sub(l, r));
+        F.bar(add(r, mul(dir, -0.22 * m)), add(l, mul(dir, 0.05 * m)), 0.025 * m, 0.018 * m, [[0, wood]], 6, F.side('Hips'));
+        F.bar(add(l, mul(dir, 0.05 * m)), add(l, mul(dir, 0.55 * m)), 0.01 * m, 0.01 * m, [[0, iron]], 6, F.side('Hips'));
+        F.point('muzzle', add(l, mul(dir, 0.55 * m)));
+      } },
+      // the Sealand woman's sprayer: a short pale wand in the right hand, its nozzle forward (its point `nozzle`)
+      sprayer: { name: 'распылитель', draw: F => {
+        const { add, sub, mul, unit } = MooodShapes.V, m = F.fit.h, pale = [0.86, 0.86, 0.84, 1];
+        const h = F.P('RightHand'), dir = unit(sub(h, F.P('RightForeArm')));
+        F.bar(add(h, mul(dir, -0.05 * m)), add(h, mul(dir, 0.3 * m)), 0.02 * m, 0.012 * m, [[0, pale]], 8, F.side('RightHand'));
+        F.point('nozzle', add(h, mul(dir, 0.32 * m)));
+      } },
       // a spear in the right hand, upright, its butt by the foot (a guard's)
       spear: { name: 'копьё', draw: F => {
         const { add } = MooodShapes.V, m = F.fit.h, hand = F.P('RightHand'), wood = [0.36, 0.28, 0.2, 1], iron = [0.42, 0.42, 0.44, 1];

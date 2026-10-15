@@ -1,0 +1,11 @@
+/* «Стук» (stuk.js): the whole door takes the knocks; one faint word, and later the way out. */
+#layer .mg-stuk { position: absolute; inset: 0; touch-action: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+#layer .mg-stuk p { position: absolute; left: 0; right: 0; bottom: 6vh; margin: 0; text-align: center; color: var(--bone);
+  font: 21px/1 var(--hand); opacity: 0.6; text-shadow: 0 0 10px rgba(0, 0, 0, 0.9); pointer-events: none;
+  animation: mg-stuk-in 4s ease both; transition: opacity 2s ease; }
+#layer .mg-stuk p.gone { opacity: 0; animation: none; }
+#layer .mg-stuk button { position: absolute; right: 7vw; bottom: 5vh; padding: 4px 14px; border: 0; background: none; color: var(--bone);
+  font: 20px/1 var(--hand); cursor: pointer; opacity: 0; visibility: hidden; transition: opacity 3s ease, visibility 0s 3s; }
+#layer .mg-stuk button.on { opacity: 0.5; visibility: visible; transition: opacity 3s ease; }
+#layer .mg-stuk button.on:hover { opacity: 0.85; }
+@keyframes mg-stuk-in { from { opacity: 0; } }

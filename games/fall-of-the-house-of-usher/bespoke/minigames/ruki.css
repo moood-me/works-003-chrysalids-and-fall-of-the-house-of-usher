@@ -1,0 +1,16 @@
+/* «Руки» (ruki.js): the close-up takes the finger (the narrator's hand follows it in the scene); low
+   in the middle his own place, «Остаться» — held, its ink ring fills; once the hands are in, one line. */
+#layer .mg-ruki { position: absolute; inset: 0; touch-action: none; cursor: grab; -webkit-tap-highlight-color: transparent; }
+#layer .mg-ruki:active { cursor: grabbing; }
+#layer .mg-ruki button { position: absolute; left: 50%; bottom: 3vh; translate: -50% 0; display: flex; flex-direction: column; align-items: center;
+  gap: 4px; padding: 6px 10px; border: 0; background: none; color: var(--bone); font: clamp(15px, 4vh, 19px)/1 var(--hand); cursor: pointer;
+  touch-action: none; opacity: 0; transition: opacity 1.5s ease; text-shadow: 0 0 8px rgba(0, 0, 0, 0.9); }
+#layer .mg-ruki button i { width: 46px; height: 46px; border-radius: 50%;
+  background: conic-gradient(rgba(232, 218, 190, 0.75) calc(var(--u, 0) * 360deg), rgba(232, 218, 190, 0.16) 0);
+  mask: radial-gradient(circle, transparent 19px, #000 20px); }
+#layer .mg-ruki p { position: absolute; left: 0; right: 0; top: 7vh; margin: 0; text-align: center; pointer-events: none;
+  color: var(--bone); font: clamp(17px, 4.6vh, 21px)/1.2 var(--hand); text-shadow: 0 0 10px rgba(0, 0, 0, 0.9); opacity: 0;
+  transition: opacity 1.5s ease; }
+#layer .mg-ruki.on button { opacity: 0.7; }
+#layer .mg-ruki.on p { opacity: 0.75; }
+#layer .mg-ruki.on p.gone { opacity: 0; }

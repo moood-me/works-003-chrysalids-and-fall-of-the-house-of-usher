@@ -96,7 +96,7 @@
 #layer .tools { position: absolute; z-index: 10; right: 14px; bottom: 14px; display: flex; flex-direction: column; align-items: flex-end; gap: 6px;
   font: 14px/1.3 Georgia, "Times New Roman", serif; }
 #layer .tools > button { width: 34px; height: 30px; border: 0; border-radius: 6px; background: rgba(10, 8, 9, 0.6); color: var(--bone); cursor: pointer; opacity: 0.5; }
-#layer .tools > button:hover, #layer .tools.paused > button:first-child { opacity: 1; }
+#layer .tools > button:hover { opacity: 1; }
 #layer .tools > button[hidden] { display: none; }
 /* ☰: a window over the scene, below the site's header — the chapters side by side, each a column of its steps */
 #layer .author-map { position: absolute; inset: 0; z-index: 20; display: grid; place-items: center; padding: calc(var(--below-header) + 8px) 16px 16px;

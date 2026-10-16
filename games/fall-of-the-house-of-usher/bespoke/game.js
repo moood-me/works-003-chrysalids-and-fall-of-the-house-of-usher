@@ -14,7 +14,7 @@
 // it; a step skipped leaves nothing chosen. A minigame's ⏭ is every player's (story.js g.play): it counts as played.
 import { SCALES, SCENES, context, listen } from './story.js';
 import { ui } from './ui.js';
-import { hush, wake, unheard } from './sound.js';
+import { hush, wake, unheard, pause } from './sound.js';
 import { jump } from './jump.js';
 import prologue from './chapters/prologue.js';
 import one from './chapters/1.js';
@@ -43,7 +43,7 @@ export default async function (b) {
   b.minigame.style({ key: 'A_MAJOR_G_FLAT_MINOR', font: 'Georgia, "Times New Roman", serif', colors: { mark: '#e4d8bf', fill: '#c9a46a', good: '#a8b89a', danger: '#b0261a', fork: '#9aa4b4', ghost: 'rgba(228, 216, 191, 0.5)' } });
   const hub = listen(b);
   const view = ui(b.layer);
-  view.pausing(b);
+  b.onPause(pause);
   // the knot at the end of the crack: its words as petals (the first touch also lets the page be heard)
   const knot = async options => {
     const g = context(b, view, hub, fresh());
@@ -72,10 +72,10 @@ export default async function (b) {
     }
     return listed.get(k);
   };
-  if (b.game.mine) view.author({ chapters: CHAPTERS, at: () => kept, plays, go: async (chapter, step, play) => {
+  if (b.game.mine) b.menu(view.author({ chapters: CHAPTERS, at: () => kept, plays, go: async (chapter, step, play) => {
     await b.keep({ ...fresh(), chapter, step, ...(play != null ? { play } : {}) });
     location.reload();
-  } });
+  } }));
   for (;;) {
     const ch = CHAPTERS[kept.chapter];
     if (!kept.start) {

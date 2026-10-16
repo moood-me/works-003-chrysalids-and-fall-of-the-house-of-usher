@@ -1,4 +1,4 @@
-// Петра у реки — its mechanics: the film in beats for the game (lib.js FILM, the world's module beats: `beat` names one);
+// Petra at the river — its mechanics: the film in beats for the game (lib.js FILM, the world's module beats: `beat` names one);
 // those in the pool kept afloat — their feet held over the deep bottom so the water comes to David's ribs (his head and shoulders over it as he swims), to Petra's
 // chin (pt_e, dv_e: their places' elevation over the land), Petra dragged under as `pt_sink` says.
 const s = scene, L = s.lib;

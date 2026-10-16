@@ -1,4 +1,4 @@
-// Дом собраний (engine 3): what its elements and its script share — where things stand (keep in step with scene.json),
+// The meeting-house (engine 3): what its elements and its script share — where things stand (keep in step with scene.json),
 // the dais the people stand on (relief.js), the windows and the door in the back wall.
 const N = v => (v === true ? 1 : v === false ? 0 : Math.max(0, Math.min(1, +v || 0)));
 const AT = { lamp: [-0.75, 5.3, 0.78], spill: [-0.6, 4.7, 0.05], door: 2.5 };

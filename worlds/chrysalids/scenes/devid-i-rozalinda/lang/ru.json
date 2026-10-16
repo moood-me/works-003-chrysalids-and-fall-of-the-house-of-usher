@@ -1,0 +1,6 @@
+{"strings": [
+  {"text":"David and Rosalind","translation":"Дэвид и Розалинда","where":"scenes/devid-i-rozalinda/scene.json title"},
+  {"text":"In front of everyone we were strangers.","translation":"При всех мы были чужими.","where":"scenes/devid-i-rozalinda/scene.json caption"},
+  {"text":"We did not look at each other.","translation":"Мы не смотрели друг на друга.","where":"scenes/devid-i-rozalinda/scene.json captions[0] text"},
+  {"text":"Alone — only in our thoughts — we were together.","translation":"Наедине — только в мыслях — мы были вместе.","where":"scenes/devid-i-rozalinda/scene.json captions[1] text"}
+]}

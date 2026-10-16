@@ -1,7 +1,7 @@
-// Бегство — its mechanics: the film in beats for the game (lib.js FILM, the world's module beats: `beat` names one); the
+// Flight — its mechanics: the film in beats for the game (lib.js FILM, the world's module beats: `beat` names one); the
 // riders' feet and hands kept on their horses' stirrups and reins as the horses turn; Sheba on her rope behind the pack
 // horse once she is led; Petra in the pannier peeking out as far as `petra_peek` says; the front searcher's lantern
-// (lamp: held up toward lamp_x on the fog; search_point: his arm pointing into the hollow) — the game's «Тише, кони»
+// (lamp: held up toward lamp_x on the fog; search_point: his arm pointing into the hollow) — the game's “Quiet, horses”
 // moves those.
 const s = scene, L = s.lib, P = id => s.person(id);
 s.kit.beats.play(s, L.FILM);

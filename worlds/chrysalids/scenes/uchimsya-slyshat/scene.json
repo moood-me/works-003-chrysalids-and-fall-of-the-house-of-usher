@@ -1,7 +1,7 @@
 {
   "engine": 3,
-  "title": "Учимся слышать",
-  "caption": "Мы учились узнавать друг друга по голосу, которого никто не слышал.",
+  "title": "Learning to hear",
+  "caption": "We learnt to know one another by a voice no one else heard.",
   "horizon": 0.33,
   "camera": {
     "mode": "picture"
@@ -49,31 +49,31 @@
     {
       "at": 5,
       "for": 7,
-      "text": "Сначала — только шорох, как ветер в ячмене."
+      "text": "At first — only a rustle, like wind in the barley."
     },
     {
       "at": 14,
       "for": 7,
-      "text": "Потом мы научились различать, кто зовёт."
+      "text": "Then we learnt to tell who was calling."
     },
     {
       "at": 23,
       "for": 7,
-      "text": "А взрослые ничего не слышали."
+      "text": "And the grown-ups heard nothing."
     }
   ],
   "directions": [
     {
       "key": "adults_near",
-      "name": "Взрослые оглядываются"
+      "name": "The grown-ups look round"
     },
     {
       "key": "dusk",
-      "name": "Вечереет"
+      "name": "Evening comes"
     },
     {
       "key": "rosalind",
-      "name": "Тёплая нить к Розалинде"
+      "name": "Warm thread to Rosalind"
     }
   ],
   "state": {
@@ -108,7 +108,7 @@
         1
       ],
       "smooth": true,
-      "means": "вечереет: небо, солнце за холмы, окна фермы загораются, нити чуть ярче"
+      "means": "evening comes: the sky, the sun behind the hills, the farm’s windows light up, the threads a little brighter"
     },
     "threads": {
       "range": [
@@ -116,14 +116,14 @@
         1
       ],
       "smooth": true,
-      "means": "как сильны нити между слышащими"
+      "means": "how strong the threads between those who hear are"
     },
     "children": {
       "range": [
         0,
         6
       ],
-      "means": "сколько детей долины слышат (по порядку: Дэвид, Розалинда, девочка у белья, пастух, мальчик на телеге, девочка с ведром)"
+      "means": "how many children of the valley hear (in order: David, Rosalind, the girl at the washing, the shepherd, the boy on the cart, the girl with the bucket)"
     },
     "rosalind": {
       "range": [
@@ -131,7 +131,7 @@
         1
       ],
       "smooth": true,
-      "means": "тёплая нить к Розалинде, свечение у обоих концов; она смотрит на Дэвида"
+      "means": "a warm thread to Rosalind, a glow at both ends; she looks at David"
     },
     "adults_near": {
       "range": [
@@ -139,15 +139,15 @@
         1
       ],
       "smooth": true,
-      "means": "взрослые оглядываются: пахарь останавливается и смотрит из-под руки на Дэвида, женщина у двери тоже; нити стихают"
+      "means": "the grown-ups look round: the ploughman stops and looks at David from under his hand, the woman at the door too; the threads go quiet"
     },
     "ph_a": {
       "type": "number",
-      "means": "лошадь пахаря: где"
+      "means": "the ploughman’s horse: where"
     },
     "ph_d": {
       "type": "number",
-      "means": "лошадь пахаря: вглубь"
+      "means": "the ploughman’s horse: in depth"
     },
     "ph_face": {
       "range": [
@@ -155,14 +155,14 @@
         360
       ],
       "smooth": true,
-      "means": "лошадь пахаря: куда повёрнута"
+      "means": "the ploughman’s horse: which way it faces"
     }
   },
   "objects": [
     {
       "id": "sky",
       "sky": true,
-      "name": "Небо",
+      "name": "Sky",
       "redraw": {
         "dusk": 0.1
       }
@@ -175,7 +175,7 @@
         8000,
         40
       ],
-      "name": "Дальние холмы",
+      "name": "Far hills",
       "across": 0,
       "height": 120,
       "distance": 2600,
@@ -189,7 +189,7 @@
         3500,
         40
       ],
-      "name": "Холмы за долиной",
+      "name": "Hills beyond the valley",
       "across": 0,
       "height": 50,
       "distance": 950,
@@ -197,7 +197,7 @@
     },
     {
       "id": "valley",
-      "name": "Лоскутные поля",
+      "name": "Patchwork fields",
       "depth": 920,
       "plane": true,
       "width": 3600,
@@ -213,7 +213,7 @@
         1300,
         1
       ],
-      "name": "Дальние рощи",
+      "name": "Far groves",
       "across": 0,
       "height": 15,
       "distance": 680,
@@ -227,7 +227,7 @@
         500,
         1
       ],
-      "name": "Рощи за долиной",
+      "name": "Groves beyond the valley",
       "across": 0,
       "height": 15,
       "distance": 420,
@@ -241,7 +241,7 @@
         320,
         1
       ],
-      "name": "Ближние деревья",
+      "name": "Near trees",
       "across": 0,
       "height": 14,
       "distance": 210,
@@ -255,7 +255,7 @@
         15,
         0.5
       ],
-      "name": "Ферма",
+      "name": "Farm",
       "across": 66,
       "height": 8,
       "distance": 254,
@@ -263,7 +263,7 @@
     },
     {
       "id": "woman",
-      "name": "Женщина у двери",
+      "name": "Woman at the door",
       "person": {
         "cast": "cast",
         "who": "woman_a",
@@ -281,7 +281,7 @@
     },
     {
       "id": "far_girl",
-      "name": "Девочка с ведром",
+      "name": "Girl with a bucket",
       "person": {
         "cast": "cast",
         "who": "girl",
@@ -312,7 +312,7 @@
         260,
         0.5
       ],
-      "name": "Живая изгородь",
+      "name": "Hedgerow",
       "across": 0,
       "height": 2,
       "distance": 145,
@@ -320,7 +320,7 @@
     },
     {
       "id": "hay_cart",
-      "name": "Телега с сеном",
+      "name": "Hay cart",
       "across": 4.4,
       "distance": 125.3,
       "elevation": -15,
@@ -334,7 +334,7 @@
     },
     {
       "id": "cart",
-      "name": "Мальчик на телеге",
+      "name": "Boy on the cart",
       "person": {
         "cast": "cast",
         "who": "boy",
@@ -352,7 +352,7 @@
     },
     {
       "id": "line",
-      "name": "Верёвка с бельём",
+      "name": "Washing line",
       "across": 32.2,
       "distance": 91.0,
       "elevation": -15,
@@ -366,7 +366,7 @@
     },
     {
       "id": "washer",
-      "name": "Девочка у верёвки с бельём",
+      "name": "Girl at the washing line",
       "person": {
         "cast": "cast",
         "who": "girl",
@@ -390,7 +390,7 @@
         40,
         0.3
       ],
-      "name": "Снопы в поле",
+      "name": "Sheaves in the field",
       "across": 45,
       "height": 1.2,
       "distance": 95,
@@ -404,7 +404,7 @@
         60,
         0.5
       ],
-      "name": "Холм с овцами",
+      "name": "Hill with sheep",
       "across": -50,
       "height": 6,
       "distance": 92.1,
@@ -412,7 +412,7 @@
     },
     {
       "id": "shepherd",
-      "name": "Мальчик-пастух",
+      "name": "Shepherd boy",
       "person": {
         "cast": "cast",
         "who": "michael",
@@ -441,7 +441,7 @@
         17,
         0.3
       ],
-      "name": "Изгородь у поля",
+      "name": "Fence by the field",
       "across": 31.4,
       "height": 1.2,
       "distance": 59.0,
@@ -449,7 +449,7 @@
     },
     {
       "id": "rosalind",
-      "name": "Розалинда на изгороди",
+      "name": "Rosalind on the fence",
       "person": {
         "cast": "cast",
         "who": "rosalind",
@@ -473,7 +473,7 @@
         20,
         0.3
       ],
-      "name": "Снопы на жнивье",
+      "name": "Sheaves on the stubble",
       "across": 40,
       "height": 1.2,
       "distance": 62,
@@ -481,7 +481,7 @@
     },
     {
       "id": "plough_horse",
-      "name": "Лошадь пахаря",
+      "name": "The ploughman’s horse",
       "across": 6.4,
       "distance": 51.6,
       "elevation": -15,
@@ -498,7 +498,7 @@
     },
     {
       "id": "plough",
-      "name": "Плуг",
+      "name": "Plough",
       "across": 8.0,
       "distance": 51.6,
       "elevation": -15,
@@ -512,7 +512,7 @@
     },
     {
       "id": "ploughman",
-      "name": "Пахарь",
+      "name": "Ploughman",
       "person": {
         "cast": "cast",
         "who": "man_c",
@@ -536,7 +536,7 @@
         60,
         6
       ],
-      "name": "Склон с репой",
+      "name": "Slope with turnips",
       "across": 0,
       "height": 12,
       "distance": 24.1,
@@ -550,7 +550,7 @@
         7,
         0.5
       ],
-      "name": "Старый боярышник",
+      "name": "Old hawthorn",
       "across": -21,
       "height": 6,
       "distance": 26,
@@ -558,7 +558,7 @@
     },
     {
       "id": "david",
-      "name": "Дэвид",
+      "name": "David",
       "person": {
         "cast": "cast",
         "who": "david",
@@ -576,7 +576,7 @@
     },
     {
       "id": "threads",
-      "name": "Нити мыслей",
+      "name": "Threads of thought",
       "across": 0,
       "distance": 20,
       "elevation": 0,
@@ -591,7 +591,7 @@
     },
     {
       "id": "motes",
-      "name": "Пылинки",
+      "name": "Dust motes",
       "across": 0,
       "distance": 18,
       "elevation": -1,
@@ -608,7 +608,7 @@
     },
     {
       "id": "fore",
-      "name": "Трава у ног",
+      "name": "Grass underfoot",
       "x": 0.5,
       "y": 1,
       "height": 1,

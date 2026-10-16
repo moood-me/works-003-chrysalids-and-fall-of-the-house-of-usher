@@ -1,8 +1,8 @@
 // The kitchen's back wall (a card facing the room, 6.2 m off), painted once in its daylight colours — the lamp, the
 // hearth and the window's light are the scene's: lime-washed plaster over a boarded dado; the window (its opening
 // clear: the sky beyond — the element sky), the narrow stair door's opening (the stairs beyond — stairs; its leaf —
-// stairdoor), the dresser with its plates, the samplers — «Чти образ Божий» with the true image, «Береги чистоту
-// рода» — and the hearth: its stone breast, the plaque «Блюди, не мутант ли», the dark mouth (its fire: the
+// stairdoor), the dresser with its plates, the samplers — “Honour the Image” with the true image, “Keep the Stock
+// Pure” — and the hearth: its stone breast, the plaque “Watch Thou for the Mutant!”, the dark mouth (its fire: the
 // particles fire and embers, its light: hearth).
 const { WIN, DOOR, HEARTH } = e.lib;
 const wallP = new Path2D();
@@ -129,8 +129,8 @@ function sampler(cx, cy, w, h, txt, fs, image) {
   g.fillText(txt, 0, 1);
   g.restore();
 }
-sampler(-0.45, -2.45, 0.95, 0.62, 'Чти образ Божий', 9.5, true);
-sampler(-3.72, -2.62, 1.2, 0.32, 'Береги чистоту рода', 9.5, false);
+sampler(-0.45, -2.45, 0.95, 0.62, tr('Honour the Image'), 9.5, true);
+sampler(-3.72, -2.62, 1.2, 0.32, tr('Keep the Stock Pure'), 9.5, false);
 e.at(-0.45, -2.45, 'sampler');
 // the hearth: its stone breast up to the beams, the mantel, the plaque, the arched mouth (soot-dark inside), the pot
 // hanging in it on its crane
@@ -161,7 +161,7 @@ g.fill();
   g.textAlign = 'center';
   g.textBaseline = 'middle';
   g.fillStyle = '#d8c6a0';
-  g.fillText('Блюди, не мутант ли', 0, 1);
+  g.fillText(tr('Watch Thou for the Mutant!'), 0, 1);
   g.restore();
 }
 const mouth = new Path2D();

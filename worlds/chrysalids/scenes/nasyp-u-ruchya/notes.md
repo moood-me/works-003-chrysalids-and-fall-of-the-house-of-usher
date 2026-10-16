@@ -1,104 +1,104 @@
-КИНО «Насыпь у ручья» (Хризалиды v3, гл. I и II), движок 3 (перенесена из «кино-игры v2» правками engine3-porting.md:
-шейдеры — WGSL, у светов нет `size`; склейку следующего куска модуль beats говорит заранее). Люди — люди движка (элементы с person, каст мира modules/cast.js:
-david, sophie, wender — миссис Уэндер, rider — всадник); конь всадника — модуль мира chrysalids (лошадей движок не водит:
-карточка слоями на своих глубинах, нарисована один раз со всех сторон, аллюр и поворот — её animate). Немой фильм кусками (модуль мира beats): игра «Хризалиды — кино»
-играет их по одному, между ними выборы. Подписей нет. Перенесено со старого движка (мир pavel/khrizalidy-kino-igra) —
-что во что превратилось — docs/history/2026-10-10-engine2-nasyp.md в репозитории moood (rpg).
+FILM "The bank by the stream" (The Chrysalids v3, ch. I and II), engine 3 (moved from the "film game v2" by the changes of engine3-porting.md:
+shaders — WGSL, lights have no `size`; the module beats says the next beat's cut ahead). The people — the engine's people (elements with person, the world's cast modules/cast.js:
+david, sophie, wender — Mrs Wender, rider — the rider); the rider's horse — the world's module chrysalids (the engine does not lead horses:
+a card in layers at their own depths, painted once from every side, the gait and the turn — its animate). A silent film in beats (the world's module beats): the game "The Chrysalids — film"
+plays them one at a time, choices between them. No captions. Moved from the old engine (the world pavel/khrizalidy-kino-igra) —
+what became what — docs/history/2026-10-10-engine2-nasyp.md in moood's repository (rpg).
 
-ПОКАЗ (showcase.js, lib.SHOWCASE, ~2.7 мин): play → play_again → stuck → let → toes_bare → ridge → cover → ridge_pass →
-ask → promise → mother → nod → alone → night_warn → night_warn_bye. Канон игры (что видит зритель мира, если играет):
+SHOWING (showcase.js, lib.SHOWCASE, ~2.7 min): play → play_again → stuck → let → toes_bare → ridge → cover → ridge_pass →
+ask → promise → mother → nod → alone → night_warn → night_warn_bye. The game's canon (what the world's viewer sees, if he plays):
 play → play_again → stuck → let → toes → ask → promise → mother → nod → alone.
 
-КУСКИ (lib.FILM: последовательности режиссёра; люди — в своём темпе; `from` — всё состояние, сцену можно открыть на любом):
- play        Дэвид съезжает по скату в песок, смеётся; наверху поднимается Софи; он машет — она съезжает, смеются.
- play_again  «Ещё!» — она встаёт, показывает наверх, бежит к скату, карабкается; с разбегу летит дальше кучи, на камни.
- stuck       Удар о камни (брызги, пыль, круги); камера подходит. Нога застряла: дёргает, плачет; он на коленях тянет;
-             тянется к башмаку — она откидывается, отталкивает; он садится на пятки, она плачет. Конец — игра спрашивает,
-             как заговорить (элемент sophie).
- let         (канон) Она затихает, смотрит на ногу, на него, кивает, отворачивается, закрыв лицо; он снимает башмак.
- talk_hurt   «— Тебе больно?» Он наклоняется; она кивает сквозь слёзы (дважды), смотрит на ногу, отворачивается; он снимает.
- talk_whose  «— Ты чья?» Слёзы обрываются, она садится прямо, смотрит ему в глаза; показывает на ногу, кивает; он развязывает.
- talk_sit    Молча: он встаёт, обходит её и садится плечом к плечу; она стихает, кивает на ногу; он возвращается; развязывают
-             вдвоём. Все четыре кончаются одинаково: башмак у Дэвида, Софи — колено к груди, нога голая.
- toes        (канон) Диафрагма, крупно: шесть пальцев, поджимаются; её рука натягивает подол. Снаружи — обхватила колени.
- toes_bare   То же, но подол не натягивается: пальцы шевелятся дважды; нога остаётся голой (игра: всадник ещё впереди).
- ridge       Камера отходит; слева, на краю луга, всадник (сцена говорит ridge:rider — он показался); Софи замирает
-             и смотрит на него, потом Дэвид; он становится на колени и тянется к её ноге — открывается крупный план
-             (справа от середины кадра, луг и всадник видны): ступня, подол, его рука на краю подола (ridge:hem). Тут
-             всадник трогает шагом (если игра не держит его ключом r_wait — тогда, когда отпустит), ≈ 11 с медленным шагом до камней; ждёт он на лугу слева, в кадре. Здесь
-             игра ведёт «Подол»: ключ hem (его рука тянет подол на ступню). Конец — всадник там, откуда видно камни:
-             сцена говорит ridge:seen; крупный план открыт, пока его не закроет cover или ridge_stop.
- cover       Подол на ступне (игра: успел — может начаться посреди ridge): крупный план закрывается, он отпускает ногу,
-             она подтягивает колени; оба смотрят на всадника; камера встаёт на свой план оттуда, где была, всадник
-             доезжает до того места своим шагом (ridge:seen); кусок кончается, когда всадник доехал.
- ridge_pass  Всадник не поворачивает головы: едет дальше шагом, направо и вверх, к тропинке. Потом они смотрят друг на
-             друга. Конец — всадник далеко на тропинке (едет дальше и после конца куска).
- ridge_stop  Не успел (подол не дотянут к ridge:seen): крупный план закрывается; всадник придерживает коня прямо за ними, разворачивает к ним, конь вскидывает голову, всадник
-             смотрит на них; Дэвид поздно натягивает подол; всадник едет дальше (конец — как у ridge_pass).
- ask         Она, обхватив колени, тянет к нему руку (обещание). Идёт за toes; после ridge_pass/ridge_stop — склейка
-             (игра открывает его заново, всадника уже нет).
- promise     Он — палец к губам; отдаёт башмак, она берёт.
- mother      Она пробует встать — не может; вдали мать (рука козырьком), Софи машет, мать бежит вниз, на колени, обнимает;
-             рука находит ногу под подолом, замирает; мать поднимает глаза на Дэвида. Конец — выбор Дэвида (элемент mother).
- nod         (канон) Он — палец к губам; она кивает; поднимает Софи и уносит по тропинке; Софи смотрит назад.
- away        Он опускает глаза, отворачивается; мать смотрит долго; поднимает Софи и уходит, не оглядываясь; Софи смотрит
-             назад; он поднимает глаза ей вслед. (В обоих мать идёт дальше и после конца куска.)
- alone       (канон) На дальнем гребне всадник (someone_coming); Дэвид смотрит на него, садится у воды, смотрит вслед.
- night_warn  ГЛАВА II, «Ночь перед облавой». Ночь (night 1). Из черноты (fade 1 → 0, начало главы) Дэвид сбегает с насыпи;
-             у камней Софи, поодаль на тропинке мать с узлом; обе оборачиваются; Софи шагает навстречу; они лицом к лицу.
-             Выбор можно предлагать на sophie, mother, david.
- night_warn_bye  Софи берёт его за руку; мать зовёт; Софи отпускает, уходит с матерью вверх по тропинке в темноту;
-             оглядывается; он стоит и смотрит вслед.
+BEATS (lib.FILM: the director's sequences; the people — at their own pace; `from` — the whole state, the scene can be opened at any of them):
+ play        David slides down the slope into the sand, laughing; at the top Sophie gets up; he waves — she slides down, they laugh.
+ play_again  "Again!" — she gets up, points to the top, runs to the slope, scrambles up; with a run-up she flies past the heap, onto the stones.
+ stuck       A blow on the stones (spray, dust, rings); the camera comes up. Her foot is stuck: she tugs, cries; he on his knees pulls;
+             reaches for the shoe — she leans back, pushes him away; he sits back on his heels, she cries. The end — the game asks
+             how to speak to her (the element sophie).
+ let         (the canon) She goes quiet, looks at her foot, at him, nods, turns away, covering her face; he takes off the shoe.
+ talk_hurt   "Does it hurt?" He bends down; she nods through her tears (twice), looks at her foot, turns away; he takes it off.
+ talk_whose  "Whose are you?" The tears break off, she sits up straight, looks him in the eyes; points to her foot, nods; he unties it.
+ talk_sit    Silently: he gets up, goes round her and sits down shoulder to shoulder; she quietens, nods at her foot; he comes back; they untie it
+             together. All four end the same: the shoe with David, Sophie — her knee to her chest, her foot bare.
+ toes        (the canon) An iris, close: six toes, curling; her hand pulls the hem over. Outside — she has hugged her knees.
+ toes_bare   The same, but the hem is not pulled over: the toes move twice; the foot stays bare (the game: the rider is still to come).
+ ridge       The camera draws back; on the left, at the edge of the meadow, a rider (the scene says ridge:rider — he has appeared); Sophie freezes
+             and looks at him, then David; he gets on his knees and reaches for her foot — the close shot opens
+             (right of the frame's middle, the meadow and the rider seen): the foot, the hem, his hand on the hem's edge (ridge:hem). Here
+             the rider moves off at a walk (if the game is not holding him with the key r_wait — then, when it lets him go), ≈ 11 s at a slow walk to the stones; he waits on the meadow on the left, in the frame. Here
+             the game plays "The hem": the key hem (his hand pulls the hem over the foot). The end — the rider where the stones can be seen from:
+             the scene says ridge:seen; the close shot stays open until cover or ridge_stop closes it.
+ cover       The hem on the foot (the game: in time — it may begin in the middle of ridge): the close shot closes, he lets go of the foot,
+             she draws her knees up; both look at the rider; the camera settles on its shot from where it was, the rider
+             comes to that place at his own pace (ridge:seen); the beat ends when the rider has got there.
+ ridge_pass  The rider does not turn his head: he rides on at a walk, to the right and up, to the path. Then they look at each
+             other. The end — the rider far off on the path (he rides on after the beat's end too).
+ ridge_stop  Too late (the hem not pulled over by ridge:seen): the close shot closes; the rider reins in his horse right behind them, turns it to them, the horse tosses its head, the rider
+             looks at them; David pulls the hem over too late; the rider rides on (the end — as in ridge_pass).
+ ask         She, hugging her knees, holds out her hand to him (a promise). It comes after toes; after ridge_pass/ridge_stop — a cut
+             (the game opens it anew, the rider gone already).
+ promise     He — a finger to his lips; gives back the shoe, she takes it.
+ mother      She tries to stand — cannot; far off her mother (a hand shading her eyes), Sophie waves, the mother runs down, on her knees, hugs her;
+             her hand finds the foot under the hem, stops; the mother raises her eyes to David. The end — David's choice (the element mother).
+ nod         (the canon) He — a finger to his lips; she nods; lifts Sophie and carries her off along the path; Sophie looks back.
+ away        He lowers his eyes, turns away; the mother looks a long time; lifts Sophie and goes off without looking back; Sophie looks
+             back; he raises his eyes after her. (In both the mother goes on after the beat's end too.)
+ alone       (the canon) On the far crest a rider (someone_coming); David looks at him, sits down by the water, looks after them.
+ night_warn  CHAPTER II, "The night before the raid". Night (night 1). Out of the dark (fade 1 → 0, the chapter's beginning) David runs down the bank;
+             by the stones Sophie, a little way off on the path her mother with a bundle; both turn round; Sophie steps towards him; they are face to face.
+             The choice can be offered on sophie, mother, david.
+ night_warn_bye  Sophie takes his hand; her mother calls; Sophie lets go, goes off with her mother up the path into the dark;
+             looks back; he stands and looks after her.
 
-ИГРА: `g.scene('Насыпь у ручья', { beat: '<кусок>' })` открывает сцену на куске; `g.beat('<кусок>')` — следующий (сцена
-говорит beat:<кусок>, когда он кончился); ветки — talk_*, toes_bare, ridge/cover/ridge_pass/ridge_stop, away; канон —
-let, toes, nod, alone; глава II — night_warn, затем night_warn_bye. Моменты всадника сцена говорит сама (scene.tell):
-ridge:rider — показался на лугу (с этого мига есть от кого прятать ногу; стук копыт игра пускает раньше — по r_a / r_near),
-ridge:hem — крупный план открыт, рука Дэвида на подоле (метка «Подола» — с этого мига), ridge:seen — доехал туда, откуда видно камни
-(говорит тот кусок, в котором он доехал: ridge или cover). Моменты для реплик игры: play:girl — Софи поднимается из травы наверху; ridge_stop:held —
-всадник осадил коня за ними и смотрит; ridge_stop:on — тронул дальше; mother:wave — Софи машет матери; nod:nod — мать
-кивает; away:gone — мать поднимает Софи и уходит. Игра ждёт этих слов, а не секунд и не r_a. Чисел сцены игре
-знать не нужно. Что изменилось для игры против старой сцены: после play идёт play_again (потом stuck); «всадник
-показался» — ridge:rider вместо паузы в секунду; после cover не надо ждать r_a ≥ −4.05 — beat:cover и значит «доехал».
+THE GAME: `g.scene('nasyp-u-ruchya', { beat: '<beat>' })` opens the scene at a beat; `g.beat('<beat>')` — the next one (the scene
+says beat:<beat> when it has ended); the branches — talk_*, toes_bare, ridge/cover/ridge_pass/ridge_stop, away; the canon —
+let, toes, nod, alone; chapter II — night_warn, then night_warn_bye. The rider's moments the scene says itself (scene.tell):
+ridge:rider — he has appeared on the meadow (from this moment there is someone to hide the foot from; the game starts the hooves earlier — by r_a / r_near),
+ridge:hem — the close shot open, David's hand on the hem (the mark of "The hem" — from this moment), ridge:seen — he has come to where the stones can be seen from
+(said by the beat in which he got there: ridge or cover). Moments for the game's lines: play:girl — Sophie gets up out of the grass at the top; ridge_stop:held —
+the rider has reined in behind them and looks; ridge_stop:on — he has ridden on; mother:wave — Sophie waves to her mother; nod:nod — the mother
+nods; away:gone — the mother lifts Sophie and goes. The game waits for these words, not for seconds or r_a. The scene's numbers the game
+need not know. What changed for the game against the old scene: after play comes play_again (then stuck); "the rider
+has appeared" — ridge:rider instead of a pause of a second; after cover there is no need to wait for r_a ≥ −4.05 — beat:cover means "he has got there".
 
-КЛЮЧИ (states — что каждый значит): beat; hem 0…1 (подол, который тянет рука Дэвида: его ведёт игра — «Подол»; куски его
-не пишут), cu_cover (рука Дэвида на подоле — её ставит ridge), r_near 0…1 (всадник приближается: идёт вместе с r_a, r_d от
-края луга до места, откуда видно камни — по нему игра ведёт дугу времени «Подола», чисел сцены ей знать не нужно);
-r_wait (игра держит всадника на краю луга после ridge:hem, пока «Подол» показывает жест: показ не идёт в срок; куски его
-не пишут, по умолчанию false — едет сразу; от края до камней шагом ≈ 11 с);
-evening 0…1 (вечер — взгляд света и солнце ниже), night 0…1 (взгляд ночи,
-звёзды, луна); someone_coming; shoe (и с ним david_with, sophie_with, sophie_wear — их ставят куски); closeup, cu_pull,
-cu_wig, cu_hide (вставки крупного плана); puff/puff_a (пыль: всплеск, когда число растёт), splash (брызги), ring/ring_a
-(круги на воде); r_a, r_d, r_face, r_toss (конь). Люди — ключи движка с id: david_, sophie_, mother_, rider_ (_a, _d, _e у
-детей — полёт с края, _do, _turn, _look, _reach, _with, _wear, _gait, _steps, _on, _here). Всадник: rider_on — седло коня
-(horse#seat), rider_reach — ноги в стременах, руки на поводьях: точки в системе коня ({on: horse, at}), свои для каждого
-поворота — их держит script.js (lib.tack), когда меняется r_face; rider_here — он (и конь) на лугу, rider_look — куда
-смотрит. Кивок — взгляд вниз и обратно, взмах сидя — рука к точке туда-сюда (lib nod, wave): они ложатся поверх того,
-что человек делает (движение каста заняло бы всё тело; пробное «машет сидя» вышло сидящим на стуле — не взято).
+KEYS (states — what each means): beat; hem 0…1 (the hem David's hand pulls: the game leads it — "The hem"; the beats do not
+write it), cu_cover (David's hand on the hem — ridge sets it), r_near 0…1 (the rider comes closer: it goes with r_a, r_d from
+the edge of the meadow to the place the stones can be seen from — by it the game leads the arc of time of "The hem", the scene's numbers it need not know);
+r_wait (the game holds the rider at the edge of the meadow after ridge:hem, while "The hem" shows its gesture: the showing does not count against the time; the beats do not
+write it, false by default — he rides at once; from the edge to the stones at a walk ≈ 11 s);
+evening 0…1 (the evening — the light's look and the sun lower), night 0…1 (the night's look,
+the stars, the moon); someone_coming; shoe (and with it david_with, sophie_with, sophie_wear — the beats set them); closeup, cu_pull,
+cu_wig, cu_hide (the close shot's inserts); puff/puff_a (dust: a burst when the number grows), splash (spray), ring/ring_a
+(rings on the water); r_a, r_d, r_face, r_toss (the horse). The people — the engine's keys with an id: david_, sophie_, mother_, rider_ (_a, _d, _e for
+the children — the flight off the edge, _do, _turn, _look, _reach, _with, _wear, _gait, _steps, _on, _here). The rider: rider_on — the horse's saddle
+(horse#seat), rider_reach — his feet in the stirrups, his hands on the reins: points in the horse's frame ({on: horse, at}), their own for each
+turn — script.js keeps them (lib.tack) when r_face changes; rider_here — he (and the horse) on the meadow, rider_look — where
+he looks. A nod — a look down and back, a wave sitting — a hand to a point to and fro (lib nod, wave): they lie over what
+the person is doing (a motion of the cast would take the whole body; a trial "waves sitting" came out sitting on a chair — not taken).
 
-УСТРОЙСТВО: земля — relief.js (профиль насыпи lib.bankL по её линии, 2 м вглубь); big_bank, stones, fringe, dragonfly —
-"onLand": false (рисуют саму землю). Картины статичны, в дневных цветах, без дымки (дальние холмы и гребень — тоже:
-дымка — движка); ни одна картина не читает ключей, которые движутся. Движется: трава и ивы — слои с ветром (lib.tufts,
-lib.willow), облака — дрейф, солнце — sky.animate (ниже к вечеру, его точка — свет sun), ночное небо с луной — слой неба,
-его проявляет sky.animate по night; звёзды (яркость — uniform night) и блики ручья — свои шейдеры, пыль, брызги,
-пылинки, дым — частицы, круги на воде и стрекоза — animate, всадник на гребне — слои ridge (едет по гребню шагом коня
-своего роста, ноги — четыре такта шага по пройденному пути; нарисован в 3.6 роста, чтобы читался за 260 м).
-СВЕТ: сцена освещённая и днём (ambient 0.95, тёплый; bounce, shafts). Солнце низко и впереди (sky#sun), всё, что к нам
-лицом, — в контровом: его держит свет вокруг (ambient), солнце добавляет на землю и даёт тени; тени мягкие,
-людей и коня — strength 0.8. Насыпь (рельеф) сама закрывает солнце: её скат к нам и берег под ней — в её тени (это не
-пятно, а тень земли; без ambient она была чёрной). Вечер и ночь — light.looks.
-Крупный план — четыре вставки по ключу closeup с одной диафрагмой (lib.CU: середина 1.05 / 0.37 высоты кадра, радиус
-0.24 (верх — под плашкой языка) — высоко, чуть правее середины, в средних 4:3 над дальним лугом; дети под ним и всадник слева видны, пока он открыт): closeup (песок, вода; точки игры
-closeup#hem — край подола, closeup#foot — куда он ложится, укрыв ступню), closeup_glints (блики), closeup_foot (камни,
-ступня, пальцы, подол — его тянут cu_hide (её рука, канон toes) или hem (его рука, «Подол»), руки), closeup_iris (мягкое
-тёмное кольцо вокруг окна — шейдер, uniform open; за кольцом сцена как есть). Картины вставок — в своих единицах
-(lib.cuFrame: как когда диафрагма была 0.46 высоты по середине), шейдерам место дают animate.
-КОНЬ (модуль chrysalids, chrysalids.md): рисуется один раз — тело, шея, голова, хвост с 24 сторон (слой на сторону,
-виден ближайший к r_face), кости ног по разу; animate ставит ноги по аллюру (шаг, рысь, кентер, галоп — по скорости
-ключей места, один переходит в другой), поворот на месте — переступанием. Фильм ведёт коня шагом (lib.RIDE — темп шага
-из модуля), осаживает плавно (ridge_stop). Всадник сидит на его точке seat.
+THE MAKING: the ground — relief.js (the bank's profile lib.bankL along its line, 2 m deep); big_bank, stones, fringe, dragonfly —
+"onLand": false (they paint the ground itself). The pictures are still, in day colours, without haze (the far hills and the crest too:
+the haze is the engine's); no picture reads keys that move. What moves: the grass and the willows — layers in the wind (lib.tufts,
+lib.willow), the clouds — a drift, the sun — sky.animate (lower towards evening, its point — the light sun), the night sky with the moon — a layer of the sky,
+sky.animate brings it out by night; the stars (brightness — the uniform night) and the stream's glints — shaders of their own, the dust, the spray,
+the motes, the smoke — particles, the rings on the water and the dragonfly — animate, the rider on the crest — the layers ridge (he rides along the crest at the pace of a horse
+of his size, the legs — the four beats of a walk by the way gone; painted at 3.6 his height, to read at 260 m).
+LIGHT: the scene is lit by day too (ambient 0.95, warm; bounce, shafts). The sun low and ahead (sky#sun), all that faces
+us — against the light: the light round about holds it (ambient), the sun adds onto the ground and gives the shadows; the shadows soft,
+the people's and the horse's — strength 0.8. The bank (the relief) hides the sun itself: its slope towards us and the shore below it — in its shadow (it is not
+a spot, but the ground's shadow; without ambient it was black). The evening and the night — light.looks.
+The close shot — four inserts by the key closeup with one iris (lib.CU: the middle 1.05 / 0.37 of the frame's height, the radius
+0.24 (the top — under the language's plate) — high, a little right of the middle, in the middle of 4:3 over the far meadow; the children under it and the rider on the left seen while it is open): closeup (sand, water; the game's points
+closeup#hem — the hem's edge, closeup#foot — where it lies, covering the foot), closeup_glints (glints), closeup_foot (the stones,
+the foot, the toes, the hem — cu_hide pulls it (her hand, the canon toes) or hem (his hand, "The hem"), the hands), closeup_iris (a soft
+dark ring round the window — a shader, the uniform open; beyond the ring the scene as it is). The inserts' pictures — in units of their own
+(lib.cuFrame: as when the iris was 0.46 of the height in the middle), animate gives the shaders their place.
+THE HORSE (the module chrysalids, chrysalids.md): painted once — the body, the neck, the head, the tail from 24 sides (a layer a side,
+the one nearest r_face seen), the leg bones once each; animate sets the legs by the gait (a walk, a trot, a canter, a gallop — by the speed of
+the place's keys, one going over into the next), a turn on the spot — by stepping round. The film leads the horse at a walk (lib.RIDE — the walk's pace
+from the module), reins it in smoothly (ridge_stop). The rider sits on its point seat.
 
-## Контракт для проверки
+## Contract for the check
 
 ```json
 {

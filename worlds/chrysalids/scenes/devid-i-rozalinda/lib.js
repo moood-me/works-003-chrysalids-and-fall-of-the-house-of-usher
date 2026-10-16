@@ -1,4 +1,4 @@
-// Дэвид и Розалинда (engine 3): what its elements and its script share — where David and Rosalind are (their heads:
+// David and Rosalind (engine 3): what its elements and its script share — where David and Rosalind are (their heads:
 // across, distance, height), the thread's card between them (DT m ahead) and where their heads are on it; the old
 // woman at the well and the two men she talks to; the townsfolk who leave as the crowd goes (and where to); the
 // horses at the rail (the world's module chrysalids).

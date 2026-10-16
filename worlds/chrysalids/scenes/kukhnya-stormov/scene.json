@@ -1,6 +1,6 @@
 {
   "engine": 3,
-  "title": "Кухня Стормов",
+  "title": "The Strorms’ kitchen",
   "horizon": 0.42,
   "camera": {
     "mode": "picture"
@@ -92,7 +92,7 @@
   "states": {
     "beat": {
       "type": "string",
-      "means": "кусок фильма (модуль beats): имя — он играется с начала; в конце сцена говорит beat:<имя>. Вечер третьей руки: evening → help | self → slip → kneel → seek | bow → upstairs; ложь: slip → lie → lie_mother → lie_up. Ночи за столом: night → night_after → to_bed → sneak; late → asks → to_bed"
+      "means": "a beat of the film (module beats): the name — it plays from the beginning; at the end the scene says beat:<name>. The evening of the third hand: evening → help | self → slip → kneel → seek | bow → upstairs; the lie: slip → lie → lie_mother → lie_up. Nights at the table: night → night_after → to_bed → sneak; late → asks → to_bed"
     },
     "lamp": {
       "range": [
@@ -100,7 +100,7 @@
         1
       ],
       "smooth": true,
-      "means": "лампа на столе: 1 — горит, 0.85 — ночью, 0.6 — годы спустя, 0 — погашена"
+      "means": "the lamp on the table: 1 — alight, 0.85 — at night, 0.6 — years later, 0 — put out"
     },
     "dusk": {
       "range": [
@@ -108,7 +108,7 @@
         1
       ],
       "smooth": true,
-      "means": "вечер за окном: 0 — сумерки, 1 — ночь (свет комнаты чуть тише)"
+      "means": "the evening outside the window: 0 — dusk, 1 — night (the room’s light a little softer)"
     },
     "hearth": {
       "range": [
@@ -116,7 +116,7 @@
         1
       ],
       "smooth": true,
-      "means": "огонь очага: 1 — горит, 0.35 — тлеет"
+      "means": "the hearth fire: 1 — burning, 0.35 — smouldering"
     },
     "fade": {
       "range": [
@@ -124,7 +124,7 @@
         1
       ],
       "smooth": true,
-      "means": "затемнение (начало и конец)"
+      "means": "fade to black (the beginning and the end)"
     },
     "steam": {
       "range": [
@@ -132,7 +132,7 @@
         1
       ],
       "smooth": true,
-      "means": "пар над миской Дэвида: 1 — горячая, 0 — остыла"
+      "means": "steam over David’s bowl: 1 — hot, 0 — gone cold"
     },
     "yard_door": {
       "range": [
@@ -140,7 +140,7 @@
         1
       ],
       "smooth": true,
-      "means": "дверь во двор (за кадром слева): 0 — закрыта, 1 — открыта, холодный свет на полу"
+      "means": "the door to the yard (off the frame on the left): 0 — shut, 1 — open, cold light on the floor"
     },
     "stair_door": {
       "range": [
@@ -148,7 +148,7 @@
         1
       ],
       "smooth": true,
-      "means": "дверь на лестницу: 0 — закрыта, 1 — открыта"
+      "means": "the door to the stairs: 0 — shut, 1 — open"
     },
     "wish": {
       "range": [
@@ -156,11 +156,11 @@
         1
       ],
       "smooth": true,
-      "means": "третья рука — бледная, из бока Дэвида к узлу на руке: 0 — нет, 1 — выросла"
+      "means": "the third hand — pale, from David’s side to the knot on his hand: 0 — none, 1 — grown"
     },
     "at_table": {
       "type": "boolean",
-      "means": "ночь за столом: Дэвид сидит на месте Мэри (тогда david_grip, david_stir — то, что он делает)"
+      "means": "night at the table: David sits in Mary’s place (then david_grip, david_stir — what he does)"
     },
     "david_grip": {
       "range": [
@@ -168,7 +168,7 @@
         1
       ],
       "smooth": false,
-      "means": "игра («Не шелохнуться»): Дэвид держится за край стола (1, sit_grip) или отпустил и ёрзает (0, sit_fidget)"
+      "means": "the game (“Not a stir”): David holds the table’s edge (1, sit_grip) or has let go and fidgets (0, sit_fidget)"
     },
     "david_stir": {
       "range": [
@@ -176,7 +176,7 @@
         1
       ],
       "smooth": false,
-      "means": "игра: дрожь, пока он держится (выше 0.25 — sit_tremble)"
+      "means": "the game: a tremor while he holds on (above 0.25 — sit_tremble)"
     },
     "father_look": {
       "range": [
@@ -184,18 +184,18 @@
         1
       ],
       "smooth": false,
-      "means": "игра: отец поднимает глаза от Книги на Дэвида (выше 0.5)"
+      "means": "the game: the father raises his eyes from the Book to David (above 0.5)"
     }
   },
   "objects": [
     {
       "id": "sky",
       "sky": true,
-      "name": "Небо за окном"
+      "name": "Sky beyond the window"
     },
     {
       "id": "wall",
-      "name": "Задняя стена кухни",
+      "name": "Back wall of the kitchen",
       "across": 0,
       "distance": 6.2,
       "facing": 180,
@@ -209,7 +209,7 @@
     },
     {
       "id": "window",
-      "name": "Окно (проём)",
+      "name": "Window (the opening)",
       "unseen": true,
       "across": 0,
       "distance": 6.19,
@@ -224,7 +224,7 @@
     },
     {
       "id": "stairdoor",
-      "name": "Дверь на лестницу",
+      "name": "Door to the stairs",
       "across": -2.95,
       "distance": 6.19,
       "facing": 180,
@@ -238,7 +238,7 @@
     },
     {
       "id": "stairs",
-      "name": "Лестница наверх",
+      "name": "Stairs up",
       "across": -2.58,
       "distance": 6.3,
       "height": 2.2,
@@ -252,7 +252,7 @@
     },
     {
       "id": "ceiling",
-      "name": "Потолок",
+      "name": "Ceiling",
       "plane": true,
       "across": 0,
       "distance": 3.45,
@@ -262,7 +262,7 @@
     },
     {
       "id": "floor",
-      "name": "Дощатый пол",
+      "name": "Plank floor",
       "plane": true,
       "across": 0,
       "distance": 3.45,
@@ -271,7 +271,7 @@
     },
     {
       "id": "fire",
-      "name": "Огонь в очаге",
+      "name": "Fire in the hearth",
       "across": 3.35,
       "distance": 6.05,
       "elevation": 0.03,
@@ -291,7 +291,7 @@
     },
     {
       "id": "embers",
-      "name": "Искры очага",
+      "name": "Sparks of the hearth",
       "across": 3.35,
       "distance": 6.05,
       "elevation": 0.1,
@@ -308,7 +308,7 @@
     },
     {
       "id": "tabletop",
-      "name": "Столешница",
+      "name": "Tabletop",
       "plane": true,
       "across": 0.3,
       "distance": 4.5,
@@ -323,7 +323,7 @@
     },
     {
       "id": "table",
-      "name": "Тяжёлый стол",
+      "name": "Heavy table",
       "across": 0.3,
       "distance": 4.05,
       "height": 0.78,
@@ -336,7 +336,7 @@
     },
     {
       "id": "chair_father",
-      "name": "Стул отца",
+      "name": "The father’s chair",
       "across": -1.66,
       "distance": 4.55,
       "height": 1.3,
@@ -349,7 +349,7 @@
     },
     {
       "id": "chair_mother",
-      "name": "Стул матери",
+      "name": "The mother’s chair",
       "across": 2.12,
       "distance": 4.6,
       "height": 1.3,
@@ -362,7 +362,7 @@
     },
     {
       "id": "lamp",
-      "name": "Масляная лампа",
+      "name": "Oil lamp",
       "across": 0.3,
       "distance": 4.45,
       "elevation": 0.78,
@@ -376,7 +376,7 @@
     },
     {
       "id": "steam",
-      "name": "Пар над миской Дэвида",
+      "name": "Steam over David’s bowl",
       "particles": {
         "kind": "smoke",
         "at": "tabletop#bowl",
@@ -401,7 +401,7 @@
     },
     {
       "id": "dust",
-      "name": "Пылинки в свете лампы",
+      "name": "Dust in the lamplight",
       "across": 0.3,
       "distance": 4.3,
       "elevation": 1.6,
@@ -424,7 +424,7 @@
     },
     {
       "id": "chair",
-      "name": "Стул Дэвида",
+      "name": "David’s chair",
       "across": 0.6,
       "distance": 3.85,
       "height": 1,
@@ -437,7 +437,7 @@
     },
     {
       "id": "joseph",
-      "name": "Отец, Джозеф Сторм",
+      "name": "The father, Joseph Strorm",
       "person": {
         "cast": "cast",
         "who": "joseph",
@@ -457,7 +457,7 @@
     },
     {
       "id": "mary",
-      "name": "Мэри, сестра",
+      "name": "Mary, the sister",
       "person": {
         "cast": "cast",
         "who": "mary",
@@ -477,7 +477,7 @@
     },
     {
       "id": "farmhand",
-      "name": "Работник",
+      "name": "Farmhand",
       "person": {
         "cast": "cast",
         "who": "farmhand",
@@ -497,7 +497,7 @@
     },
     {
       "id": "emily",
-      "name": "Мать",
+      "name": "The mother",
       "person": {
         "cast": "cast",
         "who": "emily",
@@ -517,7 +517,7 @@
     },
     {
       "id": "david",
-      "name": "Дэвид",
+      "name": "David",
       "person": {
         "cast": "cast",
         "who": "david",
@@ -537,7 +537,7 @@
     },
     {
       "id": "wish",
-      "name": "Третья рука (его желание)",
+      "name": "The third hand (his wish)",
       "across": -4.8,
       "distance": 3.6,
       "place": {

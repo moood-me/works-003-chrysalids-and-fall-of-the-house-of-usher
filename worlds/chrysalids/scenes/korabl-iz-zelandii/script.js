@@ -1,4 +1,4 @@
-// Корабль из Зеландии — its mechanics: the film in beats for the game (lib.js FILM, the world's module beats: `beat` names
+// The ship from Sealand — its mechanics: the film in beats for the game (lib.js FILM, the world's module beats: `beat` names
 // one); the web taking each one on the clearing at its own mark — a last struggle as it nears, then still under the silver
 // (the cocoons are their elements: lib.cocoon) —, letting them go when the woman's spray raises the mark past it.
 const s = scene, L = s.lib, P = id => s.person(id);

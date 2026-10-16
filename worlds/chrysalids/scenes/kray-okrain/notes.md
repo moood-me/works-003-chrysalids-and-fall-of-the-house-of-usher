@@ -1,19 +1,19 @@
-КРАЙ ОКРАИН (Хризалиды v3; V.5), движок 3. Переписана с «кино-игры» (движок 1, картина, камера walk): камера picture.
-Последнее поле Уокнука под луной, межевая изгородь с проходом, за ней — бледные растения, неправильный лес,
-туман; слева — «стражи прохода», пять деревьев (hero_trees, части на своих глубинах). Луна — за лесом слева, низко (свет
-`moon` из lib.MOON): тени деревьев — настоящие тени движка — ложатся поперёк поля и тропы. Тропа (path — плоскость на
-поле) идёт от ближнего края поля по диагонали к проходу и дальше в лес; в тени ли точка поля — lib.shaded (из тех же
-деревьев и луны, по которым движок отбрасывает тени; крона — по нарисованному краю, lib.CAST).
-Отец (joseph, высокий, с фонарём, в шляпе) — в поле у изгороди слева, пока lantern_in_field; его луч — свет сцены `beam`:
-пятно в 5.5 м от него туда, куда lantern_turn; луч ходит по полю сам (раз в 6.5 с — на новое место). Беглецы — david
-(облик david_teen, идёт первым; начинает в 5.5 м) и rosalind (на тропе в метре за ним).
+THE EDGE OF THE FRINGES (The Chrysalids v3; V.5), engine 3. Rewritten from the "film game" (engine 1, a picture, camera walk): camera picture.
+The last field of Waknuk under the moon, the boundary fence with a gap, beyond it — pale plants, the deviant forest,
+fog; on the left — "the guardians of the gap", five trees (hero_trees, their parts at their own depths). The moon — behind the forest on the left, low (the light
+`moon` from lib.MOON): the trees' shadows — the engine's real shadows — fall across the field and the path. The path (path — a plane on the
+field) goes from the near edge of the field diagonally to the gap and on into the forest; whether a point of the field is in shadow — lib.shaded (from the same
+trees and moon the engine casts the shadows by; a crown — by its painted edge, lib.CAST).
+The father (joseph, tall, with a lantern, in a hat) — in the field by the fence on the left, while lantern_in_field; his beam — the scene's light `beam`:
+a spot 5.5 m from him, where lantern_turn says; the beam goes over the field by itself (once in 6.5 s — to a new place). The fugitives — david
+(the look david_teen, he goes first; starts at 5.5 m) and rosalind (on the path a metre behind him).
 
-«По тени» (игра): `walkers` 1 — они идут по тропе (действием walk, своим шагом), 0 — стоят. Сцена сама ставит: walk_u
-(где Дэвид на тропе, 0…1; каждый кадр пути и раз в 0.1 с), walk_shade (1 — в тени дерева), walk_lit (0…1 — сколько луча на
-них). figure_on_path 1 — они уходят по тропе в лес. Ключи «кино» glow (бледные растения, споры), mist — как есть.
-Отец — малая фигура у изгороди; беглецы начинают близко и уходят вглубь; тропа, луч и тени ясны.
+"By the shadows" (the game): `walkers` 1 — they walk along the path (the action walk, at their own pace), 0 — they stand. The scene sets by itself: walk_u
+(where David is on the path, 0…1; every frame of the way and once in 0.1 s), walk_shade (1 — in a tree's shadow), walk_lit (0…1 — how much of the beam is on
+them). figure_on_path 1 — they go off along the path into the forest. The "film"'s keys glow (the pale plants, the spores), mist — as they are.
+The father — a small figure by the fence; the fugitives start near and go off into the depth; the path, the beam and the shadows are clear.
 
-## Контракт для проверки
+## Contract for the check
 
 ```json
 {

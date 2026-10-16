@@ -1,6 +1,6 @@
 {
   "engine": 3,
-  "title": "Корабль из Зеландии",
+  "title": "The ship from Sealand",
   "horizon": 0.6,
   "camera": {
     "mode": "picture"
@@ -163,7 +163,7 @@
   "states": {
     "beat": {
       "type": "string",
-      "means": "кусок (модуль beats): cave → fight → hold | run → ship | noship → web | web_petra | web_rosalind | web_father | web_alone → landing | landing_run → free | free_run → back | back_run → board | stay_ros | stay_alone → stay_alone_away"
+      "means": "beat (module beats): cave → fight → hold | run → ship | noship → web | web_petra | web_rosalind | web_father | web_alone → landing | landing_run → free | free_run → back | back_run → board | stay_ros | stay_alone → stay_alone_away"
     },
     "fade": {
       "range": [
@@ -171,7 +171,7 @@
         1
       ],
       "smooth": true,
-      "means": "затемнение"
+      "means": "fade to black"
     },
     "dawn": {
       "range": [
@@ -179,7 +179,7 @@
         1
       ],
       "smooth": true,
-      "means": "рассвет (взгляд света dawn, низкое солнце)"
+      "means": "dawn (light look dawn, a low sun)"
     },
     "smoke": {
       "range": [
@@ -187,7 +187,7 @@
         1
       ],
       "smooth": true,
-      "means": "дым боя над лесом и поляной"
+      "means": "the smoke of the fight over the forest and the clearing"
     },
     "fight": {
       "range": [
@@ -195,7 +195,7 @@
         1
       ],
       "smooth": true,
-      "means": "идёт бой"
+      "means": "the fight goes on"
     },
     "fall": {
       "range": [
@@ -203,7 +203,7 @@
         1
       ],
       "smooth": true,
-      "means": "сыплются нити с корабля (паутина в воздухе, нити под кораблём)"
+      "means": "threads pour from the ship (a web in the air, threads under the ship)"
     },
     "web": {
       "range": [
@@ -211,7 +211,7 @@
         1
       ],
       "smooth": true,
-      "means": "паутина на поляне: каждый застывает у своего порога (<id>_th)"
+      "means": "the web on the clearing: each one freezes at his own threshold (<id>_th)"
     },
     "cave_web": {
       "range": [
@@ -219,7 +219,7 @@
         1
       ],
       "smooth": true,
-      "means": "паутина на детях у пещеры"
+      "means": "the web on the children by the cave"
     },
     "spin": {
       "range": [
@@ -227,7 +227,7 @@
         1
       ],
       "smooth": true,
-      "means": "спираль корабля крутится"
+      "means": "the ship’s spiral turns"
     },
     "door": {
       "range": [
@@ -235,7 +235,7 @@
         1
       ],
       "smooth": true,
-      "means": "дверь корабля открыта, тёплый свет, трап"
+      "means": "the ship’s door open, warm light, the ramp"
     },
     "dust": {
       "range": [
@@ -243,7 +243,7 @@
         1
       ],
       "smooth": true,
-      "means": "пыль под кораблём"
+      "means": "dust under the ship"
     },
     "ship_vis": {
       "range": [
@@ -251,43 +251,43 @@
         1
       ],
       "smooth": true,
-      "means": "корабль виден"
+      "means": "the ship is seen"
     },
     "ship_a": {
       "type": "number",
-      "means": "корабль: поперёк"
+      "means": "the ship: across"
     },
     "ship_d": {
       "type": "number",
-      "means": "корабль: вглубь"
+      "means": "the ship: in depth"
     },
     "ship_h": {
       "type": "number",
-      "means": "корабль: высота над землёй (0 — сел)"
+      "means": "the ship: height above the ground (0 — landed)"
     },
     "arrow_vis": {
       "type": "boolean",
-      "means": "стрела Паука летит"
+      "means": "the Spider’s arrow flies"
     },
     "arrow_a": {
       "type": "number",
-      "means": "стрела: поперёк"
+      "means": "the arrow: across"
     },
     "arrow_d": {
       "type": "number",
-      "means": "стрела: вглубь"
+      "means": "the arrow: in depth"
     },
     "arrow_h": {
       "type": "number",
-      "means": "стрела: высота"
+      "means": "the arrow: height"
     },
     "horse_a": {
       "type": "number",
-      "means": "конь Джозефа: поперёк"
+      "means": "Joseph’s horse: across"
     },
     "horse_d": {
       "type": "number",
-      "means": "конь: вглубь"
+      "means": "the horse: in depth"
     },
     "horse_face": {
       "range": [
@@ -295,7 +295,7 @@
         360
       ],
       "smooth": true,
-      "means": "конь: куда повёрнут"
+      "means": "the horse: which way it faces"
     },
     "horse_toss": {
       "range": [
@@ -303,123 +303,123 @@
         1
       ],
       "smooth": true,
-      "means": "конь вскидывает голову, на дыбы"
+      "means": "the horse tosses its head, rears"
     },
     "w1_th": {
       "type": "number",
-      "means": "w1: порог паутины (−1 — не на поляне; выше 1.5 — паутина отпускает)"
+      "means": "w1: the web’s threshold (−1 — not on the clearing; above 1.5 — the web lets go)"
     },
     "w1_down": {
       "type": "boolean",
-      "means": "w1: лежит (кокон лёжа)"
+      "means": "w1: lying (a cocoon, lying down)"
     },
     "w3_th": {
       "type": "number",
-      "means": "w3: порог паутины (−1 — не на поляне; выше 1.5 — паутина отпускает)"
+      "means": "w3: the web’s threshold (−1 — not on the clearing; above 1.5 — the web lets go)"
     },
     "w3_down": {
       "type": "boolean",
-      "means": "w3: лежит (кокон лёжа)"
+      "means": "w3: lying (a cocoon, lying down)"
     },
     "w2_th": {
       "type": "number",
-      "means": "w2: порог паутины (−1 — не на поляне; выше 1.5 — паутина отпускает)"
+      "means": "w2: the web’s threshold (−1 — not on the clearing; above 1.5 — the web lets go)"
     },
     "w2_down": {
       "type": "boolean",
-      "means": "w2: лежит (кокон лёжа)"
+      "means": "w2: lying (a cocoon, lying down)"
     },
     "f2_th": {
       "type": "number",
-      "means": "f2: порог паутины (−1 — не на поляне; выше 1.5 — паутина отпускает)"
+      "means": "f2: the web’s threshold (−1 — not on the clearing; above 1.5 — the web lets go)"
     },
     "f2_down": {
       "type": "boolean",
-      "means": "f2: лежит (кокон лёжа)"
+      "means": "f2: lying (a cocoon, lying down)"
     },
     "f3_th": {
       "type": "number",
-      "means": "f3: порог паутины (−1 — не на поляне; выше 1.5 — паутина отпускает)"
+      "means": "f3: the web’s threshold (−1 — not on the clearing; above 1.5 — the web lets go)"
     },
     "f3_down": {
       "type": "boolean",
-      "means": "f3: лежит (кокон лёжа)"
+      "means": "f3: lying (a cocoon, lying down)"
     },
     "sophie_th": {
       "type": "number",
-      "means": "sophie: порог паутины (−1 — не на поляне; выше 1.5 — паутина отпускает)"
+      "means": "sophie: the web’s threshold (−1 — not on the clearing; above 1.5 — the web lets go)"
     },
     "sophie_down": {
       "type": "boolean",
-      "means": "sophie: лежит (кокон лёжа)"
+      "means": "sophie: lying (a cocoon, lying down)"
     },
     "spider_th": {
       "type": "number",
-      "means": "spider: порог паутины (−1 — не на поляне; выше 1.5 — паутина отпускает)"
+      "means": "spider: the web’s threshold (−1 — not on the clearing; above 1.5 — the web lets go)"
     },
     "spider_down": {
       "type": "boolean",
-      "means": "spider: лежит (кокон лёжа)"
+      "means": "spider: lying (a cocoon, lying down)"
     },
     "joseph_th": {
       "type": "number",
-      "means": "joseph: порог паутины (−1 — не на поляне; выше 1.5 — паутина отпускает)"
+      "means": "joseph: the web’s threshold (−1 — not on the clearing; above 1.5 — the web lets go)"
     },
     "joseph_down": {
       "type": "boolean",
-      "means": "joseph: лежит (кокон лёжа)"
+      "means": "joseph: lying (a cocoon, lying down)"
     },
     "david_th": {
       "type": "number",
-      "means": "david: порог паутины (−1 — не на поляне; выше 1.5 — паутина отпускает)"
+      "means": "david: the web’s threshold (−1 — not on the clearing; above 1.5 — the web lets go)"
     },
     "david_down": {
       "type": "boolean",
-      "means": "david: лежит (кокон лёжа)"
+      "means": "david: lying (a cocoon, lying down)"
     },
     "w1_fire": {
       "type": "number",
-      "means": "w1: выстрел — каждый раз, как число растёт"
+      "means": "w1: a shot — each time the number grows"
     },
     "w2_fire": {
       "type": "number",
-      "means": "w2: выстрел — каждый раз, как число растёт"
+      "means": "w2: a shot — each time the number grows"
     },
     "w3_fire": {
       "type": "number",
-      "means": "w3: выстрел — каждый раз, как число растёт"
+      "means": "w3: a shot — each time the number grows"
     },
     "petra_down": {
       "type": "boolean",
-      "means": "petra: лежит (кокон лёжа)"
+      "means": "petra: lying (a cocoon, lying down)"
     },
     "rosalind_down": {
       "type": "boolean",
-      "means": "rosalind: лежит (кокон лёжа)"
+      "means": "rosalind: lying (a cocoon, lying down)"
     },
     "michael_down": {
       "type": "boolean",
-      "means": "michael: лежит (кокон лёжа)"
+      "means": "michael: lying (a cocoon, lying down)"
     },
     "sealand_down": {
       "type": "boolean",
-      "means": "sealand: лежит (кокон лёжа)"
+      "means": "sealand: lying (a cocoon, lying down)"
     }
   },
   "objects": [
     {
       "id": "sky",
       "sky": true,
-      "name": "Рассветное небо"
+      "name": "Dawn sky"
     },
     {
       "id": "clouds",
       "sky": true,
-      "name": "Дымные облака"
+      "name": "Smoky clouds"
     },
     {
       "id": "hills",
-      "name": "Дальние холмы",
+      "name": "Far hills",
       "x": 0.5,
       "distance": 700,
       "height": 40,
@@ -432,7 +432,7 @@
     },
     {
       "id": "forest_far",
-      "name": "Дальний лес Окраин",
+      "name": "Far forest of the Fringes",
       "x": 0.5,
       "distance": 120,
       "height": 16,
@@ -445,7 +445,7 @@
     },
     {
       "id": "smoke_far",
-      "name": "Дым над лесом",
+      "name": "Smoke over the forest",
       "x": 0.5,
       "distance": 90,
       "height": 20,
@@ -458,7 +458,7 @@
     },
     {
       "id": "forest_near",
-      "name": "Скрюченный лес",
+      "name": "Twisted forest",
       "x": 0.5,
       "distance": 45,
       "height": 12,
@@ -471,7 +471,7 @@
     },
     {
       "id": "undergrowth",
-      "name": "Подлесок",
+      "name": "Undergrowth",
       "x": 0.5,
       "distance": 36,
       "height": 2,
@@ -484,7 +484,7 @@
     },
     {
       "id": "valley",
-      "name": "Долина под лесом",
+      "name": "Valley below the forest",
       "plane": true,
       "x": 0.5,
       "distance": 40,
@@ -493,7 +493,7 @@
     },
     {
       "id": "mist_base",
-      "name": "Дым у корней",
+      "name": "Smoke at the roots",
       "x": 0.5,
       "distance": 31,
       "height": 2,
@@ -506,7 +506,7 @@
     },
     {
       "id": "smoke_low",
-      "name": "Низкий дым",
+      "name": "Low smoke",
       "x": 0.5,
       "distance": 28,
       "height": 4,
@@ -519,7 +519,7 @@
     },
     {
       "id": "thicket",
-      "name": "Спутанные ветви",
+      "name": "Tangled branches",
       "across": 14,
       "distance": 27,
       "height": 3,
@@ -532,7 +532,7 @@
     },
     {
       "id": "shacks",
-      "name": "Хижины Окраин",
+      "name": "Huts of the Fringes",
       "across": 12,
       "distance": 27,
       "height": 3,
@@ -545,7 +545,7 @@
     },
     {
       "id": "webfield",
-      "name": "Паутина на поляне",
+      "name": "Web on the clearing",
       "plane": true,
       "across": 3,
       "distance": 19,
@@ -558,7 +558,7 @@
     },
     {
       "id": "ship",
-      "name": "Корабль из Зеландии",
+      "name": "The ship from Sealand",
       "across": 150,
       "distance": 330,
       "elevation": 95,
@@ -586,7 +586,7 @@
     },
     {
       "id": "dust",
-      "name": "Пыль под кораблём",
+      "name": "Dust under the ship",
       "across": 3,
       "distance": 21,
       "particles": {
@@ -607,7 +607,7 @@
     },
     {
       "id": "gossamer",
-      "name": "Падающая паутина",
+      "name": "Falling web",
       "across": 0,
       "distance": 15,
       "elevation": 6,
@@ -647,7 +647,7 @@
     },
     {
       "id": "arrow",
-      "name": "Стрела Паука",
+      "name": "The Spider’s arrow",
       "across": 6.3,
       "distance": 17.5,
       "elevation": 1.6,
@@ -666,7 +666,7 @@
     },
     {
       "id": "horse",
-      "name": "Конь Джозефа",
+      "name": "Joseph’s horse",
       "across": -2.9,
       "distance": 15.6,
       "height": 2.4,
@@ -684,7 +684,7 @@
     },
     {
       "id": "joseph",
-      "name": "Джозеф Сторм",
+      "name": "Joseph Strorm",
       "person": {
         "cast": "cast",
         "who": "joseph",
@@ -700,7 +700,7 @@
     },
     {
       "id": "w1",
-      "name": "Человек из Вакнука",
+      "name": "Man from Waknuk",
       "person": {
         "cast": "cast",
         "who": "man_a",
@@ -716,7 +716,7 @@
     },
     {
       "id": "w2",
-      "name": "Человек из Вакнука",
+      "name": "Man from Waknuk",
       "person": {
         "cast": "cast",
         "who": "man_c",
@@ -732,7 +732,7 @@
     },
     {
       "id": "w3",
-      "name": "Человек из Вакнука",
+      "name": "Man from Waknuk",
       "person": {
         "cast": "cast",
         "who": "farmhand",
@@ -748,7 +748,7 @@
     },
     {
       "id": "spider",
-      "name": "Паук",
+      "name": "The Spider",
       "person": {
         "cast": "cast",
         "who": "spider",
@@ -764,7 +764,7 @@
     },
     {
       "id": "sophie",
-      "name": "Софи",
+      "name": "Sophie",
       "person": {
         "cast": "cast",
         "who": "sophie_adult",
@@ -780,7 +780,7 @@
     },
     {
       "id": "f2",
-      "name": "Человек Окраин",
+      "name": "Man of the Fringes",
       "person": {
         "cast": "cast",
         "who": "fringe_man",
@@ -796,7 +796,7 @@
     },
     {
       "id": "f3",
-      "name": "Человек Окраин",
+      "name": "Man of the Fringes",
       "person": {
         "cast": "cast",
         "who": "hunchback",
@@ -812,7 +812,7 @@
     },
     {
       "id": "sealand",
-      "name": "Женщина из Зеландии",
+      "name": "The Sealand woman",
       "person": {
         "cast": "cast",
         "who": "sealand",
@@ -828,7 +828,7 @@
     },
     {
       "id": "cocoon_w1",
-      "name": "Паутина: Человек из Вакнука",
+      "name": "Web: Man from Waknuk",
       "across": 1.3,
       "distance": 16.349999999999998,
       "height": 2,
@@ -846,7 +846,7 @@
     },
     {
       "id": "cocoon_w3",
-      "name": "Паутина: Человек из Вакнука",
+      "name": "Web: Man from Waknuk",
       "across": -3.6,
       "distance": 18.55,
       "height": 2,
@@ -864,7 +864,7 @@
     },
     {
       "id": "cocoon_w2",
-      "name": "Паутина: Человек из Вакнука",
+      "name": "Web: Man from Waknuk",
       "across": 2.6,
       "distance": 19.55,
       "height": 2,
@@ -882,7 +882,7 @@
     },
     {
       "id": "cocoon_f2",
-      "name": "Паутина: Человек Окраин",
+      "name": "Web: Man of the Fringes",
       "across": 9.4,
       "distance": 15.95,
       "height": 2,
@@ -900,7 +900,7 @@
     },
     {
       "id": "cocoon_f3",
-      "name": "Паутина: Человек Окраин",
+      "name": "Web: Man of the Fringes",
       "across": 14.8,
       "distance": 25.45,
       "height": 2,
@@ -918,7 +918,7 @@
     },
     {
       "id": "cocoon_sophie",
-      "name": "Паутина: Софи",
+      "name": "Web: Sophie",
       "across": 12.6,
       "distance": 24.15,
       "height": 2,
@@ -936,7 +936,7 @@
     },
     {
       "id": "cocoon_spider",
-      "name": "Паутина: Паук",
+      "name": "Web: the Spider",
       "across": 8.8,
       "distance": 19.55,
       "height": 2,
@@ -954,7 +954,7 @@
     },
     {
       "id": "cocoon_joseph",
-      "name": "Паутина: Джозеф Сторм",
+      "name": "Web: Joseph Strorm",
       "across": -0.6,
       "distance": 14.149999999999999,
       "height": 2,
@@ -972,7 +972,7 @@
     },
     {
       "id": "cave",
-      "name": "Скала с пещерой",
+      "name": "Rock with the cave",
       "x": 0.5,
       "distance": 10.5,
       "height": 3,
@@ -986,7 +986,7 @@
     },
     {
       "id": "david",
-      "name": "Дэвид",
+      "name": "David",
       "person": {
         "cast": "cast",
         "who": "david_teen",
@@ -1002,7 +1002,7 @@
     },
     {
       "id": "petra",
-      "name": "Петра",
+      "name": "Petra",
       "person": {
         "cast": "cast",
         "who": "petra",
@@ -1018,7 +1018,7 @@
     },
     {
       "id": "rosalind",
-      "name": "Розалинда",
+      "name": "Rosalind",
       "person": {
         "cast": "cast",
         "who": "rosalind",
@@ -1034,7 +1034,7 @@
     },
     {
       "id": "michael",
-      "name": "Майкл",
+      "name": "Michael",
       "person": {
         "cast": "cast",
         "who": "michael",
@@ -1050,7 +1050,7 @@
     },
     {
       "id": "cocoon_david",
-      "name": "Паутина: Дэвид",
+      "name": "Web: David",
       "across": -2.3,
       "distance": 8.2,
       "height": 2,
@@ -1068,7 +1068,7 @@
     },
     {
       "id": "cave_web",
-      "name": "Паутина на детях у пещеры",
+      "name": "Web on the children by the cave",
       "x": 0.5,
       "distance": 8.2,
       "elevation": 1.0,
@@ -1084,7 +1084,7 @@
     },
     {
       "id": "ledge",
-      "name": "Камень у пещеры",
+      "name": "Rock by the cave",
       "x": 0.5,
       "distance": 7.3,
       "height": 2,
@@ -1098,7 +1098,7 @@
     },
     {
       "id": "brush_front",
-      "name": "Бурьян внизу",
+      "name": "Weeds below",
       "across": 5,
       "distance": 8,
       "height": 2,
@@ -1111,7 +1111,7 @@
     },
     {
       "id": "grass_front",
-      "name": "Трава у края",
+      "name": "Grass at the edge",
       "x": 0.5,
       "distance": 4,
       "height": 1,
@@ -1124,7 +1124,7 @@
     },
     {
       "id": "shot_w1",
-      "name": "Выстрел (w1)",
+      "name": "Shot (w1)",
       "particles": {
         "kind": "puff",
         "at": "w1#muzzle",
@@ -1141,7 +1141,7 @@
     },
     {
       "id": "flash_w1",
-      "name": "Вспышка (w1)",
+      "name": "Flash (w1)",
       "particles": {
         "kind": "sparks",
         "at": "w1#muzzle",
@@ -1153,7 +1153,7 @@
     },
     {
       "id": "shot_w2",
-      "name": "Выстрел (w2)",
+      "name": "Shot (w2)",
       "particles": {
         "kind": "puff",
         "at": "w2#muzzle",
@@ -1170,7 +1170,7 @@
     },
     {
       "id": "flash_w2",
-      "name": "Вспышка (w2)",
+      "name": "Flash (w2)",
       "particles": {
         "kind": "sparks",
         "at": "w2#muzzle",
@@ -1182,7 +1182,7 @@
     },
     {
       "id": "shot_w3",
-      "name": "Выстрел (w3)",
+      "name": "Shot (w3)",
       "particles": {
         "kind": "puff",
         "at": "w3#muzzle",
@@ -1199,7 +1199,7 @@
     },
     {
       "id": "flash_w3",
-      "name": "Вспышка (w3)",
+      "name": "Flash (w3)",
       "particles": {
         "kind": "sparks",
         "at": "w3#muzzle",

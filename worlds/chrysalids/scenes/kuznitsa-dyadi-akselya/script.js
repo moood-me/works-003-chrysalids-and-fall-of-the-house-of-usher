@@ -1,5 +1,5 @@
-// Кузница дяди Акселя — its mechanics: the film in beats for the game (lib.js FILM, the world's module beats: `beat` names
-// one), and what goes on by itself while a key says so — and what a game drives («Ритм мехов»: ax_blow, pump; the
+// Uncle Axel’s forge — its mechanics: the film in beats for the game (lib.js FILM, the world's module beats: `beat` names
+// one), and what goes on by itself while a key says so — and what a game drives (“The bellows’ rhythm”: ax_blow, pump; the
 // lantern: st_lamp, st_lx, st_lz).
 const s = scene, P = id => s.person(id), L = s.lib;
 s.kit.beats.play(s, L.FILM);

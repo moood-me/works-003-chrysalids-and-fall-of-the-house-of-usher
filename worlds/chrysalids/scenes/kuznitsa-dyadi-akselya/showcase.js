@@ -1,7 +1,7 @@
 // The forge's own little film, outside games: the night forge — the boy chattering to the far window, his uncle's question,
 // the truth, the door, the hush, the father's lantern, after — and the night of the key with the stranger in the gap (lib.js
 // SHOWCASE: the beats of lib.js FILM in that order, each cut made ready ahead). Between the key and the stranger, what a
-// game's keys do here («Ритм мехов»): blows on the beat, the boy's pulls with them, the fire breathing, the lantern turning.
+// game's keys do here (“The bellows’ rhythm”): blows on the beat, the boy's pulls with them, the fire breathing, the lantern turning.
 const L = scene.lib;
 const beats = scene.kit.beats.showcase(scene, L.FILM, L.SHOWCASE);
 const i = L.SHOWCASE.indexOf('key');

@@ -1,32 +1,32 @@
-КОРАБЛЬ ИЗ ЗЕЛАНДИИ (Хризалиды v3; VII), движок 3. Переписана с «кино-игры» (движок 1, куклы модуля chrysalids): люди
-— каст (david — david_teen, rosalind, petra, michael на уступе; joseph, w1–w3 — люди Вакнука с ружьями, spider, sophie,
-f2, f3 — Окраины с луками; sealand — женщина из Зеландии с распылителем); конь Джозефа — модуль chrysalids. Рассвет в дыму —
-свет сцены (база светлая, взгляд dawn, низкое солнце слева). Корабль — жемчужная рыба (элемент ship: картина один раз,
-шейдер ship.wgsl ведёт спираль по spin, нити под ним по fall, бусины на нитях; слои ног, двери, трапа); его отблеск вдали
-и свет двери — свет сцены. Паутина: на поляне — плоскость webfield (шейдер: дальняя сторона раньше), в воздухе — частицы
-gossamer (спрайт — нить с бусиной), на людях — коконы (элементы cocoon_<id>: стоя или лёжа), на детях у пещеры — cave_web.
-Каждый на поляне застывает у своего порога (<id>_th, lib.TH; script.js: перед этим — рывок, flinch, потом still); распылитель
-поднимает порог выше 1.5 — паутина отпускает. Выстрелы — частицы (вспышка и дымок у w<i>#muzzle по w<i>_fire). Земля
-(relief.js): уступ у пещеры на метр выше поляны, спуск справа.
+THE SHIP FROM SEALAND (The Chrysalids v3; VII), engine 3. Rewritten from the "film game" (engine 1, the module chrysalids' puppets): the people
+— the cast (david — david_teen, rosalind, petra, michael on the ledge; joseph, w1–w3 — Waknuk men with guns, spider, sophie,
+f2, f3 — the Fringes with bows; sealand — the Sealand woman with a sprayer); Joseph's horse — the module chrysalids. Dawn in the smoke —
+the scene's light (the base light, the look dawn, a low sun on the left). The ship — a pearly fish (the element ship: a picture once,
+the shader ship.wgsl turns the spiral by spin, the threads under it by fall, beads on the threads; layers of the legs, the door, the ramp); its gleam far off
+and the door's light — the scene's light. The web: on the clearing — the plane webfield (the shader: the far side first), in the air — the particles
+gossamer (a sprite — a thread with a bead), on the people — cocoons (the elements cocoon_<id>: standing or lying), on the children by the cave — cave_web.
+Each one on the clearing freezes at his own threshold (<id>_th, lib.TH; script.js: before that — a jerk, flinch, then still); the sprayer
+raises the threshold above 1.5 — the web lets go. The shots — particles (a flash and a puff of smoke at w<i>#muzzle by w<i>_fire). The ground
+(relief.js): the ledge by the cave a metre above the clearing, a slope down on the right.
 
-Режиссура: смерть Джозефа — одно действие на кадр (общий план: выстрел Паука, стрела, Джозеф падает — collapse — и лежит);
-реакция Дэвида — отдельной склейкой (дети); в web_* — склейка сверху (OVER_THEM): видно, кто под кем; женщина ведёт Петру,
-не оглядываясь, Дэвид оглядывается на поляну.
+The directing: Joseph's death — one action a shot (a wide shot: the Spider's shot, the arrow, Joseph falls — collapse — and lies there);
+David's reaction — a cut of its own (the children); in web_* — a cut from above (OVER_THEM): who is under whom is seen; the woman leads Petra
+without looking back, David looks back at the clearing.
 
-КУСКИ (lib.FILM; `from` — всё состояние): cave, fight (выбор «бежать к отцу» — на david), hold | run, ship (выбор «кого
-заслонить» — на rosalind, petra или joseph), noship (если корабля нет), web | web_petra | web_rosalind (Дэвид на уступе) |
-web_father | web_alone (Дэвид у отца), landing | landing_run, free | free_run, back | back_run (выбор «улететь или остаться» —
-на ship и michael), board | stay_ros | stay_alone → stay_alone_away. free и free_run — всегда склейка (after пуст): стоят в таблице
-сразу за своей посадкой — их начало модуль beats готовит заранее; board игра открывает своим шагом (с трапа). После паутины
-joseph_th — ключ игры (web_father или партия): from кусков после неё его не пишут. Склейки внутри кусков сказаны заранее (lib.ahead). «кино»-кусок stay_alone (32 с) разделён по своей склейке:
-stay_alone — Дэвид уходит наверх к Майклу, Розалинда входит за Петрой, оборачивается из света и исчезает; stay_alone_away —
-корабль уходит, они на уступе смотрят вслед.
+BEATS (lib.FILM; `from` — the whole state): cave, fight (the choice "run to Father" — on david), hold | run, ship (the choice "whom
+to cover" — on rosalind, petra or joseph), noship (if there is no ship), web | web_petra | web_rosalind (David on the ledge) |
+web_father | web_alone (David by his father), landing | landing_run, free | free_run, back | back_run (the choice "fly away or stay" —
+on ship and michael), board | stay_ros | stay_alone → stay_alone_away. free and free_run — always a cut (after empty): they stand in the table
+right after their landing — the module beats makes their beginning ready ahead; board the game opens with a step of its own (from the ramp). After the web
+joseph_th is the game's key (web_father or the play): the beats' from after it do not write it. The cuts inside beats are said ahead (lib.ahead). The "film"'s beat stay_alone (32 s) is split at its cut:
+stay_alone — David goes up to Michael, Rosalind goes in after Petra, turns round out of the light and is gone; stay_alone_away —
+the ship goes, they on the ledge watch it go.
 
-КЛЮЧИ: beat, fade, dawn, smoke, fight, fall, web, cave_web, spin, door, dust, ship_vis, ship_a/d/h, arrow_vis, arrow_a/d/h,
-horse_a/d/face/toss, <id>_th, <id>_down, w<i>_fire. Убраны ключи кукол «кино» (<id>_p, _w_*, _hr/_hl, _hide, _dead…): это
-теперь действия людей и ключи движка. Новые движения/части каста: aim_rifle, kneel_aim (ружьё — часть gun), sprayer.
+KEYS: beat, fade, dawn, smoke, fight, fall, web, cave_web, spin, door, dust, ship_vis, ship_a/d/h, arrow_vis, arrow_a/d/h,
+horse_a/d/face/toss, <id>_th, <id>_down, w<i>_fire. The "film" puppets' keys are gone (<id>_p, _w_*, _hr/_hl, _hide, _dead…): these are
+now the people's actions and the engine's keys. New motions/parts of the cast: aim_rifle, kneel_aim (the gun — the part gun), sprayer.
 
-## Контракт для проверки
+## Contract for the check
 
 ```json
 {

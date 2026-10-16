@@ -1,20 +1,20 @@
-ДЭВИД И РОЗАЛИНДА (Хризалиды v3; III.4), движок 3. Переписана с «кино-игры» (движок 1; там все были силуэтами в
-контровом солнце): площадь у колодца и молитвенного дома. Пейзаж — картины «кино» без времени, их цвета подняты из
-силуэтной темноты к дневным (square_port: c·1.9 + 24) — вечер даёт свет сцены: солнце справа сбоку чуть из-за спины
-(лица видны — «лицами, не силуэтами»), взгляд dusk (небо рисует сумерки само, redraw шагом 0.1; окна церкви и дома —
-слои и свет, загораются). Ведущая линия — светлая дорожка и колеи к дверям церкви (на площади, как в «кино»).
+DAVID AND ROSALIND (The Chrysalids v3; III.4), engine 3. Rewritten from the "film game" (engine 1; there everyone was a silhouette against
+the sun): the square by the well and the meeting-house. The landscape — the "film"'s pictures without time, their colours raised out of the
+silhouettes' darkness to day ones (square_port: c·1.9 + 24) — the evening is the scene's light: the sun to the right, a little from behind
+(the faces seen — "faces, not silhouettes"), the look dusk (the sky paints the dusk itself, redraw in steps of 0.1; the church's and the house's windows —
+layers and a light, they light up). The leading line — a light path and the ruts to the church doors (on the square, as in the "film").
 
-Люди — каст и ближе, чем в «кино»: Дэвид у телеги (−2.6/7, рука на её борту — cart#side), Розалинда с родителями через
-площадь (4.2/12; r_father, r_mother), старуха с палкой у колодца с двумя мужчинами (old_woman, man_a, man_c),
-прихожане у дверей церкви (woman_c1, old_man1, boy1, girl1), две лошади у коновязи (модуль chrysalids). Нить мысли —
-карточка в 6.5 м перед ними (lib.pt — их головы на ней): две пряди, свечение у концов, огонёк по ней (слои; animate —
-по thread и glance). Пылинки — частицы.
+The people — the cast, and nearer than in the "film": David by the cart (−2.6/7, his hand on its side — cart#side), Rosalind with her parents across the
+square (4.2/12; r_father, r_mother), the old woman with a stick by the well with two men (old_woman, man_a, man_c),
+churchgoers at the church doors (woman_c1, old_man1, boy1, girl1), two horses at the hitching rail (the module chrysalids). The thread of thought —
+a card 6.5 m in front of them (lib.pt — their heads on it): two strands, a glow at the ends, a light running along it (layers; animate —
+by thread and glance). Dust motes — particles.
 
-КЛЮЧИ «кино»: dusk, crowd (→ 0: прихожане расходятся к краям, родители уводят Розалинду, вторую лошадь уводят),
-glance 0…1 (взгляд Дэвида с церкви на Розалинду, её — на него; стрелка «Двух слоёв»), thread, someone_watching
-(старуха переводит взгляд с мужчин на Дэвида). Точки: rosalind ≈ (0.70, 0.62), david ≈ (0.29, 0.66), old_woman.
+The "film"'s KEYS: dusk, crowd (→ 0: the churchgoers go off to the edges, the parents take Rosalind away, the second horse is led off),
+glance 0…1 (David's eyes from the church to Rosalind, hers — to him; the arrow of "Two layers"), thread, someone_watching
+(the old woman moves her eyes from the men to David). Points: rosalind ≈ (0.70, 0.62), david ≈ (0.29, 0.66), old_woman.
 
-## Контракт для проверки
+## Contract for the check
 
 ```json
 {

@@ -1,4 +1,4 @@
-// Сожжение поля (engine 3): what its elements and its scripts share — a row of the wheat (painted once; its fire is its
+// The burning of the field (engine 3): what its elements and its scripts share — a row of the wheat (painted once; its fire is its
 // shader's, wheat.wgsl), how much the fire lights the world, where the congregation stands, and the film: the beats a
 // game plays one at a time by `beat` (script.js, the world's module beats) and the showcase plays in order (showcase.js).
 // The people are the engine's (the world's cast): jo (Joseph Strorm), in (the Inspector), em (Emily), dv (David), p0…p9
@@ -368,7 +368,7 @@ const FILM = {
   },
   // he steps back from the blaze and turns to the people, the torch high; the hymn — heads lifted, hands together, each
   // a little late; the front ones step back from the heat, a woman shades her eyes; the camera comes to David and his
-  // mother. It holds there while the game's hymn is sung («Петь со всеми»: `turned` turns the ones in front round to him;
+  // mother. It holds there while the game's hymn is sung (“Sing with everyone”: `turned` turns the ones in front round to him;
   // the marks — dv, the beat's sign on jo)
   hymn: {
     after: 'fire',

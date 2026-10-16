@@ -1,6 +1,6 @@
-// Край Окраин — its mechanics, all of them the game's keys turned into what happens: the father with his lantern in the
+// The edge of the Fringes — its mechanics, all of them the game's keys turned into what happens: the father with his lantern in the
 // field (lantern_in_field), its beam going over the field by itself (lantern_turn, moved every few seconds); the fugitives (david first, rosalind behind) walking the path while `walkers` is up and standing still when
-// it is down («По тени»: held — they go, let go — they freeze); where they are on it (walk_u 0…1), whether they are in a
+// it is down (“By the shadows”: held — they go, let go — they freeze); where they are on it (walk_u 0…1), whether they are in a
 // tree's shadow (walk_shade) and how much the beam is on them (walk_lit) — set every frame they move, and every tenth of a
 // second; at the end (figure_on_path) on into the wood.
 const s = scene, L = s.lib, P = id => s.person(id);

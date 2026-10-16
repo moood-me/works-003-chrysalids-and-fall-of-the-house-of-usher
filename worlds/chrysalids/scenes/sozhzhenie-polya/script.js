@@ -1,6 +1,6 @@
-// Сожжение поля — its mechanics: the film in beats for the game (lib.js FILM, the world's module beats: `beat` names one);
+// The burning of the field — its mechanics: the film in beats for the game (lib.js FILM, the world's module beats: `beat` names one);
 // the fire's front and its light kept with `ignite`, `fire`, `ash`; the ones in front turning round to David as `turned`
-// grows (the game's «Петь со всеми» moves it; a beat may too) — each at its own mark, each late in its own way, the body
+// grows (the game's “Sing with everyone” moves it; a beat may too) — each at its own mark, each late in its own way, the body
 // half way round, the head the rest.
 const s = scene, L = s.lib, P = id => s.person(id), c = L.clamp;
 s.kit.beats.play(s, L.FILM);
@@ -39,7 +39,7 @@ function turned() {
 s.on('change', 'turned', turned);
 s.on('move', 'turned', turned);
 turned(); // (opened, or restored: the ones in front as the key has them)
-// dv_kneel (the game's: «Встать на колени» chosen while the others go down): David goes down on his knees at once, with
+// dv_kneel (the game's: “Kneel” chosen while the others go down): David goes down on his knees at once, with
 // them — not when the beat that raised the torch has ended
 function kneel() {
   if (!s.get('dv_kneel')) return;

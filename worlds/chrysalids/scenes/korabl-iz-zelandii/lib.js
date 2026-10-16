@@ -1,4 +1,4 @@
-// Корабль из Зеландии (engine 3): what its elements and its scripts share — the ledge before the cave (the land), the
+// The ship from Sealand (engine 3): what its elements and its scripts share — the ledge before the cave (the land), the
 // people of the clearing and who of them the web takes when (each at its own mark: TH), the cocoons, and the film: the beats
 // a game plays one at a time by `beat` (script.js, the world's module beats) and the showcase plays in order (showcase.js).
 // The people are the cast's: david (david_teen), rosalind, petra, michael on the ledge; joseph, w1–w3 (Waknuk, guns),
@@ -144,7 +144,7 @@ const FILM = {
   },
   // fight — the whole clearing; Joseph commands; the tall one (the Spider) comes out from the huts and draws on him — one
   // shot each: he falls; his horse bolts. (cut) The children: David comes up off the stone, his eyes on his father. (Here
-  // the game asks «бежать к отцу», on david)
+  // the game asks “run to Father”, on david)
   fight: {
     after: 'cave',
     from: () => ({ ...START, petra_do: loop('kneel'), petra_turn: 260, rosalind_reach: { r: 'petra#back' } }),
@@ -247,7 +247,7 @@ const FILM = {
   },
   // ship — a glint over the forest grows into a fish with a spiral; the fight stops, all look up, each in their time. Petra
   // knows them: up, her arms to the craft — Rosalind pulls her down; two run. The first threads. (Here the game asks
-  // «кого заслонить», on rosalind, petra — or joseph, if David is by him)
+  // “whom to cover”, on rosalind, petra — or joseph, if David is by him)
   ship: {
     after: ['hold', 'run'],
     from: () => HELD,
@@ -346,7 +346,7 @@ const FILM = {
   // back — down across the clearing, the woman leading Petra by the hand, not looking back; David looks back. (cut, close)
   // David by his father's cocoon, on one knee, touching it; Rosalind comes back, her hand on his shoulder; he gets up, she
   // takes his hand. (cut: wide) To the ramp. (cut) Petra waves to Michael on the ledge; (cut) he answers; (cut) wide. (Here
-  // the game asks «улететь или остаться», on ship and michael)
+  // the game asks “fly away or stay”, on ship and michael)
   back: {
     after: 'free',
     from: () => ({ ...LANDED(OVER(HELD)), cave_web: 0, sealand_a: -1.42, sealand_d: 8.5, petra_a: -1.92, petra_d: 8.3, david_a: -2.8, david_d: 8.75,

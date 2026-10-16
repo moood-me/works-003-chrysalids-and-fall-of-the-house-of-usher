@@ -1,4 +1,4 @@
-// Голоса (engine 3): what its elements share — where the farms' windows are on the stage (x, a share of the 16:9
+// Voices (engine 3): what its elements share — where the farms' windows are on the stage (x, a share of the 16:9
 // stage's width; their order is the order the game calls them: farm1 … farm8; home — Petra's window), where David
 // sits (his aura and the threads' start on the sky, stage heights), the horizon; a farm's buildings (their kinds), and
 // a farm window's life (its animate: lit as `count` says).

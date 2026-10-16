@@ -1,4 +1,4 @@
-// Лагерь Окраин — its mechanics, the game's keys turned into what happens: `people` — how many of the camp are at the fire
+// The Fringes camp — its mechanics, the game's keys turned into what happens: `people` — how many of the camp are at the fire
 // (each from its own mark, each coming in a little late); `alarm` — the one by the fire gets up, the guards' spears come
 // round, the tall guard puts his horn to his mouth; `captives` — Rosalind and Petra tied at the post; `sophie_present` —
 // Sophie at the edge of the light by her hut (coming out of it, going back into it); `fire` — how high the fire burns.

@@ -1,12 +1,12 @@
-// Руины Древних — its mechanics: the game's keys turned into what the children do. `glint` — something flashes in the
-// grass: David turns to it; `dig` (the game's «Раскопки»: the earth and the grass over the plate go as it grows, in
+// The ruins of the Old People — its mechanics: the game's keys turned into what the children do. `glint` — something flashes in the
+// grass: David turns to it; `dig` (the game's “Digging”: the earth and the grass over the plate go as it grows, in
 // glint.animate.js) — David kneels at the plate and digs, Sophie looks; `bell` — the village bell: both look round to
 // the belfry far off, David gets up; `children` → 0 — they run home (off to the left).
 const s = scene, L = s.lib, P = id => s.person(id);
 const N = v => Math.max(0, Math.min(1, +v || 0));
 let mode = 'idle';
 function glint(v, o) {
-  if (v > 0.7 && !(o > 0.7)) s.tell('В траве что-то ярко блеснуло на солнце.', 'glint');
+  if (v > 0.7 && !(o > 0.7)) s.tell('Something glinted brightly in the grass in the sun.', 'glint');
   if (v > 0.5 && mode === 'idle') { P('david').look('glint#plate'); P('david').turn(150); }
 }
 s.on('change', 'glint', glint);
@@ -26,7 +26,7 @@ s.on('change', 'dig', dig);
 s.on('move', 'dig', dig);
 function bell(v, o) {
   if (!(v > 0.6 && !(o > 0.6))) return;
-  s.tell('Издалека, из-за холмов, донёсся колокол — дети обернулись в сторону дома.', 'david');
+  s.tell('From far off, beyond the hills, came the bell — the children turned towards home.', 'david');
   if (mode === 'gone') return;
   for (const id of ['david', 'sophie']) P(id).look('far_hills#belfry');
   if (mode === 'dig') {

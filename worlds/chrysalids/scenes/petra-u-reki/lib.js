@@ -1,4 +1,4 @@
-// Петра у реки (engine 3): what its elements and its scripts share — the near bank's shape (its own metres: x along the
+// Petra at the river (engine 3): what its elements and its scripts share — the near bank's shape (its own metres: x along the
 // river, y down; its anchor at across BANK_A, 9 m off; the water's surface at y W), the land under the people, the rings of
 // what only their own hear and the rings on the water, and the film: the beats a game plays one at a time by `beat`
 // (script.js, the world's module beats) and the showcase plays in order (showcase.js). The people are the engine's (the
@@ -104,7 +104,7 @@ const AT_EDGE = { ...STRUCK, ...camOf(CAM.edge), heard: 0, rosalind_still: false
 const HAS_HER = { ...AT_EDGE, ...camOf(CAM.swim), branch: 1.1, david_a: CAUGHT, david_d: NEAR, david_do: loop('swim'), david_turn: 270, david_look: 'petra',
   petra_a: CAUGHT + 0.25, petra_d: NEAR + 0.15, petra_turn: 90, petra_reach: { r: 'david#nape', l: 'david#nape' } };
 // on the field after the cry (field_quiet's end): Rosalind gone down to the water, the rake on the ground
-// the far field cut to after the swim (the cry left as the game's «Успокоить» left it)
+// the far field cut to after the swim (the cry left as the game's “Calm her” left it)
 const without = (o, key) => { const { [key]: _, ...rest } = o; return rest; };
 const FIELD = () => ({ ...without(HAS_HER, 'cry'), ...camOf(CAM.field) });
 const DOWN = { ...HAS_HER, ...camOf(CAM.field), rosalind_a: RO_WATER[0], rosalind_d: RO_WATER[1], rosalind_turn: 200, rosalind_do: 'stand',
@@ -161,7 +161,7 @@ const FILM = {
     },
   },
   // the near bank: David bursts in along the top, running, and stops at the edge — he sees her; a breath, his eyes on her,
-  // on the water. (While edge and run play the game's «Успокоить» drives `cry`: the beats leave it alone; the camera goes.)
+  // on the water. (While edge and run play the game's “Calm her” drives `cry`: the beats leave it alone; the camera goes.)
   edge: {
     after: [],
     from: () => ({ ...without(STRUCK, 'cry'), ...camOf(CAM.edge), heard: 0, rosalind_still: false }),

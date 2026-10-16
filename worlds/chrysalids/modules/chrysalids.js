@@ -1,4 +1,4 @@
-// «Хризалиды» on engine 3: the world's horses (its people are the engine's — the cast, modules/cast.js). chrysalids.md
+// “The Chrysalids” on engine 3: the world's horses (its people are the engine's — the cast, modules/cast.js). chrysalids.md
 // says how to use it.
 // A horse is an element of the scene, painted once: its body, neck, head and tail as seen from each of HEADINGS ways
 // round (a layer each, one way shown at a time), each leg's three bones (a layer each, hanging straight) — every layer

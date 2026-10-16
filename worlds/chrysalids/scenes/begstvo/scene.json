@@ -1,6 +1,6 @@
 {
   "engine": 3,
-  "title": "Бегство",
+  "title": "Flight",
   "horizon": 0.62,
   "camera": {
     "mode": "picture"
@@ -144,7 +144,7 @@
   "states": {
     "beat": {
       "type": "string",
-      "means": "кусок (модуль beats): arrive | arrive_alone → handover → sheba_turn → sheba_go | sheba_keep → climb → bow → go → search; игра: bow → hollow → watch → spotted | stay → kill | warn | hide → away"
+      "means": "beat (module beats): arrive | arrive_alone → handover → sheba_turn → sheba_go | sheba_keep → climb → bow → go → search; the game: bow → hollow → watch → spotted | stay → kill | warn | hide → away"
     },
     "fade": {
       "range": [
@@ -152,7 +152,7 @@
         1
       ],
       "smooth": true,
-      "means": "затемнение"
+      "means": "fade to black"
     },
     "dawn": {
       "range": [
@@ -160,7 +160,7 @@
         1
       ],
       "smooth": true,
-      "means": "заря (взгляд света dawn, небо)"
+      "means": "dawn (light look dawn, the sky)"
     },
     "mist": {
       "range": [
@@ -168,7 +168,7 @@
         1
       ],
       "smooth": true,
-      "means": "туман в низинах (и взгляд mist)"
+      "means": "fog in the low ground (and the look mist)"
     },
     "fog": {
       "range": [
@@ -176,7 +176,7 @@
         1
       ],
       "smooth": true,
-      "means": "туман в лощине за плечом гряды"
+      "means": "fog in the hollow behind the ridge’s shoulder"
     },
     "pursuers": {
       "range": [
@@ -184,7 +184,7 @@
         1
       ],
       "smooth": true,
-      "means": "фонари облавы на дальней гряде: сколько их"
+      "means": "the search party’s lanterns on the far ridge: how many"
     },
     "great_toss": {
       "range": [
@@ -192,7 +192,7 @@
         1
       ],
       "smooth": true,
-      "means": "великий конь вскидывает голову (игра, «Тише, кони»)"
+      "means": "the great-horse tosses its head (the game, “Quiet, horses”)"
     },
     "pack_toss": {
       "range": [
@@ -200,7 +200,7 @@
         1
       ],
       "smooth": true,
-      "means": "вьючный конь вскидывает голову (игра)"
+      "means": "the pack-horse tosses its head (the game)"
     },
     "sheba_toss": {
       "range": [
@@ -208,7 +208,7 @@
         1
       ],
       "smooth": true,
-      "means": "Шеба вскидывает голову (игра)"
+      "means": "Sheba tosses her head (the game)"
     },
     "h1_toss": {
       "range": [
@@ -216,7 +216,7 @@
         1
       ],
       "smooth": true,
-      "means": "конь переднего верхового на дыбах"
+      "means": "the first rider’s horse rears"
     },
     "petra_peek": {
       "range": [
@@ -224,7 +224,7 @@
         1
       ],
       "smooth": true,
-      "means": "Петра выглядывает из корзины (игра)"
+      "means": "Petra peeks out of the pannier (the game)"
     },
     "lamp": {
       "range": [
@@ -232,11 +232,11 @@
         1
       ],
       "smooth": true,
-      "means": "фонарь переднего верхового поднят и светит в туман лощины (пятно — свет lamp_spot)"
+      "means": "the first rider’s lantern raised, shining into the fog of the hollow (the spot — light lamp_spot)"
     },
     "lamp_x": {
       "type": "number",
-      "means": "куда светит фонарь: метры поперёк, на тумане лощины (≈ 2…12)"
+      "means": "where the lantern shines: metres across, on the fog of the hollow (≈ 2…12)"
     },
     "search_point": {
       "range": [
@@ -244,15 +244,15 @@
         1
       ],
       "smooth": true,
-      "means": "передний верховой показывает рукой в лощину"
+      "means": "the first rider points into the hollow"
     },
     "sheba_led": {
       "type": "boolean",
-      "means": "Шеба на верёвке за вьючным конём"
+      "means": "Sheba on a rope behind the pack-horse"
     },
     "sheba_here": {
       "type": "boolean",
-      "means": "Шеба здесь"
+      "means": "Sheba is here"
     },
     "arrow": {
       "range": [
@@ -260,27 +260,27 @@
         1
       ],
       "smooth": true,
-      "means": "стрела Розалинды летит"
+      "means": "Rosalind’s arrow flies"
     },
     "arrow_high": {
       "type": "boolean",
-      "means": "стрела над головой верхового (предупреждение)"
+      "means": "the arrow over the rider’s head (a warning)"
     },
     "h1_here": {
       "type": "boolean",
-      "means": "конь переднего верхового здесь"
+      "means": "the first rider’s horse is here"
     },
     "h2_here": {
       "type": "boolean",
-      "means": "конь второго здесь"
+      "means": "the second one’s horse is here"
     },
     "great_a": {
       "type": "number",
-      "means": "great: где (м поперёк, вдоль дороги)"
+      "means": "great: where (m across, along the road)"
     },
     "great_d": {
       "type": "number",
-      "means": "great: вглубь"
+      "means": "great: in depth"
     },
     "great_face": {
       "range": [
@@ -288,15 +288,15 @@
         360
       ],
       "smooth": true,
-      "means": "great: куда повёрнут (90 — вправо)"
+      "means": "great: which way it faces (90 — right)"
     },
     "pack_a": {
       "type": "number",
-      "means": "pack: где (м поперёк, вдоль дороги)"
+      "means": "pack: where (m across, along the road)"
     },
     "pack_d": {
       "type": "number",
-      "means": "pack: вглубь"
+      "means": "pack: in depth"
     },
     "pack_face": {
       "range": [
@@ -304,15 +304,15 @@
         360
       ],
       "smooth": true,
-      "means": "pack: куда повёрнут (90 — вправо)"
+      "means": "pack: which way it faces (90 — right)"
     },
     "sheba_a": {
       "type": "number",
-      "means": "sheba: где (м поперёк, вдоль дороги)"
+      "means": "sheba: where (m across, along the road)"
     },
     "sheba_d": {
       "type": "number",
-      "means": "sheba: вглубь"
+      "means": "sheba: in depth"
     },
     "sheba_face": {
       "range": [
@@ -320,15 +320,15 @@
         360
       ],
       "smooth": true,
-      "means": "sheba: куда повёрнут (90 — вправо)"
+      "means": "sheba: which way she faces (90 — right)"
     },
     "h1_a": {
       "type": "number",
-      "means": "верховой: где"
+      "means": "rider: where"
     },
     "h1_d": {
       "type": "number",
-      "means": "верховой: вглубь"
+      "means": "rider: in depth"
     },
     "h1_face": {
       "range": [
@@ -336,15 +336,15 @@
         360
       ],
       "smooth": true,
-      "means": "верховой: куда повёрнут конь"
+      "means": "rider: which way the horse faces"
     },
     "h2_a": {
       "type": "number",
-      "means": "верховой: где"
+      "means": "rider: where"
     },
     "h2_d": {
       "type": "number",
-      "means": "верховой: вглубь"
+      "means": "rider: in depth"
     },
     "h2_face": {
       "range": [
@@ -352,23 +352,23 @@
         360
       ],
       "smooth": true,
-      "means": "верховой: куда повёрнут конь"
+      "means": "rider: which way the horse faces"
     }
   },
   "objects": [
     {
       "id": "sky",
       "sky": true,
-      "name": "Небо синего часа"
+      "name": "Blue-hour sky"
     },
     {
       "id": "clouds",
       "sky": true,
-      "name": "Рваные облака"
+      "name": "Ragged clouds"
     },
     {
       "id": "far_ridge",
-      "name": "Дальняя гряда",
+      "name": "Far ridge",
       "x": 0.5,
       "distance": 1200,
       "height": 80,
@@ -381,7 +381,7 @@
     },
     {
       "id": "pursuers",
-      "name": "Огни погони",
+      "name": "Lights of the pursuit",
       "x": 0.5,
       "distance": 1190,
       "height": 80,
@@ -395,7 +395,7 @@
     },
     {
       "id": "forest",
-      "name": "Тёмный лес",
+      "name": "Dark forest",
       "across": 0,
       "distance": 48,
       "height": 20.74,
@@ -408,7 +408,7 @@
     },
     {
       "id": "mist_far",
-      "name": "Туман в низинах",
+      "name": "Fog in the low ground",
       "across": 0,
       "distance": 40,
       "height": 4,
@@ -421,7 +421,7 @@
     },
     {
       "id": "field",
-      "name": "Поле",
+      "name": "Field",
       "plane": true,
       "across": 0,
       "distance": 40,
@@ -431,7 +431,7 @@
     },
     {
       "id": "hill",
-      "name": "Гряда с дорогой",
+      "name": "Ridge with the road",
       "across": 0,
       "distance": 9.2,
       "height": 1.4,
@@ -445,7 +445,7 @@
     },
     {
       "id": "pack",
-      "name": "Вьючный конь",
+      "name": "Pack-horse",
       "across": -3.1,
       "distance": 9.1,
       "place": {
@@ -463,7 +463,7 @@
     },
     {
       "id": "great",
-      "name": "Великий конь с корзинами",
+      "name": "Great-horse with the panniers",
       "across": 0.3,
       "distance": 9.0,
       "place": {
@@ -481,7 +481,7 @@
     },
     {
       "id": "sheba",
-      "name": "Шеба",
+      "name": "Sheba",
       "across": -13,
       "distance": 8.78,
       "place": {
@@ -499,7 +499,7 @@
     },
     {
       "id": "horse1",
-      "name": "Конь переднего верхового",
+      "name": "The first rider’s horse",
       "across": -20,
       "distance": 9.0,
       "place": {
@@ -517,7 +517,7 @@
     },
     {
       "id": "horse2",
-      "name": "Конь второго верхового",
+      "name": "The second rider’s horse",
       "across": -23.4,
       "distance": 9.0,
       "place": {
@@ -535,7 +535,7 @@
     },
     {
       "id": "rosalind",
-      "name": "Розалинда",
+      "name": "Rosalind",
       "person": {
         "cast": "cast",
         "who": "rosalind",
@@ -551,7 +551,7 @@
     },
     {
       "id": "petra",
-      "name": "Петра",
+      "name": "Petra",
       "person": {
         "cast": "cast",
         "who": "petra",
@@ -567,7 +567,7 @@
     },
     {
       "id": "david",
-      "name": "Дэвид",
+      "name": "David",
       "person": {
         "cast": "cast",
         "who": "david_teen",
@@ -583,7 +583,7 @@
     },
     {
       "id": "searcher",
-      "name": "Передний верховой с фонарём",
+      "name": "The first rider, with a lantern",
       "person": {
         "cast": "cast",
         "who": "rider",
@@ -599,7 +599,7 @@
     },
     {
       "id": "searcher2",
-      "name": "Второй верховой",
+      "name": "The second rider",
       "person": {
         "cast": "cast",
         "who": "man_b",
@@ -615,7 +615,7 @@
     },
     {
       "id": "shoulder",
-      "name": "Плечо гряды",
+      "name": "Shoulder of the ridge",
       "across": 0,
       "distance": 8.85,
       "height": 1.4,
@@ -629,7 +629,7 @@
     },
     {
       "id": "fog",
-      "name": "Туман в лощине за плечом гряды",
+      "name": "Fog in the hollow behind the ridge’s shoulder",
       "across": 0,
       "distance": 9.15,
       "height": 1.4,
@@ -643,7 +643,7 @@
     },
     {
       "id": "mist_near",
-      "name": "Туман в лощине",
+      "name": "Fog in the hollow",
       "across": 0,
       "distance": 8,
       "height": 1,
@@ -657,7 +657,7 @@
     },
     {
       "id": "grass_near",
-      "name": "Сухая трава",
+      "name": "Dry grass",
       "across": 0,
       "distance": 4.5,
       "height": 1,
@@ -670,7 +670,7 @@
     },
     {
       "id": "foreground",
-      "name": "Бугор с бурьяном",
+      "name": "Weedy hummock",
       "across": -1,
       "distance": 3.2,
       "height": 0.8,
@@ -683,7 +683,7 @@
     },
     {
       "id": "arrow",
-      "name": "Стрела Розалинды",
+      "name": "Rosalind’s arrow",
       "across": 0,
       "distance": 8.95,
       "height": 1,

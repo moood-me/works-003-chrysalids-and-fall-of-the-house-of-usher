@@ -1,51 +1,51 @@
-БЕГСТВО (Хризалиды v3; V.4), движок 3. Переписана с «кино-игры» (движок 1, куклы модуля chrysalids, камера panorama):
-камера picture (кадры режиссёра — ходы camera_x/z); люди — каст (rosalind в седле великого коня, petra, david — облик
-david_teen, searcher — облик rider, searcher2 — man_b, с фонарями); кони — модуль chrysalids движка 3 (great — великий с
-корзинами, pack — вьючный, sheba — Шеба, horse1/horse2 — кони верховых). Ночь к заре — свет сцены (база — светлая синяя
-ночь, взгляды dawn и mist), слои неба; фонари облавы — свечения на дальней гряде (pursuers), фонари верховых — свет у их
-рук, пятно фонаря на тумане лощины — свет lamp_spot (по lamp_x, lamp). Туман — слои с дрейфом (fog — в лощине, mist —
-в низинах). Земля (relief.js, lib.ground): дорога по гребню на 9 м, за плечом гряды (x > 2.2) — вниз в лощину (на 1.75 м
-под гребнем), дальше вниз совсем. Карточка shoulder (8.85 м): гребень, а за плечом — край, идущий по дну лощины на 0.45 м
-над дорогой (видны кони и седоки целиком, без копыт); за концом лощины (x > 12.5) край стоит, и ушедшее вниз прячется за
-ним. Туман fog (9.15 м) лежит на дне лощины за конями: они видны на нём целиком. Карточка hill (9.2 м) — за дорогой и
-за вьючным конём (9.1). Кони в лощине (HOLLOW 9.3) — головы в середине 4:3, где язык мини-игр ставит
-метки «Тише, кони». Лес (forest, 48 м) — низкая кромка крон, её низ под землёй.
+FLIGHT (The Chrysalids v3; V.4), engine 3. Rewritten from the "film game" (engine 1, the module chrysalids' puppets, camera panorama):
+camera picture (the director's shots — moves of camera_x/z); the people — the cast (rosalind in the great-horse's saddle, petra, david — the look
+david_teen, searcher — the look rider, searcher2 — man_b, with lanterns); the horses — engine 3's module chrysalids (great — the great-horse with
+the panniers, pack — the pack-horse, sheba — Sheba, horse1/horse2 — the riders' horses). Night to dawn — the scene's light (the base — a light blue
+night, the looks dawn and mist), the sky's layers; the search party's lanterns — glows on the far ridge (pursuers), the riders' lanterns — a light by their
+hands, the lantern's spot on the hollow's fog — the light lamp_spot (by lamp_x, lamp). Fog — layers with a drift (fog — in the hollow, mist —
+in the low ground). The ground (relief.js, lib.ground): the road along the crest at 9 m, beyond the ridge's shoulder (x > 2.2) — down into the hollow (1.75 m
+below the crest), farther on right down. The card shoulder (8.85 m): the crest, and beyond the shoulder — an edge running along the hollow's floor 0.45 m
+above the road (the horses and riders seen whole, without the hooves); beyond the hollow's end (x > 12.5) the edge stands, and what has gone down hides behind
+it. The fog fog (9.15 m) lies on the hollow's floor behind the horses: they are seen whole on it. The card hill (9.2 m) — beyond the road and
+beyond the pack-horse (9.1). The horses in the hollow (HOLLOW 9.3) — their heads in the middle of 4:3, where the language of mini-games puts
+the marks of "Quiet, horses". The forest (forest, 48 m) — a low edge of treetops, its foot under the ground.
 
-Кто где сидит: Розалинда — в седле великого коня (great#seat; ступни и руки — его тека, script.js держит их при поворотах),
-Петра — в ближней корзине (great#basket_r; petra_peek — насколько выглядывает), Дэвид — в дальней (great#basket_l) после
-climb; в начале Дэвид в седле Шебы, Петра перед ним (точка в системе Шебы: chrysalids.horse.spot).
+Who sits where: Rosalind — in the great-horse's saddle (great#seat; her feet and hands — its tack, script.js keeps them as it turns),
+Petra — in the near pannier (great#basket_r; petra_peek — how far she peeks out), David — in the far one (great#basket_l) after
+climb; at the start David in Sheba's saddle, Petra before him (a point in Sheba's frame: chrysalids.horse.spot).
 
-КУСКИ (lib.FILM; `from` — всё состояние):
- arrive       Затемнение расходится; на гребне великий конь, Розалинда в седле смотрит на дорогу; снизу рысью Шеба с
-              Дэвидом и Петрой, встаёт у великого коня; наезд.
- arrive_alone (игра) Петра уже в корзине; Дэвид прискакал на Шебе один; Петра поднимается навстречу; он соскальзывает.
- handover     Дэвид слезает (dismount), поднимает Петру (lift_into), Розалинда принимает её в корзину; Петра выглядывает.
- sheba_turn   Он разворачивает Шебу к дому и кладёт руку ей на шею (выбор игры — на david: отпустить или взять).
- sheba_go     Замах, шлепок по крупу; Шеба уходит одна; он смотрит вслед, отворачивается (turn_away).
- sheba_keep   (игра) Ведёт Шебу назад и привязывает повод к вьючному (sheba_led: до конца сцены на верёвке); возвращается.
- climb        Розалинда тянет его за руку, он поднимается (mount) в дальнюю корзину.
- bow          Розалинда вперёд, потом назад на фонари, берёт лук и натягивает (draw_bow) — в профиль на светлом небе;
-              Дэвид оборачивается; Петра прячется.
- go           Кони трогаются, через плечо гряды вниз, в туман лощины и прочь, рысью; камера ведёт вправо и возвращается на
-              пустой гребень.
- search       (канон: конец) На пустой гребень поднимаются двое верховых с фонарями, передний поднимает фонарь, всматривается.
- hollow       (игра) Через плечо в лощину и стоп в тумане; камера отъезжает — лощина и гребень над ней.
- watch        (игра) На гребень поднимаются двое верховых, передний светит в туман. Камера стоит: «Тише, кони» — метки
-              great#head, pack#head, sheba#head (если взята), petra (если свободна); игра двигает great_toss, pack_toss,
+BEATS (lib.FILM; `from` — the whole state):
+ arrive       The fade opens; on the crest the great-horse, Rosalind in the saddle looking at the road; from below at a trot Sheba with
+              David and Petra, stops by the great-horse; the camera closes in.
+ arrive_alone (the game) Petra already in the pannier; David has ridden up on Sheba alone; Petra rises to meet him; he slips down.
+ handover     David gets down (dismount), lifts Petra (lift_into), Rosalind takes her into the pannier; Petra peeks out.
+ sheba_turn   He turns Sheba towards home and lays his hand on her neck (the game's choice — on david: let her go or take her).
+ sheba_go     A swing, a slap on the rump; Sheba goes off alone; he watches her go, turns away (turn_away).
+ sheba_keep   (the game) He leads Sheba back and ties her rein to the pack-horse (sheba_led: on the rope to the scene's end); comes back.
+ climb        Rosalind pulls him by the hand, he climbs (mount) into the far pannier.
+ bow          Rosalind forward, then back to the lanterns, takes her bow and draws it (draw_bow) — in profile on the light sky;
+              David looks round; Petra hides.
+ go           The horses move off, over the ridge's shoulder down, into the hollow's fog and away, at a trot; the camera follows right and comes back to
+              the empty crest.
+ search       (the canon: the end) Two riders with lanterns come up onto the empty crest, the first raises his lantern, peers.
+ hollow       (the game) Over the shoulder into the hollow and a stop in the fog; the camera draws back — the hollow and the crest above it.
+ watch        (the game) Two riders come up onto the crest, the first shines into the fog. The camera stands: "Quiet, horses" — the marks
+              great#head, pack#head, sheba#head (if taken), petra (if free); the game moves great_toss, pack_toss,
               sheba_toss, petra_peek, lamp, lamp_x, search_point.
- spotted      Увидели: передний показывает в лощину, второй скачет за остальными, передний — к краю лощины.
- stay         Не увидели: второй уезжает за остальными, передний стережёт дорогу, фонарь ниже.
- kill         Розалинда стреляет: стрела (arrow) в переднего; он падает с седла вперёд, на ближний склон гребня (collapse), и лежит (lie_back) — его видно; конь
-              уходит за гребень. (Выбор «Стреляй…» — на searcher.)
- warn         Стрела над головой; конь на дыбах (h1_toss); всадник разворачивает его и уходит галопом.
- hide         Туман густеет, Петра прячется; всадник едет по краю, светит в туман прямо над ними, уезжает.
- away         (после kill | warn | hide) Дальше, вниз из лощины; светает.
+ spotted      Seen: the first points into the hollow, the second gallops off for the others, the first — to the edge of the hollow.
+ stay         Not seen: the second rides off for the others, the first watches the road, the lantern lower.
+ kill         Rosalind shoots: an arrow (arrow) into the first; he falls forward out of the saddle, onto the near slope of the crest (collapse), and lies there (lie_back) — he is seen; the horse
+              goes off over the crest. (The choice "Shoot…" — on searcher.)
+ warn         An arrow over his head; the horse rears (h1_toss); the rider turns it and gallops off.
+ hide         The fog thickens, Petra hides; the rider rides along the edge, shines into the fog right above them, rides away.
+ away         (after kill | warn | hide) On, down out of the hollow; it grows light.
 
-КЛЮЧИ: beat, fade, dawn, mist, fog, pursuers; кони — great_*, pack_*, sheba_* (_a, _d, _face, _toss), h1_*, h2_* (+ _here),
-sheba_here, sheba_led; игра — great_toss, pack_toss, sheba_toss, petra_peek, lamp, lamp_x, search_point; arrow, arrow_high.
-Убраны ключи кукол «кино» (gx, david_down, david_climb, ros_bow, fallen…): это теперь действия людей и места коней.
+KEYS: beat, fade, dawn, mist, fog, pursuers; the horses — great_*, pack_*, sheba_* (_a, _d, _face, _toss), h1_*, h2_* (+ _here),
+sheba_here, sheba_led; the game — great_toss, pack_toss, sheba_toss, petra_peek, lamp, lamp_x, search_point; arrow, arrow_high.
+The "film" puppets' keys are gone (gx, david_down, david_climb, ros_bow, fallen…): these are now the people's actions and the horses' places.
 
-## Контракт для проверки
+## Contract for the check
 
 ```json
 {

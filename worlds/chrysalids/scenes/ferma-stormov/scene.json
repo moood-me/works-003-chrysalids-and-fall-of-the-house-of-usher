@@ -1,7 +1,7 @@
 {
   "engine": 3,
-  "title": "Ферма Стормов",
-  "caption": "Здесь всё должно быть как положено.",
+  "title": "The Strorm farm",
+  "caption": "Here everything must be as it should be.",
   "horizon": 0.62,
   "camera": {
     "mode": "picture"
@@ -89,7 +89,7 @@
         1
       ],
       "smooth": true,
-      "means": "вечер: 0 — солнце только село (тёплый свет слева сзади), 0.45 — сумерки, 1 — ночь (луна, звёзды, светлячки)"
+      "means": "evening: 0 — the sun just set (warm light from behind on the left), 0.45 — dusk, 1 — night (the moon, stars, fireflies)"
     },
     "wind": {
       "range": [
@@ -97,7 +97,7 @@
         1
       ],
       "smooth": true,
-      "means": "ветер: пшеница, тополя, дым, ведро колодца"
+      "means": "wind: the wheat, the poplars, the smoke, the well’s bucket"
     },
     "window_lit": {
       "range": [
@@ -105,31 +105,31 @@
         1
       ],
       "smooth": true,
-      "means": "окно с лампой в доме: 1 — горит, 0 — погасло"
+      "means": "the window with the lamp in the house: 1 — lit, 0 — gone dark"
     },
     "boy_present": {
       "type": "boolean",
-      "means": "Дэвид во дворе"
+      "means": "David in the yard"
     },
     "older": {
       "type": "boolean",
-      "means": "годы спустя (главы V–VII): Дэвид — подросток (david_teen)"
+      "means": "years later (chapters V–VII): David a youth (david_teen)"
     }
   },
   "objects": [
     {
       "id": "sky",
       "sky": true,
-      "name": "Вечернее небо"
+      "name": "Evening sky"
     },
     {
       "id": "birds",
       "sky": true,
-      "name": "Птицы"
+      "name": "Birds"
     },
     {
       "id": "hills",
-      "name": "Дальние холмы",
+      "name": "Far hills",
       "x": 0.5,
       "distance": 900,
       "height": 40,
@@ -142,7 +142,7 @@
     },
     {
       "id": "treeline",
-      "name": "Лесополоса",
+      "name": "Shelterbelt",
       "across": 0,
       "distance": 340,
       "height": 12,
@@ -155,7 +155,7 @@
     },
     {
       "id": "poplars",
-      "name": "Тополя",
+      "name": "Poplars",
       "across": 60,
       "distance": 130,
       "height": 17,
@@ -168,7 +168,7 @@
     },
     {
       "id": "land",
-      "name": "Поля, двор и дорога",
+      "name": "Fields, yard and road",
       "plane": true,
       "across": 0,
       "distance": 200,
@@ -177,7 +177,7 @@
     },
     {
       "id": "wall",
-      "name": "Каменная межа",
+      "name": "Stone boundary",
       "across": 10,
       "distance": 40,
       "height": 0.7,
@@ -190,7 +190,7 @@
     },
     {
       "id": "stooks",
-      "name": "Суслоны",
+      "name": "Stooks",
       "across": 7.5,
       "distance": 13,
       "height": 1.1,
@@ -290,7 +290,7 @@
     },
     {
       "id": "barn",
-      "name": "Сарай",
+      "name": "Barn",
       "across": -9.5,
       "distance": 20,
       "facing": 165,
@@ -305,7 +305,7 @@
     },
     {
       "id": "house",
-      "name": "Дом Джозефа Сторма",
+      "name": "Joseph Strorm’s house",
       "across": 4.5,
       "distance": 18,
       "facing": 195,
@@ -320,7 +320,7 @@
     },
     {
       "id": "pane",
-      "name": "Окно с лампой",
+      "name": "Window with a lamp",
       "on": "house",
       "across": 2.0,
       "elevation": 0.7,
@@ -337,7 +337,7 @@
     },
     {
       "id": "well",
-      "name": "Колодец",
+      "name": "Well",
       "across": -2.4,
       "distance": 11.5,
       "height": 2.45,
@@ -351,7 +351,7 @@
     },
     {
       "id": "wheat_e",
-      "name": "Пшеница за забором",
+      "name": "Wheat beyond the fence",
       "across": -5.348,
       "distance": 16,
       "height": 1.1,
@@ -364,7 +364,7 @@
     },
     {
       "id": "wheat_d",
-      "name": "Пшеница за забором",
+      "name": "Wheat beyond the fence",
       "across": -4.467,
       "distance": 12.5,
       "height": 1.15,
@@ -377,7 +377,7 @@
     },
     {
       "id": "wheat_c",
-      "name": "Пшеница за забором",
+      "name": "Wheat beyond the fence",
       "across": -3.585,
       "distance": 9,
       "height": 1.2,
@@ -390,7 +390,7 @@
     },
     {
       "id": "wheat_b",
-      "name": "Пшеница за забором",
+      "name": "Wheat beyond the fence",
       "across": -2.88,
       "distance": 6.2,
       "height": 1.2,
@@ -403,7 +403,7 @@
     },
     {
       "id": "wheat_a",
-      "name": "Пшеница за забором",
+      "name": "Wheat beyond the fence",
       "across": -2.376,
       "distance": 4.2,
       "height": 1.2,
@@ -416,7 +416,7 @@
     },
     {
       "id": "fence",
-      "name": "Забор",
+      "name": "Fence",
       "across": -2.2,
       "distance": 3.5,
       "facing": 75.9,
@@ -431,7 +431,7 @@
     },
     {
       "id": "david",
-      "name": "Дэвид",
+      "name": "David",
       "person": {
         "cast": "cast",
         "who": "david",
@@ -448,7 +448,7 @@
     },
     {
       "id": "tufts",
-      "name": "Трава у дороги",
+      "name": "Grass by the road",
       "across": 0.6,
       "distance": 4.6,
       "height": 0.4,
@@ -461,7 +461,7 @@
     },
     {
       "id": "smoke",
-      "name": "Дым из трубы",
+      "name": "Smoke from the chimney",
       "particles": {
         "kind": "smoke",
         "at": "house#chimney",
@@ -471,7 +471,7 @@
     },
     {
       "id": "fireflies",
-      "name": "Светлячки",
+      "name": "Fireflies",
       "across": -2,
       "distance": 10,
       "elevation": 0.6,

@@ -1,46 +1,46 @@
-СОЖЖЕНИЕ ПОЛЯ (Хризалиды v3; II.4), движок 3. Переписана с «кино-игры» (движок 1, куклы модуля chrysalids): люди —
-каст мира (jo — Джозеф Сторм с факелом, in — Инспектор с фонарём, em — Эмили, dv — Дэвид, p0…p9 — община, десять
-разных обликов: man_a, woman_a, old_man, woman_b, farmhand, old_woman, girl, man_b, woman_c, boy). Картины — один раз, в
-дневных цветах; ночь, рассвет и серое утро — свет сцены (база — светлая ночь, взгляды dawn и morning) и слои неба
-(sky.animate). Огонь: пламя над горящей кромкой — шейдер каждого ряда пшеницы (wheat*.wgsl, один текст: стебли чернеют,
-над фронтом — языки света, за ним — стерня слоя stubble), пепелище — плоскость ash со своим шейдером (пепел там, где
-прошёл огонь, тлеющие искры), частицы огня на двух фронтах (flames_r/flames_l по front_r/front_l), искры и дым над полем,
-свет огня — fire_r/fire_l (по fire_light), факел — частицы и свет у jo#flame (jo_torch: вспышка 1.5). Колос — элемент ear
-(в руке Инспектора, потом летит дугой по in_toss); уцелевший колос — элемент stalk (точка stalk#ear).
+THE BURNING OF THE FIELD (The Chrysalids v3; II.4), engine 3. Rewritten from the "film game" (engine 1, the module chrysalids' puppets): the people —
+the world's cast (jo — Joseph Strorm with a torch, in — the inspector with a lantern, em — Emily, dv — David, p0…p9 — the community, ten
+different looks: man_a, woman_a, old_man, woman_b, farmhand, old_woman, girl, man_b, woman_c, boy). The pictures — once, in
+day colours; the night, the dawn and the grey morning — the scene's light (the base — a light night, the looks dawn and morning) and the sky's layers
+(sky.animate). The fire: the flame over the burning edge — the shader of each row of wheat (wheat*.wgsl, one text: the stalks blacken,
+over the front — tongues of light, behind it — the stubble of the layer stubble), the burnt ground — the plane ash with its own shader (ash where
+the fire has passed, smouldering sparks), particles of fire on the two fronts (flames_r/flames_l by front_r/front_l), sparks and smoke over the field,
+the fire's light — fire_r/fire_l (by fire_light), the torch — particles and a light at jo#flame (jo_torch: a flare 1.5). The ear — the element ear
+(in the inspector's hand, then flying in an arc by in_toss); the stalk left standing — the element stalk (the point stalk#ear).
 
-КУСКИ (lib.FILM; `from` — всё состояние):
- dawn       Из черноты синь перед зарёй; Инспектор с фонарём к краю поля, на колено, срывает колос.
- ear        Несёт колос Сторму (камера подъезжает), к фонарю — колос золотится; люди поднимают головы; два медленных кивка
-            Сторма — мерзость; Инспектор швыряет колос через плечо в поле (движение throw_back), он летит дугой.
- raise      Сторм поднимает незажжённый факел к небу; все на колени и молятся, каждый в свой миг; Дэвид стоит (выбор игры
-            knees — на dv).
- rise       (встал вовремя) Дэвид на коленях со всеми; молитва; встают вместе.
- kneel_late (канон) Один стоит среди коленопреклонённых; камера к нему; мать тянет за руку; он опускается последним и встаёт
-            последним.
- light      Сторм зажигает факел от фонаря Инспектора (камера ближе) — вспышка.
- fire       К полю, факел вверх, вниз — огонь; ведёт огонь вдоль кромки к дороге.
- hymn       Отходит, поворачивается к людям, факел высоко; гимн (sing_stand, вразнобой; все смотрят на факел); передние
-            отступают от жара, женщина заслоняет глаза (shade); Дэвид и мать лицом к нам, головы подняты — поют; камера к
-            ним — и стоит (hymn:still): «Петь со всеми» (игра: turned; метки — dv, знак доли — на jo). Огонь идёт дальше (ignite к 0.75
-            за 36 с — и после конца куска).
- hymn_loud  Дэвид поёт; мать смотрит на него; взгляд отца проходит мимо (передних к огню возвращает игра: turned → 0).
- hymn_hide  (канон) Передние обернулись (их повернула игра: turned); взгляд отца на его стороне; Дэвид замирает (still),
-            отпускает руку матери, утыкается ей в юбку; взгляд уходит (головы к огню — когда игра опустит turned).
-            Куски turned не пишут.
- burn       Камера отъезжает; поле выгорает; затемнение.
- morning    Серое утро: пепел, дымок. Люди расходятся; Инспектор уходит через пепелище; мать ведёт Дэвида по дороге; у края
-            пепелища он оборачивается к уцелевшему колосу (камера близко; выбор stalk — на dv).
- stalk_stay (канон) Тянется к колосу; мать оглядывается и тянет; уходят. Инспектор исчезает (in_here).
- stalk_go   Отворачивается от колоса и идёт с матерью.
+BEATS (lib.FILM; `from` — the whole state):
+ dawn       Out of the dark, the blue before daybreak; the inspector with a lantern to the edge of the field, down on one knee, he plucks an ear.
+ ear        He carries the ear to Strorm (the camera moves in), to the lantern — the ear turns golden; the people raise their heads; two slow nods
+            from Strorm — an Offence; the inspector flings the ear over his shoulder into the field (the motion throw_back), it flies in an arc.
+ raise      Strorm raises the unlit torch to the sky; everyone down on their knees and praying, each at his own moment; David stands (the game's choice
+            knees — on dv).
+ rise       (knelt in time) David on his knees with everyone; the prayer; they get up together.
+ kneel_late (the canon) One standing among the kneeling; the camera to him; his mother pulls his hand; he goes down last and gets up
+            last.
+ light      Strorm lights the torch from the inspector's lantern (the camera nearer) — a flare.
+ fire       To the field, the torch up, down — fire; he leads the fire along the edge to the road.
+ hymn       He steps back, turns to the people, the torch high; the hymn (sing_stand, raggedly; everyone looks at the torch); those in front
+            step back from the heat, a woman shades her eyes (shade); David and his mother facing us, heads raised — singing; the camera to
+            them — and it stands (hymn:still): "Sing with everyone" (the game: turned; the marks — dv, the beat's sign — on jo). The fire goes on (ignite to 0.75
+            over 36 s — and after the beat's end).
+ hymn_loud  David sings; his mother looks at him; his father's look passes over (the game brings those in front back to the fire: turned → 0).
+ hymn_hide  (the canon) Those in front have turned round (the game turned them: turned); the father's look on his side; David goes still (still),
+            lets go of his mother's hand, buries his face in her skirt; the look moves on (the heads to the fire — when the game lowers turned).
+            The beats do not write turned.
+ burn       The camera draws back; the field burns out; the fade.
+ morning    A grey morning: ash, a little smoke. The people go off; the inspector goes away across the burnt ground; the mother leads David along the road; at the edge of
+            the burnt ground he turns to the stalk left standing (the camera close; the choice stalk — on dv).
+ stalk_stay (the canon) He reaches for the stalk; his mother looks back and pulls; they go. The inspector is gone (in_here).
+ stalk_go   He turns away from the stalk and goes with his mother.
 
-Община стоит двумя крыльями лицом к кромке поля (где Сторм зажигает и поёт), к нам — боком.
+The community stands in two wings facing the edge of the field (where Strorm lights and sings), side-on to us.
 
-КЛЮЧИ: beat, fade, dawn, morning, fire, ignite, ash, smoke, jo_torch, dv_kneel (игра: Дэвид на колени сейчас же, вместе со всеми), turned (игра; script.js поворачивает шестерых передних
-— p3, p6, p1, p9, p4, p0 — каждого у своего порога, с задержкой ½…1 с: тело наполовину, голова дальше), in_ear, in_toss;
-сцена ставит сама: front_r, front_l, fire_light. Убраны ключи кукол «кино» (jo_raise, in_nod, dv_kneel, dv_sing, hand…):
-это теперь действия людей в кусках. Новое движение каста: throw_back.
+KEYS: beat, fade, dawn, morning, fire, ignite, ash, smoke, jo_torch, dv_kneel (the game: David on his knees at once, with everyone), turned (the game; script.js turns the six in front
+— p3, p6, p1, p9, p4, p0 — each at his own threshold, with a delay of ½…1 s: the body halfway, the head farther), in_ear, in_toss;
+the scene sets by itself: front_r, front_l, fire_light. The "film" puppets' keys are gone (jo_raise, in_nod, dv_kneel, dv_sing, hand…):
+these are now the people's actions in the beats. A new motion of the cast: throw_back.
 
-## Контракт для проверки
+## Contract for the check
 
 ```json
 {

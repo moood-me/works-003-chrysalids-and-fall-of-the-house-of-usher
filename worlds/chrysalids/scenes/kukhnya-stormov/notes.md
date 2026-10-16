@@ -1,53 +1,53 @@
-КУХНЯ СТОРМОВ (Хризалиды v3; II.2, II.5, V.1), движок 3. Переписана с «кино-игры» (движок 1): картины — один раз, в
-дневных цветах (известковая стена, дощатые пол и панель, тёмное дерево мебели); свет — сцены: лампа на столе (`lamp`,
-свет её точки lamp#flame, `on` — ключ lamp), огонь очага (`hearth`, частицы fire и embers, свет по ключу hearth), дверь
-во двор за кадром слева (`yard`, по yard_door), холодный свет окна (`window_light`); вечер — взгляд света `dusk` и
-ночное небо за окном (sky.animate). Тени лампы — движка: отец, вставая, бросает тень на стену и потолок; столешница
-(плоскость) затеняет колени сидящих. Фильм — модуль beats (lib.js FILM), склейки внутри кусков — сказанные заранее
-(s.shot). Люди — каст мира: joseph, emily, mary, farmhand, david (V.1 — облик david_teen через david_wear).
+THE STRORMS' KITCHEN (The Chrysalids v3; II.2, II.5, V.1), engine 3. Rewritten from the "film game" (engine 1): the pictures — once, in
+day colours (a lime-washed wall, a plank floor and dado, the dark wood of the furniture); the light — the scene's: the lamp on the table (`lamp`,
+the light of its point lamp#flame, `on` — the key lamp), the hearth fire (`hearth`, the particles fire and embers, a light by the key hearth), the door
+to the yard off the frame on the left (`yard`, by yard_door), the window's cold light (`window_light`); the evening — the light's look `dusk` and
+the night sky beyond the window (sky.animate). The lamp's shadows — the engine's: the father, getting up, throws a shadow on the wall and the ceiling; the tabletop
+(a plane) shades the knees of those sitting. The film — the module beats (lib.js FILM), the cuts inside the beats — said ahead
+(s.shot). The people — the world's cast: joseph, emily, mary, farmhand, david (V.1 — the look david_teen through david_wear).
 
-По книге (гл. 3): Дэвид распорол руку, сам кое-как замотал, мать отругала и перевязала; он обронил, что справился бы
-сам, «будь у меня ещё одна рука». Отец счёл это богохульством, семья молилась о прощении, мальчика отправили наверх.
+After the book (ch. 3): David cut his hand open, wrapped it up anyhow by himself, his mother scolded him and bound it; he let slip that he could have managed
+by himself "if I had another hand". His father took it for blasphemy, the family prayed for forgiveness, the boy was sent upstairs.
 
-КУСКИ (lib.FILM; `from` — всё состояние: сцену можно открыть на любом):
- evening   Из черноты. Отец во главе стола читает, мать спиной мешает котёл, Мэри и работник за столом. Открывается дверь
-           со двора (холодный свет), Мэри оглядывается, работник перестаёт есть; входит Дэвид, сгорбившись, рука в тряпке у
-           груди, идёт вдоль стола к очагу; отец не поднимает глаз. Склейка: ближе, у очага; тянет узел зубами; мать
-           оглядывается. (Выбор игры — на david.)
- help      (канон) Он протягивает руку; мать обходит стул, качает головой, перевязывает — тряпка становится повязкой.
- self      («я сам») Отворачивается плечом и тянет узел зубами; мать всё равно берёт руку; туго — он вздрагивает.
- slip      Оговорка: из его бока вырастает бледная третья рука (wish) к узлу; мать — на него, на отца. Склейка: общий; все
-           смотрят, отец поднимает голову; рука тает; мать отходит. (Выбор — на david.)
- kneel     Отец встаёт (тень на стене и потолке), указывает в пол; Дэвид на коленях перед ним; наезд; вышивка «Чти образ
-           Божий» (wall#sampler); руки за спину; отец читает над ним, семья молится. (Выбор — на david.)
- seek      (канон) Ищет глазами мать — она не поднимает головы; рука отца на его голове, пригибает её.
- bow       Смотрит в пол; мать поднимает на него глаза — он не видит.
- upstairs  Общий. Отец указывает на дверь лестницы; Дэвид встаёт и идёт; на пороге оглядывается на мать — она уходит к
-           котлу; наверх, дверь закрывается; отец садится к Книге; медленный наезд на пустой стул и остывшую миску.
- lie       («Ничего, отец») Прячет руку за спину, смотрит в пол. Склейка: отец крупно, закрывает Книгу, переводит глаза на мать.
- lie_mother Склейка: мать у очага; поднимает глаза на отца — и опускает.
- lie_up    Общий. Отец не сводит с неё глаз; мальчик идёт наверх в обход стола; на пороге оглядывается; дверь закрывается;
-           только тогда мать идёт к котлу, отец — к Книге.
- night     Из черноты. Ночь за столом (Мэри и работника нет, лампа ниже): Дэвид на месте Мэри держится за край стола, мать
-           шьёт у очажного конца. Игра («Не шелохнуться») двигает david_grip, david_stir, father_look — script.js переводит
-           их в то, что люди делают; метка — на david#hand_r (руки на краю стола).
- night_after (после night) Чтение кончилось: камера отъезжает — видна мать.
- late      То же годы спустя (david_teen, лампа 0.6); медленный наезд — отец читает дольше обычного.
- asks      (после late) Отец поднимает голову и смотрит на Дэвида; тот отпускает край стола; камера отъезжает.
- to_bed    (после night / night_after / late / asks) Отец закрывает Книгу; Дэвид встаёт, идёт к двери лестницы; мать
-           поднимает на него глаза; он уходит наверх; отец читает дальше.
- sneak     (после to_bed) Глубокой ночью: лампа погашена, очаг тлеет; Дэвид спускается и на цыпочках уходит во двор.
-           Затемнение. Без лампы людей видно в свете окна и тлеющего очага.
+BEATS (lib.FILM; `from` — the whole state: the scene can be opened at any of them):
+ evening   Out of the dark. The father at the head of the table reads, the mother, her back to us, stirs the pot, Mary and the farmhand at the table. The door
+           from the yard opens (a cold light), Mary looks round, the farmhand stops eating; David comes in, hunched, his hand in a rag at
+           his chest, goes along the table to the hearth; the father does not raise his eyes. A cut: nearer, by the hearth; he pulls the knot with his teeth; the mother
+           looks round. (The game's choice — on david.)
+ help      (the canon) He holds out his hand; the mother goes round the chair, shakes her head, binds it — the rag becomes a bandage.
+ self      ("I can do it") He turns his shoulder away and pulls the knot with his teeth; the mother takes his hand all the same; it is tight — he flinches.
+ slip      The slip of the tongue: a pale third hand (wish) grows out of his side to the knot; the mother — at him, at the father. A cut: a wide shot; everyone
+           looks, the father raises his head; the hand melts; the mother steps back. (The choice — on david.)
+ kneel     The father gets up (a shadow on the wall and the ceiling), points at the floor; David on his knees before him; the camera closes in; the sampler "Honour
+           the Image" (wall#sampler); hands behind the back; the father reads over him, the family prays. (The choice — on david.)
+ seek      (the canon) He looks for his mother with his eyes — she does not raise her head; the father's hand on his head bows it down.
+ bow       He looks at the floor; the mother raises her eyes to him — he does not see.
+ upstairs  A wide shot. The father points to the stair door; David gets up and goes; on the threshold he looks back at his mother — she goes off to
+           the pot; upstairs, the door closes; the father sits down to the Book; a slow push in on the empty chair and the cold bowl.
+ lie       ("Nothing, Father") He hides his hand behind his back, looks at the floor. A cut: the father close, he shuts the Book, moves his eyes to the mother.
+ lie_mother A cut: the mother by the hearth; she raises her eyes to the father — and lowers them.
+ lie_up    A wide shot. The father does not take his eyes off her; the boy goes upstairs round the table; on the threshold he looks back; the door closes;
+           only then the mother goes to the pot, the father — to the Book.
+ night     Out of the dark. Night at the table (Mary and the farmhand gone, the lamp lower): David in Mary's place holds the table's edge, the mother
+           sews at the hearth end. The game ("Not a stir") moves david_grip, david_stir, father_look — script.js turns
+           them into what the people do; the mark — on david#hand_r (the hands on the table's edge).
+ night_after (after night) The reading is over: the camera draws back — the mother is seen.
+ late      The same years later (david_teen, the lamp 0.6); a slow push in — the father reads longer than usual.
+ asks      (after late) The father raises his head and looks at David; he lets go of the table's edge; the camera draws back.
+ to_bed    (after night / night_after / late / asks) The father shuts the Book; David gets up, goes to the stair door; the mother
+           raises her eyes to him; he goes upstairs; the father reads on.
+ sneak     (after to_bed) Deep in the night: the lamp out, the hearth smouldering; David comes down and tiptoes out into the yard.
+           The fade. Without the lamp the people are seen in the light of the window and the smouldering hearth.
 
-КЛЮЧИ: beat; lamp, dusk, hearth, fade, steam, yard_door, stair_door, wish; ночь за столом (ключи игры): at_table, david_grip,
-david_stir, father_look. Убран moon_light «кино» (свет окна теперь — источник сцены, ночь — взгляд dusk).
+KEYS: beat; lamp, dusk, hearth, fade, steam, yard_door, stair_door, wish; night at the table (the game's keys): at_table, david_grip,
+david_stir, father_look. The "film"'s moon_light is gone (the window's light is now the scene's source, the night — the look dusk).
 
-УСТРОЙСТВО: lib.js — места (SEAT, POT, BY_HEARTH, TO_TIE, KNOT, STANDS, KNEEL, AT_DOOR, LATCH, UP, CAM — планы камеры),
-состояния начала кусков (START, AT_HEARTH, TIED, HEARD, KNELT, LIED, NIGHT, LATE), FILM. relief.js — ступени за дверью
-лестницы. wall.js — стена с окном, дверным проёмом, буфетом, вышивками и очагом; stairdoor — створка (animate сужает её
-по stair_door); wish — третья рука: слои, которые animate каждый кадр кладёт между david#chest и david#hand_r.
+THE MAKING: lib.js — the places (SEAT, POT, BY_HEARTH, TO_TIE, KNOT, STANDS, KNEEL, AT_DOOR, LATCH, UP, CAM — the camera's shots),
+the states the beats begin in (START, AT_HEARTH, TIED, HEARD, KNELT, LIED, NIGHT, LATE), FILM. relief.js — the steps beyond the stair
+door. wall.js — the wall with the window, the doorway, the dresser, the samplers and the hearth; stairdoor — the door's leaf (animate narrows it
+by stair_door); wish — the third hand: layers that animate lays each frame between david#chest and david#hand_r.
 
-## Контракт для проверки
+## Contract for the check
 
 ```json
 {

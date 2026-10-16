@@ -1,4 +1,4 @@
-// Ферма Стормов — its mechanics: David here or not (`boy_present`), and years later (`older`: V–VII) the cast's
+// The Strorm farm — its mechanics: David here or not (`boy_present`), and years later (`older`: V–VII) the cast's
 // david_teen over him.
 const s = scene, P = () => s.person('david');
 const here = () => P().here(s.get('boy_present') !== false);

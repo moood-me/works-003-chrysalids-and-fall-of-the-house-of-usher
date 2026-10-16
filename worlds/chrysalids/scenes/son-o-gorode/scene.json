@@ -1,7 +1,7 @@
 {
   "engine": 3,
-  "title": "Сон о городе",
-  "caption": "Мне снился город, которого не было ни на одной карте.",
+  "title": "The dream of the city",
+  "caption": "I dreamt of a city that was on no map.",
   "horizon": 0.6,
   "camera": {
     "mode": "picture"
@@ -55,23 +55,23 @@
     {
       "at": 6,
       "for": 9,
-      "text": "Башни у самой воды, и в каждом окне — свет."
+      "text": "Towers at the very water’s edge, and a light in every window."
     },
     {
       "at": 18,
       "for": 9,
-      "text": "А над ними медленно плыли блестящие рыбы."
+      "text": "And over them shining fish swam slowly."
     },
     {
       "at": 30,
       "for": 10,
-      "text": "Я не знал, где это. Знал только, что мне — туда."
+      "text": "I did not know where it was. I knew only that I must go there."
     }
   ],
   "directions": [
     {
       "key": "waking",
-      "name": "Проснуться"
+      "name": "Wake up"
     }
   ],
   "state": {
@@ -96,7 +96,7 @@
         1
       ],
       "smooth": true,
-      "means": "сила Петры: сколько блестящих рыб над городом (до трёх) и какие большие"
+      "means": "Petra’s strength: how many shining fish over the city (up to three) and how big"
     },
     "dream": {
       "range": [
@@ -104,7 +104,7 @@
         1
       ],
       "smooth": true,
-      "means": "сон ясен (меньше — туман над водой, город бледнее)"
+      "means": "the dream is clear (less — mist over the water, the city paler)"
     },
     "lights": {
       "range": [
@@ -112,7 +112,7 @@
         1
       ],
       "smooth": true,
-      "means": "огни города: окна, свет на воде"
+      "means": "the city’s lights: windows, light on the water"
     },
     "waking": {
       "range": [
@@ -120,7 +120,7 @@
         1
       ],
       "smooth": true,
-      "means": "пробуждение: башни оседают искрами, темнеет, проступает окно спальни с рамой"
+      "means": "waking: the towers sink in sparks, it grows dark, the bedroom window with its frame shows through"
     },
     "boy_present": {
       "range": [
@@ -128,22 +128,22 @@
         1
       ],
       "smooth": true,
-      "means": "Дэвид на дюне"
+      "means": "David on the dune"
     },
     "lead": {
       "type": "number",
-      "means": "«Удержать сон»: где ведущая рыба на своём пути над городом, 0…1 (игра ведёт за 40 с); null — дрейфует сама"
+      "means": "“Hold the dream”: where the leading fish is on its way over the city, 0…1 (the game leads it over 40 s); null — it drifts by itself"
     },
     "gaze": {
       "type": "number",
-      "means": "«Удержать сон»: куда вдоль пути рыбы смотрит Дэвид, −1…1 (место (gaze + 1) / 2 того же пути): его голова и светлое пятно на небе; null — на город"
+      "means": "“Hold the dream”: where along the fish’s way David looks, −1…1 (the place (gaze + 1) / 2 of the same way): his head and a light spot on the sky; null — at the city"
     }
   },
   "objects": [
     {
       "id": "sky",
       "sky": true,
-      "name": "Ночное небо сна",
+      "name": "Night sky of the dream",
       "redraw": {
         "dream": 0.1,
         "lights": 0.1
@@ -152,7 +152,7 @@
     {
       "id": "clouds",
       "sky": true,
-      "name": "Облачные пряди",
+      "name": "Strands of cloud",
       "redraw": {
         "lights": 0.1
       }
@@ -160,7 +160,7 @@
     {
       "id": "city",
       "sky": true,
-      "name": "Город у моря",
+      "name": "City by the sea",
       "redraw": {
         "dream": 0.1,
         "lights": 0.1
@@ -169,7 +169,7 @@
     {
       "id": "craft",
       "sky": true,
-      "name": "Сияющие рыбы",
+      "name": "Shining fish",
       "redraw": {
         "craft": 0.1
       }
@@ -177,11 +177,11 @@
     {
       "id": "motes",
       "sky": true,
-      "name": "Пылинки сна"
+      "name": "Dust of the dream"
     },
     {
       "id": "sand",
-      "name": "Дюна",
+      "name": "Dune",
       "plane": true,
       "drape": true,
       "across": 0,
@@ -191,7 +191,7 @@
     },
     {
       "id": "david",
-      "name": "Дэвид",
+      "name": "David",
       "person": {
         "cast": "cast",
         "who": "david",
@@ -208,7 +208,7 @@
     },
     {
       "id": "wheat_front",
-      "name": "Колосья у края",
+      "name": "Ears of grain at the edge",
       "across": -3.6,
       "distance": 4.6,
       "height": 1.2,
@@ -221,7 +221,7 @@
     },
     {
       "id": "waking",
-      "name": "Пробуждение",
+      "name": "Waking",
       "across": 0,
       "distance": 1.5,
       "elevation": 1.1,

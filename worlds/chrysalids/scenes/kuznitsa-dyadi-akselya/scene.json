@@ -1,6 +1,6 @@
 {
   "engine": 3,
-  "title": "Кузница дяди Акселя",
+  "title": "Uncle Axel’s forge",
   "horizon": 0.52,
   "camera": {
     "mode": "picture"
@@ -199,7 +199,7 @@
   "states": {
     "beat": {
       "type": "string",
-      "means": "кусок фильма (модуль beats): канон chatter → notice → truth | lie → door → hush → lantern → after; III.1 — после hush lantern_bellows → lantern_go | lantern_linger → rest; III.5 night_anne → night_anne_end; V.2 key → stranger → stranger_go | caught | strike"
+      "means": "a beat of the film (module beats): the canon chatter → notice → truth | lie → door → hush → lantern → after; III.1 — after hush lantern_bellows → lantern_go | lantern_linger → rest; III.5 night_anne → night_anne_end; V.2 key → stranger → stranger_go | caught | strike"
     },
     "fade": {
       "range": [
@@ -207,7 +207,7 @@
         1
       ],
       "smooth": true,
-      "means": "затемнение"
+      "means": "fade to black"
     },
     "fire": {
       "range": [
@@ -215,7 +215,7 @@
         1
       ],
       "smooth": true,
-      "means": "огонь горна: как сильно горит (свет fire, угли, пламя)"
+      "means": "the forge fire: how strongly it burns (light fire, the coals, the flame)"
     },
     "sparks": {
       "range": [
@@ -223,7 +223,7 @@
         1
       ],
       "smooth": true,
-      "means": "сколько искр летит над горном"
+      "means": "how many sparks fly over the forge"
     },
     "door": {
       "range": [
@@ -231,7 +231,7 @@
         1
       ],
       "smooth": true,
-      "means": "откатная дверь: 1 — ворота открыты, 0.7 — задвинута наполовину"
+      "means": "the sliding door: 1 — the gate open, 0.7 — half shut"
     },
     "pump": {
       "range": [
@@ -239,27 +239,27 @@
         1
       ],
       "smooth": true,
-      "means": "рычаг мехов: 0 — вверху, 1 — прижат (каждый раз, как он идёт вниз, Дэвид у мехов тянет его — pull_lever)"
+      "means": "the bellows’ lever: 0 — up, 1 — pressed down (each time it goes down, David at the bellows pulls it — pull_lever)"
     },
     "ax_work": {
       "type": "number",
-      "means": "1 — Аксель куёт сам, удар раз в ax_pace с; 0 — нет"
+      "means": "1 — Axel forges by himself, a blow once in ax_pace s; 0 — not"
     },
     "ax_pace": {
       "type": "number",
-      "means": "секунды между ударами, пока ax_work"
+      "means": "seconds between blows, while ax_work"
     },
     "ax_blow": {
       "type": "number",
-      "means": "игра: каждое изменение — один удар от подъёма; боёк на железе через 1.17 с — сцена говорит ax:hit"
+      "means": "the game: each change — one blow from the lift; the hammer’s face on the iron 1.17 s later — the scene says ax:hit"
     },
     "ax_spark": {
       "type": "number",
-      "means": "искры из-под молота: каждый раз, как число растёт"
+      "means": "sparks from under the hammer: each time the number grows"
     },
     "dv_chat": {
       "type": "number",
-      "means": "N — Дэвид «болтает»: мысль к окну раз в N с, ответ через 3.2 с; 0 — нет"
+      "means": "N — David “chatters”: a thought to the window once in N s, the answer 3.2 s later; 0 — not"
     },
     "dv_glow": {
       "range": [
@@ -267,15 +267,15 @@
         1
       ],
       "smooth": true,
-      "means": "свечение в голове Дэвида (ответ пришёл)"
+      "means": "a glow in David’s head (the answer has come)"
     },
     "dv_pump": {
       "type": "number",
-      "means": "1 — руки Дэвида на рычаге мехов (pump#handle)"
+      "means": "1 — David’s hands on the bellows’ lever (pump#handle)"
     },
     "pump_work": {
       "type": "number",
-      "means": "N — рычаг мехов сам раз в N с (огонь вздыхает); 0 — нет"
+      "means": "N — the bellows’ lever by itself once in N s (the fire breathes); 0 — not"
     },
     "th_amp": {
       "range": [
@@ -283,31 +283,31 @@
         1
       ],
       "smooth": true,
-      "means": "яркость мыслей-форм"
+      "means": "the brightness of the thought-shapes"
     },
     "tho_a": {
       "type": "number",
-      "means": "мысль Дэвида в полёте: метры поперёк (от головы к окну)"
+      "means": "David’s thought in flight: metres across (from his head to the window)"
     },
     "tho_e": {
       "type": "number",
-      "means": "её высота"
+      "means": "its height"
     },
     "tho_d": {
       "type": "number",
-      "means": "её даль"
+      "means": "its distance"
     },
     "thi_a": {
       "type": "number",
-      "means": "ответ в полёте: метры поперёк (от окна к голове)"
+      "means": "the answer in flight: metres across (from the window to his head)"
     },
     "thi_e": {
       "type": "number",
-      "means": "его высота"
+      "means": "its height"
     },
     "thi_d": {
       "type": "number",
-      "means": "его даль"
+      "means": "its distance"
     },
     "st_on": {
       "range": [
@@ -315,14 +315,14 @@
         1
       ],
       "smooth": true,
-      "means": "человек с фонарём во дворе (кто — st_who)"
+      "means": "the man with the lantern in the yard (who — st_who)"
     },
     "st_who": {
       "values": [
         "joseph",
         "farmhand"
       ],
-      "means": "кто с фонарём: отец или работник"
+      "means": "who has the lantern: the father or the farmhand"
     },
     "st_lamp": {
       "range": [
@@ -330,19 +330,19 @@
         1.3
       ],
       "smooth": true,
-      "means": "фонарь поднят: 1 — вверх, к тому, куда он смотрит (st_lx, st_lz); выше 1 (до 1.3) — выше и на Дэвида, где бы он ни был"
+      "means": "the lantern raised: 1 — up, towards where he looks (st_lx, st_lz); above 1 (to 1.3) — higher and on David, wherever he is"
     },
     "st_lx": {
       "type": "number",
-      "means": "куда он смотрит и светит: метры поперёк"
+      "means": "where he looks and shines: metres across"
     },
     "st_lz": {
       "type": "number",
-      "means": "…и вглубь"
+      "means": "…and in depth"
     },
     "st_drop": {
       "type": "number",
-      "means": "1 — фонарь выпал (лежит во дворе, гаснет — st_glow)"
+      "means": "1 — the lantern has fallen (it lies in the yard, going out — st_glow)"
     },
     "st_glow": {
       "range": [
@@ -350,11 +350,11 @@
         1
       ],
       "smooth": true,
-      "means": "упавший фонарь: как ещё горит"
+      "means": "the fallen lantern: how much it still burns"
     },
     "st_lanx": {
       "type": "number",
-      "means": "где лежит упавший фонарь: метры поперёк"
+      "means": "where the fallen lantern lies: metres across"
     },
     "st_more": {
       "range": [
@@ -362,7 +362,7 @@
         1
       ],
       "smooth": true,
-      "means": "ещё двое с фонарями во дворе"
+      "means": "two more with lanterns in the yard"
     },
     "joseph_lamp": {
       "range": [
@@ -370,7 +370,7 @@
         1
       ],
       "smooth": true,
-      "means": "фонарь отца горит"
+      "means": "the father’s lantern is alight"
     },
     "farmhand_lamp": {
       "range": [
@@ -378,77 +378,77 @@
         1
       ],
       "smooth": true,
-      "means": "фонарь работника горит"
+      "means": "the farmhand’s lantern is alight"
     },
     "hz_a": {
       "type": "number",
-      "means": "лошадь во дворе: поперёк"
+      "means": "the horse in the yard: across"
     },
     "hz_d": {
       "type": "number",
-      "means": "лошадь: вглубь"
+      "means": "the horse: in depth"
     },
     "hz_face": {
       "type": "number",
-      "means": "лошадь: куда повёрнута"
+      "means": "the horse: which way it faces"
     },
     "st_glare": {
       "range": [
         0,
         1
       ],
-      "means": "луч поднятого фонаря на Дэвиде (ставит сцена сама по st_lamp выше 1)"
+      "means": "the raised lantern’s beam on David (the scene sets it itself by st_lamp above 1)"
     },
     "ax_a": {
       "type": "number",
-      "means": "Аксель: где стоит, метры поперёк (ставят куски)"
+      "means": "Axel: where he stands, metres across (the beats set it)"
     },
     "ax_d": {
       "type": "number",
-      "means": "Аксель: где стоит, метры вглубь (ставят куски)"
+      "means": "Axel: where he stands, metres in depth (the beats set it)"
     },
     "dv_a": {
       "type": "number",
-      "means": "Дэвид: где стоит, метры поперёк (ставят куски)"
+      "means": "David: where he stands, metres across (the beats set it)"
     },
     "dv_d": {
       "type": "number",
-      "means": "Дэвид: где стоит, метры вглубь (ставят куски)"
+      "means": "David: where he stands, metres in depth (the beats set it)"
     },
     "st_a": {
       "type": "number",
-      "means": "человек с фонарём: где стоит, метры поперёк (ставят куски)"
+      "means": "the man with the lantern: where he stands, metres across (the beats set it)"
     },
     "st_d": {
       "type": "number",
-      "means": "человек с фонарём: где стоит, метры вглубь (ставят куски)"
+      "means": "the man with the lantern: where he stands, metres in depth (the beats set it)"
     },
     "w0_a": {
       "type": "number",
-      "means": "второй с фонарём: где стоит, метры поперёк (ставят куски)"
+      "means": "the second with a lantern: where he stands, metres across (the beats set it)"
     },
     "w0_d": {
       "type": "number",
-      "means": "второй с фонарём: где стоит, метры вглубь (ставят куски)"
+      "means": "the second with a lantern: where he stands, metres in depth (the beats set it)"
     },
     "w1_a": {
       "type": "number",
-      "means": "третий с фонарём: где стоит, метры поперёк (ставят куски)"
+      "means": "the third with a lantern: where he stands, metres across (the beats set it)"
     },
     "w1_d": {
       "type": "number",
-      "means": "третий с фонарём: где стоит, метры вглубь (ставят куски)"
+      "means": "the third with a lantern: where he stands, metres in depth (the beats set it)"
     }
   },
   "objects": [
     {
       "id": "sky",
       "sky": true,
-      "name": "Ночное небо"
+      "name": "Night sky"
     },
     {
       "id": "far",
-      "name": "Уокнук вдали",
+      "name": "Waknuk in the distance",
       "across": 0,
       "distance": 70,
       "height": 8,
@@ -461,7 +461,7 @@
     },
     {
       "id": "morton",
-      "name": "Ферма Мортонов, окно Розалинды",
+      "name": "The Morton farm, Rosalind’s window",
       "across": 23.6,
       "distance": 60,
       "height": 11,
@@ -474,7 +474,7 @@
     },
     {
       "id": "yard",
-      "name": "Двор",
+      "name": "Yard",
       "plane": true,
       "across": 0,
       "distance": 40,
@@ -483,7 +483,7 @@
     },
     {
       "id": "horse",
-      "name": "Дремлющая лошадь",
+      "name": "Dozing horse",
       "across": 9.6,
       "distance": 17,
       "place": {
@@ -501,7 +501,7 @@
     },
     {
       "id": "fence",
-      "name": "Угол изгороди",
+      "name": "Corner of the fence",
       "across": 4.2,
       "distance": 12,
       "height": 1.4,
@@ -514,7 +514,7 @@
     },
     {
       "id": "floor",
-      "name": "Земляной пол",
+      "name": "Earth floor",
       "plane": true,
       "across": 0,
       "distance": 4.5,
@@ -523,7 +523,7 @@
     },
     {
       "id": "ceiling",
-      "name": "Кровля",
+      "name": "Roof",
       "plane": true,
       "across": 0,
       "distance": 4.5,
@@ -542,7 +542,7 @@
     },
     {
       "id": "wall",
-      "name": "Стена с открытыми воротами",
+      "name": "Wall with the open gate",
       "across": 0,
       "distance": 7.5,
       "facing": 180,
@@ -556,7 +556,7 @@
     },
     {
       "id": "door",
-      "name": "Откатная дверь ворот",
+      "name": "Sliding door of the gate",
       "across": 0.9,
       "distance": 7.45,
       "facing": 180,
@@ -570,7 +570,7 @@
     },
     {
       "id": "forge",
-      "name": "Горн",
+      "name": "Forge",
       "across": -3.8,
       "distance": 6.5,
       "facing": 180,
@@ -584,7 +584,7 @@
     },
     {
       "id": "pump",
-      "name": "Мехи и рычаг",
+      "name": "Bellows and lever",
       "across": -3.8,
       "distance": 6.45,
       "height": 1.5,
@@ -597,7 +597,7 @@
     },
     {
       "id": "fire",
-      "name": "Огонь горна",
+      "name": "Forge fire",
       "across": -3.8,
       "distance": 6.4,
       "elevation": 0.95,
@@ -617,7 +617,7 @@
     },
     {
       "id": "embers",
-      "name": "Искры над горном",
+      "name": "Sparks over the forge",
       "across": -3.8,
       "distance": 6.4,
       "elevation": 1.0,
@@ -634,7 +634,7 @@
     },
     {
       "id": "smoke",
-      "name": "Дым под колпаком",
+      "name": "Smoke under the hood",
       "across": -3.8,
       "distance": 6.4,
       "elevation": 1.2,
@@ -657,7 +657,7 @@
     },
     {
       "id": "motes",
-      "name": "Пылинки в свете горна",
+      "name": "Dust in the firelight",
       "across": -1.5,
       "distance": 5.5,
       "elevation": 1.5,
@@ -679,7 +679,7 @@
     },
     {
       "id": "bench",
-      "name": "Верстак",
+      "name": "Workbench",
       "across": 0.2,
       "distance": 5.5,
       "height": 1,
@@ -692,7 +692,7 @@
     },
     {
       "id": "anvil",
-      "name": "Наковальня",
+      "name": "Anvil",
       "across": -1.1,
       "distance": 4.6,
       "height": 0.85,
@@ -705,7 +705,7 @@
     },
     {
       "id": "sparks",
-      "name": "Искры из-под молота",
+      "name": "Sparks from under the hammer",
       "particles": {
         "kind": "sparks",
         "at": "anvil#iron",
@@ -717,7 +717,7 @@
     },
     {
       "id": "axel",
-      "name": "Дядя Аксель",
+      "name": "Uncle Axel",
       "person": {
         "cast": "cast",
         "who": "axel",
@@ -734,7 +734,7 @@
     },
     {
       "id": "barrel",
-      "name": "Бочка",
+      "name": "Barrel",
       "across": 1.3,
       "distance": 4.32,
       "height": 0.75,
@@ -747,7 +747,7 @@
     },
     {
       "id": "david",
-      "name": "Дэвид",
+      "name": "David",
       "person": {
         "cast": "cast",
         "who": "david",
@@ -763,7 +763,7 @@
     },
     {
       "id": "dropped",
-      "name": "Упавший фонарь во дворе",
+      "name": "Fallen lantern in the yard",
       "across": 2.9,
       "distance": 9.3,
       "place": {
@@ -779,7 +779,7 @@
     },
     {
       "id": "watch0",
-      "name": "Человек с фонарём",
+      "name": "Man with a lantern",
       "person": {
         "cast": "cast",
         "who": "man_a",
@@ -795,7 +795,7 @@
     },
     {
       "id": "watch1",
-      "name": "Ещё один с фонарём",
+      "name": "Another one with a lantern",
       "person": {
         "cast": "cast",
         "who": "man_c",
@@ -811,7 +811,7 @@
     },
     {
       "id": "joseph",
-      "name": "Джозеф Сторм, отец Дэвида",
+      "name": "Joseph Strorm, David’s father",
       "person": {
         "cast": "cast",
         "who": "joseph",
@@ -827,7 +827,7 @@
     },
     {
       "id": "farmhand",
-      "name": "Работник Стормов",
+      "name": "The Strorms’ farmhand",
       "person": {
         "cast": "cast",
         "who": "farmhand",
@@ -843,7 +843,7 @@
     },
     {
       "id": "thought_out",
-      "name": "Мысль Дэвида",
+      "name": "David’s thought",
       "across": 1.3,
       "distance": 4.3,
       "elevation": 1.28,
@@ -863,7 +863,7 @@
     },
     {
       "id": "thought_in",
-      "name": "Ответ Розалинды",
+      "name": "Rosalind’s answer",
       "across": 1.3,
       "distance": 4.3,
       "elevation": 1.28,

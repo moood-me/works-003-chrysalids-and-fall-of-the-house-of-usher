@@ -1,4 +1,4 @@
-// Учимся слышать — its mechanics: each child of the valley works (the hoe, the washing, the staff, the cart, the
+// Learning to hear — its mechanics: each child of the valley works (the hoe, the washing, the staff, the cart, the
 // bucket) and, listening (lib.LIS), straightens and lifts the head; the grown-ups (`adults_near`): the ploughman stops
 // and turns to look up at David, the woman at the door shades her eyes and looks; Rosalind on the fence turns to David
 // as `rosalind` grows.

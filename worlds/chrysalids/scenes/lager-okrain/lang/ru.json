@@ -1,0 +1,4 @@
+{"strings": [
+  {"text":"The Fringes camp","translation":"Лагерь Окраин","where":"scenes/lager-okrain/scene.json title"},
+  {"text":"Here no one asked how many toes you had.","translation":"Здесь никто не спрашивал, сколько у тебя пальцев.","where":"scenes/lager-okrain/scene.json caption"}
+]}

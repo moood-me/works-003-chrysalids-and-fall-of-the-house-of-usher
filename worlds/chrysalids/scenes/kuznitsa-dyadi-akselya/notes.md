@@ -1,46 +1,46 @@
-КУЗНИЦА ДЯДИ АКСЕЛЯ (Хризалиды v3; III.1, III.5 `night_anne`, V.2 `key`), движок 3. Переписана с «кино-игры» (движок 1):
-картины — один раз, в дневных цветах (дощатая стена, земляной пол, кирпичный горн, железо); свет — сцены: огонь горна
-(`fire` — точечный свет у углей, по ключу fire; угли — светящийся слой, пламя, искры и дым — частицы), луна (`moon`, далёкий
-свет справа сзади: двор за воротами в лунном свете — светлая щель, против которой Аксель стоит на колене), горячее железо
-на наковальне (`iron_glow`), фонари в руках (`lantern`, `lantern2`, `lantern_w0/w1`), свечение в голове Дэвида (`glow`,
-по dv_glow). Кровля (плоскость) держит луну снаружи: внутри — огонь. Фильм — модуль beats (lib.js FILM). Люди — каст мира:
-axel (хромает — походка limp; молот в левой, клещи в правой — части каста), david (на бочке — david_on её верх), joseph,
-farmhand (с фонарём), watch0/watch1 (man_a, man_c — ещё двое). Лошадь во дворе — модуль chrysalids (дремлет).
+UNCLE AXEL'S FORGE (The Chrysalids v3; III.1, III.5 `night_anne`, V.2 `key`), engine 3. Rewritten from the "film game" (engine 1):
+the pictures — once, in day colours (a plank wall, an earth floor, a brick forge, iron); the light — the scene's: the forge fire
+(`fire` — a point light by the coals, by the key fire; the coals — a glowing layer, the flame, the sparks and the smoke — particles), the moon (`moon`, a far
+light from behind on the right: the yard beyond the gate in moonlight — a light gap, against which Axel kneels on one knee), the hot iron
+on the anvil (`iron_glow`), the lanterns in hands (`lantern`, `lantern2`, `lantern_w0/w1`), the glow in David's head (`glow`,
+by dv_glow). The roof (a plane) keeps the moon outside: inside — the fire. The film — the module beats (lib.js FILM). The people — the world's cast:
+axel (limps — the gait limp; the hammer in his left hand, the tongs in his right — parts of the cast), david (on the barrel — david_on its top), joseph,
+farmhand (with a lantern), watch0/watch1 (man_a, man_c — two more). The horse in the yard — the module chrysalids (dozing).
 
-Молот: Аксель стоит там, где его удар (smith_strike) приходится на железо (lib.AT_ANVIL); боёк на железе — на 1.17 с
-движения; в этот миг искры (частицы sparks из anvil#iron, по ax_spark) и `scene.tell('ax:hit')`. ax_blow (игра) — удар от
-подъёма: его зовут за 1.17 с до доли. Пока инструментов нет в руках (axel_with), они лежат на наковальне (слои anvil).
+The hammer: Axel stands where his blow (smith_strike) lands on the iron (lib.AT_ANVIL); the hammer's face on the iron — 1.17 s into
+the motion; at that moment sparks (the particles sparks from anvil#iron, by ax_spark) and `scene.tell('ax:hit')`. ax_blow (the game) — a blow from
+the lift: it is called 1.17 s before the beat. While the tools are not in his hands (axel_with), they lie on the anvil (the anvil's layers).
 
-КУСКИ (lib.FILM; `from` — всё состояние):
- chatter   Из темноты: Аксель куёт спиной к мальчику; Дэвид на бочке лицом к воротам «болтает» (dv_chat 7.2: мысль к далёкому
-           окну Мортонов и ответ, смеётся).
- notice    Молот замирает наверху; Аксель кладёт инструменты, смотрит в ворота, на мальчика; хромает к нему, Дэвид сжимается;
-           на колено против светлой щели ворот, камера подъезжает; рука на плечо; открытая ладонь «кто?» (выбор — на david).
- truth     (канон) Дэвид показывает на окно; мысль уходит, ответ приходит; кивает. Аксель — рука у бороды; взгляд на ворота.
- lie       Мотает головой, смотрит в пол; ответ приходит всё равно; глаза к окну; Аксель смотрит туда же; кивок.
- door      Встаёт; к воротам, смотрит в обе стороны; руки на край двери (door#grip_low/high), пятясь (limp_back) задвигает её.
- hush      На колено вплотную: палец у губ, палец у виска, руки на плечи, качает головой; Дэвид дважды кивает.
- lantern   (канон) Фонарь отца во дворе; Аксель к наковальне, куёт; Дэвид сникает; отец в щели, фонарь вверх; Аксель кивает; уходит.
- after     Аксель опускает молот, кивает мальчику; Дэвид «говорит» с окном; Аксель снова куёт (ax_pace 2.4), мысли раз в 13 с.
- lantern_bellows (III.1, после hush) Фонарь отца; Аксель к наковальне; Дэвид соскальзывает с бочки и бегом к рычагу мехов;
-           камера на план мехов и наковальни (оба в середине кадра: CAM.bellows), стоит. Отец в щели, фонарь вверх, на Акселя,
-           на мальчика. Дальше «Ритм мехов»: игра ведёт ax_blow и pump; метки — axel#hand_l (молот), pump#handle; промах —
-           фонарь выше и на мальчика (st_lamp выше 1: сцена сама светит на Дэвида — свет glare по st_glare).
- lantern_go | lantern_linger  Отец опускает фонарь и уходит | фонарь выше, отец шагает в щель, долго смотрит, уходит.
- rest      Аксель опускает молот, смотрит на мальчика у мехов; медленный кивок; Дэвид кивает.
- night_anne Ночь, огонь низкий, дверь полузадвинута; Дэвид на бочке рассказывает, Аксель у верстака, рука у бороды.
- night_anne_end «Иди спать»: кивок; Дэвид соскальзывает с бочки и уходит в ночь; Аксель к огню.
- key       (V.2; Дэвид — david_teen: годы спустя) Ночь; Аксель частыми ударами делает ключ (ax_pace 1.4); Дэвид у мехов (pump_work 1.3).
- stranger  Работник в щели поднимает фонарь, смотрит на наковальню, на мальчика.
- stranger_go | caught | strike  Уходит (ритм удержан) | свистит, ещё двое с фонарями; Дэвид мотает головой «не надо» |
-           Дэвид кивает; Аксель к щели, удар: работник падает на спину во двор, фонарь гаснет; огонь оседает.
+BEATS (lib.FILM; `from` — the whole state):
+ chatter   Out of the dark: Axel forges with his back to the boy; David on the barrel facing the gate "chatters" (dv_chat 7.2: a thought to the Mortons' far
+           window and an answer, he laughs).
+ notice    The hammer stops at the top; Axel lays down his tools, looks at the gate, at the boy; limps to him, David shrinks;
+           down on one knee against the light gap of the gate, the camera moves in; a hand on the shoulder; an open palm "who?" (the choice — on david).
+ truth     (the canon) David points to the window; a thought goes off, the answer comes; he nods. Axel — his hand at his beard; a look at the gate.
+ lie       He shakes his head, looks at the floor; the answer comes all the same; his eyes go to the window; Axel looks there too; a nod.
+ door      He gets up; to the gate, looks both ways; his hands on the door's edge (door#grip_low/high), backing (limp_back) he slides it shut.
+ hush      Down on one knee right up close: a finger at his lips, a finger at his temple, his hands on the shoulders, he shakes his head; David nods twice.
+ lantern   (the canon) The father's lantern in the yard; Axel to the anvil, forges; David droops; the father in the gap, the lantern up; Axel nods; he goes away.
+ after     Axel lowers the hammer, nods to the boy; David "talks" with the window; Axel forges again (ax_pace 2.4), thoughts once in 13 s.
+ lantern_bellows (III.1, after hush) The father's lantern; Axel to the anvil; David slides off the barrel and runs to the bellows' lever;
+           the camera on the shot of the bellows and the anvil (both in the middle of the frame: CAM.bellows), stands. The father in the gap, the lantern up, on Axel,
+           on the boy. Then "The bellows' rhythm": the game leads ax_blow and pump; the marks — axel#hand_l (the hammer), pump#handle; a miss —
+           the lantern higher and on the boy (st_lamp above 1: the scene itself shines on David — the light glare by st_glare).
+ lantern_go | lantern_linger  The father lowers the lantern and goes away | the lantern higher, the father steps into the gap, looks a long time, goes away.
+ rest      Axel lowers the hammer, looks at the boy at the bellows; a slow nod; David nods.
+ night_anne Night, the fire low, the door half shut; David on the barrel tells his story, Axel by the workbench, his hand at his beard.
+ night_anne_end "Off to bed": a nod; David slides off the barrel and goes off into the night; Axel to the fire.
+ key       (V.2; David — david_teen: years later) Night; Axel makes the key with quick blows (ax_pace 1.4); David at the bellows (pump_work 1.3).
+ stranger  The farmhand in the gap raises his lantern, looks at the anvil, at the boy.
+ stranger_go | caught | strike  He goes away (the rhythm held) | he whistles, two more with lanterns; David shakes his head "don't" |
+           David nods; Axel to the gap, a blow: the farmhand falls on his back into the yard, the lantern goes out; the fire sinks.
 
-КЛЮЧИ: beat, fade, fire, sparks, door, pump; само по себе: ax_work, ax_pace, dv_chat, pump_work, dv_pump; игра: ax_blow
-(момент ax:hit), pump, st_lamp (выше 1 — на Дэвида); куски: st_lx, st_lz; человек с фонарём: st_on, st_who, st_a/st_d, st_drop, st_glow, st_lanx,
-st_more; мысли — th_amp, tho_*, thi_* (элементы thought_out, thought_in: слои, animate гасит их по пути); лошадь — hz_*.
-Точки: pump#handle (мехи — свой элемент pump), anvil#iron, door#grip_low, door#grip_high, morton#window, forge#fire.
+KEYS: beat, fade, fire, sparks, door, pump; by themselves: ax_work, ax_pace, dv_chat, pump_work, dv_pump; the game: ax_blow
+(the moment ax:hit), pump, st_lamp (above 1 — on David); the beats: st_lx, st_lz; the man with the lantern: st_on, st_who, st_a/st_d, st_drop, st_glow, st_lanx,
+st_more; the thoughts — th_amp, tho_*, thi_* (the elements thought_out, thought_in: layers, animate dims them on their way); the horse — hz_*.
+Points: pump#handle (the bellows — an element of their own, pump), anvil#iron, door#grip_low, door#grip_high, morton#window, forge#fire.
 
-## Контракт для проверки
+## Contract for the check
 
 ```json
 {

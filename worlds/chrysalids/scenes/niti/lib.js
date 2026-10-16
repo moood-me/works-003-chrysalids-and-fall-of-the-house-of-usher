@@ -1,4 +1,4 @@
-// «Нити»: the play's chapters, a tree each, standing side by side across the night sky; the sky comes to the chapter
+// “Threads”: the play's chapters, a tree each, standing side by side across the night sky; the sky comes to the chapter
 // `shown` (script.js: camera_x — chapter i at i·SPACING m: the one shown and both its neighbours within the language's
 // window).
 // A tree: the chapter's knot at the top, its choices row by row below it, the threads going down through what was
@@ -119,7 +119,7 @@ const draw = (g, e, c, cxk, alpha) => {
 const tree = (g, e, i) => {
   const st = e.state || {}, chapters = Array.isArray(st.chapters) ? st.chapters : null;
   if (!chapters) {
-    if (i === 0) { g.save(); frame(g, 1); text(g, 'Нити', 0, 0.45, 0.07, '#efe6d2', 0.92, true); g.restore(); }
+    if (i === 0) { g.save(); frame(g, 1); text(g, tr('Threads'), 0, 0.45, 0.07, '#efe6d2', 0.92, true); g.restore(); }
     return;
   }
   const c = chapters[i], next = chapters[i + 1];

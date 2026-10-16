@@ -1,7 +1,7 @@
 // The river's own little film, outside games: the pool in the rain, the cry only their own hear, the far field, the boy's
 // run and swim, the cry hitting hard on the field, Petra brought out, the two hearing each other across the water while the
 // others stare, and home (lib.js SHOWCASE: the beats of lib.js FILM in that order, each cut made ready ahead). During edge
-// and run a game's «Успокоить» moves `cry`: here it dies down and flares as it would.
+// and run a game's “Calm her” moves `cry`: here it dies down and flares as it would.
 const L = scene.lib;
 const beats = scene.kit.beats.showcase(scene, L.FILM, L.SHOWCASE);
 const i = L.SHOWCASE.indexOf('edge');

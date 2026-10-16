@@ -3,7 +3,7 @@
 const L = scene.lib, P = id => scene.person(id);
 const loop = motion => ({ motion, loop: true });
 scene.kit.beats.play(scene, L.FILM);
-// ── the night at the table («Не шелохнуться»): at_table — the boy sits at Mary's place; there, holding the table's edge
+// ── the night at the table (“Not a stir”): at_table — the boy sits at Mary's place; there, holding the table's edge
 // (david_grip) — still, or shivering with how hard he holds still (david_stir); let go — fidgeting, looking about. The
 // father looks up at him from the Book, and back down to it (father_look). ──
 function still() {

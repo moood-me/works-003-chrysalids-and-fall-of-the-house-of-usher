@@ -1,4 +1,4 @@
-// Ферма Стормов (engine 3): what its elements share — the fence's line (from near the eye on the left away to the
+// The Strorm farm (engine 3): what its elements share — the fence's line (from near the eye on the left away to the
 // barn's corner: the wheat stands to the left of it), the land's places, a row of standing wheat.
 // the fence: from [-2.2, 3.5] to [-5.6, 17] (across, distance)
 const FENCE = { a0: -2.2, d0: 3.5, a1: -5.6, d1: 17 };

@@ -68,7 +68,7 @@ for (let k = 0; k < 3; k++) {
     e.light(x, y, L * 0.6, '#f2e2e6', 0.1, 'f' + k);
   });
 }
-// David's eyes on the sky (the game's «Удержать сон»: `gaze`): a soft light where he looks — craft.animate.js
+// David's eyes on the sky (the game's “Hold the dream”: `gaze`): a soft light where he looks — craft.animate.js
 e.layer('gaze', { box: [-0.1, -0.1, 0.1, 0.1] }, q => {
   const rg = q.createRadialGradient(0, 0, 0, 0, 0, 0.07);
   rg.addColorStop(0, 'rgba(246,236,214,0.35)'); rg.addColorStop(1, 'rgba(246,236,214,0)');

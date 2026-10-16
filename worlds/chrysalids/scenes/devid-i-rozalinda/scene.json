@@ -1,7 +1,7 @@
 {
   "engine": 3,
-  "title": "Дэвид и Розалинда",
-  "caption": "При всех мы были чужими.",
+  "title": "David and Rosalind",
+  "caption": "In front of everyone we were strangers.",
   "horizon": 0.62,
   "camera": {
     "mode": "picture"
@@ -49,12 +49,12 @@
     {
       "at": 4,
       "for": 9,
-      "text": "Мы не смотрели друг на друга."
+      "text": "We did not look at each other."
     },
     {
       "at": 15,
       "for": 11,
-      "text": "Наедине — только в мыслях — мы были вместе."
+      "text": "Alone — only in our thoughts — we were together."
     }
   ],
   "state": {
@@ -80,7 +80,7 @@
         1
       ],
       "smooth": true,
-      "means": "вечереет: небо темнеет, солнце садится, окна церкви и дома загораются"
+      "means": "evening comes: the sky darkens, the sun sets, the windows of the church and the house light up"
     },
     "crowd": {
       "range": [
@@ -88,7 +88,7 @@
         1
       ],
       "smooth": true,
-      "means": "люди на площади (0 — расходятся к краям, Розалинду уводят родители, вторую лошадь уводят)"
+      "means": "people on the square (0 — they go off to the edges, Rosalind’s parents take her away, the second horse is led off)"
     },
     "glance": {
       "range": [
@@ -96,7 +96,7 @@
         1
       ],
       "smooth": true,
-      "means": "Дэвид и Розалинда поворачивают головы друг к другу (0 — он смотрит на церковь, она мимо); нить чуть ярче"
+      "means": "David and Rosalind turn their heads to each other (0 — he looks at the church, she past him); the thread a little brighter"
     },
     "thread": {
       "range": [
@@ -104,7 +104,7 @@
         1
       ],
       "smooth": true,
-      "means": "нить мысли между ними: 0 нет — 1 ясная тёплая дуга"
+      "means": "the thread of thought between them: 0 none — 1 a clear warm arc"
     },
     "someone_watching": {
       "range": [
@@ -112,44 +112,44 @@
         1
       ],
       "smooth": true,
-      "means": "старуха у колодца поворачивает голову к Дэвиду"
+      "means": "the old woman by the well turns her head to David"
     },
     "h1_a": {
       "type": "number",
-      "means": "лошадь 1: где"
+      "means": "horse 1: where"
     },
     "h1_d": {
       "type": "number",
-      "means": "лошадь 1: вглубь"
+      "means": "horse 1: in depth"
     },
     "h1_face": {
       "range": [
         0,
         360
       ],
-      "means": "лошадь 1: куда"
+      "means": "horse 1: which way"
     },
     "h2_a": {
       "type": "number",
-      "means": "лошадь 2: где"
+      "means": "horse 2: where"
     },
     "h2_d": {
       "type": "number",
-      "means": "лошадь 2: вглубь"
+      "means": "horse 2: in depth"
     },
     "h2_face": {
       "range": [
         0,
         360
       ],
-      "means": "лошадь 2: куда"
+      "means": "horse 2: which way"
     }
   },
   "objects": [
     {
       "id": "sky",
       "sky": true,
-      "name": "Вечернее небо",
+      "name": "Evening sky",
       "redraw": {
         "dusk": 0.1
       }
@@ -157,7 +157,7 @@
     {
       "x": 0.5,
       "id": "fields",
-      "name": "Поля за площадью",
+      "name": "Fields beyond the square",
       "depth": 700,
       "plane": true,
       "width": 4000,
@@ -173,7 +173,7 @@
         4000,
         40
       ],
-      "name": "Дальние лесополосы",
+      "name": "Far shelterbelts",
       "height": 30,
       "distance": 900
     },
@@ -185,14 +185,14 @@
         110,
         4
       ],
-      "name": "Вязы и тополя за площадью",
+      "name": "Elms and poplars beyond the square",
       "across": 0,
       "height": 19,
       "distance": 80
     },
     {
       "id": "square",
-      "name": "Пыльная площадь",
+      "name": "Dusty square",
       "depth": 100,
       "plane": true,
       "width": 300,
@@ -208,7 +208,7 @@
         9,
         1
       ],
-      "name": "Дом у площади",
+      "name": "House on the square",
       "across": -30,
       "height": 10,
       "distance": 52,
@@ -222,7 +222,7 @@
         7,
         1
       ],
-      "name": "Конюшня",
+      "name": "Stable",
       "across": 40,
       "height": 8,
       "distance": 46,
@@ -236,7 +236,7 @@
         8,
         2
       ],
-      "name": "Молитвенный дом",
+      "name": "Meeting-house",
       "across": -8,
       "height": 15.5,
       "distance": 44,
@@ -244,7 +244,7 @@
     },
     {
       "id": "woman_c1",
-      "name": "Прихожанка",
+      "name": "Churchgoer",
       "person": {
         "cast": "cast",
         "who": "woman_c",
@@ -261,7 +261,7 @@
     },
     {
       "id": "old_man1",
-      "name": "Старик",
+      "name": "Old man",
       "person": {
         "cast": "cast",
         "who": "old_man",
@@ -284,7 +284,7 @@
     },
     {
       "id": "boy1",
-      "name": "Мальчик",
+      "name": "Boy",
       "person": {
         "cast": "cast",
         "who": "boy",
@@ -301,7 +301,7 @@
     },
     {
       "id": "girl1",
-      "name": "Девочка",
+      "name": "Girl",
       "person": {
         "cast": "cast",
         "who": "girl",
@@ -318,7 +318,7 @@
     },
     {
       "id": "horse1",
-      "name": "Лошадь у коновязи",
+      "name": "Horse at the hitching rail",
       "across": 20,
       "distance": 30,
       "place": {
@@ -335,7 +335,7 @@
     },
     {
       "id": "horse2",
-      "name": "Вторая лошадь",
+      "name": "Second horse",
       "across": 22.5,
       "distance": 30.5,
       "place": {
@@ -352,7 +352,7 @@
     },
     {
       "id": "rail",
-      "name": "Коновязь",
+      "name": "Hitching rail",
       "across": 21.2,
       "distance": 31.2,
       "height": 1.2,
@@ -371,14 +371,14 @@
         1.3,
         0.8
       ],
-      "name": "Колодец",
+      "name": "Well",
       "across": 0.6,
       "height": 2.8,
       "distance": 14
     },
     {
       "id": "old_woman",
-      "name": "Старуха с палкой",
+      "name": "Old woman with a stick",
       "person": {
         "cast": "cast",
         "who": "old_woman",
@@ -400,7 +400,7 @@
     },
     {
       "id": "man_a",
-      "name": "Мужчина у колодца",
+      "name": "Man by the well",
       "person": {
         "cast": "cast",
         "who": "man_a",
@@ -417,7 +417,7 @@
     },
     {
       "id": "man_c",
-      "name": "Мужчина у колодца",
+      "name": "Man by the well",
       "person": {
         "cast": "cast",
         "who": "man_c",
@@ -434,7 +434,7 @@
     },
     {
       "id": "r_father",
-      "name": "Отец Розалинды",
+      "name": "Rosalind’s father",
       "person": {
         "cast": "cast",
         "who": "man_b",
@@ -451,7 +451,7 @@
     },
     {
       "id": "r_mother",
-      "name": "Мать Розалинды",
+      "name": "Rosalind’s mother",
       "person": {
         "cast": "cast",
         "who": "woman_a",
@@ -468,7 +468,7 @@
     },
     {
       "id": "rosalind",
-      "name": "Розалинда",
+      "name": "Rosalind",
       "person": {
         "cast": "cast",
         "who": "rosalind",
@@ -485,7 +485,7 @@
     },
     {
       "id": "cart",
-      "name": "Телега",
+      "name": "Cart",
       "across": -4.0,
       "distance": 7.6,
       "height": 1.3,
@@ -499,7 +499,7 @@
     },
     {
       "id": "david",
-      "name": "Дэвид",
+      "name": "David",
       "person": {
         "cast": "cast",
         "who": "david",
@@ -516,7 +516,7 @@
     },
     {
       "id": "thread",
-      "name": "Нить мысли",
+      "name": "Thread of thought",
       "across": 0,
       "distance": 6.5,
       "height": 4,
@@ -530,7 +530,7 @@
     },
     {
       "id": "motes",
-      "name": "Пылинки в лучах",
+      "name": "Dust in the sunbeams",
       "across": 0,
       "distance": 9,
       "elevation": 1.5,
@@ -555,7 +555,7 @@
         12,
         0.5
       ],
-      "name": "Сухая трава у ног",
+      "name": "Dry grass underfoot",
       "height": 1
     }
   ],

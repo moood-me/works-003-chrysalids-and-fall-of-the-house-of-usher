@@ -3,7 +3,7 @@
 // a small extra one by the little toe (layers: closeup_foot.animate.js curls them as `cu_wig` says); a red scrape where
 // the stones held it; the hem of her dress (a layer drawn along the foot over it as `cu_hide` — her own hand — or `hem`
 // — his — goes 0 → 1); her fingers on it while she pulls; his hand on its edge while `cu_cover` (he is to pull it: the
-// game's «Подол»); his hands with the shoe, drawing back as `cu_pull` goes 0 → 1. (The way his hand pulls is the
+// game's “The hem”); his hands with the shoe, drawing back as `cu_pull` goes 0 → 1. (The way his hand pulls is the
 // close-up's points closeup#hem → closeup#foot: closeup.js.)
 const { cuFrame, cuBox, cuAt, FOOT_CU } = e.lib;
 const { AX, AY, ANG, L, HX, COVER } = FOOT_CU;

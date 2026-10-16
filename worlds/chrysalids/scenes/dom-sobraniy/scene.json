@@ -1,7 +1,7 @@
 {
   "engine": 3,
-  "title": "Дом собраний",
-  "caption": "Судили ночью, в доме собраний, при одной лампе.",
+  "title": "The meeting-house",
+  "caption": "They tried me at night, in the meeting-house, by one lamp.",
   "horizon": 0.4,
   "camera": {
     "mode": "picture"
@@ -193,7 +193,7 @@
   ],
   "captions": [
     {
-      "text": "Над столом старейшин висела доска: «Благословенна норма».",
+      "text": "Over the elders’ table hung a board: BLESSED IS THE NORM.",
       "at": 8,
       "for": 7
     }
@@ -313,7 +313,7 @@
         1
       ],
       "smooth": true,
-      "means": "лампа на столе: 1 — горит, 0 — задута"
+      "means": "the lamp on the table: 1 — alight, 0 — blown out"
     },
     "spill": {
       "range": [
@@ -321,7 +321,7 @@
         1
       ],
       "smooth": true,
-      "means": "лампу смахнули: она падает за стол, масло горит на полу перед помостом (свет снизу); все смотрят на огонь"
+      "means": "the lamp knocked over: it falls behind the table, the oil burns on the floor before the dais (light from below); everyone looks at the fire"
     },
     "men": {
       "range": [
@@ -329,7 +329,7 @@
         6
       ],
       "smooth": true,
-      "means": "сколько мужчин общины в зале: растёт — следующий входит в дверь и идёт на своё место"
+      "means": "how many men of the community are in the hall: as it grows, the next one comes in at the door and goes to his place"
     },
     "rush": {
       "range": [
@@ -337,11 +337,11 @@
         1
       ],
       "smooth": true,
-      "means": "все, кроме Дэвида, уходят в дверь: отец первым, инспектор, мужчины по очереди"
+      "means": "everyone but David goes out at the door: the father first, the inspector, the men one after another"
     },
     "inspector_present": {
       "type": "boolean",
-      "means": "инспектор в зале"
+      "means": "the inspector in the hall"
     },
     "inspector_up": {
       "range": [
@@ -349,11 +349,11 @@
         1
       ],
       "smooth": true,
-      "means": "инспектор встаёт, опершись о стол, и стоит, наклонившись над ним"
+      "means": "the inspector stands up, leaning on the table, and stays bent over it"
     },
     "father_present": {
       "type": "boolean",
-      "means": "отец в зале"
+      "means": "the father in the hall"
     },
     "father_away": {
       "range": [
@@ -361,7 +361,7 @@
         1
       ],
       "smooth": true,
-      "means": "отец отворачивается от сына, опустив голову (father_turn — ключ самого человека: куда он стоит лицом)"
+      "means": "the father turns away from his son, his head down (father_turn — the person’s own key: which way he faces)"
     },
     "david_present": {
       "range": [
@@ -369,7 +369,7 @@
         1
       ],
       "smooth": true,
-      "means": "Дэвид в зале (0 — убежал влево, из зала)"
+      "means": "David in the hall (0 — he has run off to the left, out of the hall)"
     },
     "fire_outside": {
       "range": [
@@ -377,7 +377,7 @@
         1
       ],
       "smooth": true,
-      "means": "за окнами и в двери горит сарай; все смотрят на окна"
+      "means": "the barn is on fire beyond the windows and the door; everyone looks at the windows"
     },
     "door": {
       "range": [
@@ -385,7 +385,7 @@
         1
       ],
       "smooth": true,
-      "means": "дверь открывается внутрь"
+      "means": "the door opens inwards"
     },
     "lamp_smoke": {
       "range": [
@@ -393,32 +393,32 @@
         1
       ],
       "smooth": true,
-      "means": "тонкая нить дыма над задутой лампой (ставит сцена сама, когда lamp гаснет)"
+      "means": "a thin thread of smoke over the blown-out lamp (the scene sets it itself when lamp goes out)"
     }
   },
   "directions": [
     {
       "key": "fire_outside",
-      "name": "За окнами горит сарай"
+      "name": "The barn burns beyond the windows"
     },
     {
       "key": "spill",
-      "name": "Лампа падает, масло горит на полу"
+      "name": "The lamp falls, the oil burns on the floor"
     },
     {
       "key": "rush",
-      "name": "Все бегут к двери"
+      "name": "Everyone runs to the door"
     }
   ],
   "objects": [
     {
       "id": "sky",
-      "name": "Ночь за окнами",
+      "name": "Night beyond the windows",
       "sky": true
     },
     {
       "id": "yard",
-      "name": "Двор и сарай",
+      "name": "Yard and barn",
       "across": 0,
       "distance": 30,
       "height": 8,
@@ -431,7 +431,7 @@
     },
     {
       "id": "wall",
-      "name": "Задняя стена с окнами и дверью",
+      "name": "Back wall with windows and a door",
       "across": 0,
       "distance": 7.5,
       "height": 4.3,
@@ -446,7 +446,7 @@
     },
     {
       "id": "ceiling",
-      "name": "Потолок с балками",
+      "name": "Beamed ceiling",
       "plane": true,
       "across": 0,
       "distance": 5,
@@ -456,7 +456,7 @@
     },
     {
       "id": "floor",
-      "name": "Пол",
+      "name": "Floor",
       "plane": true,
       "across": 0,
       "distance": 5,
@@ -465,7 +465,7 @@
     },
     {
       "id": "dais",
-      "name": "Помост старейшин",
+      "name": "Elders’ dais",
       "plane": true,
       "across": -0.4,
       "distance": 6.2,
@@ -475,7 +475,7 @@
     },
     {
       "id": "tabletop",
-      "name": "Стол старейшин: книга и бумаги",
+      "name": "Elders’ table: a book and papers",
       "plane": true,
       "across": -0.3,
       "distance": 5.6,
@@ -485,7 +485,7 @@
     },
     {
       "id": "chair",
-      "name": "Кресло старейшин",
+      "name": "Elders’ chair",
       "across": 0.1,
       "distance": 6.48,
       "height": 1.62,
@@ -499,7 +499,7 @@
     },
     {
       "id": "inspector",
-      "name": "Инспектор",
+      "name": "The inspector",
       "person": {
         "cast": "cast",
         "who": "inspector",
@@ -521,7 +521,7 @@
     },
     {
       "id": "lamp",
-      "name": "Лампа",
+      "name": "Lamp",
       "across": -0.75,
       "distance": 5.3,
       "elevation": 0.78,
@@ -535,7 +535,7 @@
     },
     {
       "id": "table",
-      "name": "Стол старейшин",
+      "name": "Elders’ table",
       "across": -0.3,
       "distance": 5.2,
       "elevation": 0,
@@ -551,7 +551,7 @@
     },
     {
       "id": "dais_front",
-      "name": "Край помоста",
+      "name": "Edge of the dais",
       "across": -0.4,
       "distance": 5.0,
       "height": 0.37,
@@ -566,7 +566,7 @@
     },
     {
       "id": "bench_left",
-      "name": "Скамья у левой стены",
+      "name": "Bench by the left wall",
       "across": -3.55,
       "distance": 5.45,
       "facing": 90,
@@ -581,7 +581,7 @@
     },
     {
       "id": "bench_right",
-      "name": "Скамья у правой стены",
+      "name": "Bench by the right wall",
       "across": 2.95,
       "distance": 5.2,
       "facing": 270,
@@ -596,7 +596,7 @@
     },
     {
       "id": "man_0",
-      "name": "Мужчина общины",
+      "name": "Man of the community",
       "person": {
         "cast": "cast",
         "who": "villager",
@@ -623,7 +623,7 @@
     },
     {
       "id": "man_1",
-      "name": "Мужчина общины",
+      "name": "Man of the community",
       "person": {
         "cast": "cast",
         "who": "villager",
@@ -648,7 +648,7 @@
     },
     {
       "id": "man_2",
-      "name": "Мужчина общины",
+      "name": "Man of the community",
       "person": {
         "cast": "cast",
         "who": "villager",
@@ -674,7 +674,7 @@
     },
     {
       "id": "man_3",
-      "name": "Мужчина общины",
+      "name": "Man of the community",
       "person": {
         "cast": "cast",
         "who": "villager",
@@ -702,7 +702,7 @@
     },
     {
       "id": "man_4",
-      "name": "Мужчина общины",
+      "name": "Man of the community",
       "person": {
         "cast": "cast",
         "who": "villager",
@@ -734,7 +734,7 @@
     },
     {
       "id": "man_5",
-      "name": "Мужчина общины",
+      "name": "Man of the community",
       "person": {
         "cast": "cast",
         "who": "villager",
@@ -761,7 +761,7 @@
     },
     {
       "id": "father",
-      "name": "Отец, Джозеф Сторм",
+      "name": "The father, Joseph Strorm",
       "person": {
         "cast": "cast",
         "who": "joseph",
@@ -778,7 +778,7 @@
     },
     {
       "id": "david",
-      "name": "Дэвид",
+      "name": "David",
       "person": {
         "cast": "cast",
         "who": "david_teen",
@@ -795,7 +795,7 @@
     },
     {
       "id": "spill",
-      "name": "Разбитая лампа на полу",
+      "name": "Broken lamp on the floor",
       "across": -0.6,
       "distance": 4.7,
       "height": 0.2,
@@ -808,7 +808,7 @@
     },
     {
       "id": "spill_fire",
-      "name": "Горящее масло",
+      "name": "Burning oil",
       "particles": {
         "kind": "fire",
         "at": [
@@ -831,7 +831,7 @@
     },
     {
       "id": "spill_smoke",
-      "name": "Дым от масла",
+      "name": "Smoke from the oil",
       "particles": {
         "kind": "smoke",
         "at": [
@@ -851,7 +851,7 @@
     },
     {
       "id": "lamp_smoke",
-      "name": "Дымок задутой лампы",
+      "name": "Smoke of the blown-out lamp",
       "particles": {
         "kind": "smoke",
         "at": "lamp#flame",
@@ -875,7 +875,7 @@
     },
     {
       "id": "barn_fire",
-      "name": "Горит сарай",
+      "name": "The barn on fire",
       "particles": {
         "kind": "fire",
         "at": [
@@ -898,7 +898,7 @@
     },
     {
       "id": "barn_embers",
-      "name": "Искры над сараем",
+      "name": "Sparks over the barn",
       "particles": {
         "kind": "embers",
         "at": [
@@ -917,7 +917,7 @@
     },
     {
       "id": "barn_smoke",
-      "name": "Дым над сараем",
+      "name": "Smoke over the barn",
       "particles": {
         "kind": "smoke",
         "at": [
@@ -941,7 +941,7 @@
     },
     {
       "id": "posts",
-      "name": "Столбы",
+      "name": "Posts",
       "across": 0,
       "distance": 3.0,
       "height": 4.3,

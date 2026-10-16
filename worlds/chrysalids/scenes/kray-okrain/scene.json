@@ -1,7 +1,7 @@
 {
   "engine": 3,
-  "title": "Край Окраин",
-  "caption": "Дальше начинается то, о чём не говорят.",
+  "title": "The edge of the Fringes",
+  "caption": "Beyond here begins what no one speaks of.",
   "horizon": 0.55,
   "camera": {
     "mode": "picture"
@@ -98,7 +98,7 @@
         1
       ],
       "smooth": true,
-      "means": "как светятся бледные растения и споры Окраин"
+      "means": "how the pale plants and spores of the Fringes glow"
     },
     "mist": {
       "range": [
@@ -106,7 +106,7 @@
         1
       ],
       "smooth": true,
-      "means": "туман над полем и Окраинами"
+      "means": "fog over the field and the Fringes"
     },
     "figure_on_path": {
       "range": [
@@ -114,7 +114,7 @@
         1
       ],
       "smooth": true,
-      "means": "беглецы ушли по тропе в лес (1: идут дальше за изгородь, в лес)"
+      "means": "the fugitives have gone along the path into the forest (1: they go on past the fence, into the forest)"
     },
     "lantern_in_field": {
       "range": [
@@ -122,7 +122,7 @@
         1
       ],
       "smooth": true,
-      "means": "отец с фонарём в поле; его луч ходит по полю"
+      "means": "the father with a lantern in the field; its beam goes over the field"
     },
     "lantern_turn": {
       "range": [
@@ -130,11 +130,11 @@
         360
       ],
       "smooth": true,
-      "means": "куда светит фонарь отца, градусы (0 — от нас, 90 — вправо): луч — пятно света в 5.5 м от него; ходит сам"
+      "means": "where the father’s lantern shines, degrees (0 — away from us, 90 — right): the beam — a spot of light 5.5 m from him; it moves by itself"
     },
     "walkers": {
       "type": "number",
-      "means": "игра («По тени»): 1 — беглецы идут по тропе (Дэвид первым), 0 — стоят"
+      "means": "the game (“By the shadows”): 1 — the fugitives walk along the path (David first), 0 — they stand"
     },
     "walk_u": {
       "range": [
@@ -142,11 +142,11 @@
         1
       ],
       "smooth": false,
-      "means": "где Дэвид на тропе: 0 — начало, 1 — лес за изгородью (сцена ставит сама, каждый кадр пути и раз в 0.1 с)"
+      "means": "where David is on the path: 0 — the start, 1 — the forest beyond the fence (the scene sets it itself, every frame of the way and once in 0.1 s)"
     },
     "walk_shade": {
       "type": "number",
-      "means": "1 — беглецы в тени дерева (сцена ставит сама)"
+      "means": "1 — the fugitives are in a tree’s shadow (the scene sets it itself)"
     },
     "walk_lit": {
       "range": [
@@ -154,31 +154,31 @@
         1
       ],
       "smooth": false,
-      "means": "сколько луча фонаря на них (сцена ставит сама)"
+      "means": "how much of the lantern’s beam is on them (the scene sets it itself)"
     },
     "beam_a": {
       "type": "number",
-      "means": "где пятно луча (сцена ставит сама)"
+      "means": "where the beam’s spot is (the scene sets it itself)"
     },
     "beam_d": {
       "type": "number",
-      "means": "где пятно луча, вглубь"
+      "means": "where the beam’s spot is, in depth"
     }
   },
   "objects": [
     {
       "id": "sky",
       "sky": true,
-      "name": "Ночное небо"
+      "name": "Night sky"
     },
     {
       "id": "clouds",
       "sky": true,
-      "name": "Облака"
+      "name": "Clouds"
     },
     {
       "id": "badlands",
-      "name": "Холмы Пустошей",
+      "name": "Hills of the Badlands",
       "x": 0.5,
       "distance": 700,
       "height": 40,
@@ -191,7 +191,7 @@
     },
     {
       "id": "fringe_ground",
-      "name": "Земля Окраин",
+      "name": "Land of the Fringes",
       "plane": true,
       "across": 0,
       "distance": 50,
@@ -200,7 +200,7 @@
     },
     {
       "id": "field",
-      "name": "Последнее поле Уокнука",
+      "name": "The last field of Waknuk",
       "plane": true,
       "across": 0,
       "distance": 6,
@@ -209,7 +209,7 @@
     },
     {
       "id": "path",
-      "name": "Тропа через поле к проходу",
+      "name": "Path across the field to the gap",
       "plane": true,
       "across": 0,
       "distance": 11,
@@ -219,7 +219,7 @@
     },
     {
       "id": "forest_back",
-      "name": "Дальний лес Окраин",
+      "name": "Far forest of the Fringes",
       "across": 0,
       "distance": 80,
       "height": 18,
@@ -232,7 +232,7 @@
     },
     {
       "id": "mist_far",
-      "name": "Туман над Окраинами",
+      "name": "Fog over the Fringes",
       "across": 0,
       "distance": 62,
       "height": 10,
@@ -245,7 +245,7 @@
     },
     {
       "id": "forest_front",
-      "name": "Неправильный лес",
+      "name": "Deviant forest",
       "across": 0,
       "distance": 44,
       "height": 14,
@@ -258,7 +258,7 @@
     },
     {
       "id": "hero_trees",
-      "name": "Стражи прохода",
+      "name": "Guardians of the gap",
       "across": -13,
       "distance": 16,
       "height": 12,
@@ -275,7 +275,7 @@
     },
     {
       "id": "pale_plants",
-      "name": "Бледные растения",
+      "name": "Pale plants",
       "across": 0,
       "distance": 17,
       "height": 2,
@@ -288,7 +288,7 @@
     },
     {
       "id": "spores",
-      "name": "Споры",
+      "name": "Spores",
       "across": 2,
       "distance": 17,
       "elevation": 1.2,
@@ -310,7 +310,7 @@
     },
     {
       "id": "grass_fringe",
-      "name": "Неровные травы",
+      "name": "Uneven grasses",
       "across": 0,
       "distance": 13.2,
       "height": 1.5,
@@ -323,7 +323,7 @@
     },
     {
       "id": "fence",
-      "name": "Межевая изгородь",
+      "name": "Boundary fence",
       "across": 0,
       "distance": 12,
       "height": 1.6,
@@ -340,7 +340,7 @@
     },
     {
       "id": "mist_near",
-      "name": "Туман над полем",
+      "name": "Fog over the field",
       "across": 0,
       "distance": 9,
       "height": 2,
@@ -353,7 +353,7 @@
     },
     {
       "id": "joseph",
-      "name": "Отец с фонарём",
+      "name": "The father with a lantern",
       "person": {
         "cast": "cast",
         "who": "joseph",
@@ -372,7 +372,7 @@
     },
     {
       "id": "david",
-      "name": "Дэвид",
+      "name": "David",
       "person": {
         "cast": "cast",
         "who": "david_teen",
@@ -391,7 +391,7 @@
     },
     {
       "id": "rosalind",
-      "name": "Розалинда",
+      "name": "Rosalind",
       "person": {
         "cast": "cast",
         "who": "rosalind",
@@ -410,7 +410,7 @@
     },
     {
       "id": "crops",
-      "name": "Ровные колосья",
+      "name": "Even ears of wheat",
       "across": 0,
       "distance": 3,
       "height": 0.6,

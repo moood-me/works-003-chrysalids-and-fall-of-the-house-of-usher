@@ -1,0 +1,6 @@
+{"strings": [
+  {"text":"Blessed is the Norm","translation":"Благословенна норма","where":"scenes/dom-sobraniy/elements/wall.js"},
+  {"text":"The meeting-house","translation":"Дом собраний","where":"scenes/dom-sobraniy/scene.json title"},
+  {"text":"They tried me at night, in the meeting-house, by one lamp.","translation":"Судили ночью, в доме собраний, при одной лампе.","where":"scenes/dom-sobraniy/scene.json caption"},
+  {"text":"Over the elders’ table hung a board: BLESSED IS THE NORM.","translation":"Над столом старейшин висела доска: «Благословенна норма».","where":"scenes/dom-sobraniy/scene.json captions[0] text"}
+]}

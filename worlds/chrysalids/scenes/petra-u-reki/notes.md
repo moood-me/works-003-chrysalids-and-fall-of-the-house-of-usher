@@ -1,43 +1,43 @@
-ПЕТРА У РЕКИ (Хризалиды v3; IV.1–2), движок 3. Переписана с «кино-игры» (движок 1, куклы модуля chrysalids): люди —
-каст мира (david, petra, rosalind, работники r0–r2 с граблями, поздние c0–c3). Ливень — частицы (светлее и реже, чем в
-«кино»), рябь и течение на реке — шейдер (river.wgsl), река — зеркало с рябью, чуть прозрачная: тело под водой темнее.
-Свет — пасмурный день (ambient, мягкий свет сверху). Картины — один раз, в дневных цветах; трава, камыш, ива, ольхи —
-слои с ветром. Земля (relief.js, lib.ground): ближний берег вдоль своей линии в 9 м (верх слева, скат в омут), дно реки,
-дальний берег к полю (20 м). В воде: Петра и Дэвид держатся на плаву — script.js ставит высоту их ступней над дном (pt_e,
-dv_e: место elevation), так что вода у Петры до подбородка, у Дэвида до груди; pt_sink тянет Петру под воду. Круги у тех,
-кто в воде, — плоскости wake_pt/wake_dv. Что слышат свои — кольца-слои: cry (у головы Петры, по cry), bond (у Дэвида,
-тёплые, по bond), heard (у Розалинды, по heard и bond).
+PETRA AT THE RIVER (The Chrysalids v3; IV.1–2), engine 3. Rewritten from the "film game" (engine 1, the module chrysalids' puppets): the people —
+the world's cast (david, petra, rosalind, the farmhands r0–r2 with rakes, the latecomers c0–c3). The downpour — particles (lighter and sparser than in
+the "film"), the ripples and the current on the river — a shader (river.wgsl), the river — a mirror with ripples, a little transparent: a body under the water darker.
+The light — an overcast day (ambient, a soft light from above). The pictures — once, in day colours; the grass, the reeds, the willow, the alders —
+layers in the wind. The ground (relief.js, lib.ground): the near bank along its line at 9 m (the top on the left, the slope into the pool), the river's bed,
+the far bank up to the field (20 m). In the water: Petra and David keep afloat — script.js sets the height of their feet above the bed (pt_e,
+dv_e: the place's elevation), so the water is up to Petra's chin, to David's chest; pt_sink pulls Petra under. The rings round those
+in the water — the planes wake_pt/wake_dv. What our own hear — ring layers: cry (by Petra's head, by cry), bond (by David,
+warm, by bond), heard (by Rosalind, by heard and bond).
 
-КУСКИ (lib.FILM; `from` — всё состояние):
- pool        Омут: общий план, медленный наезд на Петру; ветка гнётся; её тянет под воду до подбородка, она выбирается; вдох —
-             и беззвучный крик, голова запрокинута (cry 1).
- struck      Дальнее поле снизу: Розалинда замирает среди работников (still), поворачивается к реке; никто больше не слышит.
- edge        Ближний берег: Дэвид вбегает по верху и встаёт на краю — видит её; смотрит на воду.
- run         Вниз по глине, в воду; ветка ломается — Петру сносит течением, под воду и вверх; он бросается и плывёт за ней,
-             хватает: она цепляется за его шею. (edge + run ≈ 22 с: «Успокоить» — игра ведёт cry, куски его не трогают,
-             камера едет; ведущий знак — на petra, потом на david.)
- field_quiet Крик стих: Розалинда роняет грабли и бежит к воде одна; работники не поднимают голов.
- field_loud  Крик до конца: руки к голове, грабли падают; работники бросают грести и смотрят, каждый в свой миг; она бежит к
-             воде, один из них спускается за ней.
- out         Он выводит Петру за руку на берег; она садится и только теперь плачет; он на колене, рука на её плече; за водой
-             Розалинда входит в воду.
- bank_quiet  Общий план через воду: они с Розалиндой слышат друг друга (тёплые кольца); только дождь.
- bank_loud   То же — и поздно по верху дальнего берега приходят остальные, по одному, и стоят смотрят.
- home        Отводят глаза; Розалинда уходит из воды; Дэвид поднимает Петру на руки (scoop → carry) и несёт вверх по берегу;
-             затемнение. (Выбор «Нести Петру домой» — на david, до home.)
+BEATS (lib.FILM; `from` — the whole state):
+ pool        The pool: a wide shot, a slow push in on Petra; the branch bends; she is pulled under up to her chin, she struggles up; a breath —
+             and a soundless cry, her head thrown back (cry 1).
+ struck      The far field from below: Rosalind freezes among the farmhands (still), turns to the river; no one else hears.
+ edge        The near bank: David runs in along the top and stops at the edge — sees her; looks at the water.
+ run         Down the clay, into the water; the branch breaks — Petra is swept off by the current, under and up; he throws himself in and swims after her,
+             catches her: she clings to his neck. (edge + run ≈ 22 s: "Calm her" — the game leads cry, the beats do not touch it,
+             the camera moves; the leading sign — on petra, then on david.)
+ field_quiet The cry quieted: Rosalind drops her rake and runs to the water alone; the farmhands do not raise their heads.
+ field_loud  The cry to the end: her hands to her head, the rake falls; the farmhands stop raking and look, each at his own moment; she runs to
+             the water, one of them goes down after her.
+ out         He leads Petra by the hand out onto the bank; she sits down and only now cries; he on one knee, his hand on her shoulder; beyond the water
+             Rosalind wades in.
+ bank_quiet  A wide shot across the water: he and Rosalind hear each other (warm rings); only the rain.
+ bank_loud   The same — and late, along the top of the far bank, the others come, one by one, and stand and stare.
+ home        They look away; Rosalind comes out of the water; David lifts Petra in his arms (scoop → carry) and carries her up the bank;
+             the fade. (The choice "Carry Petra home" — on david, before home.)
 
-КЛЮЧИ: beat, fade, rain, danger, branch, cry (игра), heard, bond, after, pt_sink, splash, ro_drop; сцена ставит сама: pt_e,
-dv_e. Люди — ключи движка (<id>_a, _d, _do, _turn, _look, _reach, _with, _here, _on…). Убраны ключи кукол «кино» (pt_x,
-pt_held, dv_swim, dv_scoop, ro_hands, stare, follow, crowd…): это теперь действия людей в кусках. Точки: petra, david,
-rosalind, willow#tip (за что держится Петра).
-Движения: swim (слабое — Kimodo не умеет плавать: стоя гребёт руками; тело под водой), cling, scoop, carry, rake (новое).
+KEYS: beat, fade, rain, danger, branch, cry (the game), heard, bond, after, pt_sink, splash, ro_drop; the scene sets by itself: pt_e,
+dv_e. The people — the engine's keys (<id>_a, _d, _do, _turn, _look, _reach, _with, _here, _on…). The "film" puppets' keys are gone (pt_x,
+pt_held, dv_swim, dv_scoop, ro_hands, stare, follow, crowd…): these are now the people's actions in the beats. Points: petra, david,
+rosalind, willow#tip (what Petra holds on to).
+Motions: swim (a weak one — Kimodo cannot swim: standing, it strokes with its arms; the body under the water), cling, scoop, carry, rake (new).
 
-СКЛЕЙКИ: struck, edge, field_quiet, field_loud, bank_quiet, bank_loud начинаются склейкой (after пуст, камера — в их
-from): их начало модуль beats готовит заранее (следующий в таблице; field_loud и field_quiet открываются одним и тем же —
-готовое годится обоим). field_* кончаются склейкой обратно к омуту, сказанной заранее, и out идёт с неё (after) — дальний
-берег остаётся, каким его оставил field_*. edge и field_* cry не пишут (его ведёт «Успокоить»).
+CUTS: struck, edge, field_quiet, field_loud, bank_quiet, bank_loud begin with a cut (after empty, the camera — in their
+from): the module beats makes their beginning ready ahead (the next in the table; field_loud and field_quiet open with the same —
+the ready one serves both). field_* end with a cut back to the pool, said ahead, and out goes on from it (after) — the far
+bank stays as field_* left it. edge and field_* do not write cry ("Calm her" leads it).
 
-## Контракт для проверки
+## Contract for the check
 
 ```json
 {

@@ -1,4 +1,4 @@
-// Дэвид и Розалинда — its mechanics: `glance` — David's eyes going to Rosalind (0 away — on the church, 1 on her), hers
+// David and Rosalind — its mechanics: `glance` — David's eyes going to Rosalind (0 away — on the church, 1 on her), hers
 // to him with them; `someone_watching` — the old woman at the well turns her head from the men to David; `crowd` → 0 —
 // the townsfolk walk off to the edges, Rosalind's parents lead her away, the second horse is led off.
 const s = scene, L = s.lib, P = id => s.person(id);

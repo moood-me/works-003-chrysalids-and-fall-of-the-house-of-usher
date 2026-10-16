@@ -1,5 +1,5 @@
 // as `waking` grows: the dark closes in, the posts slide in from the sides, the beam comes down, the sill up, the cross
-// of the frame shows last (from «кино»'s waking, its numbers in the card's metres here)
+// of the frame shows last (from the “film”'s waking, its numbers in the card's metres here)
 const K = 1.5 / 4.26, w = e.anim.clamp(e.state.waking ?? 0, 0, 1), ww = w * w * (3 - 2 * w);
 const wob = 0.04 * Math.sin(e.t * 0.2);
 e.layer('vig').alpha = ww;

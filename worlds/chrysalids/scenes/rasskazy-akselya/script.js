@@ -1,4 +1,4 @@
-// Рассказы Акселя — its mechanics: Axel tells (`story` above 0.2): he talks, his hand going toward the smoke where the
+// Axel’s stories — its mechanics: Axel tells (`story` above 0.2): he talks, his hand going toward the smoke where the
 // visions come, and both look up there; when he does not, he sits still looking at the boy, and David at him.
 // `david_present` — David here or not.
 const s = scene, L = s.lib, P = id => s.person(id);

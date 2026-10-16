@@ -1,21 +1,21 @@
-ГОЛОСА (Хризалиды v3; III.5, IV.3), движок 3. Переписаны с «кино-игры» (движок 1): ночь, Дэвид на холме слева (человек
-каста, сидит, смотрит в долину; холм — земля relief.js, гребень 1.5 м — ниже глаза, долину видно над ним), по долине
-фермы с окнами — нарочно дальние. Каждая ферма — два элемента: постройки (farmN_b: дом, амбар, ветряк — крылья слоем
-крутятся, тополя — слоями на ветру) и окно (farmN: glows, тёплое стекло — слой, свет `win`; animate — горит, если
-окно среди первых `count`, иначе тусклое: окно Энн гаснет при count −1). home — окно Петры (ярче, свет шире с `petra`).
-Окна переставлены в окно языка (4:3, не ближе 0.08 к краям): x доли сцены — lib.W (farm7 в «кино» стояло на 0.97).
+VOICES (The Chrysalids v3; III.5, IV.3), engine 3. Rewritten from the "film game" (engine 1): night, David on the hill on the left (a person of
+the cast, sitting, looking into the valley; the hill — the ground relief.js, its crest 1.5 m — below the eye, the valley seen over it), across the valley
+farms with windows — far off on purpose. Each farm — two elements: the buildings (farmN_b: a house, a barn, a windmill — its sails a layer
+turning, poplars — layers in the wind) and the window (farmN: glows, a warm glass — a layer, the light `win`; animate — alight if the
+window is among the first `count`, else dim: Anne's window goes dark at count −1). home — Petra's window (brighter, its light wider with `petra`).
+The windows moved into the language's window (4:3, no nearer than 0.08 to the edges): x as shares of the scene — lib.W (farm7 in the "film" stood at 0.97).
 
-Небо (элемент sky, единицы — высоты сцены): звёзды (слой), Млечный путь, облака — восемь слоёв (по `clouds`, дрейф
-в animate); голоса — свечение вокруг Дэвида (слой aura по voices), нить к каждому окну — слой (рисунок «кино», без
-волны), её импульс — маленький свет, который animate ведёт по той же кривой; видно ярко не больше четырёх (как в «кино»);
-Петра — сияние над её окном, три расходящихся кольца, тёплая нить к Дэвиду (слои по `petra`). Нити начинаются у Дэвида
-(lib.AURA) и кончаются у окон (lib.W, горизонт lib.HZ); двигаешь окно или Дэвида — поправь lib. Дымка у горизонта —
-слой неба mist. Свет мира — ночь (ambient, слабый свет сверху слева), огни окон.
+The sky (the element sky, units — the scene's heights): stars (a layer), the Milky Way, clouds — eight layers (by `clouds`, a drift
+in animate); the voices — a glow round David (the layer aura by voices), a thread to each window — a layer (the "film"'s drawing, without
+a wave), its pulse — a small light that animate leads along the same curve; no more than four seen bright (as in the "film");
+Petra — a radiance over her window, three spreading rings, a warm thread to David (layers by `petra`). The threads begin at David
+(lib.AURA) and end at the windows (lib.W, the horizon lib.HZ); move a window or David — mend the lib. The haze at the horizon —
+the sky's layer mist. The world's light — night (ambient, a faint light from above on the left), the windows' lights.
 
-КЛЮЧИ «кино»: count, petra, clouds, voices, david_present. Точки: david#head (≈ 0.27, 0.54), farm1#window … farm8#window,
-home#window (все ≈ y 0.66, x — lib.W), их же имена без #window. Выборы: anne — на farmN (последнее окно), petra — на home.
+The "film"'s KEYS: count, petra, clouds, voices, david_present. Points: david#head (≈ 0.27, 0.54), farm1#window … farm8#window,
+home#window (all ≈ y 0.66, x — lib.W), and their names without #window. Choices: anne — on farmN (the last window), petra — on home.
 
-## Контракт для проверки
+## Contract for the check
 
 ```json
 {

@@ -10,7 +10,7 @@
     "knot": 1,
     "camera_x": 0
   },
-  "title": "Нити",
+  "title": "Threads",
   "camera": {
     "mode": "picture"
   },
@@ -20,11 +20,11 @@
     {
       "id": "sky",
       "sky": true,
-      "name": "Ночное небо"
+      "name": "Night sky"
     },
     {
       "id": "t0",
-      "name": "Нити главы",
+      "name": "The chapter’s threads",
       "across": 0,
       "distance": 10,
       "height": 10,
@@ -37,7 +37,7 @@
     },
     {
       "id": "t1",
-      "name": "Нити главы",
+      "name": "The chapter’s threads",
       "across": 5,
       "distance": 10,
       "height": 10,
@@ -50,7 +50,7 @@
     },
     {
       "id": "t2",
-      "name": "Нити главы",
+      "name": "The chapter’s threads",
       "across": 10,
       "distance": 10,
       "height": 10,
@@ -63,7 +63,7 @@
     },
     {
       "id": "t3",
-      "name": "Нити главы",
+      "name": "The chapter’s threads",
       "across": 15,
       "distance": 10,
       "height": 10,
@@ -76,7 +76,7 @@
     },
     {
       "id": "t4",
-      "name": "Нити главы",
+      "name": "The chapter’s threads",
       "across": 20,
       "distance": 10,
       "height": 10,
@@ -89,7 +89,7 @@
     },
     {
       "id": "t5",
-      "name": "Нити главы",
+      "name": "The chapter’s threads",
       "across": 25,
       "distance": 10,
       "height": 10,
@@ -102,7 +102,7 @@
     },
     {
       "id": "t6",
-      "name": "Нити главы",
+      "name": "The chapter’s threads",
       "across": 30,
       "distance": 10,
       "height": 10,
@@ -115,7 +115,7 @@
     },
     {
       "id": "t7",
-      "name": "Нити главы",
+      "name": "The chapter’s threads",
       "across": 35,
       "distance": 10,
       "height": 10,
@@ -128,7 +128,7 @@
     },
     {
       "id": "k0",
-      "name": "Глава",
+      "name": "Chapter",
       "across": 0,
       "distance": 10,
       "elevation": 7.2,
@@ -145,7 +145,7 @@
     },
     {
       "id": "k1",
-      "name": "Глава",
+      "name": "Chapter",
       "across": 5,
       "distance": 10,
       "elevation": 7.2,
@@ -162,7 +162,7 @@
     },
     {
       "id": "k2",
-      "name": "Глава",
+      "name": "Chapter",
       "across": 10,
       "distance": 10,
       "elevation": 7.2,
@@ -179,7 +179,7 @@
     },
     {
       "id": "k3",
-      "name": "Глава",
+      "name": "Chapter",
       "across": 15,
       "distance": 10,
       "elevation": 7.2,
@@ -196,7 +196,7 @@
     },
     {
       "id": "k4",
-      "name": "Глава",
+      "name": "Chapter",
       "across": 20,
       "distance": 10,
       "elevation": 7.2,
@@ -213,7 +213,7 @@
     },
     {
       "id": "k5",
-      "name": "Глава",
+      "name": "Chapter",
       "across": 25,
       "distance": 10,
       "elevation": 7.2,
@@ -230,7 +230,7 @@
     },
     {
       "id": "k6",
-      "name": "Глава",
+      "name": "Chapter",
       "across": 30,
       "distance": 10,
       "elevation": 7.2,
@@ -247,7 +247,7 @@
     },
     {
       "id": "k7",
-      "name": "Глава",
+      "name": "Chapter",
       "across": 35,
       "distance": 10,
       "elevation": 7.2,
@@ -266,11 +266,11 @@
   "engine": 3,
   "states": {
     "chapters": {
-      "means": "главы по порядку: {number, title, kind: here | played | next | future | end, map: строки выборов [{title, weight, options: [{label, state: chosen | tried | both | open | unseen}]}]} — ставится при открытии"
+      "means": "the chapters in order: {number, title, kind: here | played | next | future | end, map: rows of choices [{title, weight, options: [{label, state: chosen | tried | both | open | unseen}]}]} — set when it opens"
     },
     "shown": {
       "type": "number",
-      "means": "глава, на которой игрок (её узел ярче, её нити растут по reveal)"
+      "means": "the chapter the player is at (its knot brighter, its threads grow by reveal)"
     },
     "reveal": {
       "range": [
@@ -278,7 +278,7 @@
         1
       ],
       "smooth": true,
-      "means": "сколько нитей показанной главы видно (строка за строкой)"
+      "means": "how many of the shown chapter’s threads are seen (row by row)"
     },
     "knot": {
       "range": [
@@ -286,7 +286,7 @@
         1
       ],
       "smooth": true,
-      "means": "яркость узлов"
+      "means": "the knots’ brightness"
     }
   }
 }

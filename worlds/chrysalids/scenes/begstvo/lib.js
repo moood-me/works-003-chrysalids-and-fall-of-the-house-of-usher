@@ -1,4 +1,4 @@
-// Бегство (engine 3): what its elements and its scripts share — the ridge (lib.cr: its crest at 9 m, metres across; the
+// Flight (engine 3): what its elements and its scripts share — the ridge (lib.cr: its crest at 9 m, metres across; the
 // track along it, dropping past x 2.2 into a hollow 1.75 m under the crest, x 4.4…12.5, then on down out of sight), the
 // land, the horses (the world's module chrysalids: the great-horse with its panniers, the pack horse, Sheba, the two
 // searchers' horses) and the film: the beats a game plays one at a time by `beat` (script.js, the world's module beats)
@@ -316,7 +316,7 @@ const FILM = {
     },
   },
   // (game) the search comes up onto the crest above the hollow; the front one raises his lantern toward the fog. The camera
-  // stands: «Тише, кони» (its marks: great#head, pack#head, sheba#head, petra; the game moves great_toss, pack_toss,
+  // stands: “Quiet, horses” (its marks: great#head, pack#head, sheba#head, petra; the game moves great_toss, pack_toss,
   // sheba_toss, petra_peek, lamp, lamp_x, search_point)
   watch: {
     after: 'hollow',

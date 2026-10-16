@@ -1,4 +1,4 @@
-// Учимся слышать (engine 3): what its elements and its script share. The children of the valley, in their order (the
+// Learning to hear (engine 3): what its elements and its script share. The children of the valley, in their order (the
 // game's `children`: how many of them hear — 0 David, 1 Rosalind, 2 the girl at the washing line, 3 the shepherd boy,
 // 4 the boy on the hay cart, 5 the girl with the bucket): where each is (across, distance; the valley's floor is 15 m
 // below us), where each one's head is (HD: across, distance, its height — absolute, the eye 1.7 m above our ground),

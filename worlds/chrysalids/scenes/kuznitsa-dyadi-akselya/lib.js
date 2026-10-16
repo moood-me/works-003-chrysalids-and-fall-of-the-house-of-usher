@@ -1,4 +1,4 @@
-// Кузница дяди Акселя (engine 3): what its elements and its scripts share — the thought-shapes, where things are, the
+// Uncle Axel’s forge (engine 3): what its elements and its scripts share — the thought-shapes, where things are, the
 // horse in the yard, and the film: the beats a game plays one at a time by `beat` (script.js, the world's module beats)
 // and the showcase plays in order (showcase.js). The people are the engine's (the world's cast): Axel's place ax_a/ax_d,
 // David's dv_a/dv_d, the man with the lantern st_a/st_d (joseph or farmhand — st_who), the two called out of the dark
@@ -55,7 +55,7 @@ const ANVIL = [-1.05, 4.62, 0.88], // the iron on the anvil, where the hammer fa
   YARD_L = [-6, 13, 1.6], YARD_R = [9, 13, 1.6]; // the yard to the left and to the right of the gate
 const TOOLS = ['hammer', 'tongs'];
 // the camera's places (camera_x, camera_z): the forge; on Axel kneeling by the boy; closer (the hush); on the bellows and
-// the anvil both (the boy at the lever, Axel at the hammer — «Ритм мехов»: both in the frame's middle); the two at rest
+// the anvil both (the boy at the lever, Axel at the hammer — “The bellows’ rhythm”: both in the frame's middle); the two at rest
 const CAM = { wide: [0, 0], kneel: [1.0, 1.1], hush: [1.5, 1.4], bellows: [-3.03, -1.6], rest: [-3.2, 1.2] };
 const camOf = c => ({ camera_x: c[0], camera_z: c[1] });
 const loop = motion => ({ motion, loop: true });
@@ -422,7 +422,7 @@ const FILM = {
   // ---- the game's own beats ----
   // III.1, the lantern while David works the bellows: the father's lantern beyond the door; Axel back at the anvil; the
   // boy off the barrel and across the forge to the bellows' lever — he pulls it in time, as if he'd been at it all along.
-  // The father stops in the gap, lifts the lantern, looks in. Then «Ритм мехов»: the game drives ax_blow and pump (its
+  // The father stops in the gap, lifts the lantern, looks in. Then “The bellows’ rhythm”: the game drives ax_blow and pump (its
   // marks: axel#hand_l, pump#handle — the camera stands, both in the frame's middle).
   lantern_bellows: {
     after: 'hush',
@@ -588,7 +588,7 @@ const FILM = {
     },
   },
   // V.2, the key — night, the door half shut, the fire up; Axel at the anvil making the key, quick light blows; David at
-  // the bellows, pulling the lever between them («Ритм мехов» again, in the stranger's eye).
+  // the bellows, pulling the lever between them (“The bellows’ rhythm” again, in the stranger's eye).
   key: {
     from: () => KEY,
     run: async s => {

@@ -38,7 +38,7 @@ e.layer('water', { drift: [(-1.2 / 14) * CU.k, 0], box: cuBox(x0, 0.18, x1, 0.9)
   q.fill();
 });
 // the game's points (the close-up's — closeup#…): the hem's edge where it is with nothing pulled, and where it comes to
-// over the foot (the way his hand pulls it: «Подол») — in the close-up's own frame, as the canvas is now (e.at maps
+// over the foot (the way his hand pulls it: “The hem”) — in the close-up's own frame, as the canvas is now (e.at maps
 // its x, y through what was done to the canvas: cuFrame above)
 {
   const { AX, AY, ANG, HX, COVER } = FOOT_CU, c = Math.cos(ANG), s = Math.sin(ANG);

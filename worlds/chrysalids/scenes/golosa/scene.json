@@ -1,7 +1,7 @@
 {
   "engine": 3,
-  "title": "Голоса",
-  "caption": "Мы слышали друг друга через все поля.",
+  "title": "Voices",
+  "caption": "We heard each other across all the fields.",
   "horizon": 0.66,
   "camera": {
     "mode": "picture"
@@ -57,7 +57,7 @@
         0,
         8
       ],
-      "means": "сколько окон позвано (farm1…farmN горят, к каждому нить); −1 — окно ушедшего гаснет"
+      "means": "how many windows have been called (farm1…farmN alight, a thread to each); −1 — the window of the one who left goes dark"
     },
     "petra": {
       "range": [
@@ -65,7 +65,7 @@
         1
       ],
       "smooth": true,
-      "means": "сила Петры: свечение её окна, кольца, тёплая нить к Дэвиду"
+      "means": "Petra’s strength: the glow of her window, the rings, a warm thread to David"
     },
     "clouds": {
       "range": [
@@ -73,7 +73,7 @@
         1
       ],
       "smooth": true,
-      "means": "облака на небе"
+      "means": "clouds in the sky"
     },
     "voices": {
       "range": [
@@ -81,25 +81,25 @@
         1
       ],
       "smooth": true,
-      "means": "как громко голоса: нити и свечение вокруг Дэвида"
+      "means": "how loud the voices are: the threads and the glow round David"
     },
     "david_present": {
       "range": [
         0,
         1
       ],
-      "means": "Дэвид на холме (0 — нити идут от окна к окну)"
+      "means": "David on the hill (0 — the threads go from window to window)"
     }
   },
   "objects": [
     {
       "id": "sky",
       "sky": true,
-      "name": "Звёздное небо"
+      "name": "Starry sky"
     },
     {
       "id": "far_land",
-      "name": "Дальние холмы",
+      "name": "Far hills",
       "across": 0,
       "distance": 3000,
       "height": 60,
@@ -112,7 +112,7 @@
     },
     {
       "id": "ground",
-      "name": "Поля",
+      "name": "Fields",
       "plane": true,
       "across": 0,
       "distance": 708,
@@ -121,7 +121,7 @@
     },
     {
       "id": "hedges",
-      "name": "Лесополосы",
+      "name": "Shelterbelts",
       "across": 213.34,
       "distance": 2400,
       "height": 20,
@@ -134,7 +134,7 @@
     },
     {
       "id": "specks",
-      "name": "Крошечные дальние окна",
+      "name": "Tiny far windows",
       "across": 195.56,
       "distance": 2200,
       "height": 4,
@@ -148,7 +148,7 @@
     },
     {
       "id": "specks2",
-      "name": "Огоньки поближе",
+      "name": "Lights nearer",
       "across": 277.34,
       "distance": 1300,
       "height": 4,
@@ -162,7 +162,7 @@
     },
     {
       "id": "farm1_b",
-      "name": "Ферма с амбаром",
+      "name": "Farm with a barn",
       "across": 14.93,
       "distance": 420,
       "height": 8,
@@ -175,7 +175,7 @@
     },
     {
       "id": "farm2_b",
-      "name": "Ферма с ветряком",
+      "name": "Farm with a windmill",
       "across": 128.0,
       "distance": 300,
       "height": 10,
@@ -188,7 +188,7 @@
     },
     {
       "id": "farm3_b",
-      "name": "Ферма с тополями",
+      "name": "Farm with poplars",
       "across": 256.0,
       "distance": 480,
       "height": 12,
@@ -201,7 +201,7 @@
     },
     {
       "id": "farm4_b",
-      "name": "Ферма с силосной башней",
+      "name": "Farm with a silo",
       "across": 96.0,
       "distance": 600,
       "height": 9,
@@ -214,7 +214,7 @@
     },
     {
       "id": "farm5_b",
-      "name": "Длинный дом под вязами",
+      "name": "Long house under elms",
       "across": -62.22,
       "distance": 700,
       "height": 9,
@@ -227,7 +227,7 @@
     },
     {
       "id": "farm6_b",
-      "name": "Хутор с тополем",
+      "name": "Homestead with a poplar",
       "across": 234.67,
       "distance": 800,
       "height": 10,
@@ -240,7 +240,7 @@
     },
     {
       "id": "farm7_b",
-      "name": "Дальний ветряк",
+      "name": "Far windmill",
       "across": -278.76,
       "distance": 560,
       "height": 10,
@@ -253,7 +253,7 @@
     },
     {
       "id": "farm8_b",
-      "name": "Совсем дальний хутор",
+      "name": "Farthest homestead",
       "across": -248.89,
       "distance": 1000,
       "height": 8,
@@ -266,7 +266,7 @@
     },
     {
       "id": "home_b",
-      "name": "Дом Стормов, окно Петры",
+      "name": "The Strorms’ house, Petra’s window",
       "across": 60.45,
       "distance": 170,
       "height": 10,
@@ -279,7 +279,7 @@
     },
     {
       "id": "farm1",
-      "name": "Окно: Ферма с амбаром",
+      "name": "Window: Farm with a barn",
       "across": 14.9,
       "distance": 419,
       "elevation": 1.1,
@@ -294,7 +294,7 @@
     },
     {
       "id": "farm2",
-      "name": "Окно: Ферма с ветряком",
+      "name": "Window: Farm with a windmill",
       "across": 127.57,
       "distance": 299,
       "elevation": 1.0,
@@ -309,7 +309,7 @@
     },
     {
       "id": "farm3",
-      "name": "Окно: Ферма с тополями",
+      "name": "Window: Farm with poplars",
       "across": 255.47,
       "distance": 479,
       "elevation": 1.0,
@@ -324,7 +324,7 @@
     },
     {
       "id": "farm4",
-      "name": "Окно: Ферма с силосной башней",
+      "name": "Window: Farm with a silo",
       "across": 95.84,
       "distance": 599,
       "elevation": 0.9,
@@ -339,7 +339,7 @@
     },
     {
       "id": "farm5",
-      "name": "Окно: Длинный дом под вязами",
+      "name": "Window: Long house under elms",
       "across": -62.13,
       "distance": 699,
       "elevation": 0.8,
@@ -354,7 +354,7 @@
     },
     {
       "id": "farm6",
-      "name": "Окно: Хутор с тополем",
+      "name": "Window: Homestead with a poplar",
       "across": 234.38,
       "distance": 799,
       "elevation": 0.7,
@@ -369,7 +369,7 @@
     },
     {
       "id": "farm7",
-      "name": "Окно: Дальний ветряк",
+      "name": "Window: Far windmill",
       "across": -278.26,
       "distance": 559,
       "elevation": 0.8,
@@ -384,7 +384,7 @@
     },
     {
       "id": "farm8",
-      "name": "Окно: Совсем дальний хутор",
+      "name": "Window: Farthest homestead",
       "across": -248.64,
       "distance": 999,
       "elevation": 0.6,
@@ -399,7 +399,7 @@
     },
     {
       "id": "home",
-      "name": "Окно Петры",
+      "name": "Petra’s window",
       "across": 60.09,
       "distance": 169,
       "elevation": 1.4,
@@ -414,7 +414,7 @@
     },
     {
       "id": "hedge_b",
-      "name": "Дальняя живая изгородь",
+      "name": "Far hedgerow",
       "across": 21.33,
       "distance": 120,
       "height": 2,
@@ -427,7 +427,7 @@
     },
     {
       "id": "hedge_a",
-      "name": "Ближняя живая изгородь",
+      "name": "Near hedgerow",
       "across": 20.0,
       "distance": 45,
       "height": 1,
@@ -441,11 +441,11 @@
     {
       "id": "mist",
       "sky": true,
-      "name": "Туман над полями"
+      "name": "Mist over the fields"
     },
     {
       "id": "hillside",
-      "name": "Холм",
+      "name": "Hill",
       "plane": true,
       "drape": true,
       "across": -2,
@@ -455,7 +455,7 @@
     },
     {
       "id": "david",
-      "name": "Дэвид",
+      "name": "David",
       "person": {
         "cast": "cast",
         "who": "david",
@@ -472,7 +472,7 @@
     },
     {
       "id": "fore",
-      "name": "Трава и колосья у ног",
+      "name": "Grass and ears underfoot",
       "across": 0.4,
       "distance": 4.2,
       "height": 1,

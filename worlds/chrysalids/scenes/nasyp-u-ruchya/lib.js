@@ -1,4 +1,4 @@
-// Насыпь у ручья (engine 3) — what the scene's elements and its film share: the bank's ground (world metres: its profile,
+// The bank by the stream (engine 3) — what the scene's elements and its film share: the bank's ground (world metres: its profile,
 // the land under the people — relief.js), where its features are, the grass and the willows (painted once in their
 // daylight colours, moved by the wind in layers), the horse's options, and the film — the beats the game plays one at a
 // time by the `beat` key (script.js, the world's module beats) and the showcase plays in order (showcase.js).
@@ -296,7 +296,7 @@ const person = (id, a, d, more = {}) => ({ [`${id}_a`]: a, [`${id}_d`]: d, [`${i
   ...Object.fromEntries(Object.entries(more).map(([k, v]) => [`${id}_${k}`, v])) });
 // the rider in the saddle, his feet in the stirrups, the reins in his hands, his horse at the meadow's left edge (r_a,
 // r_d: where; r_face: its heading — 0 toward us, 90 right; r_toss: it tosses its head); not on the meadow yet (r_wait —
-// the game's key, no beat sets it: the game holds him at the meadow's edge while its «Подол» shows its gesture)
+// the game's key, no beat sets it: the game holds him at the meadow's edge while its “The hem” shows its gesture)
 const RIDER = { rider_on: { at: 'horse#seat', up: -0.5 }, rider_do: loop('perch_still'), rider_turn: 110, rider_look: null, rider_here: false,
   rider_reach: tack(35), r_a: -10, r_d: 19.5, r_face: 35, r_toss: 0, r_near: 0 };
 const START = {
@@ -317,7 +317,7 @@ const STONES = {
 };
 
 const FILM = {
-  // ---- 1. Дэвид один съезжает по скату в песок, смеётся; наверху поднимается Софи; он машет — она съезжает, смеются.
+  // ---- 1. David alone slides down the slope into the sand, laughing; at the top Sophie gets up; he waves — she slides down, they laugh.
   play: {
     from: () => START,
     run: async s => {
@@ -376,14 +376,14 @@ const FILM = {
       await s.wait(1.3);
     },
   },
-  // «ещё!» — она встаёт, показывает наверх, бежит к скату и карабкается на него; с разбегу летит дальше кучи, на камни.
+  // "again!" — she gets up, points to the top, runs to the slope and scrambles up it; with a run-up she flies past the heap, onto the stones.
   play_again: {
     after: 'play',
     from: () => ({ ...START, ...person('david', 2.25, Z, { e: 0, turn: 270, look: 'sophie' }),
       ...person('sophie', 1.45, Z, { e: 0, do: loop('sit_laugh'), turn: 90, look: 'david', wear: null, on: null }) }),
     run: async s => {
       const david = s.person('david'), sophie = s.person('sophie');
-      // (up again, «ещё!» — she points up the bank, runs to it and climbs, bent, to the top; he steps back to watch)
+      // (up again, "again!" — she points up the bank, runs to it and climbs, bent, to the top; he steps back to watch)
       once(s, 'sophie', 'get_up_ground', 270);
       await s.wait(1.3);
       sophie.do('point_up');
@@ -411,9 +411,9 @@ const FILM = {
       await s.wait(0.6);
     },
   },
-  // ---- 2. Удар о камни (брызги, пыль); камера подходит. Нога застряла: дёргает, плачет; он на коленях тянет; тянется к
-  // башмаку — она откидывается, отталкивает, мотает головой; он садится на пятки, она плачет. (Здесь игра спрашивает, как
-  // с ней заговорить.)
+  // ---- 2. A blow on the stones (spray, dust); the camera comes up. Her foot is stuck: she tugs, cries; he on his knees pulls; reaches for
+  // the shoe — she leans back, pushes him away, shakes her head; he sits back on his heels, she cries. (Here the game asks how
+  // to speak to her.)
   stuck: {
     after: 'play_again',
     from: () => ({ ...START, ...person('david', 3.35, Z, { e: 0, turn: 270, look: TOP }),
@@ -464,7 +464,7 @@ const FILM = {
       sophie.look(null);
     },
   },
-  // ---- 3. (канон) Она затихает, смотрит на ногу, на него, кивает, отворачивается, закрыв лицо; он снимает башмак.
+  // ---- 3. (the canon) She goes quiet, looks at her foot, at him, nods, turns away, covering her face; he takes off the shoe.
   let: {
     after: 'stuck',
     from: () => CAUGHT(),
@@ -485,8 +485,8 @@ const FILM = {
       await unlace(s);
     },
   },
-  // — Тебе больно? Он наклоняется к ней; она смотрит на него, кивает сквозь слёзы (дважды), смотрит на ногу,
-  // отворачивается, закрыв лицо; он развязывает и снимает башмак.
+  // — Does it hurt? He bends to her; she looks at him, nods through her tears (twice), looks at her foot,
+  // turns away, covering her face; he unties the shoe and takes it off.
   talk_hurt: {
     after: 'stuck',
     from: () => CAUGHT(),
@@ -512,8 +512,8 @@ const FILM = {
       await unlace(s);
     },
   },
-  // — Ты чья? Слёзы обрываются; она садится прямо и смотрит ему в глаза; сама показывает на ногу, кивает и смотрит, как он
-  // развязывает; только когда нога голая — отворачивается.
+  // — Whose are you? The tears break off; she sits up straight and looks him in the eyes; points to her foot herself, nods and watches him
+  // untie it; only when the foot is bare — she turns away.
   talk_whose: {
     after: 'stuck',
     from: () => CAUGHT(),
@@ -539,8 +539,8 @@ const FILM = {
       await unlace(s);
     },
   },
-  // молча сесть рядом: он встаёт, обходит её и садится плечом к плечу, смотрит на камни; она плачет, стихает, смотрит на
-  // него, кивает на ногу; он возвращается к ноге — они развязывают шнурок вдвоём, башмак снят.
+  // silently sit beside her: he gets up, goes round her and sits down shoulder to shoulder, looks at the stones; she cries, quietens, looks at
+  // him, nods at her foot; he comes back to the foot — they untie the lace together, the shoe is off.
   talk_sit: {
     after: 'stuck',
     from: () => CAUGHT(),
@@ -588,15 +588,15 @@ const FILM = {
       david.do('sit_heels', { loop: true });
     },
   },
-  // ---- 4. (канон) Диафрагма, крупно: шесть пальцев, поджимаются; её рука натягивает подол. Снаружи — она обхватила
-  // колени. Диафрагма закрывается.
+  // ---- 4. (the canon) An iris, close: six toes, curling; her hand pulls the hem over. Outside — she has hugged her
+  // knees. The iris closes.
   toes: { after: ['let', 'talk_hurt', 'talk_whose', 'talk_sit'], from: () => BARE(), run: s => toes(s, true) },
-  // крупно, а нога так и остаётся голой (игра: копыта ещё впереди)
+  // close, and the foot stays bare (the game: the hooves still to come)
   toes_bare: { after: ['let', 'talk_hurt', 'talk_whose', 'talk_sit'], from: () => BARE(), run: s => toes(s, false) },
-  // ---- копыта: камера отходит на средний план; слева по лугу шагом едет всадник (сцена говорит 'ridge:rider'); она
-  // замирает и смотрит на него, потом Дэвид; он тянется к её ноге — и открывается крупный план: ступня, подол, его рука
-  // на краю подола (игра: «Подол» — его рука тянет подол, `hem`). К концу всадник там, откуда видно камни: 'ridge:seen',
-  // конец куска; крупный план открыт, пока его не закроет cover или ridge_stop.
+  // ---- the hooves: the camera draws back to a middle shot; on the left a rider comes at a walk across the meadow (the scene says 'ridge:rider'); she
+  // freezes and looks at him, then David; he reaches for her foot — and the close shot opens: the foot, the hem, his hand
+  // on the hem's edge (the game: "The hem" — his hand pulls the hem, `hem`). By the end the rider is where the stones can be seen from: 'ridge:seen',
+  // the beat's end; the close shot stays open until cover or ridge_stop closes it.
   ridge: {
     after: 'toes_bare',
     from: () => ({ ...BARE(), sophie_look: 'david', david_look: 'sophie' }),
@@ -629,9 +629,9 @@ const FILM = {
       s.tell('ridge:seen');
     },
   },
-  // подол уже на ступне (игра: «Подол» — успел; может быть, посреди куска ridge): крупный план закрывается, он отпускает
-  // ногу, она подтягивает колени; камера встаёт на свой план оттуда, где была; всадник едет дальше своим шагом туда,
-  // откуда видно камни, — 'ridge:seen', и кусок кончается не раньше
+  // the hem already on the foot (the game: "The hem" — in time; perhaps in the middle of the beat ridge): the close shot closes, he lets go of
+  // the foot, she draws her knees up; the camera settles on its shot from where it was; the rider rides on at his own pace to
+  // where the stones can be seen from, — 'ridge:seen', and the beat ends no sooner
   cover: {
     after: 'ridge',
     from: () => ({ ...RIDGE_END(), hem: 1 }),
@@ -658,7 +658,7 @@ const FILM = {
       if (riding) { await riding; s.tell('ridge:seen'); }
     },
   },
-  // всадник не обернулся: едет дальше, вверх по тропинке; потом они смотрят друг на друга
+  // the rider did not turn round: he rides on, up the path; then they look at each other
   ridge_pass: {
     after: 'cover',
     from: () => ({ ...RIDGE_END(), closeup: 0, cu_cover: false, hem: 1, david_do: loop('sit_heels'), david_reach: null, sophie_do: loop('hug_knees') }),
@@ -671,8 +671,8 @@ const FILM = {
       await riding;
     },
   },
-  // не успел: всадник придерживает коня прямо за ними, разворачивает к ним, конь вскидывает голову, всадник смотрит
-  // вниз на них; Дэвид поздно натягивает подол; потом всадник едет дальше
+  // too late: the rider reins in his horse right behind them, turns it to them, the horse tosses its head, the rider looks
+  // down at them; David pulls the hem over too late; then the rider rides on
   ridge_stop: {
     after: 'ridge',
     from: () => RIDGE_END(),
@@ -721,7 +721,7 @@ const FILM = {
       await riding;
     },
   },
-  // ---- 5. Обещание: она, обхватив колени, тянет к нему руку.
+  // ---- 5. The promise: she, hugging her knees, holds out her hand to him.
   ask: {
     after: 'toes',
     from: () => STONES,
@@ -731,7 +731,7 @@ const FILM = {
       await s.wait(0.6);
     },
   },
-  // он — палец к губам, кивает; отдаёт ей башмак, она берёт
+  // he — a finger to his lips, nods; gives her back the shoe, she takes it
   promise: {
     after: 'ask',
     from: () => ({ ...STONES, sophie_reach: { r: 'david#chest' } }),
@@ -754,9 +754,9 @@ const FILM = {
       await s.wait(0.3);
     },
   },
-  // ---- 6. Она пробует встать — не может; вдали мать (рука козырьком), Софи машет, мать бежит вниз, на колени, обнимает;
-  // рука находит ногу под подолом, замирает; мать медленно поднимает глаза на Дэвида и держит взгляд. (Конец — выбор
-  // Дэвида.)
+  // ---- 6. She tries to stand — cannot; far off her mother (a hand shading her eyes), Sophie waves, the mother runs down, on her knees, hugs her;
+  // her hand finds the foot under the hem, stops; the mother slowly raises her eyes to David and holds his look. (The end — David's
+  // choice.)
   mother: {
     after: 'promise',
     from: () => GIVEN(),
@@ -822,7 +822,7 @@ const FILM = {
       await s.wait(0.8);
     },
   },
-  // он — палец к губам, кивает; она кивает в ответ; поднимает Софи и уносит по тропинке; Софи смотрит назад
+  // he — a finger to his lips, nods; she nods back; lifts Sophie and carries her off along the path; Sophie looks back
   nod: {
     after: 'mother',
     from: () => FOUND(),
@@ -841,8 +841,8 @@ const FILM = {
       await lift(s);
     },
   },
-  // он опускает глаза и отворачивается; мать смотрит долго, без кивка; прижимает Софи к себе, поднимает и уходит быстрее,
-  // не оглядываясь; Софи смотрит назад; он поднимает глаза ей вслед
+  // he lowers his eyes and turns away; the mother looks a long time, without a nod; presses Sophie to her, lifts her and goes faster,
+  // without looking back; Sophie looks back; he raises his eyes after her
   away: {
     after: 'mother',
     from: () => FOUND(),
@@ -870,7 +870,7 @@ const FILM = {
       await turning;
     },
   },
-  // ---- 7. (канон) Один у ручья: на дальнем гребне всадник; Дэвид смотрит на него, садится у воды, смотрит вслед.
+  // ---- 7. (the canon) Alone by the stream: on the far crest a rider; David looks at him, sits down by the water, looks after them.
   alone: {
     after: ['nod', 'away'],
     from: () => ({ ...FOUND(), evening: 0.79, camera_x: 0.6, camera_z: 0, ...person('david', 4.0, Z, { e: 0, turn: 270, look: 'mother' }),
@@ -892,9 +892,9 @@ const FILM = {
       await s.wait(1.5);
     },
   },
-  // ---- II. Ночь перед облавой: у камней стоит Софи, поодаль на тропинке мать с узлом, обе смотрят вверх, на тропинку.
-  // Из черноты Дэвид сбегает с насыпи; Софи оборачивается к нему, мать тоже; Софи шагает навстречу; они стоят лицом к
-  // лицу, мать смотрит на них. (Выбор можно предлагать на sophie, mother, david.)
+  // ---- II. The night before the raid: Sophie stands by the stones, a little way off on the path her mother with a bundle, both looking up the path.
+  // Out of the dark David runs down the bank; Sophie turns to him, her mother too; Sophie steps towards him; they stand face to
+  // face, the mother looking at them. (The choice can be offered on sophie, mother, david.)
   night_warn: {
     from: () => NIGHT,
     run: async s => {
@@ -914,8 +914,8 @@ const FILM = {
       await s.all(walk(s, 'sophie', [[2.15, Z]], 270), walk(s, 'david', [[1.6, Z]], 90));
     },
   },
-  // она берёт его за руку; мать зовёт; Софи отпускает и уходит с матерью вверх по тропинке в темноту; один раз
-  // оглядывается; он стоит и смотрит вслед
+  // she takes his hand; her mother calls; Sophie lets go and goes off with her mother up the path into the dark; once
+  // she looks back; he stands and looks after her
   night_warn_bye: {
     after: 'night_warn',
     from: () => ({ ...NIGHT, fade: 0, ...person('david', 1.6, Z, { e: 0, turn: 90, look: 'sophie' }),
@@ -988,7 +988,7 @@ async function toes(s, hide) {
   await s.move('closeup', 0, { over: 0.8, ease: 'in' });
 }
 // the mother takes her up in her arms, stands, turns to the path, and carries her off up it (the walk goes on past the
-// beat's end: the beat ends as she has her and goes; Софи looks back at him)
+// beat's end: the beat ends as she has her and goes; Sophie looks back at him)
 const HELD = { at: 'mother#hands', up: -0.22 };
 async function lift(s, ease) {
   const mother = s.person('mother'), sophie = s.person('sophie');
@@ -1053,7 +1053,7 @@ const FOUND = () => ({ ...GIVEN(), evening: 0.54, camera_x: 2.3, camera_z: 1.5, 
   ...person('david', 3.7, Z, { e: 0, turn: 270, look: 'mother' }),
   ...person('mother', BY_HER[0], BY_HER[1], { do: loop('kneel'), turn: 225, look: 'david' }),
   sophie_do: loop('hug_knees'), sophie_look: 'mother' });
-// the night before the raid: Софи by the stones, her mother up the path with a bundle, both looking up the path; he on
+// the night before the raid: Sophie by the stones, her mother up the path with a bundle, both looking up the path; he on
 // the top of the bank; out of the dark
 const NIGHT = {
   ...START, night: 1, fade: 1, fade_color: '#08101d', evening: 1, camera_x: 0.6, camera_z: 0.7, camera_look: 0.04,

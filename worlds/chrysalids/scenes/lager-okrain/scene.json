@@ -1,7 +1,7 @@
 {
   "engine": 3,
-  "title": "Лагерь Окраин",
-  "caption": "Здесь никто не спрашивал, сколько у тебя пальцев.",
+  "title": "The Fringes camp",
+  "caption": "Here no one asked how many toes you had.",
   "horizon": 0.6,
   "camera": {
     "mode": "picture"
@@ -68,7 +68,7 @@
         1
       ],
       "smooth": true,
-      "means": "как горит костёр (пламя, искры, свет)"
+      "means": "how the fire burns (the flame, the sparks, the light)"
     },
     "alarm": {
       "range": [
@@ -76,7 +76,7 @@
         1
       ],
       "smooth": true,
-      "means": "тревога: сидящий встаёт, стражи смотрят в лес, высокий страж трубит в рог"
+      "means": "alarm: the sitting one gets up, the guards look into the forest, the tall guard blows the horn"
     },
     "people": {
       "range": [
@@ -84,7 +84,7 @@
         1
       ],
       "smooth": true,
-      "means": "сколько людей Окраин у огня: страж всегда, Паук с 0.2, горбун 0.4, сидящий 0.6, женщина 0.7, второй страж 0.8"
+      "means": "how many Fringes people are at the fire: the guard always, the Spider from 0.2, the hunchback 0.4, the sitting one 0.6, the woman 0.7, the second guard 0.8"
     },
     "captives": {
       "range": [
@@ -92,7 +92,7 @@
         1
       ],
       "smooth": true,
-      "means": "Розалинда и Петра привязаны у столба"
+      "means": "Rosalind and Petra tied at the post"
     },
     "sophie_present": {
       "range": [
@@ -100,18 +100,18 @@
         1
       ],
       "smooth": true,
-      "means": "Софи на краю света у своего шалаша (выходит из него, уходит в него)"
+      "means": "Sophie at the edge of the light by her hut (comes out of it, goes into it)"
     }
   },
   "objects": [
     {
       "id": "sky",
       "sky": true,
-      "name": "Небо на рассвете"
+      "name": "Sky at dawn"
     },
     {
       "id": "forest_back",
-      "name": "Дальний лес",
+      "name": "Far forest",
       "x": 0.5,
       "distance": 42,
       "height": 18,
@@ -124,7 +124,7 @@
     },
     {
       "id": "forest_mid",
-      "name": "Кривые деревья у поляны",
+      "name": "Crooked trees by the clearing",
       "x": 0.5,
       "distance": 26,
       "height": 16,
@@ -137,7 +137,7 @@
     },
     {
       "id": "fog",
-      "name": "Дым и туман над поляной",
+      "name": "Smoke and mist over the clearing",
       "x": 0.5,
       "distance": 24,
       "height": 8,
@@ -150,7 +150,7 @@
     },
     {
       "id": "hut_back",
-      "name": "Дальний шалаш",
+      "name": "Far hut",
       "across": 2.4,
       "distance": 19,
       "height": 2.6,
@@ -163,7 +163,7 @@
     },
     {
       "id": "hut_left",
-      "name": "Шалаш слева",
+      "name": "Hut on the left",
       "across": -7.6,
       "distance": 15,
       "height": 2.8,
@@ -176,7 +176,7 @@
     },
     {
       "id": "pale_plants",
-      "name": "Бледные растения",
+      "name": "Pale plants",
       "x": 0.5,
       "distance": 19,
       "height": 2,
@@ -189,7 +189,7 @@
     },
     {
       "id": "ground",
-      "name": "Земля поляны",
+      "name": "Ground of the clearing",
       "plane": true,
       "x": 0.5,
       "distance": 50,
@@ -198,7 +198,7 @@
     },
     {
       "id": "post",
-      "name": "Столб",
+      "name": "Post",
       "across": -3.66,
       "distance": 7.07,
       "height": 2.3,
@@ -215,7 +215,7 @@
     },
     {
       "id": "fire",
-      "name": "Костёр",
+      "name": "Campfire",
       "across": -0.74,
       "distance": 6.2,
       "height": 1,
@@ -228,7 +228,7 @@
     },
     {
       "id": "flames",
-      "name": "Огонь костра",
+      "name": "Flame of the fire",
       "across": -0.74,
       "distance": 6.2,
       "elevation": 0.15,
@@ -248,7 +248,7 @@
     },
     {
       "id": "embers",
-      "name": "Искры костра",
+      "name": "Sparks of the fire",
       "across": -0.74,
       "distance": 6.2,
       "elevation": 0.3,
@@ -265,7 +265,7 @@
     },
     {
       "id": "smoke",
-      "name": "Дым костра",
+      "name": "Smoke of the fire",
       "across": -0.74,
       "distance": 6.2,
       "elevation": 1.2,
@@ -288,7 +288,7 @@
     },
     {
       "id": "guard",
-      "name": "Страж с копьём и рогом",
+      "name": "Guard with a spear and a horn",
       "person": {
         "cast": "cast",
         "who": "guard",
@@ -308,7 +308,7 @@
     },
     {
       "id": "spider",
-      "name": "Паук",
+      "name": "The Spider",
       "person": {
         "cast": "cast",
         "who": "spider",
@@ -328,7 +328,7 @@
     },
     {
       "id": "hunch",
-      "name": "Горбун",
+      "name": "Hunchback",
       "person": {
         "cast": "cast",
         "who": "hunchback",
@@ -348,7 +348,7 @@
     },
     {
       "id": "sitter",
-      "name": "Сидящий у костра",
+      "name": "Man sitting by the fire",
       "person": {
         "cast": "cast",
         "who": "fringe_man",
@@ -368,7 +368,7 @@
     },
     {
       "id": "woman",
-      "name": "Женщина Окраин",
+      "name": "Woman of the Fringes",
       "person": {
         "cast": "cast",
         "who": "fringe_woman",
@@ -388,7 +388,7 @@
     },
     {
       "id": "guard2",
-      "name": "Второй страж",
+      "name": "Second guard",
       "person": {
         "cast": "cast",
         "who": "guard",
@@ -408,7 +408,7 @@
     },
     {
       "id": "rosalind",
-      "name": "Розалинда у столба",
+      "name": "Rosalind at the post",
       "person": {
         "cast": "cast",
         "who": "rosalind",
@@ -428,7 +428,7 @@
     },
     {
       "id": "petra",
-      "name": "Петра у столба",
+      "name": "Petra at the post",
       "person": {
         "cast": "cast",
         "who": "petra",
@@ -448,7 +448,7 @@
     },
     {
       "id": "hut_right",
-      "name": "Шалаш Софи",
+      "name": "Sophie’s hut",
       "across": 5.6,
       "distance": 9.4,
       "height": 2.6,
@@ -461,7 +461,7 @@
     },
     {
       "id": "sophie",
-      "name": "Софи",
+      "name": "Sophie",
       "person": {
         "cast": "cast",
         "who": "sophie_adult",
@@ -481,7 +481,7 @@
     },
     {
       "id": "near_tree",
-      "name": "Вздутое дерево",
+      "name": "Swollen tree",
       "across": -4.8,
       "distance": 5.6,
       "height": 8,
@@ -494,7 +494,7 @@
     },
     {
       "id": "foreground",
-      "name": "Травы у ног",
+      "name": "Grasses underfoot",
       "x": 0.5,
       "distance": 4.2,
       "height": 1.2,

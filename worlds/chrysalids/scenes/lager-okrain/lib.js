@@ -1,4 +1,4 @@
-// Лагерь Окраин (engine 3): what its elements and its script share — a hut of the Fringes, where the people of the camp
+// The Fringes camp (engine 3): what its elements and its script share — a hut of the Fringes, where the people of the camp
 // stand (and from what `people` on each is there), the captives' post.
 // a hut: poles leaned together into a cone, bark and branches over them, a dark door-hole (painted once, in its colours)
 function hut(g, e, h) {

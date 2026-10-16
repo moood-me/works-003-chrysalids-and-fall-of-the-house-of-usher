@@ -1,5 +1,5 @@
 // The back wall of the meeting house (7.5 m), a card facing the hall: boards, the four windows and the door cut out (the
-// yard and the night beyond — yard, sky), their frames, the board «Благословенна норма» over the elders' table; the door's
+// yard and the night beyond — yard, sky), their frames, the board “Blessed is the Norm” over the elders' table; the door's
 // leaf a layer (wall.animate.js: `door`, hinged on the right, opening inward). Painted once in daylight colours: the
 // lamp, the oil burning, the barn's fire through the windows are the scene's light.
 const { WIN, WY0, WY1, DOOR } = e.lib;
@@ -36,7 +36,7 @@ g.font = '15px Georgia, serif';
 g.textAlign = 'center';
 g.textBaseline = 'middle';
 g.fillStyle = '#3a2a20';
-g.fillText('Благословенна норма', 0, 1);
+g.fillText(tr('Blessed is the Norm'), 0, 1);
 g.restore();
 // the window frames, their bars and sills; the door's frame
 g.fillStyle = '#5a4432';

@@ -1,6 +1,6 @@
 {
   "engine": 3,
-  "title": "Насыпь у ручья",
+  "title": "The bank by the stream",
   "horizon": 0.43,
   "camera": {
     "mode": "picture"
@@ -119,7 +119,7 @@
   "states": {
     "beat": {
       "type": "string",
-      "means": "кусок фильма (модуль beats): имя куска — он играется с начала; в конце сцена говорит beat:<имя>; моменты — ridge:rider (всадник показался), ridge:hem (крупный план открыт, рука Дэвида на подоле), ridge:seen (всадник видит камни). Канон: play, play_again, stuck, let, toes, ask, promise, mother, nod, alone; ветки игры: talk_hurt, talk_whose, talk_sit, toes_bare, ridge, cover, ridge_pass, ridge_stop, away; глава II: night_warn, night_warn_bye"
+      "means": "a beat of the film (module beats): the beat’s name — it plays from the beginning; at the end the scene says beat:<name>; moments — ridge:rider (the rider has appeared), ridge:hem (the close shot open, David’s hand on the hem), ridge:seen (the rider sees the stones). The canon: play, play_again, stuck, let, toes, ask, promise, mother, nod, alone; the game’s branches: talk_hurt, talk_whose, talk_sit, toes_bare, ridge, cover, ridge_pass, ridge_stop, away; chapter II: night_warn, night_warn_bye"
     },
     "evening": {
       "range": [
@@ -127,7 +127,7 @@
         1
       ],
       "smooth": true,
-      "means": "вечер: 0 — день, низкое солнце; 1 — солнце садится, свет тёплый и слабее (фильм: 0 → 0.54 к матери, 0.79 к уходу, 1 в конце)"
+      "means": "evening: 0 — day, a low sun; 1 — the sun setting, the light warm and weaker (the film: 0 → 0.54 by the mother, 0.79 by the leaving, 1 at the end)"
     },
     "night": {
       "range": [
@@ -135,7 +135,7 @@
         1
       ],
       "smooth": true,
-      "means": "ночь: небо тёмно-синее, звёзды, луна над лугом, земля в лунном свете"
+      "means": "night: the sky dark blue, stars, the moon over the meadow, the ground in moonlight"
     },
     "someone_coming": {
       "range": [
@@ -143,7 +143,7 @@
         1
       ],
       "smooth": true,
-      "means": "всадник на дальнем гребне: 0 — нет, 1 — едет по гребню"
+      "means": "the rider on the far crest: 0 — none, 1 — riding along the crest"
     },
     "shoe": {
       "values": [
@@ -151,7 +151,7 @@
         "david",
         "sophie"
       ],
-      "means": "башмак Софи: на ноге; у Дэвида в руках; у неё. Снят — её правая ступня босая, в чулке (sophie_wear)"
+      "means": "Sophie’s shoe: on her foot; in David’s hands; with her. Off — her right foot bare, in a stocking (sophie_wear)"
     },
     "closeup": {
       "range": [
@@ -159,7 +159,7 @@
         1
       ],
       "smooth": true,
-      "means": "крупный план (диафрагма): босая ступня на камнях — шесть пальцев; 0 — закрыт, 1 — открыт"
+      "means": "close shot (an iris): the bare foot on the stones — six toes; 0 — closed, 1 — open"
     },
     "cu_pull": {
       "range": [
@@ -167,7 +167,7 @@
         1
       ],
       "smooth": true,
-      "means": "крупный план: его руки с башмаком отходят (0 — у ноги, 1 — отошли)"
+      "means": "close shot: his hands with the shoe draw back (0 — by the foot, 1 — drawn back)"
     },
     "cu_wig": {
       "range": [
@@ -175,7 +175,7 @@
         1
       ],
       "smooth": true,
-      "means": "крупный план: пальцы поджимаются (0 — покой, 1 — шевелятся)"
+      "means": "close shot: the toes curl (0 — still, 1 — moving)"
     },
     "cu_hide": {
       "range": [
@@ -183,22 +183,22 @@
         1
       ],
       "smooth": true,
-      "means": "крупный план: её рука натягивает подол на ступню (0 — нога открыта, 1 — укрыта)"
+      "means": "close shot: her hand pulls the hem over the foot (0 — the foot bare, 1 — covered)"
     },
     "puff": {
       "type": "number",
-      "means": "пыль из-под удара: каждый раз, как число растёт, — облачко пыли там, где puff_a"
+      "means": "dust from a blow: each time the number grows — a puff of dust where puff_a is"
     },
     "puff_a": {
       "range": [
         -4,
         4
       ],
-      "means": "где поднимается пыль: метры поперёк, на линии насыпи"
+      "means": "where the dust rises: metres across, on the line of the bank"
     },
     "splash": {
       "type": "number",
-      "means": "брызги у камней: каждый раз, как число растёт, — брызги там, где ring_a"
+      "means": "spray by the stones: each time the number grows — spray where ring_a is"
     },
     "ring": {
       "range": [
@@ -206,14 +206,14 @@
         1
       ],
       "smooth": true,
-      "means": "круги на воде у камней: 0 → 1 — расходятся и гаснут"
+      "means": "rings on the water by the stones: 0 → 1 — they spread and fade"
     },
     "ring_a": {
       "range": [
         -4,
         4
       ],
-      "means": "где круги и брызги: метры поперёк"
+      "means": "where the rings and the spray are: metres across"
     },
     "r_a": {
       "range": [
@@ -221,7 +221,7 @@
         16
       ],
       "smooth": true,
-      "means": "конь всадника на лугу: метры поперёк (лево −, право +)"
+      "means": "the rider’s horse on the meadow: metres across (left −, right +)"
     },
     "r_d": {
       "range": [
@@ -229,7 +229,7 @@
         30
       ],
       "smooth": true,
-      "means": "конь всадника на лугу: метры вглубь"
+      "means": "the rider’s horse on the meadow: metres in depth"
     },
     "r_face": {
       "range": [
@@ -237,7 +237,7 @@
         360
       ],
       "smooth": true,
-      "means": "куда повёрнут конь, градусы: 0 — к нам, 90 — вправо, 180 — от нас (ноги и руки всадника идут за ним: script.js)"
+      "means": "which way the horse faces, degrees: 0 — towards us, 90 — right, 180 — away from us (the rider’s legs and arms follow it: script.js)"
     },
     "r_toss": {
       "range": [
@@ -245,7 +245,7 @@
         1
       ],
       "smooth": true,
-      "means": "конь вскидывает голову"
+      "means": "the horse tosses its head"
     },
     "david_e": {
       "range": [
@@ -253,7 +253,7 @@
         1
       ],
       "smooth": true,
-      "means": "Дэвид в полёте с края ската: высота над землёй, метры"
+      "means": "David in flight off the edge of the slope: height above the ground, metres"
     },
     "sophie_e": {
       "range": [
@@ -261,11 +261,11 @@
         1
       ],
       "smooth": true,
-      "means": "Софи в полёте с края ската: высота над землёй, метры"
+      "means": "Sophie in flight off the edge of the slope: height above the ground, metres"
     },
     "cu_cover": {
       "type": "boolean",
-      "means": "крупный план: рука Дэвида на краю подола (он натянет его — «Подол» игры)"
+      "means": "close shot: David’s hand on the edge of the hem (he will pull it — the game’s “The hem”)"
     },
     "hem": {
       "range": [
@@ -273,7 +273,7 @@
         1
       ],
       "smooth": true,
-      "means": "крупный план: подол, который тянет его рука (игра, «Подол»): 0 — нога открыта, 1 — укрыта; отпущен — сползает назад (игра ведёт его к 0)"
+      "means": "close shot: the hem his hand pulls (the game, “The hem”): 0 — the foot bare, 1 — covered; let go — it slides back (the game takes it to 0)"
     },
     "r_near": {
       "range": [
@@ -281,22 +281,22 @@
         1
       ],
       "smooth": true,
-      "means": "всадник приближается: 0 — показался на краю луга, 1 — там, откуда видно камни (идёт вместе с r_a, r_d)"
+      "means": "the rider comes closer: 0 — has appeared at the edge of the meadow, 1 — where the stones can be seen from (goes with r_a, r_d)"
     },
     "r_wait": {
       "type": "boolean",
-      "means": "игра держит всадника на краю луга (пока «Подол» показывает жест — показ не идёт в срок); куски его не пишут"
+      "means": "the game holds the rider at the edge of the meadow (while “The hem” shows its gesture — the showing does not count against the time); the beats do not write it"
     }
   },
   "objects": [
     {
       "id": "sky",
-      "name": "Небо и низкое солнце",
+      "name": "Sky and a low sun",
       "sky": true
     },
     {
       "id": "stars",
-      "name": "Звёзды",
+      "name": "Stars",
       "sky": true,
       "uniforms": {
         "night": 0
@@ -304,7 +304,7 @@
     },
     {
       "id": "far_hills",
-      "name": "Дальние холмы",
+      "name": "Far hills",
       "x": 0.5,
       "distance": 900,
       "height": 60,
@@ -317,7 +317,7 @@
     },
     {
       "id": "ridge",
-      "name": "Гребень холма",
+      "name": "Crest of the hill",
       "x": 0.5,
       "distance": 260,
       "height": 25,
@@ -330,7 +330,7 @@
     },
     {
       "id": "meadow",
-      "name": "Луг и тропинка",
+      "name": "Meadow and path",
       "plane": true,
       "x": 0.5,
       "distance": 85,
@@ -340,7 +340,7 @@
     },
     {
       "id": "willow_far",
-      "name": "Дальняя ива",
+      "name": "Far willow",
       "across": -34,
       "distance": 62,
       "height": 6,
@@ -353,7 +353,7 @@
     },
     {
       "id": "farpath",
-      "name": "Дом Уэндеров",
+      "name": "The Wenders’ house",
       "across": 14.6,
       "distance": 48,
       "height": 6,
@@ -366,7 +366,7 @@
     },
     {
       "id": "chimney_smoke",
-      "name": "Дым над домом Уэндеров",
+      "name": "Smoke over the Wenders’ house",
       "particles": {
         "kind": "smoke",
         "at": "farpath#chimney",
@@ -381,7 +381,7 @@
     },
     {
       "id": "willow_r",
-      "name": "Ива за ручьём",
+      "name": "Willow beyond the stream",
       "across": 8.5,
       "distance": 14,
       "height": 7,
@@ -394,7 +394,7 @@
     },
     {
       "id": "stream",
-      "name": "Ручей",
+      "name": "Stream",
       "plane": true,
       "x": 0.5,
       "distance": 3.9,
@@ -404,7 +404,7 @@
     },
     {
       "id": "rings",
-      "name": "Круги на воде",
+      "name": "Rings on the water",
       "plane": true,
       "across": 2.72,
       "distance": 4.35,
@@ -417,7 +417,7 @@
     },
     {
       "id": "drops",
-      "name": "Брызги у камней",
+      "name": "Spray by the stones",
       "across": 2.72,
       "distance": 4.35,
       "place": {
@@ -434,7 +434,7 @@
     },
     {
       "id": "dragonfly",
-      "name": "Стрекоза",
+      "name": "Dragonfly",
       "across": -0.3,
       "distance": 4.8,
       "elevation": 0.35,
@@ -449,7 +449,7 @@
     },
     {
       "id": "motes",
-      "name": "Пылинки в свете",
+      "name": "Dust in the light",
       "across": -1.2,
       "distance": 3.3,
       "elevation": 1.65,
@@ -472,7 +472,7 @@
     },
     {
       "id": "willow_big",
-      "name": "Большая ива",
+      "name": "Big willow",
       "across": -11.2,
       "distance": 11,
       "height": 8,
@@ -485,7 +485,7 @@
     },
     {
       "id": "horse",
-      "name": "Конь всадника",
+      "name": "The rider’s horse",
       "across": -18,
       "distance": 17,
       "place": {
@@ -505,7 +505,7 @@
     },
     {
       "id": "rider",
-      "name": "Всадник",
+      "name": "Rider",
       "person": {
         "cast": "cast",
         "who": "rider",
@@ -520,7 +520,7 @@
     },
     {
       "id": "big_bank",
-      "name": "Большая насыпь с песчаным скатом",
+      "name": "Big bank with a sandy slope",
       "across": 1.4,
       "distance": 5.0,
       "height": 2.5,
@@ -534,7 +534,7 @@
     },
     {
       "id": "mother",
-      "name": "Миссис Уэндер",
+      "name": "Mrs Wender",
       "person": {
         "cast": "cast",
         "who": "wender",
@@ -556,7 +556,7 @@
     },
     {
       "id": "david",
-      "name": "Дэвид",
+      "name": "David",
       "person": {
         "cast": "cast",
         "who": "david",
@@ -580,7 +580,7 @@
     },
     {
       "id": "sophie",
-      "name": "Софи",
+      "name": "Sophie",
       "person": {
         "cast": "cast",
         "who": "sophie",
@@ -604,7 +604,7 @@
     },
     {
       "id": "stones",
-      "name": "Камни у воды",
+      "name": "Stones by the water",
       "across": 1.4,
       "distance": 4.99,
       "height": 0.3,
@@ -618,7 +618,7 @@
     },
     {
       "id": "fringe",
-      "name": "Высокая трава на насыпи",
+      "name": "Tall grass on the bank",
       "across": 1.4,
       "distance": 4.995,
       "height": 1,
@@ -632,7 +632,7 @@
     },
     {
       "id": "dust",
-      "name": "Пыль из-под удара",
+      "name": "Dust from a blow",
       "across": 1.0,
       "distance": 5.0,
       "place": {
@@ -654,7 +654,7 @@
     },
     {
       "id": "bank",
-      "name": "Травяная насыпь",
+      "name": "Grassy bank",
       "across": 0,
       "distance": 2.6,
       "height": 1,
@@ -667,7 +667,7 @@
     },
     {
       "id": "closeup",
-      "name": "Крупный план: ступня",
+      "name": "Close shot: the foot",
       "insert": "closeup",
       "iris": [
         1.05,
@@ -678,7 +678,7 @@
     },
     {
       "id": "closeup_glints",
-      "name": "Крупный план: блики на воде",
+      "name": "Close shot: glints on the water",
       "insert": "closeup",
       "iris": [
         1.05,
@@ -694,7 +694,7 @@
     },
     {
       "id": "closeup_foot",
-      "name": "Крупный план: ступня, подол, руки",
+      "name": "Close shot: the foot, the hem, the hands",
       "insert": "closeup",
       "iris": [
         1.05,
@@ -705,7 +705,7 @@
     },
     {
       "id": "closeup_iris",
-      "name": "Крупный план: тёмное кольцо вокруг диафрагмы",
+      "name": "Close shot: the dark ring round the iris",
       "insert": "closeup",
       "iris": [
         1.05,

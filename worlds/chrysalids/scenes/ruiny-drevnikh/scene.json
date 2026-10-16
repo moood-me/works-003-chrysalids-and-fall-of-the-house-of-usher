@@ -1,7 +1,7 @@
 {
   "engine": 3,
-  "title": "Руины Древних",
-  "caption": "Здесь жили Древние.",
+  "title": "The ruins of the Old People",
+  "caption": "The Old People lived here.",
   "horizon": 0.4,
   "camera": {
     "mode": "picture"
@@ -46,17 +46,17 @@
     {
       "at": 6,
       "for": 8,
-      "text": "Нам говорили, что Бог покарал их за гордыню."
+      "text": "We were told God had punished them for their pride."
     },
     {
       "at": 20,
       "for": 7,
-      "text": "Сюда нельзя было ходить. Мы ходили."
+      "text": "We were not allowed to come here. We came."
     },
     {
       "at": 34,
       "for": 7,
-      "text": "Софи гладила ржавый бок — тёплый от солнца."
+      "text": "Sophie stroked the rusty side — warm from the sun."
     }
   ],
   "state": {
@@ -83,7 +83,7 @@
         1
       ],
       "smooth": true,
-      "means": "солнце ниже и теплее (вечереет)"
+      "means": "the sun lower and warmer (evening comes)"
     },
     "bell": {
       "range": [
@@ -91,7 +91,7 @@
         1
       ],
       "smooth": true,
-      "means": "колокол Вакнука: кольца и птицы над дальней колокольней, птицы под аркой взлетают, дети оборачиваются к дому"
+      "means": "the Waknuk bell: rings and birds over the far belfry, the birds under the arch fly up, the children turn towards home"
     },
     "glint": {
       "range": [
@@ -99,7 +99,7 @@
         1
       ],
       "smooth": true,
-      "means": "блеск находки в траве (0 — Дэвид её забрал: пластинки нет)"
+      "means": "the glint of the find in the grass (0 — David has taken it: no plate)"
     },
     "children": {
       "range": [
@@ -107,7 +107,7 @@
         1
       ],
       "smooth": true,
-      "means": "дети здесь (0 — убегают домой, налево)"
+      "means": "the children are here (0 — they run home, to the left)"
     },
     "overgrowth": {
       "range": [
@@ -115,7 +115,7 @@
         1
       ],
       "smooth": true,
-      "means": "как заросли руины: лианы, плющ, ежевика, высота трав (картина: меняется редко)"
+      "means": "how overgrown the ruins are: creepers, ivy, brambles, the height of the grass (the picture: changes seldom)"
     },
     "dig": {
       "range": [
@@ -123,14 +123,14 @@
         1
       ],
       "smooth": true,
-      "means": "«Раскопки»: земля и трава над пластинкой уходят; Дэвид на коленях разгребает"
+      "means": "“Digging”: the earth and the grass over the plate go; David on his knees, scraping"
     }
   },
   "objects": [
     {
       "id": "sky",
       "sky": true,
-      "name": "Небо"
+      "name": "Sky"
     },
     {
       "id": "far_hills",
@@ -140,7 +140,7 @@
         1700,
         40
       ],
-      "name": "Дальние холмы и Вакнук",
+      "name": "Far hills and Waknuk",
       "height": 80,
       "distance": 600,
       "across": 0.0
@@ -153,7 +153,7 @@
         320,
         14
       ],
-      "name": "Холмы вокруг лощины",
+      "name": "Hills round the hollow",
       "height": 26,
       "distance": 100,
       "across": 0.0
@@ -166,14 +166,14 @@
         130,
         4
       ],
-      "name": "Склоны лощины",
+      "name": "Slopes of the hollow",
       "height": 7,
       "distance": 40,
       "across": 0.0
     },
     {
       "id": "ground",
-      "name": "Луг",
+      "name": "Meadow",
       "plane": true,
       "across": 0,
       "distance": 20,
@@ -188,7 +188,7 @@
         80,
         0.6
       ],
-      "name": "Дальние берёзы",
+      "name": "Far birches",
       "height": 11,
       "distance": 62,
       "across": 0.0
@@ -201,7 +201,7 @@
         5,
         0.7
       ],
-      "name": "Стена с плиткой и вывеской",
+      "name": "Wall with tiles and a sign",
       "height": 4,
       "distance": 42,
       "across": -22.4,
@@ -215,7 +215,7 @@
         17,
         1
       ],
-      "name": "Обломок эстакады",
+      "name": "Broken piece of a flyover",
       "height": 9,
       "distance": 38,
       "across": 10.81,
@@ -229,7 +229,7 @@
         17,
         1
       ],
-      "name": "Птицы под аркой",
+      "name": "Birds under the arch",
       "height": 8,
       "distance": 37,
       "across": 10.52
@@ -242,7 +242,7 @@
         3.2,
         0.7
       ],
-      "name": "Покосившийся фонарь",
+      "name": "Leaning lamp-post",
       "height": 6.5,
       "distance": 30,
       "across": -12.27,
@@ -256,7 +256,7 @@
         7,
         0.6
       ],
-      "name": "Берёзы справа",
+      "name": "Birches on the right",
       "height": 10,
       "distance": 26,
       "across": 20.8,
@@ -270,7 +270,7 @@
         6,
         0.6
       ],
-      "name": "Берёзы слева",
+      "name": "Birches on the left",
       "height": 9,
       "distance": 22,
       "across": -17.21,
@@ -284,7 +284,7 @@
         22,
         1.5
       ],
-      "name": "Трава луга (дальняя)",
+      "name": "Meadow grass (far)",
       "height": 0.6,
       "distance": 19,
       "across": 0.0
@@ -297,7 +297,7 @@
         14,
         1.5
       ],
-      "name": "Трава луга (средняя)",
+      "name": "Meadow grass (middle)",
       "height": 0.6,
       "distance": 12,
       "across": 0.0
@@ -310,7 +310,7 @@
         2,
         0.4
       ],
-      "name": "Упавшая плита",
+      "name": "Fallen slab",
       "height": 0.8,
       "distance": 7.6,
       "across": 2.6,
@@ -325,7 +325,7 @@
         9,
         1.5
       ],
-      "name": "Трава луга (ближняя)",
+      "name": "Meadow grass (near)",
       "height": 0.6,
       "distance": 7.5,
       "across": 0.0
@@ -338,7 +338,7 @@
         3,
         0.45
       ],
-      "name": "Ржавая машина",
+      "name": "Rusty machine",
       "height": 1.4,
       "distance": 6.3,
       "across": -2.9,
@@ -346,7 +346,7 @@
     },
     {
       "id": "glint",
-      "name": "Находка в траве",
+      "name": "The find in the grass",
       "across": 1.4,
       "distance": 5.1,
       "tilt": 50,
@@ -360,7 +360,7 @@
     },
     {
       "id": "sophie",
-      "name": "Софи",
+      "name": "Sophie",
       "person": {
         "cast": "cast",
         "who": "sophie",
@@ -377,7 +377,7 @@
     },
     {
       "id": "david",
-      "name": "Дэвид",
+      "name": "David",
       "person": {
         "cast": "cast",
         "who": "david",
@@ -394,7 +394,7 @@
     },
     {
       "id": "foreground",
-      "name": "Трава и ежевика",
+      "name": "Grass and brambles",
       "across": 0,
       "distance": 4.6,
       "height": 1,
@@ -407,7 +407,7 @@
     },
     {
       "id": "motes",
-      "name": "Пыльца в воздухе",
+      "name": "Pollen in the air",
       "across": 0,
       "distance": 9,
       "elevation": 1.5,

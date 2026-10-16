@@ -1,6 +1,6 @@
 {
   "engine": 3,
-  "title": "Петра у реки",
+  "title": "Petra at the river",
   "horizon": 0.42,
   "camera": {
     "mode": "picture"
@@ -94,7 +94,7 @@
   "states": {
     "beat": {
       "type": "string",
-      "means": "кусок фильма (модуль beats): pool → struck → edge → run → field_quiet | field_loud → out → bank_quiet | bank_loud → home"
+      "means": "a beat of the film (module beats): pool → struck → edge → run → field_quiet | field_loud → out → bank_quiet | bank_loud → home"
     },
     "fade": {
       "range": [
@@ -102,7 +102,7 @@
         1
       ],
       "smooth": true,
-      "means": "затемнение"
+      "means": "fade to black"
     },
     "rain": {
       "range": [
@@ -110,7 +110,7 @@
         1
       ],
       "smooth": true,
-      "means": "дождь (частицы, рябь на реке)"
+      "means": "rain (particles, ripples on the river)"
     },
     "danger": {
       "range": [
@@ -118,7 +118,7 @@
         1
       ],
       "smooth": true,
-      "means": "течение"
+      "means": "the current"
     },
     "branch": {
       "range": [
@@ -126,7 +126,7 @@
         1.2
       ],
       "smooth": true,
-      "means": "ветка, за которую держится Петра: 0…0.85 гнётся, дальше — сломана, обломок уносит"
+      "means": "the branch Petra holds on to: 0…0.85 it bends, beyond — broken, the piece carried off"
     },
     "cry": {
       "range": [
@@ -134,7 +134,7 @@
         1
       ],
       "smooth": true,
-      "means": "крик Петры — кольца, что слышат свои (в edge и run его ведёт игра, «Успокоить»)"
+      "means": "Petra’s cry — the rings our own hear (in edge and run the game leads it, “Calm her”)"
     },
     "heard": {
       "range": [
@@ -142,7 +142,7 @@
         1
       ],
       "smooth": true,
-      "means": "крик доходит до Розалинды на поле (кольца у её головы)"
+      "means": "the cry reaches Rosalind in the field (rings by her head)"
     },
     "bond": {
       "range": [
@@ -150,7 +150,7 @@
         1
       ],
       "smooth": true,
-      "means": "Дэвид и Розалинда слышат друг друга — тёплые кольца"
+      "means": "David and Rosalind hear each other — warm rings"
     },
     "after": {
       "range": [
@@ -158,7 +158,7 @@
         1
       ],
       "smooth": true,
-      "means": "отвели глаза: кольца гаснут"
+      "means": "eyes turned away: the rings fade"
     },
     "pt_sink": {
       "range": [
@@ -166,34 +166,34 @@
         1
       ],
       "smooth": true,
-      "means": "Петру тянет под воду: 0 — голова над водой"
+      "means": "Petra is pulled under: 0 — her head above the water"
     },
     "splash": {
       "type": "number",
-      "means": "брызги: каждый раз, как число растёт"
+      "means": "spray: each time the number grows"
     },
     "pt_e": {
       "type": "number",
-      "means": "Петра на плаву: высота её ступней над дном (сцена ставит сама)"
+      "means": "Petra afloat: the height of her feet above the bottom (the scene sets it itself)"
     },
     "dv_e": {
       "type": "number",
-      "means": "Дэвид на плаву (сцена ставит сама)"
+      "means": "David afloat (the scene sets it itself)"
     },
     "ro_drop": {
       "type": "number",
-      "means": "1 — Розалинда уронила грабли"
+      "means": "1 — Rosalind has dropped her rake"
     }
   },
   "objects": [
     {
       "id": "sky",
       "sky": true,
-      "name": "Пасмурное небо"
+      "name": "Overcast sky"
     },
     {
       "id": "treeline",
-      "name": "Дальняя кромка леса",
+      "name": "Far edge of the forest",
       "x": 0.5,
       "distance": 900,
       "height": 30,
@@ -206,7 +206,7 @@
     },
     {
       "id": "fields",
-      "name": "Поля за рекой",
+      "name": "Fields beyond the river",
       "plane": true,
       "x": 0.5,
       "distance": 330,
@@ -216,7 +216,7 @@
     },
     {
       "id": "far_bank",
-      "name": "Дальний берег с ольхами",
+      "name": "Far bank with alders",
       "across": 0,
       "distance": 20,
       "elevation": -0.3,
@@ -231,7 +231,7 @@
     },
     {
       "id": "river",
-      "name": "Река",
+      "name": "River",
       "plane": true,
       "across": 0,
       "distance": 10.5,
@@ -250,7 +250,7 @@
     },
     {
       "id": "mist",
-      "name": "Туман над водой",
+      "name": "Mist over the water",
       "across": 0,
       "distance": 19.2,
       "elevation": -0.3,
@@ -265,7 +265,7 @@
     },
     {
       "id": "alder_near",
-      "name": "Ольха над водой",
+      "name": "Alder over the water",
       "across": 8.5,
       "distance": 11,
       "height": 8,
@@ -280,7 +280,7 @@
     },
     {
       "id": "bank",
-      "name": "Ближний глинистый берег",
+      "name": "Near clay bank",
       "across": -2.4,
       "distance": 9.05,
       "height": 2,
@@ -294,7 +294,7 @@
     },
     {
       "id": "willow",
-      "name": "Ива у воды",
+      "name": "Willow by the water",
       "across": -2.4,
       "distance": 9.06,
       "height": 2.5,
@@ -308,7 +308,7 @@
     },
     {
       "id": "wake_pt",
-      "name": "Круги вокруг Петры",
+      "name": "Rings round Petra",
       "plane": true,
       "across": 2.9,
       "distance": 9.0,
@@ -321,7 +321,7 @@
     },
     {
       "id": "wake_dv",
-      "name": "Круги вокруг Дэвида",
+      "name": "Rings round David",
       "plane": true,
       "across": -15,
       "distance": 9.0,
@@ -334,7 +334,7 @@
     },
     {
       "id": "petra",
-      "name": "Петра",
+      "name": "Petra",
       "person": {
         "cast": "cast",
         "who": "petra",
@@ -351,7 +351,7 @@
     },
     {
       "id": "david",
-      "name": "Дэвид",
+      "name": "David",
       "person": {
         "cast": "cast",
         "who": "david",
@@ -368,7 +368,7 @@
     },
     {
       "id": "cry",
-      "name": "Крик Петры, что слышат свои",
+      "name": "Petra’s cry, that our own hear",
       "across": 2.9,
       "distance": 8.95,
       "height": 1,
@@ -386,7 +386,7 @@
     },
     {
       "id": "bond",
-      "name": "Тёплое между Дэвидом и Розалиндой",
+      "name": "The warmth between David and Rosalind",
       "across": -2,
       "distance": 8.95,
       "height": 1.4,
@@ -404,7 +404,7 @@
     },
     {
       "id": "rosalind",
-      "name": "Розалинда",
+      "name": "Rosalind",
       "person": {
         "cast": "cast",
         "who": "rosalind",
@@ -420,7 +420,7 @@
     },
     {
       "id": "heard",
-      "name": "Что слышит Розалинда",
+      "name": "What Rosalind hears",
       "across": 6.2,
       "distance": 20.8,
       "height": 1.7,
@@ -438,7 +438,7 @@
     },
     {
       "id": "rake",
-      "name": "Грабли Розалинды на земле",
+      "name": "Rosalind’s rake on the ground",
       "across": 6.0,
       "distance": 20.95,
       "height": 0.2,
@@ -451,7 +451,7 @@
     },
     {
       "id": "r0",
-      "name": "Работник на поле",
+      "name": "Farmhand in the field",
       "person": {
         "cast": "cast",
         "who": "farmhand",
@@ -467,7 +467,7 @@
     },
     {
       "id": "r1",
-      "name": "Работник на поле",
+      "name": "Farmhand in the field",
       "person": {
         "cast": "cast",
         "who": "man_a",
@@ -483,7 +483,7 @@
     },
     {
       "id": "r2",
-      "name": "Работник на поле",
+      "name": "Farmhand in the field",
       "person": {
         "cast": "cast",
         "who": "man_c",
@@ -499,7 +499,7 @@
     },
     {
       "id": "c0",
-      "name": "Пришедший поздно",
+      "name": "Man come late",
       "person": {
         "cast": "cast",
         "who": "man_b",
@@ -515,7 +515,7 @@
     },
     {
       "id": "c1",
-      "name": "Пришедшая поздно",
+      "name": "Woman come late",
       "person": {
         "cast": "cast",
         "who": "woman_a",
@@ -531,7 +531,7 @@
     },
     {
       "id": "c2",
-      "name": "Пришедший поздно",
+      "name": "Man come late",
       "person": {
         "cast": "cast",
         "who": "old_man",
@@ -547,7 +547,7 @@
     },
     {
       "id": "c3",
-      "name": "Пришедшая поздно",
+      "name": "Woman come late",
       "person": {
         "cast": "cast",
         "who": "woman_c",
@@ -563,7 +563,7 @@
     },
     {
       "id": "rain",
-      "name": "Дождь",
+      "name": "Rain",
       "particles": {
         "kind": "rain",
         "amount": "rain",
@@ -574,7 +574,7 @@
     },
     {
       "id": "splash_pt",
-      "name": "Брызги у Петры",
+      "name": "Spray by Petra",
       "particles": {
         "kind": "splashes",
         "at": "petra#chest",
@@ -587,7 +587,7 @@
     },
     {
       "id": "splash_dv",
-      "name": "Брызги у Дэвида",
+      "name": "Spray by David",
       "particles": {
         "kind": "splashes",
         "at": "david#chest",

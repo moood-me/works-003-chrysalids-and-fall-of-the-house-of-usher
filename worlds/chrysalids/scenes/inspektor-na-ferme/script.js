@@ -1,9 +1,9 @@
-// Инспектор на ферме — its mechanics, the game's keys turned into what the people do: the calf with the farmhand who holds
+// The inspector at the farm — its mechanics, the game's keys turned into what the people do: the calf with the farmhand who holds
 // it (its place by his); `verdict` — the inspector points at the barn's corner (0.3), the farmhand leads the calf there
 // (0.55), the inspector lowers his hand and looks at the farmhand (1); `calf_present` 0 — David has taken the calf behind the
 // barn while they talked: the farmhand lets the rope go and looks at the barn's corner (he saw), the inspector leafs his
 // book; `david_present` — David peeking round the far corner of the barn, or gone behind it. (Where the inspector
-// looks is his own key, inspector_look: the game's «Найди раньше него» leads it in lib.LOOK's order.) Opened (or restored),
+// looks is his own key, inspector_look: the game's “Find it before he does” leads it in lib.LOOK's order.) Opened (or restored),
 // the scene stands at once as its keys say: what they did is done, nobody walks there.
 const s = scene, L = s.lib, P = id => s.person(id);
 const calf = () => s.set('calf_a', (s.get('farmhand_a') ?? -1.25) + L.CALF_OFF);

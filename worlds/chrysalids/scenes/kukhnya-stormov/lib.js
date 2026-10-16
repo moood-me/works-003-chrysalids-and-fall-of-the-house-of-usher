@@ -52,7 +52,7 @@ const BY_HEARTH = [1.78, 3.95], TO_TIE = [2.42, 4.36], KNOT = [2.08, 4.13, 0.9];
 const ROUND_CHAIR = [2.78, 4.72], ASIDE = [2.85, 4.7];
 // the stair door: before it; its latch; the stairs up (STEP), their top
 const AT_DOOR = [-2.58, 5.98], LATCH = [-2.87, 6.16, 1.0], UP = [-2.58, 8.9];
-// the sampler on the wall: the true image («Чти образ Божий»)
+// the sampler on the wall: the true image (“Honour the Image”)
 const SAMPLER = [-0.45, 6.15, 2.45];
 // the bowls on the table: Mary's, the farmhand's
 const BOWL = { mary: [-0.3, 4.72, 0.8], farmhand: [1.0, 4.72, 0.8] };
@@ -559,7 +559,7 @@ const FILM = {
 
   // ---- The game's other nights at this table ----
   // a night: the father reads, David across the table holds its edge (the game moves david_grip, david_stir,
-  // father_look while he must not stir: «Не шелохнуться» — its mark on david#hand_r)
+  // father_look while he must not stir: “Not a stir” — its mark on david#hand_r)
   night: {
     from: () => ({ ...NIGHT, fade: 1 }),
     run: async s => { await s.move('fade', 0, { over: 2.4 }); },

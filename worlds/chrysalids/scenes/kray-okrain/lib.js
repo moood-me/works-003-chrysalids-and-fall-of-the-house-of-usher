@@ -1,4 +1,4 @@
-// Край Окраин (engine 3): what its elements and its script share — the path through the last field to the gap in the fence
+// The edge of the Fringes (engine 3): what its elements and its script share — the path through the last field to the gap in the fence
 // and on into the Fringes, the trees on the left whose shadows the moon throws across it (the moon: from MOON — low on the
 // left behind the wood), whether a point of the field is in their shadow (shaded: the same trees and moon the engine casts
 // them from), the father with his lantern in the field.

@@ -1,5 +1,5 @@
-// Сон о городе — its mechanics: David (from behind, in his nightshirt, barefoot) on the dune looking at the city — or,
-// as the game's «Удержать сон» leads them (`gaze`), where his eyes are along the shining fish's way; `boy_present`.
+// The dream of the city — its mechanics: David (from behind, in his nightshirt, barefoot) on the dune looking at the city — or,
+// as the game's “Hold the dream” leads them (`gaze`), where his eyes are along the shining fish's way; `boy_present`.
 const s = scene, L = s.lib, P = () => s.person('david');
 const A = 16 / 9;
 function look() {

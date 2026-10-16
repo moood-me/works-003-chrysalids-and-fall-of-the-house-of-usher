@@ -1,4 +1,4 @@
-// Сон о городе (engine 3): what its sky elements, its script and the game share — the city's middle on the sky, the
+// The dream of the city (engine 3): what its sky elements, its script and the game share — the city's middle on the sky, the
 // horizon, the three shining fish (where each hangs, how big, from what strength of `craft` it shows), and the leading
 // fish's way over the city (PATH: u 0…1 along it; the game moves it there by `lead` over 40 s; David's eyes — `gaze`
 // −1…1 — are at u = (gaze + 1) / 2 of the same way). Stage heights (the sky's units).

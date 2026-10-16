@@ -1,6 +1,6 @@
 // The waking (a card just before the eye, over everything; its own colours — it glows): the dark closing in from the
 // edges, the bedroom window's posts sliding in from the sides, the beam coming down, the sill rising, the cross of the
-// frame at the end — layers (waking.animate.js moves them by `waking`). Drawn in the units of «кино»'s card (its frame
+// frame at the end — layers (waking.animate.js moves them by `waking`). Drawn in the units of the “film”'s card (its frame
 // 4.26 high), scaled to where it stands (1.5 m).
 const K = 1.5 / 4.26, Hm = 4.26, cy = -0.5 * Hm;
 const wood = a => `rgba(72,60,66,${a})`;

@@ -1,5 +1,5 @@
 // The yard's own little film, outside games: the inspector going over the yard to the calf with his eyes (as the game's
-// «Найди раньше него» leads them), the calf's long legs, the verdict — the farmhand leading it to the barn —, the cart
+// “Find it before he does” leads them), the calf's long legs, the verdict — the farmhand leading it to the barn —, the cart
 // coming along the far road, the rain
 return [
   { name: 'the yard', run: async s => { s.set('verdict', 0); s.person('inspector').look('inspector#hand_l'); s.set('cart', 0); s.set('rain', 0); await s.wait(2.5); } },

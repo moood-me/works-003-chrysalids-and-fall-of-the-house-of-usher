@@ -1,7 +1,7 @@
 // The calf (painted once in its own colours — a muted red-brown, the scene's one colour accent): a round belly and rump,
 // a bony withers, a big low head — and legs a little too long, knobbly (the Offence the eye can find). Its legs, head and
 // tail are layers (calf.animate.js walks the legs as it is led, nods the head, swishes the tail). It faces left (toward the
-// barn). Its points: head, back, tail, legs (the game's «Найди раньше него»), ring (its halter's ring: the rope's end)
+// barn). Its points: head, back, tail, legs (the game's “Find it before he does”), ring (its halter's ring: the rope's end)
 const coat = '#8a4e34', dark = '#5e3424', pale = '#c08a66', hoof = '#2a211b';
 const leg = (name, x, y0, hind) => e.layer(name, { pivot: [x, y0], box: [x - 0.25, y0 - 0.1, x + 0.25, 0.1] }, q => {
   q.fillStyle = dark;

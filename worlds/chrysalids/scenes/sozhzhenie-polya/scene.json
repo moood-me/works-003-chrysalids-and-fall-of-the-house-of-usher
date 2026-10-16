@@ -1,6 +1,6 @@
 {
   "engine": 3,
-  "title": "Сожжение поля",
+  "title": "The burning of the field",
   "horizon": 0.55,
   "camera": {
     "mode": "picture"
@@ -114,7 +114,7 @@
   "states": {
     "beat": {
       "type": "string",
-      "means": "кусок фильма (модуль beats): dawn → ear → raise → rise | kneel_late → light → fire → hymn → hymn_loud | hymn_hide → burn → morning → stalk_stay | stalk_go"
+      "means": "a beat of the film (module beats): dawn → ear → raise → rise | kneel_late → light → fire → hymn → hymn_loud | hymn_hide → burn → morning → stalk_stay | stalk_go"
     },
     "fade": {
       "range": [
@@ -122,7 +122,7 @@
         1
       ],
       "smooth": true,
-      "means": "затемнение"
+      "means": "fade to black"
     },
     "dawn": {
       "range": [
@@ -130,7 +130,7 @@
         1
       ],
       "smooth": true,
-      "means": "рассвет: 0.22 — синь перед зарёй … 0.82 — серое утро (взгляд света dawn, небо)"
+      "means": "dawn: 0.22 — the blue before daybreak … 0.82 — a grey morning (light look dawn, the sky)"
     },
     "morning": {
       "range": [
@@ -138,7 +138,7 @@
         1
       ],
       "smooth": true,
-      "means": "серое утро после (взгляд света morning)"
+      "means": "the grey morning after (light look morning)"
     },
     "fire": {
       "range": [
@@ -146,7 +146,7 @@
         1
       ],
       "smooth": true,
-      "means": "огонь на поле: как сильно горит"
+      "means": "the fire on the field: how strongly it burns"
     },
     "ignite": {
       "range": [
@@ -154,7 +154,7 @@
         1
       ],
       "smooth": true,
-      "means": "фронт огня: 50·ignite м от кромки в обе стороны (влево — до дороги); дальние ряды позже"
+      "means": "the fire front: 50·ignite m from the edge both ways (to the left — up to the road); the far rows later"
     },
     "ash": {
       "range": [
@@ -162,7 +162,7 @@
         1
       ],
       "smooth": true,
-      "means": "пепел: 60·ash м за огнём"
+      "means": "the ash: 60·ash m behind the fire"
     },
     "smoke": {
       "range": [
@@ -170,7 +170,7 @@
         1
       ],
       "smooth": true,
-      "means": "дым над полем"
+      "means": "smoke over the field"
     },
     "jo_torch": {
       "range": [
@@ -178,7 +178,7 @@
         1.5
       ],
       "smooth": true,
-      "means": "факел отца горит (1.5 — вспышка)"
+      "means": "the father’s torch burns (1.5 — a flare)"
     },
     "turned": {
       "range": [
@@ -186,11 +186,11 @@
         1
       ],
       "smooth": true,
-      "means": "игра («Петь со всеми»): сколько передних заметили, что Дэвид не поёт — шестеро оборачиваются по одному, каждый со своим порогом и задержкой"
+      "means": "the game (“Sing with everyone”): how many of those in front have noticed David isn’t singing — six turn round one by one, each with his own threshold and delay"
     },
     "in_ear": {
       "type": "boolean",
-      "means": "колос в руке Инспектора"
+      "means": "the ear of wheat in the inspector’s hand"
     },
     "in_toss": {
       "range": [
@@ -198,15 +198,15 @@
         1
       ],
       "smooth": true,
-      "means": "колос брошен: летит дугой в поле"
+      "means": "the ear thrown: it flies in an arc into the field"
     },
     "front_r": {
       "type": "number",
-      "means": "где правый фронт огня (сцена ставит сама по ignite)"
+      "means": "where the right fire front is (the scene sets it itself by ignite)"
     },
     "front_l": {
       "type": "number",
-      "means": "где левый фронт огня"
+      "means": "where the left fire front is"
     },
     "fire_light": {
       "range": [
@@ -214,22 +214,22 @@
         1
       ],
       "smooth": true,
-      "means": "как сильно огонь освещает мир (сцена ставит сама по fire, ignite, ash)"
+      "means": "how strongly the fire lights the world (the scene sets it itself by fire, ignite, ash)"
     },
     "dv_kneel": {
       "type": "boolean",
-      "means": "Дэвид опускается на колени сейчас же, вместе со всеми (игра: выбор «Встать на колени» во время raise)"
+      "means": "David goes down on his knees at once, with everyone (the game: the choice “Kneel” during raise)"
     }
   },
   "objects": [
     {
       "id": "sky",
       "sky": true,
-      "name": "Небо"
+      "name": "Sky"
     },
     {
       "id": "far",
-      "name": "Дальние холмы и Вакнук",
+      "name": "Far hills and Waknuk",
       "x": 0.5,
       "distance": 700,
       "height": 30,
@@ -242,7 +242,7 @@
     },
     {
       "id": "ground",
-      "name": "Земля, поля и дорога",
+      "name": "Ground, fields and road",
       "plane": true,
       "x": 0.5,
       "distance": 400,
@@ -251,7 +251,7 @@
     },
     {
       "id": "ash",
-      "name": "Пепелище",
+      "name": "The burnt ground",
       "plane": true,
       "across": 13.5,
       "distance": 19.7,
@@ -266,7 +266,7 @@
     },
     {
       "id": "smoke",
-      "name": "Дым над полем",
+      "name": "Smoke over the field",
       "across": 8,
       "distance": 18,
       "elevation": 1.0,
@@ -294,7 +294,7 @@
     },
     {
       "id": "embers",
-      "name": "Искры над огнём",
+      "name": "Sparks over the fire",
       "across": 8,
       "distance": 14,
       "elevation": 0.5,
@@ -311,7 +311,7 @@
     },
     {
       "id": "flames_r",
-      "name": "Огонь на кромке, справа",
+      "name": "Fire at the edge, right",
       "across": 1,
       "distance": 11,
       "place": {
@@ -333,7 +333,7 @@
     },
     {
       "id": "flames_l",
-      "name": "Огонь на кромке, слева",
+      "name": "Fire at the edge, left",
       "across": 0,
       "distance": 10.5,
       "place": {
@@ -355,7 +355,7 @@
     },
     {
       "id": "wheat60",
-      "name": "Поле, ряд 60 м",
+      "name": "Field, row 60 m",
       "x": 0.5,
       "distance": 60,
       "height": 3,
@@ -374,7 +374,7 @@
     },
     {
       "id": "wheat40",
-      "name": "Поле, ряд 40 м",
+      "name": "Field, row 40 m",
       "x": 0.5,
       "distance": 40,
       "height": 3,
@@ -393,7 +393,7 @@
     },
     {
       "id": "wheat29",
-      "name": "Поле, ряд 29 м",
+      "name": "Field, row 29 m",
       "x": 0.5,
       "distance": 29,
       "height": 3,
@@ -412,7 +412,7 @@
     },
     {
       "id": "wheat22",
-      "name": "Поле, ряд 22 м",
+      "name": "Field, row 22 m",
       "x": 0.5,
       "distance": 22,
       "height": 3,
@@ -431,7 +431,7 @@
     },
     {
       "id": "wheat17",
-      "name": "Поле, ряд 17.5 м",
+      "name": "Field, row 17.5 m",
       "x": 0.5,
       "distance": 17.5,
       "height": 3,
@@ -450,7 +450,7 @@
     },
     {
       "id": "wheat14",
-      "name": "Поле, ряд 14 м",
+      "name": "Field, row 14 m",
       "x": 0.5,
       "distance": 14,
       "height": 3,
@@ -469,7 +469,7 @@
     },
     {
       "id": "wheat11",
-      "name": "Поле, ряд 11.5 м",
+      "name": "Field, row 11.5 m",
       "x": 0.5,
       "distance": 11.5,
       "height": 3,
@@ -488,7 +488,7 @@
     },
     {
       "id": "wheat9",
-      "name": "Поле, ряд 9.5 м",
+      "name": "Field, row 9.5 m",
       "x": 0.5,
       "distance": 9.5,
       "height": 3,
@@ -507,7 +507,7 @@
     },
     {
       "id": "stalk",
-      "name": "Уцелевший колос",
+      "name": "The stalk left standing",
       "across": -2.72,
       "distance": 9.45,
       "height": 2.2,
@@ -520,7 +520,7 @@
     },
     {
       "id": "torch_fire",
-      "name": "Огонь факела",
+      "name": "Flame of the torch",
       "particles": {
         "kind": "fire",
         "at": "jo#flame",
@@ -533,7 +533,7 @@
     },
     {
       "id": "torch_smoke",
-      "name": "Дым факела",
+      "name": "Smoke of the torch",
       "particles": {
         "kind": "smoke",
         "at": "jo#flame",
@@ -548,7 +548,7 @@
     },
     {
       "id": "ear",
-      "name": "Колос в руке Инспектора",
+      "name": "Ear of wheat in the inspector’s hand",
       "across": 0.4,
       "distance": 7.0,
       "height": 2,
@@ -561,7 +561,7 @@
     },
     {
       "id": "jo",
-      "name": "Джозеф Сторм, отец",
+      "name": "Joseph Strorm, the father",
       "person": {
         "cast": "cast",
         "who": "joseph",
@@ -577,7 +577,7 @@
     },
     {
       "id": "in",
-      "name": "Инспектор",
+      "name": "The inspector",
       "person": {
         "cast": "cast",
         "who": "inspector",
@@ -593,7 +593,7 @@
     },
     {
       "id": "em",
-      "name": "Эмили, мать Дэвида",
+      "name": "Emily, David’s mother",
       "person": {
         "cast": "cast",
         "who": "emily",
@@ -609,7 +609,7 @@
     },
     {
       "id": "dv",
-      "name": "Дэвид",
+      "name": "David",
       "person": {
         "cast": "cast",
         "who": "david",
@@ -625,7 +625,7 @@
     },
     {
       "id": "p0",
-      "name": "Община: мужчина",
+      "name": "Community: a man",
       "person": {
         "cast": "cast",
         "who": "man_a",
@@ -641,7 +641,7 @@
     },
     {
       "id": "p1",
-      "name": "Община: женщина",
+      "name": "Community: a woman",
       "person": {
         "cast": "cast",
         "who": "woman_a",
@@ -657,7 +657,7 @@
     },
     {
       "id": "p2",
-      "name": "Община: старик",
+      "name": "Community: an old man",
       "person": {
         "cast": "cast",
         "who": "old_man",
@@ -673,7 +673,7 @@
     },
     {
       "id": "p3",
-      "name": "Община: женщина",
+      "name": "Community: a woman",
       "person": {
         "cast": "cast",
         "who": "woman_b",
@@ -689,7 +689,7 @@
     },
     {
       "id": "p4",
-      "name": "Община: работник",
+      "name": "Community: a farmhand",
       "person": {
         "cast": "cast",
         "who": "farmhand",
@@ -705,7 +705,7 @@
     },
     {
       "id": "p5",
-      "name": "Община: старуха",
+      "name": "Community: an old woman",
       "person": {
         "cast": "cast",
         "who": "old_woman",
@@ -721,7 +721,7 @@
     },
     {
       "id": "p6",
-      "name": "Община: девочка",
+      "name": "Community: a girl",
       "person": {
         "cast": "cast",
         "who": "girl",
@@ -737,7 +737,7 @@
     },
     {
       "id": "p7",
-      "name": "Община: мужчина",
+      "name": "Community: a man",
       "person": {
         "cast": "cast",
         "who": "man_b",
@@ -753,7 +753,7 @@
     },
     {
       "id": "p8",
-      "name": "Община: женщина",
+      "name": "Community: a woman",
       "person": {
         "cast": "cast",
         "who": "woman_c",
@@ -769,7 +769,7 @@
     },
     {
       "id": "p9",
-      "name": "Община: мальчик",
+      "name": "Community: a boy",
       "person": {
         "cast": "cast",
         "who": "boy",

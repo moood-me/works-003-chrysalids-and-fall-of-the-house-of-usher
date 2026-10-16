@@ -1,5 +1,5 @@
 // The find in the grass (5.1 m, the card leant back: the sod over the plate as on a slope): the Old People's plate —
-// dull metal, a bent corner, their letters «…АНЦИЯ» and an arrow (its point `plate`) —, over it the earth and the grass
+// dull metal, a bent corner, their letters “…TION” and an arrow (its point `plate`) —, over it the earth and the grass
 // (layers that go as `dig` grows: glint.animate.js), and the flash of the sun on its edge (a layer and its glow,
 // `spark`: as `glint` says). Gone when David has taken it (glint 0).
 const ov = (e.state || {}).overgrowth ?? 0.6;
@@ -26,7 +26,7 @@ e.layer('plate', { box: [-0.4, -0.42, 0.4, 0.05] }, q => {
   q.textAlign = 'center';
   q.textBaseline = 'middle';
   q.fillStyle = 'rgba(44,48,46,0.75)';
-  q.fillText('…АНЦИЯ', -2.5, -4);
+  q.fillText(tr('…TION'), -2.5, -4);
   q.restore();
   q.strokeStyle = 'rgba(44,48,46,0.75)';
   q.lineWidth = 0.022;

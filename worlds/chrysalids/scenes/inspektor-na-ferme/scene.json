@@ -1,7 +1,7 @@
 {
   "engine": 3,
-  "title": "Инспектор на ферме",
-  "caption": "Каждую осень он объезжал фермы и решал, что достойно жить.",
+  "title": "The inspector at the farm",
+  "caption": "Every autumn he rode round the farms and decided what was fit to live.",
   "horizon": 0.58,
   "camera": {
     "mode": "picture"
@@ -86,7 +86,7 @@
         1
       ],
       "smooth": true,
-      "means": "телега со снопами въезжает справа по дальней дороге"
+      "means": "a cart of sheaves comes in from the right along the far road"
     },
     "rain": {
       "range": [
@@ -94,7 +94,7 @@
         1
       ],
       "smooth": true,
-      "means": "дождь (и взгляд света rain)"
+      "means": "rain (and the light look rain)"
     },
     "season": {
       "range": [
@@ -102,7 +102,7 @@
         1
       ],
       "smooth": true,
-      "means": "поздняя осень: свет желтее, листья в воздухе"
+      "means": "late autumn: the light yellower, leaves in the air"
     },
     "verdict": {
       "range": [
@@ -110,7 +110,7 @@
         1
       ],
       "smooth": true,
-      "means": "приговор: 0.3 — инспектор указывает на угол сарая, 0.55 — работник ведёт телёнка к сараю, 1 — инспектор смотрит на работника"
+      "means": "the verdict: 0.3 — the inspector points to the corner of the barn, 0.55 — the farmhand leads the calf to the barn, 1 — the inspector looks at the farmhand"
     },
     "calf_present": {
       "range": [
@@ -118,7 +118,7 @@
         1
       ],
       "smooth": true,
-      "means": "телёнок здесь (0 — Дэвид увёл его за сарай: работник отпускает верёвку и смотрит на угол сарая)"
+      "means": "the calf is here (0 — David has led it behind the barn: the farmhand lets go of the rope and looks at the corner of the barn)"
     },
     "david_present": {
       "range": [
@@ -126,19 +126,19 @@
         1
       ],
       "smooth": true,
-      "means": "Дэвид выглядывает из-за дальнего угла сарая (0 — ушёл за сарай)"
+      "means": "David peeps out from behind the far corner of the barn (0 — gone behind the barn)"
     },
     "calf_a": {
       "type": "number",
-      "means": "телёнок: где (сцена ставит сама — рядом с работником)"
+      "means": "the calf: where (the scene sets it itself — beside the farmhand)"
     },
     "horse_a": {
       "type": "number",
-      "means": "конь инспектора: где"
+      "means": "the inspector’s horse: where"
     },
     "horse_d": {
       "type": "number",
-      "means": "конь: вглубь"
+      "means": "the horse: in depth"
     },
     "horse_face": {
       "range": [
@@ -146,18 +146,18 @@
         360
       ],
       "smooth": true,
-      "means": "конь: куда повёрнут"
+      "means": "the horse: which way it faces"
     }
   },
   "objects": [
     {
       "id": "sky",
       "sky": true,
-      "name": "Пасмурное небо"
+      "name": "Overcast sky"
     },
     {
       "id": "far_trees",
-      "name": "Дальняя кромка леса",
+      "name": "Far edge of the forest",
       "x": 0.5,
       "distance": 450,
       "height": 20,
@@ -170,7 +170,7 @@
     },
     {
       "id": "hedge",
-      "name": "Живая изгородь и вяз",
+      "name": "Hedgerow and an elm",
       "x": 0.5,
       "distance": 170,
       "height": 16,
@@ -183,7 +183,7 @@
     },
     {
       "id": "field",
-      "name": "Сжатые поля",
+      "name": "Reaped fields",
       "plane": true,
       "across": 0,
       "distance": 200,
@@ -192,7 +192,7 @@
     },
     {
       "id": "yard",
-      "name": "Двор",
+      "name": "Yard",
       "plane": true,
       "across": 0,
       "distance": 30,
@@ -206,7 +206,7 @@
     },
     {
       "id": "stooks_far",
-      "name": "Суслоны вдали",
+      "name": "Stooks in the distance",
       "across": 0,
       "distance": 62,
       "height": 1.4,
@@ -219,7 +219,7 @@
     },
     {
       "id": "stooks_mid",
-      "name": "Суслоны",
+      "name": "Stooks",
       "across": 0,
       "distance": 34,
       "height": 1.4,
@@ -232,7 +232,7 @@
     },
     {
       "id": "cart",
-      "name": "Телега со снопами",
+      "name": "Cart of sheaves",
       "across": 41,
       "distance": 55,
       "height": 2.8,
@@ -245,7 +245,7 @@
     },
     {
       "id": "david",
-      "name": "Дэвид",
+      "name": "David",
       "person": {
         "cast": "cast",
         "who": "david",
@@ -262,7 +262,7 @@
     },
     {
       "id": "barn",
-      "name": "Сарай",
+      "name": "Barn",
       "across": -5.6,
       "distance": 13,
       "height": 6.3,
@@ -276,7 +276,7 @@
     },
     {
       "id": "fence",
-      "name": "Загон",
+      "name": "Pen",
       "across": 0,
       "distance": 10,
       "height": 1.4,
@@ -290,7 +290,7 @@
     },
     {
       "id": "horse",
-      "name": "Конь инспектора",
+      "name": "The inspector’s horse",
       "across": 4.6,
       "distance": 9.6,
       "height": 1.8,
@@ -308,7 +308,7 @@
     },
     {
       "id": "calf",
-      "name": "Телёнок",
+      "name": "Calf",
       "across": -0.1,
       "distance": 8.05,
       "height": 1.1,
@@ -325,7 +325,7 @@
     },
     {
       "id": "farmhand",
-      "name": "Работник",
+      "name": "Farmhand",
       "person": {
         "cast": "cast",
         "who": "farmhand",
@@ -342,7 +342,7 @@
     },
     {
       "id": "rope",
-      "name": "Верёвка недоуздка",
+      "name": "Halter rope",
       "across": -0.6,
       "distance": 7.98,
       "height": 1,
@@ -355,7 +355,7 @@
     },
     {
       "id": "inspector",
-      "name": "Инспектор",
+      "name": "The inspector",
       "person": {
         "cast": "cast",
         "who": "inspector",
@@ -372,7 +372,7 @@
     },
     {
       "id": "joseph",
-      "name": "Джозеф Сторм",
+      "name": "Joseph Strorm",
       "person": {
         "cast": "cast",
         "who": "joseph",
@@ -389,7 +389,7 @@
     },
     {
       "id": "tufts",
-      "name": "Трава во дворе",
+      "name": "Grass in the yard",
       "across": 0,
       "distance": 6.2,
       "height": 0.4,
@@ -402,7 +402,7 @@
     },
     {
       "id": "weeds",
-      "name": "Бурьян у ног",
+      "name": "Weeds underfoot",
       "across": 0,
       "distance": 4.6,
       "height": 0.8,
@@ -415,7 +415,7 @@
     },
     {
       "id": "leaves",
-      "name": "Листья в воздухе",
+      "name": "Leaves in the air",
       "across": 0,
       "distance": 9,
       "elevation": 3,
@@ -437,7 +437,7 @@
     },
     {
       "id": "dust",
-      "name": "Пыль",
+      "name": "Dust",
       "across": 0,
       "distance": 7,
       "elevation": 1.2,
@@ -458,7 +458,7 @@
     },
     {
       "id": "rain",
-      "name": "Дождь",
+      "name": "Rain",
       "particles": {
         "kind": "rain",
         "amount": "rain",

@@ -36,7 +36,7 @@ const game = fileURLToPath(new URL('..', import.meta.url));
 const load = file => import(pathToFileURL(join(game, file)).href);
 // the game's texts as written (the source language): tr as the page gives it, without the translations
 const fill = (t, p = {}) => t.replace(/\{(\w+)\}/g, (_, k) => String(p[k]));
-globalThis.tr = Object.assign(fill, { n: (n, one, other, p) => fill(n === 1 ? one : other, { n, ...p }), c: (c, t, p) => fill(t, p), line: (who, t) => t });
+globalThis.tr = Object.assign(fill, { n: (n, one, other, p) => fill(n === 1 ? one : other, { n, ...p }), c: (c, t, p) => fill(t, p), line: (who, t) => t, thought: (who, t) => t });
 const PEOPLE = JSON.parse(readFileSync(join(game, 'people.json'), 'utf8'));
 const { SCENES, SCALES, facts, carry, context } = await load('story.js');
 const { endings: ENDINGS } = (await load('chapters/epilogue.js')).default;

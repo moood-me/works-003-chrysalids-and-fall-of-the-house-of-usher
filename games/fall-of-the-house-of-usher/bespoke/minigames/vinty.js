@@ -13,7 +13,7 @@
 import { until, once, keys } from '../hands.js';
 
 const SEAT = 0.8, TURNS = 3;
-const HERS = tr.line('madeline', 'Do not let them shut me in.');
+const HERS = tr.thought('madeline', 'Do not let them shut me in.');
 
 export default {
   title: 'The screws', // (as the author's ☰ lists it)

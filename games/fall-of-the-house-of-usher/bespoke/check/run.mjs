@@ -49,24 +49,24 @@ const several = (stem, n, tail = '') => Array.from({ length: n }, (_, i) => `${s
 // it waits for, the beats it plays itself, the points its marks stand on, the fields of its opts (and what the opts'
 // functions are called with) and of its result
 const MINIGAMES = {
-  prichina: { scene: 'house', keys: ['gloom', 'crack_trace'], beats: ['trace'], points: ['windows@', 'trees#trunk', 'tarn@', ...Array.from({ length: 17 }, (_, i) => `crack#k${i}`)], opts: ['onLook'], calls: { onLook: [['windows', 1], ['trees', 2], ['tarn', 3]] }, result: ['looked', 'traced'] },
-  tishe: { scene: 'room', keys: ['candles', 'curtain', 'window_open', 'clock'], beats: ['ease', 'flinch'], points: ['candles@', 'window#glass', 'clock#dial', 'portrait#face'], opts: ['onAct'], calls: { onAct: ['his', 'mine'].flatMap(kind => ['candles', 'window', 'clock'].map(which => [kind, which])) }, result: ['his', 'mine', 'order'] },
-  struna: { scene: 'room', keys: ['tempo', 'wild', 'strum', 'narrator_do'], points: ['roderick#hand_r', 'narrator#hand_r'], result: ['follow', 'wild'] },
-  'za-ruku': { scene: 'house', keys: ['walk', 'walk_at', 'resist'], points: ['roderick#hand_l', 'lead@'], result: ['seconds', 'letGo'] },
-  vinty: { scene: 'vault', keys: ['screw1', 'screw2', 'screw3', 'screw4', 'screw_at'], points: [...several('closeup#screw', 4), 'closeup#leave'], opts: ['promised'], result: ['loose', 'seconds'] },
-  slushat: { scene: 'storm', keys: ['ripple', 'listen'], points: ['floor#mid', 'ripple@'], opts: ['clarity'], result: ['heard', 'seconds'] },
-  stuk: { scene: 'vault', keys: ['knock', 'answer'], points: ['outside#door', 'outside#away'], result: ['knocks', 'answered'] },
-  chtenie: { scene: 'storm', keys: ['sound', 'rock', 'listen'], points: ['book@'], result: ['louder', 'listened'] },
-  ruki: { scene: 'storm', keys: ['rod_reach', 'mad_reach', 'rod_to_mad', 'mad_to_rod', 'grab', 'grab_x', 'grab_y', 'held_rod', 'held_mad', 'quake', 'shudder'], points: ['closeup#nar_hand', 'closeup#rod_hand', 'closeup#mad_hand', 'closeup#stay'], opts: ['roderick', 'madeline', 'both', 'time'], result: ['took', 'stayed'] },
-  beg: { scene: 'fall', keys: ['run', 'run_at', 'fall', 'swim'], beats: ['stumble'], points: ['narrator'], opts: ['companions', 'speed', 'sanity'], result: ['escaped'] },
+  cause: { scene: 'house', keys: ['gloom', 'crack_trace'], beats: ['trace'], points: ['windows@', 'trees#trunk', 'tarn@', ...Array.from({ length: 17 }, (_, i) => `crack#k${i}`)], opts: ['onLook'], calls: { onLook: [['windows', 1], ['trees', 2], ['tarn', 3]] }, result: ['looked', 'traced'] },
+  quieter: { scene: 'room', keys: ['candles', 'curtain', 'window_open', 'clock'], beats: ['ease', 'flinch'], points: ['candles@', 'window#glass', 'clock#dial', 'portrait#face'], opts: ['onAct'], calls: { onAct: ['his', 'mine'].flatMap(kind => ['candles', 'window', 'clock'].map(which => [kind, which])) }, result: ['his', 'mine', 'order'] },
+  string: { scene: 'room', keys: ['tempo', 'wild', 'strum', 'narrator_do'], points: ['roderick#hand_r', 'narrator#hand_r'], result: ['follow', 'wild'] },
+  'by-the-hand': { scene: 'house', keys: ['walk', 'walk_at', 'resist'], points: ['roderick#hand_l', 'lead@'], result: ['seconds', 'letGo'] },
+  screws: { scene: 'vault', keys: ['screw1', 'screw2', 'screw3', 'screw4', 'screw_at'], points: [...several('closeup#screw', 4), 'closeup#leave'], opts: ['promised'], result: ['loose', 'seconds'] },
+  listening: { scene: 'storm', keys: ['ripple', 'listen'], points: ['floor#mid', 'ripple@'], opts: ['clarity'], result: ['heard', 'seconds'] },
+  knock: { scene: 'vault', keys: ['knock', 'answer'], points: ['outside#door', 'outside#away'], result: ['knocks', 'answered'] },
+  reading: { scene: 'storm', keys: ['sound', 'rock', 'listen'], points: ['book@'], result: ['louder', 'listened'] },
+  hands: { scene: 'storm', keys: ['rod_reach', 'mad_reach', 'rod_to_mad', 'mad_to_rod', 'grab', 'grab_x', 'grab_y', 'held_rod', 'held_mad', 'quake', 'shudder'], points: ['closeup#nar_hand', 'closeup#rod_hand', 'closeup#mad_hand', 'closeup#stay'], opts: ['roderick', 'madeline', 'both', 'time'], result: ['took', 'stayed'] },
+  flight: { scene: 'fall', keys: ['run', 'run_at', 'fall', 'swim'], beats: ['stumble'], points: ['narrator'], opts: ['companions', 'speed', 'sanity'], result: ['escaped'] },
 };
 // what game.js itself takes of «Crack» (it is not run here): its keys, the knot it offers
 const WALL = { keys: ['chapter_number', 'chapter_title', 'map', 'reveal', 'knot'], offers: ['knot#end'] };
 // the results put in: the outcomes a chapter branches on — clean, and each one's other
 const CLEAN = {};
-const OTHER = [{ tishe: { his: 0, mine: 3, order: [['candles', 'mine'], ['window', 'mine'], ['clock', 'mine']] } }, { tishe: { his: 3, mine: 0, order: [['candles', 'his'], ['window', 'his'], ['clock', 'his']] } },
-  { struna: { follow: 1, wild: 1 } }, { struna: { follow: 0, wild: 0 } }, { vinty: { loose: [2, 4], seconds: 20 } }, { slushat: { heard: 'melody', seconds: 10 } },
-  { chtenie: { louder: 2, listened: 0 } }, { chtenie: { louder: 0, listened: 2 } }, { ruki: { took: 'none', stayed: true } }, { beg: { escaped: false } }];
+const OTHER = [{ quieter: { his: 0, mine: 3, order: [['candles', 'mine'], ['window', 'mine'], ['clock', 'mine']] } }, { quieter: { his: 3, mine: 0, order: [['candles', 'his'], ['window', 'his'], ['clock', 'his']] } },
+  { string: { follow: 1, wild: 1 } }, { string: { follow: 0, wild: 0 } }, { screws: { loose: [2, 4], seconds: 20 } }, { listening: { heard: 'melody', seconds: 10 } },
+  { reading: { louder: 2, listened: 0 } }, { reading: { louder: 0, listened: 2 } }, { hands: { took: 'none', stayed: true } }, { flight: { escaped: false } }];
 
 // what does not match: text → the plays it was met in
 const misses = new Map(), cuts = new Map();
@@ -392,14 +392,14 @@ const combos = [first, ...CHOICES.flatMap(c => c.options.slice(1).map(o => ({ ..
 // the plays that lead to each ending (the hands are «Hands»'s outcome; caught on the causeway — «Run»'s), and the ones
 // in which the trust and what she heard have both hands reach out (she heard him: “she may be living”; he trusts him:
 // by his way in the room, with his music, staying with him)
-const TRUSTED = { ...first, coffin: 'said', madeline: 'stay', struna: 'follow' };
+const TRUSTED = { ...first, coffin: 'said', madeline: 'stay', string: 'follow' };
 const ENDS = [
   [first, {}],
-  [TRUSTED, { ruki: { took: 'madeline', stayed: false } }],
-  [TRUSTED, { ruki: { took: 'roderick', stayed: false } }],
-  [{ ...TRUSTED, screws: 'loose' }, { ruki: { took: 'both', stayed: false }, vinty: { loose: [2], seconds: 20 } }],
-  [first, { ruki: { took: 'none', stayed: true } }],
-  [first, { beg: { escaped: false } }],
+  [TRUSTED, { hands: { took: 'madeline', stayed: false } }],
+  [TRUSTED, { hands: { took: 'roderick', stayed: false } }],
+  [{ ...TRUSTED, screws: 'loose' }, { hands: { took: 'both', stayed: false }, screws: { loose: [2], seconds: 20 } }],
+  [first, { hands: { took: 'none', stayed: true } }],
+  [first, { flight: { escaped: false } }],
   [{ ...first, carriage: 'left' }, {}],
   [{ ...first, morning: 'left' }, {}],
   // (the mind gone — sanity 0: the tarn looked into, his room his way, his music followed, back to the house, the storm

@@ -5,9 +5,9 @@
 // design.md (docs/usher): the hands at the end, the endings.
 // Reads: scales; heard.*; marks.loose, key, knocks; choices.night, coffin. Leaves: choices.window, reading, hands.
 import { CRACK_FULL, SCALES, SCENES } from '../story.js';
-import chtenie from '../minigames/chtenie.js';
-import ruki from '../minigames/ruki.js';
-import beg from '../minigames/beg.js';
+import reading from '../minigames/reading.js';
+import hands from '../minigames/hands.js';
+import flight from '../minigames/flight.js';
 
 const STORM = SCENES.storm, FALL = SCENES.fall;
 
@@ -60,7 +60,7 @@ export default {
       await g.scene(STORM, { beat: 'read' });
       await g.beat('read');
       await g.say('narrator', 'To divert him, I took up an antique romance of the knight Ethelred, and read it aloud.');
-      const { louder, listened } = await g.play(chtenie, {});
+      const { louder, listened } = await g.play(reading, {});
       g.state.choices.reading = louder > listened ? 'louder' : 'listened';
       g.scale('crack', louder);
       await g.say('narrator', 'Each sound of which I read found its echo in the house.');
@@ -102,7 +102,7 @@ export default {
       const roomy = scales.crack <= 3 && marks.loose;
       let took = 'none', stayed = true;
       if (scales.sanity > 0) {
-        ({ took, stayed } = await g.play(ruki, {
+        ({ took, stayed } = await g.play(hands, {
           madeline, roderick, both: !!roomy,
           time: roomy ? 12 : 9 - 5 * Math.min(1, scales.crack / CRACK_FULL), // (the hands come in over its first 1.5 s)
         }));
@@ -134,7 +134,7 @@ export default {
       const companions = { madeline: ['madeline'], roderick: ['roderick'], both: ['madeline', 'roderick'] }[choices.hands] || [];
       await g.scene(FALL, { with_madeline: companions.includes('madeline'), with_roderick: companions.includes('roderick'), beat: 'run' });
       await g.beat('run');
-      const { escaped } = await g.play(beg, { companions, speed: Math.min(1, scales.crack / CRACK_FULL), sanity: scales.sanity / SCALES.sanity.max });
+      const { escaped } = await g.play(flight, { companions, speed: Math.min(1, scales.crack / CRACK_FULL), sanity: scales.sanity / SCALES.sanity.max });
       if (!escaped) {
         g.set('fade', 1, 1.5);
         await g.wait(1500);

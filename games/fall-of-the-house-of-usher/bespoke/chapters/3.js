@@ -6,9 +6,9 @@
 // insisted, loose, knocked; marks.loose (the screws stayed loose), marks.key (he told of the key), marks.knocks (how many
 // times he knocked at the vault's door).
 import { SCALES, SCENES } from '../story.js';
-import vinty from '../minigames/vinty.js';
-import stuk from '../minigames/stuk.js';
-import slushat from '../minigames/slushat.js';
+import screws from '../minigames/screws.js';
+import knock from '../minigames/knock.js';
+import listening from '../minigames/listening.js';
 
 const HOUSE = SCENES.house, ROOM = SCENES.room, VAULT = SCENES.vault, NIGHT = SCENES.storm;
 
@@ -97,7 +97,7 @@ export default {
         if (lid === 'said') await g.say('roderick', 'The screws. Help me.');
         await g.beat('screws');
         g.set('beat_next', 'inside');
-        const { loose } = await g.play(vinty, { promised: !!g.state.marks.promise });
+        const { loose } = await g.play(screws, { promised: !!g.state.marks.promise });
         g.state.choices.screws = loose.length ? 'loose' : 'tight';
         if (loose.length) {
           g.overheard('loose');
@@ -125,7 +125,7 @@ export default {
       g.sound.rain(0.3, 4);
       await g.beat('night');
       await g.say('narrator', 'Some days passed. He roamed the house by night. Sleep came not near my couch.');
-      const { heard } = await g.play(slushat, { clarity: 1 - g.state.scales.sanity / SCALES.sanity.max });
+      const { heard } = await g.play(listening, { clarity: 1 - g.state.scales.sanity / SCALES.sanity.max });
       g.sound.house(0.15, 3);
       if (heard === 'melody') await g.say('narrator', 'From below, through the stone — her song. Before, I should not have heard it.');
       else await g.say('narrator', 'From below — scarcely to be heard — as of something scratching at wood.');
@@ -156,7 +156,7 @@ export default {
       }
       await g.scene(VAULT, { beat: 'at_door' });
       await g.beat('at_door');
-      const { knocks } = await g.play(stuk, {});
+      const { knocks } = await g.play(knock, {});
       g.overheard('knocked');
       g.mark('knocks', knocks);
       await g.say('narrator', 'From within, there came an answer.');

@@ -4,8 +4,8 @@
 // catalepsy seen close, her one line, a promise) or stay with him. design.md, scenes.md (docs/usher).
 // Leaves: choices.tarn, room, madeline, promise; marks.promise.
 import { SCENES } from '../story.js';
-import prichina from '../minigames/prichina.js';
-import tishe from '../minigames/tishe.js';
+import cause from '../minigames/cause.js';
+import quieter from '../minigames/quieter.js';
 
 const HOUSE = SCENES.house, ROOM = SCENES.room, GALLERY = SCENES.gallery;
 
@@ -39,7 +39,7 @@ export default {
       await g.beat('arrive');
       await g.beat('look', { wait: false });
       await g.say('narrator', 'I know not how it was — but, with the first glimpse of the building, a sense of insufferable gloom pervaded my spirit.');
-      await g.play(prichina, {
+      await g.play(cause, {
         onLook: (which, n) => {
           g.sound.house(0.35 * (1 - n / 3), 3); // the gloom: the air goes silent, look by look
           return g.say('narrator', LOOKS[which]);
@@ -72,7 +72,7 @@ export default {
       await g.beat('room');
       await g.say('roderick', 'Forgive me. The light is torture to my eyes. Every sound — a blow.');
       const done = { his: 0, mine: 0 };
-      const room = await g.play(tishe, {
+      const room = await g.play(quieter, {
         onAct: async (kind, which) => {
           done[kind]++;
           g.scale('trust', kind === 'his' ? 1 : -1);

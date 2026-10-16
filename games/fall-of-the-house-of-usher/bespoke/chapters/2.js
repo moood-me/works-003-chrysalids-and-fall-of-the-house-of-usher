@@ -2,10 +2,10 @@
 // the doctor in the gallery: ⚑ tell him of her fits or keep silent, and ⚑ his carriage — the first
 // chance to leave; the walk out of the house («By the hand»): his breath, his fear, the house alive — on to
 // the shore or back. «She is no more». design.md, scenes.md (docs/usher).
-// Reads: nothing. Leaves: choices.struna, doctor, carriage, walk; marks.doctor (he was told). «By the hand» let go — trust.
+// Reads: nothing. Leaves: choices.string, doctor, carriage, walk; marks.doctor (he was told). «By the hand» let go — trust.
 import { SCENES } from '../story.js';
-import struna from '../minigames/struna.js';
-import zaRuku from '../minigames/za-ruku.js';
+import string from '../minigames/string.js';
+import byTheHand from '../minigames/by-the-hand.js';
 
 const HOUSE = SCENES.house, ROOM = SCENES.room, GALLERY = SCENES.gallery;
 
@@ -14,7 +14,7 @@ export default {
   title: tr('Days'),
   titles: ['The guitar', 'The physician', 'The walk', 'Evening'],
   choices: [
-    { id: 'struna', weight: '~', title: tr('His music'), options: [{ id: 'follow', label: tr('follow him') }, { id: 'steady', label: tr('my own time') }] },
+    { id: 'string', weight: '~', title: tr('His music'), options: [{ id: 'follow', label: tr('follow him') }, { id: 'steady', label: tr('my own time') }] },
     { id: 'doctor', weight: '⚑', title: tr('The physician'), options: [{ id: 'told', label: tr('tell him of it') }, { id: 'silent', label: tr('say nothing') }] },
     { id: 'carriage', weight: '⚑', ends: true, title: tr('The physician’s carriage'), options: [{ id: 'stay', label: tr('stay') }, { id: 'left', label: tr('leave') }] },
     { id: 'walk', weight: '~', title: tr('The walk'), options: [{ id: 'shore', label: tr('to the shore') }, { id: 'back', label: tr('back') }] },
@@ -33,13 +33,13 @@ export default {
       await g.say('roderick', 'Her song. She sang it when we were children.');
       await song;
       tune.stop();
-      const { follow } = await g.play(struna, {});
+      const { follow } = await g.play(string, {});
       if (follow >= 0.5) {
-        g.state.choices.struna = 'follow';
+        g.state.choices.string = 'follow';
         g.scale('trust', 1);
         g.scale('sanity', -1);
       } else {
-        g.state.choices.struna = 'steady';
+        g.state.choices.string = 'steady';
         g.scale('trust', -1);
       }
       const ballad = g.beat('ballad');
@@ -88,7 +88,7 @@ export default {
       await g.say('narrator', 'For many years he had not ventured forth. I led him out by the hand.');
       await out;
       await g.beat('walk');
-      const { letGo } = await g.play(zaRuku, {});
+      const { letGo } = await g.play(byTheHand, {});
       // (his hand let go on the way out: he felt it)
       if (letGo) g.scale('trust', -1);
       // (said in the close-up of his breath)

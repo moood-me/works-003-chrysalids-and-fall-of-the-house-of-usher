@@ -48,8 +48,8 @@ import * as sounds from './sound.js';
 
 // the world's scenes the game plays, by their folders
 export const SCENES = {
-  house: 'main', room: 'komnata-roderika', gallery: 'medlin-prokhodit', vault: 'sklep', storm: 'burya-i-chtenie',
-  fall: 'padenie-doma-2', wall: 'treshchina',
+  house: 'main', room: 'roderick-room', gallery: 'madeline-passes', vault: 'vault', storm: 'storm-and-reading',
+  fall: 'fall-of-the-house', wall: 'fissure',
 };
 
 

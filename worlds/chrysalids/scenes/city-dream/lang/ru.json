@@ -1,0 +1,7 @@
+{"strings": [
+  {"text":"The dream of the city","translation":"Сон о городе","where":"scenes/city-dream/scene.json title"},
+  {"text":"I dreamt of a city that was on no map.","translation":"Мне снился город, которого не было ни на одной карте.","where":"scenes/city-dream/scene.json caption"},
+  {"text":"Towers at the very water’s edge, and a light in every window.","translation":"Башни у самой воды, и в каждом окне — свет.","where":"scenes/city-dream/scene.json captions[0] text"},
+  {"text":"And over them shining fish swam slowly.","translation":"А над ними медленно плыли блестящие рыбы.","where":"scenes/city-dream/scene.json captions[1] text"},
+  {"text":"I did not know where it was. I knew only that I must go there.","translation":"Я не знал, где это. Знал только, что мне — туда.","where":"scenes/city-dream/scene.json captions[2] text"}
+]}

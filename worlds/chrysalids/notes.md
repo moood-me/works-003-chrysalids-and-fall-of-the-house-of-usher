@@ -2,7 +2,7 @@
 
 ## A copy "as is" (2026-10-15)
 
-The world's tree (`modules/`, 19 folders `scenes/`, engine 1) is a copy of the "film game" `env/dev`. `main` — `nasyp-u-ruchya`.
+The world's tree (`modules/`, 19 folders `scenes/`, engine 1) is a copy of the "film game" `env/dev`. `main` — `stream-bank`.
 The game `pavel/khrizalidy-v3` is a copy of the "film" game's `bespoke/`.
 
 The sources' `env/dev` hashes on the day of the copy:

@@ -1,8 +1,0 @@
-{"strings": [
-  {"text":"…TION","translation":"…АНЦИЯ","where":"scenes/ruiny-drevnikh/elements/glint.js"},
-  {"text":"The ruins of the Old People","translation":"Руины Древних","where":"scenes/ruiny-drevnikh/scene.json title"},
-  {"text":"The Old People lived here.","translation":"Здесь жили Древние.","where":"scenes/ruiny-drevnikh/scene.json caption"},
-  {"text":"We were told God had punished them for their pride.","translation":"Нам говорили, что Бог покарал их за гордыню.","where":"scenes/ruiny-drevnikh/scene.json captions[0] text"},
-  {"text":"We were not allowed to come here. We came.","translation":"Сюда нельзя было ходить. Мы ходили.","where":"scenes/ruiny-drevnikh/scene.json captions[1] text"},
-  {"text":"Sophie stroked the rusty side — warm from the sun.","translation":"Софи гладила ржавый бок — тёплый от солнца.","where":"scenes/ruiny-drevnikh/scene.json captions[2] text"}
-]}

@@ -56,7 +56,7 @@ export const SCENES = {
 // The scales: where they start, their bounds, what the player reads when they move, and the one line that says what
 // they mean, the first time they show.
 export const SCALES = {
-  crack: { start: 0, min: 0, up: tr('The fissure widens'), down: tr('The fissure is still'), rule: tr('The fissure widens when the truth goes unspoken here.') },
+  crack: { start: 0, min: 0, up: tr('The fissure widens'), down: tr('The fissure is quiet'), rule: tr('The fissure widens when the truth goes unspoken here.') },
   sanity: { start: 5, min: 0, max: 5, up: tr('Reason ↑'), down: tr('Reason ↓'), rule: tr('The lower your reason, the more you see and hear.') },
   trust: { start: 1, up: tr('Roderick ↑'), down: tr('Roderick ↓'), rule: tr('Roderick ↑ — he trusts you more, ↓ — less.') },
 };

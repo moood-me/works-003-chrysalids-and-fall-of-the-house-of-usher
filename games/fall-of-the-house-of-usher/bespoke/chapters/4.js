@@ -19,7 +19,7 @@ const TRUSTS = 2;
 export default {
   number: 'IV',
   title: tr('The storm'),
-  titles: [tr('The lamp'), tr('The reading'), tr('The confession'), tr('The door'), tr('The flight')],
+  titles: ['The lamp', 'The reading', 'The confession', 'The door', 'The flight'],
   choices: [
     { id: 'window', weight: '~', title: tr('The window'), options: [{ id: 'close', label: tr('close it') }, { id: 'watch', label: tr('watch with him') }] },
     { id: 'reading', weight: '~', title: tr('The reading'), options: [{ id: 'louder', label: tr('louder') }, { id: 'listened', label: tr('listen') }] },
@@ -78,8 +78,8 @@ export default {
         choices.night === 'told' && tr.line('roderick', 'And you heard it.'),
         (heard.said || heard.insisted) && tr.line('roderick', 'You would have spoken — I would not let you.'),
         heard.loose && tr.line('roderick', 'You left the screws loose. I knew it.'),
-        marks.knocks >= 3 && tr.line('roderick', 'You knocked to her by night. Again and again. And she answered.'),
-        !marks.key && tr.line('roderick', 'I cast the key into the tarn — lest I should open.'),
+        marks.knocks >= 3 && tr.line('roderick', 'You knocked at her door by night. Again and again. And she answered.'),
+        !marks.key && tr.line('roderick', 'I cast the key into the tarn — lest I should open it.'),
       ].filter(Boolean);
       g.set('cu_speak', 1);
       for (const line of lines) await g.say('roderick', line, 'narrator');

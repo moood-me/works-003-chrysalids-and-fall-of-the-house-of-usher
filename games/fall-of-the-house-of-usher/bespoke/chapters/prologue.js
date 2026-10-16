@@ -14,7 +14,7 @@ export const LETTER = {
 export default {
   number: '',
   title: tr('Prologue'),
-  titles: [tr('The fall of the house. The letter')],
+  titles: ['The fall of the house. The letter'],
   choices: [],
   steps: [
     async g => {

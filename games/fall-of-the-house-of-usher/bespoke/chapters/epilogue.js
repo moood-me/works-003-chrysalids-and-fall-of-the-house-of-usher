@@ -21,13 +21,13 @@ const ENDINGS = [
   { id: 'both', label: tr('Both'), beat: 'end_both', lines: [['end_both:hands', tr.line('narrator', 'The house went down beneath the water. But that which came out of it with them — did not.')]] },
   { id: 'stayed', label: tr('Stayed'), beat: 'end_stayed', lines: [['end_stayed:under', tr.line('narrator', 'The tarn closed over the House of Usher. Over them. And over me.')]] },
   // (the empty tarn in the morning, once it is all there)
-  { id: 'left', label: tr('Left'), beat: 'gone', lines: [['gone:morning', tr.line('narrator', 'A month later there came a letter: the House of Usher was no more. It had gone down into the tarn on the night of the storm.')], [END, tr.line('narrator', 'I read his letter once again.')]] },
+  { id: 'left', label: tr('Rode away'), beat: 'gone', lines: [['gone:morning', tr.line('narrator', 'A month later there came a letter: the House of Usher was no more. It had gone down into the tarn on the night of the storm.')], [END, tr.line('narrator', 'I read his letter once again.')]] },
 ];
 
 export default {
   number: '',
   title: tr('Epilogue'),
-  titles: [tr('Ending')],
+  titles: ['Ending'],
   choices: [],
   endings: ENDINGS,
   steps: [

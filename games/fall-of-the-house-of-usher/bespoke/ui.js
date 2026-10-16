@@ -286,7 +286,7 @@ function unfold(layer, { text, highlight = '', sign = '' }, signal) {
     const panel = el('div', `panel ${part}`, letter);
     el('div', 'face front', panel).append(part === 'top' ? sheet : sheet.cloneNode(true));
     const back = el('div', 'face back', panel);
-    if (part === 'top') el('div', 'seal', back).textContent = tr('U');
+    if (part === 'top') el('div', 'seal', back).textContent = tr.c('the seal: Usher’s initial', 'U');
   }
   let stage = 'folded';
   const wait = ms => new Promise(ok => setTimeout(ok, ms));

@@ -24,7 +24,7 @@ const ANSWERS = {
 export default {
   number: 'I',
   title: tr('The arrival'),
-  titles: [tr('The house above the tarn'), tr('Roderick'), tr('Madeline passes')],
+  titles: ['The house above the tarn', 'Roderick', 'Madeline passes'],
   choices: [
     { id: 'tarn', weight: '~', title: tr('The tarn'), options: [{ id: 'looked', label: tr('into the water') }, { id: 'not', label: tr('ride on') }] },
     { id: 'room', weight: '~', title: tr('His chamber'), options: [{ id: 'his', label: tr('his way') }, { id: 'mine', label: tr('my way') }] },

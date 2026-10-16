@@ -1,8 +1,8 @@
 {
   "type": "bespoke",
   "title": "The Fall of the House of Usher",
-  "description": "You come to Roderick Usher at his desperate letter. A house by a dark tarn, a crack down its front, his sister Madeline like a shadow. Something is ending here — and you will be beside him when it does.",
-  "line": "An old friend calls you to a house that seems to be ill along with its masters.",
+  "description": "Summoned by a desperate letter, you come to Roderick Usher. A house by a dark tarn, a fissure down its front, his sister Madeline like a shadow. Something is ending here — and you will be beside him when it does.",
+  "line": "An old friend calls you to a house that seems to share its masters' sickness.",
   "source": "after the tale by Edgar Allan Poe",
   "genres": {
     "drama": 70,

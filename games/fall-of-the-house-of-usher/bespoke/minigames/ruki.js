@@ -21,7 +21,7 @@ const STAY = 2; // s held on his own place: he stays
 const HOLDING = 1.4; // s the close-up holds the hands taken
 
 export default {
-  title: tr('Hands'), // (as the author's ☰ lists it)
+  title: 'Hands', // (as the author's ☰ lists it)
   about: 12,
   skipped: { took: 'none', stayed: false },
   async run(g, b, opts, signal) {

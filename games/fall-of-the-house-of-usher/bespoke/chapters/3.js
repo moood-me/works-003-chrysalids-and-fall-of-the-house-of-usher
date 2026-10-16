@@ -15,7 +15,7 @@ const HOUSE = SCENES.house, ROOM = SCENES.room, VAULT = SCENES.vault, NIGHT = SC
 export default {
   number: 'III',
   title: tr('The vault'),
-  titles: [tr('A fortnight'), tr('The vault'), tr('Nights'), tr('Morning')],
+  titles: ['A fortnight', 'The vault', 'Nights', 'Morning'],
   choices: [
     { id: 'check', weight: '~', title: tr('At the coffin'), options: [{ id: 'touch', label: tr('touch her hand') }, { id: 'mirror', label: tr('the mirror') }, { id: 'none', label: tr('do not touch') }] },
     { id: 'coffin', weight: '⚑', title: tr('The lid'), options: [{ id: 'said', label: tr('“she may be living”') }, { id: 'insisted', label: tr('“do not close it”') }, { id: 'silent', label: tr('say nothing') }] },
@@ -31,7 +31,7 @@ export default {
       await g.beat('plan');
       await g.say('roderick', 'For a fortnight she shall lie below, in a vault. The physicians are too eager in their inquiries. And the burial-ground is remote.');
       if (g.state.marks.doctor) {
-        await g.say('roderick', 'You spoke with him. He will come for her. Then — today.');
+        await g.say('roderick', 'You spoke with him. He will come for her. So it must be today.');
         g.scale('trust', -1);
       }
     },
@@ -66,7 +66,7 @@ export default {
         await mirror;
       }
       await g.say('narrator', 'So it is with her malady. She may be living. There is no knowing for certain.');
-      await g.say('roderick', 'We are twins. I should have felt it.');
+      await g.say('roderick', 'We are twins. I would have felt it.');
       const lid = await g.choose('coffin', 'roderick', [
         { id: 'said', label: tr('May be living') },
         { id: 'insisted', label: tr('Do not close') },

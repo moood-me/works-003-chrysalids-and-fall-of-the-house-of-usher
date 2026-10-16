@@ -12,10 +12,10 @@ const HOUSE = SCENES.house, ROOM = SCENES.room, GALLERY = SCENES.gallery;
 export default {
   number: 'II',
   title: tr('Days'),
-  titles: [tr('The guitar'), tr('The physician'), tr('The walk'), tr('Evening')],
+  titles: ['The guitar', 'The physician', 'The walk', 'Evening'],
   choices: [
     { id: 'struna', weight: '~', title: tr('His music'), options: [{ id: 'follow', label: tr('follow him') }, { id: 'steady', label: tr('my own time') }] },
-    { id: 'doctor', weight: '⚑', title: tr('The physician'), options: [{ id: 'told', label: tr('tell him') }, { id: 'silent', label: tr('say nothing') }] },
+    { id: 'doctor', weight: '⚑', title: tr('The physician'), options: [{ id: 'told', label: tr('tell him of it') }, { id: 'silent', label: tr('say nothing') }] },
     { id: 'carriage', weight: '⚑', ends: true, title: tr('The physician’s carriage'), options: [{ id: 'stay', label: tr('stay') }, { id: 'left', label: tr('leave') }] },
     { id: 'walk', weight: '~', title: tr('The walk'), options: [{ id: 'shore', label: tr('to the shore') }, { id: 'back', label: tr('back') }] },
   ],
@@ -52,7 +52,7 @@ export default {
     async g => {
       await g.scene(GALLERY, { beat: 'doctor' });
       const doctor = g.beat('doctor');
-      await g.say('narrator', 'In the gallery the family physician stayed me.');
+      await g.say('narrator', 'In the gallery I met the family physician.');
       await doctor;
       g.set('speak', 1);
       await g.say('doctor', 'A most curious case. When she… I should like to study her.', 'narrator');

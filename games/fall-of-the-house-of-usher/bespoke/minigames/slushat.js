@@ -15,7 +15,7 @@ const HOLD = 2.5; // s of listening at the place
 const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
 
 export default {
-  title: tr('Listen'), // (as the author's ☰ lists it)
+  title: 'Listen', // (as the author's ☰ lists it)
   about: 30,
   // (skipped: what a clean play gives — her song if he hears it clearly enough)
   skipped: ({ clarity = 0.3 } = {}) => ({ heard: clarity >= 0.5 ? 'melody' : 'scratch', seconds: 0 }),

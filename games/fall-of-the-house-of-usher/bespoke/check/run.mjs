@@ -420,8 +420,8 @@ const clock = s => { const r = Math.round(s); return `${Math.floor(r / 60)}:${St
 const span = all => { const lo = Math.min(...all), hi = Math.max(...all); return lo === hi ? clock(lo) : `${clock(lo)}…${clock(hi)}`; };
 const seconds = events => events.reduce((sum, e) => sum + (e[0] === 'beat' || e[0] === 'play' ? e[2] : e[0] === 'say' ? e[1] : 0), 0);
 
-say(`World: ${world} — ${WORLD.size} scenes. Game: ${CHAPTERS.length} chapters, ${CHAPTERS.reduce((n, ch) => n + ch.steps.length, 0)} steps, ${CHAPTERS.length} choices.`);
-say(`Runs: ${plays.length} (${plays.length} — the first options and every other one once, ${plays.length} — to the endings, ${plays.length} — with another mini-game outcome).`);
+say(`World: ${world} — ${WORLD.size} scenes. Game: ${CHAPTERS.length} chapters, ${CHAPTERS.reduce((n, ch) => n + ch.steps.length, 0)} steps, ${CHOICES.length} choices.`);
+say(`Runs: ${plays.length} (${combos.length} — the first options and every other one once, ${ENDS.length} — to the endings, ${OTHER.length} — with another mini-game outcome).`);
 
 say(`
 == Discrepancies: ${misses.size} ==`);

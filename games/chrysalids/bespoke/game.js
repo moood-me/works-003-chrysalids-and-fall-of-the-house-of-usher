@@ -20,7 +20,7 @@
 // skipped leaves nothing chosen. A minigame's ⏭ is every player's (story.js g.play): it counts as played.
 import { SCENES, context, listen } from './story.js';
 import { jump } from './jump.js';
-import { unheard } from './sound.js';
+import { unheard, pause } from './sound.js';
 import { ui } from './ui.js';
 import { SCALES, level, people, differ } from './journal.js';
 import one from './chapters/1.js';
@@ -43,7 +43,7 @@ export default async function (b) {
   b.minigame.style({ key: 'C_MAJOR_A_MINOR', font: 'Georgia, "Times New Roman", serif', colors: { mark: '#efe6d2', fill: '#d9b878', good: '#a9c79a', danger: '#c8604a', fork: '#a8b4cc', ghost: 'rgba(239, 230, 210, 0.5)' } });
   const hub = listen(b);
   const view = ui(b.layer);
-  view.pausing(b);
+  b.onPause(pause);
   let kept = { ...structuredClone(RUN), starts: {}, replay: null, ...b.saved };
   // the minigames a step plays (as one who chose nothing before plays it: its first options) — the step played through
   // unseen, once
@@ -56,10 +56,10 @@ export default async function (b) {
     }
     return listed.get(k);
   };
-  if (b.game.mine) view.author({ chapters: CHAPTERS, at: () => kept.replay ?? kept, plays, go: async (chapter, step, play) => {
+  if (b.game.mine) b.menu(view.author({ chapters: CHAPTERS, at: () => kept.replay ?? kept, plays, go: async (chapter, step, play) => {
     await b.keep({ ...kept, replay: { ...structuredClone(RUN), chapter, step, ...(play != null ? { play } : {}) } });
     location.reload();
-  } });
+  } }));
   const keep = next => { kept = next; return b.keep(kept); };
   const main = () => kept.chapter;
   const mainDone = () => kept.step >= (CHAPTERS[kept.chapter]?.steps.length ?? 0);

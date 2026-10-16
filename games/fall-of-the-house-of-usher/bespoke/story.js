@@ -37,7 +37,7 @@
 //   g.scale(name, delta, quiet) — crack, sanity or trust moves; the player sees which way (the gauge, the words) unless
 //     quiet; the first time a scale shows, one line says what it means. The crack grows in the shown scene too
 //   g.gauge(name) — the scale is shown from now on (with its line), not moved
-//   g.overheard(what) — Madeline heard it (state.heard[what]): «Мэдлин это слышала.»
+//   g.overheard(what) — Madeline heard it (state.heard[what]): «Madeline heard that.»
 //   g.mark(key, value, text) — remembered (state.marks[key]); text — what the player is told, if any
 //   g.end(ending) — the play ends: after this step comes the epilogue, showing `ending` (epilogue.js)
 //   g.letter({text, highlight, sign}) — a letter the player unfolds, reads and folds again (ui.js)
@@ -56,9 +56,9 @@ export const SCENES = {
 // The scales: where they start, their bounds, what the player reads when they move, and the one line that says what
 // they mean, the first time they show.
 export const SCALES = {
-  crack: { start: 0, min: 0, up: 'Трещина растёт', down: 'Трещина затихла', rule: 'Трещина растёт, когда здесь молчат о правде.' },
-  sanity: { start: 5, min: 0, max: 5, up: 'Рассудок ↑', down: 'Рассудок ↓', rule: 'Чем ниже рассудок, тем больше ты видишь и слышишь.' },
-  trust: { start: 1, up: 'Родерик ↑', down: 'Родерик ↓', rule: 'Родерик ↑ — он верит тебе больше, ↓ — меньше.' },
+  crack: { start: 0, min: 0, up: tr('The fissure widens'), down: tr('The fissure is still'), rule: tr('The fissure widens when the truth goes unspoken here.') },
+  sanity: { start: 5, min: 0, max: 5, up: tr('Reason ↑'), down: tr('Reason ↓'), rule: tr('The lower your reason, the more you see and hear.') },
+  trust: { start: 1, up: tr('Roderick ↑'), down: tr('Roderick ↓'), rule: tr('Roderick ↑ — he trusts you more, ↓ — less.') },
 };
 export const CRACK_FULL = 9; // the crack scale at which the crack is all it can be
 export const crackIn = n => Math.min(1, 0.1 + (0.9 * n) / CRACK_FULL); // a scene's crack 0…1 for the scale
@@ -168,7 +168,7 @@ export function context(b, view, hub, state, j = null) {
         put('beat', null); // (the same beat again is a change too)
         put('beat', name);
       }
-      if (wait && !(await ended)) b.trouble(`кусок «${name}» не кончился`);
+      if (wait && !(await ended)) b.trouble(`beat “${name}” did not end`);
     },
     told(text, ms = 60000) {
       return gone() ? never : unseen() ? j.heard(text, ms) : alive(hub.told(text, ms));
@@ -205,7 +205,7 @@ export function context(b, view, hub, state, j = null) {
       }
     },
     minigame(o = {}) {
-      if (!playing) throw new Error('g.minigame — только внутри мини-игры (g.play)');
+      if (!playing) throw new Error('g.minigame — only inside a mini-game (g.play)');
       const mg = b.minigame.start({ ...o, signal: playing.signal });
       mg.on('skip', playing.end);
       return mg;
@@ -230,7 +230,7 @@ export function context(b, view, hub, state, j = null) {
     overheard(what) {
       if (gone() || state.heard[what]) return;
       state.heard[what] = true;
-      if (!unseen()) view.toast('Мэдлин это слышала.', 'her');
+      if (!unseen()) view.toast(tr('Madeline heard that.'), 'her');
     },
     mark(key, value, text) {
       if (gone()) return;
@@ -278,7 +278,7 @@ export function listen(b) {
   });
   const heard = (kind, hit) => { for (const w of waiting) if (w.kind === kind && hit(w)) { waiting.delete(w); w.ok(true); } };
   b.on('tell', text => {
-    if (text.startsWith('beat-unknown:')) b.trouble(`в сцене нет куска «${text.slice(13)}»`);
+    if (text.startsWith('beat-unknown:')) b.trouble(`the scene has no beat “${text.slice(13)}”`);
     heard('tell', w => w.text === text);
   });
   b.on('change', (value, old, key) => { for (const w of watching) if (w.key === key) w.fn(value, old); });

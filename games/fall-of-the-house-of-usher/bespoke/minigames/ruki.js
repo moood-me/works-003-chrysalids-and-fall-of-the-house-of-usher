@@ -1,4 +1,4 @@
-// «Руки» (IV, the end; «Буря и чтение», after the beat `hands`: the close-up of the hands). Roderick's hand and
+// «Hands» (IV, the end; «The storm and the reading», after the beat `hands`: the close-up of the hands). Roderick's hand and
 // Madeline's reach — to the narrator (opts.roderick / opts.madeline) or else to each other (the scene's rod_reach,
 // rod_to_mad, mad_reach, mad_to_rod).
 //   1. what he does — takes a hand that reaches to him, and runs; or stays; 2. wants — to save someone, or not to leave
@@ -21,7 +21,7 @@ const STAY = 2; // s held on his own place: he stays
 const HOLDING = 1.4; // s the close-up holds the hands taken
 
 export default {
-  title: 'Руки', // (as the author's ☰ lists it)
+  title: tr('Hands'), // (as the author's ☰ lists it)
   about: 12,
   skipped: { took: 'none', stayed: false },
   async run(g, b, opts, signal) {
@@ -31,7 +31,7 @@ export default {
     g.set('rod_to_mad', toMe.rod ? 0 : 1, 1.4);
     g.set('mad_reach', toMe.mad ? 1 : 0, 1.6);
     g.set('mad_to_rod', toMe.mad ? 0 : 1, 1.6);
-    const mg = g.minigame({ phrase: toMe.rod || toMe.mad ? 'Дом трясся, и ко мне тянулись руки' : 'Дом трясся, а их руки тянулись друг к другу' });
+    const mg = g.minigame({ phrase: toMe.rod || toMe.mad ? tr('The house shook, and hands reached out to me') : tr('The house shook, and their hands reached out to each other') });
     thunder(0.9);
     // (his own hand to pull only when a hand reaches to him; staying — always; and if none reaches to him, doing nothing
     // is a way too: the ghost shows it)

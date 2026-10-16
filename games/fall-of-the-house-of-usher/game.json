@@ -1,11 +1,13 @@
 {
   "type": "bespoke",
-  "title": "Падение дома Ашеров v3",
-  "description": "По рассказу Эдгара Аллана По. Ты — друг детства Родерика Ашера, позванный его письмом. Сцены — на движке 3; выборы и мини-игры — на языке мини-игр: метки на вещах сцены, жесты рук.",
+  "title": "The Fall of the House of Usher",
+  "description": "You come to Roderick Usher at his desperate letter. A house by a dark tarn, a crack down its front, his sister Madeline like a shadow. Something is ending here — and you will be beside him when it does.",
+  "line": "An old friend calls you to a house that seems to be ill along with its masters.",
+  "source": "after the tale by Edgar Allan Poe",
   "genres": {
-    "драма": 70,
-    "погружение": 50,
-    "страшилка": 100
+    "drama": 70,
+    "immersion": 50,
+    "horror": 100
   },
   "world": "pavel--padenie-doma-asherov-v3",
   "scenes": []

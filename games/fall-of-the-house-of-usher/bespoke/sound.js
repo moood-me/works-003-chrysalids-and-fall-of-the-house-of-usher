@@ -23,7 +23,7 @@
 //   paper() — a sheet of paper unfolded or folded
 //   scratch() → {loud(v, seconds), stop(seconds)} — nails scraping at wood and stone somewhere below,
 //     through the stone: now a few strokes, now none; as loud as v (0…1; it starts silent)
-//   splinter() · shriek() · clang() — the answers from below to «Безумный Тристан», far down and
+//   splinter() · shriek() · clang() — the answers from below to «The Mad Trist», far down and
 //     through the house: wood cracking and tearing; a long grating scream; a great brass shield falling
 //     on stone, ringing; each → its seconds
 //   step(heavy, miss) — a running footfall on the wet boards of the causeway; heavy (0…1) — dragging
@@ -439,7 +439,7 @@ export function crash() {
   // stone breaking, here and there
   for (let s = 0.4; s < 9.5; s += 0.15 + Math.random() * 0.5)
     burst(t + s, out, { f: 500 + Math.random() * 2200, Q: 1.4, len: 0.05 + Math.random() * 0.3, loud: 0.15 + Math.random() * 0.45 });
-  // and the water closing over it: «как голос тысячи вод»
+  // and the water closing over it: «like the voice of a thousand waters»
   const waters = a.createGain(), spray = a.createGain();
   hiss('pink', t, LEN).connect(setup(a.createBiquadFilter(), { type: 'bandpass', frequency: 700, Q: 0.5 }))
     .connect(setup(a.createBiquadFilter(), { type: 'lowpass', frequency: 3000 })).connect(waters).connect(out);

@@ -1,4 +1,4 @@
-// «Слушать» (III, the nights; «Буря и чтение», after the beat `night`): alone, the candle, quiet rain; the house's own
+// «Listen» (III, the nights; «The storm and the reading», after the beat `night`): alone, the candle, quiet rain; the house's own
 // sounds — and one from below.
 //   1. what he does — listens for where the sound comes up through the floor; 2. wants — to know what it is; 3. dread,
 //   sleeplessness, the house breathing; 4. the player — searching, ear to the stone, and staying where it is clearest.
@@ -15,13 +15,13 @@ const HOLD = 2.5; // s of listening at the place
 const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
 
 export default {
-  title: 'Слушать', // (as the author's ☰ lists it)
+  title: tr('Listen'), // (as the author's ☰ lists it)
   about: 30,
   // (skipped: what a clean play gives — her song if he hears it clearly enough)
   skipped: ({ clarity = 0.3 } = {}) => ({ heard: clarity >= 0.5 ? 'melody' : 'scratch', seconds: 0 }),
   async run(g, b, { clarity = 0.3 } = {}, signal) {
     const c = clamp(clarity), song = c >= 0.5;
-    const mg = g.minigame({ phrase: 'Снизу, сквозь камень, шёл какой-то звук' });
+    const mg = g.minigame({ phrase: tr('From below, through the stone, there came some sound') });
     const send = keys(g), t0 = mg.t;
     house(0.75, 3);
     rain(0.4, 3);

@@ -1,4 +1,4 @@
-// «Струна» (II, «Комната Родерика», after the beat `guitar`): Roderick plays, and his playing runs away with him.
+// «String» (II, «Roderick's room», after the beat `guitar`): Roderick plays, and his playing runs away with him.
 //   1. what he does — keeps time with his friend's playing, slapping his palm on his thigh: with him, or a slower beat of
 //   his own; 2. wants — to be with him in it, or to hold him back from the frenzy; 3. fascinated and afraid; 4. the
 //   player — keeping pace with someone, or keeping one's own.
@@ -20,11 +20,11 @@ const bpmOf = tempo => 56 + 140 * tempo ** 1.3; // his strokes a minute
 const tempoOf = gap => clamp(((60 / gap - 56) / 140) ** (1 / 1.3) || 0, 0.05, 1); // and back, from seconds between
 
 export default {
-  title: 'Струна', // (as the author's ☰ lists it)
+  title: 'String', // (as the author's ☰ lists it)
   about: 45,
   skipped: { follow: 0.5, wild: 0.6 },
   async run(g, b, opts, signal) {
-    const mg = g.minigame({ phrase: 'Он играл всё быстрее, и музыка уносила его' });
+    const mg = g.minigame({ phrase: tr('He played ever faster, and the music bore him away') });
     let tempo = clamp(g.get('tempo') || 0.12, 0.05, 1), wild = clamp(g.get('wild') || 0);
     const sign = mg.mark({ at: 'roderick#hand_r', kind: 'light' });
     const me = mg.mark({ at: 'narrator#hand_r', kind: 'ring' });

@@ -1,14 +1,14 @@
-// Падение дома Ашеров — по рассказу Эдгара Аллана По. A bespoke game (moood/engines/bespoke) on the world «Падение дома
-// Ашеров v3» (engine 3): the player is Roderick's friend from boyhood, called by his letter. A prologue (the end first:
+// The Fall of the House of Usher — after the tale by Edgar Allan Poe. A bespoke game (moood/engines/bespoke) on the world «The Fall of the House
+// of Usher v3» (engine 3): the player is Roderick's friend from boyhood, called by his letter. A prologue (the end first:
 // the house falls), four chapters, an epilogue — each a row of steps on the world's scenes. The choices, the scales (the
 // crack, sanity, Roderick's trust), what Madeline heard and what is remembered carry from chapter to chapter. Between
-// the chapters, the scene «Трещина»: the chapter's title on the wall of the house, and after it the crack of what was
+// the chapters, the scene «Crack»: the chapter's title on the wall of the house, and after it the crack of what was
 // chosen in it; after the epilogue, the crack of the whole play. Choices — the chapters' and the knot's at the end of the
 // crack — are the language of mini-games' (story.js hub): a mark on the thing, its words as petals.
 //
 // What is kept of the play (bespoke.keep), after every step: { chapter, step, scales, shown, heard, marks, choices,
 // ending, start: the same as the chapter began } — a step cut short (the page closed) is played again from its
-// beginning. A step that sets the ending ends the chapters: the epilogue comes next (its «Пройти главу заново» goes back
+// beginning. A step that sets the ending ends the chapters: the epilogue comes next (its «Replay the chapter» goes back
 // to the chapter it ended in). The author may go to any step of any chapter (☰) — or straight to a minigame of one (the
 // step played up to it unseen: jump.js) —, and skip a step (⏭): what is gone to begins as if nothing was chosen before
 // it; a step skipped leaves nothing chosen. A minigame's ⏭ is every player's (story.js g.play): it counts as played.
@@ -86,7 +86,7 @@ export default async function (b) {
     // (the page was left at its crack): its crack again; or gone straight to a minigame
     if (kept.step < ch.steps.length && kept.play == null) {
       await wall(ch.number, ch.title, null);
-      await knot([{ id: 'go', label: kept.step ? 'Продолжить' : 'Начать' }]);
+      await knot([{ id: 'go', label: kept.step ? tr('Continue') : tr('Begin') }]);
     }
     wake();
     while (kept.step < ch.steps.length) {
@@ -97,7 +97,7 @@ export default async function (b) {
       let skip;
       const off = b.game.mine ? view.onSkip(() => skip()) : () => {};
       const done = await Promise.race([
-        ch.steps[kept.step](g).then(() => true, e => { b.trouble(`шаг сломался: ${e.message || e}`); return false; }),
+        ch.steps[kept.step](g).then(() => true, e => { b.trouble(`a step broke: ${e.message || e}`); return false; }),
         new Promise(ok => { skip = () => ok(false); }),
       ]);
       off();
@@ -111,14 +111,14 @@ export default async function (b) {
       next = { ...kept, chapter: EPILOGUE, step: 0 }; // (start: the chapter it ended in)
     } else if (kept.chapter === EPILOGUE) {
       // the crack of the whole play; then the chapter it ended in again, or all of it anew
-      await wall('', 'Падение дома Ашеров', whole(kept));
-      const to = await knot([{ id: 'again', label: 'Пройти главу заново' }, { id: 'anew', label: 'Сыграть заново' }]);
+      await wall('', tr('The Fall of the House of Usher'), whole(kept));
+      const to = await knot([{ id: 'again', label: tr('Replay the chapter') }, { id: 'anew', label: tr('Play again') }]);
       if (to === 'anew') return b.restart();
       next = kept.start;
     } else if (ch.choices.length) {
       // the crack of the chapter; then on — or the chapter again, from how it began
       await wall(ch.number, ch.title, map(ch, kept));
-      const to = await knot([{ id: 'on', label: 'Дальше' }, { id: 'again', label: 'Пройти главу заново' }]);
+      const to = await knot([{ id: 'on', label: tr('Go on') }, { id: 'again', label: tr('Replay the chapter') }]);
       next = to === 'again' ? kept.start : null;
     }
     next ||= { ...kept, chapter: kept.chapter + 1, step: 0, start: kept.chapter + 1 === EPILOGUE ? kept.start : undefined };
@@ -137,5 +137,5 @@ const map = (ch, kept) => rows(ch.choices, kept);
 // ended (the other endings a thread each, without words: the map stays readable)
 const whole = kept => [
   ...CHAPTERS.slice(0, EPILOGUE).flatMap(ch => rows(ch.choices.filter(c => c.weight === '⚑' && !c.ends), kept, c => `${ch.number}. ${c.title}`)),
-  { title: 'Конец', weight: '⚑', options: epilogue.endings.map(e => ({ label: e.label, state: e.id === kept.ending ? 'chosen' : 'unseen' })) },
+  { title: tr('The end'), weight: '⚑', options: epilogue.endings.map(e => ({ label: e.label, state: e.id === kept.ending ? 'chosen' : 'unseen' })) },
 ];

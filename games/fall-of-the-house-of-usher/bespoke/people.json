@@ -1,26 +1,26 @@
 {
   "narrator": {
     "voice": "Charon",
-    "how": "тихо, размеренно, глуховато — так вспоминают то, что хотели бы забыть",
-    "name": "рассказчик, друг детства Родерика",
-    "short": "я"
+    "how": "quiet, measured, a little hollow — the way one recalls what one would rather forget",
+    "name": "the narrator, Roderick’s childhood friend",
+    "short": "I"
   },
   "roderick": {
     "voice": "Enceladus",
-    "how": "нервно, порывисто, то почти шёпотом, то срываясь",
-    "name": "Родерик Ашер",
-    "short": "Родерик"
+    "how": "nervous, impetuous — now almost a whisper, now breaking off",
+    "name": "Roderick Usher",
+    "short": "Roderick"
   },
   "madeline": {
     "voice": "Achernar",
-    "how": "еле слышно, медленно, шёпотом, будто издалека",
-    "name": "леди Мэдлин, сестра-близнец Родерика",
-    "short": "Мэдлин"
+    "how": "barely audible, slow, in a whisper, as if from far away",
+    "name": "the Lady Madeline, Roderick’s twin sister",
+    "short": "Madeline"
   },
   "doctor": {
     "voice": "Sadaltager",
-    "how": "вкрадчиво, с жадным любопытством, чуть заискивающе",
-    "name": "врач Ашеров, пожилой",
-    "short": "врач"
+    "how": "ingratiating, with a greedy curiosity, a little fawning",
+    "name": "the Ushers’ physician, elderly",
+    "short": "the physician"
   }
 }

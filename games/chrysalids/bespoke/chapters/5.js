@@ -38,7 +38,7 @@ export default {
     { id: 'night', weight: '⚑', title: tr('When Katherine and Sally were taken'),
       options: [{ id: 'flee', label: tr('run now') }, { id: 'rescue', label: tr('get them out') }] },
     { id: 'forge', weight: '~', title: tr('The man with the lantern'),
-      options: [{ id: 'calm', label: tr('keep the bellows’ rhythm') }, { id: 'force', label: tr('nod my uncle to the hammer') }] },
+      options: [{ id: 'calm', label: tr('keep the bellows’ rhythm') }, { id: 'force', label: tr('give my uncle the nod') }] },
     { id: 'caught', weight: '⚑', title: tr('Discovery'),
       options: [{ id: 'free', label: tr('got away') }, { id: 'caught', label: tr('caught') }] },
     { id: 'answer', weight: '~', title: tr('Questioning'),
@@ -126,7 +126,7 @@ export default {
       await g.say('narrator', 'A man with a lantern stopped in the gateway.');
       if (marks.calf === 'hidden') await g.say('narrator', 'My father’s farmhand. The one who saw the calf.');
       await came;
-      const forge = await g.choose('forge', { david: [{ id: 'calm', label: tr('Work the bellows') }], axel: [{ id: 'force', label: tr('Nod to him') }] },
+      const forge = await g.choose('forge', { david: [{ id: 'calm', label: tr('Work the bellows') }], axel: [{ id: 'force', label: tr('Nod to strike') }] },
         { seconds: 20, late: 'calm' });
       if (forge === 'calm') {
         // the rhythm, and hope: he watches the anvil, the boy, the bellows
@@ -219,7 +219,7 @@ export default {
         } else {
           g.set('spill', 1, 2.5);
           await g.wait(800);
-          await g.say('narrator', 'The oil flared up across the floor. Everyone rushed to put it out, and I — to the window.');
+          await g.say('narrator', 'The oil flared up across the floor. Everyone rushed to put it out, and I made for the window.');
           g.set('david_present', 0, 1.5);
           g.scale('path', -1, true);
         }

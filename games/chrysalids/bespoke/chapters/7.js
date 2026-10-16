@@ -1,5 +1,5 @@
 // VII. Sealand — the scene “The ship from Sealand” is played in beats (its notes.md): the children at the
-// cave above the clearing, Waknuk against the Fringes; the Spider's arrow takes my father. I run to him
+// cave above the clearing, Waknuk against the Fringes; the Spider-man's arrow takes my father. I run to him
 // or Rosalind holds me. If Petra was heard over the sea (VI: shipComes), the fish-ship comes: its
 // threads take everyone below — whom do I cover? The woman from Sealand frees us, leads Petra to the
 // ramp; Michael stays on the ledge — I fly, or stay with him. If the ship never comes, the fight ends
@@ -40,7 +40,7 @@ export const ENDINGS = [
 export async function epilogue(g, ending) {
   if (ending === 'sealand') {
     await g.say('narrator', 'The city of my dream turned out to be real. No one there counted toes.');
-    await g.say('narrator', 'But even there they spoke of the old people the way my father spoke of Deviations.');
+    await g.say('narrator', 'But even there they spoke of people of the old kind the way my father spoke of Deviations.');
   } else if (ending === 'return') {
     await g.say('narrator', 'Eight years later I came back to Waknuk. Unarmed.');
     await g.say('narrator', 'Michael was waiting at the ford. They listened to us. Not all of them — but they listened.');
@@ -78,7 +78,7 @@ export default {
       await cave;
       const clearing = g.told('fight:clearing');
       const fight = play(g, 'fight');
-      if (choices.fringes === 'fight') await g.think('rosalind', 'We told the Spider where they were coming from. Too late to be sorry now.');
+      if (choices.fringes === 'fight') await g.think('rosalind', 'We told the Spider-man where they were coming from. Too late to be sorry now.');
       await clearing;
       await g.think('rosalind', 'Your father. In front, by the horse.');
       await fight;
@@ -86,7 +86,7 @@ export default {
       if (father === 'stay') {
         const hold = play(g, 'hold');
         await g.think('rosalind', 'You can’t, David! You can’t help him!');
-        await g.say('narrator', 'Sophie was running to the Spider.');
+        await g.say('narrator', 'Sophie was running to the Spider-man.');
         await hold;
       } else {
         g.mark('rosalind_hold', 'slipped', tr('Rosalind will remember this.'));
@@ -96,7 +96,7 @@ export default {
         await by;
         if (marks.father === 'disowned') await g.say('father', 'Don’t touch me.', 'joseph');
         else await g.say('father', 'Go, David. Get away from here.', 'joseph');
-        await g.say('narrator', 'Sophie was running to the Spider.');
+        await g.say('narrator', 'Sophie was running to the Spider-man.');
         await run;
       }
       // the sky: the ship — or nothing
@@ -125,7 +125,7 @@ export default {
         : { petra: [{ id: 'petra', label: tr('Cover Petra') }], rosalind: [{ id: 'rosalind', label: tr('Cover Rosalind') }] },
       { seconds: 10, late: run ? 'self' : 'none' });
       const web = play(g, WEB[cover]);
-      if (cover === 'petra') await g.say('narrator', 'Petra lay under me quiet, quiet. The threads settled on my back.');
+      if (cover === 'petra') await g.say('narrator', 'Petra lay very still under me. The threads settled on my back.');
       else if (cover === 'rosalind') {
         g.mark('rosalind_cover', 'covered', tr('Rosalind will remember this.'));
         await g.say('narrator', 'Rosalind held Petra. I held them both.');

@@ -27,7 +27,7 @@ export default {
       options: [{ id: 'go', label: tr('go up to her') }, { id: 'wait', label: tr('wait by the fire') }] },
     { id: 'sophie', weight: '⚑', title: tr('Sophie'),
       options: [{ id: 'hid', label: tr('hid us') }, { id: 'gave', label: tr('told whose son I am') }] },
-    { id: 'fringes', weight: '⚑', title: tr('the Spider'),
+    { id: 'fringes', weight: '⚑', title: tr('The Spider-man'),
       options: [{ id: 'fight', label: tr('stand with the Fringes') }, { id: 'flee', label: tr('go to the cave') }] },
   ],
   titles: ['By the fire: Sophie', 'The Spider', 'The horn'],
@@ -68,7 +68,7 @@ export default {
       }
       await g.wait(1500);
     },
-    // the Spider: my father's brother; he wants our voices against Waknuk
+    // the Spider-man: my father's brother; he wants our voices against Waknuk
     async g => {
       const { choices, marks } = g.state;
       const tied = choices.sophie === 'gave';
@@ -114,7 +114,7 @@ export default {
         await g.think('petra', 'I call her and call her… She hears, but she can’t find us.');
       } else await g.say('narrator', 'Petra was silent. No one called her from over the sea.');
       g.set('sophie_present', 0, 3);
-      await g.say('narrator', 'Sophie ran to where the Spider had gone.');
+      await g.say('narrator', 'Sophie ran to where the Spider-man had gone.');
       await g.wait(2000);
     },
   ],

@@ -126,7 +126,7 @@ export default async function (b) {
     // how the chapter began in the main run: what replaying it starts from
     if (!replaying && !cur.step) kept.starts[cur.chapter] = run(kept);
     // the chapter on “Threads”: its knot to begin (the page may be heard from then on), go on, or begin it anew
-    if (replaying) view.toast(tr('The chapter is played again — your story does not change'), 'mark');
+    if (replaying) view.toast(tr('Replaying the chapter — your story stays as it is'), 'mark');
     const go = straight ? 'go' : await between(cur.chapter, replaying ? [{ id: 'go', label: cur.step ? tr('Go on') : tr('Play it again') }]
       : cur.step ? [{ id: 'go', label: tr('Go on') }, { id: 'anew', label: tr('Restart the chapter') }] : [{ id: 'go', label: tr('Begin') }]);
     straight = false;
@@ -161,7 +161,7 @@ export default async function (b) {
     }
     // a replay played to its end: kept or not — how things would stand either way, side by side
     const i = done.chapter, mainAfter = kept.starts[i + 1] ?? (i === main() && mainDone() ? kept : null);
-    const next = await between(i, [{ id: 'save', label: tr('Keep it so') },
+    const next = await between(i, [{ id: 'save', label: tr('Keep this') },
       { id: 'drop', label: tr('Back to the story') }, { id: 'again', label: tr('Play it again') }], { reveal: true,
       compare: mainAfter && { main: now(mainAfter), replay: now(done), people: differ(mainAfter.marks, done.marks) } });
     if (next === 'save') {

@@ -79,7 +79,7 @@ export default {
       const evening = g.beat('evening');
       await comes;
       await g.say('narrator', 'That evening I cut my hand open on the harrow.');
-      await g.say('narrator', 'When my father was reading, you came into the house quietly.');
+      await g.say('narrator', 'When my father was reading, one came into the house on tiptoe.');
       await evening;
       const tie = await g.choose('tie', 'david', [{ id: 'help', label: tr('Offer my hand') }, { id: 'self', label: tr('I’ll do it') }]);
       if (tie === 'self') {
@@ -113,7 +113,7 @@ export default {
         await knelt;
         const kneel = await g.choose('kneel', 'david', [{ id: 'seek', label: tr('Raise my eyes') }, { id: 'bow', label: tr('Look down') }]);
         await g.beat(kneel);
-        if (kneel === 'bow') await g.say('narrator', 'I looked at the floor. That she looked at me then, I learnt much later.');
+        if (kneel === 'bow') await g.say('narrator', 'I looked at the floor. Only much later did I learn that she had looked at me then.');
         const bowl = g.told('upstairs:bowl');
         const up = g.beat('upstairs');
         await g.say('father', 'Go upstairs.', 'joseph');

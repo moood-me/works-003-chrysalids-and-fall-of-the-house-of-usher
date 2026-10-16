@@ -50,7 +50,7 @@ export const SCENES = {
 };
 
 // the scales: what the player reads when they move (the path is never shown: game.js, journal.js)
-export const SCALES = {
+const SCALES = {
   suspicion: { up: tr('Suspicion ↑'), down: tr('Suspicion ↓') }, group: { up: tr('The group ↑'), down: tr('The group ↓') }, petra: { up: tr('Petra ↑'), down: tr('Petra ↓') },
 };
 
@@ -194,7 +194,7 @@ export function context(b, view, hub, state, j = null) {
       const v = (state.scales[name] || 0) + delta;
       state.scales[name] = name === 'path' ? v : Math.max(0, v); // the path goes both ways: force −, tolerance +
       if (unseen()) return;
-      if (!quiet) view.toast(delta > 0 ? SCALES[name].up : SCALES[name].down);
+      if (!quiet && name !== 'path') view.toast(delta > 0 ? SCALES[name].up : SCALES[name].down);  // (the path is never shown)
       if (name === 'suspicion') view.eye(state.scales.suspicion);
     },
     mark(who, value, text) {

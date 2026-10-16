@@ -40,7 +40,7 @@ export default {
       await pool;
       const struck = g.beat('struck');
       await g.say('narrator', 'And then it struck into my head. Not a voice — fear, enormous, without words.');
-      await g.think('petra', 'David!..', 'petra');
+      await g.think('petra', 'David…!', 'petra');
       await struck;
       // down to her and after her, breathing for both: the beats run the minigame's time (what he tells her — before it)
       await g.think('david', 'Petra, I’m here. Breathe with me.', 'david');
@@ -102,8 +102,8 @@ export default {
         await g.think('rosalind', 'She shouted us all down. Alone.');
         g.scale('petra', 1, true);
       }
-      if (g.state.marks.anne === 'widowed') await g.think('rosalind', 'Anne guesses as it is. Teach Petra to hide her thoughts, David.');
-      else await g.think('rosalind', 'Teach her to hide her thoughts. Or the wrong someone will hear her.');
+      if (g.state.marks.anne === 'widowed') await g.think('rosalind', 'Anne has guessed already. Teach Petra to hide her thoughts, David.');
+      else await g.think('rosalind', 'Teach her to hide her thoughts. Or the wrong people will hear her.');
       await g.think('michael', 'We hide all our lives. Let her at least be as she is.');
       const petra = await g.choose('petra', 'home', [
         { id: 'hush', label: tr('Hide her thoughts') }, { id: 'free', label: tr('Let her call') }]);

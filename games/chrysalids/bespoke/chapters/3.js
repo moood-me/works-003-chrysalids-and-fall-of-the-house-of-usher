@@ -173,10 +173,10 @@ export default {
       if (answer === 'took') {
         g.set('children', 6);
         await g.think('newcomer', 'I thought I was the only one.');
-        await g.think('michael', 'Now there are nine of us. And nine who might let it slip.');
+        await g.think('michael', 'Now there are nine of us. And nine of us who might let it slip.');
         g.scale('group', -1);
       } else {
-        await g.think('newcomer', 'Who’s there?..');
+        await g.think('newcomer', 'Who’s there…?');
         await g.say('narrator', 'She called for a few more evenings. Then she stopped.');
       }
       g.set('dusk', 1, 10);

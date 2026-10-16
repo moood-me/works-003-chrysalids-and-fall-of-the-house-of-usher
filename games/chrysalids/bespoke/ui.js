@@ -58,7 +58,7 @@ export function ui(layer) {
     // what differs. { main, replay: {scales, people}, people: [{who, was, now}] } → it taken away
     compare({ main, replay, people }) {
       const box = el('div', 'compare');
-      box.append(el('b', '', tr('If you keep it so')));
+      box.append(el('b', '', tr('If you keep this')));
       replay.scales.forEach((s, k) => { if (s.words !== main.scales[k].words) box.append(line(s.name, `${main.scales[k].words} → ${s.words}`)); });
       for (const p of people) box.append(line(p.who, `${p.was} → ${p.now}`));
       if (box.children.length === 1) box.append(el('span', '', tr('everything stays as it was')));

@@ -157,7 +157,7 @@ g.fill();
   g.save();
   g.translate(cx, cy);
   g.scale(0.01, 0.01);
-  g.font = '10px Georgia, serif';
+  g.font = '9px Georgia, serif';  // (the English line, the longer, fits the board in any serif)
   g.textAlign = 'center';
   g.textBaseline = 'middle';
   g.fillStyle = '#d8c6a0';

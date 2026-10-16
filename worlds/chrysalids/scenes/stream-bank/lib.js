@@ -73,7 +73,7 @@ const blade = (x, y, h, lean, color, width, lit) => ({
 // trunk's width, rs — the sun's side (−1 left), sw — a strand's width, c — [trunk, leaves dark, leaves, lit, shade],
 // foot — grass at its foot }
 function willow(g, e, P) {
-  const W = P.W, tw = P.tw, [tr, lf2, lf, lit, shade] = P.c;
+  const W = P.W, tw = P.tw, [trunk, lf2, lf, lit, shade] = P.c;
   g.lineCap = 'round';
   g.globalAlpha = 0.3;
   g.fillStyle = shade;
@@ -82,7 +82,7 @@ function willow(g, e, P) {
   g.fill();
   g.globalAlpha = 1;
   const tx = P.L, ty = -P.cy + 1.0;
-  g.fillStyle = tr;
+  g.fillStyle = trunk;
   g.beginPath();
   g.moveTo(-tw * 1.8, 0.03);
   g.bezierCurveTo(-tw * 0.8, -P.cy * 0.3, tx - tw * 1.3, ty + P.cy * 0.35, tx - tw * 0.5, ty);
@@ -91,7 +91,7 @@ function willow(g, e, P) {
   g.closePath();
   g.fill();
   if (P.limbs) {
-    g.strokeStyle = tr;
+    g.strokeStyle = trunk;
     g.lineWidth = tw * 0.55;
     g.beginPath();
     g.moveTo(tx, ty + 0.5);

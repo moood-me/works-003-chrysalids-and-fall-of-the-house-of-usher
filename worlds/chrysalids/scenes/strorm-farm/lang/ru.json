@@ -1,4 +1,4 @@
 {"strings": [
-  {"text":"The Strorm farm","translation":"Ферма Стормов","where":"scenes/strorm-farm/scene.json title"},
+  {"text":"The Strorms’ farm","translation":"Ферма Стормов","where":"scenes/strorm-farm/scene.json title"},
   {"text":"Here everything must be as it should be.","translation":"Здесь всё должно быть как положено.","where":"scenes/strorm-farm/scene.json caption"}
 ]}

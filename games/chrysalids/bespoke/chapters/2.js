@@ -51,7 +51,7 @@ export default {
       await g.wait(1500);
       await g.say('narrator', 'У отца всё было как положено. Вечером — вода из колодца, потом сарай, потом молитва.');
       const ORDER = ['well', 'barn', 'house'];
-      const NOW = { well: 'Не сейчас. Сначала — вода из колодца.', barn: 'Не сейчас. Сначала — сарай.', house: 'Теперь — молитва.' };
+      const NOW = { well: tr.line('narrator', 'Не сейчас. Сначала — вода из колодца.'), barn: tr.line('narrator', 'Не сейчас. Сначала — сарай.'), house: tr.line('narrator', 'Теперь — молитва.') };
       const AT = { well: 'well#bucket', barn: 'barn#door', house: 'house#door' };
       const offers = { [AT.well]: [{ id: 'well', label: 'Набрать воды' }], [AT.barn]: [{ id: 'barn', label: 'Закрыть сарай' }], [AT.house]: [{ id: 'house', label: 'Войти к молитве' }] };
       let wrong = false;

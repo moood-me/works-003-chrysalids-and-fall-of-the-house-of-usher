@@ -23,7 +23,7 @@ import { SCENES } from '../story.js';
 // so, and may be played as if that had been chosen; → whether to play it
 async function onlyIf(g, text, choice, value, label) {
   if (g.state.choices[choice] !== undefined) return g.state.choices[choice] === value;
-  await g.say('author', text, 'narrator'); // (no one's voice: a word to the author, not the story)
+  g.note(text);
   const go = await g.choose(null, 'david', [{ id: 'play', label }, { id: 'skip', label: 'Дальше' }]);
   if (go === 'play') g.state.choices[choice] = value;
   return go === 'play';
@@ -178,7 +178,7 @@ export default {
       await g.say('inspector', '— Девочки назвали тебя, Дэвид. Ты слышишь их без слов?');
       const answer = await g.choose('answer', 'david', [
         { id: 'deny', label: 'Не понимаю' }, { id: 'silent', label: 'Молчать' }, { id: 'truth', label: 'Слышу' }]);
-      if (answer !== 'silent') await g.say('david', answer === 'deny' ? '— Не понимаю, о чём вы.' : '— Слышу. И греха в этом нет.');
+      if (answer !== 'silent') await g.say('david', answer === 'deny' ? tr.line('david', '— Не понимаю, о чём вы.') : tr.line('david', '— Слышу. И греха в этом нет.'));
       if (answer === 'deny') await g.say('inspector', '— Они тоже сначала не понимали.');
       if (answer === 'silent') {
         g.set('david_look', 'father');
@@ -300,7 +300,7 @@ export default {
       // (the time out: she will not wait for him to reach us)
       const timed = said == null, rider = said ?? (seen ? 'kill' : 'hide');
       g.state.choices.rider = rider;
-      if (rider !== 'hide' && !timed) await g.say('david', rider === 'kill' ? '— Стреляй в него.' : '— Стреляй над головой!');
+      if (rider !== 'hide' && !timed) await g.say('david', rider === 'kill' ? tr.line('david', '— Стреляй в него.') : tr.line('david', '— Стреляй над головой!'));
       const shot = rider === 'hide' ? null : g.told(`${rider}:shot`);
       const done = g.beat(rider);
       if (rider === 'kill') {
@@ -315,12 +315,12 @@ export default {
         await shot;
         await g.say('narrator', 'Стрела свистнула над самой его головой. Конь шарахнулся, и всадник ускакал за гребень.');
         await done;
-        await g.think('rosalind', seen ? 'Он видел, куда мы ушли.' : 'Теперь он знает, где мы.');
+        await g.think('rosalind', seen ? tr.thought('rosalind', 'Он видел, куда мы ушли.') : tr.thought('rosalind', 'Теперь он знает, где мы.'));
       } else {
         await g.say('narrator', 'Мы замерли. Петра зажала рот ладошкой.');
-        await g.say('narrator', seen ? 'Он подъехал к самому краю лощины и долго светил в туман.' : 'Он поехал по краю лощины, светя в туман. Совсем рядом.');
+        await g.say('narrator', seen ? tr.line('narrator', 'Он подъехал к самому краю лощины и долго светил в туман.') : tr.line('narrator', 'Он поехал по краю лощины, светя в туман. Совсем рядом.'));
         await done;
-        await g.think('rosalind', seen ? 'Он видел нас. Он вернётся не один.' : 'Мы потеряли час. Теперь они будут у Окраин раньше нас.');
+        await g.think('rosalind', seen ? tr.thought('rosalind', 'Он видел нас. Он вернётся не один.') : tr.thought('rosalind', 'Мы потеряли час. Теперь они будут у Окраин раньше нас.'));
         g.scale('path', 1, true);
       }
       horse.loud(0.1, 4);

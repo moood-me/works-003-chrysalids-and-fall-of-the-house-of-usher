@@ -154,7 +154,7 @@ export default {
       else await g.say('petra', '— Я не слышу слов. Только что там кто-то есть.', 'narrator');
       const far = await g.choose('far', 'city', [
         { id: 'answer', label: 'Ответь ей' }, { id: 'listen', label: 'Не отвечай' }]);
-      await g.say('david', far === 'answer' ? '— Ответь ей, Петра.' : '— Не отвечай. Мы не знаем, кто это.', 'narrator');
+      await g.say('david', far === 'answer' ? tr.line('david', '— Ответь ей, Петра.') : tr.line('david', '— Не отвечай. Мы не знаем, кто это.'), 'narrator');
       if (far === 'answer') {
         await g.think('petra', 'Я Петра! Я здесь!', 'narrator');
         if (p >= 1) await g.think('sealand', 'Слышу тебя. Зови меня ещё.', 'city');

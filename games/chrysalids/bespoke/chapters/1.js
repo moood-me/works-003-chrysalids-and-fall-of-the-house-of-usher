@@ -146,7 +146,7 @@ export default {
         await g.say('narrator', 'Гладкая пластинка с буквами Древних. Для чего она им была?');
         const guess = await g.choose(null, 'glint', [{ id: 'way', label: 'Дорогу показывать' }, { id: 'pray', label: 'Им молились' }, { id: 'toy', label: 'Игрушка' }],
           { seconds: 20 });
-        if (guess) await g.say('david', { way: '— Дорогу показывать.', pray: '— Им на неё молились.', toy: '— Просто игрушка.' }[guess]);
+        if (guess) await g.say('david', { way: tr.line('david', '— Дорогу показывать.'), pray: tr.line('david', '— Им на неё молились.'), toy: tr.line('david', '— Просто игрушка.') }[guess]);
         if (guess === 'way') await g.say('narrator', 'Может быть. Только дороги отсюда давно никуда не вели.');
         if (guess === 'pray') await g.say('sophie', '— Тише. Услышат — нам попадёт.');
         if (guess === 'toy') await g.say('sophie', '— Ничего себе игрушки у них были.');
@@ -181,7 +181,7 @@ export default {
       await g.say('mother', '— Где ты пропадал весь день, Дэвид?', 'house');
       const secret = await g.choose('secret', 'house#window', [
         { id: 'kept', label: 'У ручья. Один' }, { id: 'told', label: 'Про девочку' }]);
-      await g.say('david', secret === 'kept' ? '— У ручья. Один.' : '— Я встретил девочку. У неё на ноге шесть пальцев.');
+      await g.say('david', secret === 'kept' ? tr.line('david', '— У ручья. Один.') : tr.line('david', '— Я встретил девочку. У неё на ноге шесть пальцев.'));
       if (secret === 'kept') {
         g.mark('sophie', 'kept', 'Софи это запомнит.');
         await g.say('mother', '— Отец спрашивал. Не опаздывай к молитве.', 'house');

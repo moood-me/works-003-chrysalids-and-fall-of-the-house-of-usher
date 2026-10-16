@@ -104,7 +104,7 @@ export default {
       await g.wait(1500);
       await g.say('narrator', 'По вечерам дядя рассказывал мне о том, что видел за морем.');
       const ASK = { sea: { id: 'sea', label: 'Какое море?' }, city: { id: 'city', label: 'Где жили Древние?' }, coast: { id: 'coast', label: 'Какие там люди?' } };
-      const LINE = { sea: '— А какое оно, море?', city: '— Ты видел, где жили Древние?', coast: '— А люди там какие?' };
+      const LINE = { sea: tr.line('david', '— А какое оно, море?'), city: tr.line('david', '— Ты видел, где жили Древние?'), coast: tr.line('david', '— А люди там какие?') };
       const asked = [];
       while (asked.length < 2) {
         const q = await g.choose(null, 'axel', Object.values(ASK).filter(a => !asked.includes(a.id)));
@@ -146,7 +146,7 @@ export default {
       await g.think('anne', 'Опять полдня у верёвки с бельём. Есть тут кто-нибудь?');
       const anne = await g.play(tuning, { find: 'washer' });
       g.set('children', 3);
-      await g.say('narrator', anne.caught ? 'Энн.' : 'Энн. Она нашла меня сама.');
+      await g.say('narrator', anne.caught ? tr.line('narrator', 'Энн.') : tr.line('narrator', 'Энн. Она нашла меня сама.'));
       await g.think('michael', 'Овцы разбрелись по всему холму. Дэвид, ты где?');
       // and while I search, the ploughman turns: not a move, before he sees (the plate says it)
       const michael = await g.play(tuning, { find: 'shepherd', watch: true });
@@ -192,9 +192,9 @@ export default {
       await g.say('narrator', 'Глаза сами искали её. Я уводил их — на колодец, на церковь, куда угодно.');
       g.set('thread', 0.85, 24);
       // talking without words — and the eyes, drawn to her the warmer it gets, kept away
-      const TALK = [['rosalind', 'Не смотри на меня. Просто слушай.', 0.1], ['david', 'Когда-нибудь мы уйдём отсюда. Вдвоём.', 0.35],
-        ['rosalind', 'Куда? Кругом Окраины.', 0.3], ['david', 'Дядя говорит, мир больше, чем Лабрадор.', 0.5],
-        ['rosalind', 'Тогда — туда.', 0.75], ['rosalind', 'Я сейчас улыбаюсь. Жаль, ты не видишь.', 1]];
+      const TALK = [['rosalind', tr.thought('rosalind', 'Не смотри на меня. Просто слушай.'), 0.1], ['david', tr.thought('david', 'Когда-нибудь мы уйдём отсюда. Вдвоём.'), 0.35],
+        ['rosalind', tr.thought('rosalind', 'Куда? Кругом Окраины.'), 0.3], ['david', tr.thought('david', 'Дядя говорит, мир больше, чем Лабрадор.'), 0.5],
+        ['rosalind', tr.thought('rosalind', 'Тогда — туда.'), 0.75], ['rosalind', tr.thought('rosalind', 'Я сейчас улыбаюсь. Жаль, ты не видишь.'), 1]];
       let warm = 0, looked = false;
       const talk = (async () => {
         for (const [who, text, w] of TALK) {

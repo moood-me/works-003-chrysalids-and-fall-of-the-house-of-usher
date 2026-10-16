@@ -33,7 +33,11 @@ if (!world || !existsSync(join(world, 'scenes'))) {
 }
 const game = fileURLToPath(new URL('..', import.meta.url));
 const load = file => import(pathToFileURL(join(game, file)).href);
-const { SCENES, PEOPLE, facts, carry, context } = await load('story.js');
+// the game's texts as written (the source language): tr as the page gives it, without the translations
+const fill = (t, p = {}) => t.replace(/\{(\w+)\}/g, (_, k) => String(p[k]));
+globalThis.tr = Object.assign(fill, { n: (n, one, other, p) => fill(n === 1 ? one : other, { n, ...p }), c: (c, t, p) => fill(t, p), line: (who, t) => t, thought: (who, t) => t });
+const PEOPLE = JSON.parse(readFileSync(join(game, 'people.json'), 'utf8'));
+const { SCENES, facts, carry, context } = await load('story.js');
 const { ENDINGS } = await load('chapters/7.js');
 const { jump } = await load('jump.js');
 const sound = await load('sound.js');
@@ -234,7 +238,7 @@ function watched(g, j, ch, here, events) {
   // a line said or thought over a point of the scene
   const said = (who, text, at) => {
     const what = `реплика «${text}»`;
-    if (!(who in PEOPLE)) bad(`${what}: говорящего «${who}» нет в PEOPLE`);
+    if (!(who in PEOPLE)) bad(`${what}: говорящего «${who}» нет в people.json`);
     if (at !== 'narrator' && shown(what)) {
       if (at.includes('#') && !cur.scene.contract?.offers.includes(at)) point(at, what);
       else if (element(at, what)) cur.scene.named.add(`ref:${at}`);

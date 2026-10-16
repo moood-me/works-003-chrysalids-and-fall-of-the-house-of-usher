@@ -10,9 +10,6 @@
 //   → { hymn: loud | lips | silent, turned }
 import { until } from '../hands.js';
 
-// the lines: syllables (a space after — the word ends) and their notes, semitones above D
-const A = ['Да ', 'бу', 'дет ', 'чист ', 'об', 'раз ', 'Е', 'го'], B = ['Про', 'клят, ', 'кто ', 'не ', 'по ', 'об', 'ра', 'зу ', 'Е', 'го'];
-const LINES = [[A, [0, 0, 3, 5, 7, 5, 3, 2]], [A, [0, 0, 3, 5, 7, 5, 3, 0]], [B, [7, 7, 5, 7, 10, 7, 5, 3, 2, 0]], [A, [0, 0, 3, 5, 7, 5, 3, 0]]];
 const BEAT = 0.75, LEAD = 2, D3 = 146.83;
 
 export default {
@@ -20,12 +17,15 @@ export default {
   about: 32,
   skipped: { hymn: 'lips', turned: 0 }, // (neutral: the path not moved)
   async run(g, b, opts, signal) {
+    // the hymn in the play's language (bespoke/lang/<lang>/hymn.json): its lines, each its syllables (a space after — the
+    // word ends) and their notes, semitones above D
+    const { lines } = await b.data('hymn');
     // the syllables on the rhythm's own clock (from LEAD s on)
     const syl = [];
     let t = LEAD;
-    LINES.forEach(([words, notes], line) => {
-      words.forEach((w, i) => {
-        const beats = i === words.length - 1 ? 2 : 1;
+    lines.forEach(({ syllables, notes }, line) => {
+      syllables.forEach((w, i) => {
+        const beats = i === syllables.length - 1 ? 2 : 1;
         syl.push({ w, line, at: t, dur: beats * BEAT, f: D3 * 2 ** (notes[i] / 12), as: null });
         t += beats * BEAT;
       });

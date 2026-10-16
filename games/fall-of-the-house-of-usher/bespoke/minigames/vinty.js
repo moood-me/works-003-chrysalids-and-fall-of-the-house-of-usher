@@ -13,7 +13,7 @@
 import { until, once, keys } from '../hands.js';
 
 const SEAT = 0.8, TURNS = 3;
-const HERS = 'Не дай им меня закрыть.';
+const HERS = tr.line('madeline', 'Не дай им меня закрыть.');
 
 export default {
   title: 'Винты', // (as the author's ☰ lists it)

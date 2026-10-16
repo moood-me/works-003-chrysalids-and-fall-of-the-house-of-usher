@@ -11,14 +11,14 @@ const HOUSE = SCENES.house, ROOM = SCENES.room, GALLERY = SCENES.gallery;
 
 // what the player finds, looking for the cause of the gloom: nothing (until the crack)
 const LOOKS = {
-  windows: 'Пустые окна. Дом большой, а живут в нём двое.',
-  trees: 'Старые деревья. Мёртвые — только и всего.',
-  tarn: 'Чёрная вода. Стоячий пруд.',
+  windows: tr.line('narrator', 'Пустые окна. Дом большой, а живут в нём двое.'),
+  trees: tr.line('narrator', 'Старые деревья. Мёртвые — только и всего.'),
+  tarn: tr.line('narrator', 'Чёрная вода. Стоячий пруд.'),
 };
 // Roderick's answer to each thing done in his room, his way or the narrator's
 const ANSWERS = {
-  his: { candles: 'Спасибо…', window: 'Да. Так лучше.', clock: 'Тишина. Благодарю тебя.' },
-  mine: { candles: 'Не надо… Свет режет глаза.', window: 'Закрой! Ветер — он кричит.', clock: 'Каждый удар — как гвоздь.' },
+  his: { candles: tr.line('roderick', 'Спасибо…'), window: tr.line('roderick', 'Да. Так лучше.'), clock: tr.line('roderick', 'Тишина. Благодарю тебя.') },
+  mine: { candles: tr.line('roderick', 'Не надо… Свет режет глаза.'), window: tr.line('roderick', 'Закрой! Ветер — он кричит.'), clock: tr.line('roderick', 'Каждый удар — как гвоздь.') },
 };
 
 export default {

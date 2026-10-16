@@ -12,16 +12,16 @@ const FALL = SCENES.fall;
 const END = 'end';
 const ENDINGS = [
   // (the tarn closing over the house)
-  { id: 'poe', label: 'Как у По', beat: 'end_alone', lines: [['end_alone:under', 'Глубокий тёмный пруд у моих ног угрюмо и безмолвно сомкнулся над обломками дома Ашеров.']] },
+  { id: 'poe', label: 'Как у По', beat: 'end_alone', lines: [['end_alone:under', tr.line('narrator', 'Глубокий тёмный пруд у моих ног угрюмо и безмолвно сомкнулся над обломками дома Ашеров.')]] },
   // (she at the very water; then, the house gone, his hand let down)
-  { id: 'madeline', label: 'Мэдлин', beat: 'end_madeline', lines: [['end_madeline:water', 'Она жива. Она не говорит ни слова. Стоит у воды и напевает свою песню.'], [END, 'Не знаю, спас ли я её.']] },
+  { id: 'madeline', label: 'Мэдлин', beat: 'end_madeline', lines: [['end_madeline:water', tr.line('narrator', 'Она жива. Она не говорит ни слова. Стоит у воды и напевает свою песню.')], [END, tr.line('narrator', 'Не знаю, спас ли я её.')]] },
   // (he on his knees at the water; the narrator come up behind him)
-  { id: 'roderick', label: 'Родерик', beat: 'end_roderick', lines: [['end_roderick:behind', 'Он жив. О ней он не говорит. Сидит у воды — и всё ещё слушает.']] },
+  { id: 'roderick', label: 'Родерик', beat: 'end_roderick', lines: [['end_roderick:behind', tr.line('narrator', 'Он жив. О ней он не говорит. Сидит у воды — и всё ещё слушает.')]] },
   // (the narrator's eyes on their hands)
-  { id: 'both', label: 'Оба', beat: 'end_both', lines: [['end_both:hands', 'Дом ушёл под воду. А то, что вышло из него вместе с ними, не ушло.']] },
-  { id: 'stayed', label: 'Остался', beat: 'end_stayed', lines: [['end_stayed:under', 'Пруд сомкнулся над домом Ашеров. Над ними. И надо мной.']] },
+  { id: 'both', label: 'Оба', beat: 'end_both', lines: [['end_both:hands', tr.line('narrator', 'Дом ушёл под воду. А то, что вышло из него вместе с ними, не ушло.')]] },
+  { id: 'stayed', label: 'Остался', beat: 'end_stayed', lines: [['end_stayed:under', tr.line('narrator', 'Пруд сомкнулся над домом Ашеров. Над ними. И надо мной.')]] },
   // (the empty tarn in the morning, once it is all there)
-  { id: 'left', label: 'Уехал', beat: 'gone', lines: [['gone:morning', 'Через месяц пришло письмо: дома Ашеров больше нет. Он ушёл в пруд в ночь бури.'], [END, 'Я перечитал его письмо.']] },
+  { id: 'left', label: 'Уехал', beat: 'gone', lines: [['gone:morning', tr.line('narrator', 'Через месяц пришло письмо: дома Ашеров больше нет. Он ушёл в пруд в ночь бури.')], [END, tr.line('narrator', 'Я перечитал его письмо.')]] },
 ];
 
 export default {

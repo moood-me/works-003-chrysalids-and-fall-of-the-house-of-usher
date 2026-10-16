@@ -74,12 +74,12 @@ export default {
       await close;
       const { choices, heard, marks } = g.state;
       const lines = [
-        'Мы положили её в могилу живой! Я слышал её много дней — и не смел сказать!',
-        choices.night === 'told' && 'И ты слышал.',
-        (heard.said || heard.insisted) && 'Ты хотел сказать — я не дал.',
-        heard.loose && 'Ты не дотянул винты. Я знал.',
-        marks.knocks >= 3 && 'Ты стучал к ней ночью. Снова и снова. И она отвечала.',
-        !marks.key && 'Я бросил ключ в пруд — чтобы не открыть.',
+        tr.line('roderick', 'Мы положили её в могилу живой! Я слышал её много дней — и не смел сказать!'),
+        choices.night === 'told' && tr.line('roderick', 'И ты слышал.'),
+        (heard.said || heard.insisted) && tr.line('roderick', 'Ты хотел сказать — я не дал.'),
+        heard.loose && tr.line('roderick', 'Ты не дотянул винты. Я знал.'),
+        marks.knocks >= 3 && tr.line('roderick', 'Ты стучал к ней ночью. Снова и снова. И она отвечала.'),
+        !marks.key && tr.line('roderick', 'Я бросил ключ в пруд — чтобы не открыть.'),
       ].filter(Boolean);
       g.set('cu_speak', 1);
       for (const line of lines) await g.say('roderick', line, 'narrator');

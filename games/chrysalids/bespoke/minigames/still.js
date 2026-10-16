@@ -1,4 +1,4 @@
-// «Не шелохнуться» (II.5, «Кухня Стормов», the night): David holds the table's edge while his father reads the
+// “Not a stir” (II.5, “The Strorms’ kitchen”, the night): David holds the table's edge while his father reads the
 // Definitions.
 //   1. what he does — holds the table's edge and does not stir; 2. wants — not to give away that he knows of the raid;
 //   3. restraint to trembling; 4. the player — holding and not moving.
@@ -13,13 +13,13 @@ const MOVED = 14; // px the finger may stray
 const RISE = 0.35, FIDGET = 0.12, EBB = 0.25; // a second: moved, let go, held still
 
 export default {
-  title: 'Не шелохнуться', // (as the author's ☰ lists it)
+  title: 'Not a stir', // (as the author's ☰ lists it)
   about: 25,
   skipped: { stirred: 0 },
   async run(g, b, { while: reading } = {}, signal) {
     let over = false;
     reading?.then(() => { over = true; });
-    const mg = g.minigame({ phrase: 'Отец читал Определения, и в кухне никто не шевелился' });
+    const mg = g.minigame({ phrase: tr('My father was reading the Definitions, and no one in the kitchen moved') });
     const send = keys(g);
     const hand = mg.mark({ at: 'david#hand_r', kind: 'groove', danger: 0 });
     const hold = mg.hold({ on: hand, seconds: 1.2, drain: 0 });

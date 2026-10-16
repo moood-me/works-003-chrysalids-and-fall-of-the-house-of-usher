@@ -1,4 +1,4 @@
-// «По тени» (V.5, «Край Окраин»): the fugitives cross the last field to the wood under the father's lantern.
+// “By the shadows” (V.5, “The edge of the Fringes”): the fugitives cross the last field to the wood under the father's lantern.
 //   1. what they do — go across the field to the trees; 2. want — to get there without coming into his light; 3.
 //   forbidden freedom, fear, the father; 4. the player — going and freezing.
 // The language's hold anywhere = going: held, they walk the path (the scene's `walkers`, its walk_u grows); let go, they
@@ -10,11 +10,11 @@
 import { until, keys } from '../hands.js';
 
 export default {
-  title: 'По тени', // (as the author's ☰ lists it)
+  title: 'By the shadows', // (as the author's ☰ lists it)
   about: 45,
   skipped: { seen: false },
   async run(g, b, { hard = false, onSeen } = {}, signal) {
-    const mg = g.minigame({ phrase: 'Свет фонаря ходил по полю от изгороди к лесу' });
+    const mg = g.minigame({ phrase: tr('The lantern’s light went over the field from the fence to the forest') });
     const send = keys(g), k = hard ? 1.3 : 1;
     const me = mg.mark({ at: 'david', kind: 'groove', danger: 0 }); // (a hold: its groove fills)
     const go = mg.hold({ on: null, show: me, seconds: 1, drain: 0 });

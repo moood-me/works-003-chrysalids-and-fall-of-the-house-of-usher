@@ -1,10 +1,12 @@
 {
   "type": "bespoke",
-  "title": "Хризалиды v3",
-  "description": "По роману Джона Уиндема. Ты — Дэвид: мальчик, который слышит чужие мысли, в общине, где любое отклонение от истинного образа — грех. Сцены — короткие фильмы на движке 3; выборы и мини-игры — на языке мини-игр: метки на вещах сцены, жесты рук.",
+  "title": "The Chrysalids",
+  "description": "You are David Strorm, son of the strictest man in Waknuk. Here one toe too many is reason enough to cast a child out into the Fringes. You and your friends differ in a way no one can see: you speak to each other in thoughts. So far, no one knows.",
+  "line": "In a community where any difference is a sin, a boy hides his gift: he hears his friends’ thoughts.",
+  "source": "after the novel by John Wyndham",
   "genres": {
-    "драма": 100,
-    "отношения": 60
+    "drama": 100,
+    "relationships": 60
   },
   "world": "pavel--khrizalidy-v3",
   "scenes": []

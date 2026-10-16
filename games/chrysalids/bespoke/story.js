@@ -51,7 +51,7 @@ export const SCENES = {
 
 // the scales: what the player reads when they move (the path is never shown: game.js, journal.js)
 export const SCALES = {
-  suspicion: { up: 'Подозрение ↑', down: 'Подозрение ↓' }, group: { up: 'Группа ↑', down: 'Группа ↓' }, petra: { up: 'Петра ↑', down: 'Петра ↓' },
+  suspicion: { up: tr('Suspicion ↑'), down: tr('Suspicion ↓') }, group: { up: tr('The group ↑'), down: tr('The group ↓') }, petra: { up: tr('Petra ↑'), down: tr('Petra ↓') },
 };
 
 // What follows from the play so far — all a step reads of it besides g.state: David nearly grown from the fifth
@@ -149,7 +149,7 @@ export function context(b, view, hub, state, j = null) {
         put('beat', null); // (the same beat again is a change too)
         put('beat', name);
       }
-      if (wait && !(await ended)) b.trouble(`кусок «${name}» не кончился`);
+      if (wait && !(await ended)) b.trouble(`beat “${name}” did not end`);
     },
     told(text, ms = 60000) {
       return gone() ? never : unseen() ? j.heard(text, ms) : alive(hub.told(text, ms));
@@ -184,7 +184,7 @@ export function context(b, view, hub, state, j = null) {
       }
     },
     minigame(o = {}) {
-      if (!playing) throw new Error('g.minigame — только внутри мини-игры (g.play)');
+      if (!playing) throw new Error('g.minigame — only inside a mini-game (g.play)');
       const mg = b.minigame.start({ ...o, signal: playing.signal });
       mg.on('skip', playing.end);
       return mg;
@@ -232,7 +232,7 @@ export function listen(b) {
   });
   const heard = (kind, hit) => { for (const w of waiting) if (w.kind === kind && hit(w)) { waiting.delete(w); w.ok(true); } };
   b.on('tell', text => {
-    if (text.startsWith('beat-unknown:')) b.trouble(`в сцене нет куска «${text.slice(13)}»`);
+    if (text.startsWith('beat-unknown:')) b.trouble(`the scene has no beat “${text.slice(13)}”`);
     heard('tell', w => w.text === text);
   });
   return {

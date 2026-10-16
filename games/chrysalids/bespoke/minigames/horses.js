@@ -1,4 +1,4 @@
-// «Тише, кони» (V.4, «Бегство», the beat `watch`): in the fog of the hollow David keeps the horses still while the riders
+// “Quiet, horses” (V.4, “Flight”, the beat `watch`): in the fog of the hollow David keeps the horses still while the riders
 // on the crest shine their lanterns into it.
 //   1. what he does — a hand on the neck of the one that frets, and not a move; 2. wants — the riders to go by; 3. hidden
 //   fear; 4. the player — the hand on the restless one, keeping still.
@@ -14,11 +14,11 @@ import { until, keys } from '../hands.js';
 const TIME = 30, MOVED = 16;
 
 export default {
-  title: 'Тише, кони', // (as the author's ☰ lists it)
+  title: 'Quiet, horses', // (as the author's ☰ lists it)
   about: 30,
   skipped: { seen: false },
   async run(g, b, { start = 0.25, sheba = false, petra = false, horse } = {}, signal) {
-    const mg = g.minigame({ phrase: 'Фонари светили в туман, а кони не стояли смирно' });
+    const mg = g.minigame({ phrase: tr('The lanterns shone into the fog, and the horses would not stand still') });
     const send = keys(g), t0 = mg.t;
     const who = [
       { at: 'great#head', key: 'great_toss', across: 'great_a', rate: 0.035 },

@@ -1,98 +1,98 @@
 {
   "narrator": {
     "voice": "Charon",
-    "how": "тихо, неторопливо, как взрослый вспоминает детство",
-    "name": "Дэвид, взрослый, вспоминает",
-    "short": "Дэвид"
+    "how": "quietly, unhurried, as a grown man remembers his childhood",
+    "name": "David, grown up, remembering",
+    "short": "David"
   },
   "david": {
     "voice": "Achird",
-    "how": "тихо, по-мальчишески, сдержанно",
-    "name": "Дэвид, мальчик",
-    "short": "Дэвид"
+    "how": "quietly, boyishly, holding back",
+    "name": "David, a boy",
+    "short": "David"
   },
   "sophie": {
     "voice": "Leda",
-    "how": "по-детски, настороженно",
-    "name": "Софи, девочка девяти лет",
-    "short": "Софи"
+    "how": "like a child, warily",
+    "name": "Sophie, a girl of nine",
+    "short": "Sophie"
   },
   "mother": {
     "voice": "Kore",
-    "how": "сдержанно, устало, почти шёпотом",
-    "name": "мать Дэвида",
-    "short": "мать"
+    "how": "restrained, tired, almost in a whisper",
+    "name": "David’s mother",
+    "short": "mother"
   },
   "father": {
     "voice": "Orus",
-    "how": "твёрдо, холодно, как читают приговор",
-    "name": "Джозеф Сторм, отец Дэвида",
-    "short": "отец"
+    "how": "firmly, coldly, as a sentence is read out",
+    "name": "Joseph Strorm, David’s father",
+    "short": "father"
   },
   "axel": {
     "voice": "Algenib",
-    "how": "негромко, по-доброму, с хрипотцой бывалого моряка",
-    "name": "дядя Аксель, кузнец",
-    "short": "Аксель"
+    "how": "softly, kindly, with an old sailor’s hoarseness",
+    "name": "Uncle Axel, the smith",
+    "short": "Axel"
   },
   "rosalind": {
     "voice": "Aoede",
-    "how": "тихо, твёрдо, сдержанно",
-    "name": "Розалинда, кузина Дэвида",
-    "short": "Розалинда"
+    "how": "quietly, firmly, holding back",
+    "name": "Rosalind, David’s cousin",
+    "short": "Rosalind"
   },
   "someone": {
     "voice": "Aoede",
-    "how": "тихо, твёрдо, сдержанно",
-    "name": "Розалинда, кузина Дэвида",
-    "short": "чей-то голос"
+    "how": "quietly, firmly, holding back",
+    "name": "Rosalind, David’s cousin",
+    "short": "someone’s voice"
   },
   "petra": {
     "voice": "Despina",
-    "how": "звонко, по-детски, совсем маленькая",
-    "name": "Петра, младшая сестра Дэвида, шесть лет",
-    "short": "Петра"
+    "how": "in a clear ringing voice, like a very little girl",
+    "name": "Petra, David’s little sister, six years old",
+    "short": "Petra"
   },
   "michael": {
     "voice": "Puck",
-    "how": "быстро, уверенно, по-мальчишески",
-    "name": "Майкл, друг Дэвида",
-    "short": "Майкл"
+    "how": "quickly, confidently, boyishly",
+    "name": "Michael, David’s friend",
+    "short": "Michael"
   },
   "anne": {
     "voice": "Autonoe",
-    "how": "резко, с обидой",
-    "name": "Энн, из группы",
-    "short": "Энн"
+    "how": "sharply, resentfully",
+    "name": "Anne, one of the group",
+    "short": "Anne"
   },
   "newcomer": {
     "voice": "Laomedeia",
-    "how": "тонко, испуганно, совсем тихо",
-    "name": "девочка с дальней фермы",
-    "short": "чужой голос"
+    "how": "thinly, frightened, very quietly",
+    "name": "a girl from a far-off farm",
+    "short": "a strange voice"
   },
   "sealand": {
     "voice": "Vindemiatrix",
-    "how": "издалека, спокойно и ясно, чуть непривычно выговаривая слова",
-    "name": "женщина из Зеландии, за морем",
-    "short": "голос из-за моря"
+    "how": "from far away, calm and clear, shaping the words a little unusually",
+    "name": "the woman from Sealand, over the sea",
+    "short": "the voice from over the sea"
   },
   "inspector": {
     "voice": "Iapetus",
-    "how": "сухо, неторопливо, без злобы, как чиновник",
-    "name": "инспектор",
-    "short": "инспектор"
+    "how": "drily, unhurried, without malice, like an official",
+    "name": "the inspector",
+    "short": "the inspector"
   },
   "spider": {
     "voice": "Algieba",
-    "how": "медленно, хрипло, с насмешкой",
-    "name": "Паук, вожак Окраин, брат Джозефа Сторма",
-    "short": "Паук"
+    "how": "slowly, hoarsely, mockingly",
+    "name": "the Spider, leader of the Fringes, Joseph Strorm’s brother",
+    "short": "the Spider"
   },
   "sally": {
     "voice": "Achernar",
-    "how": "тихо, сбивчиво, через силу, будто от боли",
-    "name": "Салли, из группы",
-    "short": "Салли"
+    "how": "quietly, haltingly, with an effort, as if in pain",
+    "name": "Sally, one of the group",
+    "short": "Sally"
   }
 }

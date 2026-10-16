@@ -1,4 +1,4 @@
-// Буря и чтение — the narrator's room: what its elements paint and move, and its film in beats (film(scene), at the
+// The storm and the reading — the narrator's room: what its elements paint and move, and its film in beats (film(scene), at the
 // end). World metres: across (0 the door's axis), distance ahead of the eye, the back wall at 6.5, the window's axis at
 // WX. A lit scene: everything is painted once in its own colours (stone, wood, cloth) and the scene's lights — the
 // candle, the lamp in the corridor and its light under the door, Roderick's lamp, the mist through the window, the
@@ -642,7 +642,7 @@ function chair(g, e) {
   g.lineWidth = 0.008;
   g.stroke(A);
 }
-// «Безумный Тристан», closed on the table top (0.72 m) — not there while the narrator has it open in his hands (his
+// «The Mad Trist», closed on the table top (0.72 m) — not there while the narrator has it open in his hands (his
 // <id>_with: book_open); its point then follows the book in his hands (its animate), for the game's choices on it
 function book(g, e) {
   if ([].concat(e.state.narrator_with ?? []).includes('book_open')) return;
@@ -1162,7 +1162,7 @@ function film(scene) {
       run: async (s) => {
         const nar = s.person('narrator'), rod = s.person('roderick'), mad = s.person('madeline');
         await outOf(s);
-        // (out of the close-up, he turns to the door: the game's «Безумец!…» from here)
+        // (out of the close-up, he turns to the door: the game's «Madman!…» from here)
         s.tell('door_opens:out');
         await s.wait(0.3);
         rod.turn(toward(BEFORE_CHAIR, DOOR_AT));

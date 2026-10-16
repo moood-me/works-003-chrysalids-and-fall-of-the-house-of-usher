@@ -1,7 +1,7 @@
 {
   "engine": 3,
-  "title": "Мэдлин проходит",
-  "caption": "Она медленно прошла в глубине галереи и скрылась, не заметив меня.",
+  "title": "Madeline passes",
+  "caption": "She passed slowly through a remote portion of the gallery and disappeared, without having noticed my presence.",
   "horizon": 0.56,
   "camera": {
     "mode": "picture"
@@ -1284,7 +1284,7 @@
   "states": {
     "beat": {
       "type": "string",
-      "means": "кусок фильма (модуль beats): имя — он играется с начала, в конце сцена говорит beat:<имя>. Куски: pass, weep, follow, freeze, wake, look, gone, stay, doctor, beside, doctor_leaves, leave_with; моменты — freeze:still, stay:talk"
+      "means": "a beat of the film (the beats module): the name — it plays from the start, at the end the scene says beat:<name>. Beats: pass, weep, follow, freeze, wake, look, gone, stay, doctor, beside, doctor_leaves, leave_with; moments — freeze:still, stay:talk"
     },
     "crack": {
       "range": [
@@ -1292,7 +1292,7 @@
         1
       ],
       "smooth": true,
-      "means": "трещина на правом столбе арки 2: 0 — нет, 1 — прошла до свода и широкая (игра ставит по шкале)"
+      "means": "the crack on the right pier of arch 2: 0 — none, 1 — run up to the vault and wide (the game sets it by the scale)"
     },
     "light_shafts": {
       "range": [
@@ -1300,7 +1300,7 @@
         1
       ],
       "smooth": true,
-      "means": "вечерний свет окон (и его лучи в воздухе): 0 — нет, 1 — полный"
+      "means": "the windows' evening light (and its rays in the air): 0 — none, 1 — full"
     },
     "low_sun": {
       "range": [
@@ -1308,7 +1308,7 @@
         1
       ],
       "smooth": true,
-      "means": "0 — вечер, холодный свет окон; 1 — другой день, низкое тёплое солнце (врач)"
+      "means": "0 — evening, the windows' cold light; 1 — another day, a low warm sun (the physician)"
     },
     "sconce": {
       "range": [
@@ -1316,14 +1316,14 @@
         1
       ],
       "smooth": true,
-      "means": "свеча в бра на левой стене: 0 — погашена, 1 — горит"
+      "means": "the candle in the sconce on the left wall: 0 — out, 1 — burning"
     },
     "closeup": {
       "range": [
         0,
         1
       ],
-      "means": "крупный план поверх галереи (модуль closeups): 0 — нет, 1 — открыт"
+      "means": "a close-up over the gallery (the closeups module): 0 — none, 1 — open"
     },
     "shot": {
       "values": [
@@ -1331,7 +1331,7 @@
         "madeline",
         "doctor"
       ],
-      "means": "чей крупный план: Родерик (лицо в ладонях), Мэдлин (застывшая — madeline_still), врач"
+      "means": "whose close-up: Roderick (his face in his palms), Madeline (frozen — madeline_still), the physician"
     },
     "cu_turn": {
       "range": [
@@ -1339,7 +1339,7 @@
         1
       ],
       "smooth": true,
-      "means": "лицо крупно: поворот головы, + к окну"
+      "means": "the face, close: the head's turn, + towards the window"
     },
     "cu_tear": {
       "range": [
@@ -1347,7 +1347,7 @@
         1
       ],
       "smooth": true,
-      "means": "лицо крупно: слеза — как далеко сползла"
+      "means": "the face, close: a tear — how far it has crept"
     },
     "cu_inhale": {
       "range": [
@@ -1355,7 +1355,7 @@
         1
       ],
       "smooth": true,
-      "means": "лицо крупно: глубокий вдох (0→1→0)"
+      "means": "the face, close: a deep breath (0→1→0)"
     },
     "cu_blink": {
       "range": [
@@ -1363,20 +1363,20 @@
         1
       ],
       "smooth": true,
-      "means": "лицо крупно: моргание вручную (0 — моргает само, если не застыла)"
+      "means": "the face, close: blinking by hand (0 — blinks by itself, unless frozen)"
     },
     "speak": {
       "range": [
         0,
         1
       ],
-      "means": "губы на крупном плане шевелятся: игра ставит 1, пока говорит реплику, потом 0"
+      "means": "the lips in the close-up move: the game sets 1 while it says a line, then 0"
     }
   },
   "objects": [
     {
       "id": "floor",
-      "name": "Пол",
+      "name": "Floor",
       "plane": true,
       "across": 0,
       "distance": 39.5,
@@ -1391,7 +1391,7 @@
     },
     {
       "id": "ceiling",
-      "name": "Свод",
+      "name": "Vault",
       "plane": true,
       "across": 0,
       "distance": 39.5,
@@ -1402,7 +1402,7 @@
     },
     {
       "id": "wall_l",
-      "name": "Левая стена",
+      "name": "Left wall",
       "across": -3.3,
       "distance": -3,
       "facing": 90,
@@ -1416,7 +1416,7 @@
     },
     {
       "id": "wall_r",
-      "name": "Правая стена с окнами",
+      "name": "Right wall with windows",
       "across": 3.3,
       "distance": 82,
       "facing": 270,
@@ -1430,7 +1430,7 @@
     },
     {
       "id": "windows",
-      "name": "Окна",
+      "name": "Windows",
       "across": 3.3299999999999996,
       "distance": 82,
       "facing": 270,
@@ -1449,7 +1449,7 @@
     },
     {
       "id": "end_wall",
-      "name": "Торцевая стена",
+      "name": "End wall",
       "across": 0,
       "distance": 82,
       "facing": 180,
@@ -1463,7 +1463,7 @@
     },
     {
       "id": "arch0",
-      "name": "Арка",
+      "name": "Arch",
       "across": 0,
       "distance": 4.1,
       "facing": 180,
@@ -1477,7 +1477,7 @@
     },
     {
       "id": "arch0_pl",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "distance": 4.1,
       "facing": 90,
@@ -1491,7 +1491,7 @@
     },
     {
       "id": "arch0_pr",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "distance": 5.1,
       "facing": 270,
@@ -1505,7 +1505,7 @@
     },
     {
       "id": "arch0_l0",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "elevation": 5,
       "distance": 4.1,
@@ -1521,7 +1521,7 @@
     },
     {
       "id": "arch0_r0",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "elevation": 5,
       "distance": 5.1,
@@ -1537,7 +1537,7 @@
     },
     {
       "id": "arch0_l1",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.325,
       "elevation": 6.169,
       "distance": 4.1,
@@ -1553,7 +1553,7 @@
     },
     {
       "id": "arch0_r1",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.325,
       "elevation": 6.169,
       "distance": 5.1,
@@ -1569,7 +1569,7 @@
     },
     {
       "id": "arch0_l2",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.817,
       "elevation": 7.236,
       "distance": 4.1,
@@ -1585,7 +1585,7 @@
     },
     {
       "id": "arch0_r2",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.817,
       "elevation": 7.236,
       "distance": 5.1,
@@ -1601,7 +1601,7 @@
     },
     {
       "id": "arch0_l3",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.018,
       "elevation": 8.108,
       "distance": 4.1,
@@ -1617,7 +1617,7 @@
     },
     {
       "id": "arch0_r3",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.018,
       "elevation": 8.108,
       "distance": 5.1,
@@ -1633,7 +1633,7 @@
     },
     {
       "id": "arch1",
-      "name": "Арка",
+      "name": "Arch",
       "across": 0,
       "distance": 8.7,
       "facing": 180,
@@ -1647,7 +1647,7 @@
     },
     {
       "id": "arch1_pl",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "distance": 8.7,
       "facing": 90,
@@ -1661,7 +1661,7 @@
     },
     {
       "id": "arch1_pr",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "distance": 9.7,
       "facing": 270,
@@ -1675,7 +1675,7 @@
     },
     {
       "id": "arch1_l0",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "elevation": 5,
       "distance": 8.7,
@@ -1691,7 +1691,7 @@
     },
     {
       "id": "arch1_r0",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "elevation": 5,
       "distance": 9.7,
@@ -1707,7 +1707,7 @@
     },
     {
       "id": "arch1_l1",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.325,
       "elevation": 6.169,
       "distance": 8.7,
@@ -1723,7 +1723,7 @@
     },
     {
       "id": "arch1_r1",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.325,
       "elevation": 6.169,
       "distance": 9.7,
@@ -1739,7 +1739,7 @@
     },
     {
       "id": "arch1_l2",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.817,
       "elevation": 7.236,
       "distance": 8.7,
@@ -1755,7 +1755,7 @@
     },
     {
       "id": "arch1_r2",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.817,
       "elevation": 7.236,
       "distance": 9.7,
@@ -1771,7 +1771,7 @@
     },
     {
       "id": "arch1_l3",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.018,
       "elevation": 8.108,
       "distance": 8.7,
@@ -1787,7 +1787,7 @@
     },
     {
       "id": "arch1_r3",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.018,
       "elevation": 8.108,
       "distance": 9.7,
@@ -1803,7 +1803,7 @@
     },
     {
       "id": "arch2",
-      "name": "Арка",
+      "name": "Arch",
       "across": 0,
       "distance": 13.3,
       "facing": 180,
@@ -1817,7 +1817,7 @@
     },
     {
       "id": "arch2_pl",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "distance": 13.3,
       "facing": 90,
@@ -1831,7 +1831,7 @@
     },
     {
       "id": "arch2_pr",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "distance": 14.3,
       "facing": 270,
@@ -1845,7 +1845,7 @@
     },
     {
       "id": "arch2_l0",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "elevation": 5,
       "distance": 13.3,
@@ -1861,7 +1861,7 @@
     },
     {
       "id": "arch2_r0",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "elevation": 5,
       "distance": 14.3,
@@ -1877,7 +1877,7 @@
     },
     {
       "id": "arch2_l1",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.325,
       "elevation": 6.169,
       "distance": 13.3,
@@ -1893,7 +1893,7 @@
     },
     {
       "id": "arch2_r1",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.325,
       "elevation": 6.169,
       "distance": 14.3,
@@ -1909,7 +1909,7 @@
     },
     {
       "id": "arch2_l2",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.817,
       "elevation": 7.236,
       "distance": 13.3,
@@ -1925,7 +1925,7 @@
     },
     {
       "id": "arch2_r2",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.817,
       "elevation": 7.236,
       "distance": 14.3,
@@ -1941,7 +1941,7 @@
     },
     {
       "id": "arch2_l3",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.018,
       "elevation": 8.108,
       "distance": 13.3,
@@ -1957,7 +1957,7 @@
     },
     {
       "id": "arch2_r3",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.018,
       "elevation": 8.108,
       "distance": 14.3,
@@ -1973,7 +1973,7 @@
     },
     {
       "id": "arch3",
-      "name": "Арка",
+      "name": "Arch",
       "across": 0,
       "distance": 17.9,
       "facing": 180,
@@ -1987,7 +1987,7 @@
     },
     {
       "id": "arch3_pl",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "distance": 17.9,
       "facing": 90,
@@ -2001,7 +2001,7 @@
     },
     {
       "id": "arch3_pr",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "distance": 18.9,
       "facing": 270,
@@ -2015,7 +2015,7 @@
     },
     {
       "id": "arch3_l0",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "elevation": 5,
       "distance": 17.9,
@@ -2031,7 +2031,7 @@
     },
     {
       "id": "arch3_r0",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "elevation": 5,
       "distance": 18.9,
@@ -2047,7 +2047,7 @@
     },
     {
       "id": "arch3_l1",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.325,
       "elevation": 6.169,
       "distance": 17.9,
@@ -2063,7 +2063,7 @@
     },
     {
       "id": "arch3_r1",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.325,
       "elevation": 6.169,
       "distance": 18.9,
@@ -2079,7 +2079,7 @@
     },
     {
       "id": "arch3_l2",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.817,
       "elevation": 7.236,
       "distance": 17.9,
@@ -2095,7 +2095,7 @@
     },
     {
       "id": "arch3_r2",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.817,
       "elevation": 7.236,
       "distance": 18.9,
@@ -2111,7 +2111,7 @@
     },
     {
       "id": "arch3_l3",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.018,
       "elevation": 8.108,
       "distance": 17.9,
@@ -2127,7 +2127,7 @@
     },
     {
       "id": "arch3_r3",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.018,
       "elevation": 8.108,
       "distance": 18.9,
@@ -2143,7 +2143,7 @@
     },
     {
       "id": "arch4",
-      "name": "Арка",
+      "name": "Arch",
       "across": 0,
       "distance": 22.5,
       "facing": 180,
@@ -2157,7 +2157,7 @@
     },
     {
       "id": "arch4_pl",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "distance": 22.5,
       "facing": 90,
@@ -2171,7 +2171,7 @@
     },
     {
       "id": "arch4_pr",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "distance": 23.5,
       "facing": 270,
@@ -2185,7 +2185,7 @@
     },
     {
       "id": "arch4_l0",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "elevation": 5,
       "distance": 22.5,
@@ -2201,7 +2201,7 @@
     },
     {
       "id": "arch4_r0",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "elevation": 5,
       "distance": 23.5,
@@ -2217,7 +2217,7 @@
     },
     {
       "id": "arch4_l1",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.325,
       "elevation": 6.169,
       "distance": 22.5,
@@ -2233,7 +2233,7 @@
     },
     {
       "id": "arch4_r1",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.325,
       "elevation": 6.169,
       "distance": 23.5,
@@ -2249,7 +2249,7 @@
     },
     {
       "id": "arch4_l2",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.817,
       "elevation": 7.236,
       "distance": 22.5,
@@ -2265,7 +2265,7 @@
     },
     {
       "id": "arch4_r2",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.817,
       "elevation": 7.236,
       "distance": 23.5,
@@ -2281,7 +2281,7 @@
     },
     {
       "id": "arch4_l3",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.018,
       "elevation": 8.108,
       "distance": 22.5,
@@ -2297,7 +2297,7 @@
     },
     {
       "id": "arch4_r3",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.018,
       "elevation": 8.108,
       "distance": 23.5,
@@ -2313,7 +2313,7 @@
     },
     {
       "id": "arch5",
-      "name": "Арка",
+      "name": "Arch",
       "across": 0,
       "distance": 27.1,
       "facing": 180,
@@ -2327,7 +2327,7 @@
     },
     {
       "id": "arch5_pl",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "distance": 27.1,
       "facing": 90,
@@ -2341,7 +2341,7 @@
     },
     {
       "id": "arch5_pr",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "distance": 28.1,
       "facing": 270,
@@ -2355,7 +2355,7 @@
     },
     {
       "id": "arch5_l0",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "elevation": 5,
       "distance": 27.1,
@@ -2371,7 +2371,7 @@
     },
     {
       "id": "arch5_r0",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "elevation": 5,
       "distance": 28.1,
@@ -2387,7 +2387,7 @@
     },
     {
       "id": "arch5_l1",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.325,
       "elevation": 6.169,
       "distance": 27.1,
@@ -2403,7 +2403,7 @@
     },
     {
       "id": "arch5_r1",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.325,
       "elevation": 6.169,
       "distance": 28.1,
@@ -2419,7 +2419,7 @@
     },
     {
       "id": "arch5_l2",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.817,
       "elevation": 7.236,
       "distance": 27.1,
@@ -2435,7 +2435,7 @@
     },
     {
       "id": "arch5_r2",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.817,
       "elevation": 7.236,
       "distance": 28.1,
@@ -2451,7 +2451,7 @@
     },
     {
       "id": "arch5_l3",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.018,
       "elevation": 8.108,
       "distance": 27.1,
@@ -2467,7 +2467,7 @@
     },
     {
       "id": "arch5_r3",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.018,
       "elevation": 8.108,
       "distance": 28.1,
@@ -2483,7 +2483,7 @@
     },
     {
       "id": "arch6",
-      "name": "Арка",
+      "name": "Arch",
       "across": 0,
       "distance": 31.7,
       "facing": 180,
@@ -2497,7 +2497,7 @@
     },
     {
       "id": "arch6_pl",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "distance": 31.7,
       "facing": 90,
@@ -2511,7 +2511,7 @@
     },
     {
       "id": "arch6_pr",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "distance": 32.7,
       "facing": 270,
@@ -2525,7 +2525,7 @@
     },
     {
       "id": "arch6_l0",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "elevation": 5,
       "distance": 31.7,
@@ -2541,7 +2541,7 @@
     },
     {
       "id": "arch6_r0",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "elevation": 5,
       "distance": 32.7,
@@ -2557,7 +2557,7 @@
     },
     {
       "id": "arch6_l1",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.325,
       "elevation": 6.169,
       "distance": 31.7,
@@ -2573,7 +2573,7 @@
     },
     {
       "id": "arch6_r1",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.325,
       "elevation": 6.169,
       "distance": 32.7,
@@ -2589,7 +2589,7 @@
     },
     {
       "id": "arch6_l2",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.817,
       "elevation": 7.236,
       "distance": 31.7,
@@ -2605,7 +2605,7 @@
     },
     {
       "id": "arch6_r2",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.817,
       "elevation": 7.236,
       "distance": 32.7,
@@ -2621,7 +2621,7 @@
     },
     {
       "id": "arch6_l3",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.018,
       "elevation": 8.108,
       "distance": 31.7,
@@ -2637,7 +2637,7 @@
     },
     {
       "id": "arch6_r3",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.018,
       "elevation": 8.108,
       "distance": 32.7,
@@ -2653,7 +2653,7 @@
     },
     {
       "id": "arch7",
-      "name": "Арка",
+      "name": "Arch",
       "across": 0,
       "distance": 36.3,
       "facing": 180,
@@ -2667,7 +2667,7 @@
     },
     {
       "id": "arch7_pl",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "distance": 36.3,
       "facing": 90,
@@ -2681,7 +2681,7 @@
     },
     {
       "id": "arch7_pr",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "distance": 37.3,
       "facing": 270,
@@ -2695,7 +2695,7 @@
     },
     {
       "id": "arch7_l0",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "elevation": 5,
       "distance": 36.3,
@@ -2711,7 +2711,7 @@
     },
     {
       "id": "arch7_r0",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "elevation": 5,
       "distance": 37.3,
@@ -2727,7 +2727,7 @@
     },
     {
       "id": "arch7_l1",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.325,
       "elevation": 6.169,
       "distance": 36.3,
@@ -2743,7 +2743,7 @@
     },
     {
       "id": "arch7_r1",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.325,
       "elevation": 6.169,
       "distance": 37.3,
@@ -2759,7 +2759,7 @@
     },
     {
       "id": "arch7_l2",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.817,
       "elevation": 7.236,
       "distance": 36.3,
@@ -2775,7 +2775,7 @@
     },
     {
       "id": "arch7_r2",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.817,
       "elevation": 7.236,
       "distance": 37.3,
@@ -2791,7 +2791,7 @@
     },
     {
       "id": "arch7_l3",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.018,
       "elevation": 8.108,
       "distance": 36.3,
@@ -2807,7 +2807,7 @@
     },
     {
       "id": "arch7_r3",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.018,
       "elevation": 8.108,
       "distance": 37.3,
@@ -2823,7 +2823,7 @@
     },
     {
       "id": "arch8",
-      "name": "Арка",
+      "name": "Arch",
       "across": 0,
       "distance": 40.9,
       "facing": 180,
@@ -2837,7 +2837,7 @@
     },
     {
       "id": "arch8_pl",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "distance": 40.9,
       "facing": 90,
@@ -2851,7 +2851,7 @@
     },
     {
       "id": "arch8_pr",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "distance": 41.9,
       "facing": 270,
@@ -2865,7 +2865,7 @@
     },
     {
       "id": "arch8_l0",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "elevation": 5,
       "distance": 40.9,
@@ -2881,7 +2881,7 @@
     },
     {
       "id": "arch8_r0",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "elevation": 5,
       "distance": 41.9,
@@ -2897,7 +2897,7 @@
     },
     {
       "id": "arch8_l1",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.325,
       "elevation": 6.169,
       "distance": 40.9,
@@ -2913,7 +2913,7 @@
     },
     {
       "id": "arch8_r1",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.325,
       "elevation": 6.169,
       "distance": 41.9,
@@ -2929,7 +2929,7 @@
     },
     {
       "id": "arch8_l2",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.817,
       "elevation": 7.236,
       "distance": 40.9,
@@ -2945,7 +2945,7 @@
     },
     {
       "id": "arch8_r2",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.817,
       "elevation": 7.236,
       "distance": 41.9,
@@ -2961,7 +2961,7 @@
     },
     {
       "id": "arch8_l3",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.018,
       "elevation": 8.108,
       "distance": 40.9,
@@ -2977,7 +2977,7 @@
     },
     {
       "id": "arch8_r3",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.018,
       "elevation": 8.108,
       "distance": 41.9,
@@ -2993,7 +2993,7 @@
     },
     {
       "id": "arch9",
-      "name": "Арка",
+      "name": "Arch",
       "across": 0,
       "distance": 45.5,
       "facing": 180,
@@ -3007,7 +3007,7 @@
     },
     {
       "id": "arch9_pl",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "distance": 45.5,
       "facing": 90,
@@ -3021,7 +3021,7 @@
     },
     {
       "id": "arch9_pr",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "distance": 46.5,
       "facing": 270,
@@ -3035,7 +3035,7 @@
     },
     {
       "id": "arch9_l0",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "elevation": 5,
       "distance": 45.5,
@@ -3051,7 +3051,7 @@
     },
     {
       "id": "arch9_r0",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "elevation": 5,
       "distance": 46.5,
@@ -3067,7 +3067,7 @@
     },
     {
       "id": "arch9_l1",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.325,
       "elevation": 6.169,
       "distance": 45.5,
@@ -3083,7 +3083,7 @@
     },
     {
       "id": "arch9_r1",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.325,
       "elevation": 6.169,
       "distance": 46.5,
@@ -3099,7 +3099,7 @@
     },
     {
       "id": "arch9_l2",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.817,
       "elevation": 7.236,
       "distance": 45.5,
@@ -3115,7 +3115,7 @@
     },
     {
       "id": "arch9_r2",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.817,
       "elevation": 7.236,
       "distance": 46.5,
@@ -3131,7 +3131,7 @@
     },
     {
       "id": "arch9_l3",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.018,
       "elevation": 8.108,
       "distance": 45.5,
@@ -3147,7 +3147,7 @@
     },
     {
       "id": "arch9_r3",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.018,
       "elevation": 8.108,
       "distance": 46.5,
@@ -3163,7 +3163,7 @@
     },
     {
       "id": "arch10",
-      "name": "Арка",
+      "name": "Arch",
       "across": 0,
       "distance": 50.1,
       "facing": 180,
@@ -3177,7 +3177,7 @@
     },
     {
       "id": "arch10_pl",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "distance": 50.1,
       "facing": 90,
@@ -3191,7 +3191,7 @@
     },
     {
       "id": "arch10_pr",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "distance": 51.1,
       "facing": 270,
@@ -3205,7 +3205,7 @@
     },
     {
       "id": "arch10_l0",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "elevation": 5,
       "distance": 50.1,
@@ -3221,7 +3221,7 @@
     },
     {
       "id": "arch10_r0",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "elevation": 5,
       "distance": 51.1,
@@ -3237,7 +3237,7 @@
     },
     {
       "id": "arch10_l1",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.325,
       "elevation": 6.169,
       "distance": 50.1,
@@ -3253,7 +3253,7 @@
     },
     {
       "id": "arch10_r1",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.325,
       "elevation": 6.169,
       "distance": 51.1,
@@ -3269,7 +3269,7 @@
     },
     {
       "id": "arch10_l2",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.817,
       "elevation": 7.236,
       "distance": 50.1,
@@ -3285,7 +3285,7 @@
     },
     {
       "id": "arch10_r2",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.817,
       "elevation": 7.236,
       "distance": 51.1,
@@ -3301,7 +3301,7 @@
     },
     {
       "id": "arch10_l3",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.018,
       "elevation": 8.108,
       "distance": 50.1,
@@ -3317,7 +3317,7 @@
     },
     {
       "id": "arch10_r3",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.018,
       "elevation": 8.108,
       "distance": 51.1,
@@ -3333,7 +3333,7 @@
     },
     {
       "id": "arch11",
-      "name": "Арка",
+      "name": "Arch",
       "across": 0,
       "distance": 54.7,
       "facing": 180,
@@ -3347,7 +3347,7 @@
     },
     {
       "id": "arch11_pl",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "distance": 54.7,
       "facing": 90,
@@ -3361,7 +3361,7 @@
     },
     {
       "id": "arch11_pr",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "distance": 55.7,
       "facing": 270,
@@ -3375,7 +3375,7 @@
     },
     {
       "id": "arch11_l0",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "elevation": 5,
       "distance": 54.7,
@@ -3391,7 +3391,7 @@
     },
     {
       "id": "arch11_r0",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "elevation": 5,
       "distance": 55.7,
@@ -3407,7 +3407,7 @@
     },
     {
       "id": "arch11_l1",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.325,
       "elevation": 6.169,
       "distance": 54.7,
@@ -3423,7 +3423,7 @@
     },
     {
       "id": "arch11_r1",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.325,
       "elevation": 6.169,
       "distance": 55.7,
@@ -3439,7 +3439,7 @@
     },
     {
       "id": "arch11_l2",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.817,
       "elevation": 7.236,
       "distance": 54.7,
@@ -3455,7 +3455,7 @@
     },
     {
       "id": "arch11_r2",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.817,
       "elevation": 7.236,
       "distance": 55.7,
@@ -3471,7 +3471,7 @@
     },
     {
       "id": "arch11_l3",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.018,
       "elevation": 8.108,
       "distance": 54.7,
@@ -3487,7 +3487,7 @@
     },
     {
       "id": "arch11_r3",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.018,
       "elevation": 8.108,
       "distance": 55.7,
@@ -3503,7 +3503,7 @@
     },
     {
       "id": "arch12",
-      "name": "Арка",
+      "name": "Arch",
       "across": 0,
       "distance": 59.3,
       "facing": 180,
@@ -3517,7 +3517,7 @@
     },
     {
       "id": "arch12_pl",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "distance": 59.3,
       "facing": 90,
@@ -3531,7 +3531,7 @@
     },
     {
       "id": "arch12_pr",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "distance": 60.3,
       "facing": 270,
@@ -3545,7 +3545,7 @@
     },
     {
       "id": "arch12_l0",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "elevation": 5,
       "distance": 59.3,
@@ -3561,7 +3561,7 @@
     },
     {
       "id": "arch12_r0",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "elevation": 5,
       "distance": 60.3,
@@ -3577,7 +3577,7 @@
     },
     {
       "id": "arch12_l1",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.325,
       "elevation": 6.169,
       "distance": 59.3,
@@ -3593,7 +3593,7 @@
     },
     {
       "id": "arch12_r1",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.325,
       "elevation": 6.169,
       "distance": 60.3,
@@ -3609,7 +3609,7 @@
     },
     {
       "id": "arch12_l2",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.817,
       "elevation": 7.236,
       "distance": 59.3,
@@ -3625,7 +3625,7 @@
     },
     {
       "id": "arch12_r2",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.817,
       "elevation": 7.236,
       "distance": 60.3,
@@ -3641,7 +3641,7 @@
     },
     {
       "id": "arch12_l3",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.018,
       "elevation": 8.108,
       "distance": 59.3,
@@ -3657,7 +3657,7 @@
     },
     {
       "id": "arch12_r3",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.018,
       "elevation": 8.108,
       "distance": 60.3,
@@ -3673,7 +3673,7 @@
     },
     {
       "id": "arch13",
-      "name": "Арка",
+      "name": "Arch",
       "across": 0,
       "distance": 63.9,
       "facing": 180,
@@ -3687,7 +3687,7 @@
     },
     {
       "id": "arch13_pl",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "distance": 63.9,
       "facing": 90,
@@ -3701,7 +3701,7 @@
     },
     {
       "id": "arch13_pr",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "distance": 64.9,
       "facing": 270,
@@ -3715,7 +3715,7 @@
     },
     {
       "id": "arch13_l0",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "elevation": 5,
       "distance": 63.9,
@@ -3731,7 +3731,7 @@
     },
     {
       "id": "arch13_r0",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "elevation": 5,
       "distance": 64.9,
@@ -3747,7 +3747,7 @@
     },
     {
       "id": "arch13_l1",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.325,
       "elevation": 6.169,
       "distance": 63.9,
@@ -3763,7 +3763,7 @@
     },
     {
       "id": "arch13_r1",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.325,
       "elevation": 6.169,
       "distance": 64.9,
@@ -3779,7 +3779,7 @@
     },
     {
       "id": "arch13_l2",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.817,
       "elevation": 7.236,
       "distance": 63.9,
@@ -3795,7 +3795,7 @@
     },
     {
       "id": "arch13_r2",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.817,
       "elevation": 7.236,
       "distance": 64.9,
@@ -3811,7 +3811,7 @@
     },
     {
       "id": "arch13_l3",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.018,
       "elevation": 8.108,
       "distance": 63.9,
@@ -3827,7 +3827,7 @@
     },
     {
       "id": "arch13_r3",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.018,
       "elevation": 8.108,
       "distance": 64.9,
@@ -3843,7 +3843,7 @@
     },
     {
       "id": "arch14",
-      "name": "Арка",
+      "name": "Arch",
       "across": 0,
       "distance": 68.5,
       "facing": 180,
@@ -3857,7 +3857,7 @@
     },
     {
       "id": "arch14_pl",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "distance": 68.5,
       "facing": 90,
@@ -3871,7 +3871,7 @@
     },
     {
       "id": "arch14_pr",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "distance": 69.5,
       "facing": 270,
@@ -3885,7 +3885,7 @@
     },
     {
       "id": "arch14_l0",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "elevation": 5,
       "distance": 68.5,
@@ -3901,7 +3901,7 @@
     },
     {
       "id": "arch14_r0",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "elevation": 5,
       "distance": 69.5,
@@ -3917,7 +3917,7 @@
     },
     {
       "id": "arch14_l1",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.325,
       "elevation": 6.169,
       "distance": 68.5,
@@ -3933,7 +3933,7 @@
     },
     {
       "id": "arch14_r1",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.325,
       "elevation": 6.169,
       "distance": 69.5,
@@ -3949,7 +3949,7 @@
     },
     {
       "id": "arch14_l2",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.817,
       "elevation": 7.236,
       "distance": 68.5,
@@ -3965,7 +3965,7 @@
     },
     {
       "id": "arch14_r2",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.817,
       "elevation": 7.236,
       "distance": 69.5,
@@ -3981,7 +3981,7 @@
     },
     {
       "id": "arch14_l3",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.018,
       "elevation": 8.108,
       "distance": 68.5,
@@ -3997,7 +3997,7 @@
     },
     {
       "id": "arch14_r3",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.018,
       "elevation": 8.108,
       "distance": 69.5,
@@ -4013,7 +4013,7 @@
     },
     {
       "id": "arch15",
-      "name": "Арка",
+      "name": "Arch",
       "across": 0,
       "distance": 73.1,
       "facing": 180,
@@ -4027,7 +4027,7 @@
     },
     {
       "id": "arch15_pl",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "distance": 73.1,
       "facing": 90,
@@ -4041,7 +4041,7 @@
     },
     {
       "id": "arch15_pr",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "distance": 74.1,
       "facing": 270,
@@ -4055,7 +4055,7 @@
     },
     {
       "id": "arch15_l0",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "elevation": 5,
       "distance": 73.1,
@@ -4071,7 +4071,7 @@
     },
     {
       "id": "arch15_r0",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "elevation": 5,
       "distance": 74.1,
@@ -4087,7 +4087,7 @@
     },
     {
       "id": "arch15_l1",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.325,
       "elevation": 6.169,
       "distance": 73.1,
@@ -4103,7 +4103,7 @@
     },
     {
       "id": "arch15_r1",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.325,
       "elevation": 6.169,
       "distance": 74.1,
@@ -4119,7 +4119,7 @@
     },
     {
       "id": "arch15_l2",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.817,
       "elevation": 7.236,
       "distance": 73.1,
@@ -4135,7 +4135,7 @@
     },
     {
       "id": "arch15_r2",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.817,
       "elevation": 7.236,
       "distance": 74.1,
@@ -4151,7 +4151,7 @@
     },
     {
       "id": "arch15_l3",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.018,
       "elevation": 8.108,
       "distance": 73.1,
@@ -4167,7 +4167,7 @@
     },
     {
       "id": "arch15_r3",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.018,
       "elevation": 8.108,
       "distance": 74.1,
@@ -4183,7 +4183,7 @@
     },
     {
       "id": "arch16",
-      "name": "Арка",
+      "name": "Arch",
       "across": 0,
       "distance": 77.7,
       "facing": 180,
@@ -4197,7 +4197,7 @@
     },
     {
       "id": "arch16_pl",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "distance": 77.7,
       "facing": 90,
@@ -4211,7 +4211,7 @@
     },
     {
       "id": "arch16_pr",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "distance": 78.7,
       "facing": 270,
@@ -4225,7 +4225,7 @@
     },
     {
       "id": "arch16_l0",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.5,
       "elevation": 5,
       "distance": 77.7,
@@ -4241,7 +4241,7 @@
     },
     {
       "id": "arch16_r0",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.5,
       "elevation": 5,
       "distance": 78.7,
@@ -4257,7 +4257,7 @@
     },
     {
       "id": "arch16_l1",
-      "name": "Арка",
+      "name": "Arch",
       "across": -2.325,
       "elevation": 6.169,
       "distance": 77.7,
@@ -4273,7 +4273,7 @@
     },
     {
       "id": "arch16_r1",
-      "name": "Арка",
+      "name": "Arch",
       "across": 2.325,
       "elevation": 6.169,
       "distance": 78.7,
@@ -4289,7 +4289,7 @@
     },
     {
       "id": "arch16_l2",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.817,
       "elevation": 7.236,
       "distance": 77.7,
@@ -4305,7 +4305,7 @@
     },
     {
       "id": "arch16_r2",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.817,
       "elevation": 7.236,
       "distance": 78.7,
@@ -4321,7 +4321,7 @@
     },
     {
       "id": "arch16_l3",
-      "name": "Арка",
+      "name": "Arch",
       "across": -1.018,
       "elevation": 8.108,
       "distance": 77.7,
@@ -4337,7 +4337,7 @@
     },
     {
       "id": "arch16_r3",
-      "name": "Арка",
+      "name": "Arch",
       "across": 1.018,
       "elevation": 8.108,
       "distance": 78.7,
@@ -4353,7 +4353,7 @@
     },
     {
       "id": "crack",
-      "name": "Трещина",
+      "name": "Crack",
       "across": 0,
       "distance": 13.285,
       "facing": 180,
@@ -4371,7 +4371,7 @@
     },
     {
       "id": "room3_floor",
-      "name": "Тёмная комната",
+      "name": "Dark room",
       "plane": true,
       "across": -5.4,
       "distance": 20.4,
@@ -4381,7 +4381,7 @@
     },
     {
       "id": "room3_ceil",
-      "name": "Тёмная комната",
+      "name": "Dark room",
       "plane": true,
       "across": -5.4,
       "distance": 20.4,
@@ -4392,7 +4392,7 @@
     },
     {
       "id": "room3_back",
-      "name": "Тёмная комната",
+      "name": "Dark room",
       "across": -7.5,
       "distance": 17.4,
       "facing": 90,
@@ -4406,7 +4406,7 @@
     },
     {
       "id": "room3_near",
-      "name": "Тёмная комната",
+      "name": "Dark room",
       "across": -3.3,
       "distance": 17.4,
       "facing": 0,
@@ -4420,7 +4420,7 @@
     },
     {
       "id": "room3_far",
-      "name": "Тёмная комната",
+      "name": "Dark room",
       "across": -7.5,
       "distance": 23.4,
       "facing": 180,
@@ -4434,7 +4434,7 @@
     },
     {
       "id": "room5_floor",
-      "name": "Тёмная комната",
+      "name": "Dark room",
       "plane": true,
       "across": -5.4,
       "distance": 29.6,
@@ -4444,7 +4444,7 @@
     },
     {
       "id": "room5_ceil",
-      "name": "Тёмная комната",
+      "name": "Dark room",
       "plane": true,
       "across": -5.4,
       "distance": 29.6,
@@ -4455,7 +4455,7 @@
     },
     {
       "id": "room5_back",
-      "name": "Тёмная комната",
+      "name": "Dark room",
       "across": -7.5,
       "distance": 26.6,
       "facing": 90,
@@ -4469,7 +4469,7 @@
     },
     {
       "id": "room5_near",
-      "name": "Тёмная комната",
+      "name": "Dark room",
       "across": -3.3,
       "distance": 26.6,
       "facing": 0,
@@ -4483,7 +4483,7 @@
     },
     {
       "id": "room5_far",
-      "name": "Тёмная комната",
+      "name": "Dark room",
       "across": -7.5,
       "distance": 32.6,
       "facing": 180,
@@ -4497,7 +4497,7 @@
     },
     {
       "id": "sconce",
-      "name": "Свеча в бра",
+      "name": "Candle in a sconce",
       "across": -3.1799999999999997,
       "distance": 34.3,
       "elevation": 2.6,
@@ -4516,7 +4516,7 @@
     },
     {
       "id": "motes",
-      "name": "Пыль в свете окон",
+      "name": "Dust in the windows' light",
       "particles": {
         "kind": "dust",
         "at": [
@@ -4538,7 +4538,7 @@
     },
     {
       "id": "narrator",
-      "name": "Рассказчик",
+      "name": "Narrator",
       "person": {
         "cast": "cast",
         "who": "narrator",
@@ -4554,7 +4554,7 @@
     },
     {
       "id": "roderick",
-      "name": "Родерик",
+      "name": "Roderick",
       "person": {
         "cast": "cast",
         "who": "roderick",
@@ -4570,7 +4570,7 @@
     },
     {
       "id": "madeline",
-      "name": "Леди Мэдлин",
+      "name": "The Lady Madeline",
       "person": {
         "cast": "cast",
         "who": "madeline",
@@ -4588,7 +4588,7 @@
     },
     {
       "id": "doctor",
-      "name": "Врач",
+      "name": "Physician",
       "person": {
         "cast": "cast",
         "who": "doctor",
@@ -4604,7 +4604,7 @@
     },
     {
       "id": "closeup",
-      "name": "Крупный план",
+      "name": "Close-up",
       "insert": "closeup"
     }
   ],

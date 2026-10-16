@@ -1,4 +1,4 @@
-// Буря и чтение — its mechanics: the beats for the game (lib.js film, the world's module beats: `beat` names one); the
+// The storm and the reading — its mechanics: the beats for the game (lib.js film, the world's module beats: `beat` names one); the
 // door and the casements turned as `door` and `window` say (the casements rattling in the wind); Roderick in his chair
 // rocking and flinching; the house answering the reading; the narrator listening; the hands reaching; the room shaking;
 // lightning now and then in the storm.
@@ -49,7 +49,7 @@ scene.on('change', 'sound', (n) => {
     await s.move('shudder', 0, { over: 1.6, ease: 'out' });
   });
 });
-// Listening (the game's «Слушать», «Чтение»: `listen`): the narrator turns his head to the floor where the sound comes up,
+// Listening (the game's «Listen», «The reading»: `listen`): the narrator turns his head to the floor where the sound comes up,
 // the book sinking to his knees; and back.
 let ears = null;
 scene.on('change', 'listen', (v) => {

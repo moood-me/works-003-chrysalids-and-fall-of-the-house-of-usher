@@ -1,7 +1,7 @@
 {
   "engine": 3,
-  "title": "Буря и чтение",
-  "caption": "Мне почудилось, что откуда-то из самой глубины дома донёсся тот самый звук, о котором я только что читал.",
+  "title": "The storm and the reading",
+  "caption": "It appeared to me that from some very remote portion of the mansion there came the very sound of which I had just read.",
   "horizon": 0.45,
   "camera": {
     "mode": "picture"
@@ -205,7 +205,7 @@
   "objects": [
     {
       "id": "sky",
-      "name": "Буря и светящийся туман",
+      "name": "Storm and glowing mist",
       "sky": true,
       "uniforms": {
         "cloud": 0,
@@ -217,7 +217,7 @@
     },
     {
       "id": "rain_quiet",
-      "name": "Дождь за окном",
+      "name": "Rain beyond the window",
       "particles": {
         "kind": "rain",
         "count": 2500,
@@ -232,7 +232,7 @@
     },
     {
       "id": "rain_storm",
-      "name": "Ливень за окном",
+      "name": "Downpour beyond the window",
       "particles": {
         "kind": "rain",
         "count": 7000,
@@ -249,7 +249,7 @@
     },
     {
       "id": "corridor",
-      "name": "Тёмный коридор за дверью",
+      "name": "Dark corridor beyond the door",
       "across": 0,
       "distance": 7.4,
       "height": 3,
@@ -262,7 +262,7 @@
     },
     {
       "id": "door_gap",
-      "name": "Свет под дверью",
+      "name": "Light under the door",
       "across": 0,
       "distance": 6.6,
       "height": 2.7,
@@ -276,7 +276,7 @@
     },
     {
       "id": "feet",
-      "name": "Ноги несущего лампу",
+      "name": "Feet of the lamp-bearer",
       "across": 0,
       "distance": 6.56,
       "height": 0.2,
@@ -297,7 +297,7 @@
     },
     {
       "id": "wall",
-      "name": "Стена покоя с окном и дверью",
+      "name": "Wall of the chamber with window and door",
       "across": 0,
       "distance": 6.5,
       "height": 5,
@@ -317,7 +317,7 @@
     },
     {
       "id": "crack",
-      "name": "Трещина в стене",
+      "name": "Crack in the wall",
       "across": 0,
       "distance": 6.49,
       "height": 5,
@@ -330,7 +330,7 @@
     },
     {
       "id": "fissure",
-      "name": "Трещина: туман и красная луна",
+      "name": "Crack: mist and the red moon",
       "across": 0,
       "distance": 6.48,
       "height": 5,
@@ -344,7 +344,7 @@
     },
     {
       "id": "door",
-      "name": "Дверь",
+      "name": "Door",
       "across": 0.58,
       "distance": 6.49,
       "facing": 180,
@@ -368,7 +368,7 @@
     },
     {
       "id": "window",
-      "name": "Окно",
+      "name": "Window",
       "across": 0,
       "distance": 6.49,
       "height": 4.4,
@@ -381,7 +381,7 @@
     },
     {
       "id": "casement_l",
-      "name": "Левая створка окна",
+      "name": "Left casement",
       "across": 2.65,
       "distance": 6.47,
       "facing": 180,
@@ -399,7 +399,7 @@
     },
     {
       "id": "casement_r",
-      "name": "Правая створка окна",
+      "name": "Right casement",
       "across": 3.85,
       "distance": 6.47,
       "facing": 180,
@@ -417,7 +417,7 @@
     },
     {
       "id": "drops_l",
-      "name": "Капли на левой створке",
+      "name": "Drops on the left casement",
       "on": "casement_l",
       "across": 0.3,
       "elevation": 2.3,
@@ -434,7 +434,7 @@
     },
     {
       "id": "drops_r",
-      "name": "Капли на правой створке",
+      "name": "Drops on the right casement",
       "on": "casement_r",
       "across": -0.3,
       "elevation": 2.3,
@@ -451,7 +451,7 @@
     },
     {
       "id": "rain_in",
-      "name": "Дождь в открытое окно",
+      "name": "Rain through the open window",
       "particles": {
         "kind": "rain",
         "around": false,
@@ -488,7 +488,7 @@
     },
     {
       "id": "curtain",
-      "name": "Тяжёлая портьера",
+      "name": "Heavy curtain",
       "across": 4.4,
       "distance": 6.35,
       "height": 4.9,
@@ -505,7 +505,7 @@
     },
     {
       "id": "floor",
-      "name": "Каменный пол",
+      "name": "Stone floor",
       "plane": true,
       "across": 0,
       "distance": 3.6,
@@ -515,7 +515,7 @@
     },
     {
       "id": "ripple",
-      "name": "Звук снизу",
+      "name": "Sound from below",
       "plane": true,
       "across": 1.75,
       "distance": 5.15,
@@ -528,7 +528,7 @@
     },
     {
       "id": "chair",
-      "name": "Высокое кресло",
+      "name": "High-backed chair",
       "across": 0.55,
       "distance": 4.2,
       "height": 1.45,
@@ -548,7 +548,7 @@
     },
     {
       "id": "floor_lamp",
-      "name": "Лампа Родерика на полу",
+      "name": "Roderick's lamp on the floor",
       "across": 1.15,
       "distance": 4.5,
       "height": 0.4,
@@ -561,7 +561,7 @@
     },
     {
       "id": "table",
-      "name": "Столик со свечой",
+      "name": "Small table with a candle",
       "across": -0.95,
       "distance": 3.6,
       "height": 0.8,
@@ -574,7 +574,7 @@
     },
     {
       "id": "table_top",
-      "name": "Столешница",
+      "name": "Tabletop",
       "plane": true,
       "across": -0.95,
       "distance": 3.6,
@@ -592,7 +592,7 @@
     },
     {
       "id": "book",
-      "name": "Книга «Безумный Тристан»",
+      "name": "The book “Mad Trist”",
       "across": -0.95,
       "distance": 3.58,
       "height": 0.8,
@@ -605,7 +605,7 @@
     },
     {
       "id": "candle",
-      "name": "Свеча",
+      "name": "Candle",
       "across": -0.88,
       "distance": 3.6,
       "elevation": 0.72,
@@ -619,7 +619,7 @@
     },
     {
       "id": "flame",
-      "name": "Пламя свечи",
+      "name": "Candle flame",
       "across": -0.88,
       "distance": 3.595,
       "elevation": 0.72,
@@ -635,7 +635,7 @@
     },
     {
       "id": "dust",
-      "name": "Пылинки у свечи",
+      "name": "Motes by the candle",
       "particles": {
         "kind": "dust",
         "at": [
@@ -654,7 +654,7 @@
     },
     {
       "id": "grit",
-      "name": "Песок со свода",
+      "name": "Grit from the vault",
       "particles": {
         "kind": "puff",
         "at": [
@@ -710,7 +710,7 @@
     },
     {
       "id": "seat",
-      "name": "Стул у стола",
+      "name": "Chair by the table",
       "across": -1.62,
       "distance": 3.9,
       "height": 1.0,
@@ -730,7 +730,7 @@
     },
     {
       "id": "narrator",
-      "name": "Рассказчик",
+      "name": "Narrator",
       "person": {
         "cast": "cast",
         "who": "narrator",
@@ -747,7 +747,7 @@
     },
     {
       "id": "roderick",
-      "name": "Родерик Ашер",
+      "name": "Roderick Usher",
       "person": {
         "cast": "cast",
         "who": "roderick",
@@ -763,7 +763,7 @@
     },
     {
       "id": "madeline",
-      "name": "Леди Мэдлин",
+      "name": "The Lady Madeline",
       "person": {
         "cast": "cast",
         "who": "madeline",
@@ -780,7 +780,7 @@
     },
     {
       "id": "closeup",
-      "name": "Крупный план",
+      "name": "Close-up",
       "insert": "closeup"
     }
   ],
@@ -862,7 +862,7 @@
   "states": {
     "beat": {
       "type": "string",
-      "means": "кусок фильма (модуль beats): имя — он играется с начала, в конце сцена говорит beat:<имя>. Куски: night, lamp_pass, enter_lamp, window_open, window_close, watch, read, confess, door_opens, hands, collapse, flee, stay; моменты — enter_lamp:close, confess:close, door_opens:out"
+      "means": "a beat of the film (the beats module): the name — it plays from the start, at the end the scene says beat:<name>. Beats: night, lamp_pass, enter_lamp, window_open, window_close, watch, read, confess, door_opens, hands, collapse, flee, stay; moments — enter_lamp:close, confess:close, door_opens:out"
     },
     "candle": {
       "range": [
@@ -870,7 +870,7 @@
         1
       ],
       "smooth": true,
-      "means": "свеча: 1 — горит, 0 — погасла (струйка дыма)"
+      "means": "the candle: 1 — burning, 0 — gone out (a thread of smoke)"
     },
     "crack": {
       "range": [
@@ -878,7 +878,7 @@
         1
       ],
       "smooth": true,
-      "means": "трещина в задней стене: длина и ширина; ветви после 0.35, туман сочится сквозь неё после 0.6"
+      "means": "the crack in the back wall: length and width; branches after 0.35, mist seeps through it after 0.6"
     },
     "glow": {
       "range": [
@@ -886,7 +886,7 @@
         1
       ],
       "smooth": true,
-      "means": "светящийся туман за окном и его свет в комнату"
+      "means": "the glowing mist beyond the window and its light into the room"
     },
     "storm": {
       "range": [
@@ -894,7 +894,7 @@
         1
       ],
       "smooth": true,
-      "means": "0 — ночь, тихий дождь; 1 — буря, ливень, тучи летят"
+      "means": "0 — night, quiet rain; 1 — the storm, a downpour, flying clouds"
     },
     "lightning": {
       "range": [
@@ -902,7 +902,7 @@
         1
       ],
       "smooth": true,
-      "means": "вспышка молнии: небо, свет в окно, комната"
+      "means": "a flash of lightning: the sky, light through the window, the room"
     },
     "wind": {
       "range": [
@@ -910,7 +910,7 @@
         1
       ],
       "smooth": true,
-      "means": "ветер в комнате из открытого окна: портьера, пламя свечи, дождь внутрь"
+      "means": "wind in the room from the open window: the curtain, the candle flame, rain blown in"
     },
     "window": {
       "range": [
@@ -918,7 +918,7 @@
         1.12
       ],
       "smooth": true,
-      "means": "створки окна: 0 — закрыты, 1 — распахнуты в комнату (выше 1 — отскок на излёте)"
+      "means": "the casements: 0 — shut, 1 — flung open into the room (above 1 — the rebound at the end of the swing)"
     },
     "door": {
       "range": [
@@ -926,7 +926,7 @@
         1.1
       ],
       "smooth": true,
-      "means": "дверь: 0 — закрыта, 1 — распахнута в комнату"
+      "means": "the door: 0 — shut, 1 — flung open into the room"
     },
     "door_turn": {
       "range": [
@@ -934,7 +934,7 @@
         180
       ],
       "smooth": true,
-      "means": "куда повёрнута створка двери, градусы (ставит сцена по door)"
+      "means": "where the door's leaf is turned, degrees (the scene sets it from door)"
     },
     "case_l": {
       "range": [
@@ -942,7 +942,7 @@
         300
       ],
       "smooth": true,
-      "means": "левая створка окна, градусы (ставит сцена по window)"
+      "means": "the left casement, degrees (the scene sets it from window)"
     },
     "case_r": {
       "range": [
@@ -950,7 +950,7 @@
         190
       ],
       "smooth": true,
-      "means": "правая створка окна, градусы (ставит сцена по window)"
+      "means": "the right casement, degrees (the scene sets it from window)"
     },
     "hall_lamp": {
       "range": [
@@ -958,7 +958,7 @@
         1
       ],
       "smooth": true,
-      "means": "лампа в коридоре: насколько ярко её свет под дверью и в дверях"
+      "means": "the lamp in the corridor: how bright its light is under the door and in the doorway"
     },
     "hall_x": {
       "range": [
@@ -966,7 +966,7 @@
         1.8
       ],
       "smooth": true,
-      "means": "где лампа в коридоре, метры поперёк (0 — против двери)"
+      "means": "where the lamp in the corridor is, metres across (0 — opposite the door)"
     },
     "ripple": {
       "range": [
@@ -974,7 +974,7 @@
         1
       ],
       "smooth": true,
-      "means": "круги на полу там, где снизу идёт звук"
+      "means": "rings on the floor where the sound comes from below"
     },
     "listen": {
       "range": [
@@ -982,7 +982,7 @@
         1
       ],
       "smooth": true,
-      "means": "рассказчик прислушивается: голова к полу (за чтением — книга на колени)"
+      "means": "the narrator listens: head to the floor (while reading — the book on his knees)"
     },
     "sound": {
       "values": [
@@ -991,11 +991,11 @@
         2,
         3
       ],
-      "means": "1, 2, 3 — дом отвечает: свеча вздрагивает, трещина дышит, песок со свода, толчок, Родерик вздрагивает и качается сильнее; 0 — ничего"
+      "means": "1, 2, 3 — the house answers: the candle shudders, the crack breathes, grit from the vault, a jolt, Roderick flinches and rocks harder; 0 — nothing"
     },
     "jolt": {
       "type": "number",
-      "means": "толчок комнаты: каждый раз, как число растёт, — песок со свода (ставит сцена)"
+      "means": "the room's jolt: each time the number rises — grit from the vault (the scene sets it)"
     },
     "shudder": {
       "range": [
@@ -1003,7 +1003,7 @@
         1
       ],
       "smooth": true,
-      "means": "толчок (импульс): свеча, трещина, песок, камера"
+      "means": "a jolt (a pulse): the candle, the crack, the grit, the camera"
     },
     "quake": {
       "range": [
@@ -1011,7 +1011,7 @@
         1
       ],
       "smooth": true,
-      "means": "комната трясётся"
+      "means": "the room shakes"
     },
     "rift": {
       "range": [
@@ -1019,7 +1019,7 @@
         1
       ],
       "smooth": true,
-      "means": "трещина раскрылась на красную луну, комната красная"
+      "means": "the crack has opened on the red moon, the room is red"
     },
     "rock": {
       "range": [
@@ -1027,7 +1027,7 @@
         1
       ],
       "smooth": true,
-      "means": "Родерик качается в кресле"
+      "means": "Roderick rocks in his chair"
     },
     "lamp_down": {
       "range": [
@@ -1035,7 +1035,7 @@
         1
       ],
       "smooth": false,
-      "means": "его лампа стоит на полу у кресла"
+      "means": "his lamp stands on the floor by the chair"
     },
     "lamp_held": {
       "range": [
@@ -1043,7 +1043,7 @@
         1
       ],
       "smooth": true,
-      "means": "его лампа у него в руке (её свет)"
+      "means": "his lamp is in his hand (its light)"
     },
     "rod_reach": {
       "range": [
@@ -1051,7 +1051,7 @@
         1
       ],
       "smooth": true,
-      "means": "рука Родерика к рассказчику (в комнате и на крупном плане рук)"
+      "means": "Roderick's hand to the narrator (in the room and in the hands' close-up)"
     },
     "mad_reach": {
       "range": [
@@ -1059,7 +1059,7 @@
         1
       ],
       "smooth": true,
-      "means": "рука Мэдлин к рассказчику"
+      "means": "Madeline's hand to the narrator"
     },
     "rod_to_mad": {
       "range": [
@@ -1067,7 +1067,7 @@
         1
       ],
       "smooth": true,
-      "means": "рука Родерика к Мэдлин"
+      "means": "Roderick's hand to Madeline"
     },
     "mad_to_rod": {
       "range": [
@@ -1075,15 +1075,15 @@
         1
       ],
       "smooth": true,
-      "means": "рука Мэдлин к Родерику"
+      "means": "Madeline's hand to Roderick"
     },
     "with_madeline": {
       "type": "boolean",
-      "means": "Мэдлин бежит с ним (flee)"
+      "means": "Madeline flees with him (flee)"
     },
     "with_roderick": {
       "type": "boolean",
-      "means": "Родерик бежит с ним (flee)"
+      "means": "Roderick flees with him (flee)"
     },
     "closeup": {
       "range": [
@@ -1091,7 +1091,7 @@
         1
       ],
       "smooth": false,
-      "means": "крупный план (вставка) открыт"
+      "means": "the close-up (insert) is open"
     },
     "shot": {
       "values": [
@@ -1101,7 +1101,7 @@
         "mad_door",
         "hands"
       ],
-      "means": "какой крупный план: Родерик с лампой, его признание, Мэдлин на пороге, руки"
+      "means": "which close-up: Roderick with the lamp, his confession, Madeline on the threshold, the hands"
     },
     "cu_speak": {
       "range": [
@@ -1109,7 +1109,7 @@
         1
       ],
       "smooth": false,
-      "means": "губы на крупном плане шевелятся (пока говорится реплика)"
+      "means": "the lips in the close-up move (while a line is said)"
     },
     "cu_reach": {
       "range": [
@@ -1117,7 +1117,7 @@
         1
       ],
       "smooth": true,
-      "means": "рука Мэдлин поднимается на крупном плане mad_door"
+      "means": "Madeline's hand rises in the close-up mad_door"
     },
     "cu_push": {
       "range": [
@@ -1125,7 +1125,7 @@
         1
       ],
       "smooth": true,
-      "means": "медленный наезд крупного плана"
+      "means": "the close-up's slow push-in"
     },
     "grab": {
       "range": [
@@ -1133,7 +1133,7 @@
         1
       ],
       "smooth": true,
-      "means": "рука рассказчика на крупном плане рук, за пальцем игрока"
+      "means": "the narrator's hand in the hands' close-up, following the player's finger"
     },
     "grab_x": {
       "range": [
@@ -1141,7 +1141,7 @@
         1
       ],
       "smooth": true,
-      "means": "где его рука: доли высоты кадра от середины"
+      "means": "where his hand is: fractions of the frame's height from the middle"
     },
     "grab_y": {
       "range": [
@@ -1149,7 +1149,7 @@
         1
       ],
       "smooth": true,
-      "means": "где его рука: доли высоты кадра от середины, вниз"
+      "means": "where his hand is: fractions of the frame's height from the middle, downward"
     },
     "held_rod": {
       "range": [
@@ -1157,7 +1157,7 @@
         1
       ],
       "smooth": true,
-      "means": "он держит руку Родерика"
+      "means": "he holds Roderick's hand"
     },
     "held_mad": {
       "range": [
@@ -1165,7 +1165,7 @@
         1
       ],
       "smooth": true,
-      "means": "он держит руку Мэдлин"
+      "means": "he holds Madeline's hand"
     },
     "fallen": {
       "range": [
@@ -1173,31 +1173,31 @@
         1
       ],
       "smooth": false,
-      "means": "двое упали вместе (после collapse)"
+      "means": "the two have fallen together (after collapse)"
     },
     "narrator_a": {
       "type": "number",
-      "means": "где стоит, метры поперёк"
+      "means": "where he stands, metres across"
     },
     "narrator_d": {
       "type": "number",
-      "means": "где стоит, метры вглубь"
+      "means": "where he stands, metres deep"
     },
     "roderick_a": {
       "type": "number",
-      "means": "где стоит, метры поперёк"
+      "means": "where he stands, metres across"
     },
     "roderick_d": {
       "type": "number",
-      "means": "где стоит, метры вглубь"
+      "means": "where he stands, metres deep"
     },
     "madeline_a": {
       "type": "number",
-      "means": "где стоит, метры поперёк"
+      "means": "where he stands, metres across"
     },
     "madeline_d": {
       "type": "number",
-      "means": "где стоит, метры вглубь"
+      "means": "where he stands, metres deep"
     }
   },
   "music": {

@@ -1,4 +1,4 @@
-// Склеп — what the vault's elements share (the crack, the mist, the close shots' frame and what they show) and its film:
+// The vault — what the vault's elements share (the crack, the mist, the close shots' frame and what they show) and its film:
 // the coffin carried in, opened, looked at, shut, screwed down; her eyes from inside; the iron door shut; another night
 // outside it — in beats (FILM, at the end), played by the world's module beats: one at a time by the game (`beat`,
 // script.js), all of them as the scene's own showcase (showcase.js, SHOWCASE).
@@ -89,9 +89,9 @@ const CANDLE = [-0.55, 0.3], FL = 0.85;
 // and breast (`blush`), the lingering smile, no breath; 'mirror' — closer, the small mirror coming up to her lips
 // (`mirror` 0 below the frame … 1 at her lips): it stays clear; 'hands' — her hand at rest and the narrator's coming to
 // rest on it (`touch` 0 below the frame … 1 on hers); 'lid' — the shut lid, its four screws (`screw1…4` how far each is
-// in; their points closeup#screw1…4 — the game's «Винты») and the driver on screw `screw_at` (1…4; between — the hand on
+// in; their points closeup#screw1…4 — the game's «The screws») and the driver on screw `screw_at` (1…4; between — the hand on
 // its way) while `driver` is 1, in the narrator's hand or Roderick's (`driver_rod` 1); its point closeup#leave between
-// them, above (the game's «оставить»). All in the torch's light (the
+// them, above (the game's «Leave it so»). All in the torch's light (the
 // hands near it: softer). closeup — what the picture is painted from (only those keys); closeupNow — what moves in it
 // without a repaint (its animate's): the mirror coming up, his hand coming down onto hers, her stillness
 const HER = { who: "madeline", lying: true, eyes: 0, smile: 0.55, breath: 0, frozen: 1 };
@@ -513,7 +513,7 @@ const FILM = {
       await s.wait(1.0);
     },
   },
-  // close: the lid, its four screws standing proud, the screwdriver in the narrator's hand on the first — «Винты»
+  // close: the lid, its four screws standing proud, the screwdriver in the narrator's hand on the first — «The screws»
   // turns them. It begins with a cut (said ahead by the module beats as the beat before it begins: the game names it in
   // beat_next)
   screws: {
@@ -609,7 +609,7 @@ const FILM = {
       await s.wait(0.9);
     },
   },
-  // another night: outside the shut iron door, one candle; «Стук» knocks on it (knock, answer)
+  // another night: outside the shut iron door, one candle; «Knock» knocks on it (knock, answer)
   at_door: {
     from: () => at(SHUT, { outside: 1, knock: 0, answer: 0, roderick_here: false, narrator_here: false, door_turn: 180, torch: 0, fade: 1 }),
     run: async s => {
@@ -617,7 +617,7 @@ const FILM = {
       await s.move("fade", 0, { over: 2.6, ease: "inOut" });
     },
   },
-  // (the showcase's: «Стук» as the game plays it — two knocks, the silence, two answering from the other side)
+  // (the showcase's: «Knock» as the game plays it — two knocks, the silence, two answering from the other side)
   knock: {
     after: "at_door",
     from: () => at(SHUT, { outside: 1, knock: 0, answer: 0, roderick_here: false, narrator_here: false, door_turn: 180, torch: 0 }),

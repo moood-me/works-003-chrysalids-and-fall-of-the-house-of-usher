@@ -1,12 +1,12 @@
 {
   "engine": 3,
-  "title": "Комната Родерика",
-  "caption": "Он не выносил ни яркого света, ни громкого звука.",
+  "title": "Roderick's room",
+  "caption": "He could bear no bright light, no loud sound.",
   "captions": [
     {
       "at": 10,
       "for": 7,
-      "text": "Свет едва сочился сквозь решётчатые стёкла."
+      "text": "Feeble gleams of light made their way through the trellised panes."
     }
   ],
   "horizon": 0.6,
@@ -323,18 +323,18 @@
   "directions": [
     {
       "key": "crack",
-      "name": "Трещина ползёт по стене"
+      "name": "The crack creeps across the wall"
     }
   ],
   "objects": [
     {
       "id": "sky",
-      "name": "Тьма за стенами",
+      "name": "Darkness beyond the walls",
       "sky": true
     },
     {
       "id": "wall",
-      "name": "Задняя стена и своды",
+      "name": "Back wall and vaults",
       "across": 0,
       "distance": 10.5,
       "height": 12,
@@ -348,7 +348,7 @@
     },
     {
       "id": "fissure",
-      "name": "Трещина в стене",
+      "name": "Crack in the wall",
       "across": 0,
       "distance": 10.48,
       "height": 11,
@@ -368,7 +368,7 @@
     },
     {
       "id": "window",
-      "name": "Окно",
+      "name": "Window",
       "across": 0,
       "distance": 10.45,
       "height": 4,
@@ -383,7 +383,7 @@
     },
     {
       "id": "curtain",
-      "name": "Занавес",
+      "name": "Curtain",
       "across": 0,
       "distance": 10.4,
       "height": 4,
@@ -398,7 +398,7 @@
     },
     {
       "id": "portrait",
-      "name": "Портрет Мэдлин",
+      "name": "Portrait of Madeline",
       "across": -3.05,
       "distance": 10.4,
       "elevation": 2.05,
@@ -413,7 +413,7 @@
     },
     {
       "id": "clock",
-      "name": "Часы",
+      "name": "Clock",
       "across": 3.75,
       "distance": 8.1,
       "height": 2.35,
@@ -432,7 +432,7 @@
     },
     {
       "id": "floor",
-      "name": "Каменный пол",
+      "name": "Stone floor",
       "plane": true,
       "across": 0,
       "distance": 5.75,
@@ -441,7 +441,7 @@
     },
     {
       "id": "table",
-      "name": "Стол с книгами и свечами",
+      "name": "Table with books and candles",
       "across": -1.39,
       "distance": 6,
       "height": 0.95,
@@ -461,7 +461,7 @@
     },
     {
       "id": "candles",
-      "name": "Свечи",
+      "name": "Candles",
       "across": -1.01,
       "distance": 5.99,
       "height": 0.95,
@@ -483,7 +483,7 @@
     },
     {
       "id": "smoke_l",
-      "name": "Дымок погасшей свечи",
+      "name": "Smoke of a snuffed candle",
       "particles": {
         "kind": "smoke",
         "at": "candles#wick0",
@@ -510,7 +510,7 @@
     },
     {
       "id": "smoke_r",
-      "name": "Дымок погасшей свечи",
+      "name": "Smoke of a snuffed candle",
       "particles": {
         "kind": "smoke",
         "at": "candles#wick2",
@@ -537,7 +537,7 @@
     },
     {
       "id": "guitar",
-      "name": "Гитара",
+      "name": "Guitar",
       "across": -0.12,
       "distance": 5.85,
       "height": 1,
@@ -556,7 +556,7 @@
     },
     {
       "id": "chair",
-      "name": "Кресло",
+      "name": "Armchair",
       "across": 0.32,
       "distance": 6.05,
       "height": 2.05,
@@ -576,7 +576,7 @@
     },
     {
       "id": "roderick",
-      "name": "Родерик Ашер",
+      "name": "Roderick Usher",
       "person": {
         "cast": "cast",
         "who": "roderick",
@@ -593,7 +593,7 @@
     },
     {
       "id": "chair_front",
-      "name": "Подлокотники",
+      "name": "Armrests",
       "across": 0.32,
       "distance": 5.7,
       "height": 0.75,
@@ -606,7 +606,7 @@
     },
     {
       "id": "narrator",
-      "name": "Рассказчик",
+      "name": "Narrator",
       "person": {
         "cast": "cast",
         "who": "narrator",
@@ -622,7 +622,7 @@
     },
     {
       "id": "valet",
-      "name": "Слуга",
+      "name": "Valet",
       "person": {
         "cast": "cast",
         "who": "valet",
@@ -638,7 +638,7 @@
     },
     {
       "id": "dust",
-      "name": "Пылинки",
+      "name": "Motes",
       "across": 0,
       "distance": 7.5,
       "elevation": 2,
@@ -653,7 +653,7 @@
     },
     {
       "id": "closeup",
-      "name": "Крупный план",
+      "name": "Close-up",
       "insert": "closeup"
     }
   ],
@@ -696,7 +696,7 @@
         1
       ],
       "smooth": true,
-      "means": "трещина в задней стене: как далеко сверху спустилась и как зияет (после 0.35 ветвится); светится изнутри, пока он поёт"
+      "means": "the crack in the back wall: how far down from the top it has come and how it gapes (branches after 0.35); glows from within while he sings"
     },
     "candles": {
       "range": [
@@ -704,7 +704,7 @@
         1.6
       ],
       "smooth": true,
-      "means": "свечи: 0.3 — притушены (боковые погасли, тонкий дымок), 1 — как застали, 1.6 — зажжены ещё две высокие"
+      "means": "candles: 0.3 — dimmed (the side ones out, a thin thread of smoke), 1 — as found, 1.6 — two more tall ones lit"
     },
     "curtain": {
       "range": [
@@ -712,7 +712,7 @@
         1
       ],
       "smooth": true,
-      "means": "занавес задёрнут через окна (1 — остаётся щёлочка света)"
+      "means": "the curtain drawn across the windows (1 — a slit of light remains)"
     },
     "window_open": {
       "range": [
@@ -720,7 +720,7 @@
         1
       ],
       "smooth": true,
-      "means": "створки среднего окна распахнуты внутрь: туманный воздух, сквозняк колышет занавес"
+      "means": "the middle window's casements flung inward: misty air, the draught stirs the curtain"
     },
     "window_light": {
       "range": [
@@ -728,7 +728,7 @@
         1
       ],
       "smooth": true,
-      "means": "сколько света снаружи сквозь стёкла (0.5 — как застали)"
+      "means": "how much light comes from outside through the panes (0.5 — as found)"
     },
     "clock": {
       "range": [
@@ -736,7 +736,7 @@
         1
       ],
       "smooth": true,
-      "means": "часы: 0 — остановлены, 0.5 — идут, как застали, 1 — заведены (гири вверху, маятник во весь размах)"
+      "means": "the clock: 0 — stopped, 0.5 — going, as found, 1 — wound (the weights at the top, the pendulum at full swing)"
     },
     "evening": {
       "range": [
@@ -744,7 +744,7 @@
         1
       ],
       "smooth": true,
-      "means": "вечер: стёкла багрово-серые, свет из окон ниже (ставят куски)"
+      "means": "evening: the panes crimson-grey, the windows' light lower (set by the beats)"
     },
     "song": {
       "range": [
@@ -752,7 +752,7 @@
         1
       ],
       "smooth": true,
-      "means": "баллада: свет комнаты тонет, трещина светится (ставят куски)"
+      "means": "the ballad: the room's light sinks, the crack glows (set by the beats)"
     },
     "tempo": {
       "range": [
@@ -760,7 +760,7 @@
         1
       ],
       "smooth": true,
-      "means": "как быстро он играет (ведёт «Струна»)"
+      "means": "how fast he plays (led by “String”)"
     },
     "wild": {
       "range": [
@@ -768,23 +768,23 @@
         1
       ],
       "smooth": true,
-      "means": "как неистово он играет: пламя мечется (ведёт «Струна»)"
+      "means": "how wildly he plays: the flames toss (led by “String”)"
     },
     "strum": {
       "type": "number",
       "smooth": true,
-      "means": "счёт его ударов по струнам (n-й — на n + 0.25); каждый удар подбрасывает пламя"
+      "means": "the count of his strokes on the strings (the n-th at n + 0.25); each stroke throws the flames up"
     },
     "beat": {
       "type": "string",
-      "means": "кусок фильма, который играть (модуль beats; notes.md); null — ничего; моменты — meet:lips, portrait:before, news:lips, night_listen:beside"
+      "means": "the beat of the film to play (the beats module; notes.md); null — nothing; moments — meet:lips, portrait:before, news:lips, night_listen:beside"
     },
     "closeup": {
       "range": [
         0,
         1
       ],
-      "means": "крупный план его лица (вставка): 1 — открыт"
+      "means": "the close-up of his face (insert): 1 — open"
     },
     "closeup_smile": {
       "range": [
@@ -792,7 +792,7 @@
         1
       ],
       "smooth": true,
-      "means": "крупный план glad: улыбка приходит"
+      "means": "close-up glad: the smile comes"
     },
     "closeup_strain": {
       "range": [
@@ -800,7 +800,7 @@
         1
       ],
       "smooth": true,
-      "means": "крупный план glad: улыбка сжимается в напряжение"
+      "means": "close-up glad: the smile tightens into strain"
     },
     "closeup_grief": {
       "range": [
@@ -808,7 +808,7 @@
         1
       ],
       "smooth": true,
-      "means": "крупный план news: горе проступает"
+      "means": "close-up news: grief shows through"
     },
     "closeup_shot": {
       "values": [
@@ -816,7 +816,7 @@
         "glad",
         "news"
       ],
-      "means": "какой крупный план: glad — встреча (улыбка, потом напряжение), news — «её больше нет» (горе)"
+      "means": "which close-up: glad — the meeting (a smile, then strain), news — “She is no more” (grief)"
     },
     "closeup_speak": {
       "range": [
@@ -824,7 +824,7 @@
         1
       ],
       "smooth": true,
-      "means": "крупный план: губы шевелятся (реплика)"
+      "means": "close-up: the lips move (a line)"
     },
     "window_day": {
       "range": [
@@ -832,7 +832,7 @@
         1
       ],
       "smooth": true,
-      "means": "свет окон днём (1 — как застали и светлее) — ставит скрипт сцены из window_light, curtain, window_open, evening, song"
+      "means": "the windows' light by day (1 — as found and lighter) — set by the scene's script from window_light, curtain, window_open, evening, song"
     },
     "window_dusk": {
       "range": [
@@ -840,44 +840,44 @@
         1
       ],
       "smooth": true,
-      "means": "свет окон вечером — ставит скрипт сцены"
+      "means": "the windows' light at evening — set by the scene's script"
     },
     "wick_smoke": {
       "range": [
         0,
         1
       ],
-      "means": "дымок от погасших боковых свечей — ставит скрипт сцены из candles"
+      "means": "smoke from the snuffed side candles — set by the scene's script from candles"
     },
     "roderick_a": {
       "type": "number",
       "smooth": true,
-      "means": "где стоит (roderick), метры"
+      "means": "where he stands (roderick), metres"
     },
     "roderick_d": {
       "type": "number",
       "smooth": true,
-      "means": "где стоит (roderick), метры"
+      "means": "where he stands (roderick), metres"
     },
     "narrator_a": {
       "type": "number",
       "smooth": true,
-      "means": "где стоит (narrator), метры"
+      "means": "where he stands (narrator), metres"
     },
     "narrator_d": {
       "type": "number",
       "smooth": true,
-      "means": "где стоит (narrator), метры"
+      "means": "where he stands (narrator), metres"
     },
     "valet_a": {
       "type": "number",
       "smooth": true,
-      "means": "где стоит (valet), метры"
+      "means": "where he stands (valet), metres"
     },
     "valet_d": {
       "type": "number",
       "smooth": true,
-      "means": "где стоит (valet), метры"
+      "means": "where he stands (valet), metres"
     },
     "night_fill": {
       "range": [
@@ -885,7 +885,7 @@
         1
       ],
       "smooth": true,
-      "means": "ночью у стены: свет со стороны глаза на тех, кто слушает стену (ставит кусок night_listen)"
+      "means": "at night by the wall: a light from the eye's side on those who listen at the wall (set by the beat night_listen)"
     }
   },
   "modules": [

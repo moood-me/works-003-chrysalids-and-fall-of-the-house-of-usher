@@ -1,6 +1,6 @@
 {
   "engine": 3,
-  "title": "Трещина",
+  "title": "The crack",
   "caption": "",
   "camera": {
     "mode": "picture"
@@ -12,7 +12,7 @@
   },
   "state": {
     "chapter_number": "I",
-    "chapter_title": "Приезд",
+    "chapter_title": "The arrival",
     "map": null,
     "reveal": 1,
     "knot": 1
@@ -20,14 +20,14 @@
   "states": {
     "chapter_number": {
       "type": "string",
-      "means": "номер главы над её названием («I»…; пусто — пролог, эпилог)"
+      "means": "the chapter's number above its title (“I”…; empty — the prologue, the epilogue)"
     },
     "chapter_title": {
       "type": "string",
-      "means": "название главы, высеченное на стене"
+      "means": "the chapter's title, carved on the wall"
     },
     "map": {
-      "means": "null — только титул; иначе строки выборов главы: [{title, weight '⚑'|'~', options: [{label, state: 'chosen'|'open'|'unseen'}]}] — трещина идёт через выбранное, волосок к открытому, едва видная линия к недостигнутому"
+      "means": "null — the title only; otherwise the rows of the chapter's choices: [{title, weight '⚑'|'~', options: [{label, state: 'chosen'|'open'|'unseen'}]}] — the crack runs through the chosen, a hairline to the open, a barely visible line to the unreached"
     },
     "reveal": {
       "range": [
@@ -35,7 +35,7 @@
         1
       ],
       "smooth": true,
-      "means": "как далеко трещина спустилась по стене: 0 — её нет, 1 — до низа кадра; слова строки — когда она до них дошла"
+      "means": "how far the crack has come down the wall: 0 — none, 1 — to the bottom of the frame; a row's words — once it has reached them"
     },
     "knot": {
       "range": [
@@ -43,19 +43,19 @@
         1
       ],
       "smooth": true,
-      "means": "яркость конца трещины (элемент knot), когда трещина до него дошла"
+      "means": "the brightness of the crack's end (the element knot), once the crack has reached it"
     }
   },
   "objects": [
     {
       "id": "wall",
       "sky": true,
-      "name": "Стена дома"
+      "name": "Wall of the house"
     },
     {
       "id": "crack",
       "sky": true,
-      "name": "Трещина",
+      "name": "The crack",
       "uniforms": {
         "reveal": 1,
         "title": 1
@@ -64,7 +64,7 @@
     {
       "id": "knot",
       "sky": true,
-      "name": "Конец трещины",
+      "name": "End of the crack",
       "uniforms": {
         "reveal": 1,
         "knot": 1

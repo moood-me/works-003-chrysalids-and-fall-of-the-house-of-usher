@@ -1,4 +1,4 @@
-// ===== «Падение дома Ашеров» — the world's people: the narrator, Roderick, Madeline, the doctor, the valet, the horse, their things =====
+// ===== «The Fall of the House of Usher» — the world's people: the narrator, Roderick, Madeline, the doctor, the valet, the horse, their things =====
 // The body of function (anim, data) returning the kit; data = ushers.data.json (recorded motion).
 const { clamp, mix, span, hash, noise } = anim;
 const PI = Math.PI, TAU = 2 * PI, D2R = PI / 180;

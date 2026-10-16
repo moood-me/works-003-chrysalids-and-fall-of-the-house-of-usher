@@ -1,4 +1,4 @@
-// Мэдлин проходит — the gallery, built in the world's metres: across (X, right of the gallery's axis; the walls at ±W),
+// Madeline passes — the gallery, built in the world's metres: across (X, right of the gallery's axis; the walls at ±W),
 // distance (Z, ahead of where the eye stands at the start), elevation (Y, up from the floor). Every surface is a card or a
 // plane where it truly is — the engine lays the perspective, the light through the windows, the haze, the reflections:
 // nothing here knows where the eye is. And the film in beats (FILM, the world's module beats) — at the end.

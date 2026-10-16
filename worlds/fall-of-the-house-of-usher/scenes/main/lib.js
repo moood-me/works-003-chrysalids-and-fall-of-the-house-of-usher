@@ -1,4 +1,4 @@
-// What the elements of «Подъезд к дому» share: the light of the moment (its colours), the house (its facade, windows,
+// What the elements of «The approach to the house» share: the light of the moment (its colours), the house (its facade, windows,
 // door, crack — the house, the windows and the crack paint the same house), the causeway's line, and the film in beats
 // (FILM: the world's module beats; SHOWCASE — their order outside games). notes.md tells it.
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
@@ -294,7 +294,7 @@ const FILM = {
     from: () => ({ ...DUSK }),
     run: async (s) => { await s.move("camera_z", 0.8, { over: 3, ease: "inOut" }); },
   },
-  // nearer to the house, for the crack to be traced from the roof to the water (the game's «Причина»)
+  // nearer to the house, for the crack to be traced from the roof to the water (the game's «Cause»)
   trace: {
     after: "look",
     from: () => ({ ...DUSK, gloom: 1 }),
@@ -346,13 +346,13 @@ const FILM = {
       await s.all(s.person("narrator").walk(way(NARRATOR, 0, OUT)), s.person("roderick").walk(way(RODERICK, 0, OUT)));
     },
   },
-  // where «За руку» is played: the game moves `walk` (towards MIDDLE) and `resist`; the camera keeps them framed
+  // where «By the hand» is played: the game moves `walk` (towards MIDDLE) and `resist`; the camera keeps them framed
   walk: {
     after: "walk_out",
     from: () => ({ ...DAY, ...places(OUT), narrator_turn: heading(0, OUT), roderick_turn: heading(0, OUT), ...camera(OUT) }),
     run: async (s) => { s.set("follow", true); },
   },
-  // (outside games: what «За руку» does — they go on to the middle of the causeway, he resisting more as they go)
+  // (outside games: what «By the hand» does — they go on to the middle of the causeway, he resisting more as they go)
   walk_on: {
     after: ["walk_out", "walk"],
     from: () => ({ ...DAY, ...places(OUT), narrator_turn: heading(0, OUT), roderick_turn: heading(0, OUT), ...camera(OUT) }),

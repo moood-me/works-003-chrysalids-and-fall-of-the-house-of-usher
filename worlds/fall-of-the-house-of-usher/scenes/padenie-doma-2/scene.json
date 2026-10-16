@@ -1,12 +1,12 @@
 {
   "engine": 3,
-  "title": "Падение дома",
-  "caption": "Кроваво-красная луна вспыхнула в трещине — и тёмные воды пруда сомкнулись над домом Ашеров.",
+  "title": "The fall of the house",
+  "caption": "The blood-red moon blazed out in the fissure — and the dark waters of the tarn closed over the House of Usher.",
   "captions": [
     {
       "at": 5,
       "for": 9,
-      "text": "Позади — долгий, смятенный гул, подобный голосу тысячи вод."
+      "text": "Behind — a long tumultuous shouting sound like the voice of a thousand waters."
     }
   ],
   "horizon": 0.58,
@@ -16,7 +16,7 @@
   "directions": [
     {
       "key": "fall",
-      "name": "Дом рушится"
+      "name": "The house collapses"
     }
   ],
   "light": {
@@ -99,7 +99,7 @@
   "objects": [
     {
       "id": "sky",
-      "name": "Небо, луна и пруд",
+      "name": "Sky, moon and tarn",
       "sky": true,
       "uniforms": {
         "cloud": 0,
@@ -112,7 +112,7 @@
     },
     {
       "id": "above_tarn",
-      "name": "Над водой",
+      "name": "Above the water",
       "unseen": true,
       "x": 0.5,
       "distance": 149.9,
@@ -126,7 +126,7 @@
     },
     {
       "id": "below_tarn",
-      "name": "Под водой",
+      "name": "Below the water",
       "unseen": true,
       "x": 0.5,
       "distance": 149.9,
@@ -141,7 +141,7 @@
     },
     {
       "id": "house_mirror",
-      "name": "Дом в пруду",
+      "name": "The house in the tarn",
       "x": 0.5,
       "distance": 150,
       "elevation": -56,
@@ -160,7 +160,7 @@
     },
     {
       "id": "house",
-      "name": "Дом Ашеров",
+      "name": "The House of Usher",
       "x": 0.5,
       "distance": 150,
       "height": 50,
@@ -178,7 +178,7 @@
     },
     {
       "id": "rings",
-      "name": "Круги на воде",
+      "name": "Rings on the water",
       "plane": true,
       "across": 0,
       "distance": 150,
@@ -192,7 +192,7 @@
     },
     {
       "id": "house_dust",
-      "name": "Пыль из трещины",
+      "name": "Dust from the crack",
       "particles": {
         "kind": "puff",
         "at": [
@@ -236,7 +236,7 @@
     },
     {
       "id": "stones",
-      "name": "Камни",
+      "name": "Stones",
       "particles": {
         "kind": "sparks",
         "at": [
@@ -283,7 +283,7 @@
     },
     {
       "id": "house_spray",
-      "name": "Брызги",
+      "name": "Spray",
       "particles": {
         "kind": "splashes",
         "at": [
@@ -322,7 +322,7 @@
     },
     {
       "id": "mist",
-      "name": "Туман над прудом",
+      "name": "Mist over the tarn",
       "x": 0.5,
       "distance": 110,
       "height": 14,
@@ -335,7 +335,7 @@
     },
     {
       "id": "causeway",
-      "name": "Старая гать",
+      "name": "Old causeway",
       "plane": true,
       "across": -10,
       "distance": 76,
@@ -351,7 +351,7 @@
     },
     {
       "id": "breach",
-      "name": "Гать рушится",
+      "name": "The causeway collapses",
       "across": -17,
       "distance": 146,
       "height": 3,
@@ -368,7 +368,7 @@
     },
     {
       "id": "breach_spray",
-      "name": "Брызги у пролома",
+      "name": "Spray at the breach",
       "place": {
         "across": "brk_a",
         "distance": "brk_d"
@@ -403,7 +403,7 @@
     },
     {
       "id": "breach_boards",
-      "name": "Доски падают",
+      "name": "Boards falling",
       "place": {
         "across": "brk_a",
         "distance": "brk_d"
@@ -442,7 +442,7 @@
     },
     {
       "id": "shore",
-      "name": "Ближний берег",
+      "name": "Near shore",
       "plane": true,
       "across": 0,
       "distance": 6,
@@ -455,7 +455,7 @@
     },
     {
       "id": "reeds",
-      "name": "Осока у воды",
+      "name": "Sedge by the water",
       "across": 0,
       "distance": 9.3,
       "height": 1.2,
@@ -472,7 +472,7 @@
     },
     {
       "id": "roderick",
-      "name": "Родерик",
+      "name": "Roderick",
       "person": {
         "cast": "cast",
         "who": "roderick",
@@ -488,7 +488,7 @@
     },
     {
       "id": "madeline",
-      "name": "Леди Мэдлин",
+      "name": "The Lady Madeline",
       "person": {
         "cast": "cast",
         "who": "madeline",
@@ -505,7 +505,7 @@
     },
     {
       "id": "narrator",
-      "name": "Рассказчик",
+      "name": "Narrator",
       "person": {
         "cast": "cast",
         "who": "narrator",
@@ -563,7 +563,7 @@
   "states": {
     "beat": {
       "type": "string",
-      "means": "кусок фильма (модуль beats): имя — он играется с начала, в конце сцена говорит beat:<имя>. Куски: prologue, run, dash, stumble, ashore, end_alone, end_madeline, end_roderick, end_both, end_stayed, gone; моменты — prologue:split, end_alone:under, end_madeline:water, end_roderick:behind, end_both:hands, end_stayed:under, gone:morning"
+      "means": "a beat of the film (the beats module): the name — it plays from the start, at the end the scene says beat:<name>. Beats: prologue, run, dash, stumble, ashore, end_alone, end_madeline, end_roderick, end_both, end_stayed, gone; moments — prologue:split, end_alone:under, end_madeline:water, end_roderick:behind, end_both:hands, end_stayed:under, gone:morning"
     },
     "fall": {
       "range": [
@@ -571,7 +571,7 @@
         1
       ],
       "smooth": true,
-      "means": "дом рушится: 0 цел, трещина горит; 0.3 щель шире, пыль и камни; 0.45–0.6 половины расходятся, кренятся, тонут, брызги; 0.8 над водой шпили; 1 — дома нет, кольца на воде; гать уходит под воду от дома к берегу"
+      "means": "the house collapses: 0 whole, the crack burning; 0.3 the gap wider, dust and stones; 0.45–0.6 the halves part, lean, sink, spray; 0.8 the spires above the water; 1 — the house is gone, rings on the water; the causeway goes under the water from the house to the shore"
     },
     "moon": {
       "range": [
@@ -579,7 +579,7 @@
         1
       ],
       "smooth": true,
-      "means": "кровавая луна в трещине: краснота луны, неба, воды, отсветов на стенах и гати"
+      "means": "the blood-red moon in the crack: the redness of the moon, the sky, the water, the glow on the walls and the causeway"
     },
     "storm": {
       "range": [
@@ -587,7 +587,7 @@
         1
       ],
       "smooth": true,
-      "means": "буря: тучи гуще и быстрее, осока клонится"
+      "means": "the storm: the clouds thicker and faster, the sedge bends"
     },
     "morning": {
       "range": [
@@ -595,7 +595,7 @@
         1
       ],
       "smooth": true,
-      "means": "серое утро: луны нет, небо и вода серые"
+      "means": "a grey morning: no moon, the sky and the water grey"
     },
     "ghosts": {
       "range": [
@@ -603,31 +603,31 @@
         1
       ],
       "smooth": true,
-      "means": "в отражении правого окна зала — трое (видение, только в воде)"
+      "means": "in the reflection of the hall's right window — three (a vision, only in the water)"
     },
     "narrator_here": {
       "type": "boolean",
-      "means": "рассказчик здесь"
+      "means": "the narrator is here"
     },
     "with_madeline": {
       "type": "boolean",
-      "means": "Мэдлин с ним (от игры)"
+      "means": "Madeline with him (from the game)"
     },
     "with_roderick": {
       "type": "boolean",
-      "means": "Родерик с ним (от игры)"
+      "means": "Roderick with him (from the game)"
     },
     "madeline_here": {
       "type": "boolean",
-      "means": "Мэдлин здесь (ставит сцена по with_madeline)"
+      "means": "Madeline is here (the scene sets it from with_madeline)"
     },
     "roderick_here": {
       "type": "boolean",
-      "means": "Родерик здесь (ставит сцена по with_roderick)"
+      "means": "Roderick is here (the scene sets it from with_roderick)"
     },
     "running": {
       "type": "boolean",
-      "means": "бег по гати: люди и камера — от того, где рассказчик; run шлёт его вперёд"
+      "means": "the run along the causeway: the people and the camera — from where the narrator is; run sends him forward"
     },
     "run": {
       "range": [
@@ -635,14 +635,14 @@
         1
       ],
       "smooth": true,
-      "means": "куда по гати он бежит: 0 — 60 м перед домом, 1 — сошёл на берег; бежит туда своим бегом (не быстрее); run там, где он (или позади), — остановиться: добегает шаг и стоит"
+      "means": "where along the causeway he runs: 0 — 60 m before the house, 1 — stepped off onto the shore; he runs there at his own run (not faster); run where he is (or behind) — stop: he finishes his step and stands"
     },
     "run_at": {
       "range": [
         0,
         1
       ],
-      "means": "где рассказчик на гати сейчас, в единицах run; ставит сцена, пока он бежит — для игры"
+      "means": "where the narrator is on the causeway now, in run's units; the scene sets it while he runs — for the game"
     },
     "trip": {
       "range": [
@@ -650,11 +650,11 @@
         1
       ],
       "smooth": true,
-      "means": "споткнувшийся отстаёт и выпускает руку"
+      "means": "the one who stumbles falls behind and lets go of the hand"
     },
     "hand_in_hand": {
       "type": "boolean",
-      "means": "брат и сестра держатся за руки"
+      "means": "brother and sister hold hands"
     },
     "swim": {
       "range": [
@@ -662,15 +662,15 @@
         1
       ],
       "smooth": true,
-      "means": "взгляд плывёт (рассудок)"
+      "means": "the gaze swims (reason)"
     },
     "brk_a": {
       "type": "number",
-      "means": "где гать сейчас рушится, метры поперёк (ставит сцена по fall)"
+      "means": "where the causeway is collapsing now, metres across (the scene sets it from fall)"
     },
     "brk_d": {
       "type": "number",
-      "means": "где гать сейчас рушится, метры вглубь (ставит сцена по fall)"
+      "means": "where the causeway is collapsing now, metres deep (the scene sets it from fall)"
     },
     "breaking": {
       "range": [
@@ -678,7 +678,7 @@
         1
       ],
       "smooth": true,
-      "means": "как сильно рушится гать сейчас — брызги, доски, красный свет (ставит сцена, пока fall движется)"
+      "means": "how hard the causeway is collapsing now — spray, boards, red light (the scene sets it while fall moves)"
     },
     "house_dust": {
       "range": [
@@ -686,7 +686,7 @@
         1
       ],
       "smooth": true,
-      "means": "пыль из трещины (ставит сцена по fall)"
+      "means": "dust from the crack (the scene sets it from fall)"
     },
     "stones": {
       "range": [
@@ -694,7 +694,7 @@
         1
       ],
       "smooth": true,
-      "means": "падающие камни (ставит сцена по fall)"
+      "means": "falling stones (the scene sets it from fall)"
     },
     "spray": {
       "range": [
@@ -702,7 +702,7 @@
         1
       ],
       "smooth": true,
-      "means": "брызги от тонущих половин (ставит сцена по fall)"
+      "means": "spray from the sinking halves (the scene sets it from fall)"
     },
     "rings": {
       "range": [
@@ -710,31 +710,31 @@
         1
       ],
       "smooth": true,
-      "means": "кольца на воде (ставит сцена по fall и morning)"
+      "means": "rings on the water (the scene sets it from fall and morning)"
     },
     "nar_a": {
       "type": "number",
-      "means": "где рассказчик, метры поперёк"
+      "means": "where the narrator is, metres across"
     },
     "nar_d": {
       "type": "number",
-      "means": "где рассказчик, метры вглубь"
+      "means": "where the narrator is, metres deep"
     },
     "mad_a": {
       "type": "number",
-      "means": "где Мэдлин, метры поперёк"
+      "means": "where Madeline is, metres across"
     },
     "mad_d": {
       "type": "number",
-      "means": "где Мэдлин, метры вглубь"
+      "means": "where Madeline is, metres deep"
     },
     "rod_a": {
       "type": "number",
-      "means": "где Родерик, метры поперёк"
+      "means": "where Roderick is, metres across"
     },
     "rod_d": {
       "type": "number",
-      "means": "где Родерик, метры вглубь"
+      "means": "where Roderick is, metres deep"
     }
   },
   "music": {

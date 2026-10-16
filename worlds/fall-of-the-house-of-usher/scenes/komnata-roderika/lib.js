@@ -254,7 +254,7 @@ const FILM = {
       await s.all(camera, s.wait(3));
     },
   },
-  // he turns his face from her (the game: «Не говори о ней»), goes back to his chair; the room again
+  // he turns his face from her (the game: «Speak not of her»), goes back to his chair; the room again
   turn_away: {
     after: "portrait",
     from: () => ({ ...SEATED, ...SHOT, ...DAY, ...shot(PORTRAIT), roderick_do: "stand", roderick_a: BEFORE_HER[0], roderick_d: BEFORE_HER[1], roderick_turn: TO_HER, roderick_look: HER }),
@@ -299,7 +299,7 @@ const FILM = {
       await camera;
     },
   },
-  // (the world's own film; in the game «Струна» plays this) faster and faster, wilder
+  // (the world's own film; in the game «String» plays this) faster and faster, wilder
   frenzy: {
     after: "guitar",
     from: () => ({ ...SEATED, ...SHOT, ...EVENING, ...shot(PLAYING), roderick_do: { motion: "play_guitar", loop: true }, roderick_with: ["guitar"], tempo: 0.12 }),

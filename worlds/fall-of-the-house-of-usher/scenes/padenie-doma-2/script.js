@@ -1,4 +1,4 @@
-// Падение дома — its mechanics: the beats for the game (lib.js film, the world's module beats: `beat` names one); who
+// The fall of the house — its mechanics: the beats for the game (lib.js film, the world's module beats: `beat` names one); who
 // runs with him; the run (the game's `run` sends the narrator along the causeway at his own pace, the others and the
 // camera with him); what the house's fall throws up (the dust, the stones, the spray, the rings, where the causeway is
 // going down); the view swimming.

@@ -1,4 +1,4 @@
-# Буря и чтение — the narrator's room: the nights (III) and the storm (IV). Engine 3
+# The storm and the reading — the narrator's room: the nights (III) and the storm (IV). Engine 3
 
 The game plays one beat at a time (`beat` = its name; the scene tells `beat:<name>` when it ends — the world's module
 `beats`); outside games the showcase plays them all (night, lamp_pass, enter_lamp, window_open, window_close, read,
@@ -54,16 +54,16 @@ scene); a beat that follows its `after` goes on from what is there. After a beat
 
 | beat | after | what is seen | ends on (held) |
 | --- | --- | --- | --- |
-| `night` | — | out of black (2.5 s); night, quiet rain, the candle; the narrator at the table; he turns his head to the floor and back | seated, still — under «Слушать» |
+| `night` | — | out of black (2.5 s); night, quiet rain, the candle; the narrator at the table; he turns his head to the floor and back | seated, still — under “Listen” |
 | `lamp_pass` | night | lamplight along the corridor under the door, stops at the door (trembling), goes on and fades; he turns to the door | dark again, he looks at the door |
-| `enter_lamp` | — | the storm, out of black; hurried lamplight; the door bursts open — Roderick with his lamp; the narrator gets up; Roderick comes in; the door drifts back; close-up `rod_lamp`, slowly closer | the close-up (~6 s in) — under «И ты не видел?» (`cu_speak`) |
+| `enter_lamp` | — | the storm, out of black; hurried lamplight; the door bursts open — Roderick with his lamp; the narrator gets up; Roderick comes in; the door drifts back; close-up `rod_lamp`, slowly closer | the close-up (~6 s in) — under “And you have not seen it?” (`cu_speak`) |
 | `window_open` | enter_lamp | out of the close-up; he goes to the window, his hand on the latch — the wind flings the casements open: the curtain flies, the mist brightens, lightning; his lamp up to the storm; the narrator to mid-room | Roderick at the open window, the narrator mid-room |
 | `window_close` | window_open | the narrator comes up behind him; Roderick steps aside; the narrator pulls the casements shut by their handles, the wind drops; takes his hand, leads him round the chair; Roderick puts his lamp down and sits facing the door | Roderick seated, the narrator by the chair |
 | `watch` | window_open | the narrator stands by him at the open window; lightning; Roderick glances at him | the two at the window |
-| `read` | — | later, out of black; Roderick rocking in his chair; the narrator reads | the reading — under «Чтение» |
+| `read` | — | later, out of black; Roderick rocking in his chair; the narrator reads | the reading — under “The reading” |
 | `confess` | read | the book lowered; Roderick gets up, comes round before the chair; close-up `rod_confess` | the close-up — under the confession |
-| `door_opens` | confess | out of the close-up; he points at the door — «Безумец!…»; the narrator lays the book down, gets up; the door swings open: Madeline, swaying; lightning; close-up `mad_door`, her hand coming up | her close-up |
-| `hands` | door_opens | she staggers in; close-up of the hands (the game's reaching keys) | the hands — under «Руки» |
+| `door_opens` | confess | out of the close-up; he points at the door — “Madman!…”; the narrator lays the book down, gets up; the door swings open: Madeline, swaying; lightning; close-up `mad_door`, her hand coming up | her close-up |
+| `hands` | door_opens | she staggers in; close-up of the hands (the game's reaching keys) | the hands — under “Hands” |
 | `collapse` | hands | out of the close-up; she lurches onto him, he catches her, borne back; arms round each other; both sink to their knees | the two on their knees |
 | `flee` | collapse, hands | the narrator runs out left — with whoever he took; whoever is left sinks down; the room shakes, the crack splits on the red moon, the candle goes out | the empty room shaking, red |
 | `stay` | collapse, hands | the same end around the narrator, who stays; to black | black |
@@ -74,9 +74,9 @@ Beat lengths follow the people (their walks and motions take what they take): th
 ## Keys the game sets
 
 - `crack` 0…1; `rod_reach`, `mad_reach`, `rod_to_mad`, `mad_to_rod` 0…1; `with_madeline`, `with_roderick`; `cu_speak`
-  0/1; «Слушать»: `ripple`, `listen`; «Чтение»: `sound`, `listen`, `rock`; «Руки»: the reaching keys, `grab`,
+  0/1; “Listen”: `ripple`, `listen`; “The reading”: `sound`, `listen`, `rock`; “Hands”: the reaching keys, `grab`,
   `grab_x`, `grab_y`, `held_rod`, `held_mad`, `quake`, `shudder`.
-- «Руки» finds the palms as the insert's named points: `closeup#rod_hand`, `closeup#mad_hand` (its marks stand on them)
+- “Hands” finds the palms as the insert's named points: `closeup#rod_hand`, `closeup#mad_hand` (its marks stand on them)
   (no longer the old card's geometry from `closeup`'s distance); `grab_x`, `grab_y` — card units: the frame's height 1,
   origin its middle, y down (the wrist; the palm ~0.2 above).
 
@@ -93,26 +93,27 @@ longer elements: they are the close-up's points.
 `ripple` (the plane: `ripple@`), `closeup#rod_hand`, `closeup#mad_hand`, `casement_l#handle`,
 `casement_r#handle`, `door#ring`.
 
-## Свет после правки тональной кривой (2026-10-11)
+## The light after the tone-curve fix (2026-10-11)
 
-Подобрано по листам против v1 (настроение — холодная серо-синяя комната, тёплая свеча; комната видна, а не чёрная вокруг
-лужи света): `ambient` 0.06 → 0.5, `ambientColor` `#7d8f9c` → `#8aa3b8`; взгляд `lightning`: `ambient` 0.4 → 0.7 (над
-новой базой); `rift`: `tintStrength` 0.22 → 0.15, свет `rift` `strength` 1.6 → 1.2 (красное — зарево в комнате, не
-заливка кадра).
+Chosen from contact sheets against v1 (the mood — a cold grey-blue room, a warm candle; the room seen, not black round
+a pool of light): `ambient` 0.06 → 0.5, `ambientColor` `#7d8f9c` → `#8aa3b8`; the `lightning` look: `ambient` 0.4 → 0.7
+(over the new base); `rift`: `tintStrength` 0.22 → 0.15, the `rift` light's `strength` 1.6 → 1.2 (the red is a glow in
+the room, not a wash over the frame).
 
-## Движок 3 (v3, 2026-10-15)
+## Engine 3 (v3, 2026-10-15)
 
-- `"engine": 3`, шейдеры `sky.wgsl`, `curtain.wgsl`, `ripple.wgsl`. Из крупного плана — ключом `closeup` (вставка
-  закрывается, комната шла под ней), в него — склейкой, сказанной заранее (как было).
-- Моменты: `enter_lamp:close`, `confess:close` (крупный план — реплики игры), `door_opens:out` (из крупного плана: он
-  поворачивается к двери).
-- Точки игры: `floor#mid` (середина пола — «Слушать» ищет по нему), `ripple@` (откуда звук), `book@` («Чтение»),
-  `closeup#nar_hand`, `closeup#rod_hand`, `closeup#mad_hand`, `closeup#stay` (вставка рук — «Руки»; `stay` — между руками,
-  над его рукой: «остаться»); выборы — `door`, `window`, `roderick`.
-- Шаг 2: трещина больше не рисуется со стеной (стена перерисовывалась, пока `crack` шёл): элемент `crack` — пять её
-  глубин слоями, нарисованы раз, анимация показывает ту, к которой подошёл `crack`. Заполняющий свет `fill` у глаза.
+- `"engine": 3`, shaders `sky.wgsl`, `curtain.wgsl`, `ripple.wgsl`. Out of the close-up — by the key `closeup` (the
+  insert closes, the room ran on under it), into it — by a cut told ahead (as it was).
+- Moments: `enter_lamp:close`, `confess:close` (the close-up — the game's lines), `door_opens:out` (out of the close-up:
+  he turns to the door).
+- The game's points: `floor#mid` (the middle of the floor — “Listen” searches across it), `ripple@` (where the sound
+  comes from), `book@` (“The reading”), `closeup#nar_hand`, `closeup#rod_hand`, `closeup#mad_hand`, `closeup#stay` (the
+  hands' insert — “Hands”; `stay` — between the hands, above his hand: “stay”); choices — `door`, `window`, `roderick`.
+- Step 2: the crack is no longer painted with the wall (the wall was repainted while `crack` moved): the element `crack`
+  — five of its depths as layers, painted once; the animation shows the one `crack` has come to. The fill light `fill`
+  at the eye.
 
-## Контракт для проверки
+## Contract for the check
 
 ```json
 {

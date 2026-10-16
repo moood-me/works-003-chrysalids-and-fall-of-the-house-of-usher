@@ -1,126 +1,144 @@
-# Склеп (движок 3)
+# The vault (engine 3)
 
-Глава III. Гроб вносят в склеп под домом, открывают, смотрят на неё, закрывают, завинчивают; её глазами — изнутри;
-железная дверь закрывается. Другой ночью — снаружи у этой двери, стук. Перенос сцены мира v1 (тот же `sklep`) на движок 2.
+Chapter III. The coffin is carried into the vault beneath the house, opened, they look at her, close it, screw it down;
+through her eyes — from within; the iron door closes. Another night — outside that door, a knock. The v1 world's scene
+(the same `sklep`) moved to engine 2.
 
-## Как устроено
-- Камера picture, горизонт 0.46. Склеп — от дальнего к ближнему: `dark` (тьма над сводом), `passage` (проход за дверью:
-  стена, ступени вправо к дому), `wall` (задняя стена 6.8 м: свод, камни, потёки, трещина `crack`; проём двери),
-  `doorway` (каменная обводка проёма; туман из открытой двери — слой `breath`, его animate: насколько открыта дверь),
-  `door` (железная створка на петлях у левого косяка, `door_turn`: 180 закрыта … 280 распахнута в склеп; кольцо
-  `door#ring`), `floor`, `mist_back`, `arch2` (дальняя арка 4.7 м, на правом столбе держатель факела), `torch` (факел в
-  держателе, пока его не взяли; точки `torch#grip`, `torch#flame`), помост (`plinth` и его части, `plinth_step`,
-  `plinth_top`), гроб, люди, `mist_front`, `arch1` (ближняя арка 2.6 м).
-- **Всё написано в дневных цветах, свет — сцены.** Сцена освещена (`light.ambient` холодный, `bounce`), свет — факел:
-  `holder` (свет элемента `torch`, его `e.light`, пока факел в держателе) и `fire` (у точки `narrator#flame`, когда
-  факел — часть каста в руке рассказчика); оба `on: torch` (0 — отрезан дверью). Пятна на стенах, полу, гробе,
-  тени людей, гроба, крышки, помоста, двери — движка; рисунки не читают, где факел (в v1 — читали каждый кадр).
-  Воздух светится вокруг огня (`haze`, `hazeGlow`).
-- **Огонь — частицы**: `flame` и `embers` у `narrator#flame`, `holder_fire` у `torch#flame`, `amount: torch`; нет точки
-  (факел не там) — нет огня.
-- **Туман** (`mist_back`, `mist_front`, `lib.mist`) — два слоя пологих клубов, каждый плывёт своим ходом (`drift`), концы
-  сходятся: клубы расходятся и сходятся, не повторяясь. Ничего не перерисовывается.
-- **Гроб — вещь в склепе**: `coffin_box` (невидимый якорь — середина дна, `coffin_a/d/h`, `coffin_turn`: 180 — вдоль
-  склепа, изголовьем влево), на нём стенки `coffin` (ближняя, её выбирает игра), `coffin_far`, `coffin_head`,
-  `coffin_foot`, дно `coffin_floor`, крышка `lid` (`lid_x` — сдвинута к ногам, 0.75 — лицо и грудь открыты; `lid_h` —
-  0.37 лежит, 0.4 приподнята) и `lid_edge`. Точки: `coffin#head/foot`, `coffin_far#head/foot/rim`, `lid#r/l/n`,
-  `coffin_floor#bed`, `coffin_foot#hand_r/l`, `#foot_r/l`.
-- **Люди** — каста мира (`modules/cast`): `roderick`, `narrator`, `madeline`. Мэдлин `madeline_on: coffin_floor#bed`,
-  `lie` один раз, руки и ноги тянутся к точкам у ног гроба. Все движутся в темпе своих походок (`lib.PACE` — как их
-  меряет движок на этих людях). Гроб несут одним `s.path` по ключам гроба и обоих (`lib.IN`, кубическая кривая; гроб
-  поворачивается вдоль склепа) за время, нужное медленнейшему из них в его походке (`CARRY_T`: Родерик пятясь,
-  `carry_back`); дверь рассказчик тянет, пятясь (`lib.PULL`, `PULL_T` по `torch_back`). Крышку Родерик ведёт шагом вбок (`lean_step_r/l`) в их темпе. Ходят —
+## How it is built
+- Camera picture, horizon 0.46. The vault — from far to near: `dark` (the darkness above the vault), `passage` (the
+  passage beyond the door: a wall, steps to the right up to the house), `wall` (the back wall at 6.8 m: the vault, stones,
+  stains, the crack `crack`; the doorway), `doorway` (the stone surround of the doorway; mist from the open door — the
+  layer `breath`, its animate: how far the door is open), `door` (the iron leaf hinged on the left jamb, `door_turn`: 180
+  shut … 280 flung open into the vault; the ring `door#ring`), `floor`, `mist_back`, `arch2` (the far arch at 4.7 m, a
+  torch holder on its right pier), `torch` (the torch in its holder, until it is taken; points `torch#grip`,
+  `torch#flame`), the bier (`plinth` and its parts, `plinth_step`, `plinth_top`), the coffin, the people, `mist_front`,
+  `arch1` (the near arch at 2.6 m).
+- **Everything is painted in daylight colours, the light is the scene's.** The scene is lit (`light.ambient` cold,
+  `bounce`), the light is the torch: `holder` (the light of the element `torch`, its `e.light`, while the torch is in the
+  holder) and `fire` (at the point `narrator#flame`, when the torch is part of the cast, in the narrator's hand); both
+  `on: torch` (0 — cut off by the door). The patches on the walls, the floor, the coffin, the shadows of the people, the
+  coffin, the lid, the bier, the door — are the engine's; the drawings do not read where the torch is (in v1 they read it
+  every frame). The air glows round the fire (`haze`, `hazeGlow`).
+- **The fire is particles**: `flame` and `embers` at `narrator#flame`, `holder_fire` at `torch#flame`, `amount: torch`;
+  no point (the torch is not there) — no fire.
+- **The mist** (`mist_back`, `mist_front`, `lib.mist`) — two layers of low billows, each drifting at its own pace
+  (`drift`), the ends meeting: the billows part and meet, never repeating. Nothing is repainted.
+- **The coffin is a thing in the vault**: `coffin_box` (an invisible anchor — the middle of the bottom, `coffin_a/d/h`,
+  `coffin_turn`: 180 — along the vault, the head to the left), on it the sides `coffin` (the near one, the game chooses
+  it), `coffin_far`, `coffin_head`, `coffin_foot`, the bottom `coffin_floor`, the lid `lid` (`lid_x` — slid towards the
+  feet, 0.75 — the face and breast uncovered; `lid_h` — 0.37 lying, 0.4 lifted) and `lid_edge`. Points:
+  `coffin#head/foot`, `coffin_far#head/foot/rim`, `lid#r/l/n`, `coffin_floor#bed`, `coffin_foot#hand_r/l`,
+  `#foot_r/l`.
+- **People** — the world's cast (`modules/cast`): `roderick`, `narrator`, `madeline`. Madeline `madeline_on:
+  coffin_floor#bed`, `lie` once, the hands and feet drawn to the points at the coffin's foot. All move at the pace of
+  their gaits (`lib.PACE` — as the engine measures it on these people). The coffin is carried by one `s.path` over the
+  keys of the coffin and of both (`lib.IN`, a cubic curve; the coffin turns along the vault) in the time the slowest of
+  them needs at his gait (`CARRY_T`: Roderick backing, `carry_back`); the narrator pulls the door, backing (`lib.PULL`,
+  `PULL_T` by `torch_back`). Roderick takes the lid with sideways steps (`lean_step_r/l`) at their pace. Walking —
   `walk`.
-- **Крупные планы — вставки** (insert): `closeup` (модуль `closeups`, что в нём — `lib.closeup(state)`, какой —
-  `shot`: `face`, `mirror`, `hands`, `lid`), `inside`, `outside` — свои. Открываются ключом 0/1 склейкой; склеп идёт под
-  ними. Свои вставки рисуются раз (в высотах сцены вокруг середины кадра, `lib.CARD`), движение — их шейдеры и animate:
-  - `inside` (`inside.wgsl`): база — тьма и низ крышки, слой 1 — волосок света, 2 — острия винтов насквозь, 3 — щепа.
-    Дрожь пламени и `seam`, тени двоих (`shade`), острия по одному (`tip`: каждое своим отрезком — `lib.SCREWS`)
-    выдвигаются из дерева сдвигом слоя, труха — в шейдере. Острия ведёт работа отвёртки (`lib.TURNS`): винт за винтом,
-    каждый поворот — одна смена `tip` (первый винт — в два поворота), между винтами — отвёртка к следующему.
-  - `outside` (`outside.wgsl`): слой 1 — проход у двери, 2 — створка (дрожит от `knock`/`answer`), 3 — пламя свечи
-    (тянется и клонится с её дрожью); пыль с верха двери и темнота вокруг — в шейдере.
-- Склейки без затемнений: следующий план готовится (`s.shot`) и показывается целиком. `fade` — только как приём:
-  глава из темноты (`enter`), в темноту (`vault`, `check`), её глаза в темноте (`inside`), другая ночь (`at_door`).
+- **Close-ups are inserts** (insert): `closeup` (the `closeups` module, what is in it — `lib.closeup(state)`, which —
+  `shot`: `face`, `mirror`, `hands`, `lid`), `inside`, `outside` — the scene's own. They open by a key 0/1, with a cut;
+  the vault runs on under them. The own inserts are painted once (in scene heights around the frame's middle,
+  `lib.CARD`), the motion is their shaders and animate:
+  - `inside` (`inside.wgsl`): the base — darkness and the underside of the lid, layer 1 — a thread of light, 2 — the
+    screws' points through the wood, 3 — splinters. The flame's tremor and `seam`, the shadows of the two (`shade`), the
+    points one by one (`tip`: each over a stretch of its own — `lib.SCREWS`) come out of the wood by the layer's shift,
+    the dust — in the shader. The points follow the screwdriver's work (`lib.TURNS`): screw after screw, each turn one
+    change of `tip` (the first screw in two turns), between screws — the screwdriver to the next.
+  - `outside` (`outside.wgsl`): layer 1 — the passage by the door, 2 — the leaf (trembling from `knock`/`answer`), 3 —
+    the candle's flame (stretching and bending with its tremor); the dust from the top of the door and the darkness
+    around — in the shader.
+- Cuts without fades: the next shot is prepared (`s.shot`) and shown whole. `fade` — only as a device: the chapter out
+  of the dark (`enter`), into the dark (`vault`, `check`), her eyes in the dark (`inside`), another night (`at_door`).
 
-## Ключи
-| Ключ | Что |
+## Keys
+| Key | What |
 | --- | --- |
-| `beat` | кусок (модуль `beats`): имя — играется с начала, в конце сцена говорит `beat:<имя>` |
-| `closeup`, `shot` | вставка крупного плана открыта (0/1); какой: `face`, `mirror`, `hands`, `lid` |
-| `inside`, `outside` | вставки «изнутри» и «у двери» (0/1) |
-| `fade` | затемнение 0…1 (только как приём) |
-| `camera_x`, `camera_z`, `camera_h`, `camera_look` | глаз; у гроба — `−0.35, 0.9, 0.9, 0.3` (сверху в гроб) |
-| `crack` | трещина на задней стене 0…1 (игра ставит по шкале) |
-| `blush` | румянец на щеках и груди 0…1 (`face`) |
-| `mirror` | `mirror`: зеркальце поднимается к губам 0…1 — чистое |
-| `touch` | `hands`: его рука поднимается в кадр и ложится на её 0…1 |
-| `door_turn` | железная дверь: 180 закрыта … 280 распахнута |
-| `lid_x`, `lid_h` | крышка: сдвинута к ногам 0…0.75; высота 0.37 (лежит) … 0.4 (приподнята) |
-| `torch` | сколько света факела 0…1; в руке ли он — `narrator_with: ["torch"]` |
-| `coffin_a`, `coffin_d`, `coffin_h`, `coffin_turn` | где гроб (на помосте −0.5, 4.3, 0.43, 180; несут — 0.96) |
-| `roderick_*`, `narrator_*`, `madeline_*` | люди (people.md). Движения каста: `carry_walk`, `carry_back`, `set_down`, `bend_over`, `lean_over`, `lean_step_r/l`, `straighten_coffin`, `grieve`, `take_torch`, `hold_torch`, `raise_torch`, `hold_high`, `lower_torch`, `torch_walk`, `torch_back`, `lean_hand`, `lie` |
-| `screw1…screw4` | `lid`: насколько завинчен винт 0…1; точки винтов — `closeup#screw1…4` (мини-игра «Винты») |
-| `screw_at`, `driver`, `driver_rod` | на каком винте отвёртка (дробное — рука в пути); рука с отвёрткой в кадре; в руке Родерика |
-| `seam`, `shade`, `tip` | `inside`: волосок света 0…1; как далеко прошли двое 0…1; острия винтов (к 0.4, 0.6, 0.78, 0.9) — каждый поворот отвёртки ставит `tip` дальше (игра слышит каждую смену: звук винта) |
-| `knock`, `answer` | `outside`: стук отсюда / ответ оттуда — импульс 1 → 0 (~1.5 с) |
+| `beat` | a beat (the `beats` module): the name — it plays from the start, at the end the scene says `beat:<name>` |
+| `closeup`, `shot` | the close-up insert is open (0/1); which: `face`, `mirror`, `hands`, `lid` |
+| `inside`, `outside` | the inserts “from within” and “at the door” (0/1) |
+| `fade` | a fade 0…1 (only as a device) |
+| `camera_x`, `camera_z`, `camera_h`, `camera_look` | the eye; at the coffin — `−0.35, 0.9, 0.9, 0.3` (from above into the coffin) |
+| `crack` | the crack on the back wall 0…1 (the game sets it by the scale) |
+| `blush` | the blush on the cheeks and breast 0…1 (`face`) |
+| `mirror` | `mirror`: the little mirror rises to the lips 0…1 — clear |
+| `touch` | `hands`: his hand rises into the frame and settles on hers 0…1 |
+| `door_turn` | the iron door: 180 shut … 280 flung open |
+| `lid_x`, `lid_h` | the lid: slid towards the feet 0…0.75; height 0.37 (lying) … 0.4 (lifted) |
+| `torch` | how much torchlight 0…1; whether it is in his hand — `narrator_with: ["torch"]` |
+| `coffin_a`, `coffin_d`, `coffin_h`, `coffin_turn` | where the coffin is (on the bier −0.5, 4.3, 0.43, 180; carried — 0.96) |
+| `roderick_*`, `narrator_*`, `madeline_*` | the people (people.md). The cast's motions: `carry_walk`, `carry_back`, `set_down`, `bend_over`, `lean_over`, `lean_step_r/l`, `straighten_coffin`, `grieve`, `take_torch`, `hold_torch`, `raise_torch`, `hold_high`, `lower_torch`, `torch_walk`, `torch_back`, `lean_hand`, `lie` |
+| `screw1…screw4` | `lid`: how far a screw is screwed in 0…1; the screws' points — `closeup#screw1…4` (the mini-game “The screws”) |
+| `screw_at`, `driver`, `driver_rod` | which screw the screwdriver is on (a fraction — the hand on its way); the hand with the screwdriver in the frame; in Roderick's hand |
+| `seam`, `shade`, `tip` | `inside`: the thread of light 0…1; how far the two have passed 0…1; the screws' points (to 0.4, 0.6, 0.78, 0.9) — each turn of the screwdriver sets `tip` further (the game hears each change: the screw's sound) |
+| `knock`, `answer` | `outside`: a knock from here / an answer from there — a pulse 1 → 0 (~1.5 s) |
 
-## Что поменялось против v1 (для игры)
-- Точки винтов: были элементы `screw1…4` (пустые карточки на месте винтов) — теперь точки вставки `closeup#screw1…4`:
-  на них стоят метки «Винтов».
-- `shot: ''|'inside'|'outside'` — теперь отдельные вставки: `shot` выбирает только крупный план модуля (`closeup` 1).
-- Куска `vault` нет в игре (он и раньше был только в монтаже), `film` → показ (`showcase.js`); `beat` — те же имена.
-- `open`: её лицо — когда крышку сдвинули в темпе Родерика (≈ 5 с от начала куска, как и было ≈ 5.5); сцена говорит
-  `open:face` (`scene.tell`) в миг склейки — игра ждёт этого, а не секунд.
+## What changed against v1 (for the game)
+- The screws' points: they were the elements `screw1…4` (empty cards where the screws are) — now the insert's points
+  `closeup#screw1…4`: the marks of “The screws” stand on them.
+- `shot: ''|'inside'|'outside'` — now separate inserts: `shot` chooses only the module's close-up (`closeup` 1).
+- The beat `vault` is not in the game (it was only in the montage before, too), `film` → the showcase (`showcase.js`);
+  `beat` — the same names.
+- `open`: her face — when the lid has been slid at Roderick's pace (≈ 5 s from the start of the beat, as it was ≈ 5.5);
+  the scene says `open:face` (`scene.tell`) at the moment of the cut — the game waits for that, not for seconds.
 
-## Элементы для выбора
-- `madeline`, `roderick`, `coffin`, `lid` — после `open`/`touch`/`mirror` (склеп у гроба, крышка сдвинута).
-- `door` — после `leave` (дверь открыта, рассказчик в проёме).
+## Elements for choices
+- `madeline`, `roderick`, `coffin`, `lid` — after `open`/`touch`/`mirror` (the vault at the coffin, the lid slid back).
+- `door` — after `leave` (the door open, the narrator in the doorway).
 
-## Куски
-Где кто: Родерик за гробом у изголовья (−1.25, 4.98), над её грудью, сдвинув крышку (−0.5, 4.98); рассказчик за гробом
-у ног (0.45, 5.02), факел в левой руке. Куски длятся, сколько длятся люди; секунды — примерные.
+## Beats
+Who is where: Roderick behind the coffin at its head (−1.25, 4.98), over her breast, having slid the lid (−0.5, 4.98);
+the narrator behind the coffin at its foot (0.45, 5.02), the torch in his left hand. The beats last as long as the people
+take; the seconds are approximate.
 
-- **vault** (показ, ≈ 4 с): склеп у гроба, крышка сдвинута; глаз чуть ближе; в темноту.
-- **enter** (≈ 22 с): из темноты двое вносят гроб через дверь (Родерик пятится у изголовья), несут к помосту, гроб
-  поворачивается вдоль склепа; опускают; Родерик обходит изголовье за гроб; рассказчик идёт к столбу, берёт факел из
-  держателя, возвращается к ногам. Кончается: гроб на помосте, двое за ним, факел в руке.
-- **open** (≈ 11 с, после enter): Родерик склоняется, приподнимает крышку, сдвигает к ногам, шагая вбок; глаз подходит
-  и смотрит сверху; рассказчик поднимает факел. Склейка — её лицо (`face`, ≈ 4.6 с), назад. Кончается: под выбор.
-- **touch** (≈ 5.4 с) / **mirror** (≈ 5.8 с), после open или друг друга: склейка на руки / лицо с зеркальцем, назад.
-- **say** (≈ 5 с): Родерик выпрямляется, отворачивается, рука на дальнем крае. Кончается под его «Я знаю…».
-- **shut** (≈ 9 с, после say): поворачивается, склоняется, один задвигает крышку.
-- **insist** (≈ 7.5 с): рассказчик кладёт руку на крышку; Родерик отводит её и задвигает сам — резко, с первого шага.
-- **close** (≈ 8 с): промолчать — задвигают вместе, Родерик до конца.
-- **screws** (1.35 с, после shut/insist/close): крышка крупно, отвёртка на первом винте. Кончается под «Винты».
-- **check** (≈ 6 с, после screws): отвёртка у Родерика, дотягивает недотянутые; в темноту.
-- **inside** (≈ 10.5 с): из темноты волосок света; тени двоих над ним; острия выходят по одному, как работает отвёртка
-  (`tip` — на каждом повороте; игра звучит винтом на каждой смене, не по секундам); свет уходит. Кончается: темно.
-- **leave** (≈ 13 с): склейка в склеп; Родерик выпрямляется и уходит в дверь и вверх по ступеням; рассказчик опускает
-  факел, идёт к двери, оглядывается в проёме. Кончается: под выбор (`door`).
-- **door_close** (≈ 4.5 с, после leave): берёт кольцо, пятясь, закрывает дверь; свет отрезан.
-- **at_door** (3 с): другая ночь, снаружи у двери, свеча. Кончается под «Стук».
-- **knock** (показ): два удара, тишина, два ответа.
+- **vault** (showcase, ≈ 4 s): the vault at the coffin, the lid slid back; the eye a little closer; into the dark.
+- **enter** (≈ 22 s): out of the dark the two carry the coffin in through the door (Roderick backing at its head), carry
+  it to the bier, the coffin turns along the vault; they set it down; Roderick goes round the head to behind the coffin;
+  the narrator goes to the pier, takes the torch from its holder, comes back to the foot. Ends: the coffin on the bier,
+  the two behind it, the torch in his hand.
+- **open** (≈ 11 s, after enter): Roderick bends, lifts the lid, slides it towards the feet, stepping sideways; the eye
+  comes closer and looks from above; the narrator raises the torch. A cut — her face (`face`, ≈ 4.6 s), back. Ends: for
+  the choice.
+- **touch** (≈ 5.4 s) / **mirror** (≈ 5.8 s), after open or each other: a cut to the hands / the face with the mirror,
+  back.
+- **say** (≈ 5 s): Roderick straightens, turns away, a hand on the far edge. Ends under his “I know…”.
+- **shut** (≈ 9 s, after say): he turns, bends, slides the lid shut alone.
+- **insist** (≈ 7.5 s): the narrator lays his hand on the lid; Roderick moves it aside and slides the lid shut himself —
+  sharply, from the first step.
+- **close** (≈ 8 s): to say nothing — they slide it shut together, Roderick to the end.
+- **screws** (1.35 s, after shut/insist/close): the lid close, the screwdriver on the first screw. Ends under “The
+  screws”.
+- **check** (≈ 6 s, after screws): the screwdriver with Roderick, he drives home the ones not driven home; into the dark.
+- **inside** (≈ 10.5 s): out of the dark a thread of light; the shadows of the two over it; the points come out one by
+  one as the screwdriver works (`tip` — at each turn; the game sounds the screw at each change, not by seconds); the light
+  goes. Ends: dark.
+- **leave** (≈ 13 s): a cut to the vault; Roderick straightens and goes out by the door and up the steps; the narrator
+  lowers the torch, goes to the door, looks back in the doorway. Ends: for the choice (`door`).
+- **door_close** (≈ 4.5 s, after leave): takes the ring, backing, closes the door; the light cut off.
+- **at_door** (3 s): another night, outside the door, a candle. Ends under “Knock”.
+- **knock** (showcase): two blows, silence, two answers.
 
-## Свет после правки тональной кривой (2026-10-11)
+## The light after the tone-curve fix (2026-10-11)
 
-Подобрано по листам против v1 (настроение — холодный сине-зелёный свод, маленький тёплый факел; не жёлтая пещера во
-тьме): `ambient` 0.12 → 0.65, `ambientColor` `#4f6f86` → `#7fa3b4`, `hazeColor` `#1a272d` → `#27404a`, факел (`fire`,
-`holder`) `strength` 1.2 → 1.0. Оба несущих гроб видны (в прежнем свете Родерик у изголовья тонул в темноте).
+Chosen from contact sheets against v1 (the mood — a cold blue-green vault, a small warm torch; not a yellow cave in the
+dark): `ambient` 0.12 → 0.65, `ambientColor` `#4f6f86` → `#7fa3b4`, `hazeColor` `#1a272d` → `#27404a`, the torch
+(`fire`, `holder`) `strength` 1.2 → 1.0. Both bearers of the coffin are seen (in the former light Roderick at the head
+drowned in the dark).
 
-## Движок 3 (v3, 2026-10-15)
+## Engine 3 (v3, 2026-10-15)
 
-- `"engine": 3`, шейдеры `inside.wgsl`, `outside.wgsl`. Крупные планы `touch`, `mirror`, `check` — склейкой, сказанной в
-  начале куска (секунда до неё); `screws` начинается склейкой (`after: []`): игра называет его в `beat_next` (ключ модуля
-  `beats`), и склейка готова заранее; так же `inside` после винтов или после `insist`. Назад из крупного плана — ключом
-  `closeup` (вставка закрывается).
-- Моменты: `open:face` (было `shot:face`), `touch:hand`, `mirror:up`.
-- Точки игры: `closeup#screw1…4` (винты в средних 4:3: модуль closeups), `closeup#leave` (между винтами — «оставить»),
-  `outside#door` (створка — «Стук»), `outside#away` (проход — «Уйти»); выборы — `madeline`, `roderick`, `door`.
-- Шаг 2: крупный план крышки поднят (`pan`) — винты посередине кадра; `outside#away` ближе к середине; ночь у двери
-  светлее (свет свечи в шейдере вставки); заполняющий свет `fill` у глаза.
+- `"engine": 3`, shaders `inside.wgsl`, `outside.wgsl`. The close-ups `touch`, `mirror`, `check` — by a cut told at the
+  start of the beat (a second before it); `screws` begins with a cut (`after: []`): the game names it in `beat_next` (the
+  `beats` module's key), and the cut is ready ahead; likewise `inside` after the screws or after `insist`. Back out of
+  the close-up — by the key `closeup` (the insert closes).
+- Moments: `open:face` (it was `shot:face`), `touch:hand`, `mirror:up`.
+- The game's points: `closeup#screw1…4` (the screws within the middle 4:3: the closeups module), `closeup#leave`
+  (between the screws — “leave it so”), `outside#door` (the leaf — “Knock”), `outside#away` (the passage — “Walk
+  away”); choices — `madeline`, `roderick`, `door`.
+- Step 2: the lid's close-up raised (`pan`) — the screws in the middle of the frame; `outside#away` nearer the middle;
+  the night at the door lighter (the candle's light in the insert's shader); a fill light `fill` at the eye.
 
-## Контракт для проверки
+## Contract for the check
 
 ```json
 {

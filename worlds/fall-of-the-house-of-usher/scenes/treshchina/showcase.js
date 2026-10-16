@@ -1,24 +1,24 @@
-// «Трещина» outside the game: a chapter's title on the wall; after the chapter, the crack of its choices coming down;
+// «Crack» outside the game: a chapter's title on the wall; after the chapter, the crack of its choices coming down;
 // after the epilogue, the crack of the whole play. Each wall cut to whole (made ready while the one before plays), the
 // crack coming down as long as the game gives it (game.js: 3.5 s a title, 2.5 s + 1.2 s a row a map), then the knot
 // breathing a while, as the player would find it.
 const opt = (label, state) => ({ label, state });
 const WALLS = [
-  { name: 'Приезд', state: { chapter_number: 'I', chapter_title: 'Приезд', map: null } },
-  { name: 'Карта главы I', state: { chapter_number: 'I', chapter_title: 'Приезд', map: [
-    { title: 'Пруд', weight: '~', options: [opt('посмотреть в воду', 'chosen'), opt('ехать к дому', 'open')] },
-    { title: 'Его комната', weight: '~', options: [opt('по-его', 'open'), opt('по-своему', 'chosen')] },
-    { title: 'Мэдлин проходит', weight: '⚑', options: [opt('пойти за ней', 'chosen'), opt('остаться с ним', 'open')] },
-    { title: 'Её просьба', weight: '~', options: [opt('— Обещаю', 'unseen'), opt('промолчать', 'unseen')] },
+  { name: tr('The arrival'), state: { chapter_number: 'I', chapter_title: tr('The arrival'), map: null } },
+  { name: tr('Map of chapter I'), state: { chapter_number: 'I', chapter_title: tr('The arrival'), map: [
+    { title: tr('The tarn'), weight: '~', options: [opt(tr('into the water'), 'chosen'), opt(tr('ride on'), 'open')] },
+    { title: tr('His chamber'), weight: '~', options: [opt(tr('his way'), 'open'), opt(tr('my way'), 'chosen')] },
+    { title: tr('Madeline passes'), weight: '⚑', options: [opt(tr('follow her'), 'chosen'), opt(tr('stay with him'), 'open')] },
+    { title: tr('Her plea'), weight: '~', options: [opt(tr('— I promise'), 'unseen'), opt(tr('say nothing'), 'unseen')] },
   ] } },
-  { name: 'Склеп', state: { chapter_number: 'III', chapter_title: 'Склеп', map: null } },
-  { name: 'Вся игра', state: { chapter_number: '', chapter_title: 'Эпилог', map: [
-    { title: 'I. Мэдлин проходит', weight: '⚑', options: [opt('пойти за ней', 'open'), opt('остаться с ним', 'chosen')] },
-    { title: 'II. Врач', weight: '⚑', options: [opt('рассказать', 'chosen'), opt('промолчать', 'open')] },
-    { title: 'III. Крышка', weight: '⚑', options: [opt('«она может быть жива»', 'chosen'), opt('«не закрывай»', 'open'), opt('промолчать', 'open')] },
-    { title: 'III. Винты', weight: '⚑', options: [opt('завинтить', 'open'), opt('оставить слабо', 'chosen')] },
-    { title: 'III. Звук снизу', weight: '⚑', options: [opt('спуститься', 'chosen'), opt('сказать ему', 'open'), opt('«это ветер»', 'open')] },
-    { title: 'Конец', weight: '⚑', options: [opt('Как у По', 'unseen'), opt('Мэдлин', 'chosen'), opt('Родерик', 'unseen'), opt('Оба', 'unseen'), opt('Остался', 'unseen'), opt('Уехал', 'unseen')] },
+  { name: tr('The vault'), state: { chapter_number: 'III', chapter_title: tr('The vault'), map: null } },
+  { name: tr('The whole game'), state: { chapter_number: '', chapter_title: tr('Epilogue'), map: [
+    { title: tr('I. Madeline passes'), weight: '⚑', options: [opt(tr('follow her'), 'open'), opt(tr('stay with him'), 'chosen')] },
+    { title: tr('II. The physician'), weight: '⚑', options: [opt(tr('tell him'), 'chosen'), opt(tr('say nothing'), 'open')] },
+    { title: tr('III. The lid'), weight: '⚑', options: [opt(tr('“she may be living”'), 'chosen'), opt(tr('“do not close it”'), 'open'), opt(tr('say nothing'), 'open')] },
+    { title: tr('III. The screws'), weight: '⚑', options: [opt(tr('screw it down'), 'open'), opt(tr('leave them loose'), 'chosen')] },
+    { title: tr('III. A sound below'), weight: '⚑', options: [opt(tr('go down'), 'chosen'), opt(tr('tell him'), 'open'), opt(tr('“only the wind”'), 'open')] },
+    { title: tr('The end'), weight: '⚑', options: [opt(tr('As in Poe'), 'unseen'), opt(tr('Madeline'), 'chosen'), opt(tr('Roderick'), 'unseen'), opt(tr('Both'), 'unseen'), opt(tr('Stayed'), 'unseen'), opt(tr('Left'), 'unseen')] },
   ] } },
 ];
 const start = w => ({ ...w.state, reveal: 0, knot: 1 });

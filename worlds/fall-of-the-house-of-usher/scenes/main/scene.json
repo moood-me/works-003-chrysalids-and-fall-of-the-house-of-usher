@@ -1,7 +1,7 @@
 {
   "engine": 3,
-  "title": "Подъезд к дому",
-  "caption": "Я не знаю, отчего, но при первом взгляде на дом невыносимая тоска овладела моей душой.",
+  "title": "The approach to the house",
+  "caption": "I know not how it was — but, with the first glimpse of the building, a sense of insufferable gloom pervaded my spirit.",
   "horizon": 0.5,
   "camera": {
     "mode": "picture"
@@ -10,7 +10,7 @@
     {
       "at": 12,
       "for": 8,
-      "text": "Ни ветра, ни звука — только чёрная вода и пустые окна."
+      "text": "No wind, no sound — only the black water and the vacant windows."
     }
   ],
   "light": {
@@ -114,14 +114,14 @@
   "states": {
     "beat": {
       "type": "string",
-      "means": "кусок фильма (модуль beats): arrive, look, trace, tarn, to_door, walk_out, walk, walk_on, breathe, to_shore, turn_back, morning, ride_away; по концу сцена говорит beat:<имя>; моменты — walk_out:door, breathe:close, morning:toss"
+      "means": "a beat of the film (the beats module): arrive, look, trace, tarn, to_door, walk_out, walk, walk_on, breathe, to_shore, turn_back, morning, ride_away; when one ends the scene says beat:<name>; moments — walk_out:door, breathe:close, morning:toss"
     },
     "closeup": {
       "range": [
         0,
         1
       ],
-      "means": "крупный план лица Родерика (вставка): 1 — открыт"
+      "means": "the close-up of Roderick's face (insert): 1 — open"
     },
     "crack": {
       "range": [
@@ -129,7 +129,7 @@
         1
       ],
       "smooth": true,
-      "means": "насколько глубока трещина"
+      "means": "how deep the crack is"
     },
     "crack_trace": {
       "range": [
@@ -137,7 +137,7 @@
         1
       ],
       "smooth": true,
-      "means": "сколько трещины прошёл палец сверху: светлеет, у конца следа свет"
+      "means": "how much of the crack the finger has passed from the top: it grows lighter, a light at the end of the trail"
     },
     "cu_inhale": {
       "range": [
@@ -145,14 +145,14 @@
         1
       ],
       "smooth": true,
-      "means": "глубокий вдох на крупном плане (0 → 1 → 0)"
+      "means": "a deep breath in the close-up (0 → 1 → 0)"
     },
     "day": {
       "range": [
         0,
         1
       ],
-      "means": "серый день (глава II: 1; утро главы III: 0.75); 0 — сумерки. Взгляд света day; небо пишет своё"
+      "means": "a grey day (chapter II: 1; the morning of chapter III: 0.75); 0 — dusk. The light's look day; the sky paints its own"
     },
     "door": {
       "range": [
@@ -160,18 +160,18 @@
         1
       ],
       "smooth": true,
-      "means": "дверь открыта: створки уходят внутрь, за ними зал и его тёплый свет"
+      "means": "the door open: the leaves swing inward, beyond them the hall and its warm light"
     },
     "dusk": {
       "range": [
         0,
         1
       ],
-      "means": "сумерки на небе (0.4 — глава I): небо пишет их само; свет сумерек — свет сцены"
+      "means": "dusk in the sky (0.4 — chapter I): the sky paints it itself; the dusk's light is the scene's light"
     },
     "follow": {
       "type": "boolean",
-      "means": "камера держит двоих в кадре, пока они идут по гати («За руку»)"
+      "means": "the camera keeps the two in frame while they walk along the causeway (“By the hand”)"
     },
     "gloom": {
       "range": [
@@ -179,7 +179,7 @@
         1
       ],
       "smooth": true,
-      "means": "тоска: темнее, туман гуще, окно со светом тусклее («Причина» поднимает её ступенями)"
+      "means": "the gloom: darker, the mist thicker, the lit window dimmer (“Cause” raises it in steps)"
     },
     "horse_toss": {
       "range": [
@@ -187,14 +187,14 @@
         1
       ],
       "smooth": true,
-      "means": "конь вскидывает голову"
+      "means": "the horse tosses its head"
     },
     "mist": {
       "range": [
         0,
         1.2
       ],
-      "means": "туман над водой"
+      "means": "mist over the water"
     },
     "reflection_figure": {
       "range": [
@@ -202,7 +202,7 @@
         1
       ],
       "smooth": true,
-      "means": "бледная фигура в верхнем окне — только в отражении"
+      "means": "a pale figure at an upper window — only in the reflection"
     },
     "resist": {
       "range": [
@@ -210,71 +210,71 @@
         1
       ],
       "smooth": true,
-      "means": "Родерик упирается: с 0.6 стоит, откинувшись, лицо отвёрнуто (balk); ниже 0.5 — снова стоит"
+      "means": "Roderick balks: from 0.6 he stands leaning back, his face turned away (balk); below 0.5 — stands again"
     },
     "walk": {
       "range": [
         0,
         1
       ],
-      "means": "куда игра ведёт двоих по гати: 0 — в зале за дверью, 0.5 — середина, 1 — у берега; поставленное — они идут туда своим шагом (назад — пятясь)"
+      "means": "where the game leads the two along the causeway: 0 — in the hall beyond the door, 0.5 — the middle, 1 — at the shore; once set, they walk there at their own step (back — backing)"
     },
     "walk_at": {
       "range": [
         0,
         1
       ],
-      "means": "где двое на гати сейчас, в единицах walk (по рассказчику); ставит сцена, пока они идут — для игры"
+      "means": "where the two are on the causeway now, in walk's units (by the narrator); the scene sets it while they walk — for the game"
     },
     "window_light": {
       "range": [
         0,
         1
       ],
-      "means": "свет в верхнем левом окне"
+      "means": "the light in the upper left window"
     },
     "rider_present": {
       "type": "boolean",
-      "means": "конь у пруда"
+      "means": "the horse by the tarn"
     },
     "rider_a": {
       "type": "number",
       "smooth": true,
-      "means": "конь: метры вправо"
+      "means": "the horse: metres to the right"
     },
     "rider_d": {
       "type": "number",
       "smooth": true,
-      "means": "конь: метры вперёд"
+      "means": "the horse: metres forward"
     },
     "rider_face": {
       "type": "number",
       "smooth": true,
-      "means": "куда обращён конь, градусы: 0 — к нам, 90 — вправо, 180 — от нас"
+      "means": "where the horse faces, degrees: 0 — towards us, 90 — to the right, 180 — away from us"
     },
     "lead_a": {
       "type": "number",
-      "means": "точка lead — на гати перед рассказчиком, к нам (куда тянут их руки): метры вправо; ставит сцена"
+      "means": "the point lead — on the causeway before the narrator, towards us (where their hands reach): metres to the right; the scene sets it"
     },
     "lead_d": {
       "type": "number",
-      "means": "точка lead: метры вперёд; ставит сцена"
+      "means": "the point lead: metres forward; the scene sets it"
     }
   },
   "objects": [
     {
       "id": "sky",
-      "name": "Небо",
+      "name": "Sky",
       "sky": true
     },
     {
       "id": "clouds",
-      "name": "Низкие тучи",
+      "name": "Low clouds",
       "sky": true
     },
     {
       "id": "far_shore",
-      "name": "Дальний берег",
+      "name": "Far shore",
       "across": 0,
       "distance": 95,
       "elevation": -0.03,
@@ -288,7 +288,7 @@
     },
     {
       "id": "tarn",
-      "name": "Пруд",
+      "name": "Tarn",
       "plane": true,
       "across": 0,
       "distance": 51.5,
@@ -304,7 +304,7 @@
     },
     {
       "id": "house",
-      "name": "Дом Ашеров",
+      "name": "The House of Usher",
       "across": 0,
       "distance": 80,
       "height": 29,
@@ -317,7 +317,7 @@
     },
     {
       "id": "hall",
-      "name": "Зал за дверью",
+      "name": "Hall beyond the door",
       "across": 0,
       "distance": 83,
       "height": 7,
@@ -331,7 +331,7 @@
     },
     {
       "id": "windows",
-      "name": "Окна",
+      "name": "Windows",
       "across": 0,
       "distance": 80,
       "height": 29,
@@ -347,7 +347,7 @@
     },
     {
       "id": "lamp",
-      "name": "Окно со светом",
+      "name": "Lit window",
       "across": 0,
       "distance": 79.95,
       "height": 29,
@@ -365,7 +365,7 @@
     },
     {
       "id": "crack",
-      "name": "Трещина",
+      "name": "Crack",
       "across": 5.8,
       "distance": 80,
       "height": 24,
@@ -382,7 +382,7 @@
     },
     {
       "id": "vision",
-      "name": "Фигура в окне (только в воде)",
+      "name": "Figure at the window (only in the water)",
       "across": 0,
       "distance": 79.9,
       "height": 29,
@@ -396,7 +396,7 @@
     },
     {
       "id": "mist_far",
-      "name": "Туман у дома",
+      "name": "Mist by the house",
       "across": 0,
       "distance": 72,
       "elevation": -0.03,
@@ -410,7 +410,7 @@
     },
     {
       "id": "causeway",
-      "name": "Гать",
+      "name": "Causeway",
       "plane": true,
       "across": -3,
       "distance": 42,
@@ -421,7 +421,7 @@
     },
     {
       "id": "shore",
-      "name": "Ближний берег",
+      "name": "Near shore",
       "plane": true,
       "across": 0,
       "distance": 4.5,
@@ -431,7 +431,7 @@
     },
     {
       "id": "mist_mid",
-      "name": "Туман над водой",
+      "name": "Mist over the water",
       "across": 0,
       "distance": 34,
       "elevation": -0.03,
@@ -445,7 +445,7 @@
     },
     {
       "id": "reeds_mid",
-      "name": "Осока в воде",
+      "name": "Sedge in the water",
       "across": 0,
       "distance": 24,
       "elevation": -0.03,
@@ -459,7 +459,7 @@
     },
     {
       "id": "mist_near",
-      "name": "Туман у берега",
+      "name": "Mist by the shore",
       "across": 0,
       "distance": 17,
       "elevation": -0.03,
@@ -473,7 +473,7 @@
     },
     {
       "id": "trees",
-      "name": "Мёртвые деревья",
+      "name": "Dead trees",
       "across": 0,
       "distance": 12,
       "elevation": -0.03,
@@ -487,7 +487,7 @@
     },
     {
       "id": "sedge",
-      "name": "Осока у воды",
+      "name": "Sedge by the water",
       "across": 0,
       "distance": 5.6,
       "height": 1,
@@ -500,7 +500,7 @@
     },
     {
       "id": "rider",
-      "name": "Конь",
+      "name": "Horse",
       "height": 2.4,
       "box": [
         -2.5,
@@ -518,7 +518,7 @@
     },
     {
       "id": "roderick",
-      "name": "Родерик",
+      "name": "Roderick",
       "person": {
         "cast": "cast",
         "who": "roderick",
@@ -535,7 +535,7 @@
     },
     {
       "id": "narrator",
-      "name": "Рассказчик",
+      "name": "Narrator",
       "person": {
         "cast": "cast",
         "who": "narrator",
@@ -554,7 +554,7 @@
     },
     {
       "id": "grass_fg",
-      "name": "Сухая трава",
+      "name": "Dry grass",
       "across": 0,
       "distance": 4,
       "height": 1,
@@ -567,7 +567,7 @@
     },
     {
       "id": "lead",
-      "name": "Перед ними на гати",
+      "name": "Before them on the causeway",
       "unseen": true,
       "across": 0.15,
       "distance": 80,
@@ -586,7 +586,7 @@
     },
     {
       "id": "closeup",
-      "name": "Крупный план",
+      "name": "Close-up",
       "insert": "closeup"
     }
   ],

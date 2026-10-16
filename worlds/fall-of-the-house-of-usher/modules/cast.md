@@ -1,4 +1,4 @@
-# cast — the people of «Падение дома Ашеров» as the engine's people
+# cast — the people of “The Fall of the House of Usher” as the engine's people
 
 A module for scenes with people (elements with `person`: `{"cast": "cast", "who": …}` — moood's docs/agents/people.md).
 List it in a scene's `modules`. All in the world's style `usher` (the engine's `shadow`: slender, small-headed, tapering

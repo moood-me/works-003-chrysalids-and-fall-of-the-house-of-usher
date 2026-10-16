@@ -1,7 +1,7 @@
 {
   "engine": 3,
-  "title": "Склеп",
-  "caption": "На её лице застыл слабый румянец — как это бывает при каталепсии.",
+  "title": "The vault",
+  "caption": "The mockery of a faint blush lingered upon her face — as is usual in all maladies of a strictly cataleptical character.",
   "horizon": 0.46,
   "camera": {
     "mode": "picture"
@@ -128,7 +128,7 @@
   "states": {
     "beat": {
       "type": "string",
-      "means": "кусок фильма (модуль beats): имя — кусок играется с начала; в конце сцена говорит beat:<имя>. Куски: enter, open, touch, mirror, say, shut, insist, close, screws, check, inside, leave, door_close, at_door (и для показа — vault, knock); моменты — open:face, touch:hand, mirror:up"
+      "means": "a beat of the film (the beats module): the name — the beat plays from the start; at the end the scene says beat:<name>. Beats: enter, open, touch, mirror, say, shut, insist, close, screws, check, inside, leave, door_close, at_door (and for the showcase — vault, knock); moments — open:face, touch:hand, mirror:up"
     },
     "shot": {
       "values": [
@@ -138,28 +138,28 @@
         "hands",
         "lid"
       ],
-      "means": "какой крупный план показывает вставка closeup: face — её лицо в гробу, mirror — зеркальце у губ, hands — его рука на её руке, lid — крышка и четыре винта"
+      "means": "which close-up the insert closeup shows: face — her face in the coffin, mirror — the little mirror at her lips, hands — his hand on hers, lid — the lid and its four screws"
     },
     "closeup": {
       "range": [
         0,
         1
       ],
-      "means": "вставка крупного плана (модуль closeups) открыта: 1 — во весь кадр, 0 — склеп"
+      "means": "the close-up insert (the closeups module) is open: 1 — the whole frame, 0 — the vault"
     },
     "inside": {
       "range": [
         0,
         1
       ],
-      "means": "вставка «изнутри»: её глазами из закрытого гроба (seam, shade, tip)"
+      "means": "the insert “from within”: through her eyes from the closed coffin (seam, shade, tip)"
     },
     "outside": {
       "range": [
         0,
         1
       ],
-      "means": "вставка «у двери»: другая ночь, снаружи у закрытой железной двери, одна свеча на полу (knock, answer)"
+      "means": "the insert “at the door”: another night, outside the shut iron door, a single candle on the floor (knock, answer)"
     },
     "crack": {
       "range": [
@@ -167,7 +167,7 @@
         1
       ],
       "smooth": true,
-      "means": "трещина на задней стене (и у двери снаружи): насколько прошла и раскрылась; ставит игра по шкале"
+      "means": "the crack on the back wall (and by the door outside): how far it has run and opened; the game sets it by the scale"
     },
     "blush": {
       "range": [
@@ -175,7 +175,7 @@
         1
       ],
       "smooth": true,
-      "means": "румянец на её щеках и груди (крупно, face)"
+      "means": "the blush on her cheeks and breast (close, face)"
     },
     "torch": {
       "range": [
@@ -183,7 +183,7 @@
         1
       ],
       "smooth": true,
-      "means": "сколько света факела в склепе: 1 — горит, 0 — отрезан дверью (огонь и свет гаснут)"
+      "means": "how much torchlight is in the vault: 1 — burning, 0 — cut off by the door (the fire and the light go out)"
     },
     "door_turn": {
       "range": [
@@ -191,7 +191,7 @@
         280
       ],
       "smooth": true,
-      "means": "железная дверь: 180 — закрыта, 280 — распахнута в склеп"
+      "means": "the iron door: 180 — shut, 280 — flung open into the vault"
     },
     "lid_x": {
       "range": [
@@ -199,7 +199,7 @@
         0.75
       ],
       "smooth": true,
-      "means": "крышка сдвинута к ногам: 0 — закрыта, 0.75 — лицо и грудь открыты"
+      "means": "the lid slid towards the feet: 0 — closed, 0.75 — face and breast uncovered"
     },
     "lid_h": {
       "range": [
@@ -207,7 +207,7 @@
         0.45
       ],
       "smooth": true,
-      "means": "высота крышки над дном гроба: 0.37 — лежит на стенках, 0.4 — приподнята"
+      "means": "the lid's height above the coffin's bottom: 0.37 — resting on the sides, 0.4 — lifted"
     },
     "coffin_a": {
       "range": [
@@ -215,7 +215,7 @@
         4
       ],
       "smooth": true,
-      "means": "где гроб: вправо (м)"
+      "means": "where the coffin is: to the right (m)"
     },
     "coffin_d": {
       "range": [
@@ -223,7 +223,7 @@
         9
       ],
       "smooth": true,
-      "means": "где гроб: вдаль (м)"
+      "means": "where the coffin is: into the distance (m)"
     },
     "coffin_h": {
       "range": [
@@ -231,7 +231,7 @@
         1.2
       ],
       "smooth": true,
-      "means": "высота дна гроба: 0.43 — на помосте, 0.96 — несут"
+      "means": "the height of the coffin's bottom: 0.43 — on the bier, 0.96 — being carried"
     },
     "coffin_turn": {
       "range": [
@@ -239,7 +239,7 @@
         360
       ],
       "smooth": true,
-      "means": "куда повёрнут гроб, градусы: 180 — вдоль склепа, изголовьем влево"
+      "means": "where the coffin is turned, degrees: 180 — along the vault, head to the left"
     },
     "mirror": {
       "range": [
@@ -247,7 +247,7 @@
         1
       ],
       "smooth": true,
-      "means": "крупно (mirror): зеркальце поднимается к её губам — 1 у губ; оно чистое"
+      "means": "close (mirror): the little mirror rises to her lips — 1 at the lips; it stays clear"
     },
     "touch": {
       "range": [
@@ -255,7 +255,7 @@
         1
       ],
       "smooth": true,
-      "means": "крупно (hands): его рука поднимается в кадр и ложится на её — 1 легла"
+      "means": "close (hands): his hand rises into the frame and settles on hers — 1 settled"
     },
     "screw1": {
       "range": [
@@ -263,7 +263,7 @@
         1
       ],
       "smooth": true,
-      "means": "винт 1 (крупно, lid): насколько завинчен — 0 торчит резьбой, 1 вошёл; точка closeup#screw1"
+      "means": "screw 1 (close, lid): how far it is screwed in — 0 its thread sticking out, 1 home; point closeup#screw1"
     },
     "screw2": {
       "range": [
@@ -271,7 +271,7 @@
         1
       ],
       "smooth": true,
-      "means": "винт 2: как screw1; точка closeup#screw2"
+      "means": "screw 2: like screw1; point closeup#screw2"
     },
     "screw3": {
       "range": [
@@ -279,7 +279,7 @@
         1
       ],
       "smooth": true,
-      "means": "винт 3: как screw1; точка closeup#screw3"
+      "means": "screw 3: like screw1; point closeup#screw3"
     },
     "screw4": {
       "range": [
@@ -287,7 +287,7 @@
         1
       ],
       "smooth": true,
-      "means": "винт 4: как screw1; точка closeup#screw4"
+      "means": "screw 4: like screw1; point closeup#screw4"
     },
     "screw_at": {
       "range": [
@@ -295,21 +295,21 @@
         4
       ],
       "smooth": true,
-      "means": "на каком винте отвёртка (дробное — рука в пути между винтами)"
+      "means": "which screw the screwdriver is on (a fraction — the hand on its way between screws)"
     },
     "driver": {
       "range": [
         0,
         1
       ],
-      "means": "рука с отвёрткой в кадре (крупно, lid)"
+      "means": "the hand with the screwdriver in the frame (close, lid)"
     },
     "driver_rod": {
       "range": [
         0,
         1
       ],
-      "means": "отвёртка в руке Родерика (1) или рассказчика (0)"
+      "means": "the screwdriver in Roderick's hand (1) or the narrator's (0)"
     },
     "seam": {
       "range": [
@@ -317,7 +317,7 @@
         1
       ],
       "smooth": true,
-      "means": "изнутри: волосок света факела по краю крышки — 1 горит, 0 погас"
+      "means": "from within: a thread of torchlight along the lid's edge — 1 lit, 0 gone out"
     },
     "shade": {
       "range": [
@@ -325,7 +325,7 @@
         1
       ],
       "smooth": true,
-      "means": "изнутри: как далеко прошли двое над крышкой (их тени гасят волосок)"
+      "means": "from within: how far the two have passed over the lid (their shadows put out the thread)"
     },
     "tip": {
       "range": [
@@ -333,7 +333,7 @@
         1
       ],
       "smooth": true,
-      "means": "изнутри: острия винтов сквозь дерево по одному — первое к 0.4, второе к 0.6, третье к 0.78, четвёртое к 0.9"
+      "means": "from within: the screws' points through the wood one by one — the first by 0.4, the second by 0.6, the third by 0.78, the fourth by 0.9"
     },
     "knock": {
       "range": [
@@ -341,7 +341,7 @@
         1
       ],
       "smooth": true,
-      "means": "у двери: стук с этой стороны — импульс 1 → 0 (~1.5 с): дверь дрожит, сыплется пыль, пламя свечи пригибается"
+      "means": "at the door: a knock from this side — a pulse 1 → 0 (~1.5 s): the door trembles, dust falls, the candle's flame bows"
     },
     "answer": {
       "range": [
@@ -349,17 +349,17 @@
         1
       ],
       "smooth": true,
-      "means": "у двери: ответ с той стороны — импульс 1 → 0, как knock, сильнее"
+      "means": "at the door: an answer from the other side — a pulse 1 → 0, like knock, stronger"
     },
     "beat_next": {
       "type": "string",
-      "means": "кусок, который игра сыграет следующим (модуль beats: его склейка готовится заранее) — screws, inside; null — следующий по таблице"
+      "means": "the beat the game will play next (the beats module: its cut is prepared ahead) — screws, inside; null — the next by the table"
     }
   },
   "objects": [
     {
       "id": "dark",
-      "name": "Тьма",
+      "name": "Darkness",
       "sky": true
     },
     {
@@ -373,7 +373,7 @@
       "distance": 7.6,
       "height": 2.6,
       "id": "passage",
-      "name": "Проход",
+      "name": "Passage",
       "facing": 180
     },
     {
@@ -386,7 +386,7 @@
       "distance": 6.8,
       "height": 4,
       "id": "wall",
-      "name": "Задняя стена",
+      "name": "Back wall",
       "x": 0.5,
       "facing": 180
     },
@@ -401,12 +401,12 @@
       "distance": 6.8,
       "height": 2.2,
       "id": "doorway",
-      "name": "Проём двери",
+      "name": "Doorway",
       "facing": 180
     },
     {
       "id": "door",
-      "name": "Железная дверь",
+      "name": "Iron door",
       "across": 1.8,
       "distance": 6.79,
       "height": 2.0,
@@ -427,7 +427,7 @@
       "distance": 5,
       "elevation": 0,
       "id": "floor",
-      "name": "Пол",
+      "name": "Floor",
       "plane": true,
       "width": 20,
       "x": 0.5
@@ -442,7 +442,7 @@
       "distance": 6.2,
       "height": 1,
       "id": "mist_back",
-      "name": "Туман у стены",
+      "name": "Mist by the wall",
       "x": 0.5
     },
     {
@@ -455,7 +455,7 @@
       "distance": 4.7,
       "height": 3,
       "id": "arch2",
-      "name": "Дальняя арка",
+      "name": "Far arch",
       "x": 0.5,
       "facing": 180
     },
@@ -471,11 +471,11 @@
       "flicker": 0.3,
       "height": 2.0,
       "id": "torch",
-      "name": "Факел"
+      "name": "Torch"
     },
     {
       "id": "holder_fire",
-      "name": "Огонь факела в держателе",
+      "name": "Torch fire in its holder",
       "particles": {
         "kind": "fire",
         "at": "torch#flame",
@@ -498,7 +498,7 @@
     },
     {
       "id": "plinth_step",
-      "name": "Нижняя ступень помоста",
+      "name": "Lower step of the bier",
       "plane": true,
       "across": -0.5,
       "distance": 4.3,
@@ -508,7 +508,7 @@
     },
     {
       "id": "plinth_top",
-      "name": "Верх помоста",
+      "name": "Top of the bier",
       "plane": true,
       "across": -0.5,
       "distance": 4.3,
@@ -527,13 +527,13 @@
       "distance": 3.83,
       "height": 0.5,
       "id": "plinth",
-      "name": "Помост",
+      "name": "Bier",
       "facing": 180,
       "shadow": true
     },
     {
       "id": "coffin_box",
-      "name": "Гроб (где он)",
+      "name": "Coffin (where it is)",
       "unseen": true,
       "across": -0.5,
       "distance": 4.3,
@@ -555,7 +555,7 @@
     },
     {
       "id": "coffin_far",
-      "name": "Гроб: дальняя стенка",
+      "name": "Coffin: far side",
       "on": "coffin_box",
       "height": 0.4,
       "distance": 0.3,
@@ -570,7 +570,7 @@
     },
     {
       "id": "coffin_head",
-      "name": "Гроб: изголовье",
+      "name": "Coffin: head",
       "on": "coffin_box",
       "height": 0.4,
       "across": -1.0,
@@ -585,7 +585,7 @@
     },
     {
       "id": "coffin_foot",
-      "name": "Гроб: ноги",
+      "name": "Coffin: foot",
       "on": "coffin_box",
       "height": 0.4,
       "across": 1.0,
@@ -600,7 +600,7 @@
     },
     {
       "id": "coffin_floor",
-      "name": "Гроб: дно",
+      "name": "Coffin: bottom",
       "plane": true,
       "on": "coffin_box",
       "elevation": 0.04,
@@ -609,7 +609,7 @@
     },
     {
       "id": "madeline",
-      "name": "Мэдлин",
+      "name": "Madeline",
       "person": {
         "cast": "cast",
         "who": "madeline",
@@ -622,7 +622,7 @@
     },
     {
       "id": "coffin",
-      "name": "Гроб",
+      "name": "Coffin",
       "on": "coffin_box",
       "height": 0.4,
       "distance": -0.3,
@@ -637,7 +637,7 @@
     },
     {
       "id": "lid",
-      "name": "Крышка",
+      "name": "Lid",
       "plane": true,
       "on": "coffin_box",
       "elevation": 0.37,
@@ -651,7 +651,7 @@
     },
     {
       "id": "lid_edge",
-      "name": "Крышка: край",
+      "name": "Lid: edge",
       "on": "lid",
       "distance": 0.32,
       "elevation": -0.035,
@@ -666,7 +666,7 @@
     },
     {
       "id": "roderick",
-      "name": "Родерик",
+      "name": "Roderick",
       "person": {
         "cast": "cast",
         "who": "roderick",
@@ -682,7 +682,7 @@
     },
     {
       "id": "narrator",
-      "name": "Рассказчик",
+      "name": "Narrator",
       "person": {
         "cast": "cast",
         "who": "narrator",
@@ -699,7 +699,7 @@
     },
     {
       "id": "flame",
-      "name": "Пламя факела",
+      "name": "Torch flame",
       "particles": {
         "kind": "fire",
         "at": "narrator#flame",
@@ -722,7 +722,7 @@
     },
     {
       "id": "embers",
-      "name": "Искры факела",
+      "name": "Torch sparks",
       "particles": {
         "kind": "embers",
         "at": "narrator#flame",
@@ -744,7 +744,7 @@
       "distance": 3.4,
       "height": 1,
       "id": "mist_front",
-      "name": "Туман у пола",
+      "name": "Mist by the floor",
       "x": 0.5
     },
     {
@@ -757,18 +757,18 @@
       "distance": 2.6,
       "height": 3,
       "id": "arch1",
-      "name": "Ближняя арка",
+      "name": "Near arch",
       "x": 0.5,
       "facing": 180
     },
     {
       "id": "closeup",
-      "name": "Крупный план",
+      "name": "Close-up",
       "insert": "closeup"
     },
     {
       "id": "inside",
-      "name": "Изнутри",
+      "name": "From within",
       "insert": "inside",
       "uniforms": {
         "fl": 1,
@@ -785,7 +785,7 @@
     },
     {
       "id": "outside",
-      "name": "У двери",
+      "name": "At the door",
       "insert": "outside",
       "uniforms": {
         "fl": 0.85,

@@ -1,4 +1,4 @@
-// Падение дома — the end of the house of Usher over the black tarn: what its elements paint and move, the causeway's
+// The fall of the house — the end of the house of Usher over the black tarn: what its elements paint and move, the causeway's
 // line and the run along it, and its film in beats (film(scene), at the end). The sky — the red moon behind the house,
 // its glow on the clouds, the far shore, the water — is the sky's own painting (pale, and a second one in the full red
 // shown over it as far as `moon` says); what stands in the world (the house, the causeway, the shore, the sedge, the

@@ -33,7 +33,7 @@ import seven, { ENDINGS, epilogue } from './chapters/7.js';
 
 const CHAPTERS = [one, two, three, four, five, six, seven];
 const END = CHAPTERS.length; // “Threads”'s last place: how the play ended
-const NITI = SCENES.niti;
+const THREADS = SCENES.threads;
 const GO = 1; // s: the sky going from one chapter to the next
 const RUN = { chapter: 0, step: 0, scales: { suspicion: 0, group: 0, petra: 0, path: 0 }, marks: {}, choices: {} };
 
@@ -72,8 +72,8 @@ export default async function (b) {
   // knot offers what can be done
   // there (go back to the main run, the next chapter, play one again); how things stand (of run r) in the corner.
   // → what was chosen: an option's id, or `chapter:i`
-  async function niti(shown, options, { reveal = false, r = kept.replay ?? kept, compare = null } = {}) {
-    await b.show(NITI, { state: { chapters: sky(), shown, reveal: reveal ? 0 : 1, knot: 1 }, captions: false });
+  async function between(shown, options, { reveal = false, r = kept.replay ?? kept, compare = null } = {}) {
+    await b.show(THREADS, { state: { chapters: sky(), shown, reveal: reveal ? 0 : 1, knot: 1 }, captions: false });
     if (reveal) b.set('reveal', 1, 6);
     const g = context(b, view, hub, r);
     const hideNow = view.now(now(r)), hideCompare = compare ? view.compare(compare) : () => {};
@@ -116,9 +116,9 @@ export default async function (b) {
       // the end (of the main run): how it ended, years later; then the first chapter again — a replay, the main run
       // kept — or any chapter
       const ending = ENDINGS.find(e => e.id === kept.marks.ending);
-      await b.show(NITI, { state: { chapters: sky(), shown: END, reveal: 1, knot: 0.6 }, captions: false });
+      await b.show(THREADS, { state: { chapters: sky(), shown: END, reveal: 1, knot: 0.6 }, captions: false });
       await epilogue(context(b, view, hub, kept), ending?.id);
-      const next = await niti(END, [{ id: 'again', label: tr('Start again') }]);
+      const next = await between(END, [{ id: 'again', label: tr('Start again') }]);
       straight = true;
       await (next === 'again' ? keep({ ...kept, replay: replayOf(0) }) : goTo(Number(next.slice(8))));
       continue;
@@ -127,7 +127,7 @@ export default async function (b) {
     if (!replaying && !cur.step) kept.starts[cur.chapter] = run(kept);
     // the chapter on “Threads”: its knot to begin (the page may be heard from then on), go on, or begin it anew
     if (replaying) view.toast(tr('The chapter is played again — your story does not change'), 'mark');
-    const go = straight ? 'go' : await niti(cur.chapter, replaying ? [{ id: 'go', label: cur.step ? tr('Go on') : tr('Play it again') }]
+    const go = straight ? 'go' : await between(cur.chapter, replaying ? [{ id: 'go', label: cur.step ? tr('Go on') : tr('Play it again') }]
       : cur.step ? [{ id: 'go', label: tr('Go on') }, { id: 'anew', label: tr('Restart the chapter') }] : [{ id: 'go', label: tr('Begin') }]);
     straight = false;
     if (go === 'anew') { await keep({ ...kept, ...run(kept.starts[cur.chapter]), step: 0 }); continue; }
@@ -152,7 +152,7 @@ export default async function (b) {
     const done = kept.replay ?? kept;
     if (!replaying) {
       // the chapter's threads grow on the sky; then on — or play it again
-      const next = await niti(done.chapter, [{ id: 'on', label: tr('Next') }, { id: 'again', label: tr('Play it again') }], { reveal: true });
+      const next = await between(done.chapter, [{ id: 'on', label: tr('Next') }, { id: 'again', label: tr('Play it again') }], { reveal: true });
       if (next === 'on') await goTo(done.chapter + 1);
       else if (next === 'again') await keep({ ...kept, replay: replayOf(done.chapter) });
       else await goTo(Number(next.slice(8)));
@@ -161,7 +161,7 @@ export default async function (b) {
     }
     // a replay played to its end: kept or not — how things would stand either way, side by side
     const i = done.chapter, mainAfter = kept.starts[i + 1] ?? (i === main() && mainDone() ? kept : null);
-    const next = await niti(i, [{ id: 'save', label: tr('Keep it so') },
+    const next = await between(i, [{ id: 'save', label: tr('Keep it so') },
       { id: 'drop', label: tr('Back to the story') }, { id: 'again', label: tr('Play it again') }], { reveal: true,
       compare: mainAfter && { main: now(mainAfter), replay: now(done), people: differ(mainAfter.marks, done.marks) } });
     if (next === 'save') {

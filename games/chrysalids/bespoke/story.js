@@ -43,10 +43,10 @@ import * as sounds from './sound.js';
 
 // the world's scenes the game plays, by their folders
 export const SCENES = {
-  bank: 'nasyp-u-ruchya', ruins: 'ruiny-drevnikh', farm: 'ferma-stormov', kitchen: 'kukhnya-stormov', inspector: 'inspektor-na-ferme',
-  burning: 'sozhzhenie-polya', forge: 'kuznitsa-dyadi-akselya', stories: 'rasskazy-akselya', hear: 'uchimsya-slyshat',
-  square: 'devid-i-rozalinda', voices: 'golosa', river: 'petra-u-reki', dream: 'son-o-gorode', hall: 'dom-sobraniy',
-  flight: 'begstvo', edge: 'kray-okrain', camp: 'lager-okrain', ship: 'korabl-iz-zelandii', niti: 'niti',
+  bank: 'stream-bank', ruins: 'old-people-ruins', farm: 'strorm-farm', kitchen: 'strorm-kitchen', inspector: 'inspector',
+  burning: 'field-burning', forge: 'axels-forge', stories: 'axels-stories', hear: 'learning-to-hear',
+  square: 'david-and-rosalind', voices: 'voices', river: 'petra-at-the-river', dream: 'city-dream', hall: 'meeting-house',
+  flight: 'flight', edge: 'fringes-edge', camp: 'fringes-camp', ship: 'sealand-ship', threads: 'threads',
 };
 
 // the scales: what the player reads when they move (the path is never shown: game.js, journal.js)

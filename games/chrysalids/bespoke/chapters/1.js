@@ -9,7 +9,7 @@
 // find took|left, secret kept|told; marks.wender trusts|doubts (does Mrs Wender trust David —
 // for whoever meets her again), marks.sophie kept|told.
 import dig from '../minigames/dig.js';
-import podol from '../minigames/podol.js';
+import hem from '../minigames/hem.js';
 import { SCENES } from '../story.js';
 
 const BANK = SCENES.bank, RUINS = SCENES.ruins, FARM = SCENES.farm;
@@ -64,7 +64,7 @@ export default {
     // the hooves: a rider on the meadow at a walk, and her foot still bare — “The hem”: her hem drawn over it before he
     // comes to where the stones are seen (the hooves heard before he shows)
     async g => {
-      const rider = g.told('ridge:rider'), hem = g.told('ridge:hem'), ridge = g.told('beat:ridge');
+      const rider = g.told('ridge:rider'), atHem = g.told('ridge:hem'), ridge = g.told('beat:ridge');
       await g.scene(BANK, { beat: 'ridge', r_wait: true }); // (the rider held at the meadow's edge till “The hem” lets him)
       g.beat('ridge', { wait: false }); // (cut short by «cover» if the hem is over the foot in time)
       const horse = g.sound.hooves({ gait: 'walk' });
@@ -73,10 +73,10 @@ export default {
       await rider;
       horse.halt(); // (he stands at the meadow's edge till “The hem” lets him ride on)
       await g.say('narrator', 'Hooves. Her foot must not be seen.');
-      await hem;
+      await atHem;
       let rides = false;
       const ride = () => { if (!rides) { rides = true; horse.gait('walk'); } };
-      const { hid } = await g.play(podol, { onRide: ride });
+      const { hid } = await g.play(hem, { onRide: ride });
       g.set('r_wait', false);
       ride();
       g.state.choices.hooves = hid ? 'hid' : 'late';

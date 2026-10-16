@@ -47,7 +47,7 @@ const several = (stem, n, tail = '') => Array.from({ length: n }, (_, i) => `${s
 // The minigames (minigames/*.js heads): the scene a minigame is played on, the keys it moves and listens to, the moments
 // it waits for, the points its marks stand on, the fields of its opts and of its result
 const MINIGAMES = {
-  podol: { scene: 'bank', keys: ['hem', 'r_near', 'r_wait'], opts: ['onRide'], points: ['closeup#hem', 'closeup#foot'], tells: ['ridge:seen'], result: ['hid'] },
+  hem: { scene: 'bank', keys: ['hem', 'r_near', 'r_wait'], opts: ['onRide'], points: ['closeup#hem', 'closeup#foot'], tells: ['ridge:seen'], result: ['hid'] },
   dig: { scene: 'ruins', keys: ['dig', 'bell'], points: ['glint#plate'], result: ['cleared', 'bell'] },
   gaze: { scene: 'inspector', keys: ['inspector_look'], points: ['calf', 'calf#head', 'calf#back', 'calf#tail', 'calf#legs'], result: ['found', 'left'] },
   hymn: { scene: 'burning', keys: ['turned'], points: ['jo', 'dv'], result: ['hymn', 'turned'] },
@@ -62,10 +62,10 @@ const MINIGAMES = {
   shadow: { scene: 'edge', keys: ['walkers', 'walk_u', 'walk_lit', 'walk_shade'], points: ['david'], opts: ['hard', 'onSeen'], result: ['seen'] },
 };
 // what game.js itself takes of “Threads” (it is not run here): its keys, the knots it offers
-const NITI = { keys: ['chapters', 'shown', 'reveal', 'knot'], offers: Array.from({ length: 8 }, (_, i) => `k${i}#knot`) };
+const THREADS = { keys: ['chapters', 'shown', 'reveal', 'knot'], offers: Array.from({ length: 8 }, (_, i) => `k${i}#knot`) };
 // the results put in: the outcomes a chapter branches on — clean, and each one's other
 const CLEAN = {};
-const OTHER = [{ podol: { hid: false } }, { dig: { cleared: 0.3, bell: true } }, { gaze: { found: false, left: 0 } }, { hymn: { hymn: 'silent', turned: 0.7 } }, { hymn: { hymn: 'loud', turned: 0.1 } },
+const OTHER = [{ hem: { hid: false } }, { dig: { cleared: 0.3, bell: true } }, { gaze: { found: false, left: 0 } }, { hymn: { hymn: 'silent', turned: 0.7 } }, { hymn: { hymn: 'loud', turned: 0.1 } },
   { still: { stirred: 2 } }, { bellows: { broke: true } }, { tuning: { caught: false, seen: true } }, { layers: { looked: true } },
   { windows: { links: 7, caught: true } }, { calm: { cry: 0.8 } }, { dream: { held: 0.2, broke: true } }, { horses: { seen: true } }, { shadow: { seen: true } }];
 
@@ -167,16 +167,16 @@ for (const name in sound) {
   if (typeof sound[name] === 'function' && !['pause', 'unheard'].includes(name) && !quietNames.includes(name)) miss('sound.js', `sound “${name}” is not in unheard()`);
 }
 // “Threads”, as game.js opens it
-const niti = WORLD.get(SCENES.niti);
-if (niti) {
-  for (const key of NITI.keys) {
-    if (!(key in niti.states) && !engines(niti, key)) miss('game.js', `“${SCENES.niti}”: key “${key}” is not in states`);
-    if (key !== 'chapters' && niti.contract && !(key in niti.contract.party)) miss('game.js', `“${SCENES.niti}”: key “${key}” is not in the contract’s party`);
-    niti.named.add(`party:${key}`);
+const threads = WORLD.get(SCENES.threads);
+if (threads) {
+  for (const key of THREADS.keys) {
+    if (!(key in threads.states) && !engines(threads, key)) miss('game.js', `“${SCENES.threads}”: key “${key}” is not in states`);
+    if (key !== 'chapters' && threads.contract && !(key in threads.contract.party)) miss('game.js', `“${SCENES.threads}”: key “${key}” is not in the contract’s party`);
+    threads.named.add(`party:${key}`);
   }
-  for (const ref of NITI.offers) {
-    if (niti.contract && !niti.contract.offers.includes(ref)) miss('game.js', `“${SCENES.niti}”: offer “${ref}” is not in the contract`);
-    niti.named.add(`ref:${ref}`);
+  for (const ref of THREADS.offers) {
+    if (threads.contract && !threads.contract.offers.includes(ref)) miss('game.js', `“${SCENES.threads}”: offer “${ref}” is not in the contract`);
+    threads.named.add(`ref:${ref}`);
   }
 }
 
@@ -392,12 +392,12 @@ const ENDS = [
 ];
 // the plays where David is caught (suspicion high enough: at the gate, or at the forge) — the trial
 const CAUGHT = [
-  [{ ...first, secret: 'told', hand: 'lie', calf: 'hide', night: 'flee', trial: 'dark' }, { podol: { hid: false }, hymn: { hymn: 'silent', turned: 0.7 } }],
-  [{ ...first, secret: 'told', hand: 'lie', calf: 'hide', night: 'flee', answer: 'truth', trial: 'fire' }, { podol: { hid: false }, hymn: { hymn: 'silent', turned: 0.7 }, layers: { looked: true } }],
-  [{ ...first, secret: 'told', hand: 'lie', calf: 'hide', night: 'rescue', forge: 'calm', trial: 'dark' }, { podol: { hid: false }, bellows: { broke: true } }],
+  [{ ...first, secret: 'told', hand: 'lie', calf: 'hide', night: 'flee', trial: 'dark' }, { hem: { hid: false }, hymn: { hymn: 'silent', turned: 0.7 } }],
+  [{ ...first, secret: 'told', hand: 'lie', calf: 'hide', night: 'flee', answer: 'truth', trial: 'fire' }, { hem: { hid: false }, hymn: { hymn: 'silent', turned: 0.7 }, layers: { looked: true } }],
+  [{ ...first, secret: 'told', hand: 'lie', calf: 'hide', night: 'rescue', forge: 'calm', trial: 'dark' }, { hem: { hid: false }, bellows: { broke: true } }],
   // (the group holds — Anne told to Axel, Petra taught to hide: the friends pull him out; and at the forge the hammer)
-  [{ ...first, secret: 'told', hand: 'lie', calf: 'hide', night: 'flee', anne: 'axel', petra: 'hush', trial: 'friends' }, { podol: { hid: false }, hymn: { hymn: 'silent', turned: 0.7 } }],
-  [{ ...first, secret: 'told', hand: 'lie', calf: 'hide', night: 'rescue', forge: 'force', trial: 'fire' }, { podol: { hid: false }, bellows: { broke: true } }],
+  [{ ...first, secret: 'told', hand: 'lie', calf: 'hide', night: 'flee', anne: 'axel', petra: 'hush', trial: 'friends' }, { hem: { hid: false }, hymn: { hymn: 'silent', turned: 0.7 } }],
+  [{ ...first, secret: 'told', hand: 'lie', calf: 'hide', night: 'rescue', forge: 'force', trial: 'fire' }, { hem: { hid: false }, bellows: { broke: true } }],
 ];
 const plays = [];
 for (const choices of [...combos, ...ENDS]) { play = plays.length; plays.push(await walk(choices, CLEAN)); }

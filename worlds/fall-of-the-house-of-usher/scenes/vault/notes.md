@@ -2,7 +2,7 @@
 
 Chapter III. The coffin is carried into the vault beneath the house, opened, they look at her, close it, screw it down;
 through her eyes — from within; the iron door closes. Another night — outside that door, a knock. The v1 world's scene
-(the same `sklep`) moved to engine 2.
+(the same `vault`) moved to engine 2.
 
 ## How it is built
 - Camera picture, horizon 0.46. The vault — from far to near: `dark` (the darkness above the vault), `passage` (the

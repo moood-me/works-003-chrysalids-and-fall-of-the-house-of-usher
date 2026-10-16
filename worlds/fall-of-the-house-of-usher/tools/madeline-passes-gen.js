@@ -1,9 +1,9 @@
-// Builds scenes/medlin-prokhodit/scene.json and its elements/ from the scene's lib.js geometry (the arches, their soffit
+// Builds scenes/madeline-passes/scene.json and its elements/ from the scene's lib.js geometry (the arches, their soffit
 // strips, the walls, the rooms behind the doorways, the window panes the light comes through) — run from the world's
-// root: node tools/medlin-prokhodit-gen.js. The caption and the music (its key, `scale`, too) are kept from the current
+// root: node tools/madeline-passes-gen.js. The caption and the music (its key, `scale`, too) are kept from the current
 // scene.json.
 const fs = require("fs"), path = require("path");
-const DIR = path.join(__dirname, "../scenes/medlin-prokhodit"), EL = path.join(DIR, "elements");
+const DIR = path.join(__dirname, "../scenes/madeline-passes"), EL = path.join(DIR, "elements");
 const anim = { noise: () => 0 };
 const L = new Function("anim", "kit", fs.readFileSync(path.join(DIR, "lib.js"), "utf8"))(anim, {});
 const v1 = JSON.parse(fs.readFileSync(path.join(DIR, "scene.json"), "utf8"));

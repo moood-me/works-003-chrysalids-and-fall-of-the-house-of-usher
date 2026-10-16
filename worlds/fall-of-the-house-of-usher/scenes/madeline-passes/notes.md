@@ -2,8 +2,8 @@
 
 ## How it is built
 - The gallery is built in world metres, every surface where it is (lib.js). The objects of scene.json and elements/ are
-  assembled from lib.js's geometry by `tools/medlin-prokhodit-gen.js` (from the world's root:
-  `node tools/medlin-prokhodit-gen.js`): when changing the geometry (`bay`, `strip`, `windowOf`, the openings) or the
+  assembled from lib.js's geometry by `tools/madeline-passes-gen.js` (from the world's root:
+  `node tools/madeline-passes-gen.js`): when changing the geometry (`bay`, `strip`, `windowOf`, the openings) or the
   scene's light and keys, edit lib.js and the generator and rebuild — scene.json is not edited by hand: across — across
   from the axis (the walls ±3.3), distance — deep from the eye's place at the start, elevation — up from the floor. The
   engine lays the perspective, the windows' light, the haze and the reflections; the drawings are static and know nothing
@@ -93,7 +93,7 @@ Madeline after `wake` — “When I am so — I hear everything. Do not let them
 
 ## Engine 3 (v3, 2026-10-15)
 
-- `"engine": 3` (the generator `tools/medlin-prokhodit-gen.js` writes engine 3 and `crack.wgsl`). The cuts were already
+- `"engine": 3` (the generator `tools/madeline-passes-gen.js` writes engine 3 and `crack.wgsl`). The cuts were already
   told ahead. The moment `freeze:still` — she has frozen in mid-step (the game's line). The keys `doctor_present`,
   `madeline` are gone: the beats set the people and the light.
 - Step 2: the close-up is drawn by `shot`, not by its own key `closeup` (it is not redrawn at each opening).

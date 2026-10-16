@@ -1,5 +1,0 @@
-{"strings": [
-  {"text":"Roderick's room","translation":"Комната Родерика","where":"scenes/komnata-roderika/scene.json title"},
-  {"text":"He could bear no bright light, no loud sound.","translation":"Он не выносил ни яркого света, ни громкого звука.","where":"scenes/komnata-roderika/scene.json caption"},
-  {"text":"Feeble gleams of light made their way through the trellised panes.","translation":"Свет едва сочился сквозь решётчатые стёкла.","where":"scenes/komnata-roderika/scene.json captions[0] text"}
-]}

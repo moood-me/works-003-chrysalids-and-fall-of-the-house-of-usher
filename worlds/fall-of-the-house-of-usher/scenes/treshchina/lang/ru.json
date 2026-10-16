@@ -1,5 +1,5 @@
 {"strings": [
-  {"text":"The crack","translation":"Трещина","where":"scenes/treshchina/scene.json title"},
+  {"text":"The fissure","translation":"Трещина","where":"scenes/treshchina/scene.json title"},
   {"text":"The arrival","translation":"Приезд","where":"scenes/treshchina/showcase.js"},
   {"text":"Map of chapter I","translation":"Карта главы I","where":"scenes/treshchina/showcase.js"},
   {"text":"The tarn","translation":"Пруд","where":"scenes/treshchina/showcase.js"},
@@ -19,7 +19,7 @@
   {"text":"Epilogue","translation":"Эпилог","where":"scenes/treshchina/showcase.js"},
   {"text":"I. Madeline passes","translation":"I. Мэдлин проходит","where":"scenes/treshchina/showcase.js"},
   {"text":"II. The physician","translation":"II. Врач","where":"scenes/treshchina/showcase.js"},
-  {"text":"tell him","translation":"сказать ему","where":"scenes/treshchina/showcase.js"},
+  {"text":"tell him of it","translation":"рассказать","where":"scenes/treshchina/showcase.js"},
   {"text":"III. The lid","translation":"III. Крышка","where":"scenes/treshchina/showcase.js"},
   {"text":"“she may be living”","translation":"«она может быть жива»","where":"scenes/treshchina/showcase.js"},
   {"text":"“do not close it”","translation":"«не закрывай»","where":"scenes/treshchina/showcase.js"},
@@ -28,6 +28,7 @@
   {"text":"leave them loose","translation":"оставить слабо","where":"scenes/treshchina/showcase.js"},
   {"text":"III. A sound below","translation":"III. Звук снизу","where":"scenes/treshchina/showcase.js"},
   {"text":"go down","translation":"спуститься","where":"scenes/treshchina/showcase.js"},
+  {"text":"tell him","translation":"сказать ему","where":"scenes/treshchina/showcase.js"},
   {"text":"“only the wind”","translation":"«это ветер»","where":"scenes/treshchina/showcase.js"},
   {"text":"The end","translation":"Конец","where":"scenes/treshchina/showcase.js"},
   {"text":"As in Poe","translation":"Как у По","where":"scenes/treshchina/showcase.js"},

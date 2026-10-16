@@ -30,8 +30,8 @@ The move from the old engine: `e.px` (the size of a screen pixel) is gone — th
     "knot#end"
   ],
   "party": {
-    "chapter_number": "I",
-    "chapter_title": "The arrival",
+    "chapter_number": "",
+    "chapter_title": "",
     "map": null,
     "reveal": 1,
     "knot": 1

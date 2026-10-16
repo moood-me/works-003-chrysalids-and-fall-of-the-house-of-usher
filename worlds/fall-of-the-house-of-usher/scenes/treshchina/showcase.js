@@ -14,7 +14,7 @@ const WALLS = [
   { name: tr('The vault'), state: { chapter_number: 'III', chapter_title: tr('The vault'), map: null } },
   { name: tr('The whole game'), state: { chapter_number: '', chapter_title: tr('Epilogue'), map: [
     { title: tr('I. Madeline passes'), weight: '⚑', options: [opt(tr('follow her'), 'open'), opt(tr('stay with him'), 'chosen')] },
-    { title: tr('II. The physician'), weight: '⚑', options: [opt(tr('tell him'), 'chosen'), opt(tr('say nothing'), 'open')] },
+    { title: tr('II. The physician'), weight: '⚑', options: [opt(tr('tell him of it'), 'chosen'), opt(tr('say nothing'), 'open')] },
     { title: tr('III. The lid'), weight: '⚑', options: [opt(tr('“she may be living”'), 'chosen'), opt(tr('“do not close it”'), 'open'), opt(tr('say nothing'), 'open')] },
     { title: tr('III. The screws'), weight: '⚑', options: [opt(tr('screw it down'), 'open'), opt(tr('leave them loose'), 'chosen')] },
     { title: tr('III. A sound below'), weight: '⚑', options: [opt(tr('go down'), 'chosen'), opt(tr('tell him'), 'open'), opt(tr('“only the wind”'), 'open')] },

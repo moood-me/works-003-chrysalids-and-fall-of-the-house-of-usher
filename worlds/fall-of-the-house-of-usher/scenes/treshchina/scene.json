@@ -1,6 +1,6 @@
 {
   "engine": 3,
-  "title": "The crack",
+  "title": "The fissure",
   "caption": "",
   "camera": {
     "mode": "picture"
@@ -11,8 +11,8 @@
     "vignette": 0.7
   },
   "state": {
-    "chapter_number": "I",
-    "chapter_title": "The arrival",
+    "chapter_number": "",
+    "chapter_title": "",
     "map": null,
     "reveal": 1,
     "knot": 1

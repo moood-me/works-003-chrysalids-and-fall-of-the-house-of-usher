@@ -1,5 +1,5 @@
 var t = 0;
-function tr(x, h, k) {
+function tree(x, h, k) {
   var rx = h * 0.42,
     ry = h * 0.3,
     cy = -h * 0.62;
@@ -19,6 +19,6 @@ function tr(x, h, k) {
 for (var i = 0; i < 40; i++) {
   var x = -1250 + e.rnd() * 2500,
     h = 9 + e.rnd() * 7;
-  tr(x, h, i);
-  if (e.rnd() < 0.6) tr(x + h * (0.4 + e.rnd() * 0.5), h * (0.7 + e.rnd() * 0.3), i + 40);
+  tree(x, h, i);
+  if (e.rnd() < 0.6) tree(x + h * (0.4 + e.rnd() * 0.5), h * (0.7 + e.rnd() * 0.3), i + 40);
 }

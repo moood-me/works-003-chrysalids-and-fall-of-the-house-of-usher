@@ -1,5 +1,5 @@
 var t = 0;
-function tr(x, h, k) {
+function tree(x, h, k) {
   var sw = 0.12 * Math.sin(t * 0.3 + k) + 0.06 * Math.sin(t * 0.71 + k * 2);
   g.fillStyle = "#55513d";
   g.fillRect(x - 0.2, -h * 0.4, 0.4, h * 0.4);
@@ -39,4 +39,4 @@ var T = [
   [330, 12],
   [-420, 13],
 ];
-for (var i = 0; i < T.length; i++) tr(T[i][0], T[i][1], i);
+for (var i = 0; i < T.length; i++) tree(T[i][0], T[i][1], i);

@@ -172,11 +172,11 @@ function paint(g, e, o = {}) {
   const each = fn => { for (let k = 0; k < HEADINGS; k++) fn(k, seen(k * STEP)); };
   // the tail: hanging from its root, a little back (its animate swishes it)
   each((k, pr) => {
-    const troot = mul(TAIL, Hw), tr = pr(troot);
-    e.layer(NAMES.tail[k], { pivot: [tr[0], tr[1]], depth: -tr[2], box: [tr[0] - 0.5 * Hw, tr[1] - 0.1 * Hw, tr[0] + 0.5 * Hw, tr[1] + 0.65 * Hw] }, q => {
+    const troot = mul(TAIL, Hw), root = pr(troot);
+    e.layer(NAMES.tail[k], { pivot: [root[0], root[1]], depth: -root[2], box: [root[0] - 0.5 * Hw, root[1] - 0.1 * Hw, root[0] + 0.5 * Hw, root[1] + 0.65 * Hw] }, q => {
       q.fillStyle = col.mane;
       q.beginPath();
-      let prev = [tr[0], tr[1], 0.04 * Hw];
+      let prev = [root[0], root[1], 0.04 * Hw];
       for (let j = 1; j <= 5; j++) {
         const u = j / 5, p = pr(add(troot, [0, -0.5 * Hw * u, -0.06 * Hw * u])), cur = [p[0], p[1], (0.04 + 0.035 * u) * Hw];
         taper(q, prev[0], prev[1], prev[2], cur[0], cur[1], cur[2]);

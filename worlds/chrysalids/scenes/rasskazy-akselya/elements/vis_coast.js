@@ -82,7 +82,7 @@ function draw(a, s) {
       g.bezierCurveTo(0.19, -0.012, 0.24, -0.004, 0.28, 0.014);
       g.closePath();
       g.fill();
-      const tr = [
+      const trees = [
         [-0.28, -0.062, 0.17, 0],
         [-0.205, -0.066, 0.25, 1],
         [-0.13, -0.056, 0.15, 2],
@@ -90,7 +90,7 @@ function draw(a, s) {
         [0.04, -0.032, 0.13, 1],
         [0.13, -0.02, 0.19, 2],
       ];
-      for (const q of tr) {
+      for (const q of trees) {
         const x = q[0],
           y = q[1],
           h = q[2],

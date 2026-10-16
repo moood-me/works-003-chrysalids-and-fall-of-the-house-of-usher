@@ -3,9 +3,8 @@
 //   wake() — the page may be heard from now on (called on the first touch)
 //   pause(on) — all of it stands while the play is paused (bespoke.pause: ui.js ⏸) and goes on from there after — its
 //     sounds' own time (the audio's clock) stands with the play's
-//   house(level, seconds) — the house's air: wind in its cracks, a creak far off now and then,
-//     drips; one for the page, as loud as `level` (0 — silence), getting there over `seconds`
-//   rain(level, seconds) — rain on stone and water; likewise. hush(seconds) — both fall silent
+//   house(level, seconds) — the house's air: wind round an old house (a recording, sounds/); one for the page, as loud as `level` (0 — silence), getting there over `seconds`
+//   rain(level, seconds) — rain on stone and water (a recording); likewise. hush(seconds) — both fall silent
 //   unheard() → {sounds, wake()} — the same, unheard, for a step played unseen (jump.js); a step plays them as g.sound
 //   guitar({muffled}) → {note(pitch, {at, loud, bright}), strum(pitches, {at, loud, up, spread}),
 //     loud(v, seconds), stop(seconds)} — plucked strings (Karplus–Strong); pitch 'D4', 'F#3' or a MIDI number; at —
@@ -183,6 +182,22 @@ function burst(t, dest, { kind = 'white', f, Q = 1, len, loud }) {
   e.connect(dest);
 }
 
+// recordings (sounds/ — CC0, from Freesound: sounds/README.md): fetched and decoded once each, played round and round from a
+// random point into a loop's bus, `gain` bringing it to as loud as the loop it took the place of
+const recordings = {};
+function recording(file) {
+  return (recordings[file] ??= fetch(new URL(`sounds/${file}`, import.meta.url)).then(r => r.arrayBuffer()).then(b => audio().decodeAudioData(b)));
+}
+function recorded(file, gain) {
+  return out => {
+    const a = audio(), s = a.createBufferSource(), g = a.createGain();
+    g.gain.value = gain;
+    s.loop = true;
+    s.connect(g).connect(out);
+    recording(file).then(buf => { s.buffer = buf; s.start(a.currentTime, Math.random() * buf.duration); });
+  };
+}
+
 // the loops: one of each for the page
 const loops = {};
 function loop(name, make, level, seconds) {
@@ -193,70 +208,10 @@ function loop(name, make, level, seconds) {
   }
   to(loops[name].gain, level, seconds);
 }
-export function house(level = 1, seconds = 3) {
-  loop('house', out => {
-    const a = audio();
-    // the wind: low, moving, and a thin whistle in the gaps
-    const low = setup(a.createBiquadFilter(), { type: 'bandpass', frequency: 380, Q: 0.7 }), lowAmp = a.createGain();
-    lowAmp.gain.value = 0.55;
-    hiss('brown', a.currentTime).connect(low).connect(lowAmp).connect(out);
-    drift(low.frequency, 0.045, 160);
-    drift(lowAmp.gain, 0.07, 0.25);
-    const gap = setup(a.createBiquadFilter(), { type: 'bandpass', frequency: 1150, Q: 9 }), gapAmp = a.createGain();
-    gapAmp.gain.value = 0.05;
-    hiss('pink', a.currentTime).connect(gap).connect(gapAmp).connect(out);
-    drift(gap.frequency, 0.031, 220);
-    drift(gapAmp.gain, 0.023, 0.05);
-    // now and then: a creak somewhere in the house, a drip
-    const far = setup(a.createBiquadFilter(), { type: 'lowpass', frequency: 1100 });
-    far.connect(out);
-    let next = { creak: a.currentTime + 4, drip: a.currentTime + 1.5 };
-    setInterval(() => {
-      if (out.gain.value < 0.01) return;
-      const now = a.currentTime;
-      if (next.creak < now + 0.3) {
-        creak(next.creak, far, { rate: 30 + Math.random() * 30, len: 0.6 + Math.random() * 0.9, loud: 0.12 + Math.random() * 0.12, bands: [[520 + Math.random() * 200, 8], [1300, 6]] });
-        next.creak += 6 + Math.random() * 12;
-      }
-      if (next.drip < now + 0.3) {
-        drip(next.drip, out);
-        next.drip += 1.2 + Math.random() * 4.5;
-      }
-      next = { creak: Math.max(next.creak, now), drip: Math.max(next.drip, now) };
-    }, 250);
-  }, level, seconds);
-}
-function drip(t, dest) {
-  const a = audio(), o = a.createOscillator(), e = a.createGain(), f = 1300 + Math.random() * 1100;
-  o.frequency.setValueAtTime(f, t);
-  o.frequency.exponentialRampToValueAtTime(f * 0.55, t + 0.05);
-  e.gain.setValueAtTime(0, t);
-  e.gain.linearRampToValueAtTime(0.06 + Math.random() * 0.05, t + 0.003);
-  e.gain.exponentialRampToValueAtTime(0.0005, t + 0.16);
-  o.connect(e).connect(dest);
-  o.start(t);
-  o.stop(t + 0.2);
-}
-export function rain(level = 1, seconds = 3) {
-  loop('rain', out => {
-    const a = audio();
-    const hissing = a.createGain();
-    hissing.gain.value = 0.32;
-    hiss('white', a.currentTime).connect(setup(a.createBiquadFilter(), { type: 'highpass', frequency: 600 }))
-      .connect(setup(a.createBiquadFilter(), { type: 'lowpass', frequency: 6500 })).connect(hissing).connect(out);
-    const water = a.createGain();
-    water.gain.value = 0.45;
-    hiss('pink', a.currentTime).connect(setup(a.createBiquadFilter(), { type: 'bandpass', frequency: 260, Q: 0.8 })).connect(water).connect(out);
-    drift(water.gain, 0.06, 0.12);
-    // drops on stone, near
-    let next = a.currentTime;
-    setInterval(() => {
-      if (out.gain.value < 0.01) return;
-      for (; next < a.currentTime + 0.3; next += 0.02 + Math.random() * 0.12)
-        burst(Math.max(next, a.currentTime), out, { f: 2200 + Math.random() * 3500, Q: 3, len: 0.015 + Math.random() * 0.02, loud: 0.05 + Math.random() * 0.12 });
-    }, 200);
-  }, level, seconds);
-}
+// wind in an old house: a recording
+export function house(level = 1, seconds = 3) { loop('house', recorded('house-797666.mp3', 1.33), level, seconds); }
+// rain: a recording
+export function rain(level = 1, seconds = 3) { loop('rain', recorded('rain-water-859807.mp3', 2.88), level, seconds); }
 export function hush(seconds = 2) {
   if (!ctx) return;
   for (const out of Object.values(loops)) to(out.gain, 0, seconds);

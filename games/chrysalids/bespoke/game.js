@@ -65,7 +65,8 @@ export default async function (b) {
   const mainDone = () => kept.step >= (CHAPTERS[kept.chapter]?.steps.length ?? 0);
   // the chapters the player may go to: those the main run has played, where it is, the next once this one is done
   const open = () => [...new Set([...Object.keys(kept.starts).map(Number), main(), ...(mainDone() ? [main() + 1] : [])])].filter(i => i <= END);
-  const replayOf = i => ({ ...run(kept.starts[i]), step: 0 });
+  // (a chapter the main run hasn't begun — its author went to it by ☰: as if nothing was chosen before it)
+  const replayOf = i => ({ ...run(kept.starts[i] ?? { ...RUN, chapter: i }), step: 0 });
 
   // «Нити»: the play on the sky, chapter `shown` in the middle; its knot offers `options`; a neighbour's knot (a chapter
   // one may go to) — its title: chosen, the sky goes to it (`shown`: the scene moves its sky there, over GO s) and its

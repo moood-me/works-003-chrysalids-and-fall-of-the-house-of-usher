@@ -2,5 +2,8 @@
   {"text":"Blessed is the Norm","translation":"Благословенна норма","where":"scenes/meeting-house/elements/wall.js"},
   {"text":"The meeting-house","translation":"Дом собраний","where":"scenes/meeting-house/scene.json title"},
   {"text":"They tried me at night, in the meeting-house, by one lamp.","translation":"Судили ночью, в доме собраний, при одной лампе.","where":"scenes/meeting-house/scene.json caption"},
-  {"text":"Over the elders’ table hung a board: BLESSED IS THE NORM.","translation":"Над столом старейшин висела доска: «Благословенна норма».","where":"scenes/meeting-house/scene.json captions[0] text"}
+  {"text":"Over the elders’ table hung a board: BLESSED IS THE NORM.","translation":"Над столом старейшин висела доска: «Благословенна норма».","where":"scenes/meeting-house/scene.json captions[0] text"},
+  {"text":"The barn burns beyond the windows","translation":"За окнами горит сарай","where":"scenes/meeting-house/scene.json directions[0] name"},
+  {"text":"The lamp falls, the oil burns on the floor","translation":"Лампа падает, масло горит на полу","where":"scenes/meeting-house/scene.json directions[1] name"},
+  {"text":"Everyone runs to the door","translation":"Все бегут к двери","where":"scenes/meeting-house/scene.json directions[2] name"}
 ]}

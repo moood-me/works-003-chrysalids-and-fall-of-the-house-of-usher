@@ -1,4 +1,4 @@
-// «The reading» (IV; «The storm and the reading», after the beat `read`): the narrator reads «The Mad Trist» aloud to Roderick.
+// «Чтение» (IV; «Буря и чтение», after the beat `read`): the narrator reads «Безумный Тристан» aloud to Roderick.
 //   1. what he does — reads aloud, line by line, to calm him; 2. wants — to drown the house's sounds in the old story;
 //   3. the dread growing with each passage; 4. the player — reading on, and the choice to read louder or to stop and
 //   listen.
@@ -6,7 +6,7 @@
 // reading is the action itself — its lines are said inside it). After each passage the house answers from below, as the
 // book says — the scene's `sound` 1…3 (the candle shudders, dust falls, the crack breathes, Roderick flinches and rocks
 // harder) and its sound (wood splintering; a shriek; a brazen clang), the scene's turn meanwhile. Between passages the
-// book's petals: «Read louder» — read on, louder, over it (he rocks harder: `rock`); «Listen» — the book lowered, he
+// book's petals: «Читать громче» — read on, louder, over it (he rocks harder: `rock`); «Слушать» — the book lowered, he
 // listens (`listen`): the house, and under it something faint. Neutral: the plate's ways show each choice.
 //   → { louder: how many times read on louder, listened: how many times stopped to listen }
 import { splinter, shriek, clang, scratch } from '../sound.js';
@@ -14,16 +14,16 @@ import { until, once } from '../hands.js';
 
 const PASSAGES = [
   [
-    tr.line('narrator', 'And Ethelred, who was by nature of a doughty heart, uplifted his mace and smote upon the plankings of the hermit’s door,'),
-    tr.line('narrator', 'so that the noise of the dry and hollow-sounding wood, ripped all asunder, alarummed and reverberated throughout the forest.'),
+    'И Этельред, муж отважного сердца, подъял палицу и ударил в доски двери отшельника,',
+    'и треск сухого, раздираемого дерева гулко разнёсся по всему лесу.',
   ],
   [
-    tr.line('narrator', 'But he found there no hermit, but in the stead thereof a dragon of a fiery tongue, and smote it;'),
-    tr.line('narrator', 'and the dragon fell, and gave up his pesty breath with a shriek so horrid and harsh that Ethelred had fain to close his ears with his hands.'),
+    'Но нашёл он там не отшельника, а дракона огнеязыкого, и поразил его;',
+    'и дракон пал, испустив вопль столь страшный, что Этельред зажал уши руками.',
   ],
   [
-    tr.line('narrator', 'And Ethelred approached valorously over the silver pavement to where the brazen shield was upon the wall; which in sooth tarried not for his full coming —'),
-    tr.line('narrator', 'but fell down at his feet upon the silver floor, with a mighty great and terrible ringing sound.'),
+    'И пошёл Этельред по серебряному полу к медному щиту, но щит не дождался его —',
+    'он пал к ногам его на серебряный пол с великим и страшным звоном.',
   ],
 ];
 const ANSWERS = [splinter, shriek, clang];
@@ -31,11 +31,11 @@ const LISTEN = 5; // s of silence, listening
 const LINES = PASSAGES.flat().length;
 
 export default {
-  title: 'The reading', // (as the author's ☰ lists it)
+  title: 'Чтение', // (as the author's ☰ lists it)
   about: 70,
   skipped: { louder: 0, listened: 0 },
   async run(g, b, opts, signal) {
-    const mg = g.minigame({ phrase: tr('I read aloud to him an antique romance of the knight Ethelred') });
+    const mg = g.minigame({ phrase: 'Я читал ему вслух старый роман о рыцаре Этельреде' });
     const book = mg.mark({ at: 'book@', kind: 'ring' });
     // (seconds by the mini-game's clock: it stands with the play's pause)
     const after = s => { const t1 = mg.t + s; return until(mg, () => mg.t >= t1); };
@@ -59,7 +59,7 @@ export default {
       if (!(await after(ANSWERS[i]() * 0.7))) return this.skipped;
       mg.sceneTurn(false);
       if (i === PASSAGES.length - 1) break;
-      const choice = mg.press({ on: book, petals: [{ id: 'louder', label: tr('Read louder') }, { id: 'listen', label: tr('Listen') }] });
+      const choice = mg.press({ on: book, petals: [{ id: 'louder', label: 'Читать громче' }, { id: 'listen', label: 'Слушать' }] });
       const how = await once(mg, choice, 'choose');
       if (!how) return this.skipped;
       choice.remove();

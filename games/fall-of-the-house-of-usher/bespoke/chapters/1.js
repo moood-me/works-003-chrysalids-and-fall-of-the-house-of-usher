@@ -1,35 +1,35 @@
-// I. The arrival — the house at dusk: the player looks for the cause of the gloom and finds only the crack
-// («Cause»); may look into the tarn. Roderick's room: the meeting, the room the player lives in his way
-// or their own («Quieter or brighter»), the portrait. The gallery: Madeline passes — ⚑ follow her (her
+// I. Приезд — the house at dusk: the player looks for the cause of the gloom and finds only the crack
+// («Причина»); may look into the tarn. Roderick's room: the meeting, the room the player lives in his way
+// or their own («Тише или светлее»), the portrait. The gallery: Madeline passes — ⚑ follow her (her
 // catalepsy seen close, her one line, a promise) or stay with him. design.md, scenes.md (docs/usher).
 // Leaves: choices.tarn, room, madeline, promise; marks.promise.
 import { SCENES } from '../story.js';
-import cause from '../minigames/cause.js';
-import quieter from '../minigames/quieter.js';
+import prichina from '../minigames/prichina.js';
+import tishe from '../minigames/tishe.js';
 
 const HOUSE = SCENES.house, ROOM = SCENES.room, GALLERY = SCENES.gallery;
 
 // what the player finds, looking for the cause of the gloom: nothing (until the crack)
 const LOOKS = {
-  windows: tr.line('narrator', 'Vacant, eye-like windows. So vast a house — and but two to dwell in it.'),
-  trees: tr.line('narrator', 'Old trees. Dead ones — nothing more.'),
-  tarn: tr.line('narrator', 'Black water. A still and silent tarn.'),
+  windows: 'Пустые окна. Дом большой, а живут в нём двое.',
+  trees: 'Старые деревья. Мёртвые — только и всего.',
+  tarn: 'Чёрная вода. Стоячий пруд.',
 };
 // Roderick's answer to each thing done in his room, his way or the narrator's
 const ANSWERS = {
-  his: { candles: tr.line('roderick', 'I thank you…'), window: tr.line('roderick', 'Yes. It is better so.'), clock: tr.line('roderick', 'Silence. I thank you.') },
-  mine: { candles: tr.line('roderick', 'Do not… The light is torture to my eyes.'), window: tr.line('roderick', 'Shut it! The wind — it shrieks.'), clock: tr.line('roderick', 'Each stroke — like a nail.') },
+  his: { candles: 'Спасибо…', window: 'Да. Так лучше.', clock: 'Тишина. Благодарю тебя.' },
+  mine: { candles: 'Не надо… Свет режет глаза.', window: 'Закрой! Ветер — он кричит.', clock: 'Каждый удар — как гвоздь.' },
 };
 
 export default {
   number: 'I',
-  title: tr('The arrival'),
-  titles: ['The house above the tarn', 'Roderick', 'Madeline passes'],
+  title: 'Приезд',
+  titles: ['Дом над прудом', 'Родерик', 'Мэдлин проходит'],
   choices: [
-    { id: 'tarn', weight: '~', title: tr('The tarn'), options: [{ id: 'looked', label: tr('into the water') }, { id: 'not', label: tr('ride on') }] },
-    { id: 'room', weight: '~', title: tr('His chamber'), options: [{ id: 'his', label: tr('his way') }, { id: 'mine', label: tr('my way') }] },
-    { id: 'madeline', weight: '⚑', title: tr('Madeline passes'), options: [{ id: 'follow', label: tr('follow her') }, { id: 'stay', label: tr('stay with him') }] },
-    { id: 'promise', weight: '~', title: tr('Her plea'), options: [{ id: 'promised', label: tr('— I promise') }, { id: 'silent', label: tr('say nothing') }] },
+    { id: 'tarn', weight: '~', title: 'Пруд', options: [{ id: 'looked', label: 'посмотреть в воду' }, { id: 'not', label: 'ехать к дому' }] },
+    { id: 'room', weight: '~', title: 'Его комната', options: [{ id: 'his', label: 'по-его' }, { id: 'mine', label: 'по-своему' }] },
+    { id: 'madeline', weight: '⚑', title: 'Мэдлин проходит', options: [{ id: 'follow', label: 'пойти за ней' }, { id: 'stay', label: 'остаться с ним' }] },
+    { id: 'promise', weight: '~', title: 'Её просьба', options: [{ id: 'promised', label: '— Обещаю' }, { id: 'silent', label: 'промолчать' }] },
   ],
   steps: [
     // the house over the tarn at dusk: the gloom without a cause; the crack
@@ -38,22 +38,22 @@ export default {
       g.sound.house(0.35, 6);
       await g.beat('arrive');
       await g.beat('look', { wait: false });
-      await g.say('narrator', 'I know not how it was — but, with the first glimpse of the building, a sense of insufferable gloom pervaded my spirit.');
-      await g.play(cause, {
+      await g.say('narrator', 'Не знаю отчего, но при первом взгляде на дом тоска овладела мной.');
+      await g.play(prichina, {
         onLook: (which, n) => {
           g.sound.house(0.35 * (1 - n / 3), 3); // the gloom: the air goes silent, look by look
           return g.say('narrator', LOOKS[which]);
         },
       });
-      await g.say('narrator', 'A barely perceptible fissure. From the roof down to the very water.');
+      await g.say('narrator', 'Едва заметная трещина. От крыши до самой воды.');
       g.gauge('crack');
       const tarn = await g.choose('tarn', {
-        tarn: [{ id: 'looked', label: tr('Into the water') }],
-        house: [{ id: 'not', label: tr('Ride on') }],
+        tarn: [{ id: 'looked', label: 'Посмотреть в воду' }],
+        house: [{ id: 'not', label: 'Ехать к дому' }],
       });
       if (tarn === 'looked') {
         await g.beat('tarn');
-        await g.say('narrator', 'In the reflection, at an upper window, someone stood. I raised my eyes — the window was vacant.');
+        await g.say('narrator', 'В отражении, в верхнем окне, кто-то стоял. Я поднял глаза — окно было пустым.');
         g.scale('sanity', -1);
       }
       await g.beat('to_door');
@@ -66,13 +66,13 @@ export default {
       const lips = g.told('meet:lips');
       const meet = g.beat('meet');
       await lips;
-      await g.say('roderick', 'You have come. I had thought that no one would come again.', 'narrator');
+      await g.say('roderick', 'Ты приехал. Я думал — уже никто не приедет.', 'narrator');
       await meet;
-      await g.say('narrator', 'I scarcely knew him. A cadaverousness of complexion, an eye large and luminous, hair of a more than web-like softness.');
+      await g.say('narrator', 'Я едва узнал его. Лицо как у мертвеца, огромные светлые глаза, волосы — паутиной.');
       await g.beat('room');
-      await g.say('roderick', 'Forgive me. The light is torture to my eyes. Every sound — a blow.');
+      await g.say('roderick', 'Прости. Свет режет мне глаза. Каждый звук — как удар.');
       const done = { his: 0, mine: 0 };
-      const room = await g.play(quieter, {
+      const room = await g.play(tishe, {
         onAct: async (kind, which) => {
           done[kind]++;
           g.scale('trust', kind === 'his' ? 1 : -1);
@@ -82,15 +82,15 @@ export default {
       g.state.choices.room = room.his >= room.mine ? 'his' : 'mine';
       // the room done his way: said before the portrait
       if (room.his >= 2) {
-        await g.say('narrator', 'I came to live by his rules. It was easier so — for him.');
+        await g.say('narrator', 'Я стал жить по его правилам. Так было проще — ему.');
         g.scale('sanity', -1);
       }
       // (he speaks once he stands before her, looking up: the scene tells it)
       const before = g.told('portrait:before');
       const portrait = g.beat('portrait');
       await before;
-      await g.say('roderick', 'Madeline. My sister. We are twins.');
-      await g.say('roderick', 'She is ill. At times she grows rigid — as one dead. Then she comes to herself again.');
+      await g.say('roderick', 'Мэдлин. Моя сестра. Мы близнецы.');
+      await g.say('roderick', 'Она больна. Иногда застывает — как мёртвая. Потом приходит в себя.');
       await portrait;
     },
     // the gallery: Madeline passes; ⚑ follow her or stay with him
@@ -99,16 +99,16 @@ export default {
       await g.beat('pass');
       await g.beat('weep');
       const way = await g.choose('madeline', {
-        madeline: [{ id: 'follow', label: tr('Follow her') }],
-        roderick: [{ id: 'stay', label: tr('Stay with him') }],
+        madeline: [{ id: 'follow', label: 'Пойти за ней' }],
+        roderick: [{ id: 'stay', label: 'Остаться с ним' }],
       });
       if (way === 'stay') {
         // (he speaks once his hands are down from his face: the scene tells it)
         const talks = g.told('stay:talk');
         const stay = g.beat('stay');
         await talks;
-        await g.say('roderick', 'We have ever felt each other. When she suffers — I suffer.');
-        await g.say('roderick', 'The physicians know not what it is. One day she will grow rigid — and not awaken.');
+        await g.say('roderick', 'Мы всегда чувствовали друг друга. Когда ей больно — больно мне.');
+        await g.say('roderick', 'Врачи не знают, что это. Однажды она застынет — и не очнётся.');
         await stay;
         g.scale('trust', 1);
         return;
@@ -119,20 +119,20 @@ export default {
       const still = g.told('freeze:still');
       const frozen = g.beat('freeze');
       await still;
-      await g.say('narrator', 'She stood fixed in mid-step. She did not breathe. Her eyes were open.');
+      await g.say('narrator', 'Она застыла на полушаге. Не дышала. Глаза открыты.');
       await frozen;
       await g.beat('wake');
       g.set('speak', 1);
-      await g.say('madeline', 'When I am so — I hear everything. Do not let them shut me in.', 'narrator');
+      await g.say('madeline', 'Когда я такая — я всё слышу. Не дай им меня закрыть.', 'narrator');
       g.set('speak', 0);
       await g.beat('look');
-      const promise = await g.choose('promise', 'madeline', [{ id: 'promised', label: tr('I promise') }, { id: 'silent', label: tr('Say nothing') }]);
+      const promise = await g.choose('promise', 'madeline', [{ id: 'promised', label: 'Обещаю' }, { id: 'silent', label: 'Промолчать' }]);
       if (promise === 'promised') {
-        await g.say('narrator', 'I promise.');
-        g.mark('promise', true, tr('Madeline will remember this.'));
+        await g.say('narrator', 'Обещаю.');
+        g.mark('promise', true, 'Мэдлин это запомнит.');
       }
       await g.beat('gone');
-      await g.say('narrator', 'I never beheld her living again.');
+      await g.say('narrator', 'Больше я не видел её живой.');
     },
   ],
 };

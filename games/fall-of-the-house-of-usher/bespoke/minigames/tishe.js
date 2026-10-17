@@ -1,4 +1,4 @@
-// «Quieter or brighter» (I, «Roderick's room», after the beat `room`): the friend goes round Roderick's room.
+// «Тише или светлее» (I, «Комната Родерика», after the beat `room`): the friend goes round Roderick's room.
 //   1. what he does — sets the room right: the candles, the window, the clock; 2. wants — to ease his friend, or to let
 //   some life into the room; 3. pity and unease in the sick man's room; 4. the player — choosing, thing by thing, his way
 //   or one's own, and seeing what it does to him.
@@ -14,18 +14,18 @@ import { once } from '../hands.js';
 
 // what can be done with each thing: [the petal's words, the scene's key, to what, over seconds]; where it is pressed
 const ROOM = {
-  candles: { at: 'candles@', his: [tr('Dim them'), 'candles', 0.3, 1.4], mine: [tr('Light more'), 'candles', 1.6, 1.8] },
-  window: { at: 'window#glass', his: [tr('Draw the curtain'), 'curtain', 1, 2.4], mine: [tr('Open the window'), 'window_open', 1, 1.6] },
-  clock: { at: 'clock#dial', his: [tr('Stop the clock'), 'clock', 0, 2.6], mine: [tr('Wind the clock'), 'clock', 1, 1.8] },
+  candles: { at: 'candles@', his: ['Притушить', 'candles', 0.3, 1.4], mine: ['Зажечь ещё', 'candles', 1.6, 1.8] },
+  window: { at: 'window#glass', his: ['Задёрнуть', 'curtain', 1, 2.4], mine: ['Открыть окно', 'window_open', 1, 1.6] },
+  clock: { at: 'clock#dial', his: ['Остановить часы', 'clock', 0, 2.6], mine: ['Завести часы', 'clock', 1, 1.8] },
 };
 const WAY = { his: 'theirs', mine: 'own' }; // (the plate's colour of each way)
 
 export default {
-  title: 'Quieter or brighter', // (as the author's ☰ lists it)
+  title: 'Тише или светлее', // (as the author's ☰ lists it)
   about: 45,
   skipped: { his: 2, mine: 1, order: [['candles', 'his'], ['window', 'his'], ['clock', 'mine']] },
   async run(g, b, { onAct } = {}, signal) {
-    const mg = g.minigame({ phrase: tr('Every ray and every sound gave him pain') });
+    const mg = g.minigame({ phrase: 'Каждый луч и каждый звук причиняли ему боль' });
     const order = [];
     const things = Object.entries(ROOM).map(([which, o]) => {
       const mark = mg.mark({ at: o.at, kind: 'ring' });

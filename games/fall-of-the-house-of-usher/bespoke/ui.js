@@ -42,7 +42,7 @@ export function ui(layer) {
   const tools = el('div', 'tools', layer);
   const skips = []; // what ⏭ does, the latest last
   // (a button is never focused: the keys are the page's)
-  const skip = Object.assign(el('button', '', tools), { type: 'button', textContent: '⏭', title: tr('skip'), onclick: () => skips.at(-1)?.(), onmousedown: e => e.preventDefault() });
+  const skip = Object.assign(el('button', '', tools), { type: 'button', textContent: '⏭', title: 'пропустить', onclick: () => skips.at(-1)?.(), onmousedown: e => e.preventDefault() });
   const skipShown = () => { skip.hidden = !skips.length; };
   skipShown();
   return {
@@ -95,16 +95,16 @@ export function ui(layer) {
       addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
       const open = () => {
         const here = at(), panel = el('div', 'author-panel');
-        panel.append(button('✕', 'close (Esc)', close), ...chapters.map((c, ci) => {
+        panel.append(button('✕', 'закрыть (Esc)', close), ...chapters.map((c, ci) => {
           const col = el('section');
           el('h3', '', col).textContent = c.number ? `${c.number}. ${c.title}` : c.title;
           for (const [si] of c.steps.entries()) {
-            const step = button(c.titles?.[si] || `step ${si + 1}`, '', () => go(ci, si));
+            const step = button(c.titles?.[si] || `шаг ${si + 1}`, '', () => go(ci, si));
             if (ci === here.chapter && si === here.step) step.className = 'here';
             // (its minigames under it, once they are known: straight to one)
             const games = el('div', 'minigames');
             plays(ci, si).then(list => games.append(...list.map((name, k) =>
-              Object.assign(button(`◆ ${name}`, 'straight to the mini-game', () => go(ci, si, k)), { className: 'minigame' }))));
+              Object.assign(button(`◆ ${name}`, 'сразу к мини-игре', () => go(ci, si, k)), { className: 'minigame' }))));
             col.append(step, games);
           }
           return col;
@@ -286,7 +286,7 @@ function unfold(layer, { text, highlight = '', sign = '' }, signal) {
     const panel = el('div', `panel ${part}`, letter);
     el('div', 'face front', panel).append(part === 'top' ? sheet : sheet.cloneNode(true));
     const back = el('div', 'face back', panel);
-    if (part === 'top') el('div', 'seal', back).textContent = tr.c('the seal: Usher’s initial', 'U');
+    if (part === 'top') el('div', 'seal', back).textContent = 'А';
   }
   let stage = 'folded';
   const wait = ms => new Promise(ok => setTimeout(ok, ms));
@@ -305,7 +305,7 @@ function unfold(layer, { text, highlight = '', sign = '' }, signal) {
         await wait(1400);
         letter.classList.add('read');
         await wait(2600);
-        hint.textContent = tr('fold');
+        hint.textContent = 'сложить';
         hint.classList.add('on');
         stage = 'open';
       } else if (stage === 'open') {
@@ -330,7 +330,7 @@ function unfold(layer, { text, highlight = '', sign = '' }, signal) {
       veil.classList.add('on');
       veil.focus({ preventScroll: true });
       await wait(1600);
-      hint.textContent = tr('unfold');
+      hint.textContent = 'развернуть';
       if (stage === 'folded') hint.classList.add('on');
     });
   });

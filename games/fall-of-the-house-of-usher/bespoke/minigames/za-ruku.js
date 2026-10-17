@@ -1,4 +1,4 @@
-// «By the hand» (II, «The approach to the house», a grey day, in the beat `walk`): the narrator leads Roderick out along the causeway
+// «За руку» (II, «Подъезд к дому», a grey day, in the beat `walk`): the narrator leads Roderick out along the causeway
 // by the hand.
 //   1. what he does — leads him out by the hand, against his resisting; 2. wants — to get him out of the house into the
 //   air; 3. patience, pity, firmness; 4. the player — drawing someone reluctant along, step by step.
@@ -18,11 +18,11 @@ const ON = 0.6; // the hand drawn this far along its way: a step on
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 
 export default {
-  title: 'By the hand', // (as the author's ☰ lists it)
+  title: 'За руку', // (as the author's ☰ lists it)
   about: 35,
   skipped: { seconds: 0, letGo: 0 },
   async run(g, b, opts, signal) {
-    const mg = g.minigame({ phrase: tr('For many years he had not ventured forth, and he balked at every step') });
+    const mg = g.minigame({ phrase: 'Он не выходил из дома много лет и упирался на каждом шаге' });
     const send = keys(g);
     const at = () => clamp(+g.get('walk_at') || 0);
     const w0 = Math.min(at(), MIDDLE);

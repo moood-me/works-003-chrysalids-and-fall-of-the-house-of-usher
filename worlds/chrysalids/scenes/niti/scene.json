@@ -12,7 +12,8 @@
   },
   "title": "Нити",
   "camera": {
-    "mode": "picture"
+    "mode": "panorama",
+    "span": [0, 35]
   },
   "caption": "",
   "horizon": 0.83,

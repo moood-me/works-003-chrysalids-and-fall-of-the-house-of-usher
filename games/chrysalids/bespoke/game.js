@@ -201,7 +201,7 @@ export default async function (b) {
         const picked = options ? await hub.ask(drawn.at(ref), options) : null;
         if (!picked) { asked = null; continue; }
         if (picked.id === 'author') { author(); continue; }
-        if (replay && !['replay', 'keep', 'drop'].includes(picked.id) && asked !== picked.id) { asked = picked.id; again = ref; continue; }
+        if (replay && !['replay', 'keep', 'drop', 'main'].includes(picked.id) && asked !== picked.id) { asked = picked.id; again = ref; continue; }
         return picked.id;
       }
     } finally {
@@ -234,7 +234,7 @@ export default async function (b) {
       if (replay.done) { add(`knot:${i}`, 'keep', tr('Keep')); add(`knot:${i}`, 'drop', tr('Undo')); }
       else { add(`cursor:${i}`, 'replay', tr('Continue the replay')); add(`cursor:${i}`, 'back', tr('Back to the main run')); }
     }
-    if (kept.chapter < END) add(`go:${kept.chapter}`, 'main', kept.step ? tr('Continue') : tr('Start'));
+    if (kept.chapter < END) add(`go:${kept.chapter}`, 'main', replay ? tr('Drop the replay') : kept.step ? tr('Continue') : tr('Start'));
     for (let i = 0; i < Math.min(kept.chapter, END); i++) {
       if (kept.steps[i]?.[0]) add(`knot:${i}`, `chapter:${i}`, tr('Replay the chapter'));
       if (i === growing) continue;

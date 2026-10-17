@@ -29,8 +29,8 @@
 //     skipped (or skipped(opts): what a clean play of it gives with those opts), run: async (g, b, opts, signal) → its
 //     result}, made of the language of mini-games (bespoke.minigame).
 //     The signal aborts when it is skipped (the page's ⏭ → b.minigame.skip(): in a step the player has seen, or once
-//     SKIPPABLE s have gone by in it) or the step is left: it stops; → `skipped` then — read as played: a skipped minigame leaves in the story the same
-//     trace as one played (the plain good outcome)
+//     SKIPPABLE s have gone by in it) or the step is left: it stops; → `skipped` then — read as played: a skipped
+//     minigame leaves in the story the same trace as one played (the plain good outcome)
 //   g.minigame({phrase, sample}) — inside a minigame's run: the language's mini-game begun, left when the signal
 //     aborts; its ⏭ ends the minigame
 //   g.scale(name, delta, quiet) — crack, sanity or trust moves; the player sees which way (the gauge, the words) unless
@@ -207,7 +207,7 @@ export function context(b, view, hub, state, j = null, { forward = null } = {}) 
         if (fast) await alive(land());
         choosing = true;
         ahead();
-        try { return await alive(hub.offer(offers, { seconds: timed?.seconds })); } finally { choosing = false; ahead(); }
+        try { return await alive(hub.offer(offers, timed?.seconds)); } finally { choosing = false; ahead(); }
       };
       // unseen: as the play chose it — else the first offered; one it chose that isn't here: on time — its moment
       // passed (late), else offered once seen
@@ -336,13 +336,14 @@ export function context(b, view, hub, state, j = null, { forward = null } = {}) 
 // The player's choices, what the scenes tell and the keys they set, listened to once for the whole play (bespoke.on
 // keeps a listener for good) — game.js owns it: whatever is being chosen now gets the action; whoever waits for a tell
 // hears it; whoever watches a key, its changes.
-//   hub.offer({ref: options}, {seconds, lead, quiet, touched, at}) → the action once the player has chosen it (what was
-//     offered before is dropped): a plain choice of the language of mini-games — a mark on each point (those of quiet:
-//     smaller and paler; at: {ref: fn → {x, y} | null} — those on what the game draws, where fn says: map.js); a touch
-//     opens its options as petals, one too (what is chosen is seen in words first; touched(ref) is told), a petal
-//     pressed is chosen; one who touches no mark for SHOW s is shown how: the ghost finger on each in turn (lead: on
-//     those only). seconds — on time: the arc of time on
-//     each mark runs down (the mini-game's clock: it stands with the play's pause); out — null, the marks gone
+//   hub.offer({ref: options}, seconds) → the action once the player has chosen it (what was offered before is
+//     dropped): a plain choice of the language of mini-games — a mark on each point; a touch opens its options as
+//     petals, one too (what is chosen is seen in words first), a petal pressed is chosen; one who touches no mark for
+//     SHOW s is shown how: the ghost finger on each in turn. seconds — on time: the arc of time on each mark runs down
+//     (the mini-game's clock: it stands with the play's pause); out — null, the marks gone
+//   hub.ask(at, options) → the action chosen, or null: a mark of the plain choice born open where the game's own
+//     drawing was pressed (at: fn → {x, y} page px — map.js), its options out as petals at once; a touch off them folds
+//     it — null, the mark gone (nothing waits idle)
 //   hub.withdraw() — nothing offered; hub.told(text, ms) → true once the scene tells it, false if ms pass;
 //   hub.watch(key, fn) → off — fn(value, old) on each change of the key
 const SHOW = 8; // s: nothing pressed so long — the ghost shows how
@@ -362,32 +363,44 @@ export function listen(b) {
   });
   b.on('change', (value, old, key) => { for (const w of watching) if (w.key === key) w.fn(value, old); });
   return {
-    offer(offers, { seconds, lead = null, quiet = [], touched = null, at = {} } = {}) {
+    offer(offers, seconds) {
       offered?.leave();
-      const mg = offered = b.minigame.start({ plate: false }), refs = Object.keys(offers), shows = [], marks = [];
+      const mg = offered = b.minigame.start({ plate: false }), refs = Object.keys(offers), presses = [], marks = [];
       // (the thing itself glows when it alone is offered: one breath in one place)
-      if (refs.length === 1 && !at[refs[0]]) mg.glow(refs[0].split('#')[0]);
-      let shown = false, touch = false;
+      if (refs.length === 1) mg.glow(refs[0].split('#')[0]);
+      let shown = false, touched = false;
       return new Promise(ok => {
         const over = action => { mg.leave(); offered = null; ok(action); };
         const chosen = (mark, action) => { mg.snap({ at: mark }); over(action); };
         for (const ref of refs) {
-          const options = offers[ref], mark = mg.mark({ at: at[ref] ?? (ref.includes('#') ? ref : `${ref}@`), ...(seconds ? { time: 1 } : {}),
-            ...(quiet.includes(ref) ? { quiet: true } : {}) });
+          const options = offers[ref], mark = mg.mark({ at: ref.includes('#') ? ref : `${ref}@`, ...(seconds ? { time: 1 } : {}) });
           const press = mg.press({ on: mark, petals: options });
-          press.on('down', () => { touch = true; touched?.(ref); });
+          press.on('down', () => { touched = true; });
           press.on('choose', ({ id }) => chosen(mark, options.find(o => o.id === id)));
-          if (!lead || lead.includes(ref)) shows.push(press);
+          presses.push(press);
           marks.push(mark);
         }
         // (by the mini-game's clock: the ghost after SHOW s untouched; the time running down)
         mg.on('frame', ({ t }) => {
-          if (!shown && !touch && t >= SHOW) { shown = true; if (shows.length) mg.show({ gestures: shows }); }
+          if (!shown && !touched && t >= SHOW) { shown = true; mg.show({ gestures: presses }); }
           if (!seconds) return;
           const left = Math.max(0, 1 - t / seconds);
           for (const m of marks) m.set({ time: left });
           if (!left) over(null);
         });
+      });
+    },
+    ask(at, options) {
+      offered?.leave();
+      const mg = offered = b.minigame.start({ plate: false });
+      return new Promise(ok => {
+        const over = action => { ok(action); mg.leave(); if (offered === mg) offered = null; };
+        const mark = mg.mark({ at });
+        // (where it was pressed is out of the frame: nothing to open)
+        if (!mark.pos) { over(null); return; }
+        const press = mg.press({ on: mark, petals: options, open: true });
+        press.on('choose', ({ id }) => { mg.snap({ at: mark }); over(options.find(o => o.id === id)); });
+        press.on('fold', () => over(null));
       });
     },
     withdraw() { offered?.leave(); offered = null; },

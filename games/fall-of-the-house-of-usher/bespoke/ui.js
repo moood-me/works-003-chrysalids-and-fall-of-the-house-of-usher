@@ -9,10 +9,10 @@
 //     it, reads it, folds it again; → then. text: its lines ('\n'); highlight: words of it underlined
 //   view.title(text, {signal}) — words over the scene, as a film's title; → once they have gone
 //   view.replaying(on) — the slip «Переигровка» in the corner while a replay goes on (game.js)
-//   view.notice(text) — a line low in the middle, till it is taken away (→ what takes it away): what a choice on the map
-//     would do
+//   view.notice(text) — a line low in the middle, till it is taken away (→ what takes it away): what a choice on the
+//     map would do
 //   view.author({chapters, at() → {chapter, step}, plays(chapter, step) → [titles of its minigames], go(chapter, step,
-//     minigame)}) — the author's map, opened by his mark on «Трещина» (author() → what opens or closes it): the
+//     minigame)}) — the author's map, opened by his sign on «Трещина» (author() → what opens or closes it): the
 //     chapters, their steps and the steps' minigames, to go to any (a minigame: its index among the step's)
 // The ⏸, ⏭ and ☰ are the page's.
 // Whatever is shown is taken away when `signal` aborts (the step was left).

@@ -31,7 +31,7 @@ const LISTEN = 5; // s of silence, listening
 const LINES = PASSAGES.flat().length;
 
 export default {
-  title: 'Чтение', // (as the author's ☰ lists it)
+  title: 'Чтение', // (as the author's map lists it)
   about: 70,
   skipped: { louder: 0, listened: 0 },
   async run(g, b, opts, signal) {

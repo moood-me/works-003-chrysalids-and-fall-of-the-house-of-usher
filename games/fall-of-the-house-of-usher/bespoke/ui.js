@@ -8,12 +8,13 @@
 //   view.letter({text, highlight, sign}, {signal}) — a folded letter on the dark: the player unfolds
 //     it, reads it, folds it again; → then. text: its lines ('\n'); highlight: words of it underlined
 //   view.title(text, {signal}) — words over the scene, as a film's title; → once they have gone
-//   view.onSkip(fn) → off — fn is what ⏭ does now (the latest one, until off()); none — the ⏭ not shown. A minigame's
-//     is every player's (a safety net if it glitches, not a way through: story.js g.play), a step's the author's only
-//     (game.js)
+//   view.replaying(on) — the slip «Переигровка» in the corner while a replay goes on (game.js)
+//   view.notice(text) — a line low in the middle, till it is taken away (→ what takes it away): what a choice on the map
+//     would do
 //   view.author({chapters, at() → {chapter, step}, plays(chapter, step) → [titles of its minigames], go(chapter, step,
-//     minigame)}) — the author's map, opened by the page's ☰ (author() → what opens it, for bespoke.menu): the
+//     minigame)}) — the author's map, opened by his mark on «Трещина» (author() → what opens or closes it): the
 //     chapters, their steps and the steps' minigames, to go to any (a minigame: its index among the step's)
+// The ⏸, ⏭ and ☰ are the page's.
 // Whatever is shown is taken away when `signal` aborts (the step was left).
 import { CRACK_FULL, SCALES } from './story.js';
 import { paper } from './sound.js';
@@ -38,13 +39,9 @@ export function ui(layer) {
   const crack = crackGauge(layer);
   const flame = candle(layer);
   const toasts = el('div', 'toasts', layer);
-  // the corner's tools: ⏭ while something can be skipped (⏸, ☰ — the page's)
-  const tools = el('div', 'tools', layer);
-  const skips = []; // what ⏭ does, the latest last
-  // (a button is never focused: the keys are the page's)
-  const skip = Object.assign(el('button', '', tools), { type: 'button', textContent: '⏭', title: 'пропустить', onclick: () => skips.at(-1)?.(), onmousedown: e => e.preventDefault() });
-  const skipShown = () => { skip.hidden = !skips.length; };
-  skipShown();
+  const replay = el('div', 'replay', layer);
+  replay.textContent = 'Переигровка';
+  replay.hidden = true;
   return {
     gauges(kept) {
       crack.show(!!kept?.shown.crack, kept ? 0.06 + 0.94 * Math.min(1, kept.scales.crack / CRACK_FULL) : 0);
@@ -78,16 +75,16 @@ export function ui(layer) {
         signal?.addEventListener('abort', () => { timers.forEach(clearTimeout); t.remove(); });
       });
     },
-    onSkip(fn) {
-      skips.push(fn);
-      skipShown();
-      return () => { const i = skips.indexOf(fn); if (i >= 0) skips.splice(i, 1); skipShown(); };
+    replaying(on) { replay.hidden = !on; },
+    notice(text) {
+      const n = el('p', 'notice', layer);
+      n.textContent = text;
+      return () => n.remove();
     },
     author({ chapters, at, plays, go }) {
       const button = (text, title, onclick) => Object.assign(el('button'), { type: 'button', textContent: text, title, onclick });
-      // the map (the page's ☰ opens it): every chapter a column of its steps (and their minigames) in a window over
-      // the scene; a click outside, ✕ or
-      // Esc closes it
+      // the map: every chapter a column of its steps (and their minigames) in a window over the scene; a click outside,
+      // ✕ or Esc closes it
       const map = el('div', 'author-map', layer);
       map.hidden = true;
       const close = () => { map.hidden = true; };
@@ -99,12 +96,12 @@ export function ui(layer) {
           const col = el('section');
           el('h3', '', col).textContent = c.number ? `${c.number}. ${c.title}` : c.title;
           for (const [si] of c.steps.entries()) {
-            const step = button(c.titles?.[si] || `шаг ${si + 1}`, '', () => go(ci, si));
+            const step = button(c.titles?.[si] || `шаг ${si + 1}`, '', () => { close(); go(ci, si); });
             if (ci === here.chapter && si === here.step) step.className = 'here';
             // (its minigames under it, once they are known: straight to one)
             const games = el('div', 'minigames');
             plays(ci, si).then(list => games.append(...list.map((name, k) =>
-              Object.assign(button(`◆ ${name}`, 'сразу к мини-игре', () => go(ci, si, k)), { className: 'minigame' }))));
+              Object.assign(button(`◆ ${name}`, 'сразу к мини-игре', () => { close(); go(ci, si, k); }), { className: 'minigame' }))));
             col.append(step, games);
           }
           return col;

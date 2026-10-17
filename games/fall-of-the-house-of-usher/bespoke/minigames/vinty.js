@@ -16,7 +16,7 @@ const SEAT = 0.8, TURNS = 3;
 const HERS = 'Не дай им меня закрыть.';
 
 export default {
-  title: 'Винты', // (as the author's ☰ lists it)
+  title: 'Винты', // (as the author's map lists it)
   about: 40,
   skipped: { loose: [], seconds: 0 },
   async run(g, b, { promised = false } = {}, signal) {

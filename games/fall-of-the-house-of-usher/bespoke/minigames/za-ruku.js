@@ -18,7 +18,7 @@ const ON = 0.6; // the hand drawn this far along its way: a step on
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 
 export default {
-  title: 'За руку', // (as the author's ☰ lists it)
+  title: 'За руку', // (as the author's map lists it)
   about: 35,
   skipped: { seconds: 0, letGo: 0 },
   async run(g, b, opts, signal) {

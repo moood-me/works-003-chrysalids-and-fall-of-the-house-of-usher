@@ -20,7 +20,7 @@ const bpmOf = tempo => 56 + 140 * tempo ** 1.3; // his strokes a minute
 const tempoOf = gap => clamp(((60 / gap - 56) / 140) ** (1 / 1.3) || 0, 0.05, 1); // and back, from seconds between
 
 export default {
-  title: 'Струна', // (as the author's ☰ lists it)
+  title: 'Струна', // (as the author's map lists it)
   about: 45,
   skipped: { follow: 0.5, wild: 0.6 },
   async run(g, b, opts, signal) {

@@ -16,7 +16,7 @@ const APART = 0.75; // s between the answer's knocks
 const IDLE = 14; // s after an answer with no knock: he has stood long enough
 
 export default {
-  title: 'Стук', // (as the author's ☰ lists it)
+  title: 'Стук', // (as the author's map lists it)
   about: 25,
   skipped: { knocks: 1, answered: true },
   async run(g, b, opts, signal) {

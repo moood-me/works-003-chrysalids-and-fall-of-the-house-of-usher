@@ -18,7 +18,7 @@ const AT = { windows: 'windows@', trees: 'trees#trunk', tarn: 'tarn@' };
 const LINE = Array.from({ length: 17 }, (_, i) => `crack#k${i}`);
 
 export default {
-  title: 'Причина', // (as the author's ☰ lists it)
+  title: 'Причина', // (as the author's map lists it)
   about: 40,
   skipped: { looked: ['windows', 'trees', 'tarn'], traced: true },
   async run(g, b, { onLook } = {}, signal) {

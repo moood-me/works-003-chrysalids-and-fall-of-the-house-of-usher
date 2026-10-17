@@ -16,7 +16,7 @@ const SEAT = 0.8, TURNS = 3;
 const HERS = tr.line('madeline', 'Do not let them shut me in.');
 
 export default {
-  title: 'The screws', // (as the author's ☰ lists it)
+  title: 'The screws', // (as the author's map lists it)
   about: 40,
   skipped: { loose: [], seconds: 0 },
   async run(g, b, { promised = false } = {}, signal) {

@@ -1,5 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap");
 /* The game over the scene (ui.js), in ink and paper: the crack down the edge, the candle in the
-   corner, the slips of paper, the letter, the title; the author's tools. */
+   corner, the slips of paper, the letter, the title, the replay's slip; the author's map; the map's trees. */
 #layer { --ink: #2a1c13; --paper: #e6dac0; --bone: #e4d8bf; --hand: "Usher Hand", "Segoe Script", cursive;
   --below-header: 46px; } /* where the site's header ends */
 /* a phone held upright: the site's header takes two lines */
@@ -91,13 +92,6 @@
 #layer .letter-hint.on { opacity: 0.75; animation: hint 3s ease-in-out infinite; }
 @keyframes hint { 50% { opacity: 0.4; } }
 
-/* the corner's tools: ⏸ pause (everyone), ⏭ skip (a minigame — everyone; a step — the author), ☰ the chapters and their
-   steps (the author) — above the language of mini-games over the scene */
-#layer .tools { position: absolute; z-index: 10; right: 14px; bottom: 14px; display: flex; flex-direction: column; align-items: flex-end; gap: 6px;
-  font: 14px/1.3 Georgia, "Times New Roman", serif; }
-#layer .tools > button { width: 34px; height: 30px; border: 0; border-radius: 6px; background: rgba(10, 8, 9, 0.6); color: var(--bone); cursor: pointer; opacity: 0.5; }
-#layer .tools > button:hover { opacity: 1; }
-#layer .tools > button[hidden] { display: none; }
 /* ☰: a window over the scene, below the site's header — the chapters side by side, each a column of its steps */
 #layer .author-map { position: absolute; inset: 0; z-index: 20; display: grid; place-items: center; padding: calc(var(--below-header) + 8px) 16px 16px;
   background: rgba(3, 2, 4, 0.55); }
@@ -116,3 +110,114 @@
 #layer .author-panel .minigames { display: flex; flex-direction: column; }
 #layer .author-panel section button.minigame { padding: 3px 10px 3px 24px; font-size: 13px; font-style: italic; color: #d9b48f; opacity: 0.85; }
 #layer .author-panel section button.minigame:hover { opacity: 1; }
+
+/* the slip «Replay» in the corner (ui.js replaying), and a line low in the middle (ui.js notice) */
+#layer .replay { position: absolute; right: 14px; bottom: 14px; padding: 6px 12px; color: var(--ink); background: var(--paper); rotate: -1.5deg;
+  font: italic 15px/1.3 var(--hand); pointer-events: none; }
+#layer .replay[hidden] { display: none; }
+#layer .notice { position: absolute; left: 50%; bottom: 7vh; translate: -50% 0; max-width: min(560px, 80vw); margin: 0; padding: 8px 16px;
+  color: var(--ink); background: var(--paper); font: italic 16px/1.35 var(--hand); text-align: center; pointer-events: none; }
+
+/* the map (map.js): each chapter's tree under the language's marks (bespoke.underlay), at its chapter's point —
+   stone and the crack: a chapter's trunk is the crack itself, glowing red inside; what was not played — hairline cracks (Claude Design's mockup). Sizes in the frame's height (--u: its 900th) */
+#underlay .map{--u:calc(var(--h) / 900)}
+@keyframes m-breathe{from{transform:translate(-50%,-50%) scale(.84);opacity:.6}to{transform:translate(-50%,-50%) scale(1.12);opacity:1}}
+@keyframes m-row-in{from{opacity:0;transform:translateY(calc(var(--u) * -6))}to{opacity:1;transform:none}}
+@keyframes m-nudge{from{transform:translateX(calc(var(--u) * -3))}to{transform:translateX(calc(var(--u) * 2))}}
+@keyframes m-tip{from{opacity:.45}to{opacity:1}}
+#underlay .map .stand{position:absolute;left:0;top:0;width:0;height:0;transform-origin:0 0}
+#underlay .map .stand[hidden]{display:none}
+#underlay .map .tree{position:absolute;box-sizing:border-box;width:var(--w);--s:1;--gut:calc(var(--u) * 44);--L:calc(var(--u) * var(--s) * 21);
+  font-family:var(--f-text);color:var(--c-name)}
+#underlay .map .tree.dense{--s:.84}
+#underlay .map .tree.grow .row{animation:m-row-in .9s ease-out both}
+#underlay .map .tree .head{text-align:center;padding-bottom:calc(var(--u) * 4)}
+#underlay .map .tree .num{font-family:var(--f-num);font-size:calc(var(--u) * 14);letter-spacing:.24em;line-height:1.5;color:var(--c-num)}
+#underlay .map .tree .title{font-family:var(--f-title);font-size:calc(var(--u) * 29);font-style:italic;line-height:1.15;color:var(--c-title)}
+#underlay .map .tree.future{background:none;box-shadow:none}
+#underlay .map .tree.future .head{border:0}
+#underlay .map .tree.future .num{opacity:.55}
+#underlay .map .knot{position:relative;height:calc(var(--u) * 36)}
+#underlay .map .knot .seg{top:calc(var(--u) * 10);height:calc(100% - var(--u) * 10)}
+#underlay .map .knot .halo{position:absolute;left:50%;top:calc(var(--u) * 10);width:calc(var(--u) * 56);height:calc(var(--u) * 56);border-radius:50%;
+  background:radial-gradient(circle,var(--c-halo) 0%,transparent 68%);animation:m-breathe 4.6s ease-in-out infinite alternate}
+#underlay .map .knot .core{position:absolute;left:50%;top:calc(var(--u) * 10);width:calc(var(--u) * 10);height:calc(var(--u) * 10);transform:translate(-50%,-50%);
+  border-radius:50%;background:var(--c-core)}
+#underlay .map .tree.current .halo{width:calc(var(--u) * 90);height:calc(var(--u) * 90)}
+#underlay .map .tree.current .core{width:calc(var(--u) * 13);height:calc(var(--u) * 13);box-shadow:0 0 calc(var(--u) * 10) var(--c-halo)}
+#underlay .map .rows{margin:0;padding:0;list-style:none}
+#underlay .map .row{display:grid;grid-template-columns:minmax(0,1fr) var(--gut) minmax(0,1fr);padding-bottom:calc(var(--u) * var(--s) * 13)}
+#underlay .map .row .name{text-align:right;font-style:italic;font-size:calc(var(--u) * var(--s) * 14.5);line-height:var(--L);color:var(--c-name)}
+#underlay .map .row.key .name{color:var(--c-key)}
+#underlay .map .row .flag{font-style:normal;color:var(--c-main)}
+#underlay .map .row .stem{position:relative}
+#underlay .map .seg{position:absolute;left:50%;top:0;height:100%;width:calc(var(--u) * 10);transform:translateX(-50%);overflow:visible}
+#underlay .map .seg path{fill:none;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+#underlay .map .seg .line{stroke:var(--c-main);stroke-width:var(--trunk)}
+#underlay .map .seg .glow{stroke:var(--c-glow);stroke-width:var(--glow)}
+#underlay .map .row:last-child .seg{height:calc(var(--L) / 2)}
+#underlay .map .stem .dot{position:absolute;left:50%;top:calc(var(--L) / 2);width:calc(var(--u) * var(--s) * 10);height:calc(var(--u) * var(--s) * 10);
+  transform:translate(-50%,-50%);border-radius:50%;background:var(--c-main)}
+#underlay .map .stem .rseg{position:absolute;left:calc(50% - var(--u) * 9);top:0;bottom:0;border-left:1.5px dashed var(--c-replay)}
+#underlay .map .row.r-start .rseg{top:calc(var(--L) / 2)}
+#underlay .map .opts{list-style:none;margin:0;padding:0;min-width:0}
+#underlay .map .opt{position:relative}
+#underlay .map .opt.chosen{font-size:calc(var(--u) * var(--s) * 16);line-height:var(--L);color:var(--c-chosen)}
+#underlay .map .opt.alt{padding-left:calc(var(--u) * var(--s) * 13);font-size:calc(var(--u) * var(--s) * 13.5);line-height:1.32;color:var(--c-alt)}
+#underlay .map .opt.alt .pip{position:absolute;left:0;top:.66em;width:calc(var(--u) * 5);height:calc(var(--u) * 5);transform:translateY(-50%);border-radius:50%;background:var(--c-alt);opacity:.8}
+#underlay .map .opt.alt .twig{position:absolute;left:calc(var(--gut) / -2);top:calc(.66em - var(--u) * 16);width:calc(var(--gut) / 2);height:calc(var(--u) * 16);overflow:visible}
+#underlay .map .twig path{fill:none;stroke:var(--c-thin);stroke-width:1px;vector-effect:non-scaling-stroke}
+#underlay .map .opt.tried{color:var(--c-replay);font-style:italic}
+#underlay .map .opt.tried .pip{background:var(--c-replay);opacity:1}
+#underlay .map .opt.tried .twig path{stroke:var(--c-replay);stroke-dasharray:4 3}
+#underlay .map .opt.unseen{font-size:calc(var(--u) * var(--s) * 16);line-height:var(--L);letter-spacing:.35em;color:var(--c-alt);opacity:.7}
+#underlay .map .row.cursor,#underlay .map .row.pending{--L:calc(var(--u) * var(--s) * 36);min-height:calc(var(--L) + var(--u) * 6)}
+#underlay .map .row.cursor .dot,#underlay .map .row.pending .dot{display:none}
+#underlay .map .row.cursor .rseg{bottom:auto;height:calc(var(--L) / 2)}
+#underlay .map .row.pending .seg .line{stroke-dasharray:3 4;opacity:.6}
+#underlay .map .row.pending .seg .glow{display:none}
+#underlay .map .row.cursor .name,#underlay .map .row.pending .name{position:relative}
+#underlay .map .stem .tip{position:absolute;left:50%;top:calc(var(--L) / 2);width:calc(var(--u) * 12);height:calc(var(--u) * 8);transform:translate(-50%,-40%);
+  overflow:visible;animation:m-tip 1.4s ease-in-out infinite alternate}
+#underlay .map .stem .tip.r{left:calc(50% - var(--u) * 9)}
+#underlay .map .tip path{fill:none;stroke:var(--c-main);stroke-width:1.8px;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+#underlay .map .tip.r path{stroke:var(--c-replay)}
+#underlay .map .go{position:absolute;right:0;top:calc(var(--L) / 2);transform:translateY(-50%);display:flex;align-items:center;gap:calc(var(--u) * 8);
+  min-height:max(44px,calc(var(--u) * 44));padding:0;border:0;background:none;text-align:right;white-space:nowrap;font:italic calc(var(--u) * var(--s) * 15)/1.15 var(--f-text)}
+#underlay .map .go-game{color:var(--c-chosen)}
+#underlay .map .go-replay{color:var(--c-replay)}
+#underlay .map .go .arr{width:calc(var(--u) * 26);height:calc(var(--u) * 10);flex:none;overflow:visible;animation:m-nudge 1.1s ease-in-out infinite alternate}
+#underlay .map .arr path{fill:none;stroke:currentColor;stroke-width:1.6px;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+#underlay .map .badge{position:absolute;left:0;top:calc(var(--u) * -34);display:inline-flex;align-items:center;gap:calc(var(--u) * 7);
+  padding:calc(var(--u) * 3) calc(var(--u) * 11);border-radius:999px;font-size:calc(var(--u) * 12.5);font-style:italic;color:var(--c-replay)}
+#underlay .map .badge i{width:calc(var(--u) * 16);border-top:1.5px dashed var(--c-replay)}
+#underlay .map .author{position:absolute;display:flex;flex-direction:column;align-items:center;gap:calc(var(--u) * 6)}
+#underlay .map .author svg{width:calc(var(--u) * 52);height:calc(var(--u) * 52);overflow:visible}
+#underlay .map .author span{font:italic calc(var(--u) * 14)/1 var(--f-text);color:var(--c-name)}
+#underlay .map .can{pointer-events:auto;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+#underlay .map .hit{position:absolute;width:max(44px,calc(var(--u) * 44));height:max(44px,calc(var(--u) * 44));margin:0;padding:0;transform:translate(-50%,-50%);
+  border:0;border-radius:50%;background:none}
+#underlay .map .hit:not(.can){display:none}
+#underlay .map .knot .hit{left:50%;top:calc(var(--u) * 10)}
+#underlay .map .stem .hit{left:50%;top:calc(var(--L) / 2)}
+#underlay .map .stem .at{position:absolute;left:50%;top:calc(var(--L) / 2)}
+#underlay .map .author .hit{left:50%;top:calc(var(--u) * 26);width:max(44px,calc(var(--u) * 60));height:max(44px,calc(var(--u) * 60))}
+#underlay .map button:focus{outline:none}
+#underlay .map button:focus-visible{outline:1px solid var(--c-main);outline-offset:2px}
+#underlay .map .go.can:hover{filter:brightness(1.25)}
+#underlay .map .tree:has(.head.can:hover,.knot .hit.can:hover) .title{color:var(--c-main)}
+#underlay .map .tree:has(.head.can:hover,.knot .hit.can:hover) .core{filter:brightness(1.4)}
+#underlay .map .row:has(.hit.can:hover,.opt.chosen.can:hover) .opt.chosen{color:var(--c-main)}
+#underlay .map.usher{--f-text:'Old Standard TT',Georgia,serif;--f-title:'Old Standard TT',Georgia,serif;--f-num:'Old Standard TT',Georgia,serif;
+  --c-main:#ff4a33;--c-glow:rgba(255,60,36,.28);--c-chosen:#ff9a85;--c-title:#efe5d4;--c-num:#c49d8f;
+  --c-name:#bdb3a5;--c-key:#ece2d2;--c-alt:#968d82;--c-thin:rgba(190,180,168,.38);--c-replay:#aebfd8;
+  --c-halo:rgba(255,70,40,.5);--c-core:#ffb19f;--trunk:1.8px;--glow:7px;--w:calc(var(--u) * 400)}
+#underlay .map.usher .tree{text-shadow:0 1px 2px rgba(0,0,0,.95),0 0 calc(var(--u) * 8) rgba(0,0,0,.8)}
+#underlay .map.usher .tree .num{letter-spacing:.3em}
+#underlay .map.usher .stem .dot{background:#ff6a4f;box-shadow:0 0 calc(var(--u) * 7) rgba(255,70,40,.9)}
+#underlay .map.usher .tree.current .core{background:#ffe2d8}
+#underlay .map.usher .opt.alt .pip{width:calc(var(--u) * 3.5);height:calc(var(--u) * 3.5)}
+#underlay .map.usher .badge{background:rgba(20,18,18,.75);border:1px solid rgba(174,191,216,.35);text-shadow:none}
+#underlay .map.usher .author svg circle{fill:none;stroke:#bdb3a5;stroke-width:1.2px}
+#underlay .map.usher .author svg path{fill:none;stroke:#ff4a33;stroke-width:1.6px;stroke-linejoin:round}
+#underlay .map.usher .author span{text-shadow:0 1px 2px rgba(0,0,0,.95)}

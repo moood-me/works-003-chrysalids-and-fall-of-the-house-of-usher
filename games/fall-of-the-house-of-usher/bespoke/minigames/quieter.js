@@ -21,7 +21,7 @@ const ROOM = {
 const WAY = { his: 'theirs', mine: 'own' }; // (the plate's colour of each way)
 
 export default {
-  title: 'Quieter or brighter', // (as the author's ☰ lists it)
+  title: 'Quieter or brighter', // (as the author's map lists it)
   about: 45,
   skipped: { his: 2, mine: 1, order: [['candles', 'his'], ['window', 'his'], ['clock', 'mine']] },
   async run(g, b, { onAct } = {}, signal) {

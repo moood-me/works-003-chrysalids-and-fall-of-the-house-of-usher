@@ -1,5 +1,5 @@
 // The check of the game's branches: node bespoke/check/run.mjs <a clone of the world>. No browser, no engine,
-// nothing drawn. Every step of every chapter is played unseen, the way the author's ☰ plays it (jump.js: a dry run,
+// nothing drawn. Every step of every chapter is played unseen, the way the author's map plays it (jump.js: a dry run,
 // story.js context(…, j)), on a page that only knows the scenes' specs (fake.mjs): no time passes, the choices are
 // those of the play walked (a choice on time: its moment passed, if that is what the play has), a minigame gives the
 // result put in for it.
@@ -60,8 +60,9 @@ const MINIGAMES = {
   hands: { scene: 'storm', keys: ['rod_reach', 'mad_reach', 'rod_to_mad', 'mad_to_rod', 'grab', 'grab_x', 'grab_y', 'held_rod', 'held_mad', 'quake', 'shudder'], points: ['closeup#nar_hand', 'closeup#rod_hand', 'closeup#mad_hand', 'closeup#stay'], opts: ['roderick', 'madeline', 'both', 'time'], result: ['took', 'stayed'] },
   flight: { scene: 'fall', keys: ['run', 'run_at', 'fall', 'swim'], beats: ['stumble'], points: ['narrator'], opts: ['companions', 'speed', 'sanity'], result: ['escaped'] },
 };
-// what game.js itself takes of «Crack» (it is not run here): its keys, the knot it offers
-const WALL = { keys: ['chapter_number', 'chapter_title', 'map', 'reveal', 'knot'], offers: ['knot#end'] };
+// what game.js itself takes of «Crack» (it is not run here): its key, the points its trees stand at (map.js) — each
+// chapter's and the author's sign's
+const MAP = { keys: ['shown'], points: [...Array.from({ length: 6 }, (_, i) => `c${i}`), 'author'] };
 // the results put in: the outcomes a chapter branches on — clean, and each one's other
 const CLEAN = {};
 const OTHER = [{ quieter: { his: 0, mine: 3, order: [['candles', 'mine'], ['window', 'mine'], ['clock', 'mine']] } }, { quieter: { his: 3, mine: 0, order: [['candles', 'his'], ['window', 'his'], ['clock', 'his']] } },
@@ -173,13 +174,13 @@ for (const name in sound) {
 // «Crack», as game.js opens it
 const wall = WORLD.get(SCENES.wall);
 if (wall) {
-  for (const key of WALL.keys) {
-    if (!(key in wall.states) && !engines(wall, key)) miss('game.js', `“${SCENES.wall}”: no key “${key}” in states`);
+  for (const key of MAP.keys) {
+    if (!(key in wall.states)) miss('game.js', `“${SCENES.wall}”: no key “${key}” in states`);
     if (wall.contract && !(key in wall.contract.party)) miss('game.js', `“${SCENES.wall}”: no key “${key}” in the contract’s party`);
     wall.named.add(`party:${key}`);
   }
-  for (const ref of WALL.offers) {
-    if (wall.contract && !wall.contract.offers.includes(ref)) miss('game.js', `“${SCENES.wall}”: no offer “${ref}” in the contract`);
+  for (const ref of MAP.points) {
+    if (wall.contract && !wall.contract.points.includes(ref)) miss('game.js', `“${SCENES.wall}”: no point “${ref}” in the contract`);
     wall.named.add(`ref:${ref}`);
   }
 }

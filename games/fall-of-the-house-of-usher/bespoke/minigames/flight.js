@@ -27,7 +27,7 @@ const GRACE = 2.5; // s: the house waits this long for the first step
 const DOWN = 1.2; // s: a stumble — no step takes him on meanwhile
 
 export default {
-  title: 'Run', // (as the author's ☰ lists it)
+  title: 'Run', // (as the author's map lists it)
   about: 30,
   skipped: { escaped: true },
   async run(g, b, opts, signal) {

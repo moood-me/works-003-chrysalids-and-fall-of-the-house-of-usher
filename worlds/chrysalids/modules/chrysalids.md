@@ -1,4 +1,4 @@
-# chrysalids — the horses of «Хризалиды» (engine 3)
+# chrysalids — the horses of “The Chrysalids” (engine 3)
 
 The world's people are the engine's (the module `cast`); this module has what the engine does not move: its horses. List
 it in a scene's `modules` and call it as `e.kit.chrysalids` (`kit.chrysalids` in the lib).
@@ -8,7 +8,7 @@ it in a scene's `modules` and call it as `e.kit.chrysalids` (`kit.chrysalids` in
 An element of the scene, its place and its heading state keys; its code and its animate the module's:
 
 ```json
-{ "id": "horse", "name": "Конь", "across": -18, "distance": 17, "place": { "across": "r_a", "distance": "r_d" },
+{ "id": "horse", "name": "Horse", "across": -18, "distance": 17, "place": { "across": "r_a", "distance": "r_d" },
   "box": [-2.6, -3.2, 2.6, 0.4], "shadow": true }
 ```
 ```js

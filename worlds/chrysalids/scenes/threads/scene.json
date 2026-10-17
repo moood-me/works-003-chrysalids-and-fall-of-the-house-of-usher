@@ -1,0 +1,292 @@
+{
+  "light": {
+    "grain": 0.18,
+    "vignette": 0.55
+  },
+  "state": {
+    "chapters": null,
+    "shown": 0,
+    "reveal": 1,
+    "knot": 1,
+    "camera_x": 0
+  },
+  "title": "Threads",
+  "camera": {
+    "mode": "picture"
+  },
+  "caption": "",
+  "horizon": 0.83,
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Night sky"
+    },
+    {
+      "id": "t0",
+      "name": "The chapter’s threads",
+      "across": 0,
+      "distance": 10,
+      "height": 10,
+      "box": [
+        -4,
+        -10,
+        6,
+        0
+      ]
+    },
+    {
+      "id": "t1",
+      "name": "The chapter’s threads",
+      "across": 5,
+      "distance": 10,
+      "height": 10,
+      "box": [
+        -4,
+        -10,
+        6,
+        0
+      ]
+    },
+    {
+      "id": "t2",
+      "name": "The chapter’s threads",
+      "across": 10,
+      "distance": 10,
+      "height": 10,
+      "box": [
+        -4,
+        -10,
+        6,
+        0
+      ]
+    },
+    {
+      "id": "t3",
+      "name": "The chapter’s threads",
+      "across": 15,
+      "distance": 10,
+      "height": 10,
+      "box": [
+        -4,
+        -10,
+        6,
+        0
+      ]
+    },
+    {
+      "id": "t4",
+      "name": "The chapter’s threads",
+      "across": 20,
+      "distance": 10,
+      "height": 10,
+      "box": [
+        -4,
+        -10,
+        6,
+        0
+      ]
+    },
+    {
+      "id": "t5",
+      "name": "The chapter’s threads",
+      "across": 25,
+      "distance": 10,
+      "height": 10,
+      "box": [
+        -4,
+        -10,
+        6,
+        0
+      ]
+    },
+    {
+      "id": "t6",
+      "name": "The chapter’s threads",
+      "across": 30,
+      "distance": 10,
+      "height": 10,
+      "box": [
+        -4,
+        -10,
+        6,
+        0
+      ]
+    },
+    {
+      "id": "t7",
+      "name": "The chapter’s threads",
+      "across": 35,
+      "distance": 10,
+      "height": 10,
+      "box": [
+        -4,
+        -10,
+        6,
+        0
+      ]
+    },
+    {
+      "id": "k0",
+      "name": "Chapter",
+      "across": 0,
+      "distance": 10,
+      "elevation": 7.2,
+      "height": 1.6,
+      "box": [
+        -0.8,
+        -1.6,
+        0.8,
+        0
+      ],
+      "inFront": [
+        "t0"
+      ]
+    },
+    {
+      "id": "k1",
+      "name": "Chapter",
+      "across": 5,
+      "distance": 10,
+      "elevation": 7.2,
+      "height": 1.6,
+      "box": [
+        -0.8,
+        -1.6,
+        0.8,
+        0
+      ],
+      "inFront": [
+        "t1"
+      ]
+    },
+    {
+      "id": "k2",
+      "name": "Chapter",
+      "across": 10,
+      "distance": 10,
+      "elevation": 7.2,
+      "height": 1.6,
+      "box": [
+        -0.8,
+        -1.6,
+        0.8,
+        0
+      ],
+      "inFront": [
+        "t2"
+      ]
+    },
+    {
+      "id": "k3",
+      "name": "Chapter",
+      "across": 15,
+      "distance": 10,
+      "elevation": 7.2,
+      "height": 1.6,
+      "box": [
+        -0.8,
+        -1.6,
+        0.8,
+        0
+      ],
+      "inFront": [
+        "t3"
+      ]
+    },
+    {
+      "id": "k4",
+      "name": "Chapter",
+      "across": 20,
+      "distance": 10,
+      "elevation": 7.2,
+      "height": 1.6,
+      "box": [
+        -0.8,
+        -1.6,
+        0.8,
+        0
+      ],
+      "inFront": [
+        "t4"
+      ]
+    },
+    {
+      "id": "k5",
+      "name": "Chapter",
+      "across": 25,
+      "distance": 10,
+      "elevation": 7.2,
+      "height": 1.6,
+      "box": [
+        -0.8,
+        -1.6,
+        0.8,
+        0
+      ],
+      "inFront": [
+        "t5"
+      ]
+    },
+    {
+      "id": "k6",
+      "name": "Chapter",
+      "across": 30,
+      "distance": 10,
+      "elevation": 7.2,
+      "height": 1.6,
+      "box": [
+        -0.8,
+        -1.6,
+        0.8,
+        0
+      ],
+      "inFront": [
+        "t6"
+      ]
+    },
+    {
+      "id": "k7",
+      "name": "Chapter",
+      "across": 35,
+      "distance": 10,
+      "elevation": 7.2,
+      "height": 1.6,
+      "box": [
+        -0.8,
+        -1.6,
+        0.8,
+        0
+      ],
+      "inFront": [
+        "t7"
+      ]
+    }
+  ],
+  "engine": 3,
+  "states": {
+    "chapters": {
+      "means": "the chapters in order: {number, title, kind: here | played | next | future | end, map: rows of choices [{title, weight, options: [{label, state: chosen | tried | both | open | unseen}]}]} — set when it opens"
+    },
+    "shown": {
+      "type": "number",
+      "means": "the chapter the player is at (its knot brighter, its threads grow by reveal)"
+    },
+    "reveal": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "how many of the shown chapter’s threads are seen (row by row)"
+    },
+    "knot": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the knots’ brightness"
+    }
+  }
+}

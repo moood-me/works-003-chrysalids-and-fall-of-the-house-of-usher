@@ -1,4 +1,4 @@
-# ushers — the horse, still figures and things of “The Fall of the House of Usher” (engine 2)
+# ushers — the horse, still figures and things of «Падение дома Ашеров» (engine 2)
 
 A module: list it in a scene (`"modules": ["ushers"]`), call it as `e.kit.ushers`. The world's people are the engine's
 (`cast`); this is what they are not: the narrator's horse, the old 2D puppet's figures in one moment (a vision, a
@@ -13,7 +13,7 @@ canter, gallop) from how fast its place goes, the stride's phase by the way gone
 the nod, its turn (the head first), its poses. Nothing is painted again.
 
 ```json
-{ "id": "rider", "name": "Horse", "height": 2.4, "box": [-2.5, -3.3, 2.5, 0.3],
+{ "id": "rider", "name": "Конь", "height": 2.4, "box": [-2.5, -3.3, 2.5, 0.3],
   "across": -4.7, "distance": 10, "place": { "across": "rider_a", "distance": "rider_d" }, "shadow": true,
   "code": "e.kit.ushers.horse(g, e, {})",
   "animate": "e.kit.ushers.horseLive(e, { face: e.state.rider_face, keys: ['rider_a', 'rider_d'], toss: e.state.horse_toss })" }

@@ -1,143 +1,132 @@
-# closeups — close-ups (engine 2)
+# closeups — крупные планы (движок 2)
 
-Painted close-ups for the key moments: the faces of Roderick, Madeline and the physician, hands, the little mirror, the
-lid's screws, the narrator's profile. Painted like dark old painting: a single source, the light gathers on the face and
-dies towards the edges of the frame, the form is modelled by half-shadow, the shadow goes into near-black with reflected
-light along the rim, the edges are lost in the dark.
+Писанные крупные планы для ключевых моментов: лица Родерика, Мэдлин и врача, руки, зеркальце, винты крышки,
+профиль рассказчика. Писаны как тёмная старая живопись: один источник, свет собирается на лице и гаснет к краям кадра,
+форма лепится полутенью, тень уходит в почти чёрное с отражённым светом по краю, края теряются во тьме.
 
-The drawing is made once per shot (who and what is in it). Everything that changes while the shot runs — the flame's
-breathing in the light, the breathing and drift of the head, swaying, blinking, the gaze, the passage from one
-expression to the next, the lips to speech, a deep breath, a flinch, a tear, the hands, the mist on the mirror, the
-screws, lightning — `live()` moves as layers, redrawing nothing.
+Рисунок — один раз на кадр (кто и что в нём). Всё, что меняется, пока кадр идёт, — дыхание пламени в свете, дыхание и
+дрейф головы, качание, моргание, взгляд, переход от одного выражения к другому, губы под речь, глубокий вдох, вздрагивание,
+слеза, руки, туман на зеркальце, винты, молния — двигает `live()` слоями, ничего не перерисовывая.
 
-## How a scene shows a close-up
+## Как сцена показывает крупный план
 
-A close-up is an insert (`insert`): a frame of its own over the scene, filling the whole frame.
+Крупный план — вставка (`insert`): свой кадр поверх сцены, во весь кадр.
 
 ```json
-{ "id": "closeup", "name": "Close-up", "insert": "closeup",
+{ "id": "closeup", "name": "Крупный план", "insert": "closeup",
   "code": "e.kit.closeups.paint(g, e, e.lib.closeup(e.state))",
   "animate": "e.kit.closeups.live(e, e.lib.closeup(e.state), e.lib.closeupNow(e.state))" }
 ```
 
 ```js
-// lib.js: what the shot is (the keys it is drawn from) and what moves in it (the keys live moves)
+// lib.js: что за кадр (ключи, от которых он рисуется) и что в нём движется (ключи, которые двигает live)
 const closeup = S => S.shot === 'mad_frozen' ? { light: 'window', faces: [{ name: 'mad', who: 'madeline', frozen: 1, eyes: 1, turn: -0.5, tear: 0 }] } : null;
 const closeupNow = S => ({ mad: { tear: S.cu_tear, frozen: S.madeline_still ? 1 : 0, speak: S.speak } });
 ```
 
-- **The insert's key** (`closeup` 0…1) opens it. A cut to the close-up is `closeup: 1` in `s.shot(…)`/`s.cut(…)`,
-  back — `closeup: 0`. No fades.
-- **The drawing reads only what chooses the shot** (which close-up, who is in it) — a key that changes at once.
-  Everything that moves (expression, speech, a breath, a tear, hands, screws, a push-in, lightning) is in `now`, which
-  only `animate` reads. If `lib.closeup` reads a smooth key, the shot is redrawn every frame (~25 ms) — that must not be.
-- The units are the old card's: the frame's height, the origin at the frame's middle, x −0.89…0.89 (and further for
-  wide ones), y −0.5…0.5. On the scene (in scene heights): `x = e.aspect/2 + zoom·(x − pan[0])`,
-  `y = 0.5 + zoom·(y − pan[1])`.
+- **Ключ вставки** (`closeup` 0…1) открывает её. Склейка в крупный план — `closeup: 1` в `s.shot(…)`/`s.cut(…)`,
+  обратно — `closeup: 0`. Без затемнений.
+- **Рисунок читает только то, что выбирает кадр** (какой крупный план, кто в нём) — ключ, меняющийся разом. Всё, что
+  движется (выражение, речь, вдох, слеза, руки, винты, наезд, молния), — в `now`, его читает только `animate`. Если
+  `lib.closeup` прочтёт плавный ключ, кадр будет перерисовываться каждый кадр (~25 мс) — так нельзя.
+- Единицы — старой карточки: высота кадра, начало в середине кадра, x −0.89…0.89 (и дальше для широких), y −0.5…0.5.
+  На сцене (высоты сцены): `x = e.aspect/2 + zoom·(x − pan[0])`, `y = 0.5 + zoom·(y − pan[1])`.
 
-## paint(g, e, shot) — the shot
+## paint(g, e, shot) — кадр
 
-`shot` is `{ light, zoom, pan, flash, faces: [ … ], hands: [ … ], mirror, screws, profile, points }` (null — nothing).
+`shot` — `{ light, zoom, pan, flash, faces: [ … ], hands: [ … ], mirror, screws, profile, points }` (null — ничего).
 
-- `light` — the light: `'candle'` (a candle to the left, warm), `'window'` (cold grey from upper right), `'torch'` (a
-  torch from the left side, a little from below, orange, breathing), `'lamp'` (a lamp from below — the face in the
-  storm), `'day'` (a grey day: soft light from above, behind it an overcast sky), `'door'` (weak warm from the front, a
-  strong cold rim — Madeline on the threshold). Or
+- `light` — свет: `'candle'` (свеча слева, тёплый), `'window'` (холодный серый справа сверху), `'torch'` (факел
+  сбоку слева, чуть снизу, оранжевый, дышит), `'lamp'` (лампа снизу — лицо в бурю), `'day'` (серый день: мягкий свет
+  сверху, за ним — пасмурное небо), `'door'` (слабый тёплый спереди, сильный холодный контур — Мэдлин на пороге). Или
   `{ like: 'candle', dir: [x, y, z], at: [x, y], reach, color, power, fill, rim, rimSide, flicker, pool, air }`.
-- `flash: true` — lightning may strike in the shot (a flash layer; its strength comes from `now.flash`).
-- `zoom` (1), `pan` [x, y] — the shot larger and shifted (a slow push-in — `now.zoom`).
+- `flash: true` — в кадре может ударить молния (слой вспышки; её силу даёт `now.flash`).
+- `zoom` (1), `pan` [x, y] — кадр крупнее и сдвинут (медленный наезд — `now.zoom`).
 
-## live(e, shot, now) — life
+## live(e, shot, now) — жизнь
 
-`now` is `{ zoom (1), flash (0…1), screws: { v, at, test }, <name>: { … } }`, where the names are faces' (`name`, else
-`who`), hands' (`name`, else `hand0`, `hand1`…), mirrors' (`name`, else `mirror`):
+`now` — `{ zoom (1), flash (0…1), screws: { v, at, test }, <имя>: { … } }`, где имя — лица (`name`, иначе `who`), руки (`name`, иначе
+`hand0`, `hand1`…), зеркальца (`name`, иначе `mirror`):
 
-- a face: `to` — `[0…1, …]`: how far it has passed into each next expression of `o.to`; `flinch` 0…1 — flinches from
-  the light (the head away and down, the eyes squeezed, the brows down); `speak` 0…1 — the lips move to a line;
-  `inhale` 0…1 — a single deep breath (move it 0→1→0); `frozen` 0…1 — catalepsy (does not blink, breathe or drift; a
-  fraction — coming back to life); `blink` — blinking by hand (without it, it blinks by itself); `tear` 0…1 — a tear (up
-  to 0.3 it gathers on the lower lid, after that it creeps down the cheek; the face needs `tear` in `shot`); `cover` 0…1
-  — the hands over the face (`hands: 'face'`); `reach` 0…1 — a hand reaches into the frame (`hands: 'reach'`);
-- a hand: `raise` 0…1 (0 — below the frame), `x`, `y` — a shift (card units), `angle` — a turn about the wrist
-  (radians, + clockwise); trembling (`tremble`) and drift come by themselves;
-- a mirror: `x`, `y` — a shift (the mirror rises to the lips); the mist on it breathes by itself.
+- лицо: `to` — `[0…1, …]`: насколько оно перешло к каждому следующему выражению из `o.to`; `flinch` 0…1 —
+  вздрагивает от света (голова прочь и вниз, глаза жмурятся, брови вниз); `speak` 0…1 — губы шевелятся под реплику; `inhale` 0…1 — один глубокий вдох (двигайте 0→1→0); `frozen` 0…1 —
+  каталепсия (не моргает, не дышит, не дрейфует; дробное — оживает); `blink` — моргание вручную (без него моргает
+  само); `tear` 0…1 — слеза (до 0.3 набирается на нижнем веке, дальше ползёт по щеке; лицу нужен `tear` в `shot`);
+  `cover` 0…1 — руки на лице (`hands: 'face'`); `reach` 0…1 — рука тянется в кадр (`hands: 'reach'`);
+- рука: `raise` 0…1 (0 — ниже кадра), `x`, `y` — сдвиг (единицы карточки), `angle` — поворот вокруг запястья (радианы, + по часовой); дрожь (`tremble`) и дрейф — сами;
+- зеркальце: `x`, `y` — сдвиг (зеркальце поднимается к губам); туман на нём дышит сам.
 
-## c.face(o) — head and shoulders (`shot.faces`)
+## c.face(o) — голова и плечи (`shot.faces`)
 
-| key | what |
+| ключ | что |
 | --- | --- |
-| `who`, `name` | `'roderick'`, `'madeline'`, `'doctor'`; `name` — the name for `now` (by default `who`) |
-| `point` | the name of the point between the eyes (by default `<who>_face`) |
-| `at`, `size` | where the head is ([0, −0.04]) and its height in frame heights (0.62; 0.9 — very close, 1.3 — lips and chin) |
-| `turn`, `nod`, `tilt` | −1…1: turn (+ to the right of the frame, 1 ≈ 23°), nod (+ down), tilt |
-| `eyes` | 0…1.4 — how open (0.82; 1.2 — wide) |
-| `gaze` | [x, y] −1…1 — where the eyes look; on top of it, small darting glances of their own |
-| `wet` | 0…1 — the wet shine of the eyes (0.4) |
-| `smile`, `strain`, `fear`, `grief`, `flinch`, `sly` | 0…1: a smile; strain; fear; grief; a flinch from the light; slyness |
-| `part` | 0…1 — the lips parted |
-| `breath` | breathing (1); 0 — does not breathe |
-| `frozen` | 0…1 — catalepsy as it is drawn (its life is `now`) |
-| `to` | the next expressions, each over the one before: `[{ smile: 1, part: 0.25 }, { strain: 1 }]` (of the keys `smile`, `strain`, `fear`, `grief`, `sly`, `blush`, `eyes`, `part`, `wet`, `turn`, `blood`); `now.<name>.to` moves towards them. Each one's skin and lips are layers of their own (showing through over the rest), the brows are carried from line to line, narrower eyes are the lids lowering (drawn as open as they ever get), a turn is a shift of the features across the head. Use them in order: the next after the one before |
-| `tear` | there is a tear (a number; how much of it — `now.<name>.tear`); `tearEye` ±1 — which eye |
-| `blush` | 0…1 — a blush; `blood` 0…1 — blood (Madeline) |
-| `wind` | 0…1 — the hair lifts and flies apart (the storm) |
-| `sway` | 0…1 — sways, as before a fall |
-| `lying` | true — lies in the coffin: a pillow, satin, the hair across the pillow |
-| `hands` | `'face'` — Roderick has covered his face with his hands (with `tear` — tears between the fingers); `'reach'` — reaches a hand towards the camera (`reachPoint` — the name of the palm's point) |
+| `who`, `name` | `'roderick'`, `'madeline'`, `'doctor'`; `name` — имя для `now` (по умолчанию `who`) |
+| `point` | имя точки между глаз (по умолчанию `<who>_face`) |
+| `at`, `size` | где голова ([0, −0.04]) и её высота в высотах кадра (0.62; 0.9 — очень крупно, 1.3 — губы и подбородок) |
+| `turn`, `nod`, `tilt` | −1…1: поворот (+ вправо по кадру, 1 ≈ 23°), кивок (+ вниз), наклон |
+| `eyes` | 0…1.4 — насколько открыты (0.82; 1.2 — широко) |
+| `gaze` | [x, y] −1…1 — куда смотрят глаза; поверх — свои мелкие перескоки взгляда |
+| `wet` | 0…1 — влажный блеск глаз (0.4) |
+| `smile`, `strain`, `fear`, `grief`, `flinch`, `sly` | 0…1: улыбка; напряжение; страх; горе; вздрогнуть от света; хитрость |
+| `part` | 0…1 — губы приоткрыты |
+| `breath` | дыхание (1); 0 — не дышит |
+| `frozen` | 0…1 — каталепсия, как она нарисована (живёт — `now`) |
+| `to` | следующие выражения, каждое поверх предыдущего: `[{ smile: 1, part: 0.25 }, { strain: 1 }]` (из ключей `smile`, `strain`, `fear`, `grief`, `sly`, `blush`, `eyes`, `part`, `wet`, `turn`, `blood`); идёт к ним `now.<имя>.to`. Кожа и губы каждого — свои слои (проявляются поверх), брови переводятся с линии на линию, глаза уже — веки опускаются (рисуются раскрытыми настолько, насколько бывают), поворот — сдвиг черт по голове. Используйте по порядку: следующее — после предыдущего |
+| `tear` | есть слеза (число; сколько её — `now.<имя>.tear`); `tearEye` ±1 — какой глаз |
+| `blush` | 0…1 — румянец; `blood` 0…1 — кровь (Мэдлин) |
+| `wind` | 0…1 — волосы поднимаются и разлетаются (буря) |
+| `sway` | 0…1 — качается, как перед падением |
+| `lying` | true — лежит в гробу: подушка, атлас, волосы по подушке |
+| `hands` | `'face'` — Родерик закрыл лицо руками (с `tear` — слёзы между пальцев); `'reach'` — тянет руку к камере (`reachPoint` — имя точки ладони) |
 
-## c.hand(o) — a hand (`shot.hands`)
+## c.hand(o) — рука (`shot.hands`)
 
-`name` — the name (for `now`, and the palm's point: the game sees it), `who` (`roderick`, `madeline`, `narrator`,
-`doctor`), `pose` (`rest`, `touch`, `reach`, `open`, `grip` — a fist, `cover`, `clasp` — round another's wrist: the back
-of the hand to the eye, the fingers half closed, laid over the wrist it holds — list it after that hand), `at` — the
-wrist, `angle` — where the fingers point (0 up, + clockwise), `size` — the length of the hand (0.4), `side` (1 right, −1
-left), `palm`, `curl` 0…1, `spread` 0…1, `tremble` 0…1, `blood` 0…1, `frozen`, `on` — lies on something (a shadow under
-it), `sleeve: false` — without a sleeve.
+`name` — имя (для `now` и точка ладони: её видит игра), `who` (`roderick`, `madeline`, `narrator`, `doctor`), `pose`
+(`rest`, `touch`, `reach`, `open`, `grip` — a fist, `cover`, `clasp` — round another's wrist: the back of the hand to the eye, the fingers half closed, laid over the wrist it holds — list it after that hand), `at` — запястье, `angle` — куда пальцы (0 вверх, + по часовой),
+`size` — длина кисти (0.4), `side` (1 правая, −1 левая), `palm`, `curl` 0…1, `spread` 0…1, `tremble` 0…1, `blood` 0…1,
+`frozen`, `on` — лежит на чём-то (тень под ней), `sleeve: false` — без рукава.
 
 ## shot.mirror, shot.screws, shot.profile
 
-- `mirror`: `at`, `size` (0.12), `angle`, `fog` 0…1 — breath on the glass, `held` (a hand on the handle), `who`; the
-  point `mirror` (or `point`) — the middle of the glass.
-- `screws`: the coffin lid, close — `{ who (whose hand), hand: false (no hand) }`; what moves is `now.screws`: `v` [4
-  numbers 0…1] — how far each is screwed in (0 sticks out with its thread, 1 is home, the gap under the lid closes; the
-  slot makes three turns over 0…1), `at` — the index of the screw with the screwdriver (−1 — without it; a fraction —
-  the hand on its way, the screwdriver lifted), `test` 0…1 — the fingers try screw `at`. The points `screw1`…`screw4`
-  are the screw heads (they rise with them), on the card x −0.5, −0.17, 0.17, 0.5, y 0.17 (on the scene at zoom 1:
-  x 0.389, 0.719, 1.059, 1.389; y 0.67) — within the middle 4:3 of the frame, not at the edges: the game's marks stand
-  on them.
-- `under: (g, L) => …` — the scene's own, under what is in the shot (a white shift under the hands): drawn once, in card
-  units; `L` — the shot's light.
-- `profile`: the narrator — a profile in shadow, light only along the rim. `at`, `size` (0.7), `facing` (−1 looks
-  left).
+- `mirror`: `at`, `size` (0.12), `angle`, `fog` 0…1 — дыхание на стекле, `held` (рука на ручке), `who`; точка `mirror`
+  (или `point`) — середина стекла.
+- `screws`: крышка гроба крупно — `{ who (чья рука), hand: false (без руки) }`; что движется — `now.screws`: `v` [4
+  числа 0…1] — насколько завинчен каждый (0 торчит с резьбой, 1 вошёл, щель под крышкой закрывается; шлиц делает три
+  оборота за 0…1), `at` — индекс винта с отвёрткой (−1 — без неё; дробный — рука в пути, отвёртка приподнята), `test` 0…1
+  — пальцы пробуют винт `at`. Точки `screw1`…`screw4` — головки винтов (поднимаются с ними), на карточке x −0.5, −0.17,
+  0.17, 0.5, y 0.17 (на сцене при zoom 1: x 0.389, 0.719, 1.059, 1.389; y 0.67) — в средних 4:3 кадра, не у краёв: на них
+  стоят метки игры.
+- `under: (g, L) => …` — своё сцены под тем, что в кадре (белая рубашка под руками): рисуется один раз, в единицах
+  карточки; `L` — свет кадра.
+- `profile`: рассказчик — профиль в тени, свет только по краю. `at`, `size` (0.7), `facing` (−1 смотрит влево).
 
-## Points (for the game: `b.where('closeup#<name>')`)
+## Точки (для игры: `b.where('closeup#<имя>')`)
 
-A face — `<who>_face` (or `point`), between the eyes; a hand — its `name`, the middle of the palm; `mirror`;
-`screw1`…`screw4`. The layers of hands and the mirror move — their points with them. `shot.points` —
-`[[x, y, name], …]`: the scene's own points in the shot (card units), where nothing is drawn — for the game's marks (a
-mini-game's second way: “leave it so”, “stay”); they stay in place.
+Лицо — `<who>_face` (или `point`), между глаз; рука — её `name`, середина ладони; `mirror`; `screw1`…`screw4`. Слои рук
+и зеркальца двигаются — их точки с ними. `shot.points` — `[[x, y, имя], …]`: свои точки сцены в кадре (единицы карточки),
+где ничего не нарисовано, — для меток игры (второй путь мини-игры: «оставить», «остаться»); стоят на месте.
 
-## Ready moments
+## Готовые моменты
 
-| moment | light | shot / now |
+| момент | свет | shot / now |
 | --- | --- | --- |
-| Roderick greets | candle | `face({ who:'roderick', eyes:1.15, wet:0.8, to:[{ smile:1, part:0.25 }, { strain:1 }] })`; now: `to` [0→1 over 0.6 s, then 0→1 over 2 s] |
-| Roderick from the light | candle | now: `flinch` 0→1 (0.3 s, out) |
-| Roderick weeps | window | `face({ who:'roderick', grief:1, hands:'face', tear:1 })`; now: `cover` 0→1, `tear` |
-| Madeline frozen | window | `face({ who:'madeline', frozen:1, eyes:1, turn:0, tear:0, to:[{ turn:-0.5 }] })`; now: `to:[1]`, `tear` 0→1 over 5 s |
-| Madeline comes to | window | now: `frozen` 1→0 (0.5 s), `inhale` 0→1→0, `to:[0]` (1 s), `speak` to a line |
-| Madeline in the coffin | torch | `face({ who:'madeline', lying:true, eyes:0, blush:0.7, smile:0.25, breath:0, frozen:1 })` |
-| hand on hand | torch | `under: a shift, hands: [{ name:'mad_hand', who:'madeline', pose:'rest', on:true, frozen:true, … }, { name:'nar_hand', who:'narrator', pose:'touch', on:true, … }]`; now: `nar_hand.y` — it settles |
-| the mirror | torch | the face in the coffin `size:1.3, at:[0,-0.35]` + `mirror: { at:[0.12, 0.07], fog }`; now: `mirror.y` |
-| the screws | torch | `screws: { who }`; now: `screws: { v:[…], at }` |
-| Roderick in the storm | lamp | `flash:true, face({ who:'roderick', eyes:1.3, fear:0.8, wind:1 })`; now: `flash`, `speak` |
-| Madeline on the threshold | door | `face({ who:'madeline', blood:1, sway:1, eyes:1.15, size:0.5, at:[-0.1,-0.12], hands:'reach' })`; now: `reach` |
-| the physician | candle | `face({ who:'doctor', sly:0.7, smile:0.3, tilt:0.2 })` |
-| Roderick breathes | day | `face({ who:'roderick', eyes:0, nod:-0.5 })`; now: `inhale` |
-| the narrator | candle | `profile: {}` |
+| Родерик встречает | candle | `face({ who:'roderick', eyes:1.15, wet:0.8, to:[{ smile:1, part:0.25 }, { strain:1 }] })`; now: `to` [0→1 за 0.6 с, потом 0→1 за 2 с] |
+| Родерик от света | candle | now: `flinch` 0→1 (0.3 с, out) |
+| Родерик плачет | window | `face({ who:'roderick', grief:1, hands:'face', tear:1 })`; now: `cover` 0→1, `tear` |
+| Мэдлин застыла | window | `face({ who:'madeline', frozen:1, eyes:1, turn:0, tear:0, to:[{ turn:-0.5 }] })`; now: `to:[1]`, `tear` 0→1 за 5 с |
+| Мэдлин оживает | window | now: `frozen` 1→0 (0.5 с), `inhale` 0→1→0, `to:[0]` (1 с), `speak` под реплику |
+| Мэдлин в гробу | torch | `face({ who:'madeline', lying:true, eyes:0, blush:0.7, smile:0.25, breath:0, frozen:1 })` |
+| рука на руке | torch | `under: рубашка, hands: [{ name:'mad_hand', who:'madeline', pose:'rest', on:true, frozen:true, … }, { name:'nar_hand', who:'narrator', pose:'touch', on:true, … }]`; now: `nar_hand.y` — ложится |
+| зеркальце | torch | лицо в гробу `size:1.3, at:[0,-0.35]` + `mirror: { at:[0.12, 0.07], fog }`; now: `mirror.y` |
+| винты | torch | `screws: { who }`; now: `screws: { v:[…], at }` |
+| Родерик в бурю | lamp | `flash:true, face({ who:'roderick', eyes:1.3, fear:0.8, wind:1 })`; now: `flash`, `speak` |
+| Мэдлин на пороге | door | `face({ who:'madeline', blood:1, sway:1, eyes:1.15, size:0.5, at:[-0.1,-0.12], hands:'reach' })`; now: `reach` |
+| врач | candle | `face({ who:'doctor', sly:0.7, smile:0.3, tilt:0.2 })` |
+| Родерик дышит | day | `face({ who:'roderick', eyes:0, nod:-0.5 })`; now: `inhale` |
+| рассказчик | candle | `profile: {}` |
 
-## Cost
+## Цена
 
-A shot is drawn once, when it is chosen: a face ~0.1–0.4 s (each expression of `to` — the skin and lips once more), a
-hand ~10 ms — before the cut to it (`s.shot(…)` prepares it ahead). While it runs, code does not draw it: the graphics
-card moves the layers, `live` only sets their numbers.
+Кадр рисуется один раз, когда он выбран: лицо ~0.1–0.4 с (каждое выражение из `to` — ещё раз кожа и губы), рука ~10 мс
+— до склейки на него (`s.shot(…)` готовит его заранее). Пока он идёт, код его не рисует: слои двигает видеокарта, `live`
+только ставит им числа.

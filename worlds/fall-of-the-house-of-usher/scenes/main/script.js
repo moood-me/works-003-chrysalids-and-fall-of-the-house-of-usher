@@ -1,10 +1,10 @@
-// «The approach to the house» — its mechanics: the film in beats for the game (lib.js FILM, the world's module beats: `beat` names
-// one; notes.md tells them); `walk` — where the game sends the two along the causeway («By the hand»: they walk there),
+// «Подъезд к дому» — its mechanics: the film in beats for the game (lib.js FILM, the world's module beats: `beat` names
+// one; notes.md tells them); `walk` — where the game sends the two along the causeway («За руку»: they walk there),
 // `walk_at` — where they are; `resist` — how hard Roderick resists (he balks); `follow` — the camera keeps them framed as
 // they come.
 const L = scene.lib;
 // Whoever sets `walk` (the game, step by step) sends the two there: they walk at their own pace, hand in hand; sent back
-// towards the house (the hand let go in «By the hand»: he pulls them both back) they step backwards, still facing us; sent
+// towards the house (the hand let go in «За руку»: he pulls them both back) they step backwards, still facing us; sent
 // where they are (within a foot of it), they stop there. The camera with them (`follow`): low on the causeway ahead of
 // them, backing as they come (the house behind them) — as long as their walk takes
 const STAND = 0.3; // m: sent no further than this from where they are — they stop

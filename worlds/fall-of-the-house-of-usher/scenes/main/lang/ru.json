@@ -1,5 +1,0 @@
-{"strings": [
-  {"text":"The approach to the house","translation":"Подъезд к дому","where":"scenes/main/scene.json title"},
-  {"text":"I know not how it was — but, with the first glimpse of the building, a sense of insufferable gloom pervaded my spirit.","translation":"Я не знаю, отчего, но при первом взгляде на дом невыносимая тоска овладела моей душой.","where":"scenes/main/scene.json caption"},
-  {"text":"No wind, no sound — only the black water and the vacant windows.","translation":"Ни ветра, ни звука — только чёрная вода и пустые окна.","where":"scenes/main/scene.json captions[0] text"}
-]}

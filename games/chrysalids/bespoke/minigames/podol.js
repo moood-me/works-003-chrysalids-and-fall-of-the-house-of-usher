@@ -1,4 +1,4 @@
-// “The hem” (I.2, “The bank by the stream”, inside the beat `ridge` from its moment ridge:hem): David draws Sophie's hem over her
+// «Подол» (I.2, «Насыпь у ручья», inside the beat `ridge` from its moment ridge:hem): David draws Sophie's hem over her
 // bare foot before the rider on the meadow comes to where the stones are seen.
 //   1. what he does — pulls her hem down over the foot; 2. wants — the six toes unseen; 3. hurried, afraid for her,
 //   gentle; 4. the player — haste and tenderness, the hooves coming on.
@@ -12,14 +12,14 @@
 import { until, keys } from '../hands.js';
 
 export default {
-  title: 'The hem', // (as the author's ☰ lists it)
+  title: 'Подол', // (as the author's ☰ lists it)
   about: 9,
   skipped: { hid: true },
   async run(g, b, { onRide } = {}, signal) {
     const seen = g.told('ridge:seen');
     let late = false;
     seen.then(ok => { if (ok) late = true; });
-    const mg = g.minigame({ phrase: tr('The rider came closer and closer, and her foot was bare') });
+    const mg = g.minigame({ phrase: 'Всадник был всё ближе, а нога у неё была босая' });
     const send = keys(g);
     const hem = mg.mark({ at: 'closeup#hem', kind: 'dash', time: 1 });
     const pull = mg.pull({ on: hem, to: 'closeup#foot', release: 'spring' });

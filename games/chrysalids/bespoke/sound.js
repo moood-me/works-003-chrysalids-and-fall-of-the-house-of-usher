@@ -82,7 +82,7 @@ export function toll(times = 3) {
   }
 }
 
-// the community's hymn (“The burning of the field”, “Sing with everyone”): low voices a little apart — the crowd; David an octave up
+// the community's hymn (Сожжение поля, «Петь со всеми»): low voices a little apart — the crowd; David an octave up
 //   now() — its clock (s); voice(f, at, dur, vol, 'crowd' | 'david') — a syllable sung; stop() — it fades
 export function choir() {
   const a = audio(), out = a.createGain(), lp = a.createBiquadFilter();

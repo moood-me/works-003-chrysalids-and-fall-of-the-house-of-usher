@@ -1,4 +1,4 @@
-// “Digging before the bell” (I.4, “The ruins of the Old People”): David rakes the earth off the glint with his hands.
+// «Раскопки до колокола» (I.4, «Руины Древних»): David rakes the earth off the glint with his hands.
 //   1. what he does — uncovers what the Old People left; 2. wants — to see it; 3. forbidden curiosity, haste; 4. the
 //   player — uncovering bit by bit, the bell to come.
 // The language's rub on a spot over the find (glint#plate): what is rubbed off is the scene's `dig` (the earth goes, then
@@ -10,11 +10,11 @@ import { until, keys } from '../hands.js';
 const BELL = 45;
 
 export default {
-  title: 'Digging before the bell', // (as the author's ☰ lists it)
+  title: 'Раскопки до колокола', // (as the author's ☰ lists it)
   about: 30,
   skipped: { cleared: 1, bell: false },
   async run(g, b, opts, signal) {
-    const mg = g.minigame({ phrase: tr('Under the turf something smooth was shining, not made by us') });
+    const mg = g.minigame({ phrase: 'Под дёрном блестело что-то гладкое, сделанное не нами' });
     const send = keys(g), t0 = mg.t;
     const spot = mg.mark({ at: 'glint#plate', kind: 'spot', time: 1 });
     const rub = mg.rub({ on: spot, full: 0.85 });
@@ -37,7 +37,7 @@ export default {
     if (bell) {
       g.set('bell', 1, 3);
       g.sound.toll();
-      mg.plate.set({ phrase: tr('The bell rang out over the valley') });
+      mg.plate.set({ phrase: 'Над долиной ударил колокол' });
       await mg.end({ as: cleared >= 0.6 ? 'flawed' : 'loss' });
       return { cleared, bell: true };
     }

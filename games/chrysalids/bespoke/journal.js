@@ -3,31 +3,31 @@
 // state.marks). The path (force or tolerance) is never shown: the world answers it.
 
 export const SCALES = {
-  suspicion: { name: tr('Suspicion'), levels: [tr('no one notices anything'), tr('people look at you askance'), tr('the neighbours whisper'), tr('the inspector takes an interest in you'), tr('you are watched')] },
-  group: { name: tr('The group'), levels: [tr('each on his own'), tr('you know one another'), tr('you hold together'), tr('you are one')] },
-  petra: { name: tr('Petra'), levels: [tr('her call is barely heard'), tr('she is heard far off'), tr('she is heard over the sea')] },
+  suspicion: { name: 'Подозрение', levels: ['никто ничего не замечает', 'на тебя косятся', 'соседи шепчутся', 'тобой интересуется инспектор', 'за тобой следят'] },
+  group: { name: 'Группа', levels: ['каждый сам по себе', 'вы знаете друг друга', 'вы держитесь вместе', 'вы — одно целое'] },
+  petra: { name: 'Петра', levels: ['её зов едва слышен', 'её слышно далеко', 'её слышно за морем'] },
 };
 export const level = (k, v) => SCALES[k].levels[Math.max(0, Math.min(SCALES[k].levels.length - 1, Math.round(v || 0)))];
 
 // the people: their marks, earliest first, each value → what they think of David then
 const PEOPLE = [
-  { name: tr('Sophie'), marks: [
-    ['sophie', { kept: tr('trusts you — you kept her secret'), told: tr('does not know you told about her') }],
-    ['sophie_night', { warned: tr('is grateful: you warned them in time'), stayed: tr('thinks you knew and kept quiet') }],
-    ['sophie_camp', { hid: tr('hid you — she is on your side'), gave: tr('gave you away to the Fringes') }]] },
-  { name: tr('Mrs Wender'), marks: [['wender', { trusts: tr('trusts you as she would a grown-up'), doubts: tr('has her doubts about you') }]] },
-  { name: tr('Mother'), marks: [['mother', { lied: tr('lied to your father for you') }]] },
-  { name: tr('Father'), marks: [['father', { proud: tr('is proud of you'), disowned: tr('has disowned you'), saved: tr('is alive — you covered him with your body') }]] },
-  { name: tr('The farmhand'), marks: [['calf', { hidden: tr('saw you hide the calf') }]] },
-  { name: tr('Anne'), marks: [['anne', { free: tr('has left you — and knows everything'), widowed: tr('blames you for her husband’s death') }]] },
-  { name: tr('Rosalind'), marks: [
-    ['rosalind', { looked: tr('you two were seen together') }],
-    ['rosalind_hold', { slipped: tr('you tore yourself out of her hands') }],
-    ['rosalind_cover', { covered: tr('you covered her with your body') }]] },
-  { name: tr('Petra'), marks: [['petra', { hushed: tr('is learning to think quietly'), free: tr('calls out at the top of her voice') }]] },
-  { name: tr('The voice from over the sea'), marks: [['sealand', { answered: tr('hears Petra'), heard: tr('you did not answer her') }]] },
-  { name: tr('Katherine and Sally'), marks: [['sally', { left: tr('left behind'), tried: tr('you tried to save them'), freed: tr('free, thanks to you') }]] },
-  { name: tr('Sheba'), marks: [['sheba', { let: tr('went home'), took: tr('with you') }]] },
+  { name: 'Софи', marks: [
+    ['sophie', { kept: 'верит тебе — ты сохранил её тайну', told: 'не знает, что ты рассказал о ней' }],
+    ['sophie_night', { warned: 'благодарна: ты успел их предупредить', stayed: 'думает, что ты знал и промолчал' }],
+    ['sophie_camp', { hid: 'спрятала вас — она на твоей стороне', gave: 'выдала тебя Окраинам' }]] },
+  { name: 'Миссис Уэндер', marks: [['wender', { trusts: 'доверяет тебе, как взрослому', doubts: 'сомневается в тебе' }]] },
+  { name: 'Мать', marks: [['mother', { lied: 'солгала отцу ради тебя' }]] },
+  { name: 'Отец', marks: [['father', { proud: 'гордится тобой', disowned: 'отрёкся от тебя', saved: 'жив — ты закрыл его собой' }]] },
+  { name: 'Работник', marks: [['calf', { hidden: 'видел, как ты прятал телёнка' }]] },
+  { name: 'Энн', marks: [['anne', { free: 'ушла от вас — и знает всё', widowed: 'винит вас в смерти мужа' }]] },
+  { name: 'Розалинда', marks: [
+    ['rosalind', { looked: 'на вас смотрели вдвоём' }],
+    ['rosalind_hold', { slipped: 'ты вырвался из её рук' }],
+    ['rosalind_cover', { covered: 'ты укрыл её собой' }]] },
+  { name: 'Петра', marks: [['petra', { hushed: 'учится думать тихо', free: 'зовёт в полный голос' }]] },
+  { name: 'Голос из-за моря', marks: [['sealand', { answered: 'слышит Петру', heard: 'вы ей не ответили' }]] },
+  { name: 'Кэтрин и Салли', marks: [['sally', { left: 'брошены', tried: 'ты пытался их спасти', freed: 'свободны благодаря тебе' }]] },
+  { name: 'Шеба', marks: [['sheba', { let: 'ушла домой', took: 'с вами' }]] },
 ];
 // the people as a run has them: [{ who, now: what they think of David }] — those who don't know him yet, left out
 export const people = marks => PEOPLE.map(p => {

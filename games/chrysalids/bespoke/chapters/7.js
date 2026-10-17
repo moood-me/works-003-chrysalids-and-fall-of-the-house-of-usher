@@ -1,5 +1,5 @@
-// VII. Sealand — the scene “The ship from Sealand” is played in beats (its notes.md): the children at the
-// cave above the clearing, Waknuk against the Fringes; the Spider-man's arrow takes my father. I run to him
+// VII. Зеландия — the scene «Корабль из Зеландии» is played in beats (its notes.md): the children at the
+// cave above the clearing, Waknuk against the Fringes; the Spider's arrow takes my father. I run to him
 // or Rosalind holds me. If Petra was heard over the sea (VI: shipComes), the fish-ship comes: its
 // threads take everyone below — whom do I cover? The woman from Sealand frees us, leads Petra to the
 // ramp; Michael stays on the ledge — I fly, or stay with him. If the ship never comes, the fight ends
@@ -33,70 +33,70 @@ const withMe = ({ choices, scales }) => (choices.glance === 'looked' ? 1 : 0) + 
   + (choices.cover === 'rosalind' ? 1 : 0) + (scales.group >= 3 ? 1 : 0) >= 2;
 
 export const ENDINGS = [
-  { id: 'sealand', label: tr('Sealand') }, { id: 'return', label: tr('The return') }, { id: 'michael', label: tr('Stayed with Michael') },
-  { id: 'fringes', label: tr('The Fringes') }, { id: 'alone', label: tr('Alone') },
+  { id: 'sealand', label: 'Зеландия' }, { id: 'return', label: 'Возвращение' }, { id: 'michael', label: 'Остался с Майклом' },
+  { id: 'fringes', label: 'Окраины' }, { id: 'alone', label: 'Один' },
 ];
 // after the last chapter (game.js): how it ended, years later
 export async function epilogue(g, ending) {
   if (ending === 'sealand') {
-    await g.say('narrator', 'The city of my dream turned out to be real. No one there counted toes.');
-    await g.say('narrator', 'But even there they spoke of people of the old kind the way my father spoke of Deviations.');
+    await g.say('narrator', 'Город из моего сна оказался настоящим. Там никто не считал пальцы.');
+    await g.say('narrator', 'Но и там о старых людях говорили так, как отец говорил об отклонениях.');
   } else if (ending === 'return') {
-    await g.say('narrator', 'Eight years later I came back to Waknuk. Unarmed.');
-    await g.say('narrator', 'Michael was waiting at the ford. They listened to us. Not all of them — but they listened.');
+    await g.say('narrator', 'Через восемь лет я вернулся в Вакнук. Без оружия.');
+    await g.say('narrator', 'Майкл ждал у брода. Нас слушали. Не все — но слушали.');
   } else if (ending === 'michael') {
-    await g.say('narrator', 'The ship went away. We stayed on the ledge — Rosalind, Michael and I.');
-    await g.say('narrator', 'What came next was for us to decide now.');
+    await g.say('narrator', 'Корабль ушёл. Мы остались на уступе — Розалинда, Майкл и я.');
+    await g.say('narrator', 'Что будет дальше, теперь решали мы сами.');
   } else if (ending === 'alone') {
-    await g.say('narrator', 'Rosalind flew away with Petra. I stayed with Michael.');
-    await g.say('narrator', 'At night I listened to the sky. Sometimes it answered.');
+    await g.say('narrator', 'Розалинда улетела с Петрой. Я остался с Майклом.');
+    await g.say('narrator', 'По ночам я слушал небо. Иногда оно отвечало.');
   } else if (ending === 'fringes') {
-    await g.say('narrator', 'The ship never came. We stayed by the Fringes.');
-    await g.say('narrator', 'A year later Petra stopped calling. And I stopped waiting.');
+    await g.say('narrator', 'Корабль так и не прилетел. Мы остались у Окраин.');
+    await g.say('narrator', 'Через год Петра перестала звать. И я перестал ждать.');
   }
 }
 
 export default {
   number: 'VII',
-  title: tr('Sealand'),
+  title: 'Зеландия',
   choices: [
-    { id: 'father', weight: '⚑', title: tr('My father fell'),
-      options: [{ id: 'run', label: tr('run to him') }, { id: 'stay', label: tr('stay') }] },
-    { id: 'cover', weight: '⚑', title: tr('Threads'),
-      options: [{ id: 'petra', label: tr('cover Petra') }, { id: 'rosalind', label: tr('cover Rosalind') }, { id: 'none', label: tr('too late') },
-        { id: 'father', label: tr('shield my father') }, { id: 'self', label: tr('fall beside him') }] },
-    { id: 'leave', weight: '⚑', title: tr('At the ramp'),
-      options: [{ id: 'fly', label: tr('fly away') }, { id: 'stay', label: tr('stay with Michael') }] },
+    { id: 'father', weight: '⚑', title: 'Отец упал',
+      options: [{ id: 'run', label: 'бежать к нему' }, { id: 'stay', label: 'остаться' }] },
+    { id: 'cover', weight: '⚑', title: 'Нити',
+      options: [{ id: 'petra', label: 'накрыть Петру' }, { id: 'rosalind', label: 'накрыть Розалинду' }, { id: 'none', label: 'не успел' },
+        { id: 'father', label: 'закрыть отца' }, { id: 'self', label: 'упасть рядом' }] },
+    { id: 'leave', weight: '⚑', title: 'У трапа',
+      options: [{ id: 'fly', label: 'улететь' }, { id: 'stay', label: 'остаться с Майклом' }] },
   ],
-  titles: ['The fight', 'The woman from Sealand', 'Departure'],
+  titles: ['Бой', 'Женщина из Зеландии', 'Отлёт'],
   steps: [
     // the fight on the clearing: my father falls — to him, or not; then the ship — or nothing in the sky
     async g => {
       const { choices, marks } = g.state;
       const { ended: cave } = await open(g, 'cave');
-      await g.say('narrator', 'We lay behind a rock by the cave. Down below, on the clearing, there was shooting.');
+      await g.say('narrator', 'Мы лежали за камнем у пещеры. Внизу, на поляне, стреляли.');
       await cave;
       const clearing = g.told('fight:clearing');
       const fight = play(g, 'fight');
-      if (choices.fringes === 'fight') await g.think('rosalind', 'We told the Spider-man where they were coming from. Too late to be sorry now.');
+      if (choices.fringes === 'fight') await g.think('rosalind', 'Мы сказали Пауку, откуда они идут. Теперь поздно жалеть.');
       await clearing;
-      await g.think('rosalind', 'Your father. In front, by the horse.');
+      await g.think('rosalind', 'Твой отец. Впереди, у коня.');
       await fight;
-      const father = await g.choose('father', { david: [{ id: 'run', label: tr('Run to Father') }], rosalind: [{ id: 'stay', label: tr('Stay') }] }, { seconds: 12, late: 'stay' });
+      const father = await g.choose('father', { david: [{ id: 'run', label: 'Бежать к отцу' }], rosalind: [{ id: 'stay', label: 'Остаться' }] }, { seconds: 12, late: 'stay' });
       if (father === 'stay') {
         const hold = play(g, 'hold');
-        await g.think('rosalind', 'You can’t, David! You can’t help him!');
-        await g.say('narrator', 'Sophie was running to the Spider-man.');
+        await g.think('rosalind', 'Нельзя, Дэвид! Ты ему не поможешь!');
+        await g.say('narrator', 'К Пауку бежала Софи.');
         await hold;
       } else {
-        g.mark('rosalind_hold', 'slipped', tr('Rosalind will remember this.'));
+        g.mark('rosalind_hold', 'slipped', 'Розалинда это запомнит.');
         const by = g.told('run:by');
         const run = play(g, 'run');
-        await g.think('rosalind', 'David! Stop!');
+        await g.think('rosalind', 'Дэвид! Стой!');
         await by;
-        if (marks.father === 'disowned') await g.say('father', 'Don’t touch me.', 'joseph');
-        else await g.say('father', 'Go, David. Get away from here.', 'joseph');
-        await g.say('narrator', 'Sophie was running to the Spider-man.');
+        if (marks.father === 'disowned') await g.say('father', '— Не трогай меня.', 'joseph');
+        else await g.say('father', '— Уходи, Дэвид. Уходи отсюда.', 'joseph');
+        await g.say('narrator', 'К Пауку бежала Софи.');
         await run;
       }
       // the sky: the ship — or nothing
@@ -104,11 +104,11 @@ export default {
         const sky = g.told('noship:sky'), flee = g.told('noship:flee');
         const none = play(g, 'noship');
         await sky;
-        await g.say('narrator', 'We waited for the ship. The sky stayed empty.');
+        await g.say('narrator', 'Мы ждали корабль. Небо оставалось пустым.');
         await flee;
-        await g.say('narrator', 'The Waknuk men faltered and ran for the forest. They left my father behind.');
+        await g.say('narrator', 'Люди Вакнука дрогнули и побежали к лесу. Отца они оставили.');
         await none;
-        await g.think('petra', 'David… She doesn’t answer any more.');
+        await g.think('petra', 'Дэвид… Она больше не отвечает.');
         g.state.marks.ending = 'fringes';
         await g.wait(2000);
         return;
@@ -116,27 +116,27 @@ export default {
       const seen = g.told('ship:petra');
       const ship = play(g, 'ship');
       await seen;
-      await g.think('petra', 'It’s her! David, it’s her!');
+      await g.think('petra', 'Это она! Дэвид, это она!');
       await ship;
       // the threads come down: whom do I cover?
       const run = father === 'run';
       const cover = await g.choose('cover', run
-        ? { joseph: [{ id: 'father', label: tr('Shield my father') }], david: [{ id: 'self', label: tr('Fall beside him') }] }
-        : { petra: [{ id: 'petra', label: tr('Cover Petra') }], rosalind: [{ id: 'rosalind', label: tr('Cover Rosalind') }] },
+        ? { joseph: [{ id: 'father', label: 'Закрыть отца' }], david: [{ id: 'self', label: 'Упасть рядом' }] }
+        : { petra: [{ id: 'petra', label: 'Накрыть Петру' }], rosalind: [{ id: 'rosalind', label: 'Накрыть Розалинду' }] },
       { seconds: 10, late: run ? 'self' : 'none' });
       const web = play(g, WEB[cover]);
-      if (cover === 'petra') await g.say('narrator', 'Petra lay very still under me. The threads settled on my back.');
+      if (cover === 'petra') await g.say('narrator', 'Петра лежала подо мной тихо-тихо. Нити ложились мне на спину.');
       else if (cover === 'rosalind') {
-        g.mark('rosalind_cover', 'covered', tr('Rosalind will remember this.'));
-        await g.say('narrator', 'Rosalind held Petra. I held them both.');
-      } else if (cover === 'none') await g.say('narrator', 'I reached no one in time. The threads settled on everyone.');
+        g.mark('rosalind_cover', 'covered', 'Розалинда это запомнит.');
+        await g.say('narrator', 'Розалинда держала Петру. Я держал их обеих.');
+      } else if (cover === 'none') await g.say('narrator', 'Я не успел ни к кому. Нити легли на всех.');
       else if (cover === 'father') {
-        g.mark('father', 'saved', tr('Father will remember this.'));
+        g.mark('father', 'saved', 'Отец это запомнит.');
         g.scale('path', 1, true);
-        await g.say('narrator', 'I lay over my father. The threads settled on me, not on him.');
-      } else await g.say('narrator', 'I fell beside him. The threads settled on us both.');
+        await g.say('narrator', 'Я лёг на отца. Нити ложились на меня, а не на него.');
+      } else await g.say('narrator', 'Я упал рядом с ним. Нити легли на нас обоих.');
       await web;
-      await g.say('narrator', 'They were soft and sticky. And the more you struggled, the tighter they held.');
+      await g.say('narrator', 'Они были мягкие и липкие. И чем больше бьёшься, тем крепче держат.');
     },
     // the woman from Sealand: she frees us, takes Petra by the hand; at the ramp Michael stays behind
     async g => {
@@ -146,28 +146,28 @@ export default {
       const down = g.told(run ? 'landing_run:down' : 'landing:down');
       const { ended: landing } = await open(g, run ? 'landing_run' : 'landing');
       await down;
-      await g.say('narrator', 'It grew quiet. The ship came down in the middle of the clearing.');
+      await g.say('narrator', 'Стало тихо. Корабль опустился посреди поляны.');
       await landing;
       const runs = g.told(run ? 'free_run:petra' : 'free:petra');
       const free = play(g, run ? 'free_run' : 'free');
       await runs;
-      await g.think('petra', 'It’s you! I know you!');
-      await g.say('sealand', 'So this is what you are like, Petra. How loudly you call.');
-      if (run) await g.think('rosalind', 'David! Are you alive? I can hardly hear you.');
+      await g.think('petra', 'Это ты! Я тебя знаю!');
+      await g.say('sealand', '— Вот ты какая, Петра. Как же громко ты зовёшь.');
+      if (run) await g.think('rosalind', 'Дэвид! Ты живой? Я тебя почти не слышу.');
       await free;
       const by = g.told(run ? 'back_run:free' : 'back:father');
       const back = play(g, run ? 'back_run' : 'back');
       await by;
       if (run) {
-        await g.say('sealand', 'Brave. And foolish.');
+        await g.say('sealand', '— Смело. И глупо.');
         if (marks.father === 'saved') {
-          await g.say('narrator', 'Under the threads my father was breathing. I saw his fingers stir.');
-          await g.say('sealand', 'This one I will not free. He came to kill you.');
+          await g.say('narrator', 'Под нитями отец дышал. Я видел, как шевельнулись его пальцы.');
+          await g.say('sealand', '— Этого я освобождать не стану. Он пришёл вас убить.');
         }
-      } else await g.say('sealand', 'Don’t pity them. Their time is over.');
+      } else await g.say('sealand', '— Не жалей их. Их время прошло.');
       await back;
-      await g.think('michael', 'I’m staying, David. Someone has to tell our kind that we exist.');
-      await g.choose('leave', { ship: [{ id: 'fly', label: tr('Fly away') }], michael: [{ id: 'stay', label: tr('Stay with Michael') }] }, { seconds: 60, late: 'fly' });
+      await g.think('michael', 'Я остаюсь, Дэвид. Кто-то должен рассказать нашим, что мы есть.');
+      await g.choose('leave', { ship: [{ id: 'fly', label: 'Улететь' }], michael: [{ id: 'stay', label: 'Остаться с Майклом' }] }, { seconds: 60, late: 'fly' });
     },
     // the door closes; the ship goes — with me, or without me
     async g => {
@@ -177,11 +177,11 @@ export default {
         const her = withMe(g.state);
         const turn = her ? null : g.told('stay_alone:turn');
         const { ended: beat } = await open(g, her ? 'stay_ros' : 'stay_alone');
-        await g.think('petra', 'David, where are you going? Are you coming with us?');
-        if (her) await g.think('rosalind', 'Where you go — I go.');
+        await g.think('petra', 'Дэвид, ты куда? Ты с нами?');
+        if (her) await g.think('rosalind', 'Куда ты — туда и я.');
         else {
           await turn;
-          await g.think('rosalind', 'I can’t stay, David. Not here. Not after all this.');
+          await g.think('rosalind', 'Я не могу остаться, Дэвид. Не здесь. Не после всего.');
         }
         await beat;
         if (!her) await play(g, 'stay_alone_away');
@@ -189,11 +189,11 @@ export default {
       } else {
         const look = g.told('board:look'), michael = g.told('board:michael');
         const { ended: beat } = await open(g, 'board');
-        await g.think('rosalind', 'Come, David.');
+        await g.think('rosalind', 'Пойдём, Дэвид.');
         await look;
-        await g.say('narrator', 'On the threshold I looked back. Once.');
+        await g.say('narrator', 'На пороге я оглянулся. Один раз.');
         await michael;
-        await g.think('michael', 'I’ll tell them. Some day they’ll begin to listen.');
+        await g.think('michael', 'Я им расскажу. Когда-нибудь они станут слушать.');
         await beat;
         g.state.marks.ending = scales.path >= 2 ? 'return' : 'sealand';
       }

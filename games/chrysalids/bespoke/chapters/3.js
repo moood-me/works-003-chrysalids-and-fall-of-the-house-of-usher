@@ -30,7 +30,7 @@ export default {
     { id: 'anne', weight: '⚑', title: tr('Anne leaves'),
       options: [{ id: 'let', label: tr('let her go') }, { id: 'axel', label: tr('tell Axel') }] },
   ],
-  titles: ['The forge', 'Axel’s stories', 'Learning to hear', 'The square', 'Voices: Anne leaves'], // the steps, as the author's ☰ lists them
+  titles: ['The forge', 'Axel’s stories', 'Learning to hear', 'The square', 'Voices: Anne leaves'], // the steps, as the author's map lists them
   steps: [
     // the forge: chattering without words with someone far away — and uncle Axel sees the boy laugh at nothing
     async g => {

@@ -10,7 +10,7 @@
 import { until, keys } from '../hands.js';
 
 export default {
-  title: 'By the shadows', // (as the author's ☰ lists it)
+  title: 'By the shadows', // (as the author's map lists it)
   about: 45,
   skipped: { seen: false },
   async run(g, b, { hard = false, onSeen } = {}, signal) {

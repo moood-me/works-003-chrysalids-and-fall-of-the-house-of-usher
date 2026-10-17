@@ -29,7 +29,7 @@ export default {
     { id: 'far', weight: '~', title: tr('The voice from over the sea'),
       options: [{ id: 'answer', label: tr('answer') }, { id: 'listen', label: tr('only listen') }] },
   ],
-  titles: ['The river', 'The bank', 'Voices: Petra’s gift', 'The dream of the city'], // the steps, as the author's ☰ lists them
+  titles: ['The river', 'The bank', 'Voices: Petra’s gift', 'The dream of the city'], // the steps, as the author's map lists them
   steps: [
     // the river (“Petra at the river”, in beats): her cry in every head of ours; breathing with her while running
     // down to the water and swimming after her — how loud she is when he has her is seen on the far field

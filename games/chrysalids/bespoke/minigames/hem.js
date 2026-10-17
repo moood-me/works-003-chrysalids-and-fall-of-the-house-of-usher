@@ -12,7 +12,7 @@
 import { until, keys } from '../hands.js';
 
 export default {
-  title: 'The hem', // (as the author's ☰ lists it)
+  title: 'The hem', // (as the author's map lists it)
   about: 9,
   skipped: { hid: true },
   async run(g, b, { onRide } = {}, signal) {

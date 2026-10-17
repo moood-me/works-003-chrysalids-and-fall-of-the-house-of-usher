@@ -14,7 +14,7 @@ import { until } from '../hands.js';
 const IMPACT = 1.17, FREE = 2, GLARE = 2.5;
 
 export default {
-  title: 'The bellows’ rhythm', // (as the author's ☰ lists it)
+  title: 'The bellows’ rhythm', // (as the author's map lists it)
   about: 26,
   skipped: { broke: false },
   async run(g, b, { watched = false, night = false } = {}, signal) {

@@ -13,7 +13,7 @@ import { until } from '../hands.js';
 const BEAT = 0.75, LEAD = 2, D3 = 146.83;
 
 export default {
-  title: 'Sing with everyone', // (as the author's ☰ lists it)
+  title: 'Sing with everyone', // (as the author's map lists it)
   about: 32,
   skipped: { hymn: 'lips', turned: 0 }, // (neutral: the path not moved)
   async run(g, b, opts, signal) {

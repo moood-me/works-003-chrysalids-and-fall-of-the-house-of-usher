@@ -13,7 +13,7 @@ import { until, keys } from '../hands.js';
 const LONG = 2.0, CAUGHT = 0.5; // s: on her so long — looked; under her look so long — looked
 
 export default {
-  title: 'Two layers', // (as the author's ☰ lists it)
+  title: 'Two layers', // (as the author's map lists it)
   about: 30,
   skipped: { looked: false },
   async run(g, b, { watched = false, warm = () => 0, until: talk } = {}, signal) {

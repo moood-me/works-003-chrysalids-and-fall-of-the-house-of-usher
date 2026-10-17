@@ -13,7 +13,7 @@ const MOVED = 14; // px the finger may stray
 const RISE = 0.35, FIDGET = 0.12, EBB = 0.25; // a second: moved, let go, held still
 
 export default {
-  title: 'Not a stir', // (as the author's ☰ lists it)
+  title: 'Not a stir', // (as the author's map lists it)
   about: 25,
   skipped: { stirred: 0 },
   async run(g, b, { while: reading } = {}, signal) {

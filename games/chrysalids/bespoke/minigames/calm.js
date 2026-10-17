@@ -12,7 +12,7 @@ import { until } from '../hands.js';
 const BPM = 24;
 
 export default {
-  title: 'Calm her', // (as the author's ☰ lists it)
+  title: 'Calm her', // (as the author's map lists it)
   about: 22,
   skipped: { cry: 0.2 },
   async run(g, b, { until: running } = {}, signal) {

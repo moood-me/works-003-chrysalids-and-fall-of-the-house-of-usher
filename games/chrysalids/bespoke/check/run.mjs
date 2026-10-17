@@ -1,5 +1,5 @@
 // The check of the game's branches: node bespoke/check/run.mjs <a clone of the world>. No browser, no engine,
-// nothing drawn. Every step of every chapter is played unseen, the way the author's ☰ plays it (jump.js: a dry run,
+// nothing drawn. Every step of every chapter is played unseen, the way the author's map plays it (jump.js: a dry run,
 // story.js context(…, j)), on a page that only knows the scenes' specs (fake.mjs): no time passes, the choices are
 // those of the play walked (a choice on time: its moment passed, if that is what the play has), a minigame gives the
 // result put in for it.
@@ -61,8 +61,9 @@ const MINIGAMES = {
   horses: { scene: 'flight', keys: ['great_toss', 'pack_toss', 'sheba_toss', 'petra_peek', 'lamp_x', 'lamp', 'search_point', 'great_a', 'pack_a', 'sheba_a'], points: ['great#head', 'pack#head', 'sheba#head', 'petra'], opts: ['start', 'sheba', 'petra', 'horse'], result: ['seen'] },
   shadow: { scene: 'edge', keys: ['walkers', 'walk_u', 'walk_lit', 'walk_shade'], points: ['david'], opts: ['hard', 'onSeen'], result: ['seen'] },
 };
-// what game.js itself takes of “Threads” (it is not run here): its keys, the knots it offers
-const THREADS = { keys: ['chapters', 'shown', 'reveal', 'knot'], offers: Array.from({ length: 8 }, (_, i) => `k${i}#knot`) };
+// what game.js itself takes of “Threads” (it is not run here): its key, the points its trees stand at (map.js) — each
+// chapter's and the author's sign's
+const THREADS = { keys: ['shown'], points: [...Array.from({ length: 8 }, (_, i) => `c${i}`), 'author'] };
 // the results put in: the outcomes a chapter branches on — clean, and each one's other
 const CLEAN = {};
 const OTHER = [{ hem: { hid: false } }, { dig: { cleared: 0.3, bell: true } }, { gaze: { found: false, left: 0 } }, { hymn: { hymn: 'silent', turned: 0.7 } }, { hymn: { hymn: 'loud', turned: 0.1 } },
@@ -171,11 +172,11 @@ const threads = WORLD.get(SCENES.threads);
 if (threads) {
   for (const key of THREADS.keys) {
     if (!(key in threads.states) && !engines(threads, key)) miss('game.js', `“${SCENES.threads}”: key “${key}” is not in states`);
-    if (key !== 'chapters' && threads.contract && !(key in threads.contract.party)) miss('game.js', `“${SCENES.threads}”: key “${key}” is not in the contract’s party`);
+    if (threads.contract && !(key in threads.contract.party)) miss('game.js', `“${SCENES.threads}”: key “${key}” is not in the contract’s party`);
     threads.named.add(`party:${key}`);
   }
-  for (const ref of THREADS.offers) {
-    if (threads.contract && !threads.contract.offers.includes(ref)) miss('game.js', `“${SCENES.threads}”: offer “${ref}” is not in the contract`);
+  for (const ref of THREADS.points) {
+    if (threads.contract && !threads.contract.points.includes(ref)) miss('game.js', `“${SCENES.threads}”: point “${ref}” is not in the contract`);
     threads.named.add(`ref:${ref}`);
   }
 }

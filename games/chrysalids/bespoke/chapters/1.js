@@ -29,7 +29,7 @@ export default {
     { id: 'secret', weight: '⚑', title: tr('Sophie’s secret'),
       options: [{ id: 'kept', label: tr('keep quiet') }, { id: 'told', label: tr('tell my mother') }] },
   ],
-  titles: ['The bank by the stream', 'Hooves', 'The promise', 'The ruins of the Old People', 'Home: my mother asks'], // the steps, as the author's ☰ lists them
+  titles: ['The bank by the stream', 'Hooves', 'The promise', 'The ruins of the Old People', 'Home: my mother asks'], // the steps, as the author's map lists them
   steps: [
     // the bank of the stream: sliding down the sand; a girl; her foot caught in the stones — how to speak to her
     async g => {

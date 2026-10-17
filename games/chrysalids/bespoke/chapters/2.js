@@ -43,7 +43,7 @@ export default {
     { id: 'warn', weight: '~', title: tr('The night before the raid'),
       options: [{ id: 'warned', label: tr('warn Sophie') }, { id: 'stayed', label: tr('stay at home') }] },
   ],
-  titles: ['The evening chores', 'The third hand', 'The inspector and the calf', 'The burning of the field', 'The night before the raid'], // the steps, as the author's ☰ lists them
+  titles: ['The evening chores', 'The third hand', 'The inspector and the calf', 'The burning of the field', 'The night before the raid'], // the steps, as the author's map lists them
   steps: [
     // the evening chores, in their order — the father watches
     async g => {

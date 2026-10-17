@@ -19,7 +19,7 @@ import horses from '../minigames/horses.js';
 import bellows from '../minigames/bellows.js';
 import { SCENES } from '../story.js';
 
-// a step that plays only on one branch, gone to from the author's ☰ (nothing chosen before it): it says
+// a step that plays only on one branch, gone to from the author's map (nothing chosen before it): it says
 // so, and may be played as if that had been chosen; → whether to play it
 async function onlyIf(g, text, choice, value, label) {
   if (g.state.choices[choice] !== undefined) return g.state.choices[choice] === value;
@@ -52,7 +52,7 @@ export default {
     { id: 'shadow', weight: '~', title: tr('By the shadows'),
       options: [{ id: 'hid', label: tr('went in the shadows') }, { id: 'seen', label: tr('the lantern saw us') }] },
   ],
-  titles: ['Night: we are given away', 'The forge: the key', 'The trial', 'Flight', 'By the shadows'], // the steps, as the author's ☰ lists them
+  titles: ['Night: we are given away', 'The forge: the key', 'The trial', 'Flight', 'By the shadows'], // the steps, as the author's map lists them
   steps: [
     // the kitchen at night, years on (the kitchen's tableau `late`): Michael's news in my head, the father reading longer
     // than he used to — and, if he has grown suspicious, lifting his head from the Book (`asks`). Flee now, or get

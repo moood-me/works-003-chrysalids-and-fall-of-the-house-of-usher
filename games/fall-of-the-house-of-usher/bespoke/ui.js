@@ -9,6 +9,7 @@
 //     it, reads it, folds it again; → then. text: its lines ('\n'); highlight: words of it underlined
 //   view.title(text, {signal}) — words over the scene, as a film's title; → once they have gone
 //   view.replaying(on) — the slip «Replay» in the corner while a replay goes on (game.js)
+//   view.quiet() — what a chapter left showing taken away (the map comes)
 //   view.notice(text) — a line low in the middle, till it is taken away (→ what takes it away): what a choice on the
 //     map would do
 //   view.author({chapters, at() → {chapter, step}, plays(chapter, step) → [titles of its minigames], go(chapter, step,
@@ -76,6 +77,10 @@ export function ui(layer) {
       });
     },
     replaying(on) { replay.hidden = !on; },
+    // what a chapter left showing (its strips) taken away: the map comes
+    quiet() {
+      toasts.replaceChildren();
+    },
     notice(text) {
       const n = el('p', 'notice', layer);
       n.textContent = text;

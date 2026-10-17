@@ -1,7 +1,7 @@
-// Эпилог — the ending the play came to (g.state.ending, set by chapter IV or by leaving), then the
-// crack of the whole play (game.js). Each ending is a beat of «Падение дома» and the narrator's words
-// over it; «Мэдлин» — her song hummed by the water; «Уехал» comes back to his letter (LETTER of the
-// prologue). design.md (docs/usher): «Концовки».
+// Epilogue — the ending the play came to (g.state.ending, set by chapter IV or by leaving), then the
+// crack of the whole play (game.js). Each ending is a beat of «The fall of the house» and the narrator's words
+// over it; «Madeline» — her song hummed by the water; «Left» comes back to his letter (LETTER of the
+// prologue). design.md (docs/usher): the endings.
 import { LETTER } from './prologue.js';
 import { SCENES } from '../story.js';
 
@@ -12,22 +12,22 @@ const FALL = SCENES.fall;
 const END = 'end';
 const ENDINGS = [
   // (the tarn closing over the house)
-  { id: 'poe', label: 'Как у По', beat: 'end_alone', lines: [['end_alone:under', 'Глубокий тёмный пруд у моих ног угрюмо и безмолвно сомкнулся над обломками дома Ашеров.']] },
+  { id: 'poe', label: tr('As in Poe'), beat: 'end_alone', lines: [['end_alone:under', tr.line('narrator', 'The deep and dank tarn at my feet closed sullenly and silently over the fragments of the House of Usher.')]] },
   // (she at the very water; then, the house gone, his hand let down)
-  { id: 'madeline', label: 'Мэдлин', beat: 'end_madeline', lines: [['end_madeline:water', 'Она жива. Она не говорит ни слова. Стоит у воды и напевает свою песню.'], [END, 'Не знаю, спас ли я её.']] },
+  { id: 'madeline', label: tr('Madeline'), beat: 'end_madeline', lines: [['end_madeline:water', tr.line('narrator', 'She lives. She speaks no word. She stands by the water, and hums her song.')], [END, tr.line('narrator', 'I know not whether I saved her.')]] },
   // (he on his knees at the water; the narrator come up behind him)
-  { id: 'roderick', label: 'Родерик', beat: 'end_roderick', lines: [['end_roderick:behind', 'Он жив. О ней он не говорит. Сидит у воды — и всё ещё слушает.']] },
+  { id: 'roderick', label: tr('Roderick'), beat: 'end_roderick', lines: [['end_roderick:behind', tr.line('narrator', 'He lives. Of her he does not speak. He sits by the water — and listens still.')]] },
   // (the narrator's eyes on their hands)
-  { id: 'both', label: 'Оба', beat: 'end_both', lines: [['end_both:hands', 'Дом ушёл под воду. А то, что вышло из него вместе с ними, не ушло.']] },
-  { id: 'stayed', label: 'Остался', beat: 'end_stayed', lines: [['end_stayed:under', 'Пруд сомкнулся над домом Ашеров. Над ними. И надо мной.']] },
+  { id: 'both', label: tr('Both'), beat: 'end_both', lines: [['end_both:hands', tr.line('narrator', 'The house went down beneath the water. But that which came out of it with them — did not.')]] },
+  { id: 'stayed', label: tr('Stayed'), beat: 'end_stayed', lines: [['end_stayed:under', tr.line('narrator', 'The tarn closed over the House of Usher. Over them. And over me.')]] },
   // (the empty tarn in the morning, once it is all there)
-  { id: 'left', label: 'Уехал', beat: 'gone', lines: [['gone:morning', 'Через месяц пришло письмо: дома Ашеров больше нет. Он ушёл в пруд в ночь бури.'], [END, 'Я перечитал его письмо.']] },
+  { id: 'left', label: tr('Rode away'), beat: 'gone', lines: [['gone:morning', tr.line('narrator', 'A month later there came a letter: the House of Usher was no more. It had gone down into the tarn on the night of the storm.')], [END, tr.line('narrator', 'I read his letter once again.')]] },
 ];
 
 export default {
   number: '',
-  title: 'Эпилог',
-  titles: ['Концовка'],
+  title: tr('Epilogue'),
+  titles: ['Ending'],
   choices: [],
   endings: ENDINGS,
   steps: [

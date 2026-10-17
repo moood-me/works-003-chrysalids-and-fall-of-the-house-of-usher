@@ -1,10 +1,10 @@
-// «Стук» (III, the nights; «Склеп», after the beat `at_door`): alone at the shut iron door, by one candle.
+// «Knock» (III, the nights; «The vault», after the beat `at_door`): alone at the shut iron door, by one candle.
 //   1. what he does — knocks on the door of the vault, and listens; 2. wants — to know whether she is alive; 3. horror,
 //   and the hope he dares not have; 4. the player — knocking, and waiting in the silence for an answer.
 // The language's press on the door (outside#door, the insert's point): each touch a knock — the scene's `knock` pulse
 // (the door trembles, dust falls) and the knock heard on the iron. When the knocking stops, silence — the scene's turn,
 // the marks hidden — and then from the other side as many knocks back (`answer`, muffled). The player may knock again; it
-// answers again. After the first answer, a quiet mark on the way up (outside#away) with its word, «Уйти»; or nothing more
+// answers again. After the first answer, a quiet mark on the way up (outside#away) with its word, «Walk away»; or nothing more
 // for a long while — he has stood there long enough.
 //   → { knocks: how many times the player knocked, answered: true }
 import { knock as heard } from '../sound.js';
@@ -16,11 +16,11 @@ const APART = 0.75; // s between the answer's knocks
 const IDLE = 14; // s after an answer with no knock: he has stood long enough
 
 export default {
-  title: 'Стук', // (as the author's map lists it)
+  title: 'Knock', // (as the author's map lists it)
   about: 25,
   skipped: { knocks: 1, answered: true },
   async run(g, b, opts, signal) {
-    const mg = g.minigame({ phrase: 'Железная дверь была заперта, и за ней было тихо' });
+    const mg = g.minigame({ phrase: tr('The iron door was locked, and beyond it all was still') });
     const door = mg.mark({ at: 'outside#door', kind: 'ring' });
     const press = mg.press({ on: door });
     b.minigame.tricks.teach(mg, [press], { id: 'press' });
@@ -46,10 +46,10 @@ export default {
       }
       mg.sceneTurn(false);
       answered = mg.t;
-      mg.plate.set({ fill: 1, phrase: 'Оттуда, из-за двери, ответили' });
+      mg.plate.set({ fill: 1, phrase: tr('From there, from beyond the door, came an answer') });
       if (!leave) {
         const away = mg.mark({ at: 'outside#away', kind: 'ring', quiet: true });
-        leave = mg.press({ on: away, petals: [{ id: 'go', label: 'Уйти' }] });
+        leave = mg.press({ on: away, petals: [{ id: 'go', label: tr('Walk away') }] });
         once(mg, leave, 'choose').then(x => { if (x) gone = true; });
       }
     };

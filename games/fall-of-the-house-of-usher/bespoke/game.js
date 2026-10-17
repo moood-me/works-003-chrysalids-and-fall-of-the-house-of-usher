@@ -1,30 +1,30 @@
-// Падение дома Ашеров — по рассказу Эдгара Аллана По. A bespoke game (moood/engines/bespoke) on the world «Падение дома
-// Ашеров v3» (engine 3): the player is Roderick's friend from boyhood, called by his letter. A prologue (the end first:
+// The Fall of the House of Usher — after the tale by Edgar Allan Poe. A bespoke game (moood/engines/bespoke) on the world «The Fall of the House
+// of Usher v3» (engine 3): the player is Roderick's friend from boyhood, called by his letter. A prologue (the end first:
 // the house falls), four chapters, an epilogue — each a row of steps on the world's scenes. The choices, the scales
 // (the crack, sanity, Roderick's trust), what Madeline heard and what is remembered carry from chapter to chapter; a
 // step that sets the ending ends the chapters: the epilogue comes next (those between never reached). Choices are the
 // language of mini-games' (story.js hub): a mark on the thing, its words as petals.
-//   The map of the play (moood/docs/agents/games.md): the scene «Трещина» — the wall of the house, a point for each
+//   The map of the play (moood/docs/agents/games.md): the scene «Crack» — the wall of the house, a point for each
 // chapter — and over it each chapter's tree drawn by the game (map.js): its rows of choices (the forks), what was
 // chosen brighter, the chapters to come numbered only. The view comes to a chapter (`shown`), the player drags it
 // anywhere. What can be done on it is its own drawing — pressed, the language's mark opens there, born open (story.js
-// hub.ask): the main run's pointer — «Начать», «Продолжить» (from the beginning of the step it stopped in); a chapter
-// played — «Переиграть главу»; each fork the main run reached in it — «Переиграть отсюда» (from that step, with all the
+// hub.ask): the main run's pointer — «Start», «Continue» (from the beginning of the step it stopped in); a chapter
+// played — «Replay the chapter»; each fork the main run reached in it — «Replay from here» (from that step, with all the
 // main run chose before it). The play begins on the map, comes to it after each chapter, by ☰ (the page's: the step
 // going on is left — played again from its beginning), and whenever it is opened again. Its author has one more sign
 // (left of the prologue): his map of the chapters and their steps (ui.js author) — straight to any step, or a minigame
 // of one: a replay from there, as if nothing was chosen before it.
 //
 // The play is one — its main run, as far as the player has come. A replay (begun on the map) goes on its own and is
-// never kept: closed, it is gone. Meanwhile the slip «Переигровка» in the corner; on the map its threads beside the
-// main run's, its chapter's knot «Продолжить переигровку» or «Вернуться к основной» (the main run played on at once);
-// whatever would leave it asks first (its mark opens again) — «Бросить переигровку». Played to its chapter's end (or to
-// an ending), the player keeps it — «Оставить»: it becomes the main run from the next chapter on, the chapters after it
-// to be played anew (said beside) — or not, «Отменить».
+// never kept: closed, it is gone. Meanwhile the slip «Replay» in the corner; on the map its threads beside the
+// main run's, its pointer «Continue the replay» or «Back to the main run» (the main run played on at once);
+// whatever would leave it asks first (its mark opens again) — «Drop the replay». Played to its chapter's end (or to
+// an ending), the player keeps it — «Keep»: it becomes the main run from the next chapter on, the chapters after it
+// to be played anew (said beside) — or not, «Undo».
 //
 // What is kept of the play (bespoke.keep), after every step: the main run — { chapter, step, scales, shown, heard,
 // marks, choices, ending } —, steps: {chapter: [the main run as each of its steps began, and as it ended]} (what
-// «Переиграть отсюда» starts from), seen: {chapter: how many of its steps the player has ever played through} — never
+// «Replay from here» starts from), seen: {chapter: how many of its steps the player has ever played through} — never
 // lessened. The page's ⏭ (bespoke.forward, story.js) is the player's only where they have been: in a step not past what
 // they have seen of its chapter — on to the next interaction —, and in a minigame there, or one they have been in a
 // while (story.js SKIPPABLE).
@@ -72,7 +72,7 @@ export default async function (b) {
     }
     return listed.get(k);
   };
-  // the author's map (his sign on «Трещина» opens it): where it goes to is what the map waiting now is told
+  // the author's map (his sign on «Crack» opens it): where it goes to is what the map waiting now is told
   let jumped = () => {};
   const author = b.game.mine ? view.author({ chapters: CHAPTERS, at: () => replay?.run ?? kept, plays, go: (chapter, step, play) => jumped({ jump: { chapter, step, play } }) }) : null;
   // ☰ while the play goes on: to the map (on the map itself there is none)
@@ -84,7 +84,7 @@ export default async function (b) {
     wake(); // (a touch: the page may be heard from now on)
     if (to === 'drop') { replay = null; continue; }
     if (to === 'keep') { await keepReplay(); continue; }
-    if (to === 'main' || to === 'back') replay = null; // («Вернуться к основной»: the main run goes on from where it stands)
+    if (to === 'main' || to === 'back') replay = null; // («Back to the main run»: the main run goes on from where it stands)
     else if (to !== 'replay') replay = replayFrom(to);
     view.replaying(!!replay);
     if ((await play()) === 'away') continue;
@@ -109,7 +109,7 @@ export default async function (b) {
       const g = context(b, view, hub, structuredClone(run(r)), r.play != null ? jump(r.play, unheard()) : null,
         { forward: r.step < (kept.seen[r.chapter] ?? 0) });
       const how = await Promise.race([
-        ch.steps[r.step](g).then(() => 'done', e => { b.trouble(`шаг сломался: ${e.message || e}`); return 'broke'; }),
+        ch.steps[r.step](g).then(() => 'done', e => { b.trouble(`a step broke: ${e.message || e}`); return 'broke'; }),
         away(),
       ]);
       if (how === 'done') await g.done();
@@ -149,7 +149,7 @@ export default async function (b) {
     return keep({ ...on, steps: { ...pick(kept.steps, j => j < i), [i]: steps, [on.chapter]: [on] }, seen: kept.seen });
   }
 
-  // «Трещина», the map: the play on the wall, where it is now in the middle (the replay's chapter, else the main
+  // «Crack», the map: the play on the wall, where it is now in the middle (the replay's chapter, else the main
   // run's).
   // What brought the play here: a chapter played through (reveal: its threads grow — its forks offered once they have
   // —, then the view goes on to where the play is now). → what was picked: an option's id, or {jump} — the author's map
@@ -161,7 +161,7 @@ export default async function (b) {
     const here = replay ? replay.run.chapter : Math.min(kept.chapter, EPILOGUE);
     await b.show(SCENES.wall, { state: { shown: reveal ?? here }, captions: false });
     const drawn = trees(b, sky(), { grow: reveal, seconds: REVEAL, author: !!author });
-    const notice = replay?.done && again() ? view.notice('Если оставить, главы после этой придётся пройти заново.') : () => {};
+    const notice = replay?.done && again() ? view.notice(tr('If you keep it, the chapters after this one will have to be played again.')) : () => {};
     let grown = reveal == null, asked = null; // (an option that would leave the replay: asked again)
     let at = reveal ?? here; // (the chapter the view is at)
     const go = i => { if (i !== at) { at = i; b.set('shown', i); } };
@@ -199,26 +199,26 @@ export default async function (b) {
     }
   }
   // what can be done on the map: {ref (map.js: what of its drawing is pressed): options} — `asked`: the option that
-  // would leave the replay, now «Бросить переигровку»; `growing`: the chapter whose forks are not there yet
+  // would leave the replay, now «Drop the replay»; `growing`: the chapter whose forks are not there yet
   function marks(asked, growing) {
     const offers = {};
-    const add = (ref, id, label) => { (offers[ref] ??= []).push({ id, label: id === asked ? 'Бросить переигровку' : label }); };
+    const add = (ref, id, label) => { (offers[ref] ??= []).push({ id, label: id === asked ? tr('Drop the replay') : label }); };
     if (replay) {
       const c = replay.run.chapter;
-      if (replay.done) { add(`knot:${c}`, 'keep', 'Оставить'); add(`knot:${c}`, 'drop', 'Отменить'); }
-      else { add(`goreplay:${c}`, 'replay', 'Продолжить переигровку'); add(`goreplay:${c}`, 'back', 'Вернуться к основной'); }
+      if (replay.done) { add(`knot:${c}`, 'keep', tr('Keep')); add(`knot:${c}`, 'drop', tr('Undo')); }
+      else { add(`goreplay:${c}`, 'replay', tr('Continue the replay')); add(`goreplay:${c}`, 'back', tr('Back to the main run')); }
     }
-    if (kept.chapter < END) add(`go:${kept.chapter}`, 'main', kept.step ? 'Продолжить' : 'Начать');
+    if (kept.chapter < END) add(`go:${kept.chapter}`, 'main', kept.step ? tr('Continue') : tr('Start'));
     for (let i = 0; i < Math.min(kept.chapter, END); i++) {
       if (!kept.steps[i]?.[0]) continue; // (never reached: an ending came before it)
-      add(`knot:${i}`, `chapter:${i}`, 'Переиграть главу');
+      add(`knot:${i}`, `chapter:${i}`, tr('Replay the chapter'));
       if (i === growing) continue;
       CHAPTERS[i].choices.forEach((c, k) => {
         const s = fork(i, c.id);
-        if (s != null) add(`fork:${i}:${k}`, `fork:${i}:${s}`, 'Переиграть отсюда');
+        if (s != null) add(`fork:${i}:${k}`, `fork:${i}:${s}`, tr('Replay from here'));
       });
     }
-    if (author) add('author', 'author', 'Карта автора');
+    if (author) add('author', 'author', tr('The author’s map'));
     return offers;
   }
   // the step of chapter i in which the main run made the choice `id`: the first that began without it and ended with
@@ -241,7 +241,7 @@ export default async function (b) {
       // (a chapter played: all its rows; one going on — those reached so far)
       const all = rows(c, reached ? kept.choices : {}, tried ? re.choices : {});
       return { number: c.number, title: c.title, kind, rows: i < kept.chapter && !tried ? all : all.filter(r => r.options.some(o => o.state !== 'unseen')),
-        go: i === kept.chapter ? (kept.step ? 'продолжить\nигру' : 'начать\nигру') : null, replay: tried && !replay.done, badge: tried };
+        go: i === kept.chapter ? (kept.step ? tr('continue\nthe game') : tr('start\nthe game')) : null, replay: tried && !replay.done, badge: tried };
     });
   }
 }

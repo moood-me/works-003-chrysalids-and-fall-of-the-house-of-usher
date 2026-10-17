@@ -5,7 +5,7 @@
 //     follows from it for a scene: facts(g.state)
 //   g.signal — aborts when the step is left: stop what it started (a sound, a timer) on it
 //   g.sound — the game's sounds (sound.js)
-//   g.scene(title, state) — that scene of the world, full-screen, its state on top of where it starts — and under it
+//   g.scene(folder, state) — that scene of the world, full-screen, its state on top of where it starts — and under it
 //     what the play has decided, as this scene's keys (carry: its crack as the crack scale says). A scene of beats plays
 //     none until one is named: the step's first beat goes in `state` ({beat: name}) — the scene opens playing it — and
 //     g.beat(name) then takes it up (waits for its end)
@@ -14,9 +14,10 @@
 //     an event of the scene's: g.told / g.heard(text, ms) — until the scene tells `text` (→ true), or ms pass (→ false)
 //   g.watch(key, fn) — fn(value, old) each time the scene sets the key, till the step is left (a sound to each of its
 //     changes); unseen — nothing
-//   g.say(who, text, at) — someone of PEOPLE says it, over `at` ('id' | 'id#point' of the scene; 'narrator' — low in
-//     the middle), in their voice; → a breath after it has been heard (unvoiced: once it could be read)
-//   g.think(who, text, at) — heard inside the head: their voice, a whisper; shown as «text» — Name, low in the middle
+//   g.say(who, text, at) — someone of the game's people (people.json: bespoke.say) says it, over `at` ('id' | 'id#point'
+//     of the scene; 'narrator' — low in the middle), in their voice; → a breath after it has been heard (unvoiced: once
+//     it could be read)
+//   g.think(who, text, at) — heard inside the head: their voice, a whisper; shown as “text” — Name, low in the middle
 //   g.choose(choice, ref, options, timed) | g.choose(choice, {ref: options, …}, timed) — the player touches one of the
 //     points ('id#point' | 'id'), then one of its options ([{id, label}]: petals, one too — seen in words, pressed; a
 //     label of one to three words — a line it stands for is said after it); → the option's id, kept in
@@ -36,7 +37,7 @@
 //   g.scale(name, delta, quiet) — crack, sanity or trust moves; the player sees which way (the gauge, the words) unless
 //     quiet; the first time a scale shows, one line says what it means. The crack grows in the shown scene too
 //   g.gauge(name) — the scale is shown from now on (with its line), not moved
-//   g.overheard(what) — Madeline heard it (state.heard[what]): «Мэдлин это слышала.»
+//   g.overheard(what) — Madeline heard it (state.heard[what]): «Madeline heard that.»
 //   g.mark(key, value, text) — remembered (state.marks[key]); text — what the player is told, if any
 //   g.end(ending) — the play ends: after this step comes the epilogue, showing `ending` (epilogue.js)
 //   g.letter({text, highlight, sign}) — a letter the player unfolds, reads and folds again (ui.js)
@@ -53,26 +54,19 @@
 // (a dry run): then nothing of it is said, shown or heard, and a minigame gives what j.result says, else its `skipped`.
 import * as sounds from './sound.js';
 
+// the world's scenes the game plays, by their folders
 export const SCENES = {
-  house: 'Подъезд к дому', room: 'Комната Родерика', gallery: 'Мэдлин проходит', vault: 'Склеп', storm: 'Буря и чтение',
-  fall: 'Падение дома', wall: 'Трещина',
+  house: 'main', room: 'roderick-room', gallery: 'madeline-passes', vault: 'vault', storm: 'storm-and-reading',
+  fall: 'fall-of-the-house', wall: 'fissure',
 };
 
-export const PEOPLE = {
-  narrator: { voice: 'Charon', how: 'тихо, размеренно, глуховато — так вспоминают то, что хотели бы забыть', name: 'рассказчик, друг детства Родерика', short: 'я' },
-  roderick: { voice: 'Enceladus', how: 'нервно, порывисто, то почти шёпотом, то срываясь', name: 'Родерик Ашер', short: 'Родерик' },
-  madeline: { voice: 'Achernar', how: 'еле слышно, медленно, шёпотом, будто издалека', name: 'леди Мэдлин, сестра-близнец Родерика', short: 'Мэдлин' },
-  doctor: { voice: 'Sadaltager', how: 'вкрадчиво, с жадным любопытством, чуть заискивающе', name: 'врач Ашеров, пожилой', short: 'врач' },
-};
-export const THOUGHT = ', но беззвучно: шёпотом, будто прямо в голове'; // how a thought is heard
-const thought = (who, text) => `«${text}» — ${PEOPLE[who]?.short || ''}`; // and shown
 
 // The scales: where they start, their bounds, what the player reads when they move, and the one line that says what
 // they mean, the first time they show.
 export const SCALES = {
-  crack: { start: 0, min: 0, up: 'Трещина растёт', down: 'Трещина затихла', rule: 'Трещина растёт, когда здесь молчат о правде.' },
-  sanity: { start: 5, min: 0, max: 5, up: 'Рассудок ↑', down: 'Рассудок ↓', rule: 'Чем ниже рассудок, тем больше ты видишь и слышишь.' },
-  trust: { start: 1, up: 'Родерик ↑', down: 'Родерик ↓', rule: 'Родерик ↑ — он верит тебе больше, ↓ — меньше.' },
+  crack: { start: 0, min: 0, up: tr('The fissure widens'), down: tr('The fissure is quiet'), rule: tr('The fissure widens when the truth goes unspoken here.') },
+  sanity: { start: 5, min: 0, max: 5, up: tr('Reason ↑'), down: tr('Reason ↓'), rule: tr('The lower your reason, the more you see and hear.') },
+  trust: { start: 1, up: tr('Roderick ↑'), down: tr('Roderick ↓'), rule: tr('Roderick ↑ — he trusts you more, ↓ — less.') },
 };
 export const CRACK_FULL = 9; // the crack scale at which the crack is all it can be
 export const crackIn = n => Math.min(1, 0.1 + (0.9 * n) / CRACK_FULL); // a scene's crack 0…1 for the scale
@@ -83,8 +77,8 @@ export function facts(state) {
 }
 // The play's facts (f) as a scene's own keys: what g.scene opens it with, under the step's state — the crack, in every
 // scene where the house's wall is seen (not the fall, nor the wall between the chapters: theirs is their own)
-export function carry(title, f) {
-  return title === SCENES.fall || title === SCENES.wall ? {} : { crack: f.crack };
+export function carry(folder, f) {
+  return folder === SCENES.fall || folder === SCENES.wall ? {} : { crack: f.crack };
 }
 
 const BEAT = 180000; // a beat longer than this has not ended: the scene lacks it
@@ -138,19 +132,12 @@ export function context(b, view, hub, state, j = null, { forward = null } = {}) 
     const { shown, then } = j;
     for (const h of j.seen()) hub.told(h.text, h.ms).then(h.ok);
     view.gauges(state);
-    if (shown) await alive(b.show(shown.title, { state: shown.state, captions: false, then }));
+    if (shown) await alive(b.show(shown.folder, { state: shown.state, captions: false, then }));
     ahead();
   })());
   if (j && j.target < Infinity) j.idle.then(seen);
-  // a line, and the time it asks: heard — a breath after; shown without a voice — as long as it takes to read it
-  async function speak(at, text, opts) {
-    if (unseen()) return sleep(300 + text.length * 60);
-    let heard = false;
-    const hear = e => { if (e.detail.on && e.detail.text === text.trim()) heard = true; };
-    addEventListener('moood:speech', hear);
-    try { await b.say(at, text, opts); } finally { removeEventListener('moood:speech', hear); }
-    await sleep(heard ? 500 : 300 + text.length * 60);
-  }
+  // the time a line asks, once said: heard — a breath after; shown without a voice — as long as it takes to read it
+  const after = ({ heard, text }) => sleep(heard ? 500 : 300 + text.length * 60);
   // the scale is met: its gauge from now on, and its line once
   const meet = name => {
     if (state.shown[name]) return;
@@ -161,15 +148,15 @@ export function context(b, view, hub, state, j = null, { forward = null } = {}) 
     state,
     signal: left.signal,
     get sound() { return unseen() ? j.sounds : sounds; },
-    async scene(title, st = {}) {
+    async scene(folder, st = {}) {
       if (gone()) return never;
       // (opened as it is to be: what the play has decided — those of its keys the scene has —, the beat it opens
       // with playing from its first frame)
-      spec = await alive(unseen() ? j.real(b.specOf(title)) : b.specOf(title));
-      st = { ...Object.fromEntries(Object.entries(carry(title, facts(state))).filter(([key]) => key in (spec.states ?? {}))), ...st };
+      spec = await alive(unseen() ? j.real(b.specOf(folder)) : b.specOf(folder));
+      st = { ...Object.fromEntries(Object.entries(carry(folder, facts(state))).filter(([key]) => key in (spec.states ?? {}))), ...st };
       if (unseen()) {
         opening = typeof st.beat === 'string' ? { name: st.beat, ended: g.told(`beat:${st.beat}`, BEAT) } : null;
-        j.scene(title, st);
+        j.scene(folder, st);
         return;
       }
       showing = true;
@@ -177,7 +164,7 @@ export function context(b, view, hub, state, j = null, { forward = null } = {}) 
         if (fast) await alive(land());
         opening = typeof st.beat === 'string' ? { name: st.beat, ended: g.told(`beat:${st.beat}`, BEAT) } : null;
         g.withdraw();
-        await alive(b.show(title, { state: st, captions: false }));
+        await alive(b.show(folder, { state: st, captions: false }));
       } finally { showing = false; }
     },
     set: (key, value, seconds) => (gone() ? undefined : put(key, value, seconds)),
@@ -190,14 +177,15 @@ export function context(b, view, hub, state, j = null, { forward = null } = {}) 
     },
     async say(who, text, at = who) {
       if (gone()) return never;
+      if (unseen()) return sleep(300 + text.length * 60);
       if (fast) await alive(land());
-      return speak(at, text, PEOPLE[who] || {});
+      return alive(b.say(who, text, { at })).then(after);
     },
     async think(who, text, at = 'narrator') {
       if (gone()) return never;
+      if (unseen()) return sleep(300 + text.length * 60);
       if (fast) await alive(land());
-      const p = PEOPLE[who] || {};
-      return speak(at, thought(who, text), { ...p, how: (p.how || '') + THOUGHT });
+      return alive(b.think(who, text, { at })).then(after);
     },
     async choose(choice, ref, options, timed) {
       if (gone()) return never;
@@ -235,7 +223,7 @@ export function context(b, view, hub, state, j = null, { forward = null } = {}) 
         put('beat', null); // (the same beat again is a change too)
         put('beat', name);
       }
-      if (wait && !(await ended)) b.trouble(`кусок «${name}» не кончился`);
+      if (wait && !(await ended)) b.trouble(`beat “${name}” did not end`);
     },
     told(text, ms = 60000) {
       return gone() ? never : unseen() ? j.heard(text, ms) : alive(hub.told(text, ms));
@@ -271,7 +259,7 @@ export function context(b, view, hub, state, j = null, { forward = null } = {}) 
       }
     },
     minigame(o = {}) {
-      if (!playing) throw new Error('g.minigame — только внутри мини-игры (g.play)');
+      if (!playing) throw new Error('g.minigame — only inside a mini-game (g.play)');
       const mg = b.minigame.start({ ...o, signal: playing.signal });
       mg.on('skip', playing.end);
       return mg;
@@ -296,7 +284,7 @@ export function context(b, view, hub, state, j = null, { forward = null } = {}) 
     overheard(what) {
       if (gone() || state.heard[what]) return;
       state.heard[what] = true;
-      if (!unseen()) view.toast('Мэдлин это слышала.', 'her');
+      if (!unseen()) view.toast(tr('Madeline heard that.'), 'her');
     },
     mark(key, value, text) {
       if (gone()) return;
@@ -358,7 +346,7 @@ export function listen(b) {
   });
   const heard = (kind, hit) => { for (const w of waiting) if (w.kind === kind && hit(w)) { waiting.delete(w); w.ok(true); } };
   b.on('tell', text => {
-    if (text.startsWith('beat-unknown:')) b.trouble(`в сцене нет куска «${text.slice(13)}»`);
+    if (text.startsWith('beat-unknown:')) b.trouble(`the scene has no beat “${text.slice(13)}”`);
     heard('tell', w => w.text === text);
   });
   b.on('change', (value, old, key) => { for (const w of watching) if (w.key === key) w.fn(value, old); });

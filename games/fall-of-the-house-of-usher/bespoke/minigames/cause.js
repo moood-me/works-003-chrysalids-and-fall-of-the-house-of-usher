@@ -1,4 +1,4 @@
-// «Причина» (I, «Подъезд к дому», after the beat `look`): what is it in the house that chills the heart?
+// «Cause» (I, «The approach to the house», after the beat `look`): what is it in the house that chills the heart?
 //   1. what he does — looks at the house for the cause of his gloom: the windows, the trees, the water, then the crack,
 //   which he follows down with his eyes; 2. wants — to find a cause, a sober one; 3. dread without a cause, reasoning
 //   with it; 4. the player — looking round, touch by touch, then following the crack carefully from the roof to the water.
@@ -18,11 +18,11 @@ const AT = { windows: 'windows@', trees: 'trees#trunk', tarn: 'tarn@' };
 const LINE = Array.from({ length: 17 }, (_, i) => `crack#k${i}`);
 
 export default {
-  title: 'Причина', // (as the author's map lists it)
+  title: 'Cause', // (as the author's map lists it)
   about: 40,
   skipped: { looked: ['windows', 'trees', 'tarn'], traced: true },
   async run(g, b, { onLook } = {}, signal) {
-    const mg = g.minigame({ phrase: 'Ничто в доме не объясняло тоски, которую он наводил' });
+    const mg = g.minigame({ phrase: tr('Nothing in the house accounted for the gloom it cast upon me') });
     const send = keys(g);
     mg.plate.set({ notches: [1 / 4, 2 / 4, 3 / 4] });
     const looked = [];
@@ -47,7 +47,7 @@ export default {
       mg.sceneTurn(false);
     }
     // the crack: its top touched — the eye comes nearer — then traced down to the water
-    mg.plate.set({ phrase: 'От самой крыши вниз по стене шла едва заметная трещина' });
+    mg.plate.set({ phrase: tr('From the very roof down the wall ran a barely perceptible fissure') });
     const top = mg.mark({ at: LINE[0], kind: 'ring' });
     const touch = mg.press({ on: top });
     if (!(await once(mg, touch, 'press'))) { g.set('crack_trace', 1); return this.skipped; }

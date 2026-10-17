@@ -1,27 +1,27 @@
-// III. Склеп — his plan (two weeks in the vault); the vault: her blush and smile, a touch or the mirror,
-// ⚑ what the narrator says at the coffin, ⚑ the screws («Винты»), her side of it (from inside), the iron
-// door; the nights: «Слушать» (the lower the sanity, the clearer she is), ⚑ go down and knock («Стук»),
+// III. The vault — his plan (two weeks in the vault); the vault: her blush and smile, a touch or the mirror,
+// ⚑ what the narrator says at the coffin, ⚑ the screws («The screws»), her side of it (from inside), the iron
+// door; the nights: «Listen» (the lower the sanity, the clearer she is), ⚑ go down and knock («Knock»),
 // go to him, or call it the wind; ⚑ the morning — the last chance to leave. design.md, scenes.md.
 // Reads: marks.doctor, marks.promise. Leaves: choices.check, coffin, screws, night, morning; heard.said,
 // insisted, loose, knocked; marks.loose (the screws stayed loose), marks.key (he told of the key), marks.knocks (how many
 // times he knocked at the vault's door).
 import { SCALES, SCENES } from '../story.js';
-import vinty from '../minigames/vinty.js';
-import stuk from '../minigames/stuk.js';
-import slushat from '../minigames/slushat.js';
+import screws from '../minigames/screws.js';
+import knock from '../minigames/knock.js';
+import listening from '../minigames/listening.js';
 
 const HOUSE = SCENES.house, ROOM = SCENES.room, VAULT = SCENES.vault, NIGHT = SCENES.storm;
 
 export default {
   number: 'III',
-  title: 'Склеп',
-  titles: ['Две недели', 'Склеп', 'Ночи', 'Утро'],
+  title: tr('The vault'),
+  titles: ['A fortnight', 'The vault', 'Nights', 'Morning'],
   choices: [
-    { id: 'check', weight: '~', title: 'У гроба', options: [{ id: 'touch', label: 'коснуться руки' }, { id: 'mirror', label: 'зеркальце' }, { id: 'none', label: 'не трогать' }] },
-    { id: 'coffin', weight: '⚑', title: 'Крышка', options: [{ id: 'said', label: '«она может быть жива»' }, { id: 'insisted', label: '«не закрывай»' }, { id: 'silent', label: 'промолчать' }] },
-    { id: 'screws', weight: '⚑', title: 'Винты', options: [{ id: 'tight', label: 'завинтить' }, { id: 'loose', label: 'оставить слабо' }] },
-    { id: 'night', weight: '⚑', title: 'Звук снизу', options: [{ id: 'down', label: 'спуститься' }, { id: 'told', label: 'сказать ему' }, { id: 'wind', label: '«это ветер»' }] },
-    { id: 'morning', weight: '⚑', ends: true, title: 'Утро', options: [{ id: 'stay', label: 'остаться' }, { id: 'left', label: 'уехать' }] },
+    { id: 'check', weight: '~', title: tr('At the coffin'), options: [{ id: 'touch', label: tr('touch her hand') }, { id: 'mirror', label: tr('the mirror') }, { id: 'none', label: tr('do not touch') }] },
+    { id: 'coffin', weight: '⚑', title: tr('The lid'), options: [{ id: 'said', label: tr('“she may be living”') }, { id: 'insisted', label: tr('“do not close it”') }, { id: 'silent', label: tr('say nothing') }] },
+    { id: 'screws', weight: '⚑', title: tr('The screws'), options: [{ id: 'tight', label: tr('screw it down') }, { id: 'loose', label: tr('leave them loose') }] },
+    { id: 'night', weight: '⚑', title: tr('A sound below'), options: [{ id: 'down', label: tr('go down') }, { id: 'told', label: tr('tell him') }, { id: 'wind', label: tr('“only the wind”') }] },
+    { id: 'morning', weight: '⚑', ends: true, title: tr('Morning'), options: [{ id: 'stay', label: tr('stay') }, { id: 'left', label: tr('leave') }] },
   ],
   steps: [
     // his plan: two weeks in the vault
@@ -29,9 +29,9 @@ export default {
       // (he walks, then talks: his lines once he stands at the table talking — the beat's end)
       await g.scene(ROOM, { beat: 'plan' });
       await g.beat('plan');
-      await g.say('roderick', 'Две недели она пробудет внизу, в подвале. Врачи слишком любопытны. И до кладбища далеко.');
+      await g.say('roderick', 'For a fortnight she shall lie below, in a vault. The physicians are too eager in their inquiries. And the burial-ground is remote.');
       if (g.state.marks.doctor) {
-        await g.say('roderick', 'Ты говорил с ним. Он приедет за ней. Значит — сегодня.');
+        await g.say('roderick', 'You spoke with him. He will come for her. So it must be today.');
         g.scale('trust', -1);
       }
     },
@@ -43,18 +43,18 @@ export default {
       const face = g.told('open:face');
       const open = g.beat('open');
       await face;
-      await g.say('narrator', 'Румянец на щеках. На груди. И улыбка — та, что так страшна у мёртвых.', 'narrator');
+      await g.say('narrator', 'A faint blush upon the face. Upon the bosom. And that lingering smile upon the lip which is so terrible in death.', 'narrator');
       await open;
       const check = await g.choose('check', {
-        madeline: [{ id: 'touch', label: 'Коснуться руки' }, { id: 'mirror', label: 'Зеркальце к губам' }],
-        roderick: [{ id: 'none', label: 'Не трогать' }],
+        madeline: [{ id: 'touch', label: tr('Touch her hand') }, { id: 'mirror', label: tr('Mirror to lips') }],
+        roderick: [{ id: 'none', label: tr('Do not touch') }],
       });
       if (check === 'touch') {
         // (said as his hand goes to hers)
         const hand = g.told('touch:hand');
         const touch = g.beat('touch');
         await hand;
-        await g.say('narrator', 'Рука была тёплой.', 'narrator');
+        await g.say('narrator', 'The hand was warm.', 'narrator');
         await touch;
       }
       if (check === 'mirror') {
@@ -62,31 +62,31 @@ export default {
         const up = g.told('mirror:up');
         const mirror = g.beat('mirror');
         await up;
-        await g.say('narrator', 'Зеркальце осталось чистым.', 'narrator');
+        await g.say('narrator', 'The mirror remained unclouded.', 'narrator');
         await mirror;
       }
-      await g.say('narrator', 'Так бывает при её болезни. Она может быть жива. Узнать наверняка нельзя.');
-      await g.say('roderick', 'Мы близнецы. Я бы почувствовал.');
+      await g.say('narrator', 'So it is with her malady. She may be living. There is no knowing for certain.');
+      await g.say('roderick', 'We are twins. I would have felt it.');
       const lid = await g.choose('coffin', 'roderick', [
-        { id: 'said', label: 'Может быть жива' },
-        { id: 'insisted', label: 'Не закрывай' },
-        { id: 'silent', label: 'Промолчать' },
+        { id: 'said', label: tr('May be living') },
+        { id: 'insisted', label: tr('Do not close') },
+        { id: 'silent', label: tr('Say nothing') },
       ]);
       // (where the lid goes next: the screws, or — he shut it himself, hard — straight to her side of it: its cut made
       // ready ahead)
       g.set('beat_next', lid === 'insisted' ? 'inside' : 'screws');
       if (lid === 'said') {
-        await g.say('narrator', 'Она может быть жива.');
+        await g.say('narrator', 'She may be living.');
         g.overheard('said');
         const turn = g.beat('say');
-        await g.say('roderick', 'Я знаю. Я боюсь этого больше, чем её смерти.');
+        await g.say('roderick', 'I know. I dread it more than her death.');
         await turn;
         await g.beat('shut');
       } else if (lid === 'insisted') {
-        await g.say('narrator', 'Подожди. Не закрывай.');
+        await g.say('narrator', 'Wait. Do not close it.');
         g.overheard('insisted');
         const shut = g.beat('insist');
-        await g.say('roderick', 'Это мой дом.');
+        await g.say('roderick', 'This is my house.');
         await shut;
         g.scale('trust', -2);
       } else {
@@ -94,16 +94,16 @@ export default {
         await g.beat('close');
       }
       if (lid !== 'insisted') {
-        if (lid === 'said') await g.say('roderick', 'Винты. Помоги мне.');
+        if (lid === 'said') await g.say('roderick', 'The screws. Help me.');
         await g.beat('screws');
         g.set('beat_next', 'inside');
-        const { loose } = await g.play(vinty, { promised: !!g.state.marks.promise });
+        const { loose } = await g.play(screws, { promised: !!g.state.marks.promise });
         g.state.choices.screws = loose.length ? 'loose' : 'tight';
         if (loose.length) {
           g.overheard('loose');
           if (g.state.scales.trust <= 0) {
             const check = g.beat('check');
-            await g.say('narrator', 'Он проверил винты. И дотянул их сам.');
+            await g.say('narrator', 'He tried the screws. And drove them home himself.');
             await check;
             g.scale('trust', -1);
           } else g.mark('loose', true);
@@ -115,7 +115,7 @@ export default {
       await g.beat('inside');
       g.set('beat_next', null);
       await g.beat('leave');
-      await g.choose(null, 'door', [{ id: 'close', label: 'Закрыть дверь' }]);
+      await g.choose(null, 'door', [{ id: 'close', label: tr('Close the door') }]);
       g.sound.ironDoor(true);
       await g.beat('door_close');
     },
@@ -124,20 +124,20 @@ export default {
       await g.scene(NIGHT, { beat: 'night' });
       g.sound.rain(0.3, 4);
       await g.beat('night');
-      await g.say('narrator', 'Прошло несколько дней. Он бродил по дому ночами. Я не мог уснуть.');
-      const { heard } = await g.play(slushat, { clarity: 1 - g.state.scales.sanity / SCALES.sanity.max });
+      await g.say('narrator', 'Some days passed. He roamed the house by night. Sleep came not near my couch.');
+      const { heard } = await g.play(listening, { clarity: 1 - g.state.scales.sanity / SCALES.sanity.max });
       g.sound.house(0.15, 3);
-      if (heard === 'melody') await g.say('narrator', 'Снизу, сквозь камень, — её песня. Раньше я бы этого не услышал.');
-      else await g.say('narrator', 'Снизу — едва слышно — будто царапали дерево.');
+      if (heard === 'melody') await g.say('narrator', 'From below, through the stone — her song. Before, I should not have heard it.');
+      else await g.say('narrator', 'From below — scarcely to be heard — as of something scratching at wood.');
       const lamp = g.beat('lamp_pass');
-      await g.say('narrator', 'Под дверью прошёл свет лампы. Остановился. Ушёл.');
+      await g.say('narrator', 'Lamplight passed beneath the door. It paused. It went on.');
       await lamp;
       const night = await g.choose('night', {
-        door: [{ id: 'down', label: 'Спуститься в склеп' }, { id: 'told', label: 'Пойти к нему' }],
-        window: [{ id: 'wind', label: 'Это ветер' }],
+        door: [{ id: 'down', label: tr('Into the vault') }, { id: 'told', label: tr('Go to him') }],
+        window: [{ id: 'wind', label: tr('Only the wind') }],
       });
       if (night === 'wind') {
-        await g.say('narrator', 'Это ветер. Только ветер.');
+        await g.say('narrator', 'It is the wind. Only the wind.');
         g.scale('crack', 1);
         return;
       }
@@ -147,21 +147,21 @@ export default {
         await g.scene(ROOM, { beat: 'night_listen' });
         const listen = g.beat('night_listen');
         await beside;
-        await g.say('narrator', 'Я нашёл его в темноте, у стены.');
+        await g.say('narrator', 'I found him in the dark, against the wall.');
         await listen;
-        await g.say('roderick', 'Ты тоже слышишь?');
-        await g.say('narrator', 'Мы стояли и слушали. Вместе.');
+        await g.say('roderick', 'You hear it too?');
+        await g.say('narrator', 'We stood and listened. Together.');
         g.scale('trust', 1);
         return;
       }
       await g.scene(VAULT, { beat: 'at_door' });
       await g.beat('at_door');
-      const { knocks } = await g.play(stuk, {});
+      const { knocks } = await g.play(knock, {});
       g.overheard('knocked');
       g.mark('knocks', knocks);
-      await g.say('narrator', 'Оттуда ответили.');
-      await g.say('narrator', 'Утром я попросил у него ключ.');
-      await g.say('roderick', 'Я бросил ключ в пруд. Иначе я бы открыл — и увидел её глаза.', 'narrator');
+      await g.say('narrator', 'From within, there came an answer.');
+      await g.say('narrator', 'In the morning I asked him for the key.');
+      await g.say('roderick', 'I cast the key into the tarn. Else I should have opened — and seen her eyes.', 'narrator');
       g.mark('key', true);
       g.scale('trust', -1);
     },
@@ -172,11 +172,11 @@ export default {
       await g.scene(HOUSE, { beat: 'morning' });
       const morning0 = g.beat('morning');
       await toss;
-      await g.say('narrator', 'Утром мой конь стоял осёдланный. Ещё можно было уехать.');
+      await g.say('narrator', 'In the morning my horse stood saddled. I might yet depart.');
       await morning0;
       const morning = await g.choose('morning', {
-        'rider#saddle': [{ id: 'left', label: 'Уехать' }],
-        house: [{ id: 'stay', label: 'Остаться' }],
+        'rider#saddle': [{ id: 'left', label: tr('Leave') }],
+        house: [{ id: 'stay', label: tr('Stay') }],
       });
       if (morning === 'left') {
         await g.beat('ride_away');

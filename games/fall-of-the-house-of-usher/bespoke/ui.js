@@ -8,11 +8,11 @@
 //   view.letter({text, highlight, sign}, {signal}) — a folded letter on the dark: the player unfolds
 //     it, reads it, folds it again; → then. text: its lines ('\n'); highlight: words of it underlined
 //   view.title(text, {signal}) — words over the scene, as a film's title; → once they have gone
-//   view.replaying(on) — the slip «Переигровка» in the corner while a replay goes on (game.js)
+//   view.replaying(on) — the slip «Replay» in the corner while a replay goes on (game.js)
 //   view.notice(text) — a line low in the middle, till it is taken away (→ what takes it away): what a choice on the
 //     map would do
 //   view.author({chapters, at() → {chapter, step}, plays(chapter, step) → [titles of its minigames], go(chapter, step,
-//     minigame)}) — the author's map, opened by his sign on «Трещина» (author() → what opens or closes it): the
+//     minigame)}) — the author's map, opened by his sign on «Crack» (author() → what opens or closes it): the
 //     chapters, their steps and the steps' minigames, to go to any (a minigame: its index among the step's)
 // The ⏸, ⏭ and ☰ are the page's.
 // Whatever is shown is taken away when `signal` aborts (the step was left).
@@ -40,7 +40,7 @@ export function ui(layer) {
   const flame = candle(layer);
   const toasts = el('div', 'toasts', layer);
   const replay = el('div', 'replay', layer);
-  replay.textContent = 'Переигровка';
+  replay.textContent = tr('Replay');
   replay.hidden = true;
   return {
     gauges(kept) {
@@ -92,16 +92,16 @@ export function ui(layer) {
       addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
       const open = () => {
         const here = at(), panel = el('div', 'author-panel');
-        panel.append(button('✕', 'закрыть (Esc)', close), ...chapters.map((c, ci) => {
+        panel.append(button('✕', 'close (Esc)', close), ...chapters.map((c, ci) => {
           const col = el('section');
           el('h3', '', col).textContent = c.number ? `${c.number}. ${c.title}` : c.title;
           for (const [si] of c.steps.entries()) {
-            const step = button(c.titles?.[si] || `шаг ${si + 1}`, '', () => { close(); go(ci, si); });
+            const step = button(c.titles?.[si] || `step ${si + 1}`, '', () => { close(); go(ci, si); });
             if (ci === here.chapter && si === here.step) step.className = 'here';
             // (its minigames under it, once they are known: straight to one)
             const games = el('div', 'minigames');
             plays(ci, si).then(list => games.append(...list.map((name, k) =>
-              Object.assign(button(`◆ ${name}`, 'сразу к мини-игре', () => { close(); go(ci, si, k); }), { className: 'minigame' }))));
+              Object.assign(button(`◆ ${name}`, 'straight to the mini-game', () => { close(); go(ci, si, k); }), { className: 'minigame' }))));
             col.append(step, games);
           }
           return col;
@@ -283,7 +283,7 @@ function unfold(layer, { text, highlight = '', sign = '' }, signal) {
     const panel = el('div', `panel ${part}`, letter);
     el('div', 'face front', panel).append(part === 'top' ? sheet : sheet.cloneNode(true));
     const back = el('div', 'face back', panel);
-    if (part === 'top') el('div', 'seal', back).textContent = 'А';
+    if (part === 'top') el('div', 'seal', back).textContent = tr.c('the seal: Usher’s initial', 'U');
   }
   let stage = 'folded';
   const wait = ms => new Promise(ok => setTimeout(ok, ms));
@@ -302,7 +302,7 @@ function unfold(layer, { text, highlight = '', sign = '' }, signal) {
         await wait(1400);
         letter.classList.add('read');
         await wait(2600);
-        hint.textContent = 'сложить';
+        hint.textContent = tr('fold');
         hint.classList.add('on');
         stage = 'open';
       } else if (stage === 'open') {
@@ -327,7 +327,7 @@ function unfold(layer, { text, highlight = '', sign = '' }, signal) {
       veil.classList.add('on');
       veil.focus({ preventScroll: true });
       await wait(1600);
-      hint.textContent = 'развернуть';
+      hint.textContent = tr('unfold');
       if (stage === 'folded') hint.classList.add('on');
     });
   });

@@ -12,7 +12,8 @@
 // main run chose before it). The play begins on the map, comes to it after each chapter, by ☰ (the page's: the step going on is
 // left — played again from its beginning), and whenever it is opened again. Its author has one more sign (at the map's
 // left edge): his map of the chapters and their steps (ui.js author) — straight to any step, or a minigame of one: a
-// replay from there, as if nothing was chosen before it.
+// replay from there: as the main run stood at that step where it has played it, else as if nothing was chosen before
+// it.
 //
 // The play is one — its main run, as far as the player has come: never mixed with anything. A replay (begun on the map)
 // goes on its own and is never kept: closed, it is gone. Meanwhile the plate “Replay” in the corner; on the map its
@@ -131,10 +132,18 @@ export default async function (b) {
     return keep({ ...kept, ...on, steps: { ...kept.steps, [on.chapter]: [on] } });
   }
   // a replay begun on the map: a chapter from its beginning (`chapter:i`) or from a fork's step (`fork:i:s`) — as the
-  // main run was then —, or where the author's map went ({jump}: as if nothing was chosen before it)
+  // main run was then —, or where the author's map went ({jump}: as the main run stood there where it has played that
+  // step, else as if nothing was chosen before it)
   function replayFrom(to) {
     if (to.jump) {
-      const { chapter, step, play } = to.jump, r = { ...structuredClone(RUN), chapter, step, ...(play != null ? { play } : {}) };
+      // (a step of a chapter the main run has played: as it stood there, its steps before as they were — as “Replay
+      // from here”)
+      const { chapter, step, play } = to.jump, at = kept.steps[chapter];
+      if (at?.[step]) {
+        return { run: { ...structuredClone(at[step]), ...(play != null ? { play } : {}) }, steps: structuredClone(at.slice(0, step + 1)), done: false };
+      }
+      // (else as if nothing was chosen before it)
+      const r = { ...structuredClone(RUN), chapter, step, ...(play != null ? { play } : {}) };
       return { run: r, steps: Object.assign([], { [step]: run(r) }), done: false };
     }
     const [, i, s = 0] = to.split(':').map(Number), at = kept.steps[i];
@@ -176,7 +185,10 @@ export default async function (b) {
     // (the chapter just played grown: its forks offered too, the sky on to where the play is)
     const growing = grown ? null : setTimeout(() => { grown = true; offer(); arrived(); }, REVEAL * 1000);
     try {
-      for (let again = null; ;) {
+      // (a replay played to its end: its knot's mark opens by itself — keep it or not, the question the map asks; the
+      // one mark that opens untouched)
+      const asking = replay?.done ? await standing(drawn, `knot:${replay.run.chapter}`) : null;
+      for (let again = asking; ;) {
         offer();
         // (a choice that would leave the replay: its mark opens again at once, asking)
         const ref = again ?? await new Promise(ok => { pressed = ok; jumped = ok; });
@@ -201,6 +213,16 @@ export default async function (b) {
       hideCompare();
       drawn.remove();
     }
+  }
+  // a ref of the map's drawing once it stands in the frame (some frames at most; else null)
+  function standing(drawn, ref) {
+    return new Promise(ok => {
+      let n = 0;
+      const off = b.onFrame(() => {
+        const at = drawn.at(ref)();
+        if (at || ++n > 30) { off(); ok(at ? ref : null); }
+      });
+    });
   }
   // what can be done on the map: {ref (map.js: what of its drawing is pressed): options} — `asked`: the option that
   // would leave the replay, now “Drop the replay”; `growing`: the chapter whose forks are not there yet
@@ -246,7 +268,7 @@ export default async function (b) {
       const played = i < kept.chapter || (i === kept.chapter && kept.step > 0), tried = re?.chapter === i;
       const kind = i === (re ? re.chapter : kept.chapter) ? 'here' : i < kept.chapter ? 'played' : i === kept.chapter ? 'next' : 'future';
       return { number: c.number, title: c.title, kind, map: played || tried ? threads(c, played ? kept.choices : {}, tried ? re.choices : {}) : null,
-        badge: tried, go: i === kept.chapter ? (i === 0 && !kept.step ? tr('start the game') : tr('continue the game')) : null, cursor: tried && !replay.done };
+        badge: tried, go: i === kept.chapter ? (kept.step ? tr('continue the game') : tr('start the game')) : null, cursor: tried && !replay.done };
     });
     const ended = kept.chapter >= END, ending = kept.marks.ending;
     list.push({ number: '', title: tr('The end'), kind: ended ? 'end' : 'future',

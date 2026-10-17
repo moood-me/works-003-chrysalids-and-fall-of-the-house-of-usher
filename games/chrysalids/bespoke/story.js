@@ -89,7 +89,7 @@ export function carry(title, f) {
 }
 
 const BEAT = 180000; // a beat longer than this has not ended: the scene lacks it
-const SKIPPABLE = 45000; // ms in a minigame of a step not seen yet before the ⏭ may skip it
+const SKIPPABLE = 20000; // ms in a minigame of a step not seen yet before the ⏭ may skip it
 
 export function context(b, view, hub, state, j = null, { forward = null } = {}) {
   const left = new AbortController(); // the step is left behind (game.js)

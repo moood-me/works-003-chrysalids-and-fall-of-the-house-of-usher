@@ -15,8 +15,8 @@
 //
 // The play is one — its main run, as far as the player has come: never mixed with anything. A replay (begun on the map)
 // goes on its own and is never kept: closed, it is gone. Meanwhile the plate «Переигровка» in the corner; on the map its
-// threads pale beside the main run's, its chapter's knot «Продолжить переигровку» or «Вернуться к основной»; whatever
-// would leave it (another mark) asks first — «Бросить переигровку». Played to its chapter's end, the player keeps it —
+// threads pale beside the main run's, its chapter's knot «Продолжить переигровку» or «Вернуться к основной» (the main
+// run played on at once); whatever would leave it (another mark) asks first — «Бросить переигровку». Played to its chapter's end, the player keeps it —
 // «Оставить»: it becomes the main run from the next chapter on, the chapters after it to be played anew (said beside,
 // with how things would stand) — or not, «Отменить».
 //
@@ -24,7 +24,7 @@
 // steps: {chapter: [the main run as each of its steps began, and as it ended]} (what «Переиграть отсюда» starts from),
 // seen: {chapter: how many of its steps the player has ever played through} — never lessened. The page's ⏭
 // (bespoke.forward, story.js) is the player's only where they have been: in a step not past what they have seen of its
-// chapter — on to the next interaction —, and in a minigame there, or one they have been in a while (story.js SKIPPABLE).
+// chapter — on to the next interaction —, and in a minigame there, or one they have been in for 20 s (story.js SKIPPABLE).
 import { SCENES, context, listen } from './story.js';
 import { jump } from './jump.js';
 import { unheard, pause } from './sound.js';
@@ -78,13 +78,13 @@ export default async function (b) {
   for (let after = {}; ;) {
     const to = await map(after);
     after = {};
-    if (to === 'back' || to === 'drop') { replay = null; continue; }
+    if (to === 'drop') { replay = null; continue; }
     if (to === 'keep') {
       await keepReplay();
       if (kept.chapter === END) after = { end: true };
       continue;
     }
-    if (to === 'main') replay = null;
+    if (to === 'main' || to === 'back') replay = null; // («Вернуться к основной»: the main run goes on from where it stands)
     else if (to !== 'replay') replay = replayFrom(to);
     view.replaying(!!replay);
     if ((await play()) === 'away') continue;

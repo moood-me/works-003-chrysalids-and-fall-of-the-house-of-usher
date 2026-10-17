@@ -1,0 +1,600 @@
+{
+  "engine": 3,
+  "title": "Лагерь Окраин",
+  "caption": "Здесь никто не спрашивал, сколько у тебя пальцев.",
+  "horizon": 0.6,
+  "camera": {
+    "mode": "picture"
+  },
+  "light": {
+    "ambient": 0.75,
+    "ambientColor": "#b0b8cc",
+    "bounce": 0.5,
+    "haze": 0.25,
+    "hazeColor": "#7a8298",
+    "hazeGlow": 0.7,
+    "vignette": 0.4,
+    "grain": 0.18,
+    "saturation": 0.85,
+    "wind": [
+      1,
+      0,
+      0.35
+    ]
+  },
+  "lights": [
+    {
+      "id": "fire",
+      "across": -0.74,
+      "distance": 6.2,
+      "elevation": 0.7,
+      "color": "#ff9a50",
+      "strength": 2.0,
+      "reach": 6,
+      "flicker": 0.35,
+      "glow": 0.5,
+      "on": "fire"
+    },
+    {
+      "id": "dawn",
+      "from": [
+        40,
+        6
+      ],
+      "color": "#d8d2cc",
+      "strength": 0.4
+    }
+  ],
+  "state": {
+    "fire": 0.8,
+    "alarm": 0,
+    "people": 0.8,
+    "captives": 0,
+    "sophie_present": 1,
+    "rosalind_here": false,
+    "petra_here": false,
+    "guard_with": [
+      "spear"
+    ],
+    "guard2_with": [
+      "spear"
+    ],
+    "camera_z": 0.8
+  },
+  "states": {
+    "fire": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "как горит костёр (пламя, искры, свет)"
+    },
+    "alarm": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "тревога: сидящий встаёт, стражи смотрят в лес, высокий страж трубит в рог"
+    },
+    "people": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "сколько людей Окраин у огня: страж всегда, Паук с 0.2, горбун 0.4, сидящий 0.6, женщина 0.7, второй страж 0.8"
+    },
+    "captives": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "Розалинда и Петра привязаны у столба"
+    },
+    "sophie_present": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "Софи на краю света у своего шалаша (выходит из него, уходит в него)"
+    }
+  },
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Небо на рассвете"
+    },
+    {
+      "id": "forest_back",
+      "name": "Дальний лес",
+      "x": 0.5,
+      "distance": 42,
+      "height": 18,
+      "box": [
+        -120,
+        -34,
+        120,
+        1
+      ]
+    },
+    {
+      "id": "forest_mid",
+      "name": "Кривые деревья у поляны",
+      "x": 0.5,
+      "distance": 26,
+      "height": 16,
+      "box": [
+        -75,
+        -34,
+        75,
+        1
+      ]
+    },
+    {
+      "id": "fog",
+      "name": "Дым и туман над поляной",
+      "x": 0.5,
+      "distance": 24,
+      "height": 8,
+      "box": [
+        -80,
+        -10,
+        80,
+        4
+      ]
+    },
+    {
+      "id": "hut_back",
+      "name": "Дальний шалаш",
+      "across": 2.4,
+      "distance": 19,
+      "height": 2.6,
+      "box": [
+        -2.2,
+        -3.2,
+        2.2,
+        0.3
+      ]
+    },
+    {
+      "id": "hut_left",
+      "name": "Шалаш слева",
+      "across": -7.6,
+      "distance": 15,
+      "height": 2.8,
+      "box": [
+        -2.2,
+        -3.4,
+        2.2,
+        0.3
+      ]
+    },
+    {
+      "id": "pale_plants",
+      "name": "Бледные растения",
+      "x": 0.5,
+      "distance": 19,
+      "height": 2,
+      "box": [
+        -26,
+        -4,
+        26,
+        0.3
+      ]
+    },
+    {
+      "id": "ground",
+      "name": "Земля поляны",
+      "plane": true,
+      "x": 0.5,
+      "distance": 50,
+      "width": 140,
+      "depth": 100
+    },
+    {
+      "id": "post",
+      "name": "Столб",
+      "across": -3.66,
+      "distance": 7.07,
+      "height": 2.3,
+      "box": [
+        -0.4,
+        -2.5,
+        0.4,
+        0.2
+      ],
+      "shadow": {
+        "light": "fire",
+        "strength": 0.7
+      }
+    },
+    {
+      "id": "fire",
+      "name": "Костёр",
+      "across": -0.74,
+      "distance": 6.2,
+      "height": 1,
+      "box": [
+        -1.0,
+        -1.0,
+        1.0,
+        0.3
+      ]
+    },
+    {
+      "id": "flames",
+      "name": "Огонь костра",
+      "across": -0.74,
+      "distance": 6.2,
+      "elevation": 0.15,
+      "particles": {
+        "kind": "fire",
+        "source": [
+          0.6,
+          0.4,
+          0.05
+        ],
+        "size": [
+          0.45,
+          0.1
+        ],
+        "amount": "fire"
+      }
+    },
+    {
+      "id": "embers",
+      "name": "Искры костра",
+      "across": -0.74,
+      "distance": 6.2,
+      "elevation": 0.3,
+      "particles": {
+        "kind": "embers",
+        "source": [
+          0.6,
+          0.4,
+          0.1
+        ],
+        "rate": 5,
+        "amount": "fire"
+      }
+    },
+    {
+      "id": "smoke",
+      "name": "Дым костра",
+      "across": -0.74,
+      "distance": 6.2,
+      "elevation": 1.2,
+      "particles": {
+        "kind": "smoke",
+        "source": [
+          0.4,
+          0.4,
+          0.2
+        ],
+        "rate": 2,
+        "size": [
+          0.4,
+          3.0
+        ],
+        "opacity": 0.3,
+        "color": "#a8a49c",
+        "shadow": 0.4
+      }
+    },
+    {
+      "id": "guard",
+      "name": "Страж с копьём и рогом",
+      "person": {
+        "cast": "cast",
+        "who": "guard",
+        "turn": 160,
+        "does": "stand"
+      },
+      "across": -2.23,
+      "distance": 7.07,
+      "place": {
+        "across": "guard_a",
+        "distance": "guard_d"
+      },
+      "shadow": {
+        "light": "fire",
+        "strength": 0.7
+      }
+    },
+    {
+      "id": "spider",
+      "name": "Паук",
+      "person": {
+        "cast": "cast",
+        "who": "spider",
+        "turn": 200,
+        "does": "stand"
+      },
+      "across": 0.37,
+      "distance": 6.82,
+      "place": {
+        "across": "spider_a",
+        "distance": "spider_d"
+      },
+      "shadow": {
+        "light": "fire",
+        "strength": 0.7
+      }
+    },
+    {
+      "id": "hunch",
+      "name": "Горбун",
+      "person": {
+        "cast": "cast",
+        "who": "hunchback",
+        "turn": 120,
+        "does": "stand"
+      },
+      "across": -1.49,
+      "distance": 5.7,
+      "place": {
+        "across": "hunch_a",
+        "distance": "hunch_d"
+      },
+      "shadow": {
+        "light": "fire",
+        "strength": 0.7
+      }
+    },
+    {
+      "id": "sitter",
+      "name": "Сидящий у костра",
+      "person": {
+        "cast": "cast",
+        "who": "fringe_man",
+        "turn": 140,
+        "does": "sit_knees"
+      },
+      "across": -1.8,
+      "distance": 6.7,
+      "place": {
+        "across": "sitter_a",
+        "distance": "sitter_d"
+      },
+      "shadow": {
+        "light": "fire",
+        "strength": 0.7
+      }
+    },
+    {
+      "id": "woman",
+      "name": "Женщина Окраин",
+      "person": {
+        "cast": "cast",
+        "who": "fringe_woman",
+        "turn": 210,
+        "does": "stand"
+      },
+      "across": 1.12,
+      "distance": 7.69,
+      "place": {
+        "across": "woman_a",
+        "distance": "woman_d"
+      },
+      "shadow": {
+        "light": "fire",
+        "strength": 0.7
+      }
+    },
+    {
+      "id": "guard2",
+      "name": "Второй страж",
+      "person": {
+        "cast": "cast",
+        "who": "guard",
+        "turn": 220,
+        "does": "stand"
+      },
+      "across": 2.36,
+      "distance": 6.45,
+      "place": {
+        "across": "guard2_a",
+        "distance": "guard2_d"
+      },
+      "shadow": {
+        "light": "fire",
+        "strength": 0.7
+      }
+    },
+    {
+      "id": "rosalind",
+      "name": "Розалинда у столба",
+      "person": {
+        "cast": "cast",
+        "who": "rosalind",
+        "turn": 170,
+        "does": "hide_stand"
+      },
+      "across": -3.41,
+      "distance": 7.19,
+      "place": {
+        "across": "rosalind_a",
+        "distance": "rosalind_d"
+      },
+      "shadow": {
+        "light": "fire",
+        "strength": 0.7
+      }
+    },
+    {
+      "id": "petra",
+      "name": "Петра у столба",
+      "person": {
+        "cast": "cast",
+        "who": "petra",
+        "turn": 190,
+        "does": "hide_stand"
+      },
+      "across": -3.91,
+      "distance": 7.19,
+      "place": {
+        "across": "petra_a",
+        "distance": "petra_d"
+      },
+      "shadow": {
+        "light": "fire",
+        "strength": 0.7
+      }
+    },
+    {
+      "id": "hut_right",
+      "name": "Шалаш Софи",
+      "across": 5.6,
+      "distance": 9.4,
+      "height": 2.6,
+      "box": [
+        -2.2,
+        -3.2,
+        2.2,
+        0.3
+      ]
+    },
+    {
+      "id": "sophie",
+      "name": "Софи",
+      "person": {
+        "cast": "cast",
+        "who": "sophie_adult",
+        "turn": 200,
+        "does": "stand"
+      },
+      "across": 2.5,
+      "distance": 5.2,
+      "place": {
+        "across": "sophie_a",
+        "distance": "sophie_d"
+      },
+      "shadow": {
+        "light": "fire",
+        "strength": 0.7
+      }
+    },
+    {
+      "id": "near_tree",
+      "name": "Вздутое дерево",
+      "across": -4.8,
+      "distance": 5.6,
+      "height": 8,
+      "box": [
+        -3,
+        -9,
+        9,
+        0.5
+      ]
+    },
+    {
+      "id": "foreground",
+      "name": "Травы у ног",
+      "x": 0.5,
+      "distance": 4.2,
+      "height": 1.2,
+      "box": [
+        -14.5,
+        -2,
+        14.5,
+        0.4
+      ]
+    }
+  ],
+  "modules": [
+    "cast"
+  ],
+  "music": {
+    "bpm": 72,
+    "density": 0.35,
+    "prompts": [
+      {
+        "text": "slow hand drum by firelight, frame drum and soft palm strikes, loose and human, night camp",
+        "weight": 2
+      },
+      {
+        "text": "rough folk fiddle, detuned and scratchy, a lonely outcast melody played by the fire",
+        "weight": 2
+      },
+      {
+        "text": "crackling campfire and night forest ambience, crickets, distant creaking branches",
+        "weight": 1.5
+      },
+      {
+        "text": "low throat-singing drone without words, deep and steady, ancient and harsh",
+        "weight": 0
+      },
+      {
+        "text": "post-apocalyptic folk, hurdy-gurdy drone and wooden percussion, dark modal",
+        "weight": 0
+      },
+      {
+        "text": "bowed bass and cello drones, sustained, tense but warm",
+        "weight": 0
+      },
+      {
+        "text": "bone flute fragments drifting over a fire, sparse and haunting",
+        "weight": 0
+      },
+      {
+        "text": "jaw harp pulses and rattles, tribal and rough, slow tempo",
+        "weight": 0
+      },
+      {
+        "text": "distant war horn calling once through a dark forest, ominous",
+        "weight": 0
+      },
+      {
+        "text": "tense tribal drums gathering speed, alarm in the camp",
+        "weight": 0
+      },
+      {
+        "text": "dark ambient pads under a crackling fire, refuge and threat",
+        "weight": 0
+      },
+      {
+        "text": "slide guitar with heavy reverb, dusty and bitter, slow",
+        "weight": 0
+      },
+      {
+        "text": "wordless hummed lullaby by a woman, distant, tender and sad",
+        "weight": 0
+      },
+      {
+        "text": "creaking wood, rope and leather textures, slow rhythmic groan",
+        "weight": 0
+      },
+      {
+        "text": "low brass swells far away, solemn and forbidding",
+        "weight": 0
+      },
+      {
+        "text": "nyckelharpa and frame drum, Nordic dark folk, mid-tempo",
+        "weight": 0
+      },
+      {
+        "text": "wind through twisted trees, eerie whistling, granular ambient",
+        "weight": 0
+      },
+      {
+        "text": "metallic scraped percussion, scavenged junk instruments, raw",
+        "weight": 0
+      },
+      {
+        "text": "slow heartbeat sub-bass under night ambience, suspense",
+        "weight": 0
+      },
+      {
+        "text": "minimal kalimba notes, warm and wistful, like memories of childhood",
+        "weight": 0
+      }
+    ],
+    "brightness": 0.3,
+    "scale": "C_MAJOR_A_MINOR"
+  }
+}

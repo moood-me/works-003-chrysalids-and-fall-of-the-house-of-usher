@@ -1,16 +1,16 @@
-# The Chrysalids v3 — the world's notes
+# Хризалиды v3 — заметки мира
 
-## A copy "as is" (2026-10-15)
+## Копия «как есть» (2026-10-15)
 
-The world's tree (`modules/`, 19 folders `scenes/`, engine 1) is a copy of the "film game" `env/dev`. `main` — `stream-bank`.
-The game `pavel/khrizalidy-v3` is a copy of the "film" game's `bespoke/`.
+Дерево мира (`modules/`, 19 папок `scenes/`, движок 1) — копия «кино-игры» `env/dev`. `main` — `nasyp-u-ruchya`.
+Игра `pavel/khrizalidy-v3` — копия `bespoke/` игры «кино».
 
-The sources' `env/dev` hashes on the day of the copy:
+Хеши `env/dev` источников на день копии:
 
-| Source | Repository | `env/dev` |
+| Источник | Репозиторий | `env/dev` |
 | --- | --- | --- |
-| "The Chrysalids — film game" | pavel--khrizalidy-kino-igra | a6b8f961a2b91edd86ecd042cba78c5786e076b2 |
-| "film game v2" (`pavel/khrizalidy-kino-igra-v2`) | pavel--khrizalidy-kino-igra-v2 | d99c813eb5a80fed5ce108e24b60f56a22e8811b |
-| the game "The Chrysalids — film" | pavel--game--khrizalidy-kino | 5bfff8bc36778310e4d02e26b79be0b859342554 |
+| «Хризалиды — кино-игра» | pavel--khrizalidy-kino-igra | a6b8f961a2b91edd86ecd042cba78c5786e076b2 |
+| «кино-игра v2» (`pavel/khrizalidy-kino-igra-v2`) | pavel--khrizalidy-kino-igra-v2 | d99c813eb5a80fed5ce108e24b60f56a22e8811b |
+| игра «Хризалиды — кино» | pavel--game--khrizalidy-kino | 5bfff8bc36778310e4d02e26b79be0b859342554 |
 
-Changes to the sources after this day — only at the coordinator's word. The stack's branch `env/malay/miniux` is its own and does not follow `env/dev`.
+Правки источников после этого дня — только по слову координатора. Ветка стека `env/malay/miniux` своя и за `env/dev` не следует.

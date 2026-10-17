@@ -1,4 +1,4 @@
-# cast — the people of “The Chrysalids” as the engine's people
+# cast — the people of «Хризалиды» as the engine's people
 
 A module for scenes with people (elements with `person`: `{"cast": "cast", "who": …}` — moood's docs/agents/people.md).
 List it in a scene's `modules` with the others.
@@ -74,7 +74,7 @@ A child on a high seat (with `on` its top — a chair's sitting; the legs hang):
 `perch_hunch`, `perch_slump`, `perch_laugh`, `perch_shake`, `perch_point` (up ahead, the right hand); `hop_down` (once:
 slides forward onto the feet). `pull_lever` (once: both hands up, pulling down), `run` (a gait).
 The man with a lantern: `whistle` (two fingers of the left hand), `fall_back` (struck, onto the back), `lie_back` (lying
-still on the back, one knee a little up — looped: the fallen, the dead, the children under the web; Flight, the Ship).
+still on the back, one knee a little up — looped: the fallen, the dead, the children under the web; Бегство, Корабль).
 Waving sitting is a reach to and fro (the scene's `wave`), a nod a look down and up (`nod`).
 On a chair (loops): `read_seated` (an open book in both hands), `sit_still` (hands forward — on a table's edge with
 `reach`), `sit_grip` (holding the table's edge), `sit_tremble` (holding it, shaking), `sit_fidget`, `eat_seated` (a
@@ -97,7 +97,7 @@ chair pushing on the table, 2.5 s), `lean_table` (standing bent over a table, th
 `hands_behind`, `staff_lean` (on a staff in the right hand: the part `staff`), `child_stand` (a boy, the arms at his
 sides), `turn_away` (once: a turn away, the head bowed).
 
-For “The Chrysalids v3” (2026-10-15): `scoop` (once: crouches, gathers a child up from the ground, stands holding it — the
+For «Хризалиды v3» (2026-10-15): `scoop` (once: crouches, gathers a child up from the ground, stands holding it — the
 child `on` the hands; then `carry`), `carry` (the hold, standing — carry_stand's recording), `collapse` (once: struck,
 staggers, down — onto the back), `cling` (a loop: hanging by both hands from something overhead, the knees drawn up — a
 child holding a branch in the water), `sing_stand` (a loop: standing, hands clasped, the head raised — a hymn; kneeling,

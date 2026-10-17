@@ -1,0 +1,658 @@
+{
+  "engine": 3,
+  "title": "David and Rosalind",
+  "caption": "In front of everyone we were strangers.",
+  "horizon": 0.62,
+  "camera": {
+    "mode": "picture"
+  },
+  "light": {
+    "ambient": 0.75,
+    "ambientColor": "#f0dcc4",
+    "bounce": 0.5,
+    "haze": 0.3,
+    "hazeColor": "#c8a890",
+    "vignette": 0.4,
+    "grain": 0.2,
+    "tint": "#e0b48a",
+    "tintStrength": 0.06,
+    "wind": [
+      1,
+      0,
+      0.3
+    ],
+    "looks": {
+      "dusk": {
+        "ambient": 0.55,
+        "ambientColor": "#a890a8",
+        "tint": "#8a6080",
+        "tintStrength": 0.1,
+        "hazeColor": "#8a7088",
+        "lights": {
+          "sun": 0.4
+        }
+      }
+    }
+  },
+  "lights": [
+    {
+      "id": "sun",
+      "from": [
+        115,
+        14
+      ],
+      "color": "#ffd8a8",
+      "strength": 1.1
+    }
+  ],
+  "captions": [
+    {
+      "at": 4,
+      "for": 9,
+      "text": "We did not look at each other."
+    },
+    {
+      "at": 15,
+      "for": 11,
+      "text": "Alone — only in our thoughts — we were together."
+    }
+  ],
+  "state": {
+    "dusk": 0.2,
+    "crowd": 1,
+    "glance": 0,
+    "thread": 0.35,
+    "someone_watching": 0,
+    "h1_a": 20,
+    "h1_d": 30,
+    "h1_face": 270,
+    "h2_a": 22.5,
+    "h2_d": 30.5,
+    "h2_face": 270,
+    "david_reach": {
+      "l": "cart#side"
+    }
+  },
+  "states": {
+    "dusk": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "evening comes: the sky darkens, the sun sets, the windows of the church and the house light up"
+    },
+    "crowd": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "people on the square (0 — they go off to the edges, Rosalind’s parents take her away, the second horse is led off)"
+    },
+    "glance": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "David and Rosalind turn their heads to each other (0 — he looks at the church, she past him); the thread a little brighter"
+    },
+    "thread": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the thread of thought between them: 0 none — 1 a clear warm arc"
+    },
+    "someone_watching": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the old woman by the well turns her head to David"
+    },
+    "h1_a": {
+      "type": "number",
+      "means": "horse 1: where"
+    },
+    "h1_d": {
+      "type": "number",
+      "means": "horse 1: in depth"
+    },
+    "h1_face": {
+      "range": [
+        0,
+        360
+      ],
+      "means": "horse 1: which way"
+    },
+    "h2_a": {
+      "type": "number",
+      "means": "horse 2: where"
+    },
+    "h2_d": {
+      "type": "number",
+      "means": "horse 2: in depth"
+    },
+    "h2_face": {
+      "range": [
+        0,
+        360
+      ],
+      "means": "horse 2: which way"
+    }
+  },
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Evening sky",
+      "redraw": {
+        "dusk": 0.1
+      }
+    },
+    {
+      "x": 0.5,
+      "id": "fields",
+      "name": "Fields beyond the square",
+      "depth": 700,
+      "plane": true,
+      "width": 4000,
+      "distance": 400,
+      "elevation": 0
+    },
+    {
+      "x": 0.5,
+      "id": "far_land",
+      "box": [
+        -4000,
+        -40,
+        4000,
+        40
+      ],
+      "name": "Far shelterbelts",
+      "height": 30,
+      "distance": 900
+    },
+    {
+      "id": "trees_back",
+      "box": [
+        -110,
+        -22,
+        110,
+        4
+      ],
+      "name": "Elms and poplars beyond the square",
+      "across": 0,
+      "height": 19,
+      "distance": 80
+    },
+    {
+      "id": "square",
+      "name": "Dusty square",
+      "depth": 100,
+      "plane": true,
+      "width": 300,
+      "across": 0,
+      "distance": 35,
+      "elevation": 0
+    },
+    {
+      "id": "house",
+      "box": [
+        -6,
+        -11,
+        9,
+        1
+      ],
+      "name": "House on the square",
+      "across": -30,
+      "height": 10,
+      "distance": 52,
+      "facing": 200
+    },
+    {
+      "id": "shed",
+      "box": [
+        -7,
+        -8,
+        7,
+        1
+      ],
+      "name": "Stable",
+      "across": 40,
+      "height": 8,
+      "distance": 46,
+      "facing": 160
+    },
+    {
+      "id": "church",
+      "box": [
+        -21,
+        -16,
+        8,
+        2
+      ],
+      "name": "Church",
+      "across": -8,
+      "height": 15.5,
+      "distance": 44,
+      "facing": 185
+    },
+    {
+      "id": "woman_c1",
+      "name": "Churchgoer",
+      "person": {
+        "cast": "cast",
+        "who": "woman_c",
+        "turn": 150,
+        "does": "stand"
+      },
+      "across": -6.2,
+      "distance": 30,
+      "place": {
+        "across": "woman_c1_a",
+        "distance": "woman_c1_d"
+      },
+      "shadow": false
+    },
+    {
+      "id": "old_man1",
+      "name": "Old man",
+      "person": {
+        "cast": "cast",
+        "who": "old_man",
+        "turn": 200,
+        "does": "staff_lean",
+        "look": {
+          "parts": [
+            "beard",
+            "staff"
+          ]
+        }
+      },
+      "across": -4.6,
+      "distance": 31,
+      "place": {
+        "across": "old_man1_a",
+        "distance": "old_man1_d"
+      },
+      "shadow": false
+    },
+    {
+      "id": "boy1",
+      "name": "Boy",
+      "person": {
+        "cast": "cast",
+        "who": "boy",
+        "turn": 120,
+        "does": "stand"
+      },
+      "across": -8.6,
+      "distance": 32.5,
+      "place": {
+        "across": "boy1_a",
+        "distance": "boy1_d"
+      },
+      "shadow": false
+    },
+    {
+      "id": "girl1",
+      "name": "Girl",
+      "person": {
+        "cast": "cast",
+        "who": "girl",
+        "turn": 230,
+        "does": "stand"
+      },
+      "across": -3.0,
+      "distance": 29,
+      "place": {
+        "across": "girl1_a",
+        "distance": "girl1_d"
+      },
+      "shadow": false
+    },
+    {
+      "id": "horse1",
+      "name": "Horse at the hitching rail",
+      "across": 20,
+      "distance": 30,
+      "place": {
+        "across": "h1_a",
+        "distance": "h1_d"
+      },
+      "box": [
+        -2.6,
+        -3.2,
+        2.6,
+        0.4
+      ],
+      "shadow": true
+    },
+    {
+      "id": "horse2",
+      "name": "Second horse",
+      "across": 22.5,
+      "distance": 30.5,
+      "place": {
+        "across": "h2_a",
+        "distance": "h2_d"
+      },
+      "box": [
+        -2.6,
+        -3.2,
+        2.6,
+        0.4
+      ],
+      "shadow": true
+    },
+    {
+      "id": "rail",
+      "name": "Hitching rail",
+      "across": 21.2,
+      "distance": 31.2,
+      "height": 1.2,
+      "box": [
+        -3.2,
+        -1.3,
+        3.2,
+        0.1
+      ]
+    },
+    {
+      "id": "well",
+      "box": [
+        -7,
+        -3,
+        1.3,
+        0.8
+      ],
+      "name": "Well",
+      "across": 0.6,
+      "height": 2.8,
+      "distance": 14
+    },
+    {
+      "id": "old_woman",
+      "name": "Old woman with a stick",
+      "person": {
+        "cast": "cast",
+        "who": "old_woman",
+        "turn": 220,
+        "does": "staff_lean",
+        "look": {
+          "parts": [
+            "staff"
+          ]
+        }
+      },
+      "across": -0.4,
+      "distance": 14.3,
+      "place": {
+        "across": "old_woman_a",
+        "distance": "old_woman_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "man_a",
+      "name": "Man by the well",
+      "person": {
+        "cast": "cast",
+        "who": "man_a",
+        "turn": 120,
+        "does": "arms_folded"
+      },
+      "across": -1.6,
+      "distance": 15,
+      "place": {
+        "across": "man_a_a",
+        "distance": "man_a_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "man_c",
+      "name": "Man by the well",
+      "person": {
+        "cast": "cast",
+        "who": "man_c",
+        "turn": 150,
+        "does": "hands_behind"
+      },
+      "across": -1.0,
+      "distance": 15.8,
+      "place": {
+        "across": "man_c_a",
+        "distance": "man_c_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "r_father",
+      "name": "Rosalind’s father",
+      "person": {
+        "cast": "cast",
+        "who": "man_b",
+        "turn": 230,
+        "does": "hands_behind"
+      },
+      "across": 3.3,
+      "distance": 12.9,
+      "place": {
+        "across": "r_father_a",
+        "distance": "r_father_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "r_mother",
+      "name": "Rosalind’s mother",
+      "person": {
+        "cast": "cast",
+        "who": "woman_a",
+        "turn": 210,
+        "does": "stand"
+      },
+      "across": 5.3,
+      "distance": 12.6,
+      "place": {
+        "across": "r_mother_a",
+        "distance": "r_mother_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "rosalind",
+      "name": "Rosalind",
+      "person": {
+        "cast": "cast",
+        "who": "rosalind",
+        "turn": 240,
+        "does": "stand"
+      },
+      "across": 4.2,
+      "distance": 12,
+      "place": {
+        "across": "rosalind_a",
+        "distance": "rosalind_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "cart",
+      "name": "Cart",
+      "across": -4.0,
+      "distance": 7.6,
+      "height": 1.3,
+      "box": [
+        -1.8,
+        -1.4,
+        3.5,
+        0.2
+      ],
+      "shadow": true
+    },
+    {
+      "id": "david",
+      "name": "David",
+      "person": {
+        "cast": "cast",
+        "who": "david",
+        "turn": 110,
+        "does": "stand"
+      },
+      "across": -2.6,
+      "distance": 7,
+      "place": {
+        "across": "david_a",
+        "distance": "david_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "thread",
+      "name": "Thread of thought",
+      "across": 0,
+      "distance": 6.5,
+      "height": 4,
+      "box": [
+        -5,
+        -4.5,
+        5,
+        0.5
+      ],
+      "glows": true
+    },
+    {
+      "id": "motes",
+      "name": "Dust in the sunbeams",
+      "across": 0,
+      "distance": 9,
+      "elevation": 1.5,
+      "particles": {
+        "kind": "dust",
+        "source": [
+          16,
+          6,
+          3
+        ],
+        "rate": 5,
+        "color": "#ffe8c8"
+      }
+    },
+    {
+      "x": 0.5,
+      "y": 1,
+      "id": "fore",
+      "box": [
+        -12,
+        -1,
+        12,
+        0.5
+      ],
+      "name": "Dry grass underfoot",
+      "height": 1
+    }
+  ],
+  "modules": [
+    "cast",
+    "chrysalids"
+  ],
+  "music": {
+    "bpm": 66,
+    "density": 0.25,
+    "prompts": [
+      {
+        "text": "tender solo piano, sparse and hesitant, soft felt hammers, long sustain, private longing",
+        "weight": 2
+      },
+      {
+        "text": "distant church bell tolling slowly across open fields, warm evening air",
+        "weight": 2
+      },
+      {
+        "text": "soft string quartet, muted, slow legato swells, restrained romance",
+        "weight": 2
+      },
+      {
+        "text": "village evening ambience, far-off voices, horses snorting, cart wheels on dust, swallows",
+        "weight": 1.2
+      },
+      {
+        "text": "plain hymn melody on a small reed organ heard through an open chapel door",
+        "weight": 0.6
+      },
+      {
+        "text": "solo cello, low and intimate, a held breath between phrases",
+        "weight": 0
+      },
+      {
+        "text": "glass harmonica, faint shimmering tones, secret thought made audible",
+        "weight": 0
+      },
+      {
+        "text": "wordless female voice humming far away, airy, pure",
+        "weight": 0
+      },
+      {
+        "text": "fingerpicked acoustic guitar, slow American folk, dusty and warm",
+        "weight": 0
+      },
+      {
+        "text": "lonely harmonica in the distance, prairie evening",
+        "weight": 0
+      },
+      {
+        "text": "celesta and harp, delicate, two lines that never quite meet",
+        "weight": 0
+      },
+      {
+        "text": "warm analog pads, golden hour, slow swelling",
+        "weight": 0
+      },
+      {
+        "text": "clarinet solo, soft and breathy, nostalgic 1950s pastoral",
+        "weight": 0
+      },
+      {
+        "text": "minimalist piano ostinato, two notes rocking gently, patience",
+        "weight": 0
+      },
+      {
+        "text": "Appalachian fiddle air, very slow, plaintive",
+        "weight": 0
+      },
+      {
+        "text": "austere shape-note choir, hushed, puritan hymn",
+        "weight": 0
+      },
+      {
+        "text": "string harmonics sul tasto, barely there, suspense of being watched",
+        "weight": 0
+      },
+      {
+        "text": "low drone of an organ pedal tone, solemn, unresolved",
+        "weight": 0
+      },
+      {
+        "text": "music box melody slightly out of tune, fragile memory",
+        "weight": 0
+      },
+      {
+        "text": "field recording: wind in dry grass, crickets beginning at dusk",
+        "weight": 0
+      },
+      {
+        "text": "English pastoral orchestra, Vaughan Williams style, quiet and aching",
+        "weight": 0
+      }
+    ],
+    "brightness": 0.45,
+    "scale": "C_MAJOR_A_MINOR"
+  }
+}

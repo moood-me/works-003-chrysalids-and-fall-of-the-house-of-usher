@@ -1,10 +1,10 @@
 {
-  "title": "Хризалиды v3",
-  "description": "«Хризалиды» Джона Уиндема на движке 3 и языке мини-игр",
+  "title": "The Chrysalids v3",
+  "description": "John Wyndham’s “The Chrysalids” on engine 3 and the language of mini-games",
   "themes": {
-    "деревня": 30,
-    "постапокалипсис": 40,
-    "тайна": 30
+    "village": 30,
+    "post-apocalypse": 40,
+    "mystery": 30
   },
-  "main": "nasyp-u-ruchya"
+  "main": "stream-bank"
 }

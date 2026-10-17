@@ -9,6 +9,8 @@ pinch come nearer (the points nearer — their depth less). The background is a 
 view moves it stands, the chapters' points move.
 
 - `shown` — the chapter the player is at; `camera_x` — where the view is: chapter i — i·5 m.
+- `come` — each new value brings the view back to the chapter shown (the game sets it when that chapter is
+  pressed again after the player dragged away).
 - `wall` — the wall's stone, painted once, reads no state.
 - `c0`…`c5` — the chapters' unseen points (unseen; across i·5, at 0.2 of the frame's height — where the game's tree
   has its knot); `author` — the unseen point of the author's sign (across −3.2, left of the first chapter, at 0.3 of the
@@ -21,7 +23,7 @@ view moves it stands, the chapters' points move.
   "beats": {},
   "points": ["c0", "c1", "c2", "c3", "c4", "c5", "author"],
   "offers": [],
-  "party": { "shown": 0 },
+  "party": { "shown": 0, "come": 0 },
   "speakers": []
 }
 ```

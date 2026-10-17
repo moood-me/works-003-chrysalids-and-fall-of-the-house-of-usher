@@ -1,4 +1,4 @@
-// “Find it before he does” (II.3, “The inspector at the farm”): from behind the barn David looks the calf over before the inspector
+// «Найди раньше него» (II.3, «Инспектор на ферме»): from behind the barn David looks the calf over before the inspector
 // does.
 //   1. what he does — looks the calf over; 2. wants — to see what is wrong with it before the inspector; 3. fear for the
 //   calf, shame; 4. the player — searching hard under someone else's eyes.
@@ -13,11 +13,11 @@ const STEP = 4; // s: his look on each thing
 const PLACES = ['calf#head', 'calf#back', 'calf#tail', 'calf#legs'], LEGS = 3;
 
 export default {
-  title: 'Find it before he does', // (as the author's ☰ lists it)
+  title: 'Найди раньше него', // (as the author's ☰ lists it)
   about: 25,
   skipped: { found: true, left: 8 },
   async run(g, b, opts, signal) {
-    const mg = g.minigame({ phrase: tr('The inspector went round the yard unhurriedly and would come to the calf any moment') });
+    const mg = g.minigame({ phrase: 'Инспектор не спеша обходил двор и вот-вот должен был дойти до телёнка' });
     const t0 = mg.t, all = STEP * (LOOK.length - 1);
     const spot = mg.mark({ at: 'calf', kind: 'spot', time: 1 });
     const seek = mg.seek({ on: spot, places: PLACES, hold: 1.0 });

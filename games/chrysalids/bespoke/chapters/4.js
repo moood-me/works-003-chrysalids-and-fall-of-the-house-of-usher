@@ -1,4 +1,4 @@
-// IV. Petra — Petra falls into the river: her fear is a cry in every head of ours; David breathes with
+// IV. Петра — Petra falls into the river: her fear is a cry in every head of ours; David breathes with
 // her as he runs and swims to her (how loud she stays, the far field sees); on the bank, Rosalind across
 // the water; on the hill at night, David decides whether she is
 // taught to hide her thoughts; then someone very far, beyond the sea, hears her.
@@ -20,30 +20,30 @@ const RIVER = SCENES.river, VOICES = SCENES.voices, DREAM = SCENES.dream;
 
 export default {
   number: 'IV',
-  title: tr('Petra'),
+  title: 'Петра',
   choices: [
-    { id: 'river', weight: '~', title: tr('The cry at the river'),
-      options: [{ id: 'quiet', label: tr('she went quiet') }, { id: 'loud', label: tr('she cried to the end') }] },
-    { id: 'petra', weight: '⚑', title: tr('Petra’s gift'),
-      options: [{ id: 'hush', label: tr('teach her to hide her thoughts') }, { id: 'free', label: tr('let her be herself') }] },
-    { id: 'far', weight: '~', title: tr('The voice from over the sea'),
-      options: [{ id: 'answer', label: tr('answer') }, { id: 'listen', label: tr('only listen') }] },
+    { id: 'river', weight: '~', title: 'Крик у реки',
+      options: [{ id: 'quiet', label: 'она стихла' }, { id: 'loud', label: 'она кричала до конца' }] },
+    { id: 'petra', weight: '⚑', title: 'Дар Петры',
+      options: [{ id: 'hush', label: 'учить её прятать мысли' }, { id: 'free', label: 'дать ей быть собой' }] },
+    { id: 'far', weight: '~', title: 'Голос из-за моря',
+      options: [{ id: 'answer', label: 'ответить' }, { id: 'listen', label: 'только слушать' }] },
   ],
-  titles: ['The river', 'The bank', 'Voices: Petra’s gift', 'The dream of the city'], // the steps, as the author's ☰ lists them
+  titles: ['Река', 'Берег', 'Голоса: дар Петры', 'Сон о городе'], // the steps, as the author's ☰ lists them
   steps: [
-    // the river (“Petra at the river”, in beats): her cry in every head of ours; breathing with her while running
+    // the river («Петра у реки», in beats): her cry in every head of ours; breathing with her while running
     // down to the water and swimming after her — how loud she is when he has her is seen on the far field
     async g => {
       await g.scene(RIVER, { beat: 'pool' });
       const pool = g.beat('pool');
-      await g.say('narrator', 'In spring, when Petra was six, she went off to the river alone.');
+      await g.say('narrator', 'Весной, когда Петре было шесть, она одна ушла к реке.');
       await pool;
       const struck = g.beat('struck');
-      await g.say('narrator', 'And then it struck into my head. Not a voice — fear, enormous, without words.');
-      await g.think('petra', 'David…!', 'petra');
+      await g.say('narrator', 'И тут в голову ударило. Не голос — страх, огромный, без слов.');
+      await g.think('petra', 'Дэвид!..', 'petra');
       await struck;
       // down to her and after her, breathing for both: the beats run the minigame's time (what he tells her — before it)
-      await g.think('david', 'Petra, I’m here. Breathe with me.', 'david');
+      await g.think('david', 'Петра, я здесь. Дыши со мной.', 'david');
       const run = (async () => { await g.beat('edge'); await g.beat('run'); })();
       const { cry } = await g.play(calm, { until: run });
       await run;
@@ -51,15 +51,15 @@ export default {
       g.state.choices.river = river;
       // the far field: only Rosalind — or everyone sees her run
       const field = g.beat(`field_${river}`);
-      if (river === 'quiet') await g.say('narrator', 'She went quiet. No one farther than Rosalind heard her.');
-      else await g.say('narrator', 'The grown-ups heard not a sound. They saw her run.');
+      if (river === 'quiet') await g.say('narrator', 'Она стихла. Дальше Розалинды её никто не услышал.');
+      else await g.say('narrator', 'Взрослые не слышали ни звука. Они видели, как она бежит.');
       await field;
       const bank = g.told('out:bank');
       const out = g.beat('out');
       await bank;
-      if (river === 'quiet') await g.say('narrator', 'I brought her out onto the bank. She was crying — out loud, like any child.');
+      if (river === 'quiet') await g.say('narrator', 'Я вывел её на берег. Она плакала — вслух, как все дети.');
       else {
-        await g.say('narrator', 'I brought her out onto the bank. She called to the very last — and not with her mouth.');
+        await g.say('narrator', 'Я вывел её на берег. Она звала до последнего — и не ртом.');
         g.scale('suspicion', 1);
         g.scale('petra', 1, true);
       }
@@ -73,13 +73,13 @@ export default {
       await g.scene(RIVER, { beat });
       const shown = g.beat(beat);
       await across;
-      await g.think('rosalind', 'Is that her? Your sister?', 'rosalind');
-      await g.say('petra', 'I held on. But the branch broke.', 'petra');
-      if (loud) await g.think('rosalind', 'All of ours heard her. And they saw us running.', 'rosalind');
-      else await g.think('rosalind', 'She went quiet all of a sudden. Was it you who calmed her?', 'rosalind');
-      await g.think('rosalind', 'She’s stronger than all of us, David. What are we going to do with her?', 'rosalind');
+      await g.think('rosalind', 'Это она? Твоя сестра?', 'rosalind');
+      await g.say('petra', '— Я держалась. А ветка сломалась.', 'petra');
+      if (loud) await g.think('rosalind', 'Её слышали все наши. А они видели, как мы бежим.', 'rosalind');
+      else await g.think('rosalind', 'Она вдруг стихла. Это ты её успокоил?', 'rosalind');
+      await g.think('rosalind', 'Она сильнее нас всех, Дэвид. Что мы будем с ней делать?', 'rosalind');
       await shown;
-      await g.choose(null, 'david', [{ id: 'home', label: tr('Carry Petra home') }]);
+      await g.choose(null, 'david', [{ id: 'home', label: 'Нести Петру домой' }]);
       await g.beat('home');
     },
     // the hill at night: her light among ours — to teach her to hide it, or to let her be
@@ -88,42 +88,42 @@ export default {
       const all = g.state.choices.newcomer === 'took' ? 7 : 6;
       await g.scene(VOICES, { count: 0, petra: light * 0.6, voices: 0.45, clouds: 0.15, david_present: 1 });
       await g.wait(2000);
-      await g.say('narrator', 'From that day Petra was among us. Her thoughts thundered all over the district.');
+      await g.say('narrator', 'С того дня Петра была среди нас. Её мысли гремели на всю округу.');
       // calling ours again, window by window — and her window is awake now, and pulls at every thread
       const { caught } = await g.play(windows, {
         targets: Array.from({ length: all }, (_, i) => `farm${i + 1}`), petra: light * 0.6, voices: 0.45,
-        onLink: async n => { if (n === 1) await g.think('rosalind', 'Here. Quietly, David. She’s listening.'); },
-        onPetra: () => g.think('petra', 'David, is that you? I want to be with you too!', 'home'),
+        onLink: async n => { if (n === 1) await g.think('rosalind', 'Здесь. Тише, Дэвид. Она слушает.'); },
+        onPetra: () => g.think('petra', 'Дэвид, это ты? Я тоже хочу с вами!', 'home'),
       });
       g.set('count', all);
       g.set('petra', light, 3);
       g.set('voices', 0.6, 3);
       if (caught) {
-        await g.think('rosalind', 'She shouted us all down. Alone.');
+        await g.think('rosalind', 'Она перекричала нас всех. Одна.');
         g.scale('petra', 1, true);
       }
-      if (g.state.marks.anne === 'widowed') await g.think('rosalind', 'Anne has guessed already. Teach Petra to hide her thoughts, David.');
-      else await g.think('rosalind', 'Teach her to hide her thoughts. Or the wrong people will hear her.');
-      await g.think('michael', 'We hide all our lives. Let her at least be as she is.');
+      if (g.state.marks.anne === 'widowed') await g.think('rosalind', 'Энн и так догадывается. Научи Петру прятать мысли, Дэвид.');
+      else await g.think('rosalind', 'Научи её прятать мысли. Иначе её услышит кто-нибудь не тот.');
+      await g.think('michael', 'Мы прячемся всю жизнь. Пусть хоть она будет как есть.');
       const petra = await g.choose('petra', 'home', [
-        { id: 'hush', label: tr('Hide her thoughts') }, { id: 'free', label: tr('Let her call') }]);
+        { id: 'hush', label: 'Учить прятать мысли' }, { id: 'free', label: 'Пусть зовёт' }]);
       if (petra === 'hush') {
-        if (g.state.choices.calf === 'show') await g.say('narrator', 'My father taught me to spot Deviations. Now I was teaching my sister to hide them.');
-        else await g.say('narrator', 'Every evening I taught her: think quietly, very quietly, as if you were whispering.');
+        if (g.state.choices.calf === 'show') await g.say('narrator', 'Отец учил меня замечать отклонения. Теперь я учил сестру их прятать.');
+        else await g.say('narrator', 'Каждый вечер я учил её: думай тихо, совсем тихо, будто шепчешь.');
         g.set('petra', 0.15, 8);
-        await g.think('petra', 'All right. I’ll be tiny, tiny.', 'home');
+        await g.think('petra', 'Хорошо. Я буду маленькая-маленькая.', 'home');
         g.scale('petra', -1, true);
         g.scale('group', 1);
-        g.mark('petra', 'hushed', tr('Petra will remember this.'));
+        g.mark('petra', 'hushed', 'Петра это запомнит.');
       } else {
         g.set('petra', 1, 4);
         g.set('voices', 0.9, 4);
-        await g.think('petra', 'David! I can hear all of you! All of you!', 'home');
-        await g.think('rosalind', 'She’ll give us away, David.');
-        if (g.state.marks.sophie_night === 'stayed') await g.say('narrator', 'Once already I had told myself to keep quiet. I did not want to again.');
+        await g.think('petra', 'Дэвид! Я вас всех слышу! Всех-всех!', 'home');
+        await g.think('rosalind', 'Она нас выдаст, Дэвид.');
+        if (g.state.marks.sophie_night === 'stayed') await g.say('narrator', 'Однажды я уже велел себе сидеть тихо. Больше не хотел.');
         g.scale('petra', 1, true);
         g.scale('group', -1);
-        g.mark('petra', 'free', tr('Petra will remember this.'));
+        g.mark('petra', 'free', 'Петра это запомнит.');
       }
       await g.wait(3000);
     },
@@ -133,43 +133,43 @@ export default {
       // my own dream first: the city, and a shining fish over it — followed with the eyes, so as not to wake
       await g.scene(DREAM, { dream: 0.75, craft: 0.2, lights: 0.6, waking: 0, boy_present: 1 });
       await g.wait(2000);
-      await g.say('narrator', 'I dreamt of that city again. I followed a shining fish with my eyes — quietly, quietly, so as not to wake.');
+      await g.say('narrator', 'Мне снова снился тот город. Я вёл глазами блестящую рыбу — тихо-тихо, чтобы не проснуться.');
       const { held, broke } = await g.play(dream);
-      if (broke) await g.say('narrator', 'The dream fell apart. I never made out the towers.');
-      else if (held >= 0.5) await g.say('narrator', 'I had time to make out every tower.');
+      if (broke) await g.say('narrator', 'Сон рассыпался. Я так и не разглядел башен.');
+      else if (held >= 0.5) await g.say('narrator', 'Я успел разглядеть каждую башню.');
       g.set('waking', 1, 3);
       await g.wait(3000);
       g.set('lead', null);
       g.set('gaze', null);
-      await g.say('narrator', 'A month later Petra woke me in the middle of the night.');
+      await g.say('narrator', 'Через месяц Петра разбудила меня среди ночи.');
       // what she shows me: as clear as she is strong
       g.set('dream', p >= 2 ? 0.95 : p >= 1 ? 0.65 : 0.3, 4);
       g.set('craft', p >= 2 ? 0.9 : p >= 1 ? 0.35 : 0, 4);
       g.set('lights', p >= 1 ? 0.8 : 0.3, 4);
-      await g.say('petra', 'David, somebody’s talking out there. Far, far away, over the water.', 'narrator');
+      await g.say('petra', '— Дэвид, там кто-то говорит. Далеко-далеко, за водой.', 'narrator');
       g.set('waking', 0, 5);
-      if (p >= 1 && held >= 0.5) await g.say('narrator', 'She showed me what she saw. And I knew the city from my dream.');
-      if (p >= 2) await g.think('sealand', 'Who are you, little girl? Where are you? You call so loudly.', 'city');
-      else if (p >= 1) await g.think('sealand', '…who are you… where…', 'city');
-      else await g.say('petra', 'I can’t hear words. Only that somebody’s there.', 'narrator');
+      if (p >= 1 && held >= 0.5) await g.say('narrator', 'Она показала мне, что видит. И я узнал город из своего сна.');
+      if (p >= 2) await g.think('sealand', 'Кто ты, девочка? Где ты? Ты так громко зовёшь.', 'city');
+      else if (p >= 1) await g.think('sealand', '…кто ты… где…', 'city');
+      else await g.say('petra', '— Я не слышу слов. Только что там кто-то есть.', 'narrator');
       const far = await g.choose('far', 'city', [
-        { id: 'answer', label: tr('Answer her, Petra') }, { id: 'listen', label: tr('Don’t answer') }]);
-      await g.say('david', far === 'answer' ? tr.line('david', 'Answer her, Petra.') : tr.line('david', 'Don’t answer. We don’t know who it is.'), 'narrator');
+        { id: 'answer', label: 'Ответь ей' }, { id: 'listen', label: 'Не отвечай' }]);
+      await g.say('david', far === 'answer' ? '— Ответь ей, Петра.' : '— Не отвечай. Мы не знаем, кто это.', 'narrator');
       if (far === 'answer') {
-        await g.think('petra', 'I’m Petra! I’m here!', 'narrator');
-        if (p >= 1) await g.think('sealand', 'I hear you. Call to me again.', 'city');
-        await g.think('rosalind', 'David, what is it? Someone strange can hear us.');
+        await g.think('petra', 'Я Петра! Я здесь!', 'narrator');
+        if (p >= 1) await g.think('sealand', 'Слышу тебя. Зови меня ещё.', 'city');
+        await g.think('rosalind', 'Дэвид, что это? Нас слышит кто-то чужой.');
         g.state.marks.sealand = 'answered';
         g.scale('petra', 1, true);
       } else {
         g.set('craft', 0, 6);
-        await g.say('narrator', 'Petra did as she was told. The voice called a while longer, fainter and fainter, and then it was gone.');
+        await g.say('narrator', 'Петра послушалась. Голос ещё звал, всё тише, а потом пропал.');
         g.state.marks.sealand = 'heard';
       }
       g.set('waking', 1, 7);
       await g.wait(6000);
-      if (p >= 1) await g.say('narrator', 'That city was real. Somewhere over the sea.');
-      else await g.say('narrator', 'I never did know whether it was a dream.');
+      if (p >= 1) await g.say('narrator', 'Тот город был на самом деле. Где-то за морем.');
+      else await g.say('narrator', 'Я так и не понял, был ли это сон.');
       await g.wait(2000);
     },
   ],

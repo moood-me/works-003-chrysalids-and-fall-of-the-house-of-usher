@@ -1,4 +1,4 @@
-// «The screws» (III, «The vault», after the beat `screws`: the lid close, the driver in the narrator's hand on the first screw):
+// while a screw is turning: «Do not let them shut me in.» — her line, in her whisper, low in the middle.
 // the lid is on, and he drives its four screws home.
 //   1. what he does — turns the screwdriver, screw after screw, closing her in; 2. wants — to do what Roderick asks —
 //   or to leave one loose, in case; 3. dread, the weight of it, her words in his head; 4. the player — tightening by
@@ -13,7 +13,7 @@
 import { until, once, keys } from '../hands.js';
 
 const SEAT = 0.8, TURNS = 3;
-const HERS = tr.thought('madeline', 'Do not let them shut me in.');
+const HERS = tr.line('madeline', 'Do not let them shut me in.');
 
 export default {
   title: 'The screws', // (as the author's ☰ lists it)
@@ -41,7 +41,7 @@ export default {
       const ok = await until(mg, () => {
         v[i] = Math.min(1, from + Math.max(0, turn.state.most) / TURNS);
         send(`screw${i}`, v[i]);
-        if (!said && turn.state.most > 1.3) { said = true; g.think('madeline', HERS); }
+        if (!said && turn.state.most > 1.3) { said = true; g.say('madeline', HERS, 'narrator'); }
         mg.plate.set({ fill: (i - 1 + v[i]) / 4 });
         return v[i] >= 1 || left;
       });

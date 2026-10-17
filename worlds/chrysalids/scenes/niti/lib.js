@@ -5,7 +5,8 @@
 // chosen (the main run's — bright; a replay's — pale). Each tree (t0…t7) and knot (k0…k7) is an element standing in the
 // world, painted once (from `chapters` — set as the scene opens); what moves — the rows coming as `reveal` grows, the
 // shown knot brighter (`shown`, `knot`) — is their animate's; the sky going to the chapter shown is the script's. Drawn in "frame units": the frame's
-// height 1, as the tree fills it from where the viewer stands (U metres).
+// height 1, as the tree fills it from where the viewer stands (U metres). The game's marks stand on the knots (k<i>#knot)
+// and the forks — each row of a tree (t<i>#r<k>); the author's on his sign at the map's left edge (author#mark).
 const U = 10; // metres a frame unit is, at the trees' distance (10 m: the horizon low, the ground at the frame's foot)
 const KY = 0.2; // the knot's height, from the top
 const D = 0.5; // how far apart the chapters are (5 m), frame units
@@ -74,13 +75,14 @@ const strand = (g, from, ox, y, k, j, kind, ghost, alpha) => {
   g.stroke();
   g.restore();
 };
-// a chapter's tree at cxk: its number and title over the knot, and — but for one not reached yet — its rows, each a
-// layer `r<k>` (treeAnim shows them as `reveal` grows). c: { number, title, kind: here | played | next | future | end,
+// a chapter's tree at cxk: its number and title over the knot — one not reached yet, only its number —, and its rows,
+// each a layer `r<k>` (treeAnim shows them as `reveal` grows) and a point `r<k>` (the fork: on the main run's choice,
+// else the row's middle). c: { number, title, kind: here | played | next | future | end,
 // map: [{ title, weight, options: [{ label, state: chosen | tried | both | open | unseen }] }] }
 const draw = (g, e, c, cxk, alpha) => {
   const future = c.kind === 'future';
   text(g, String(c.number || ''), cxk, 0.075, 0.03, '#d9c9a3', 0.7 * alpha * (future ? 0.5 : 1), false);
-  text(g, String(c.title || ''), cxk, 0.125, 0.04, '#efe6d2', 0.92 * alpha * (future ? 0.4 : 1), true);
+  if (!future) text(g, String(c.title || ''), cxk, 0.125, 0.04, '#efe6d2', 0.92 * alpha, true);
   const map = Array.isArray(c.map) && !future ? c.map : null;
   if (!map) return;
   const R = rows(map), n = map.length;
@@ -88,6 +90,7 @@ const draw = (g, e, c, cxk, alpha) => {
   for (let k = 0; k < n; k++) {
     const row = map[k], opts = row.options || [], m = opts.length, y = R.y(k);
     const pts = opts.map((o, j) => ({ o, ox: optX(cxk, j, m), main: o.state === 'chosen' || o.state === 'both', tried: o.state === 'tried' || o.state === 'both', ghost: o.state === 'unseen' }));
+    e.at((pts.find(p => p.main)?.ox ?? cxk) * U, (y - 1) * U, 'r' + k);
     const FC = fromC, FT = fromT;
     e.layer('r' + k, {}, q => {
       q.save();
@@ -176,4 +179,24 @@ const knotAnim = (e, i) => {
   e.layer('halo').alpha = b * p;
   e.glow('k', b);
 };
-return { U, D, SPACING, tree, treeAnim, knot, knotAnim };
+// the element author: the author's sign at the map's left edge — a small ring of dim stars, «автор» under it, its point
+// `mark` in the middle; there only while the game says (`author`: its author plays)
+const author = (g, e) => {
+  if (!e.state || !e.state.author) return;
+  e.at(0, -0.8, 'mark');
+  g.save();
+  g.translate(0, -0.8);
+  g.strokeStyle = 'rgba(207, 198, 180, 0.35)';
+  g.lineWidth = 0.012;
+  g.setLineDash([0.03, 0.05]);
+  g.beginPath(); g.arc(0, 0, 0.22, 0, 6.283); g.stroke();
+  g.setLineDash([]);
+  for (let i = 0; i < 5; i++) {
+    const a = i * 1.2566 - 1.5708;
+    g.beginPath(); g.arc(Math.cos(a) * 0.22, Math.sin(a) * 0.22, 0.018, 0, 6.283);
+    g.fillStyle = 'rgba(239, 230, 210, 0.55)'; g.fill();
+  }
+  g.restore();
+  text(g, 'автор', 0, -0.4, 0.13, '#cfc6b4', 0.5, true);
+};
+return { U, D, SPACING, tree, treeAnim, knot, knotAnim, author };

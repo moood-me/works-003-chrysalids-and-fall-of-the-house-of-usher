@@ -1,4 +1,4 @@
-// «Run» (IV, «The fall of the house», after the beat `run`): the flight along the causeway, the house splitting behind and the
+// «Бег» (IV, «Падение дома», after the beat `run`): the flight along the causeway, the house splitting behind and the
 // causeway going down after it.
 //   1. what he does — runs, leading whoever he took by the hand; 2. wants — to get off the causeway before it goes;
 //   3. terror, breath, the roar behind; 4. the player — keeping the stride in rhythm, not hurrying into a stumble.
@@ -27,7 +27,7 @@ const GRACE = 2.5; // s: the house waits this long for the first step
 const DOWN = 1.2; // s: a stumble — no step takes him on meanwhile
 
 export default {
-  title: 'Run', // (as the author's ☰ lists it)
+  title: 'Бег', // (as the author's map lists it)
   about: 30,
   skipped: { escaped: true },
   async run(g, b, opts, signal) {
@@ -38,7 +38,7 @@ export default {
       fallRate = (1 - FALL0) / (46 - 26 * crack),
       lost = clamp((0.6 - sane) / 0.6), // the mind going: 0 … 1
       window = 0.15 * (1 - 0.4 * lost);
-    const mg = g.minigame({ phrase: tr('The causeway crumbled behind me, and the house sank beneath the water') });
+    const mg = g.minigame({ phrase: 'Гать рушилась за спиной, и дом уходил под воду' });
     const runner = mg.mark({ at: 'narrator', kind: 'light' });
     const rh = mg.rhythm({ on: null, show: [runner], bpm: 60 / beat, window });
     b.minigame.tricks.teach(mg, [rh], { id: 'rhythm-anywhere' });

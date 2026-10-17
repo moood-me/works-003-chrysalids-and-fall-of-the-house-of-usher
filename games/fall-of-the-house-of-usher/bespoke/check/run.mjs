@@ -60,9 +60,9 @@ const MINIGAMES = {
   hands: { scene: 'storm', keys: ['rod_reach', 'mad_reach', 'rod_to_mad', 'mad_to_rod', 'grab', 'grab_x', 'grab_y', 'held_rod', 'held_mad', 'quake', 'shudder'], points: ['closeup#nar_hand', 'closeup#rod_hand', 'closeup#mad_hand', 'closeup#stay'], opts: ['roderick', 'madeline', 'both', 'time'], result: ['took', 'stayed'] },
   flight: { scene: 'fall', keys: ['run', 'run_at', 'fall', 'swim'], beats: ['stumble'], points: ['narrator'], opts: ['companions', 'speed', 'sanity'], result: ['escaped'] },
 };
-// what game.js itself takes of «Crack» (it is not run here): its key, the points its trees stand at (map.js) — each
+// what game.js itself takes of «Crack» (it is not run here): its keys, the points its trees stand at (map.js) — each
 // chapter's and the author's sign's
-const MAP = { keys: ['shown'], points: [...Array.from({ length: 6 }, (_, i) => `c${i}`), 'author'] };
+const MAP = { keys: ['shown', 'come'], points: [...Array.from({ length: 6 }, (_, i) => `c${i}`), 'author'] };
 // the results put in: the outcomes a chapter branches on — clean, and each one's other
 const CLEAN = {};
 const OTHER = [{ quieter: { his: 0, mine: 3, order: [['candles', 'mine'], ['window', 'mine'], ['clock', 'mine']] } }, { quieter: { his: 3, mine: 0, order: [['candles', 'his'], ['window', 'his'], ['clock', 'his']] } },

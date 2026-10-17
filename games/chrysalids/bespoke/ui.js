@@ -4,6 +4,7 @@
 // going (game.js). The ⏸, ⏭ and ☰ are the page's. For the author a map (its mark on “Threads” opens it) — every chapter
 // and its steps (and the minigames a step has, under it), to go to any of them.
 //   view.replaying(on) — the plate shown or not
+//   view.quiet() — what a chapter left showing taken away (the map comes)
 //   view.author({ chapters, at() → {chapter, step}, plays(chapter, step) → [titles of its minigames], go(chapter, step,
 //     minigame) }) — the author's tools: a step to go to, or a minigame of it (its index among the step's); → what opens
 //     them (or closes)
@@ -33,6 +34,10 @@ export function ui(layer) {
       setTimeout(() => t.remove(), 5200);
     },
     replaying(on) { replay.hidden = !on; },
+    // what a chapter left showing (its strips) taken away: the map comes
+    quiet() {
+      toasts.replaceChildren();
+    },
     // “Threads”: how things stand now, in the corner — the scales in words, what the people think of David; no numbers.
     // { scales: [{name, words}], people: [{who, now}] } → it taken away
     now({ scales, people }) {

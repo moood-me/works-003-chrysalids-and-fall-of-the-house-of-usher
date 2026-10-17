@@ -57,10 +57,9 @@ const MINIGAMES = {
   horses: { scene: 'flight', keys: ['great_toss', 'pack_toss', 'sheba_toss', 'petra_peek', 'lamp_x', 'lamp', 'search_point', 'great_a', 'pack_a', 'sheba_a'], points: ['great#head', 'pack#head', 'sheba#head', 'petra'], opts: ['start', 'sheba', 'petra', 'horse'], result: ['seen'] },
   shadow: { scene: 'edge', keys: ['walkers', 'walk_u', 'walk_lit', 'walk_shade'], points: ['david'], opts: ['hard', 'onSeen'], result: ['seen'] },
 };
-// what game.js itself takes of «Нити» (it is not run here): its keys, what it offers — the knots, each chapter's forks
-// (its rows of choices), the author's mark
-const NITI = { keys: ['chapters', 'shown', 'reveal', 'knot', 'author'],
-  offers: chapters => [...Array.from({ length: 8 }, (_, i) => `k${i}#knot`), ...chapters.flatMap((c, i) => c.choices.map((_, k) => `t${i}#r${k}`)), 'author#mark'] };
+// what game.js itself takes of «Нити» (it is not run here): its key, the points its trees stand at (map.js) — each
+// chapter's and the author's sign's
+const NITI = { keys: ['shown'], points: [...Array.from({ length: 8 }, (_, i) => `c${i}`), 'author'] };
 // the results put in: the outcomes a chapter branches on — clean, and each one's other
 const CLEAN = {};
 const OTHER = [{ podol: { hid: false } }, { dig: { cleared: 0.3, bell: true } }, { gaze: { found: false, left: 0 } }, { hymn: { hymn: 'silent', turned: 0.7 } }, { hymn: { hymn: 'loud', turned: 0.1 } },
@@ -169,11 +168,11 @@ const niti = WORLD.get(SCENES.niti);
 if (niti) {
   for (const key of NITI.keys) {
     if (!(key in niti.states) && !engines(niti, key)) miss('game.js', `«${SCENES.niti}»: ключа «${key}» нет в states`);
-    if (key !== 'chapters' && niti.contract && !(key in niti.contract.party)) miss('game.js', `«${SCENES.niti}»: ключа «${key}» нет в party контракта`);
+    if (niti.contract && !(key in niti.contract.party)) miss('game.js', `«${SCENES.niti}»: ключа «${key}» нет в party контракта`);
     niti.named.add(`party:${key}`);
   }
-  for (const ref of NITI.offers(CHAPTERS)) {
-    if (niti.contract && !niti.contract.offers.includes(ref)) miss('game.js', `«${SCENES.niti}»: предложения «${ref}» нет в контракте`);
+  for (const ref of NITI.points) {
+    if (niti.contract && !niti.contract.points.includes(ref)) miss('game.js', `«${SCENES.niti}»: точки «${ref}» нет в контракте`);
     niti.named.add(`ref:${ref}`);
   }
 }

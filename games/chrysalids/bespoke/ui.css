@@ -51,3 +51,72 @@
   #layer .now { bottom: auto; top: 70px; left: 12px; font-size: 12px; }
   #layer .compare { max-width: calc(100% - 170px); left: 12px; transform: none; }
 }
+
+/* «Нити»: the trees of the chapters (map.js) — under the language's marks (bespoke.underlay), each at its chapter's point
+   of the sky, laid out in the frame's height (--h): what stands in a row shares it, words wrap, nothing runs into
+   anything. A constellation: bright gold where the main run went, pale blue a replay's, faint the ways not taken. */
+#underlay .map { position: absolute; inset: 0; font-family: Georgia, "Times New Roman", serif; color: #efe6d2; animation: toast-in 0.9s ease; }
+#underlay .map .stand { position: absolute; left: 0; top: 0; width: 0; height: 0; transform-origin: 0 0; }
+#underlay .map .stand[hidden] { display: none; }
+#underlay .tree { position: absolute; left: calc(var(--h) * -0.22); top: calc(var(--h) * -0.102); width: calc(var(--h) * 0.44);
+  display: flex; flex-direction: column; align-items: center; text-align: center; text-shadow: 0 0 calc(var(--h) * 0.006) rgba(3, 4, 10, 0.95); }
+#underlay .tree .num { height: calc(var(--h) * 0.032); font-size: calc(var(--h) * 0.022); line-height: calc(var(--h) * 0.032); letter-spacing: 0.12em;
+  color: #e3cf9f; }
+#underlay .tree .title { height: calc(var(--h) * 0.05); font-size: calc(var(--h) * 0.034); line-height: calc(var(--h) * 0.05); font-style: italic;
+  white-space: nowrap; color: #f6eedc; }
+#underlay .tree.future .num { color: rgba(227, 207, 159, 0.45); }
+#underlay .tree .knot { position: relative; width: calc(var(--h) * 0.04); height: calc(var(--h) * 0.04); flex: none; }
+#underlay .tree .knot i { position: absolute; left: 50%; top: 50%; border-radius: 50%; }
+#underlay .tree .knot .halo { width: calc(var(--h) * 0.08); height: calc(var(--h) * 0.08); margin: calc(var(--h) * -0.04) 0 0 calc(var(--h) * -0.04);
+  background: radial-gradient(circle, rgba(255, 214, 160, 0.55) 0%, rgba(255, 200, 140, 0.18) 38%, rgba(255, 200, 140, 0) 70%);
+  animation: map-breathe 4.6s ease-in-out infinite alternate; will-change: transform, opacity; }
+#underlay .tree .knot .core { width: calc(var(--h) * 0.013); height: calc(var(--h) * 0.013); margin: calc(var(--h) * -0.0065) 0 0 calc(var(--h) * -0.0065);
+  background: #fff4e0; box-shadow: 0 0 calc(var(--h) * 0.012) rgba(255, 220, 170, 0.9); }
+#underlay .tree:not(.shown) .knot { opacity: 0.62; }
+@keyframes map-breathe { from { transform: scale(0.82); opacity: 0.55; } to { transform: scale(1.15); opacity: 1; } }
+
+#underlay .tree .rows { width: 100%; margin-top: calc(var(--h) * 0.022); display: flex; flex-direction: column; gap: calc(var(--h) * 0.016); }
+#underlay .tree .name { font-size: calc(var(--h) * 0.0165); line-height: 1.25; font-style: italic; color: #d8cfbd; margin-bottom: calc(var(--h) * 0.007); }
+#underlay .tree .opts { display: flex; justify-content: center; gap: calc(var(--h) * 0.012); }
+#underlay .tree .opt { flex: 1 1 0; min-width: 0; max-width: calc(var(--h) * 0.15); display: flex; flex-direction: column; align-items: center;
+  gap: calc(var(--h) * 0.006); }
+#underlay .tree .dot { display: block; width: calc(var(--h) * 0.009); height: calc(var(--h) * 0.009); border-radius: 50%; background: rgba(196, 204, 238, 0.7); }
+#underlay .tree .label { font-size: calc(var(--h) * 0.0165); line-height: 1.22; color: #bfc5dd; overflow-wrap: break-word; }
+#underlay .tree .chosen .dot, #underlay .tree .both .dot { width: calc(var(--h) * 0.013); height: calc(var(--h) * 0.013); background: #ffd9a0;
+  box-shadow: 0 0 calc(var(--h) * 0.012) rgba(255, 200, 130, 0.85); }
+#underlay .tree .chosen .label, #underlay .tree .both .label { color: #fbe8c6; }
+#underlay .tree .tried .dot { background: #cfe0ff; box-shadow: 0 0 calc(var(--h) * 0.008) rgba(190, 215, 255, 0.7); }
+#underlay .tree .tried .label { color: #dce7ff; font-style: italic; }
+#underlay .tree .unseen .dot { background: rgba(140, 146, 186, 0.45); }
+#underlay .tree .unseen .label { color: rgba(170, 176, 210, 0.6); letter-spacing: 0.2em; }
+/* (a chapter of many rows: all of it smaller, to stay in the frame) */
+#underlay .tree.dense .rows { gap: calc(var(--h) * 0.009); }
+#underlay .tree.dense .name, #underlay .tree.dense .label { font-size: calc(var(--h) * 0.0142); }
+#underlay .tree.dense .name { margin-bottom: calc(var(--h) * 0.004); }
+/* the threads (SVG, at the knot: its coordinates the tree's own); the glow under the main run's breathes with the knot */
+#underlay .stand .threads { position: absolute; left: 0; top: 0; width: 1px; height: 1px; overflow: visible; fill: none; stroke-linecap: round; }
+#underlay .threads path.main { stroke: rgba(255, 216, 156, 0.95); stroke-width: calc(var(--h) * 0.0019); }
+#underlay .threads path.other { stroke: rgba(176, 186, 226, 0.42); stroke-width: calc(var(--h) * 0.0012); }
+#underlay .threads path.unseen { stroke: rgba(140, 146, 186, 0.3); stroke-width: calc(var(--h) * 0.0011); stroke-dasharray: calc(var(--h) * 0.003) calc(var(--h) * 0.006); }
+#underlay .threads path.tried { stroke: rgba(196, 218, 255, 0.8); stroke-width: calc(var(--h) * 0.0017); stroke-dasharray: calc(var(--h) * 0.01) calc(var(--h) * 0.005); }
+#underlay .threads.glow path { stroke: rgba(255, 190, 120, 0.22); stroke-width: calc(var(--h) * 0.008); }
+#underlay .threads.glow { animation: map-glow 4.6s ease-in-out infinite alternate; will-change: opacity; }
+@keyframes map-glow { from { opacity: 0.55; } to { opacity: 1; } }
+/* a chapter just played: its rows and their threads come one after another (map.js gives each its delay) */
+#underlay .tree.grow .row { animation: map-grow 1.4s ease-out both; }
+#underlay .stand .threads g.grow { animation: map-grow 1.4s ease-out both; }
+@keyframes map-grow { from { opacity: 0; } }
+
+/* the author's sign (map.js), left of the first chapter: a small ring of stars, «автор» */
+#underlay .sign { position: absolute; left: calc(var(--h) * -0.06); top: calc(var(--h) * -0.03); width: calc(var(--h) * 0.12); display: flex; flex-direction: column;
+  align-items: center; gap: calc(var(--h) * 0.01); }
+#underlay .sign .ring { position: relative; width: calc(var(--h) * 0.06); height: calc(var(--h) * 0.06); border-radius: 50%;
+  border: 1px dashed rgba(216, 207, 189, 0.4); }
+#underlay .sign .ring i { position: absolute; left: 50%; top: 50%; width: calc(var(--h) * 0.007); height: calc(var(--h) * 0.007); margin: calc(var(--h) * -0.0035);
+  border-radius: 50%; background: #efe6d2; box-shadow: 0 0 calc(var(--h) * 0.006) rgba(239, 230, 210, 0.8); }
+#underlay .sign .ring i:nth-child(1) { transform: rotate(-90deg) translateX(calc(var(--h) * 0.03)); }
+#underlay .sign .ring i:nth-child(2) { transform: rotate(-18deg) translateX(calc(var(--h) * 0.03)); }
+#underlay .sign .ring i:nth-child(3) { transform: rotate(54deg) translateX(calc(var(--h) * 0.03)); }
+#underlay .sign .ring i:nth-child(4) { transform: rotate(126deg) translateX(calc(var(--h) * 0.03)); }
+#underlay .sign .ring i:nth-child(5) { transform: rotate(198deg) translateX(calc(var(--h) * 0.03)); }
+#underlay .sign .label { font-size: calc(var(--h) * 0.017); font-style: italic; color: #d8cfbd; text-shadow: 0 0 calc(var(--h) * 0.006) rgba(3, 4, 10, 0.95); }

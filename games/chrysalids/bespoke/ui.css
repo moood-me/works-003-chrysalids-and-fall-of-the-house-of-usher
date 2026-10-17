@@ -36,7 +36,7 @@
 #layer .author-panel section button.minigame { padding: 3px 10px 3px 24px; font-size: 13px; font-style: italic; color: #e8c79a; opacity: 0.85; }
 #layer .author-panel section button.minigame:hover { opacity: 1; }
 
-/* «Нити»: how things stand now, in the corner (ui.js now) — words, no numbers */
+/* “Threads”: how things stand now, in the corner (ui.js now) — words, no numbers */
 #layer .now { position: absolute; left: 18px; bottom: 16px; max-width: min(340px, calc(100% - 90px)); padding: 10px 14px; border-radius: 12px;
   background: rgba(8, 10, 16, 0.6); color: #d9cdb6; font: 13px/1.4 Georgia, 'Times New Roman', serif; animation: toast-in 1.2s ease; }
 #layer .now p, #layer .compare p { margin: 0 0 3px; }

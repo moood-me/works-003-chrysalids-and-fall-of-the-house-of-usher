@@ -1,4 +1,4 @@
-// «Ритм мехов» (III.1 and V.2, «Кузница дяди Акселя»): David works the bellows in time with his uncle's hammer under the
+// “The bellows’ rhythm” (III.1 and V.2, “Uncle Axel’s forge”): David works the bellows in time with his uncle's hammer under the
 // eyes of the man with the lantern at the gate.
 //   1. what he does — pumps the bellows to the hammer; 2. wants — to keep the forge going and give nothing away (in V —
 //   while the key is made); 3. watched from the gate; 4. the player — a steady working rhythm under watch.
@@ -14,13 +14,13 @@ import { until } from '../hands.js';
 const IMPACT = 1.17, FREE = 2, GLARE = 2.5;
 
 export default {
-  title: 'Ритм мехов', // (as the author's map lists it)
+  title: 'The bellows’ rhythm', // (as the author's map lists it)
   about: 26,
   skipped: { broke: false },
   async run(g, b, { watched = false, night = false } = {}, signal) {
     const beat = night ? 1.6 : 2.0, n = night ? 8 : 12, pass = watched ? 1 : 3;
     const times = Array.from({ length: n }, (_, i) => IMPACT + 1 + i * beat);
-    const mg = g.minigame({ phrase: night ? 'В воротах стоял человек с фонарём и смотрел' : 'Молот падал мерно, и горну нужен был воздух' });
+    const mg = g.minigame({ phrase: night ? tr('A man with a lantern stood in the gateway, watching') : tr('The hammer fell steadily, and the fire needed air') });
     g.set('ax_work', 0);
     g.set('pump_work', 0);
     const hammer = mg.mark({ at: 'axel#hand_l', kind: 'light' });

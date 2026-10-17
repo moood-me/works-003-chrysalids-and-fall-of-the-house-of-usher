@@ -1,5 +1,5 @@
-// «Петь со всеми» (II.4, «Сожжение поля», while the beat `hymn` holds): the community's hymn over the burning field.
-//   1. what he does — sings with the crowd; 2. wants — not to stand out, or not to sing «Проклят, кто не по образу Его»;
+// “Sing with everyone” (II.4, “The burning of the field”, while the beat `hymn` holds): the community's hymn over the burning field.
+//   1. what he does — sings with the crowd; 2. wants — not to stand out, or not to sing “Accursed be all not in His Image”;
 //   3. Sophie's and Rosalind's voices in his head, fear; 4. the player — singing along with the crowd, or falling silent.
 // A choice, both ways seen from the start: the language's rhythm on David (dv) — the beats are the syllables (uneven:
 // their moments are the hymn's), the sign of the beat on his father (jo: he leads); a touch in the beat — David's voice
@@ -10,29 +10,29 @@
 //   → { hymn: loud | lips | silent, turned }
 import { until } from '../hands.js';
 
-// the lines: syllables (a space after — the word ends) and their notes, semitones above D
-const A = ['Да ', 'бу', 'дет ', 'чист ', 'об', 'раз ', 'Е', 'го'], B = ['Про', 'клят, ', 'кто ', 'не ', 'по ', 'об', 'ра', 'зу ', 'Е', 'го'];
-const LINES = [[A, [0, 0, 3, 5, 7, 5, 3, 2]], [A, [0, 0, 3, 5, 7, 5, 3, 0]], [B, [7, 7, 5, 7, 10, 7, 5, 3, 2, 0]], [A, [0, 0, 3, 5, 7, 5, 3, 0]]];
 const BEAT = 0.75, LEAD = 2, D3 = 146.83;
 
 export default {
-  title: 'Петь со всеми', // (as the author's map lists it)
+  title: 'Sing with everyone', // (as the author's map lists it)
   about: 32,
   skipped: { hymn: 'lips', turned: 0 }, // (neutral: the path not moved)
   async run(g, b, opts, signal) {
+    // the hymn in the play's language (bespoke/lang/<lang>/hymn.json): its lines, each its syllables (a space after — the
+    // word ends) and their notes, semitones above D
+    const { lines } = await b.data('hymn');
     // the syllables on the rhythm's own clock (from LEAD s on)
     const syl = [];
     let t = LEAD;
-    LINES.forEach(([words, notes], line) => {
-      words.forEach((w, i) => {
-        const beats = i === words.length - 1 ? 2 : 1;
+    lines.forEach(({ syllables, notes }, line) => {
+      syllables.forEach((w, i) => {
+        const beats = i === syllables.length - 1 ? 2 : 1;
         syl.push({ w, line, at: t, dur: beats * BEAT, f: D3 * 2 ** (notes[i] / 12), as: null });
         t += beats * BEAT;
       });
       t += BEAT;
     });
     const end = t + 0.5;
-    const mg = g.minigame({ phrase: 'Гимн шёл над полем, и громче всех пел отец' });
+    const mg = g.minigame({ phrase: tr('The hymn went over the field, and my father sang loudest of all') });
     const choir = g.sound.choir();
     const sign = mg.mark({ at: 'jo', kind: 'light' });
     const me = mg.mark({ at: 'dv', kind: 'ring' });

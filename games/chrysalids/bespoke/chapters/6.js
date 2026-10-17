@@ -1,4 +1,4 @@
-// VI. Окраины — the Fringes take us in at their fire. Sophie is there, grown: she hides us — or tells
+// VI. The Fringes — the Fringes take us in at their fire. Sophie is there, grown: she hides us — or tells
 // them whose son I am, and Rosalind and Petra are tied to the post. The tall one with long arms, the
 // Spider, is my father's brother; he wants us against Waknuk. Then the horn: Waknuk is coming.
 // Reads: marks.sophie kept|told, marks.sophie_night warned|stayed, marks.wender trusts|doubts (Mrs Wender,
@@ -21,78 +21,78 @@ export const shipComes = ({ marks, scales }) => marks.sealand === 'answered' && 
 
 export default {
   number: 'VI',
-  title: 'Окраины',
+  title: tr('The Fringes'),
   choices: [
-    { id: 'meet', weight: '~', title: 'Софи у шалаша',
-      options: [{ id: 'go', label: 'подойти к ней' }, { id: 'wait', label: 'ждать у костра' }] },
-    { id: 'sophie', weight: '⚑', title: 'Софи',
-      options: [{ id: 'hid', label: 'спрятала нас' }, { id: 'gave', label: 'сказала, чей я сын' }] },
-    { id: 'fringes', weight: '⚑', title: 'Паук',
-      options: [{ id: 'fight', label: 'встать с Окраинами' }, { id: 'flee', label: 'уйти к пещере' }] },
+    { id: 'meet', weight: '~', title: tr('Sophie by the hut'),
+      options: [{ id: 'go', label: tr('go up to her') }, { id: 'wait', label: tr('wait by the fire') }] },
+    { id: 'sophie', weight: '⚑', title: tr('Sophie'),
+      options: [{ id: 'hid', label: tr('hid us') }, { id: 'gave', label: tr('told whose son I am') }] },
+    { id: 'fringes', weight: '⚑', title: tr('The Spider-man'),
+      options: [{ id: 'fight', label: tr('stand with the Fringes') }, { id: 'flee', label: tr('go to the cave') }] },
   ],
-  titles: ['У костра: Софи', 'Паук', 'Рог'],
+  titles: ['By the fire: Sophie', 'The Spider', 'The horn'],
   steps: [
     // the fire at dawn, the strange people; Sophie at the edge of the light
     async g => {
       const { choices, marks } = g.state;
       await g.scene(CAMP, { fire: 0.8, people: 0.8, alarm: 0, captives: 0, sophie_present: 0 });
       await g.wait(2000);
-      await g.say('narrator', 'Нас вывели к костру. Люди у огня были не такие, как мы. И не такие, как в Вакнуке.');
-      if (choices.shadow === 'seen') await g.say('narrator', 'Они уже знали, что за нами шли до самой изгороди.');
+      await g.say('narrator', 'We were brought to the fire. The people round it were not like us. And not like the people in Waknuk.');
+      if (choices.shadow === 'seen') await g.say('narrator', 'They knew already that we had been followed right to the fence.');
       g.set('sophie_present', 1, 4);
       await g.wait(3500);
-      await g.say('narrator', 'У крайнего шалаша стояла девушка в выцветшем платке. Босая.');
-      await g.think('rosalind', 'Ты её знаешь?');
-      const meet = await g.choose('meet', { sophie: [{ id: 'go', label: 'Подойти к Софи' }], fire: [{ id: 'wait', label: 'Ждать у костра' }] });
+      await g.say('narrator', 'By the farthest hut stood a girl in a faded headscarf. Barefoot.');
+      await g.think('rosalind', 'Do you know her?');
+      const meet = await g.choose('meet', { sophie: [{ id: 'go', label: tr('Go to Sophie') }], fire: [{ id: 'wait', label: tr('Wait here') }] });
       let t = trust(g.state);
       if (meet === 'go') {
-        await g.say('narrator', 'Я подошёл. Она не отступила.');
+        await g.say('narrator', 'I went up to her. She did not step back.');
         if (t === 0) t = 1; // she remembers the boy who came to her, not the one who stayed away
-      } else await g.say('narrator', 'Я остался у огня. Она смотрела на меня через весь лагерь.');
+      } else await g.say('narrator', 'I stayed by the fire. She watched me across the whole camp.');
       if (t >= 1) {
-        await g.say('sophie', '— Дэвид. Я тебя помню.');
-        if (marks.sophie_night === 'warned') await g.say('sophie', '— Ты тогда прибежал ночью. Мы успели.');
-        await g.say('sophie', '— Идите ко мне в шалаш. Пока он не вернулся.');
+        await g.say('sophie', 'David. I remember you.');
+        if (marks.sophie_night === 'warned') await g.say('sophie', 'You came running that night. We got away in time.');
+        await g.say('sophie', 'Come into my hut. Before he’s back.');
         g.state.choices.sophie = 'hid';
-        g.mark('sophie_camp', 'hid', 'Софи спрятала вас.');
+        g.mark('sophie_camp', 'hid', tr('Sophie hid you.'));
         g.set('people', 0.6, 4);
-        await g.say('narrator', 'До вечера она никого к нам не пускала.');
+        await g.say('narrator', 'Until evening she let no one near us.');
       } else {
-        await g.say('sophie', '— Это сын Строрма. Того самого.');
+        await g.say('sophie', 'That’s Strorm’s son. Joseph Strorm’s.');
         g.state.choices.sophie = 'gave';
-        g.mark('sophie_camp', 'gave', 'Софи не забыла.');
+        g.mark('sophie_camp', 'gave', tr('Sophie did not forget.'));
         g.set('captives', 1, 3);
         await g.wait(1500);
-        await g.say('narrator', 'Розалинду и Петру привязали к столбу. Меня повели к тому, кто здесь решал.');
-        await g.think('petra', 'Дэвид, верёвка колется!');
+        await g.say('narrator', 'Rosalind and Petra were tied to a post. I was taken to the one who decided things here.');
+        await g.think('petra', 'David, the rope’s prickly!');
       }
       await g.wait(1500);
     },
-    // the Spider: my father's brother; he wants our voices against Waknuk
+    // the Spider-man: my father's brother; he wants our voices against Waknuk
     async g => {
       const { choices, marks } = g.state;
       const tied = choices.sophie === 'gave';
       await g.scene(CAMP, { fire: 0.55, people: 1, alarm: 0, captives: tied ? 1 : 0, sophie_present: 1 });
       await g.wait(2000);
-      await g.say('narrator', 'Вечером к огню вышел высокий человек с длинными, как у паука, руками.');
-      await g.say('narrator', 'Он долго разглядывал меня. Потом сказал, что он брат моего отца.');
-      if (marks.sally === 'freed') await g.think('sally', 'Мы здесь, Дэвид, Кэтрин и я. Нас не трогают, пока мы им нужны.');
-      await g.say('spider', '— Твой отец ведёт их сюда. Вы слышите друг друга без слов — будете моими глазами.', 'spider');
-      if (tied) await g.say('spider', '— Будешь с нами — отпущу твоих.', 'spider');
-      await g.think('rosalind', 'Он такой же, как твой отец, Дэвид. Только с другой стороны.');
-      const fringes = await g.choose('fringes', { spider: [{ id: 'fight', label: 'Встать с Окраинами' }], sophie: [{ id: 'flee', label: tied ? 'Развязать своих' : 'Уйти к пещере' }] });
+      await g.say('narrator', 'In the evening a tall man came out to the fire, with long arms like a spider’s.');
+      await g.say('narrator', 'He looked me over for a long time. Then he said he was my father’s brother.');
+      if (marks.sally === 'freed') await g.think('sally', 'We’re here, David, Katherine and I. They leave us alone while they need us.');
+      await g.say('spider', 'Your father is leading them here. You hear each other without words — you’ll be my eyes.', 'spider');
+      if (tied) await g.say('spider', 'Stand with us — and I’ll let your people go.', 'spider');
+      await g.think('rosalind', 'He’s just like your father, David. Only from the other side.');
+      const fringes = await g.choose('fringes', { spider: [{ id: 'fight', label: tr('Stand with them') }], sophie: [{ id: 'flee', label: tied ? tr('Untie my own') : tr('To the cave') }] });
       if (fringes === 'fight') {
         g.scale('path', -1, true);
-        if (tied) { g.set('captives', 0, 3); await g.say('narrator', 'Он кивнул, и верёвки у столба разрезали.'); }
-        await g.say('narrator', 'Нас поставили у пещеры над поляной. Оттуда было видно, откуда они придут.');
+        if (tied) { g.set('captives', 0, 3); await g.say('narrator', 'He nodded, and the ropes at the post were cut.'); }
+        await g.say('narrator', 'They put us by the cave above the clearing. From there you could see where they would come from.');
       } else {
         if (tied) {
           g.set('fire', 0.3, 6);
-          await g.say('narrator', 'Ночью костёр прогорел. Я подполз к столбу и перерезал верёвки.');
+          await g.say('narrator', 'In the night the fire burned low. I crawled to the post and cut the ropes.');
           g.set('captives', 0, 2);
-          await g.say('narrator', 'Софи видела. Она отвернулась к огню.');
-        } else await g.say('narrator', 'Ночью Софи вывела нас из лагеря тропой, которой не знали даже часовые.');
-        await g.say('narrator', 'Бежать дальше было некуда. Мы укрылись в пещере над поляной.');
+          await g.say('narrator', 'Sophie saw. She turned away to the fire.');
+        } else await g.say('narrator', 'In the night Sophie led us out of the camp by a path even the sentries did not know.');
+        await g.say('narrator', 'There was nowhere further to run. We hid in the cave above the clearing.');
       }
       await g.wait(1500);
     },
@@ -103,18 +103,18 @@ export default {
       await g.wait(1500);
       g.set('alarm', 1, 2);
       await g.wait(1500);
-      await g.say('narrator', 'На рассвете затрубил рог.');
-      if (choices.shadow === 'seen') await g.say('narrator', 'Они шли по нашим следам — от той самой изгороди.');
-      else await g.say('narrator', 'Они шли через лес. Много. С ружьями.');
-      await g.think('rosalind', 'Твой отец впереди. Я его слышу — не словами, просто знаю.');
+      await g.say('narrator', 'At dawn a horn sounded.');
+      if (choices.shadow === 'seen') await g.say('narrator', 'They were coming on our tracks — from that same fence.');
+      else await g.say('narrator', 'They were coming through the forest. Many of them. With guns.');
+      await g.think('rosalind', 'Your father is in front. I can hear him — not in words, I just know.');
       if (shipComes(g.state)) {
-        await g.think('petra', 'Дэвид! Она совсем близко! Она говорит — держитесь вместе!');
-        await g.think('sealand', 'Мы почти над вами. Не разбегайтесь. Ещё немного.');
+        await g.think('petra', 'David! She’s very close! She says — keep together!');
+        await g.think('sealand', 'We are almost over you. Don’t scatter. A little longer.');
       } else if (g.state.marks.sealand === 'answered') {
-        await g.think('petra', 'Я зову её, зову… Она слышит, но не может найти.');
-      } else await g.say('narrator', 'Петра молчала. Её никто не звал из-за моря.');
+        await g.think('petra', 'I call her and call her… She hears, but she can’t find us.');
+      } else await g.say('narrator', 'Petra was silent. No one called her from over the sea.');
       g.set('sophie_present', 0, 3);
-      await g.say('narrator', 'Софи побежала туда, куда ушёл Паук.');
+      await g.say('narrator', 'Sophie ran to where the Spider-man had gone.');
       await g.wait(2000);
     },
   ],

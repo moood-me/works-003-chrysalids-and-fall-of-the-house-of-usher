@@ -1,4 +1,4 @@
-// «Соединить окна» (III.5 and IV.3, «Голоса»): on the hill at night David calls his own one by one.
+// “Join the windows” (III.5 and IV.3, “Voices”): on the hill at night David calls his own one by one.
 //   1. what he does — calls the others, one after another; 2. wants — to join everyone; 3. not alone — and afraid how
 //   far it is heard; 4. the player — reaching out to each light.
 // The language's pull to a target, one mark at a time: a dashed mark on David (david#head), its way to the next window
@@ -13,11 +13,11 @@ import { until } from '../hands.js';
 const NEAR = 70; // px: a thread this near her window is taken
 
 export default {
-  title: 'Соединить окна', // (as the author's map lists it)
+  title: 'Join the windows', // (as the author's map lists it)
   about: 40,
   skipped: { links: 7, caught: false },
   async run(g, b, { targets = [], petra = 0, voices = 0.4, onLink, onPetra } = {}, signal) {
-    const mg = g.minigame({ phrase: petra > 0 ? 'Огни ферм снова горели вдалеке, а Петра слушала' : 'Ночью огни ферм горели далеко друг от друга' });
+    const mg = g.minigame({ phrase: petra > 0 ? tr('The farm lights burned far off again, and Petra was listening') : tr('At night the farm lights burned far apart') });
     const home = mg.mark({ at: 'home#window', hidden: true });
     let links = 0, caught = false, stir = petra, settle = null;
     for (const id of targets) {

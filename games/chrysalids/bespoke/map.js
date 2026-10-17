@@ -1,4 +1,4 @@
-// The map's trees (game.js map), over «Нити» — the play on the night sky. The scene is only the sky and a point for each
+// The map's trees (game.js map), over “Threads” — the play on the night sky. The scene is only the sky and a point for each
 // chapter (c<i>: unseen, where the chapter's knot is) and for the author's sign (author); each tree is the game's own —
 // HTML laid out by CSS (its words never run into one another) — in bespoke.underlay (under the language's marks). A
 // tree stands at its chapter's point and goes with it each frame the scene says (bespoke.onFrame): the sky dragged,
@@ -8,9 +8,9 @@
 // A tree: its number and title over its knot (the current chapter's larger), a gold lead down to its rows; a row — a
 // fork: the question on the left | the trunk with a gold dot | the answers on the right, the main run's first in gold,
 // the others smaller under it on twigs (a replay's pale blue); ⚑ — a key one; a replay's thread dashed pale blue
-// beside the trunk, from its first row to its last, and the plate «Переигровка» on its tree. Where the play is: the
-// main run's chapter — a pending row after its last fork reached, the trunk dashed on from it, «продолжить игру» with
-// its arrow; a replay — a cursor row under the last fork it played, «продолжить переигровку».
+// beside the trunk, from its first row to its last, and the plate “Replay” on its tree. Where the play is: the
+// main run's chapter — a pending row after its last fork reached, the trunk dashed on from it, “continue the game” with
+// its arrow; a replay — a cursor row under the last fork it played, “continue the replay”.
 // What can be done on it is the map's own: its pointers, played forks (the dot, the answer chosen), knots and heads,
 // the author's ring — pressed, the game opens the language's mark there, born open (story.js hub.ask). Only what is
 // offered takes a touch (≥ 44 px); the rest of the sky is the scene's (dragged).
@@ -103,11 +103,11 @@ export function trees(b, chapters, { shown = 0, grow = null, seconds = 6, author
     tree.append(head);
     if (c.kind === 'future') return { node: tree, nodes };
     head.append(el('div', 'title', c.title));
-    tree.setAttribute('aria-label', `${c.number ? `Глава ${c.number}. ` : ''}${c.title}`);
+    tree.setAttribute('aria-label', c.number ? tr('Chapter {number}. {title}', { number: c.number, title: c.title }) : c.title);
     head.dataset.ref = `knot:${i}`;
     if (c.badge) {
       const plate = el('div', 'badge');
-      plate.append(el('i'), 'Переигровка');
+      plate.append(el('i'), tr('Replay'));
       tree.append(plate);
     }
     const knot = el('div', 'knot');
@@ -123,7 +123,7 @@ export function trees(b, chapters, { shown = 0, grow = null, seconds = 6, author
     const r0 = c.badge ? rows.findIndex(tried) : -1, r1 = c.badge ? last(rows, tried) : -1;
     const list = el('ol', 'rows'), items = [];
     for (let k = 0; k <= rows.length; k++) {
-      if (k === cursorAt) items.push(pointer('cursor', i, 'продолжить переигровку', nodes));
+      if (k === cursorAt) items.push(pointer('cursor', i, tr('continue the replay'), nodes));
       if (k === goAt) items.push(pointer('go', i, c.go, nodes));
       if (k < rows.length) items.push(fork(rows[k], i, k, { r: r0 >= 0 && k >= r0 && k <= r1, start: k === r0, end: k === r1 && !c.cursor }, nodes));
     }
@@ -184,7 +184,7 @@ export function trees(b, chapters, { shown = 0, grow = null, seconds = 6, author
     return li;
   }
 
-  // the author's sign: a ring of twelve stars, «автор» under it
+  // the author's sign: a ring of twelve stars, “the author” under it
   function sign() {
     const node = el('div', 'author'), ring = el('div', 'ring');
     for (let k = 0; k < 12; k++) {
@@ -195,7 +195,7 @@ export function trees(b, chapters, { shown = 0, grow = null, seconds = 6, author
       star.style.opacity = k % 3 === 0 ? 1 : 0.6;
       ring.append(star);
     }
-    node.append(ring, el('span', '', 'автор'), hit('author', 'Карта автора'));
+    node.append(ring, el('span', '', tr('the author')), hit('author', tr('The author’s map')));
     return { node, nodes: new Map([['author', ring]]) };
   }
 

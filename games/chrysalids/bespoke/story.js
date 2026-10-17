@@ -4,17 +4,20 @@
 //   g.state — what the play carries: {chapter, step, scales, marks, choices} (game.js); what follows from it: facts(g.state)
 //   g.signal — aborts when the step is left: stop what it started (a sound, a timer) on it
 //   g.sound — the game's sounds (sound.js)
-//   g.scene(title, state) — that scene of the world, full-screen, its state on top of where it starts — and under it
+//   g.scene(folder, state) — that scene of the world, full-screen, its state on top of where it starts — and under it
 //     what the play has decided, as this scene's keys (carry). A scene of beats plays none until one is named: the
 //     step's first beat goes in `state` ({beat: name}) — the scene opens playing it — and g.beat(name) then takes it
 //     up (waits for its end)
 //   g.set(key, value, seconds) / g.get(key) — the shown scene's state
 //   g.wait(ms) — time of the game's own (a pause between lines); never to wait for something the scene does — that is
 //     an event of the scene's: g.told / g.heard(text, ms) — until the scene tells `text` (→ true), or ms pass (→ false)
-//   g.say(who, text, at) — someone of PEOPLE says it, over `at` ('id' | 'id#point' of the scene; 'narrator' — low in
-//     the middle), in their voice; → a breath after it has been heard (unvoiced: once it could be read)
+//   g.say(who, text, at) — someone of the game's people (people.json: bespoke.say) says it, over `at` ('id' | 'id#point'
+//     of the scene; 'narrator' — low in the middle), in their voice; → a breath after it has been heard (unvoiced: once
+//     it could be read)
 //   g.think(who, text, at) — what someone says without words, mind to mind: in their voice, a whisper inside the head;
-//     shown as «text» — Name, low in the middle (or over `at`)
+//     shown as “text” — Name, low in the middle (or over `at`)
+//   g.note(text) — a word to the author, not the story (a step gone to from the author's map on a branch not chosen): in
+//     the corner, no one's voice
 //   g.choose(choice, ref, options, timed) | g.choose(choice, {ref: options, …}, timed) — the player touches one of the
 //     points ('id#point' | 'id'), then one of its options ([{id, label}]: petals, one too — seen in words, pressed; a
 //     label of one to three words — a line it stands for is said after it); → the option's id, kept in
@@ -47,36 +50,18 @@
 // (a dry run): then nothing of it is said, shown or heard, and a minigame gives what j.result says, else its `skipped`.
 import * as sounds from './sound.js';
 
+// the world's scenes the game plays, by their folders
 export const SCENES = {
-  bank: 'Насыпь у ручья', ruins: 'Руины Древних', farm: 'Ферма Стормов', kitchen: 'Кухня Стормов', inspector: 'Инспектор на ферме',
-  burning: 'Сожжение поля', forge: 'Кузница дяди Акселя', stories: 'Рассказы Акселя', hear: 'Учимся слышать',
-  square: 'Дэвид и Розалинда', voices: 'Голоса', river: 'Петра у реки', dream: 'Сон о городе', hall: 'Дом собраний',
-  flight: 'Бегство', edge: 'Край Окраин', camp: 'Лагерь Окраин', ship: 'Корабль из Зеландии', niti: 'Нити',
+  bank: 'stream-bank', ruins: 'old-people-ruins', farm: 'strorm-farm', kitchen: 'strorm-kitchen', inspector: 'inspector',
+  burning: 'field-burning', forge: 'axels-forge', stories: 'axels-stories', hear: 'learning-to-hear',
+  square: 'david-and-rosalind', voices: 'voices', river: 'petra-at-the-river', dream: 'city-dream', hall: 'meeting-house',
+  flight: 'flight', edge: 'fringes-edge', camp: 'fringes-camp', ship: 'sealand-ship', threads: 'threads',
 };
 
-export const PEOPLE = {
-  narrator: { voice: 'Charon', how: 'тихо, неторопливо, как взрослый вспоминает детство', name: 'Дэвид, взрослый, вспоминает', short: 'Дэвид' },
-  david: { voice: 'Achird', how: 'тихо, по-мальчишески, сдержанно', name: 'Дэвид, мальчик', short: 'Дэвид' },
-  sophie: { voice: 'Leda', how: 'по-детски, настороженно', name: 'Софи, девочка девяти лет', short: 'Софи' },
-  mother: { voice: 'Kore', how: 'сдержанно, устало, почти шёпотом', name: 'мать Дэвида', short: 'мать' },
-  father: { voice: 'Orus', how: 'твёрдо, холодно, как читают приговор', name: 'Джозеф Сторм, отец Дэвида', short: 'отец' },
-  axel: { voice: 'Algenib', how: 'негромко, по-доброму, с хрипотцой бывалого моряка', name: 'дядя Аксель, кузнец', short: 'Аксель' },
-  rosalind: { voice: 'Aoede', how: 'тихо, твёрдо, сдержанно', name: 'Розалинда, кузина Дэвида', short: 'Розалинда' },
-  someone: { voice: 'Aoede', how: 'тихо, твёрдо, сдержанно', name: 'Розалинда, кузина Дэвида', short: 'чей-то голос' }, // Rosalind, before David knows it is her
-  petra: { voice: 'Despina', how: 'звонко, по-детски, совсем маленькая', name: 'Петра, младшая сестра Дэвида, шесть лет', short: 'Петра' },
-  michael: { voice: 'Puck', how: 'быстро, уверенно, по-мальчишески', name: 'Майкл, друг Дэвида', short: 'Майкл' },
-  anne: { voice: 'Autonoe', how: 'резко, с обидой', name: 'Энн, из группы', short: 'Энн' },
-  newcomer: { voice: 'Laomedeia', how: 'тонко, испуганно, совсем тихо', name: 'девочка с дальней фермы', short: 'чужой голос' },
-  sealand: { voice: 'Vindemiatrix', how: 'издалека, спокойно и ясно, чуть непривычно выговаривая слова', name: 'женщина из Зеландии, за морем', short: 'голос из-за моря' },
-  inspector: { voice: 'Iapetus', how: 'сухо, неторопливо, без злобы, как чиновник', name: 'инспектор', short: 'инспектор' },
-  spider: { voice: 'Algieba', how: 'медленно, хрипло, с насмешкой', name: 'Паук, вожак Окраин, брат Джозефа Сторма', short: 'Паук' },
-  sally: { voice: 'Achernar', how: 'тихо, сбивчиво, через силу, будто от боли', name: 'Салли, из группы', short: 'Салли' },
-  author: { name: 'слово автору игры (не история)', short: 'автору' }, // (no voice: a word to the author — chapters' onlyIf)
+// the scales: what the player reads when they move (the path is never shown: game.js, journal.js)
+const SCALES = {
+  suspicion: { up: tr('Suspicion ↑'), down: tr('Suspicion ↓') }, group: { up: tr('The group ↑'), down: tr('The group ↓') }, petra: { up: tr('Petra ↑'), down: tr('Petra ↓') },
 };
-export const THOUGHT = ', но беззвучно, мысленно: шёпотом, будто прямо в голове'; // how a thought is heard
-export const thought = (who, text) => `«${text}» — ${PEOPLE[who]?.short || ''}`; // and shown
-// the scales: their names (what the player reads when they move) — the path is never shown (game.js, journal.js)
-export const SCALES = { suspicion: 'Подозрение', group: 'Группа', petra: 'Петра', path: 'Путь' };
 
 // What follows from the play so far — all a step reads of it besides g.state: David nearly grown from the fifth
 // chapter on (the cast's david_teen)
@@ -84,8 +69,8 @@ export function facts(state) {
   return { older: (state.chapter ?? 0) >= 4 };
 }
 // The play's facts (f) as a scene's own keys: what g.scene opens it with, under the step's state
-export function carry(title, f) {
-  return title === SCENES.farm ? { older: f.older } : {};
+export function carry(folder, f) {
+  return folder === SCENES.farm ? { older: f.older } : {};
 }
 
 const BEAT = 180000; // a beat longer than this has not ended: the scene lacks it
@@ -137,32 +122,25 @@ export function context(b, view, hub, state, j = null, { forward = null } = {}) 
     const { shown, then } = j;
     for (const h of j.seen()) hub.told(h.text, h.ms).then(h.ok);
     view.eye(state.scales.suspicion);
-    if (shown) await alive(b.show(shown.title, { state: shown.state, captions: false, then }));
+    if (shown) await alive(b.show(shown.folder, { state: shown.state, captions: false, then }));
     ahead();
   })());
   if (j && j.target < Infinity) j.idle.then(seen);
-  // a line, and the time it asks: heard — a breath after; shown without a voice — as long as it takes to read it
-  async function speak(at, text, opts) {
-    if (unseen()) return sleep(300 + text.length * 60);
-    let heard = false;
-    const hear = e => { if (e.detail.on && e.detail.text === text.trim()) heard = true; };
-    addEventListener('moood:speech', hear);
-    try { await b.say(at, text, opts); } finally { removeEventListener('moood:speech', hear); }
-    await sleep(heard ? 500 : 300 + text.length * 60);
-  }
+  // the time a line asks, once said: heard — a breath after; shown without a voice — as long as it takes to read it
+  const after = ({ heard, text }) => sleep(heard ? 500 : 300 + text.length * 60);
   const g = {
     state,
     signal: left.signal,
     get sound() { return unseen() ? j.sounds : sounds; },
-    async scene(title, st = {}) {
+    async scene(folder, st = {}) {
       if (gone()) return never;
       // (opened as it is to be: what the play has decided — those of its keys the scene has —, the beat it opens
       // with playing from its first frame)
-      const spec = await alive(unseen() ? j.real(b.specOf(title)) : b.specOf(title));
-      st = { ...Object.fromEntries(Object.entries(carry(title, facts(state))).filter(([key]) => key in (spec.states ?? {}))), ...st };
+      const spec = await alive(unseen() ? j.real(b.specOf(folder)) : b.specOf(folder));
+      st = { ...Object.fromEntries(Object.entries(carry(folder, facts(state))).filter(([key]) => key in (spec.states ?? {}))), ...st };
       if (unseen()) {
         opening = typeof st.beat === 'string' ? { name: st.beat, ended: g.told(`beat:${st.beat}`, BEAT) } : null;
-        j.scene(title, st);
+        j.scene(folder, st);
         return;
       }
       showing = true;
@@ -170,7 +148,7 @@ export function context(b, view, hub, state, j = null, { forward = null } = {}) 
         if (fast) await alive(land());
         opening = typeof st.beat === 'string' ? { name: st.beat, ended: g.told(`beat:${st.beat}`, BEAT) } : null;
         g.withdraw();
-        await alive(b.show(title, { state: st, captions: false }));
+        await alive(b.show(folder, { state: st, captions: false }));
       } finally { showing = false; }
     },
     set: (key, value, seconds) => (gone() ? undefined : put(key, value, seconds)),
@@ -178,14 +156,18 @@ export function context(b, view, hub, state, j = null, { forward = null } = {}) 
     wait: sleep,
     async say(who, text, at = who) {
       if (gone()) return never;
+      if (unseen()) return sleep(300 + text.length * 60);
       if (fast) await alive(land());
-      return speak(at, text, PEOPLE[who] || {});
+      return alive(b.say(who, text, { at })).then(after);
     },
     async think(who, text, at = 'narrator') {
       if (gone()) return never;
+      if (unseen()) return sleep(300 + text.length * 60);
       if (fast) await alive(land());
-      const p = PEOPLE[who] || {};
-      return speak(at, thought(who, text), { ...p, how: (p.how || '') + THOUGHT });
+      return alive(b.think(who, text, { at })).then(after);
+    },
+    note(text) {
+      if (!gone() && !unseen()) view.toast(text, 'mark');
     },
     async choose(choice, ref, options, timed) {
       if (gone()) return never;
@@ -195,7 +177,7 @@ export function context(b, view, hub, state, j = null, { forward = null } = {}) 
         if (fast) await alive(land());
         choosing = true;
         ahead();
-        try { return await alive(hub.offer(offers, { seconds: timed?.seconds })); } finally { choosing = false; ahead(); }
+        try { return await alive(hub.offer(offers, timed?.seconds)); } finally { choosing = false; ahead(); }
       };
       // unseen: as the play chose it — else the first offered; one it chose that isn't here: on time — its moment
       // passed (late), else offered once seen
@@ -223,7 +205,7 @@ export function context(b, view, hub, state, j = null, { forward = null } = {}) 
         put('beat', null); // (the same beat again is a change too)
         put('beat', name);
       }
-      if (wait && !(await ended)) b.trouble(`кусок «${name}» не кончился`);
+      if (wait && !(await ended)) b.trouble(`beat “${name}” did not end`);
     },
     told(text, ms = 60000) {
       return gone() ? never : unseen() ? j.heard(text, ms) : alive(hub.told(text, ms));
@@ -258,7 +240,7 @@ export function context(b, view, hub, state, j = null, { forward = null } = {}) 
       }
     },
     minigame(o = {}) {
-      if (!playing) throw new Error('g.minigame — только внутри мини-игры (g.play)');
+      if (!playing) throw new Error('g.minigame — only inside a mini-game (g.play)');
       const mg = b.minigame.start({ ...o, signal: playing.signal });
       mg.on('skip', playing.end);
       return mg;
@@ -268,7 +250,7 @@ export function context(b, view, hub, state, j = null, { forward = null } = {}) 
       const v = (state.scales[name] || 0) + delta;
       state.scales[name] = name === 'path' ? v : Math.max(0, v); // the path goes both ways: force −, tolerance +
       if (unseen()) return;
-      if (!quiet) view.toast(`${SCALES[name]} ${delta > 0 ? '↑' : '↓'}`);
+      if (!quiet && name !== 'path') view.toast(delta > 0 ? SCALES[name].up : SCALES[name].down);  // (the path is never shown)
       if (name === 'suspicion') view.eye(state.scales.suspicion);
     },
     mark(who, value, text) {
@@ -294,12 +276,11 @@ export function context(b, view, hub, state, j = null, { forward = null } = {}) 
 
 // The player's choices and what the scenes tell, listened to once for the whole play (bespoke.on keeps a listener for
 // good) — game.js owns it: whatever is being chosen now gets the action; whoever waits for a tell hears it.
-//   hub.offer({ref: options}, {seconds, lead, quiet, touched, at}) → the action once the player has chosen it (what was
-//     offered before is dropped): a plain choice of the language of mini-games — a mark on each point (those of quiet:
-//     smaller and paler; at: {ref: fn → {x, y} | null} — those on what the game draws, where fn says, map.js); a touch opens its options as petals, one too (what is chosen is seen in words first;
-//     touched(ref) is told), a petal pressed is chosen; one who touches no mark for SHOW s is shown how: the ghost
-//     finger on each in turn (lead: on those only). seconds — on time: the arc of time on each mark runs down (the
-//     mini-game's clock: it stands with the play's pause); out — null, the marks gone
+//   hub.offer({ref: options}, seconds) → the action once the player has chosen it (what was offered before is
+//     dropped): a plain choice of the language of mini-games — a mark on each point; a touch opens its options as
+//     petals, one too (what is chosen is seen in words first), a petal pressed is chosen; one who touches no mark for
+//     SHOW s is shown how: the ghost finger on each in turn. seconds — on time: the arc of time on each mark runs down
+//     (the mini-game's clock: it stands with the play's pause); out — null, the marks gone
 //   hub.ask(at, options) → the action chosen, or null: a mark of the plain choice born open where the game's own
 //     drawing was pressed (at: fn → {x, y} page px — map.js), its options out as petals at once; a touch off them folds
 //     it — null, the mark gone (nothing waits idle)
@@ -316,31 +297,30 @@ export function listen(b) {
   });
   const heard = (kind, hit) => { for (const w of waiting) if (w.kind === kind && hit(w)) { waiting.delete(w); w.ok(true); } };
   b.on('tell', text => {
-    if (text.startsWith('beat-unknown:')) b.trouble(`в сцене нет куска «${text.slice(13)}»`);
+    if (text.startsWith('beat-unknown:')) b.trouble(`the scene has no beat “${text.slice(13)}”`);
     heard('tell', w => w.text === text);
   });
   return {
-    offer(offers, { seconds, lead = null, quiet = [], touched = null, at = {} } = {}) {
+    offer(offers, seconds) {
       offered?.leave();
-      const mg = offered = b.minigame.start({ plate: false }), refs = Object.keys(offers), shows = [], marks = [];
+      const mg = offered = b.minigame.start({ plate: false }), refs = Object.keys(offers), presses = [], marks = [];
       // (the thing itself glows when it alone is offered: one breath in one place)
-      if (refs.length === 1 && !at[refs[0]]) mg.glow(refs[0].split('#')[0]);
-      let shown = false, touch = false;
+      if (refs.length === 1) mg.glow(refs[0].split('#')[0]);
+      let shown = false, touched = false;
       return new Promise(ok => {
         const over = action => { mg.leave(); offered = null; ok(action); };
         const chosen = (mark, action) => { mg.snap({ at: mark }); over(action); };
         for (const ref of refs) {
-          const options = offers[ref], mark = mg.mark({ at: at[ref] ?? (ref.includes('#') ? ref : `${ref}@`), ...(seconds ? { time: 1 } : {}),
-            ...(quiet.includes(ref) ? { quiet: true } : {}) });
+          const options = offers[ref], mark = mg.mark({ at: ref.includes('#') ? ref : `${ref}@`, ...(seconds ? { time: 1 } : {}) });
           const press = mg.press({ on: mark, petals: options });
-          press.on('down', () => { touch = true; touched?.(ref); });
+          press.on('down', () => { touched = true; });
           press.on('choose', ({ id }) => chosen(mark, options.find(o => o.id === id)));
-          if (!lead || lead.includes(ref)) shows.push(press);
+          presses.push(press);
           marks.push(mark);
         }
         // (by the mini-game's clock: the ghost after SHOW s untouched; the time running down)
         mg.on('frame', ({ t }) => {
-          if (!shown && !touch && t >= SHOW) { shown = true; if (shows.length) mg.show({ gestures: shows }); }
+          if (!shown && !touched && t >= SHOW) { shown = true; mg.show({ gestures: presses }); }
           if (!seconds) return;
           const left = Math.max(0, 1 - t / seconds);
           for (const m of marks) m.set({ time: left });

@@ -1,4 +1,4 @@
-// «Успокоить» (IV.1, «Петра у реки»): David runs down to the river and breathes with Petra in his mind.
+// “Calm her” (IV.1, “Petra at the river”): David runs down to the river and breathes with Petra in his mind.
 //   1. what he does — breathes with her as he runs; 2. wants — to quiet her cry before everyone hears it; 3. haste and
 //   care; 4. the player — a slow even breath while the scene rushes on.
 // The language's rhythm held in the beat, anywhere: the second ring grows — hold, falls — let go; the beat's sign on
@@ -12,14 +12,14 @@ import { until } from '../hands.js';
 const BPM = 24;
 
 export default {
-  title: 'Успокоить', // (as the author's map lists it)
+  title: 'Calm her', // (as the author's map lists it)
   about: 22,
   skipped: { cry: 0.2 },
   async run(g, b, { until: running } = {}, signal) {
     let over = false;
     running?.then(() => { over = true; });
     const edge = g.told('beat:edge');
-    const mg = g.minigame({ phrase: 'Петра кричала, и крик её слышали только мы' });
+    const mg = g.minigame({ phrase: tr('Petra was screaming, and only we could hear her') });
     const sign = mg.mark({ at: 'petra', kind: 'light' });
     edge.then(ok => { if (ok) sign.set({ at: 'david' }); });
     const rh = mg.rhythm({ on: null, show: [sign], bpm: BPM, breath: true });

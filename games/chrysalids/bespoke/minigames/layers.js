@@ -1,4 +1,4 @@
-// «Два слоя» (III.4, «Дэвид и Розалинда»): on the square David talks with Rosalind mind to mind and keeps his eyes off
+// “Two layers” (III.4, “David and Rosalind”): on the square David talks with Rosalind mind to mind and keeps his eyes off
 // her.
 //   1. what he does — talks without words, his eyes kept away; 2. wants — not to give them away before everyone; 3. drawn
 //   to her, and not allowed; 4. the player — holding the gaze aside while it goes there by itself.
@@ -13,13 +13,13 @@ import { until, keys } from '../hands.js';
 const LONG = 2.0, CAUGHT = 0.5; // s: on her so long — looked; under her look so long — looked
 
 export default {
-  title: 'Два слоя', // (as the author's map lists it)
+  title: 'Two layers', // (as the author's map lists it)
   about: 30,
   skipped: { looked: false },
   async run(g, b, { watched = false, warm = () => 0, until: talk } = {}, signal) {
     let over = false;
     talk?.then(() => { over = true; });
-    const mg = g.minigame({ phrase: 'Она стояла через площадь, и на нас смотрели' });
+    const mg = g.minigame({ phrase: tr('She stood across the square, and we were watched') });
     const send = keys(g);
     const gaze = mg.lead({ zone: { at: 0.8, width: 0.4 }, away: true, steer: 'rate', release: 'stay' });
     b.minigame.tricks.teach(mg, [gaze], { id: 'lead' });

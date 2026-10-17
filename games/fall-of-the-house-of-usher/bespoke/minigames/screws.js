@@ -1,4 +1,4 @@
-// while a screw is turning: «Do not let them shut me in.» — her line, in her whisper, low in the middle.
+// «The screws» (III, «The vault», after the beat `screws`: the lid close, the driver in the narrator's hand on the first screw):
 // the lid is on, and he drives its four screws home.
 //   1. what he does — turns the screwdriver, screw after screw, closing her in; 2. wants — to do what Roderick asks —
 //   or to leave one loose, in case; 3. dread, the weight of it, her words in his head; 4. the player — tightening by
@@ -7,7 +7,7 @@
 // turns the arrow's way drive it home (the scene's screwN; screw_at — where the driver is); against the arrow it does
 // not go; each quarter its squeak into the wood (the game's sound). Beside it, a quiet mark (closeup#leave) with its one
 // word, «Leave it so»: the screw left as it is, the driver on to the next. Neutral: a screw left loose is a choice, not a fault. Promised (opts.promised), her line comes back once
-// while a screw is turning: «Do not let them shut me in.» (in his head, her voice).
+// while a screw is turning: «Do not let them shut me in.» (her line, whispered as she speaks, low in the middle).
 //   opts: { promised: she was promised (I, «I promise») }
 //   → { loose: the screws (1…4) left under SEAT, seconds: how long it took }
 import { until, once, keys } from '../hands.js';

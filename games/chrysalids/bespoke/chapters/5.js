@@ -300,7 +300,7 @@ export default {
       // (the time out: she will not wait for him to reach us)
       const timed = said == null, rider = said ?? (seen ? 'kill' : 'hide');
       g.state.choices.rider = rider;
-      if (rider !== 'hide' && !timed) await g.say('david', rider === 'kill' ? tr.line('david', 'Shoot him.') : tr.line('david', 'Shoot over his head!'));
+      if (rider !== 'hide' && !timed) await g.think('david', rider === 'kill' ? tr.thought('david', 'Shoot him.') : tr.thought('david', 'Shoot over his head!'));
       const shot = rider === 'hide' ? null : g.told(`${rider}:shot`);
       const done = g.beat(rider);
       if (rider === 'kill') {

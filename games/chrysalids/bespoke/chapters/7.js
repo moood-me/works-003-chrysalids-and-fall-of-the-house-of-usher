@@ -152,19 +152,19 @@ export default {
       const free = play(g, run ? 'free_run' : 'free');
       await runs;
       await g.think('petra', 'It’s you! I know you!');
-      await g.say('sealand', 'So this is what you are like, Petra. How loudly you call.');
+      await g.think('sealand_woman', 'So this is what you are like, Petra. How loudly you call.', 'sealand');
       if (run) await g.think('rosalind', 'David! Are you alive? I can hardly hear you.');
       await free;
       const by = g.told(run ? 'back_run:free' : 'back:father');
       const back = play(g, run ? 'back_run' : 'back');
       await by;
       if (run) {
-        await g.say('sealand', 'Brave. And foolish.');
+        await g.think('sealand_woman', 'Brave. And foolish.', 'sealand');
         if (marks.father === 'saved') {
           await g.say('narrator', 'Under the threads my father was breathing. I saw his fingers stir.');
-          await g.say('sealand', 'This one I will not free. He came to kill you.');
+          await g.think('sealand_woman', 'This one I will not free. He came to kill you.', 'sealand');
         }
-      } else await g.say('sealand', 'Don’t pity them. Their time is over.');
+      } else await g.think('sealand_woman', 'Don’t pity them. Their time is over.', 'sealand');
       await back;
       await g.think('michael', 'I’m staying, David. Someone has to tell our kind that we exist.');
       await g.choose('leave', { ship: [{ id: 'fly', label: tr('Fly away') }], michael: [{ id: 'stay', label: tr('Stay with Michael') }] }, { seconds: 60, late: 'fly' });

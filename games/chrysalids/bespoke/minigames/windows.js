@@ -13,7 +13,7 @@ import { until } from '../hands.js';
 const NEAR = 70; // px: a thread this near her window is taken
 
 export default {
-  title: 'Соединить окна', // (as the author's ☰ lists it)
+  title: 'Соединить окна', // (as the author's map lists it)
   about: 40,
   skipped: { links: 7, caught: false },
   async run(g, b, { targets = [], petra = 0, voices = 0.4, onLink, onPetra } = {}, signal) {

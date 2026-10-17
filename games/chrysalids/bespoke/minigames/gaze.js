@@ -13,7 +13,7 @@ const STEP = 4; // s: his look on each thing
 const PLACES = ['calf#head', 'calf#back', 'calf#tail', 'calf#legs'], LEGS = 3;
 
 export default {
-  title: 'Найди раньше него', // (as the author's ☰ lists it)
+  title: 'Найди раньше него', // (as the author's map lists it)
   about: 25,
   skipped: { found: true, left: 8 },
   async run(g, b, opts, signal) {

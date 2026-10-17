@@ -29,7 +29,7 @@ export default {
     { id: 'far', weight: '~', title: 'Голос из-за моря',
       options: [{ id: 'answer', label: 'ответить' }, { id: 'listen', label: 'только слушать' }] },
   ],
-  titles: ['Река', 'Берег', 'Голоса: дар Петры', 'Сон о городе'], // the steps, as the author's ☰ lists them
+  titles: ['Река', 'Берег', 'Голоса: дар Петры', 'Сон о городе'], // the steps, as the author's map lists them
   steps: [
     // the river («Петра у реки», in beats): her cry in every head of ours; breathing with her while running
     // down to the water and swimming after her — how loud she is when he has her is seen on the far field

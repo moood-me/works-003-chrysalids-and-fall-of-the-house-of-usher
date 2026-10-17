@@ -43,7 +43,7 @@ export default {
     { id: 'warn', weight: '~', title: 'Ночь перед облавой',
       options: [{ id: 'warned', label: 'предупредить Софи' }, { id: 'stayed', label: 'остаться дома' }] },
   ],
-  titles: ['Вечерние дела', 'Третья рука', 'Инспектор и телёнок', 'Сожжение поля', 'Ночь перед облавой'], // the steps, as the author's ☰ lists them
+  titles: ['Вечерние дела', 'Третья рука', 'Инспектор и телёнок', 'Сожжение поля', 'Ночь перед облавой'], // the steps, as the author's map lists them
   steps: [
     // the evening chores, in their order — the father watches
     async g => {

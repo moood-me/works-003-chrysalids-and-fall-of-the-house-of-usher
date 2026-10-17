@@ -30,7 +30,7 @@ export default {
     { id: 'anne', weight: '⚑', title: 'Энн уходит',
       options: [{ id: 'let', label: 'отпустить' }, { id: 'axel', label: 'рассказать Акселю' }] },
   ],
-  titles: ['Кузница', 'Рассказы Акселя', 'Учимся слышать', 'Площадь', 'Голоса: Энн уходит'], // the steps, as the author's ☰ lists them
+  titles: ['Кузница', 'Рассказы Акселя', 'Учимся слышать', 'Площадь', 'Голоса: Энн уходит'], // the steps, as the author's map lists them
   steps: [
     // the forge: chattering without words with someone far away — and uncle Axel sees the boy laugh at nothing
     async g => {

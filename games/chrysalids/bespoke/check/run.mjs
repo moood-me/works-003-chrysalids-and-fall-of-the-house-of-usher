@@ -61,9 +61,9 @@ const MINIGAMES = {
   horses: { scene: 'flight', keys: ['great_toss', 'pack_toss', 'sheba_toss', 'petra_peek', 'lamp_x', 'lamp', 'search_point', 'great_a', 'pack_a', 'sheba_a'], points: ['great#head', 'pack#head', 'sheba#head', 'petra'], opts: ['start', 'sheba', 'petra', 'horse'], result: ['seen'] },
   shadow: { scene: 'edge', keys: ['walkers', 'walk_u', 'walk_lit', 'walk_shade'], points: ['david'], opts: ['hard', 'onSeen'], result: ['seen'] },
 };
-// what game.js itself takes of “Threads” (it is not run here): its key, the points its trees stand at (map.js) — each
+// what game.js itself takes of “Threads” (it is not run here): its keys, the points its trees stand at (map.js) — each
 // chapter's and the author's sign's
-const THREADS = { keys: ['shown'], points: [...Array.from({ length: 8 }, (_, i) => `c${i}`), 'author'] };
+const THREADS = { keys: ['shown', 'come'], points: [...Array.from({ length: 8 }, (_, i) => `c${i}`), 'author'] };
 // the results put in: the outcomes a chapter branches on — clean, and each one's other
 const CLEAN = {};
 const OTHER = [{ hem: { hid: false } }, { dig: { cleared: 0.3, bell: true } }, { gaze: { found: false, left: 0 } }, { hymn: { hymn: 'silent', turned: 0.7 } }, { hymn: { hymn: 'loud', turned: 0.1 } },

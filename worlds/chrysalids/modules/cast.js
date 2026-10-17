@@ -1,4 +1,4 @@
-// The people of “The Chrysalids” as people in a scene (the engine's people.js: an element with "person"): who they are —
+// The people of «Хризалиды» as people in a scene (the engine's people.js: an element with "person"): who they are —
 // figures of shapes in this world's style, plain flat colours softly shaded, as the world paints them — and how they
 // move: the motions in cast.data.json (Kimodo's, put there with put_motion). cast.md says who is who and what each
 // motion is. (Horses are the chrysalids module's — the engine moves no horses; their riders are people of this cast, on
@@ -155,30 +155,30 @@ return {
   },
   shapes: {
     // the world's style: slender figures in flat colours, softly shaded, a fine line (as its painted people were)
-    styles: { chrysalids: { from: 'graphic', name: 'Chrysalids', paint: 'toned', line: 1.1, tinted: true, face: 'simple', ground: 'day' } },
+    styles: { chrysalids: { from: 'graphic', name: 'Хризалиды', paint: 'toned', line: 1.1, tinted: true, face: 'simple', ground: 'day' } },
     garments: {
       // a smith's leather apron over the shirt, its sleeves rolled up (the forearms bare)
-      smith_apron: { name: 'smith’s apron', short: true, draw: F => MooodShapes.GARMENTS.apron.draw(F) },
+      smith_apron: { name: 'фартук кузнеца', short: true, draw: F => MooodShapes.GARMENTS.apron.draw(F) },
       // a long coat to the shins, buttoned, its sleeves of it
-      longcoat: { name: 'long coat', hang: [{ to: 1.55, from: 'shoulders', flare: 0.22 }], sleeves: 'garment' },
+      longcoat: { name: 'длинный сюртук', hang: [{ to: 1.55, from: 'shoulders', flare: 0.22 }], sleeves: 'garment' },
       // a dress to the ground, long sleeves, and an apron over it (the apron in the look's accent colour)
       // Petra's: a dress to the shins and a plum shawl over the shoulders (the shawl in the look's top colour, the sleeves
       // the dress's)
-      shawl_dress: { name: 'dress and shawl', hang: [{ to: 1.5, from: 'waist', flare: 0.4, off: 0.94 }, { to: 0.12, from: 'shoulders', flare: 0.3, color: 'top', folds: false }],
+      shawl_dress: { name: 'платье и шаль', hang: [{ to: 1.5, from: 'waist', flare: 0.4, off: 0.94 }, { to: 0.12, from: 'shoulders', flare: 0.3, color: 'top', folds: false }],
         sleeves: 'garment', bare: true, bodice: true },
       // David's nightshirt (the dream): pale linen from the shoulders to the shins
-      nightshirt: { name: 'nightshirt', hang: [{ to: 1.45, from: 'shoulders', flare: 0.22 }], sleeves: 'garment' },
-      apron_dress: { name: 'dress with an apron', hang: [{ to: 1.9, from: 'waist', flare: 0.4, off: 0.94 }], sleeves: 'garment', bare: true, bodice: true,
+      nightshirt: { name: 'ночная рубашка', hang: [{ to: 1.45, from: 'shoulders', flare: 0.22 }], sleeves: 'garment' },
+      apron_dress: { name: 'платье с фартуком', hang: [{ to: 1.9, from: 'waist', flare: 0.4, off: 0.94 }], sleeves: 'garment', bare: true, bodice: true,
         draw: F => MooodShapes.GARMENTS.apron.draw({ ...F, colors: { ...F.colors, garment: F.colors.accent } }) },
     },
     hats: {
       // a white bonnet: over the crown and the back of the head down to the nape, the face open
-      bonnet: { name: 'bonnet', draw: F => {
+      bonnet: { name: 'чепец', draw: F => {
         const { at, axes, egg, r, out, sides, square } = F.head;
         F.cap(at, axes, egg.map(e => e * r * out * 1.12), [0, 0.42, -0.9], -0.42, F.colors.hat, sides, square);
       } },
       // a kerchief tied over the hair, its knot at the nape
-      kerchief: { name: 'headscarf', draw: F => {
+      kerchief: { name: 'косынка', draw: F => {
         const { add, mul } = MooodShapes.V, { at, axes, egg, r, out, sides, square } = F.head, [hs, hu, hf] = axes;
         F.cap(at, axes, egg.map(e => e * r * out * 1.08), [0, 0.7, -0.72], -0.05, F.colors.hat, sides, square);
         F.ball(add(at, add(mul(hu, -r * 0.45), mul(hf, -r * 1.02))), axes, [r * 0.22, r * 0.16, r * 0.14], F.colors.hat, 10);
@@ -187,7 +187,7 @@ return {
     faces: {
       // the face, and round spectacles over its eyes: two thin rims, a bridge between (in the look's accent colour, as
       // they catch the light)
-      spectacles: { name: 'spectacles', draw: F => {
+      spectacles: { name: 'очки', draw: F => {
         MooodShapes.FACES.simple.draw(F);
         const { axes: [, hu], r, on } = F.head, n = 12, rim = [[0, r * 0.022], [n, r * 0.022]], bridge = [[0, r * 0.022], [2, r * 0.022]];
         for (const s of [-1, 1]) F.tube(Array.from({ length: n + 1 }, (_, i) => { const a = i / n * Math.PI * 2; return on([s * 0.34 + 0.17 * Math.cos(a), 0.08 + 0.15 * Math.sin(a), 0.95], 1.0); }), rim, [[0, F.colors.accent]], 5, hu);
@@ -196,7 +196,7 @@ return {
     },
     parts: {
       // a full beard: over the jaw and the chin, a little down onto the chest (the colour of the hair)
-      beard: { name: 'beard', draw: F => {
+      beard: { name: 'борода', draw: F => {
         const { add, mul } = MooodShapes.V, h = F.head, [, hu, hf] = h.axes, r = h.r * h.out;
         F.cap(h.at, h.axes, h.egg.map(e => e * r * 1.05), [0, -0.55, 0.83], 0.25, F.colors.hair, h.sides, h.square);
         F.ball(add(h.at, add(mul(hu, -r * 0.92), mul(hf, r * 0.5))), h.axes, [r * 0.62, r * 0.48, r * 0.42], F.colors.hair, h.sides);
@@ -204,7 +204,7 @@ return {
       // the smith's hammer in his left hand (he strikes with the left): the handle out of the fist on along the forearm,
       // the wrist cocked back a little (toward the bent elbow's inside), its head's face outwards, the way the arm
       // swings — down onto the iron as the arm comes down
-      hammer: { name: 'hammer', draw: F => {
+      hammer: { name: 'молот', draw: F => {
         const { add, sub, mul, dot, unit, mix } = MooodShapes.V, m = F.fit.h, wood = [0.36, 0.26, 0.18, 1], iron = [0.2, 0.19, 0.19, 1];
         const wrist = F.P('LeftHand'), elbow = F.P('LeftForeArm'), grip = mix(wrist, F.P('LeftHandMiddle1'), 0.85), fore = unit(sub(wrist, elbow));
         const back = sub(F.P('LeftArm'), elbow), inside0 = sub(back, mul(fore, dot(back, fore)));
@@ -215,7 +215,7 @@ return {
         F.bar(add(head, mul(face, -0.06 * m)), add(head, mul(face, 0.07 * m)), 0.03 * m, 0.032 * m, [[0, iron]], 8, handle, 1, 4);
       } },
       // tongs in his right hand, on along the forearm out of the fist (their jaws on the iron he holds on the anvil)
-      tongs: { name: 'tongs', draw: F => {
+      tongs: { name: 'клещи', draw: F => {
         const { add, sub, mul, unit, mix, cross } = MooodShapes.V, m = F.fit.h, iron = [0.17, 0.16, 0.16, 1];
         const wrist = F.P('RightHand'), knuckles = F.P('RightHandMiddle1'), grip = mix(wrist, knuckles, 0.85);
         const dir = unit(sub(wrist, F.P('RightForeArm'))), across = unit(cross(dir, sub(F.P('RightHandIndex1'), F.P('RightHandPinky1'))));
@@ -224,7 +224,7 @@ return {
       } },
       // a lantern hanging from the right hand by its bail, swinging a little as the hand goes (its light is the scene's:
       // a light "at" the hand)
-      lantern: { name: 'lantern', draw: F => {
+      lantern: { name: 'фонарь', draw: F => {
         const { add, sub, mul, unit, cross } = MooodShapes.V, m = F.fit.h, hand = F.P('RightHand'), iron = [0.14, 0.13, 0.12, 1], glass = [1, 0.82, 0.5, 0];
         const low = F.swing('lantern', add(hand, [0, -0.24 * m, 0]), 60), down = unit(sub(low, hand)), side = unit(cross(down, F.fwd('Hips'))), axes = [side, mul(down, -1), unit(cross(side, mul(down, -1)))];
         const at = d => add(hand, mul(down, d * m));
@@ -234,14 +234,14 @@ return {
         F.ball(at(0.21), axes, [0.05 * m, 0.016 * m, 0.05 * m], iron, 10);
       } },
       // a tall walking staff in the right hand, from the floor to above the shoulder, the hand round it
-      staff: { name: 'staff', draw: F => {
+      staff: { name: 'посох', draw: F => {
         const { add, mul } = MooodShapes.V, m = F.fit.h, hand = F.P('RightHand'), wood = [0.3, 0.22, 0.15, 1];
         const foot = [hand[0], 0, hand[2]];
         F.bar(foot, add(hand, [0, 0.42 * m, 0]), 0.016 * m, 0.018 * m, [[0, wood]], 6, F.side('Hips'));
       } },
       // Rosalind's bow in the left hand, upright, its grip in the fist; its string from the tips — to the right hand while
       // that hand is near the string and behind the bow (drawing), else straight between them
-      bow: { name: 'bow', draw: F => {
+      bow: { name: 'лук', draw: F => {
         const { add, sub, mul, dot, unit, cross } = MooodShapes.V, m = F.fit.h, wood = [0.33, 0.24, 0.16, 1], gut = [0.78, 0.74, 0.66, 1];
         const grip = F.P('LeftHand'), out = unit(sub(grip, F.P('LeftForeArm'))), up0 = [0, 1, 0];
         const up = unit(sub(up0, mul(out, dot(up0, out)))), back = mul(out, -1), half = 0.62 * m, bend = 0.13 * m;
@@ -253,7 +253,7 @@ return {
         F.tube([tip(1), nock, tip(-1)], [[0, 0.0025 * m], [2, 0.0025 * m]], [[0, gut]], 4, out);
       } },
       // a hay rake held in both hands: its long handle through the fists, its head of tines on the ground before them
-      rake: { name: 'rake', draw: F => {
+      rake: { name: 'грабли', draw: F => {
         const { add, sub, mul, unit, mix, cross } = MooodShapes.V, m = F.fit.h, wood = [0.48, 0.38, 0.26, 1];
         const hands = mix(F.P('LeftHand'), F.P('RightHand'), 0.5), along = unit(sub(F.P('RightHand'), F.P('LeftHand')));
         const head = add(add(hands, mul(along, 0.9 * m)), [0, -0.5 * m, 0]), dir = unit(sub(head, hands));
@@ -262,7 +262,7 @@ return {
         F.bar(add(head, mul(bar, -0.28 * m)), add(head, mul(bar, 0.28 * m)), 0.016 * m, 0.016 * m, [[0, wood]], 6, dir);
       } },
       // a long gun in both hands: its stock at the right hand, its barrel out past the left (a man of Waknuk in the fight)
-      gun: { name: 'gun', draw: F => {
+      gun: { name: 'ружьё', draw: F => {
         const { add, sub, mul, unit } = MooodShapes.V, m = F.fit.h, wood = [0.4, 0.3, 0.2, 1], iron = [0.28, 0.28, 0.3, 1];
         const r = F.P('RightHand'), l = F.P('LeftHand'), dir = unit(sub(l, r));
         F.bar(add(r, mul(dir, -0.22 * m)), add(l, mul(dir, 0.05 * m)), 0.025 * m, 0.018 * m, [[0, wood]], 6, F.side('Hips'));
@@ -270,27 +270,27 @@ return {
         F.point('muzzle', add(l, mul(dir, 0.55 * m)));
       } },
       // the Sealand woman's sprayer: a short pale wand in the right hand, its nozzle forward (its point `nozzle`)
-      sprayer: { name: 'sprayer', draw: F => {
+      sprayer: { name: 'распылитель', draw: F => {
         const { add, sub, mul, unit } = MooodShapes.V, m = F.fit.h, pale = [0.86, 0.86, 0.84, 1];
         const h = F.P('RightHand'), dir = unit(sub(h, F.P('RightForeArm')));
         F.bar(add(h, mul(dir, -0.05 * m)), add(h, mul(dir, 0.3 * m)), 0.02 * m, 0.012 * m, [[0, pale]], 8, F.side('RightHand'));
         F.point('nozzle', add(h, mul(dir, 0.32 * m)));
       } },
       // a spear in the right hand, upright, its butt by the foot (a guard's)
-      spear: { name: 'spear', draw: F => {
+      spear: { name: 'копьё', draw: F => {
         const { add } = MooodShapes.V, m = F.fit.h, hand = F.P('RightHand'), wood = [0.36, 0.28, 0.2, 1], iron = [0.42, 0.42, 0.44, 1];
         const foot = [hand[0], 0, hand[2]], top = add(hand, [0, 1.0 * m, 0]);
         F.bar(foot, top, 0.014 * m, 0.012 * m, [[0, wood]], 6, F.side('Hips'));
         F.bar(top, add(top, [0, 0.2 * m, 0]), 0.025 * m, 0.002 * m, [[0, iron]], 4, F.side('Hips'), 1, 4);
       } },
       // a hump high on the back (the hunchback's)
-      hump: { name: 'hump', draw: F => {
+      hump: { name: 'горб', draw: F => {
         const { add, mul } = MooodShapes.V, k = F.k, c = add(F.P('Chest'), add(mul(F.fwd('Chest'), -0.12 * k), mul(F.up('Chest'), 0.06 * F.fit.h)));
         F.ball(c, [F.side('Chest'), F.up('Chest'), F.fwd('Chest')], [0.16 * k, 0.15 * k, 0.12 * k], F.colors.top, 14);
       } },
       // a torch in the right hand: a short stave, its head wound with pitch-rag, held up — the fire is the scene's
       // (particles and a light "at" its point `flame`)
-      torch: { name: 'torch', draw: F => {
+      torch: { name: 'факел', draw: F => {
         const { add, sub, mul, unit } = MooodShapes.V, m = F.fit.h, hand = F.P('RightHand'), wood = [0.34, 0.25, 0.17, 1], rag = [0.22, 0.17, 0.12, 1];
         const along = unit(add(unit(sub(hand, F.P('RightForeArm'))), [0, 1.6, 0])), head = add(hand, mul(along, 0.42 * m));
         F.bar(add(hand, mul(along, -0.12 * m)), head, 0.016 * m, 0.02 * m, [[0, wood]], 6, F.side('RightHand'));
@@ -298,41 +298,41 @@ return {
         F.point('flame', add(head, mul(along, 0.06 * m)));
       } },
       // Sophie's shoe in a hand (its <id>_with: ["shoe"]): a small laced shoe held by its heel, the toe out of the hand
-      shoe: { name: 'shoe', draw: F => {
+      shoe: { name: 'башмак', draw: F => {
         const { add, mul } = MooodShapes.V, m = F.fit.h, hand = F.P('RightHand'), out = F.fwd('RightHand');
         const axes = [F.side('RightHand'), F.up('RightHand'), out], col = [0.23, 0.16, 0.13, 1];
         F.ball(add(hand, mul(out, 0.07 * m)), axes, [0.04 * m, 0.035 * m, 0.1 * m], col, 14);
         F.ball(add(hand, mul(axes[1], 0.035 * m)), axes, [0.038 * m, 0.05 * m, 0.045 * m], col, 12);
       } },
       // a bundle in the right hand (a night's flight): a cloth knotted round what they take, hanging from the fist
-      bundle: { name: 'bundle', draw: F => {
+      bundle: { name: 'узел', draw: F => {
         const { add, mul } = MooodShapes.V, m = F.fit.h, hand = F.P('RightHand');
         const axes = [F.side('Hips'), [0, 1, 0], F.fwd('Hips')], cloth = [0.55, 0.5, 0.42, 1];
         F.ball(add(hand, [0, -0.17 * m, 0]), axes, [0.15 * m, 0.13 * m, 0.11 * m], cloth, 16);
         F.ball(add(hand, [0, -0.03 * m, 0]), axes, [0.04 * m, 0.05 * m, 0.04 * m], cloth, 10);
       } },
       // David's cut hand, bound: a linen rag wound round the palm, tied neat
-      rag: { name: 'bandage', draw: F => rag(F, false) },
+      rag: { name: 'повязка', draw: F => rag(F, false) },
       // …wound round it anyhow by himself: an end hanging loose, the blood through it
-      rag_loose: { name: 'rag on the hand', draw: F => rag(F, true) },
+      rag_loose: { name: 'тряпка на руке', draw: F => rag(F, true) },
       // the Book, shut, in the left hand (held by its edge, hanging)
-      book: { name: 'the Book', draw: F => {
+      book: { name: 'Книга', draw: F => {
         const { add, mul } = MooodShapes.V, m = F.fit.h, h = F.P('LeftHand'), ax = [F.side('LeftHand'), F.up('LeftHand'), F.fwd('LeftHand')];
         F.ball(add(h, mul(ax[2], 0.07 * m)), ax, [0.03 * m, 0.135 * m, 0.095 * m], COVER, 8, 8);
       } },
       // the Book open, held in both hands before the reader, its pages to his eyes
-      book_open: { name: 'the Book, open', draw: F => openBook(F, V => V.mix(F.P('LeftHand'), F.P('RightHand'), 0.5), V => V.unit(V.sub(F.P('RightHand'), F.P('LeftHand')))) },
+      book_open: { name: 'Книга открыта', draw: F => openBook(F, V => V.mix(F.P('LeftHand'), F.P('RightHand'), 0.5), V => V.unit(V.sub(F.P('RightHand'), F.P('LeftHand')))) },
       // …open on the left hand alone (the right is free: raised, pointing)
-      book_open_l: { name: 'the Book, open in the left hand', draw: F => openBook(F, V => V.add(F.P('LeftHand'), V.mul(F.up('LeftHand'), 0.03 * F.fit.h)), null) },
+      book_open_l: { name: 'Книга открыта в левой', draw: F => openBook(F, V => V.add(F.P('LeftHand'), V.mul(F.up('LeftHand'), 0.03 * F.fit.h)), null) },
       // a long wooden ladle in the right hand, for the pot on the hearth
-      ladle: { name: 'ladle', draw: F => {
+      ladle: { name: 'половник', draw: F => {
         const { add, mul } = MooodShapes.V, m = F.fit.h, h = F.P('RightHand'), d = F.fwd('RightHand'), wood = [0.36, 0.27, 0.19, 1];
         const end = add(h, mul(d, 0.42 * m));
         F.bar(add(h, mul(d, -0.06 * m)), end, 0.011 * m, 0.009 * m, [[0, wood]], 6, F.side('RightHand'));
         F.ball(end, [F.side('RightHand'), F.up('RightHand'), d], [0.04 * m, 0.03 * m, 0.035 * m], wood, 10);
       } },
       // a spoon in the right hand (eating from a bowl)
-      spoon: { name: 'spoon', draw: F => {
+      spoon: { name: 'ложка', draw: F => {
         const { add, mul } = MooodShapes.V, m = F.fit.h, h = F.P('RightHand'), d = F.fwd('RightHand'), wood = [0.42, 0.33, 0.24, 1];
         F.bar(h, add(h, mul(d, 0.13 * m)), 0.006 * m, 0.006 * m, [[0, wood]], 6, F.side('RightHand'));
         F.ball(add(h, mul(d, 0.15 * m)), [F.side('RightHand'), F.up('RightHand'), d], [0.02 * m, 0.008 * m, 0.028 * m], wood, 8);

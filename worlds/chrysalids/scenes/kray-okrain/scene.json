@@ -1,0 +1,516 @@
+{
+  "engine": 3,
+  "title": "Край Окраин",
+  "caption": "Дальше начинается то, о чём не говорят.",
+  "horizon": 0.55,
+  "camera": {
+    "mode": "picture"
+  },
+  "light": {
+    "ambient": 0.5,
+    "ambientColor": "#8c9cc8",
+    "bounce": 0.45,
+    "haze": 0.3,
+    "hazeColor": "#3c4a6c",
+    "hazeGlow": 0.8,
+    "shafts": 0.35,
+    "vignette": 0.45,
+    "grain": 0.2,
+    "saturation": 0.85,
+    "wind": [
+      1,
+      0.2,
+      0.4
+    ]
+  },
+  "lights": [
+    {
+      "id": "moon",
+      "from": [
+        -50,
+        25
+      ],
+      "color": "#c4d2ee",
+      "strength": 1.1
+    },
+    {
+      "id": "lantern",
+      "at": "joseph#hand_r",
+      "color": "#ffc46a",
+      "strength": 1.0,
+      "reach": 4,
+      "flicker": 0.15,
+      "glow": 0.3,
+      "on": "lantern_in_field"
+    },
+    {
+      "id": "beam",
+      "across": -1,
+      "distance": 12,
+      "elevation": 1.2,
+      "place": {
+        "across": "beam_a",
+        "distance": "beam_d"
+      },
+      "color": "#ffd090",
+      "strength": 1.6,
+      "reach": 4.2,
+      "on": "lantern_in_field"
+    },
+    {
+      "id": "fill",
+      "from": [
+        178,
+        15
+      ],
+      "color": "#a8b8dc",
+      "strength": 0.22
+    }
+  ],
+  "state": {
+    "glow": 0.7,
+    "mist": 0.6,
+    "figure_on_path": 0,
+    "lantern_in_field": 0,
+    "lantern_turn": 150,
+    "walkers": 0,
+    "walk_u": 0,
+    "walk_shade": 0,
+    "walk_lit": 0,
+    "beam_a": -3.4,
+    "beam_d": 5.6,
+    "joseph_here": false,
+    "joseph_with": [
+      "lantern"
+    ],
+    "joseph_wear": {
+      "hat": "hat"
+    },
+    "david_a": -1.38,
+    "david_d": 5.5,
+    "rosalind_a": -1.74,
+    "rosalind_d": 4.5
+  },
+  "states": {
+    "glow": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "как светятся бледные растения и споры Окраин"
+    },
+    "mist": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "туман над полем и Окраинами"
+    },
+    "figure_on_path": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "беглецы ушли по тропе в лес (1: идут дальше за изгородь, в лес)"
+    },
+    "lantern_in_field": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "отец с фонарём в поле; его луч ходит по полю"
+    },
+    "lantern_turn": {
+      "range": [
+        0,
+        360
+      ],
+      "smooth": true,
+      "means": "куда светит фонарь отца, градусы (0 — от нас, 90 — вправо): луч — пятно света в 5.5 м от него; ходит сам"
+    },
+    "walkers": {
+      "type": "number",
+      "means": "игра («По тени»): 1 — беглецы идут по тропе (Дэвид первым), 0 — стоят"
+    },
+    "walk_u": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": false,
+      "means": "где Дэвид на тропе: 0 — начало, 1 — лес за изгородью (сцена ставит сама, каждый кадр пути и раз в 0.1 с)"
+    },
+    "walk_shade": {
+      "type": "number",
+      "means": "1 — беглецы в тени дерева (сцена ставит сама)"
+    },
+    "walk_lit": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": false,
+      "means": "сколько луча фонаря на них (сцена ставит сама)"
+    },
+    "beam_a": {
+      "type": "number",
+      "means": "где пятно луча (сцена ставит сама)"
+    },
+    "beam_d": {
+      "type": "number",
+      "means": "где пятно луча, вглубь"
+    }
+  },
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Ночное небо"
+    },
+    {
+      "id": "clouds",
+      "sky": true,
+      "name": "Облака"
+    },
+    {
+      "id": "badlands",
+      "name": "Холмы Пустошей",
+      "x": 0.5,
+      "distance": 700,
+      "height": 40,
+      "box": [
+        -1800,
+        -90,
+        1800,
+        5
+      ]
+    },
+    {
+      "id": "fringe_ground",
+      "name": "Земля Окраин",
+      "plane": true,
+      "across": 0,
+      "distance": 50,
+      "width": 200,
+      "depth": 76.4
+    },
+    {
+      "id": "field",
+      "name": "Последнее поле Уокнука",
+      "plane": true,
+      "across": 0,
+      "distance": 6,
+      "width": 80,
+      "depth": 12.4
+    },
+    {
+      "id": "path",
+      "name": "Тропа через поле к проходу",
+      "plane": true,
+      "across": 0,
+      "distance": 11,
+      "elevation": 0.01,
+      "width": 30,
+      "depth": 26
+    },
+    {
+      "id": "forest_back",
+      "name": "Дальний лес Окраин",
+      "across": 0,
+      "distance": 80,
+      "height": 18,
+      "box": [
+        -140,
+        -40,
+        140,
+        1
+      ]
+    },
+    {
+      "id": "mist_far",
+      "name": "Туман над Окраинами",
+      "across": 0,
+      "distance": 62,
+      "height": 10,
+      "box": [
+        -170,
+        -10,
+        170,
+        1
+      ]
+    },
+    {
+      "id": "forest_front",
+      "name": "Неправильный лес",
+      "across": 0,
+      "distance": 44,
+      "height": 14,
+      "box": [
+        -105,
+        -37,
+        105,
+        1
+      ]
+    },
+    {
+      "id": "hero_trees",
+      "name": "Стражи прохода",
+      "across": -13,
+      "distance": 16,
+      "height": 12,
+      "box": [
+        -5,
+        -14,
+        5.5,
+        0.4
+      ],
+      "shadow": {
+        "light": "moon",
+        "strength": 0.85
+      }
+    },
+    {
+      "id": "pale_plants",
+      "name": "Бледные растения",
+      "across": 0,
+      "distance": 17,
+      "height": 2,
+      "box": [
+        -26,
+        -4,
+        26,
+        0.3
+      ]
+    },
+    {
+      "id": "spores",
+      "name": "Споры",
+      "across": 2,
+      "distance": 17,
+      "elevation": 1.2,
+      "particles": {
+        "kind": "fireflies",
+        "source": [
+          24,
+          6,
+          2.5
+        ],
+        "rate": 3,
+        "amount": "glow",
+        "color": "#d8eac8",
+        "size": [
+          0.06,
+          0.06
+        ]
+      }
+    },
+    {
+      "id": "grass_fringe",
+      "name": "Неровные травы",
+      "across": 0,
+      "distance": 13.2,
+      "height": 1.5,
+      "box": [
+        -35,
+        -3,
+        35,
+        0.3
+      ]
+    },
+    {
+      "id": "fence",
+      "name": "Межевая изгородь",
+      "across": 0,
+      "distance": 12,
+      "height": 1.6,
+      "box": [
+        -36,
+        -3.2,
+        36,
+        0.3
+      ],
+      "shadow": {
+        "light": "moon",
+        "strength": 0.6
+      }
+    },
+    {
+      "id": "mist_near",
+      "name": "Туман над полем",
+      "across": 0,
+      "distance": 9,
+      "height": 2,
+      "box": [
+        -60,
+        -3,
+        60,
+        0.5
+      ]
+    },
+    {
+      "id": "joseph",
+      "name": "Отец с фонарём",
+      "person": {
+        "cast": "cast",
+        "who": "joseph",
+        "turn": 140
+      },
+      "across": -6.2,
+      "distance": 10.4,
+      "place": {
+        "across": "joseph_a",
+        "distance": "joseph_d"
+      },
+      "shadow": {
+        "light": "moon",
+        "strength": 0.8
+      }
+    },
+    {
+      "id": "david",
+      "name": "Дэвид",
+      "person": {
+        "cast": "cast",
+        "who": "david_teen",
+        "turn": 0
+      },
+      "across": -1.38,
+      "distance": 5.5,
+      "place": {
+        "across": "david_a",
+        "distance": "david_d"
+      },
+      "shadow": {
+        "light": "moon",
+        "strength": 0.8
+      }
+    },
+    {
+      "id": "rosalind",
+      "name": "Розалинда",
+      "person": {
+        "cast": "cast",
+        "who": "rosalind",
+        "turn": 0
+      },
+      "across": -1.74,
+      "distance": 4.5,
+      "place": {
+        "across": "rosalind_a",
+        "distance": "rosalind_d"
+      },
+      "shadow": {
+        "light": "moon",
+        "strength": 0.8
+      }
+    },
+    {
+      "id": "crops",
+      "name": "Ровные колосья",
+      "across": 0,
+      "distance": 3,
+      "height": 0.6,
+      "box": [
+        -8.5,
+        -1.2,
+        8.5,
+        0.4
+      ]
+    }
+  ],
+  "modules": [
+    "cast"
+  ],
+  "music": {
+    "bpm": 60,
+    "density": 0.2,
+    "prompts": [
+      {
+        "text": "dark ambient drone, slow evolving low synth pads, vast and empty, nocturnal dread",
+        "weight": 2
+      },
+      {
+        "text": "distant low strings, sustained cello and double bass clusters, barely moving, eerie and cold",
+        "weight": 2
+      },
+      {
+        "text": "eerie night wind through tall grass, field recording textures blended with soft drone",
+        "weight": 2
+      },
+      {
+        "text": "sparse metallic textures, bowed cymbals and scraped steel, long reverb tails",
+        "weight": 1
+      },
+      {
+        "text": "post-apocalyptic folk lament on a lone detuned fiddle, far away",
+        "weight": 0
+      },
+      {
+        "text": "slow pulsing sub-bass heartbeat, faint radioactive hum, minimal",
+        "weight": 0
+      },
+      {
+        "text": "glass harmonica tones drifting, uncanny and fragile, slow",
+        "weight": 0
+      },
+      {
+        "text": "Tarkovsky-like ambient, water drips and distant hum, contemplative",
+        "weight": 0
+      },
+      {
+        "text": "low choir hum without words, wordless male voices far off, sacred and forbidding",
+        "weight": 0
+      },
+      {
+        "text": "prepared piano single notes, wooden knocks, sparse and cold",
+        "weight": 0
+      },
+      {
+        "text": "creaking wood and rope textures, slow rhythmic groan, unsettling",
+        "weight": 0
+      },
+      {
+        "text": "shimmering high harmonics over dark drone, a sense of forbidden freedom",
+        "weight": 0
+      },
+      {
+        "text": "minimal tape-loop ambient, worn and warbling, nostalgic and uneasy",
+        "weight": 0
+      },
+      {
+        "text": "low brass swells in the distance, slow, ominous and solemn",
+        "weight": 0
+      },
+      {
+        "text": "Geiger-counter clicks woven into soft ambient pad, sparse",
+        "weight": 0
+      },
+      {
+        "text": "hurdy-gurdy drone, rustic and ancient, slow, dark modal",
+        "weight": 0
+      },
+      {
+        "text": "bowed bass harmonica and slow breathing synth, cinematic suspense",
+        "weight": 0
+      },
+      {
+        "text": "celesta motif fragments, dreamy but wrong, slightly detuned",
+        "weight": 0
+      },
+      {
+        "text": "thick fog ambient, granular synthesis clouds, almost silent",
+        "weight": 0
+      },
+      {
+        "text": "slow tension build, distant timpani rolls, pursuit approaching",
+        "weight": 0
+      }
+    ],
+    "brightness": 0.25,
+    "scale": "C_MAJOR_A_MINOR"
+  }
+}

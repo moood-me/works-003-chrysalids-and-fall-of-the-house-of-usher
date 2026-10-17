@@ -300,6 +300,9 @@ export function context(b, view, hub, state, j = null, { forward = null } = {}) 
 //     touched(ref) is told), a petal pressed is chosen; one who touches no mark for SHOW s is shown how: the ghost
 //     finger on each in turn (lead: on those only). seconds — on time: the arc of time on each mark runs down (the
 //     mini-game's clock: it stands with the play's pause); out — null, the marks gone
+//   hub.ask(at, options) → the action chosen, or null: a mark of the plain choice born open where the game's own
+//     drawing was pressed (at: fn → {x, y} page px — map.js), its options out as petals at once; a touch off them folds
+//     it — null, the mark gone (nothing waits idle)
 //   hub.withdraw() — nothing offered; hub.told(text, ms) → true once the scene tells it, false if ms pass
 const SHOW = 8; // s: nothing pressed so long — the ghost shows how
 
@@ -343,6 +346,19 @@ export function listen(b) {
           for (const m of marks) m.set({ time: left });
           if (!left) over(null);
         });
+      });
+    },
+    ask(at, options) {
+      offered?.leave();
+      const mg = offered = b.minigame.start({ plate: false });
+      return new Promise(ok => {
+        const over = action => { ok(action); mg.leave(); if (offered === mg) offered = null; };
+        const mark = mg.mark({ at });
+        // (where it was pressed is out of the frame: nothing to open)
+        if (!mark.pos) { over(null); return; }
+        const press = mg.press({ on: mark, petals: options, open: true });
+        press.on('choose', ({ id }) => { mg.snap({ at: mark }); over(options.find(o => o.id === id)); });
+        press.on('fold', () => over(null));
       });
     },
     withdraw() { offered?.leave(); offered = null; },

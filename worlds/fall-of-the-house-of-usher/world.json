@@ -1,9 +1,9 @@
 {
-  "title": "The Fall of the House of Usher v3",
-  "description": "The Fall of the House of Usher on engine 3: the v2 scenes, rewritten in engine 3's language; the game — in the language of mini-games.",
+  "title": "Падение дома Ашеров v3",
+  "description": "Падение дома Ашеров на движке 3: сцены v2, переписанные языком движка 3; игра — на языке мини-игр.",
   "themes": {
-    "gothic": 60,
-    "horror": 40
+    "готика": 60,
+    "хоррор": 40
   },
   "main": "main"
 }

@@ -1,0 +1,6 @@
+{"strings": [
+  {"text":"The fall of the house","translation":"Падение дома","where":"scenes/fall-of-the-house/scene.json title"},
+  {"text":"The blood-red moon blazed out in the fissure — and the dark waters of the tarn closed over the House of Usher.","translation":"Кроваво-красная луна вспыхнула в трещине — и тёмные воды пруда сомкнулись над домом Ашеров.","where":"scenes/fall-of-the-house/scene.json caption"},
+  {"text":"There was a long tumultuous shouting sound like the voice of a thousand waters.","translation":"Позади — долгий, смятенный гул, подобный голосу тысячи вод.","where":"scenes/fall-of-the-house/scene.json captions[0] text"},
+  {"text":"The house collapses","translation":"Дом рушится","where":"scenes/fall-of-the-house/scene.json directions[0] name"}
+]}

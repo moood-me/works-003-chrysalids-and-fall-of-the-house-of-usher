@@ -1,0 +1,887 @@
+{
+  "engine": 3,
+  "title": "The vault",
+  "caption": "The mockery of a faint blush lingered upon her face — as is usual in all maladies of a strictly cataleptical character.",
+  "horizon": 0.46,
+  "camera": {
+    "mode": "picture"
+  },
+  "light": {
+    "ambient": 0.65,
+    "ambientColor": "#7fa3b4",
+    "bounce": 0.35,
+    "haze": 0.4,
+    "hazeColor": "#27404a",
+    "hazeGlow": 0.25,
+    "tint": "#1b2d35",
+    "tintStrength": 0.15,
+    "vignette": 0.7,
+    "grain": 0.2
+  },
+  "lights": [
+    {
+      "id": "fire",
+      "at": "narrator#flame",
+      "color": "#f0a860",
+      "strength": 1.0,
+      "reach": 6,
+      "flicker": 0.3,
+      "on": "torch",
+      "glow": 0.35
+    },
+    {
+      "id": "holder",
+      "of": "torch",
+      "color": "#f0a860",
+      "strength": 1.0,
+      "reach": 6,
+      "flicker": 0.3,
+      "on": "torch"
+    },
+    {
+      "id": "fill",
+      "across": 0,
+      "distance": 0.4,
+      "elevation": 1.8,
+      "color": "#b8c8d4",
+      "strength": 0.7,
+      "reach": 9
+    }
+  ],
+  "modules": [
+    "cast",
+    "beats",
+    "closeups"
+  ],
+  "state": {
+    "beat": null,
+    "shot": "",
+    "closeup": 0,
+    "inside": 0,
+    "outside": 0,
+    "fade": 0,
+    "camera_x": -0.35,
+    "camera_z": 0.9,
+    "camera_h": 0.9,
+    "camera_look": 0.3,
+    "crack": 0.2,
+    "blush": 0.75,
+    "torch": 1,
+    "door_turn": 280,
+    "lid_x": 0.75,
+    "lid_h": 0.37,
+    "coffin_a": -0.5,
+    "coffin_d": 4.3,
+    "coffin_h": 0.43,
+    "coffin_turn": 180,
+    "mirror": 0,
+    "touch": 0,
+    "screw1": 0,
+    "screw2": 0,
+    "screw3": 0,
+    "screw4": 0,
+    "screw_at": 1,
+    "driver": 0,
+    "driver_rod": 0,
+    "seam": 1,
+    "shade": 0,
+    "tip": 0,
+    "knock": 0,
+    "answer": 0,
+    "roderick_a": -0.5,
+    "roderick_d": 4.98,
+    "roderick_do": {
+      "motion": "lean_over",
+      "loop": true
+    },
+    "roderick_turn": 180,
+    "roderick_look": "madeline",
+    "roderick_reach": {
+      "r": "lid#r",
+      "l": "lid#l"
+    },
+    "roderick_gait": null,
+    "roderick_here": true,
+    "narrator_a": 0.45,
+    "narrator_d": 5.02,
+    "narrator_do": {
+      "motion": "hold_high",
+      "loop": true
+    },
+    "narrator_turn": 180,
+    "narrator_look": "madeline",
+    "narrator_reach": null,
+    "narrator_gait": "torch_walk",
+    "narrator_with": [
+      "torch"
+    ],
+    "madeline_on": "coffin_floor#bed",
+    "madeline_reach": {
+      "r": "coffin_foot#hand_r",
+      "l": "coffin_foot#hand_l",
+      "foot_r": "coffin_foot#foot_r",
+      "foot_l": "coffin_foot#foot_l"
+    },
+    "madeline_do": "lie",
+    "beat_next": null
+  },
+  "states": {
+    "beat": {
+      "type": "string",
+      "means": "a beat of the film (the beats module): the name — the beat plays from the start; at the end the scene says beat:<name>. Beats: enter, open, touch, mirror, say, shut, insist, close, screws, check, inside, leave, door_close, at_door (and for the showcase — vault, knock); moments — open:face, touch:hand, mirror:up"
+    },
+    "shot": {
+      "values": [
+        "",
+        "face",
+        "mirror",
+        "hands",
+        "lid"
+      ],
+      "means": "which close-up the insert closeup shows: face — her face in the coffin, mirror — the little mirror at her lips, hands — his hand on hers, lid — the lid and its four screws"
+    },
+    "closeup": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "the close-up insert (the closeups module) is open: 1 — the whole frame, 0 — the vault"
+    },
+    "inside": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "the insert “from within”: through her eyes from the closed coffin (seam, shade, tip)"
+    },
+    "outside": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "the insert “at the door”: another night, outside the shut iron door, a single candle on the floor (knock, answer)"
+    },
+    "crack": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the crack on the back wall (and by the door outside): how far it has run and opened; the game sets it by the scale"
+    },
+    "blush": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the blush on her cheeks and breast (close, face)"
+    },
+    "torch": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "how much torchlight is in the vault: 1 — burning, 0 — cut off by the door (the fire and the light go out)"
+    },
+    "door_turn": {
+      "range": [
+        180,
+        280
+      ],
+      "smooth": true,
+      "means": "the iron door: 180 — shut, 280 — flung open into the vault"
+    },
+    "lid_x": {
+      "range": [
+        0,
+        0.75
+      ],
+      "smooth": true,
+      "means": "the lid slid towards the feet: 0 — closed, 0.75 — face and breast uncovered"
+    },
+    "lid_h": {
+      "range": [
+        0.37,
+        0.45
+      ],
+      "smooth": true,
+      "means": "the lid's height above the coffin's bottom: 0.37 — resting on the sides, 0.4 — lifted"
+    },
+    "coffin_a": {
+      "range": [
+        -3,
+        4
+      ],
+      "smooth": true,
+      "means": "where the coffin is: to the right (m)"
+    },
+    "coffin_d": {
+      "range": [
+        3,
+        9
+      ],
+      "smooth": true,
+      "means": "where the coffin is: into the distance (m)"
+    },
+    "coffin_h": {
+      "range": [
+        0,
+        1.2
+      ],
+      "smooth": true,
+      "means": "the height of the coffin's bottom: 0.43 — on the bier, 0.96 — being carried"
+    },
+    "coffin_turn": {
+      "range": [
+        0,
+        360
+      ],
+      "smooth": true,
+      "means": "where the coffin is turned, degrees: 180 — along the vault, head to the left"
+    },
+    "mirror": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "close (mirror): the little mirror rises to her lips — 1 at the lips; it stays clear"
+    },
+    "touch": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "close (hands): his hand rises into the frame and settles on hers — 1 settled"
+    },
+    "screw1": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "screw 1 (close, lid): how far it is screwed in — 0 its thread sticking out, 1 home; point closeup#screw1"
+    },
+    "screw2": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "screw 2: like screw1; point closeup#screw2"
+    },
+    "screw3": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "screw 3: like screw1; point closeup#screw3"
+    },
+    "screw4": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "screw 4: like screw1; point closeup#screw4"
+    },
+    "screw_at": {
+      "range": [
+        1,
+        4
+      ],
+      "smooth": true,
+      "means": "which screw the screwdriver is on (a fraction — the hand on its way between screws)"
+    },
+    "driver": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "the hand with the screwdriver in the frame (close, lid)"
+    },
+    "driver_rod": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "the screwdriver in Roderick's hand (1) or the narrator's (0)"
+    },
+    "seam": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "from within: a thread of torchlight along the lid's edge — 1 lit, 0 gone out"
+    },
+    "shade": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "from within: how far the two have passed over the lid (their shadows put out the thread)"
+    },
+    "tip": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "from within: the screws' points through the wood one by one — the first by 0.4, the second by 0.6, the third by 0.78, the fourth by 0.9"
+    },
+    "knock": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "at the door: a knock from this side — a pulse 1 → 0 (~1.5 s): the door trembles, dust falls, the candle's flame bows"
+    },
+    "answer": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "at the door: an answer from the other side — a pulse 1 → 0, like knock, stronger"
+    },
+    "beat_next": {
+      "type": "string",
+      "means": "the beat the game will play next (the beats module: its cut is prepared ahead) — screws, inside; null — the next by the table"
+    }
+  },
+  "objects": [
+    {
+      "id": "dark",
+      "name": "Darkness",
+      "sky": true
+    },
+    {
+      "box": [
+        -2.5,
+        -3,
+        5.1,
+        0.15
+      ],
+      "across": 2.35,
+      "distance": 7.6,
+      "height": 2.6,
+      "id": "passage",
+      "name": "Passage",
+      "facing": 180
+    },
+    {
+      "box": [
+        -10,
+        -5.3,
+        10.1,
+        0.15
+      ],
+      "distance": 6.8,
+      "height": 4,
+      "id": "wall",
+      "name": "Back wall",
+      "x": 0.5,
+      "facing": 180
+    },
+    {
+      "across": 2.35,
+      "box": [
+        -1.1,
+        -2.5,
+        1.1,
+        0.1
+      ],
+      "distance": 6.8,
+      "height": 2.2,
+      "id": "doorway",
+      "name": "Doorway",
+      "facing": 180
+    },
+    {
+      "id": "door",
+      "name": "Iron door",
+      "across": 1.8,
+      "distance": 6.79,
+      "height": 2.0,
+      "facing": 280,
+      "box": [
+        -0.08,
+        -2.02,
+        1.18,
+        0.3
+      ],
+      "place": {
+        "facing": "door_turn"
+      },
+      "shadow": true
+    },
+    {
+      "depth": 10,
+      "distance": 5,
+      "elevation": 0,
+      "id": "floor",
+      "name": "Floor",
+      "plane": true,
+      "width": 20,
+      "x": 0.5
+    },
+    {
+      "box": [
+        -9,
+        -1.4,
+        9,
+        0.3
+      ],
+      "distance": 6.2,
+      "height": 1,
+      "id": "mist_back",
+      "name": "Mist by the wall",
+      "x": 0.5
+    },
+    {
+      "box": [
+        -14,
+        -8,
+        14,
+        1.05
+      ],
+      "distance": 4.7,
+      "height": 3,
+      "id": "arch2",
+      "name": "Far arch",
+      "x": 0.5,
+      "facing": 180
+    },
+    {
+      "across": 3.0,
+      "box": [
+        -0.3,
+        -2.2,
+        0.3,
+        0.1
+      ],
+      "distance": 4.68,
+      "flicker": 0.3,
+      "height": 2.0,
+      "id": "torch",
+      "name": "Torch"
+    },
+    {
+      "id": "holder_fire",
+      "name": "Torch fire in its holder",
+      "particles": {
+        "kind": "fire",
+        "at": "torch#flame",
+        "amount": "torch",
+        "rate": 36,
+        "size": [
+          0.15,
+          0.04
+        ],
+        "source": [
+          0.04,
+          0.04,
+          0.02
+        ],
+        "life": [
+          0.3,
+          0.7
+        ]
+      }
+    },
+    {
+      "id": "plinth_step",
+      "name": "Lower step of the bier",
+      "plane": true,
+      "across": -0.5,
+      "distance": 4.3,
+      "elevation": 0.17,
+      "width": 1.9,
+      "depth": 0.94
+    },
+    {
+      "id": "plinth_top",
+      "name": "Top of the bier",
+      "plane": true,
+      "across": -0.5,
+      "distance": 4.3,
+      "elevation": 0.43,
+      "width": 1.7,
+      "depth": 0.7
+    },
+    {
+      "across": -0.5,
+      "box": [
+        -1.05,
+        -0.5,
+        1.05,
+        0.12
+      ],
+      "distance": 3.83,
+      "height": 0.5,
+      "id": "plinth",
+      "name": "Bier",
+      "facing": 180,
+      "shadow": true
+    },
+    {
+      "id": "coffin_box",
+      "name": "Coffin (where it is)",
+      "unseen": true,
+      "across": -0.5,
+      "distance": 4.3,
+      "elevation": 0.43,
+      "height": 0.4,
+      "facing": 180,
+      "box": [
+        -1.1,
+        -0.4,
+        1.1,
+        0.05
+      ],
+      "place": {
+        "across": "coffin_a",
+        "distance": "coffin_d",
+        "elevation": "coffin_h",
+        "facing": "coffin_turn"
+      }
+    },
+    {
+      "id": "coffin_far",
+      "name": "Coffin: far side",
+      "on": "coffin_box",
+      "height": 0.4,
+      "distance": 0.3,
+      "facing": 180,
+      "box": [
+        -1.05,
+        -0.38,
+        1.05,
+        0.02
+      ],
+      "shadow": true
+    },
+    {
+      "id": "coffin_head",
+      "name": "Coffin: head",
+      "on": "coffin_box",
+      "height": 0.4,
+      "across": -1.0,
+      "facing": 90,
+      "box": [
+        -0.34,
+        -0.38,
+        0.34,
+        0.02
+      ],
+      "shadow": true
+    },
+    {
+      "id": "coffin_foot",
+      "name": "Coffin: foot",
+      "on": "coffin_box",
+      "height": 0.4,
+      "across": 1.0,
+      "facing": 270,
+      "box": [
+        -0.34,
+        -0.38,
+        0.34,
+        0.02
+      ],
+      "shadow": true
+    },
+    {
+      "id": "coffin_floor",
+      "name": "Coffin: bottom",
+      "plane": true,
+      "on": "coffin_box",
+      "elevation": 0.04,
+      "width": 1.96,
+      "depth": 0.56
+    },
+    {
+      "id": "madeline",
+      "name": "Madeline",
+      "person": {
+        "cast": "cast",
+        "who": "madeline",
+        "does": "lie",
+        "turn": 90
+      },
+      "across": -0.5,
+      "distance": 4.3,
+      "shadow": false
+    },
+    {
+      "id": "coffin",
+      "name": "Coffin",
+      "on": "coffin_box",
+      "height": 0.4,
+      "distance": -0.3,
+      "facing": 180,
+      "box": [
+        -1.05,
+        -0.38,
+        1.05,
+        0.02
+      ],
+      "shadow": true
+    },
+    {
+      "id": "lid",
+      "name": "Lid",
+      "plane": true,
+      "on": "coffin_box",
+      "elevation": 0.37,
+      "width": 2.06,
+      "depth": 0.64,
+      "place": {
+        "across": "lid_x",
+        "elevation": "lid_h"
+      },
+      "shadow": true
+    },
+    {
+      "id": "lid_edge",
+      "name": "Lid: edge",
+      "on": "lid",
+      "distance": 0.32,
+      "elevation": -0.035,
+      "facing": 180,
+      "height": 0.05,
+      "box": [
+        -1.04,
+        -0.04,
+        1.04,
+        0.005
+      ]
+    },
+    {
+      "id": "roderick",
+      "name": "Roderick",
+      "person": {
+        "cast": "cast",
+        "who": "roderick",
+        "turn": 180
+      },
+      "across": -1.25,
+      "distance": 4.98,
+      "place": {
+        "across": "roderick_a",
+        "distance": "roderick_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "narrator",
+      "name": "Narrator",
+      "person": {
+        "cast": "cast",
+        "who": "narrator",
+        "turn": 180,
+        "does": "hold_torch"
+      },
+      "across": 0.45,
+      "distance": 5.02,
+      "place": {
+        "across": "narrator_a",
+        "distance": "narrator_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "flame",
+      "name": "Torch flame",
+      "particles": {
+        "kind": "fire",
+        "at": "narrator#flame",
+        "amount": "torch",
+        "rate": 36,
+        "size": [
+          0.15,
+          0.04
+        ],
+        "source": [
+          0.04,
+          0.04,
+          0.02
+        ],
+        "life": [
+          0.3,
+          0.7
+        ]
+      }
+    },
+    {
+      "id": "embers",
+      "name": "Torch sparks",
+      "particles": {
+        "kind": "embers",
+        "at": "narrator#flame",
+        "amount": "torch",
+        "rate": 2.5,
+        "size": [
+          0.02,
+          0.008
+        ]
+      }
+    },
+    {
+      "box": [
+        -7,
+        -1,
+        7,
+        0.3
+      ],
+      "distance": 3.4,
+      "height": 1,
+      "id": "mist_front",
+      "name": "Mist by the floor",
+      "x": 0.5
+    },
+    {
+      "box": [
+        -14,
+        -8,
+        14,
+        1.05
+      ],
+      "distance": 2.6,
+      "height": 3,
+      "id": "arch1",
+      "name": "Near arch",
+      "x": 0.5,
+      "facing": 180
+    },
+    {
+      "id": "closeup",
+      "name": "Close-up",
+      "insert": "closeup"
+    },
+    {
+      "id": "inside",
+      "name": "From within",
+      "insert": "inside",
+      "uniforms": {
+        "fl": 1,
+        "seam": 1,
+        "m1": -1.15,
+        "m2": 1.2,
+        "n1": 1,
+        "n2": 1,
+        "u1": 0,
+        "u2": 0,
+        "u3": 0,
+        "u4": 0
+      }
+    },
+    {
+      "id": "outside",
+      "name": "At the door",
+      "insert": "outside",
+      "uniforms": {
+        "fl": 0.85,
+        "kn": 0,
+        "an": 0,
+        "shake": 0,
+        "sway": 0
+      }
+    }
+  ],
+  "music": {
+    "bpm": 60,
+    "brightness": 0.2,
+    "density": 0.2,
+    "prompts": [
+      {
+        "text": "deep sub-bass drone, endless and still, underground cathedral resonance",
+        "weight": 2
+      },
+      {
+        "text": "slow dripping water in a stone vault, sparse echoing drops, dark ambient",
+        "weight": 2
+      },
+      {
+        "text": "low wordless choir hum, distant and muffled, as if through stone",
+        "weight": 2
+      },
+      {
+        "text": "heartbeat-slow muffled frame drum, one beat every few seconds",
+        "weight": 1.5
+      },
+      {
+        "text": "bowed double bass harmonics, tense and quiet",
+        "weight": 0
+      },
+      {
+        "text": "glass harmonica single notes, eerie and fragile",
+        "weight": 0
+      },
+      {
+        "text": "Victorian chamber strings playing a slow funeral lament",
+        "weight": 0
+      },
+      {
+        "text": "cold reverberant cello sul ponticello, whispering",
+        "weight": 0
+      },
+      {
+        "text": "faint pipe organ pedal tone in an empty crypt",
+        "weight": 0
+      },
+      {
+        "text": "metallic rumble of an iron door, dark industrial ambient",
+        "weight": 0
+      },
+      {
+        "text": "gothic dark ambient, damp air, claustrophobic, 1840s",
+        "weight": 0
+      },
+      {
+        "text": "soft crackle of a torch flame, warm noise over cold drone",
+        "weight": 0
+      },
+      {
+        "text": "detuned music box, slow and broken, very quiet",
+        "weight": 0
+      },
+      {
+        "text": "low brass swell, mournful, fading into silence",
+        "weight": 0
+      },
+      {
+        "text": "prepared piano low notes, muted, sparse and ominous",
+        "weight": 0
+      },
+      {
+        "text": "distant thunder felt through the ground, subsonic",
+        "weight": 0
+      },
+      {
+        "text": "breathy bass flute long tones, hollow and cold",
+        "weight": 0
+      },
+      {
+        "text": "slow tolling bell heard from far above, muffled",
+        "weight": 0
+      },
+      {
+        "text": "string quartet cluster chords, sustained, barely audible",
+        "weight": 0
+      },
+      {
+        "text": "tape-hiss ambient with granular whispers, unsettling",
+        "weight": 0
+      }
+    ],
+    "scale": "A_MAJOR_G_FLAT_MINOR"
+  }
+}

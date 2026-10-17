@@ -1,4 +1,4 @@
-// ===== «Падение дома Ашеров» — the world's people: the narrator, Roderick, Madeline, the doctor, the valet, the horse, their things =====
+// ===== «The Fall of the House of Usher» — the world's people: the narrator, Roderick, Madeline, the doctor, the valet, the horse, their things =====
 // The body of function (anim, data) returning the kit; data = ushers.data.json (recorded motion).
 const { clamp, mix, span, hash, noise } = anim;
 const PI = Math.PI, TAU = 2 * PI, D2R = PI / 180;
@@ -827,8 +827,8 @@ function stepPerson(o, frame, mark) {
   // coming back to life after a freeze: a deep breath (the chest rises and opens, the head lifts)
   if (thaw < BREATH) { const b = Math.sin(PI * clamp(thaw / BREATH)); add0.shrug += 0.014 * b; add0.lean -= 7 * b; add0.head[0] -= 9 * b; }
   // trembling (fear, a hand that shakes after the guitar): fine fast shakes of the head and the hands
-  const tr = clamp(o.tremble || 0);
-  if (tr) { add0.head[0] += 2.5 * tr * noise(t * 9, seedF + 1); add0.head[1] += 2.5 * tr * noise(t * 8, seedF + 2); }
+  const tremble = clamp(o.tremble || 0);
+  if (tremble) { add0.head[0] += 2.5 * tremble * noise(t * 9, seedF + 1); add0.head[1] += 2.5 * tremble * noise(t * 8, seedF + 2); }
   // ---- the body rebuilt from the frame with its own lengths ----
   const legLen = d.thigh + d.shin;
   const Rp = frameFU(vecOf(base, 'pF'), vecOf(base, 'pU'));
@@ -893,7 +893,7 @@ function stepPerson(o, frame, mark) {
     if (wt > 0.001) { [E, Wr] = ik3(S[i], Wt, d.upper, d.fore, pole); }
     return { S: S[i], E, W: Wr, hdir: wt > 0.5 ? norm(sub(Wr, E)) : ha, hand: (o.handShape && o.handShape[i ? 'l' : 'r']) || hands[i] || 'open' };
   });
-  if (tr) arms.forEach((a, i) => { const k = 0.006 * H * tr; a.W = add(a.W, [k * noise(t * 11, seedF + 3 + i), k * noise(t * 13, seedF + 5 + i), k * noise(t * 12, seedF + 7 + i)]); });
+  if (tremble) arms.forEach((a, i) => { const k = 0.006 * H * tremble; a.W = add(a.W, [k * noise(t * 11, seedF + 3 + i), k * noise(t * 13, seedF + 5 + i), k * noise(t * 12, seedF + 7 + i)]); });
   // ---- legs: the planner's feet (where they stand) with the recording's lift, knee and heel-to-toe ----
   const hips = [1, -1].map(side => add(Pl, mv(Rp, [side * d.hw / 2, 0, 0])));
   const cph = Math.cos(fh), sph = Math.sin(fh);

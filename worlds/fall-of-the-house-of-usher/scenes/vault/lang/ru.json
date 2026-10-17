@@ -1,0 +1,4 @@
+{"strings": [
+  {"text":"The vault","translation":"Склеп","where":"scenes/vault/scene.json title"},
+  {"text":"The mockery of a faint blush lingered upon her face — as is usual in all maladies of a strictly cataleptical character.","translation":"На её лице застыл слабый румянец — как это бывает при каталепсии.","where":"scenes/vault/scene.json caption"}
+]}

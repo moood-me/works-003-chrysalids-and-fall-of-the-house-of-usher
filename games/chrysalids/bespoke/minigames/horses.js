@@ -14,7 +14,7 @@ import { until, keys } from '../hands.js';
 const TIME = 30, MOVED = 16;
 
 export default {
-  title: 'Тише, кони', // (as the author's ☰ lists it)
+  title: 'Тише, кони', // (as the author's map lists it)
   about: 30,
   skipped: { seen: false },
   async run(g, b, { start = 0.25, sheba = false, petra = false, horse } = {}, signal) {

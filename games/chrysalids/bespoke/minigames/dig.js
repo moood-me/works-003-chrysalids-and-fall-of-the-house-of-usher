@@ -10,7 +10,7 @@ import { until, keys } from '../hands.js';
 const BELL = 45;
 
 export default {
-  title: 'Раскопки до колокола', // (as the author's ☰ lists it)
+  title: 'Раскопки до колокола', // (as the author's map lists it)
   about: 30,
   skipped: { cleared: 1, bell: false },
   async run(g, b, opts, signal) {

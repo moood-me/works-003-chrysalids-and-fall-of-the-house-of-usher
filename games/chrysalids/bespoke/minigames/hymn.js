@@ -16,7 +16,7 @@ const LINES = [[A, [0, 0, 3, 5, 7, 5, 3, 2]], [A, [0, 0, 3, 5, 7, 5, 3, 0]], [B,
 const BEAT = 0.75, LEAD = 2, D3 = 146.83;
 
 export default {
-  title: 'Петь со всеми', // (as the author's ☰ lists it)
+  title: 'Петь со всеми', // (as the author's map lists it)
   about: 32,
   skipped: { hymn: 'lips', turned: 0 }, // (neutral: the path not moved)
   async run(g, b, opts, signal) {

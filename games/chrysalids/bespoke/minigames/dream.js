@@ -11,7 +11,7 @@ import { until, keys } from '../hands.js';
 const TIME = 40, WIDTH = 0.35, JERK = 2.2;
 
 export default {
-  title: 'Удержать сон', // (as the author's ☰ lists it)
+  title: 'Удержать сон', // (as the author's map lists it)
   about: 40,
   skipped: { held: 1, broke: false },
   async run(g, b, opts, signal) {

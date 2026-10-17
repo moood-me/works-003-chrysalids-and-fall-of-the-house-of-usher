@@ -13,7 +13,7 @@ const PLACES = ['washer', 'shepherd', 'cart', 'far_girl'];
 const SEARCH = 40, TURN = 9, LOOKS = 6; // s: the search; the ploughman turns after; looks so long
 
 export default {
-  title: 'Настройка', // (as the author's ☰ lists it)
+  title: 'Настройка', // (as the author's map lists it)
   about: 20,
   skipped: { caught: true, seen: false },
   async run(g, b, { find = 'washer', watch = false } = {}, signal) {

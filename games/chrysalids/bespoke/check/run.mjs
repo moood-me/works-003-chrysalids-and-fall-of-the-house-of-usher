@@ -1,5 +1,5 @@
 // The check of the game's branches: node bespoke/check/run.mjs <a clone of the world>. No browser, no engine,
-// nothing drawn. Every step of every chapter is played unseen, the way the author's ☰ plays it (jump.js: a dry run,
+// nothing drawn. Every step of every chapter is played unseen, the way the author's map plays it (jump.js: a dry run,
 // story.js context(…, j)), on a page that only knows the scenes' specs (fake.mjs): no time passes, the choices are
 // those of the play walked (a choice on time: its moment passed, if that is what the play has), a minigame gives the
 // result put in for it.
@@ -57,8 +57,10 @@ const MINIGAMES = {
   horses: { scene: 'flight', keys: ['great_toss', 'pack_toss', 'sheba_toss', 'petra_peek', 'lamp_x', 'lamp', 'search_point', 'great_a', 'pack_a', 'sheba_a'], points: ['great#head', 'pack#head', 'sheba#head', 'petra'], opts: ['start', 'sheba', 'petra', 'horse'], result: ['seen'] },
   shadow: { scene: 'edge', keys: ['walkers', 'walk_u', 'walk_lit', 'walk_shade'], points: ['david'], opts: ['hard', 'onSeen'], result: ['seen'] },
 };
-// what game.js itself takes of «Нити» (it is not run here): its keys, the knots it offers
-const NITI = { keys: ['chapters', 'shown', 'reveal', 'knot'], offers: Array.from({ length: 8 }, (_, i) => `k${i}#knot`) };
+// what game.js itself takes of «Нити» (it is not run here): its keys, what it offers — the knots, each chapter's forks
+// (its rows of choices), the author's mark
+const NITI = { keys: ['chapters', 'shown', 'reveal', 'knot', 'author'],
+  offers: chapters => [...Array.from({ length: 8 }, (_, i) => `k${i}#knot`), ...chapters.flatMap((c, i) => c.choices.map((_, k) => `t${i}#r${k}`)), 'author#mark'] };
 // the results put in: the outcomes a chapter branches on — clean, and each one's other
 const CLEAN = {};
 const OTHER = [{ podol: { hid: false } }, { dig: { cleared: 0.3, bell: true } }, { gaze: { found: false, left: 0 } }, { hymn: { hymn: 'silent', turned: 0.7 } }, { hymn: { hymn: 'loud', turned: 0.1 } },
@@ -170,7 +172,7 @@ if (niti) {
     if (key !== 'chapters' && niti.contract && !(key in niti.contract.party)) miss('game.js', `«${SCENES.niti}»: ключа «${key}» нет в party контракта`);
     niti.named.add(`party:${key}`);
   }
-  for (const ref of NITI.offers) {
+  for (const ref of NITI.offers(CHAPTERS)) {
     if (niti.contract && !niti.contract.offers.includes(ref)) miss('game.js', `«${SCENES.niti}»: предложения «${ref}» нет в контракте`);
     niti.named.add(`ref:${ref}`);
   }

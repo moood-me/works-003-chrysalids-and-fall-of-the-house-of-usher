@@ -177,7 +177,10 @@ export default async function (b) {
     let at = reveal ?? here; // (the chapter the sky is at)
     const go = i => { if (i !== at) { at = i; b.set('shown', i); drawn.shown(i); } };
     // (something of a chapter pressed — the sky goes to it)
-    const touched = ref => { const i = /^(?:knot|fork|go|cursor):(\d+)/.exec(ref)?.[1]; if (i != null) go(Number(i)); };
+    const touched = ref => { const i = /^(?:knot|fork|go|cursor):(\d+)/.exec(ref)?.[1]; if (i != null) bring(Number(i)); };
+    // (pressed on the chapter already shown, wherever the player dragged the sky: back to it)
+    let come = 0;
+    const bring = i => { if (i === at) b.set('come', ++come); else go(i); };
     const arrived = () => {
       go(here);
       if (end) g.wait(GO * 1000).then(() => epilogue(g, ENDINGS.find(e => e.id === kept.marks.ending)?.id));

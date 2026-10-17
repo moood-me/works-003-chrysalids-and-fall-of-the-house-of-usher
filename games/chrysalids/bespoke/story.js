@@ -294,9 +294,9 @@ export function context(b, view, hub, state, j = null, { forward = null } = {}) 
 
 // The player's choices and what the scenes tell, listened to once for the whole play (bespoke.on keeps a listener for
 // good) — game.js owns it: whatever is being chosen now gets the action; whoever waits for a tell hears it.
-//   hub.offer({ref: options}, {seconds, lead, quiet, touched}) → the action once the player has chosen it (what was
+//   hub.offer({ref: options}, {seconds, lead, quiet, touched, at}) → the action once the player has chosen it (what was
 //     offered before is dropped): a plain choice of the language of mini-games — a mark on each point (those of quiet:
-//     smaller and paler); a touch opens its options as petals, one too (what is chosen is seen in words first;
+//     smaller and paler; at: {ref: fn → {x, y} | null} — those on what the game draws, where fn says, map.js); a touch opens its options as petals, one too (what is chosen is seen in words first;
 //     touched(ref) is told), a petal pressed is chosen; one who touches no mark for SHOW s is shown how: the ghost
 //     finger on each in turn (lead: on those only). seconds — on time: the arc of time on each mark runs down (the
 //     mini-game's clock: it stands with the play's pause); out — null, the marks gone
@@ -317,17 +317,17 @@ export function listen(b) {
     heard('tell', w => w.text === text);
   });
   return {
-    offer(offers, { seconds, lead = null, quiet = [], touched = null } = {}) {
+    offer(offers, { seconds, lead = null, quiet = [], touched = null, at = {} } = {}) {
       offered?.leave();
       const mg = offered = b.minigame.start({ plate: false }), refs = Object.keys(offers), shows = [], marks = [];
       // (the thing itself glows when it alone is offered: one breath in one place)
-      if (refs.length === 1) mg.glow(refs[0].split('#')[0]);
+      if (refs.length === 1 && !at[refs[0]]) mg.glow(refs[0].split('#')[0]);
       let shown = false, touch = false;
       return new Promise(ok => {
         const over = action => { mg.leave(); offered = null; ok(action); };
         const chosen = (mark, action) => { mg.snap({ at: mark }); over(action); };
         for (const ref of refs) {
-          const options = offers[ref], mark = mg.mark({ at: ref.includes('#') ? ref : `${ref}@`, ...(seconds ? { time: 1 } : {}),
+          const options = offers[ref], mark = mg.mark({ at: at[ref] ?? (ref.includes('#') ? ref : `${ref}@`), ...(seconds ? { time: 1 } : {}),
             ...(quiet.includes(ref) ? { quiet: true } : {}) });
           const press = mg.press({ on: mark, petals: options });
           press.on('down', () => { touch = true; touched?.(ref); });

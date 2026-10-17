@@ -1,9 +1,9 @@
 // Хризалиды — по роману Джона Уиндема. A bespoke game (moood/engines/bespoke) on the world «Хризалиды v3» (engine 3):
 // the player is David; chapters one after another, each a row of steps on the world's scenes; their
 // choices, the scales (suspicion, the group, Petra's strength, the path) and what people remember
-// carry from chapter to chapter. The map of the play is the scene «Нити»: the whole play on the night sky — the
-// chapters left to right, a tree of each one's choices (its rows: the forks), the chapters to come only numbered; the
-// sky comes to a chapter (`shown`: the scene moves it there over a second — to the chapter of a mark touched), the
+// carry from chapter to chapter. The map of the play: the whole play on the night sky of the scene «Нити» — the
+// chapters left to right at its points, a tree of each one's choices (its rows: the forks) drawn by the game itself
+// over it (map.js), the chapters to come only numbered; the sky comes to a chapter (`shown`: the scene moves it there over a second — to the chapter of a mark touched), the
 // player drags it anywhere. In the corner, how things stand now (ui.js now). Marks on it — the language of
 // mini-games' plain choice (story.js hub) — on every knot and fork there is something to do at, all at once: the main
 // run's chapter — «Начать», «Продолжить» (from the beginning of the step it stopped in); a chapter played —
@@ -29,6 +29,7 @@ import { SCENES, context, listen } from './story.js';
 import { jump } from './jump.js';
 import { unheard, pause } from './sound.js';
 import { ui } from './ui.js';
+import { trees } from './map.js';
 import { SCALES, level, people, differ } from './journal.js';
 import one from './chapters/1.js';
 import two from './chapters/2.js';
@@ -43,7 +44,6 @@ const END = CHAPTERS.length; // «Нити»'s last place: how the play ended
 const NITI = SCENES.niti;
 const GO = 1; // s: the sky going from one chapter to another
 const REVEAL = 6; // s: a chapter's threads growing on the sky, row by row, as it has been played through
-const AUTHOR = 'author#mark'; // the author's mark on «Нити»
 const RUN = { chapter: 0, step: 0, scales: { suspicion: 0, group: 0, petra: 0, path: 0 }, marks: {}, choices: {} };
 const GROWN = Symbol('grown');
 
@@ -154,25 +154,26 @@ export default async function (b) {
     b.menu(null);
     view.replaying(!!replay);
     const here = replay ? replay.run.chapter : Math.min(kept.chapter, END);
-    await b.show(NITI, { state: { chapters: sky(), shown: reveal ?? here, reveal: reveal == null ? 1 : 0, knot: 1, author: !!author }, captions: false });
+    await b.show(NITI, { state: { shown: reveal ?? here }, captions: false });
+    const drawn = trees(b, sky(), { shown: reveal ?? here, grow: reveal, seconds: REVEAL, author: !!author });
     const hideNow = view.now(now(replay?.run ?? kept)), hideCompare = replay?.done ? view.compare(compared()) : () => {};
     const g = context(b, view, hub, kept); // (what the map says: the epilogue)
     let grown = reveal == null, asked = null; // (an option that would leave the replay: asked again)
     let at = reveal ?? here; // (the chapter the sky is at)
-    const go = i => { if (i !== at) { at = i; b.set('shown', i); } };
-    // (a mark touched — the sky goes to its chapter; not while a chapter's threads grow: they grow on the one shown)
-    const touched = ref => { const i = /^[kt](\d+)#/.exec(ref)?.[1]; if (grown && i != null) go(Number(i)); };
+    const go = i => { if (i !== at) { at = i; b.set('shown', i); drawn.shown(i); } };
+    // (a mark touched — the sky goes to its chapter)
+    const touched = ref => { const i = /^(?:knot|fork):(\d+)/.exec(ref)?.[1]; if (i != null) go(Number(i)); };
     const arrived = () => {
       go(here);
       if (end) g.wait(GO * 1000).then(() => epilogue(g, ENDINGS.find(e => e.id === kept.marks.ending)?.id));
     };
-    if (reveal != null) b.set('reveal', 1, REVEAL);
-    else arrived();
+    if (reveal == null) arrived();
     const growing = grown ? null : new Promise(ok => setTimeout(() => ok(GROWN), REVEAL * 1000));
     try {
       for (;;) {
         const { offers, lead, quiet } = marks(asked, grown ? null : reveal);
-        const picked = await Promise.race([hub.offer(offers, { lead, quiet, touched }), new Promise(ok => { jumped = ok; }), ...(grown ? [] : [growing])]);
+        const on = Object.fromEntries(Object.keys(offers).map(ref => [ref, drawn.at(ref)]));
+        const picked = await Promise.race([hub.offer(offers, { lead, quiet, touched, at: on }), new Promise(ok => { jumped = ok; }), ...(grown ? [] : [growing])]);
         if (picked === GROWN) { grown = true; arrived(); continue; }
         if (picked.jump) return picked;
         if (picked.id === 'author') { author(); continue; }
@@ -185,6 +186,7 @@ export default async function (b) {
       hub.withdraw();
       hideNow();
       hideCompare();
+      drawn.remove();
     }
   }
   // the map's marks: {offers: {ref: options}, lead: the refs the ghost shows, quiet: those drawn small} — `asked`: the
@@ -193,23 +195,23 @@ export default async function (b) {
     const offers = {}, quiet = [];
     const add = (ref, id, label) => { (offers[ref] ??= []).push({ id, label: id === asked ? 'Бросить переигровку' : label }); };
     if (replay) {
-      const k = `k${replay.run.chapter}#knot`;
+      const k = `knot:${replay.run.chapter}`;
       if (replay.done) { add(k, 'keep', 'Оставить'); add(k, 'drop', 'Отменить'); }
       else { add(k, 'replay', 'Продолжить переигровку'); add(k, 'back', 'Вернуться к основной'); }
     }
-    if (kept.chapter < END) add(`k${kept.chapter}#knot`, 'main', kept.step ? 'Продолжить' : 'Начать');
+    if (kept.chapter < END) add(`knot:${kept.chapter}`, 'main', kept.step ? 'Продолжить' : 'Начать');
     for (let i = 0; i < Math.min(kept.chapter, END); i++) {
-      if (kept.steps[i]?.[0]) add(`k${i}#knot`, `chapter:${i}`, 'Переиграть главу');
+      if (kept.steps[i]?.[0]) add(`knot:${i}`, `chapter:${i}`, 'Переиграть главу');
       if (i === growing) continue;
       CHAPTERS[i].choices.forEach((c, k) => {
-        const s = fork(i, c.id), ref = `t${i}#r${k}`;
+        const s = fork(i, c.id), ref = `fork:${i}:${k}`;
         if (s == null) return;
         add(ref, `fork:${i}:${s}`, 'Переиграть отсюда');
         quiet.push(ref);
       });
     }
-    if (author) { add(AUTHOR, 'author', 'Карта автора'); quiet.push(AUTHOR); }
-    return { offers, lead: [`k${replay ? replay.run.chapter : kept.chapter}#knot`].filter(ref => ref in offers), quiet };
+    if (author) { add('author', 'author', 'Карта автора'); quiet.push('author'); }
+    return { offers, lead: [`knot:${replay ? replay.run.chapter : kept.chapter}`].filter(ref => ref in offers), quiet };
   }
   // the step of chapter i in which the main run made the choice `id`: the first that began without it and ended with
   // it — known where both states are kept

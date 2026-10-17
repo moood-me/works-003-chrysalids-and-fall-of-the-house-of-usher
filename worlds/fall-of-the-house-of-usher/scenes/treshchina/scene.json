@@ -3,7 +3,8 @@
   "title": "Трещина",
   "caption": "",
   "camera": {
-    "mode": "picture"
+    "mode": "panorama",
+    "span": [0, 25]
   },
   "horizon": 0.5,
   "light": {
@@ -11,39 +12,13 @@
     "vignette": 0.7
   },
   "state": {
-    "chapter_number": "I",
-    "chapter_title": "Приезд",
-    "map": null,
-    "reveal": 1,
-    "knot": 1
+    "shown": 0,
+    "camera_x": 0
   },
   "states": {
-    "chapter_number": {
-      "type": "string",
-      "means": "номер главы над её названием («I»…; пусто — пролог, эпилог)"
-    },
-    "chapter_title": {
-      "type": "string",
-      "means": "название главы, высеченное на стене"
-    },
-    "map": {
-      "means": "null — только титул; иначе строки выборов главы: [{title, weight '⚑'|'~', options: [{label, state: 'chosen'|'open'|'unseen'}]}] — трещина идёт через выбранное, волосок к открытому, едва видная линия к недостигнутому"
-    },
-    "reveal": {
-      "range": [
-        0,
-        1
-      ],
-      "smooth": true,
-      "means": "как далеко трещина спустилась по стене: 0 — её нет, 1 — до низа кадра; слова строки — когда она до них дошла"
-    },
-    "knot": {
-      "range": [
-        0,
-        1
-      ],
-      "smooth": true,
-      "means": "яркость конца трещины (элемент knot), когда трещина до него дошла"
+    "shown": {
+      "type": "number",
+      "means": "глава, на которой игрок: вид едет к её точке c<i> (camera_x)"
     }
   },
   "objects": [
@@ -53,22 +28,109 @@
       "name": "Стена дома"
     },
     {
-      "id": "crack",
-      "sky": true,
-      "name": "Трещина",
-      "uniforms": {
-        "reveal": 1,
-        "title": 1
-      }
+      "id": "c0",
+      "name": "Глава",
+      "unseen": true,
+      "across": 0,
+      "distance": 10,
+      "elevation": 4.65,
+      "height": 0.1,
+      "box": [
+        -0.05,
+        -0.1,
+        0.05,
+        0
+      ]
     },
     {
-      "id": "knot",
-      "sky": true,
-      "name": "Конец трещины",
-      "uniforms": {
-        "reveal": 1,
-        "knot": 1
-      }
+      "id": "c1",
+      "name": "Глава",
+      "unseen": true,
+      "across": 5,
+      "distance": 10,
+      "elevation": 4.65,
+      "height": 0.1,
+      "box": [
+        -0.05,
+        -0.1,
+        0.05,
+        0
+      ]
+    },
+    {
+      "id": "c2",
+      "name": "Глава",
+      "unseen": true,
+      "across": 10,
+      "distance": 10,
+      "elevation": 4.65,
+      "height": 0.1,
+      "box": [
+        -0.05,
+        -0.1,
+        0.05,
+        0
+      ]
+    },
+    {
+      "id": "c3",
+      "name": "Глава",
+      "unseen": true,
+      "across": 15,
+      "distance": 10,
+      "elevation": 4.65,
+      "height": 0.1,
+      "box": [
+        -0.05,
+        -0.1,
+        0.05,
+        0
+      ]
+    },
+    {
+      "id": "c4",
+      "name": "Глава",
+      "unseen": true,
+      "across": 20,
+      "distance": 10,
+      "elevation": 4.65,
+      "height": 0.1,
+      "box": [
+        -0.05,
+        -0.1,
+        0.05,
+        0
+      ]
+    },
+    {
+      "id": "c5",
+      "name": "Глава",
+      "unseen": true,
+      "across": 25,
+      "distance": 10,
+      "elevation": 4.65,
+      "height": 0.1,
+      "box": [
+        -0.05,
+        -0.1,
+        0.05,
+        0
+      ]
+    },
+    {
+      "id": "author",
+      "name": "Карта автора",
+      "unseen": true,
+      "across": -3.2,
+      "distance": 10,
+      "elevation": 3.65,
+      "height": 0.1,
+      "box": [
+        -0.05,
+        -0.1,
+        0.05,
+        0
+      ]
     }
   ]
 }

@@ -192,7 +192,6 @@
   {"text":"The author’s map","translation":"Карта автора","where":"bespoke/game.js"},
   {"text":"continue\nthe game","translation":"продолжить\nигру","where":"bespoke/game.js"},
   {"text":"start\nthe game","translation":"начать\nигру","where":"bespoke/game.js"},
-  {"text":"Replay","translation":"Переигровка","where":"bespoke/map.js"},
   {"text":"continue\nthe replay","translation":"продолжить\nпереигровку","where":"bespoke/map.js"},
   {"text":"the author","translation":"автор","where":"bespoke/map.js"},
   {"text":"For many years he had not ventured forth, and he balked at every step","translation":"Он не выходил из дома много лет и упирался на каждом шаге","where":"bespoke/minigames/by-the-hand.js"},
@@ -237,6 +236,7 @@
   {"text":"Roderick ↓","translation":"Родерик ↓","where":"bespoke/story.js"},
   {"text":"Roderick ↑ — he trusts you more, ↓ — less.","translation":"Родерик ↑ — он верит тебе больше, ↓ — меньше.","where":"bespoke/story.js"},
   {"text":"Madeline heard that.","translation":"Мэдлин это слышала.","where":"bespoke/story.js"},
+  {"text":"Replay","translation":"Переигровка","where":"bespoke/ui.js"},
   {"text":"U","context":"the seal: Usher’s initial","translation":"А","where":"bespoke/ui.js"},
   {"text":"fold","translation":"сложить","where":"bespoke/ui.js"},
   {"text":"unfold","translation":"развернуть","where":"bespoke/ui.js"}

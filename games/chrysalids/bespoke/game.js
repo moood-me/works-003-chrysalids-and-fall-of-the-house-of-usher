@@ -273,7 +273,7 @@ export default async function (b) {
     return { main: main && now(main), replay: now(replay.run), people: main ? differ(main.marks, replay.run.marks) : [],
       again: kept.chapter > i + 1 || (kept.chapter === i + 1 && kept.step > 0) };
   }
-  // the chapters as “Threads” draws them: each one's threads — the main run's, and the replay's where it is (its plate);
+  // the chapters as “Threads” draws them: each one's threads — the main run's, and the replay's where it is;
   // where the play is — the main run's pointer (its words), a replay's going on
   function sky() {
     const re = replay?.run;
@@ -281,7 +281,7 @@ export default async function (b) {
       const played = i < kept.chapter || (i === kept.chapter && kept.step > 0), tried = re?.chapter === i;
       const kind = i === (re ? re.chapter : kept.chapter) ? 'here' : i < kept.chapter ? 'played' : i === kept.chapter ? 'next' : 'future';
       return { number: c.number, title: c.title, kind, map: played || tried ? threads(c, played ? kept.choices : {}, tried ? re.choices : {}) : null,
-        badge: tried, go: i === kept.chapter ? (kept.step ? tr('continue the game') : tr('start the game')) : null, cursor: tried && !replay.done };
+        go: i === kept.chapter ? (kept.step ? tr('continue the game') : tr('start the game')) : null, cursor: tried && !replay.done };
     });
     const ended = kept.chapter >= END, ending = kept.marks.ending;
     list.push({ number: '', title: tr('The end'), kind: ended ? 'end' : 'future',
@@ -302,6 +302,8 @@ function load(saved) {
     steps[main.chapter] = [run(main)];
   }
   (steps[main.chapter] ??= [])[main.step] ??= run(main);
+  // (the first chapter begins as the play does: its start is known even where an older save did not keep it)
+  (steps[0] ??= [])[0] ??= run(RUN);
   return { ...main, steps, seen };
 }
 // a run's own fields (the play's position and what it carries), apart from what the play keeps of its chapters

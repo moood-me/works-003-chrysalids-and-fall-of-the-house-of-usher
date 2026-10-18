@@ -8,7 +8,6 @@
 //   view.letter({text, highlight, sign}, {signal}) — a folded letter on the dark: the player unfolds
 //     it, reads it, folds it again; → then. text: its lines ('\n'); highlight: words of it underlined
 //   view.title(text, {signal}) — words over the scene, as a film's title; → once they have gone
-//   view.replaying(on) — the slip «Replay» in the corner while a replay goes on (game.js)
 //   view.quiet() — what a chapter left showing taken away (the map comes)
 //   view.notice(text) — a line low in the middle, till it is taken away (→ what takes it away): what a choice on the
 //     map would do
@@ -40,9 +39,6 @@ export function ui(layer) {
   const crack = crackGauge(layer);
   const flame = candle(layer);
   const toasts = el('div', 'toasts', layer);
-  const replay = el('div', 'replay', layer);
-  replay.textContent = tr('Replay');
-  replay.hidden = true;
   return {
     gauges(kept) {
       crack.show(!!kept?.shown.crack, kept ? 0.06 + 0.94 * Math.min(1, kept.scales.crack / CRACK_FULL) : 0);
@@ -76,7 +72,6 @@ export function ui(layer) {
         signal?.addEventListener('abort', () => { timers.forEach(clearTimeout); t.remove(); });
       });
     },
-    replaying(on) { replay.hidden = !on; },
     // what a chapter left showing (its strips) taken away: the map comes
     quiet() {
       toasts.replaceChildren();

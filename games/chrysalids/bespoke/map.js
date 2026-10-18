@@ -8,7 +8,7 @@
 // A tree: its number and title over its knot (the current chapter's larger), a gold lead down to its rows; a row — a
 // fork: the question on the left | the trunk with a gold dot | the answers on the right, the main run's first in gold,
 // the others smaller under it on twigs (a replay's pale blue); ⚑ — a key one; a replay's thread dashed pale blue
-// beside the trunk, from its first row to its last. Where the play is: the
+// beside the trunk, from its first row to its last, and the plate “Replay” on its tree. Where the play is: the
 // main run's chapter — a pending row after its last fork reached, the trunk dashed on from it, “continue the game” with
 // its arrow; a replay — a cursor row under the last fork it played, “continue the replay”.
 // What can be done on it is the map's own: its pointers, played forks (the dot, the answer chosen), knots and heads,
@@ -16,10 +16,10 @@
 // offered takes a touch (≥ 44 px); the rest of the sky is the scene's (dragged).
 //   trees(b, chapters, {shown, grow, seconds, author}) → { at(ref) → () => {x, y} | null — that element's page point
 //     now (refs: knot:<i>, fork:<i>:<k> — the dot of row k —, go:<i> — the main run's pointer —, cursor:<i> — the
-//     replay's —, author); offer(refs, fn) — those take a press, fn(ref) told; shown(i) — the chapter in the middle
-//     (its knot brighter); remove() }
+//     replay's —, badge:<i> — the replay's plate —, author); offer(refs, fn) — those take a press, fn(ref) told;
+//     shown(i) — the chapter in the middle (its knot brighter); remove() }
 //   chapters — as game.js sky() gives them: [{number, title, kind: here | played | next | future | end, map: [{title,
-//     weight, options: [{label, state: chosen | tried | both | open | unseen}]}] | null, go (the
+//     weight, options: [{label, state: chosen | tried | both | open | unseen}]}] | null, badge (a replay in it: its plate, badge:<i>), go (the
 //     main run's pointer: its words) | null, cursor (the replay's pointer)}]; grow — the chapter whose rows come one
 //     after another within `seconds`; author — the author's sign shown
 const DIST = 10; // m: the points' distance from the eye — a tree drawn at its size there
@@ -105,6 +105,13 @@ export function trees(b, chapters, { shown = 0, grow = null, seconds = 6, author
     head.append(el('div', 'title', c.title));
     tree.setAttribute('aria-label', c.number ? tr('Chapter {number}. {title}', { number: c.number, title: c.title }) : c.title);
     head.dataset.ref = `knot:${i}`;
+    if (c.badge) {
+      const plate = el('div', 'badge');
+      plate.append(el('i'), tr('Replay'));
+      plate.dataset.ref = `badge:${i}`;
+      tree.append(plate);
+      nodes.set(`badge:${i}`, plate);
+    }
     const knot = el('div', 'knot');
     knot.append(el('i', 'halo'), el('i', 'core'), hit(`knot:${i}`, c.title));
     tree.append(el('i', 'lead'), knot);
@@ -115,7 +122,7 @@ export function trees(b, chapters, { shown = 0, grow = null, seconds = 6, author
     // where the pointers stand: after the last fork the main run reached, after the last the replay played
     const goAt = c.go ? last(rows, main) + 1 : -1, cursorAt = c.cursor ? last(rows, tried) + 1 : -1;
     // the replay's thread: from its first fork to its last (and on to its pointer)
-    const r0 = rows.findIndex(tried), r1 = last(rows, tried);
+    const r0 = c.badge ? rows.findIndex(tried) : -1, r1 = c.badge ? last(rows, tried) : -1;
     const list = el('ol', 'rows'), items = [];
     for (let k = 0; k <= rows.length; k++) {
       if (k === cursorAt) items.push(pointer('cursor', i, tr('continue the replay'), nodes));

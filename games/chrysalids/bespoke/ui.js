@@ -1,9 +1,7 @@
 // What the game shows over the scene (bespoke.layer): the eye in the corner — how much the people
 // around suspect, darker the more; the few words that come up when a scale moves or someone
-// will remember ("The group ↑", "Sophie will remember this."); the plate “Replay” in the other corner while a replay is
-// going (game.js). The ⏸, ⏭ and ☰ are the page's. For the author a map (its mark on “Threads” opens it) — every chapter
+// will remember ("The group ↑", "Sophie will remember this."). The ⏸, ⏭ and ☰ are the page's. For the author a map (its mark on “Threads” opens it) — every chapter
 // and its steps (and the minigames a step has, under it), to go to any of them.
-//   view.replaying(on) — the plate shown or not
 //   view.quiet() — what a chapter left showing taken away (the map comes)
 //   view.author({ chapters, at() → {chapter, step}, plays(chapter, step) → [titles of its minigames], go(chapter, step,
 //     minigame) }) — the author's tools: a step to go to, or a minigame of it (its index among the step's); → what opens
@@ -20,9 +18,7 @@ export function ui(layer) {
   eye.innerHTML = '<svg viewBox="0 0 48 28"><path d="M2 14C10 4 38 4 46 14C38 24 10 24 2 14Z"/><circle cx="24" cy="14" r="6"/></svg>';
   const toasts = document.createElement('div');
   toasts.className = 'toasts';
-  const replay = el('div', 'replay', tr('Replay'));
-  replay.hidden = true;
-  layer.append(eye, toasts, replay);
+  layer.append(eye, toasts);
   return {
     eye(level) { eye.style.setProperty('--level', Math.min(3, Math.max(0, level))); },
     toast(text, kind = 'scale') {
@@ -33,7 +29,6 @@ export function ui(layer) {
       setTimeout(() => t.classList.add('gone'), 3800);
       setTimeout(() => t.remove(), 5200);
     },
-    replaying(on) { replay.hidden = !on; },
     // what a chapter left showing (its strips) taken away: the map comes
     quiet() {
       toasts.replaceChildren();

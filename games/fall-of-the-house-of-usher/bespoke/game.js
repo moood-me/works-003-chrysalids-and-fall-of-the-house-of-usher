@@ -169,7 +169,7 @@ export default async function (b) {
     view.quiet();
     hush(2);
     view.gauges(null);
-    const here = replay ? replay.run.chapter : Math.min(kept.chapter, EPILOGUE);
+    const here = replay ? replay.run.chapter : Math.min(kept.chapter, END);
     await b.show(SCENES.wall, { state: { shown: reveal ?? here }, captions: false });
     const drawn = trees(b, sky(), { grow: reveal, seconds: REVEAL, author: !!author });
     const notice = replay?.done && anew() ? view.notice(tr('If you keep it, the chapters after this one will have to be played again.')) : () => {};
@@ -281,7 +281,14 @@ export default async function (b) {
       const all = rows(c, reached ? kept.choices : {}, tried ? re.choices : {});
       return { number: c.number, title: c.title, kind, rows: i < kept.chapter && !tried ? all : all.filter(r => r.options.some(o => o.state !== 'unseen')),
         go: i === kept.chapter ? (kept.step ? tr('continue\nthe game') : tr('start\nthe game')) : null, replay: tried && !replay.done, badge: tried };
-    });
+    }).concat(finale());
+  }
+  // after the epilogue, at the map's last point: how the play ended — its endings, the one it came to chosen
+  // (the other endings a thread each, without words); before that only its word, as the chapters to come their numbers
+  function finale() {
+    const title = tr('The end');
+    if (kept.chapter < END) return { number: title, title, kind: 'future', rows: [], go: null };
+    return { number: '', title, kind: 'end', rows: [{ title: '', weight: '⚑', options: epilogue.endings.map(e => ({ label: e.label, state: e.id === kept.ending ? 'chosen' : 'unseen' })) }], go: null };
   }
 }
 

@@ -130,12 +130,6 @@
 #underlay .tree .opt.tried .twig path { stroke: var(--tried); stroke-dasharray: 4 3; }
 #underlay .tree .opt.unseen { font-size: calc(var(--u) * var(--s) * 16); line-height: var(--L); letter-spacing: 0.35em; color: rgba(169, 177, 207, 0.7); }
 
-/* the replay's plate on its tree */
-#underlay .tree .badge { position: absolute; left: calc(var(--w) / -2); top: calc(var(--u) * -128); display: inline-flex; align-items: center; gap: calc(var(--u) * 7);
-  padding: calc(var(--u) * 3) calc(var(--u) * 10); border: 1px solid rgba(207, 224, 255, 0.35); border-radius: 999px; white-space: nowrap;
-  font-size: calc(var(--u) * 12.5); font-style: italic; color: var(--tried); background: rgba(12, 16, 32, 0.55); text-shadow: none; }
-#underlay .tree .badge i { width: calc(var(--u) * 16); border-top: 1.5px dashed var(--tried); }
-
 /* where the play is: the main run's pointer (gold) and a replay's (pale blue), their words and arrow toward the trunk */
 @keyframes niti-nudge { from { transform: translateX(calc(var(--u) * -3)); } to { transform: translateX(calc(var(--u) * 2)); } }
 @keyframes niti-tip { from { opacity: 0.45; } to { opacity: 1; } }

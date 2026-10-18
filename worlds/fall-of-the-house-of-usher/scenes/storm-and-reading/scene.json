@@ -786,7 +786,7 @@
   ],
   "state": {
     "beat": null,
-    "fade": 1,
+    "fade": 0,
     "candle": 1,
     "crack": 0.4,
     "glow": 0.2,

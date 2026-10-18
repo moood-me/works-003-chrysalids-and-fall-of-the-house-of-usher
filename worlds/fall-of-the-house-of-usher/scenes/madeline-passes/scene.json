@@ -1254,7 +1254,7 @@
   ],
   "state": {
     "beat": null,
-    "fade": 1,
+    "fade": 0,
     "camera_x": 0,
     "camera_z": 0,
     "crack": 0.3,

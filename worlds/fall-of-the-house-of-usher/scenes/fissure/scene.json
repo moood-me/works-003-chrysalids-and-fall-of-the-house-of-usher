@@ -4,7 +4,7 @@
   "caption": "",
   "camera": {
     "mode": "panorama",
-    "span": [0, 25]
+    "span": [0, 30]
   },
   "horizon": 0.5,
   "light": {
@@ -112,6 +112,21 @@
       "name": "Chapter",
       "unseen": true,
       "across": 25,
+      "distance": 10,
+      "elevation": 4.65,
+      "height": 0.1,
+      "box": [
+        -0.05,
+        -0.1,
+        0.05,
+        0
+      ]
+    },
+    {
+      "id": "c6",
+      "name": "Chapter",
+      "unseen": true,
+      "across": 30,
       "distance": 10,
       "elevation": 4.65,
       "height": 0.1,

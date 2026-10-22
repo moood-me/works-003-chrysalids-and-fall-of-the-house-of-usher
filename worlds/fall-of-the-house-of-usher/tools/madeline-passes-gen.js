@@ -77,7 +77,7 @@ const spec = {
     { id: "candle", of: "sconce#flame", reach: 5, strength: 0.8, on: "sconce", flicker: 0.35, glow: 0.25 },
   ],
   state: {
-    beat: null, fade: 1, camera_x: 0, camera_z: 0, crack: 0.3, light_shafts: 1, low_sun: 0, sconce: 1,
+    beat: null, camera_x: 0, camera_z: 0, crack: 0.3, light_shafts: 1, low_sun: 0, sconce: 1,
     closeup: 0, shot: "roderick", cu_turn: 0, cu_tear: 0, cu_inhale: 0, cu_blink: 0, speak: 0,
     narrator_a: -1.15, narrator_d: 2.7, narrator_turn: 0, roderick_a: 0.75, roderick_d: 3.4, roderick_turn: 355,
     madeline_a: -4.6, madeline_d: 20.4, madeline_turn: 85, doctor_a: -4.6, doctor_d: 20.4, doctor_here: false,

@@ -48,8 +48,8 @@ through her eyes — from within; the iron door closes. Another night — outsid
   - `outside` (`outside.wgsl`): layer 1 — the passage by the door, 2 — the leaf (trembling from `knock`/`answer`), 3 —
     the candle's flame (stretching and bending with its tremor); the dust from the top of the door and the darkness
     around — in the shader.
-- Cuts without fades: the next shot is prepared (`s.shot`) and shown whole. `fade` — only as a device: the chapter out
-  of the dark (`enter`), into the dark (`vault`, `check`), her eyes in the dark (`inside`), another night (`at_door`).
+- Cuts without fades: the next shot is prepared (`s.shot`) and shown whole. No fade of the scene's own: a beat begins
+  and ends seen (the black between, if any, is the game's).
 
 ## Keys
 | Key | What |
@@ -57,7 +57,6 @@ through her eyes — from within; the iron door closes. Another night — outsid
 | `beat` | a beat (the `beats` module): the name — it plays from the start, at the end the scene says `beat:<name>` |
 | `closeup`, `shot` | the close-up insert is open (0/1); which: `face`, `mirror`, `hands`, `lid` |
 | `inside`, `outside` | the inserts “from within” and “at the door” (0/1) |
-| `fade` | a fade 0…1 (only as a device) |
 | `camera_x`, `camera_z`, `camera_h`, `camera_look` | the eye; at the coffin — `−0.35, 0.9, 0.9, 0.3` (from above into the coffin) |
 | `crack` | the crack on the back wall 0…1 (the game sets it by the scale) |
 | `blush` | the blush on the cheeks and breast 0…1 (`face`) |
@@ -91,8 +90,8 @@ Who is where: Roderick behind the coffin at its head (−1.25, 4.98), over her b
 the narrator behind the coffin at its foot (0.45, 5.02), the torch in his left hand. The beats last as long as the people
 take; the seconds are approximate.
 
-- **vault** (showcase, ≈ 4 s): the vault at the coffin, the lid slid back; the eye a little closer; into the dark.
-- **enter** (≈ 22 s): out of the dark the two carry the coffin in through the door (Roderick backing at its head), carry
+- **vault** (showcase, ≈ 4 s): the vault at the coffin, the lid slid back; the eye a little closer.
+- **enter** (≈ 22 s): the two carry the coffin in through the door (Roderick backing at its head), carry
   it to the bier, the coffin turns along the vault; they set it down; Roderick goes round the head to behind the coffin;
   the narrator goes to the pier, takes the torch from its holder, comes back to the foot. Ends: the coffin on the bier,
   the two behind it, the torch in his hand.
@@ -108,8 +107,8 @@ take; the seconds are approximate.
 - **close** (≈ 8 s): to say nothing — they slide it shut together, Roderick to the end.
 - **screws** (1.35 s, after shut/insist/close): the lid close, the screwdriver on the first screw. Ends under “The
   screws”.
-- **check** (≈ 6 s, after screws): the screwdriver with Roderick, he drives home the ones not driven home; into the dark.
-- **inside** (≈ 10.5 s): out of the dark a thread of light; the shadows of the two over it; the points come out one by
+- **check** (≈ 6 s, after screws): the screwdriver with Roderick, he drives home the ones not driven home.
+- **inside** (≈ 10.5 s): a thread of light; the shadows of the two over it; the points come out one by
   one as the screwdriver works (`tip` — at each turn; the game sounds the screw at each change, not by seconds); the light
   goes. Ends: dark.
 - **leave** (≈ 13 s): a cut to the vault; Roderick straightens and goes out by the door and up the steps; the narrator

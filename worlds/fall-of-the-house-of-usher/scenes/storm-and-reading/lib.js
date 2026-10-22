@@ -849,7 +849,7 @@ function film(scene) {
 
   // ── the state the beats begin at ──
   const room = {
-    fade: 0, candle: 1, lightning: 0, glow: 0.55, storm: 1, window: 0, wind: 0.12, door: 0, hall_lamp: 0, hall_x: -1.4,
+    candle: 1, lightning: 0, glow: 0.55, storm: 1, window: 0, wind: 0.12, door: 0, hall_lamp: 0, hall_x: -1.4,
     ripple: 0, listen: 0, shudder: 0, quake: 0, rift: 0, rock: 0, lamp_down: 0, lamp_held: 0, closeup: 0, shot: null,
     cu_speak: 0, cu_reach: 0, cu_push: 0, grab: 0, held_rod: 0, held_mad: 0, camera_x: 0, camera_h: 0,
   };
@@ -943,12 +943,11 @@ function film(scene) {
   });
 
   return {
-    // ---- The nights: alone by the candle, the quiet rain; out of black; he turns his head to the floor, and back
+    // ---- The nights: alone by the candle, the quiet rain; he turns his head to the floor, and back
     night: {
-      from: () => ({ ...night, ...seated, ...noRoderick, ...noMadeline, ...hands, fade: 1 }),
+      from: () => ({ ...night, ...seated, ...noRoderick, ...noMadeline, ...hands }),
       run: async (s) => {
         const nar = s.person('narrator');
-        s.move('fade', 0, { over: 2.5, ease: 'out' });
         await s.wait(2.8);
         nar.look(SPOT_AT);
         await s.wait(1.8);
@@ -978,10 +977,9 @@ function film(scene) {
     // ---- The storm: hurried steps, the lamp under the door — the door bursts open: Roderick with his lamp, staring; he
     // comes in; the narrator gets up; the door drifts back; close: his face from below in his lamp's light, hair wild
     enter_lamp: {
-      from: () => ({ ...room, ...seated, ...noRoderick, ...noMadeline, ...hands, fade: 1, hall_x: -1.3 }),
+      from: () => ({ ...room, ...seated, ...noRoderick, ...noMadeline, ...hands, hall_x: -1.3 }),
       run: async (s) => {
         const nar = s.person('narrator'), rod = s.person('roderick');
-        s.move('fade', 0, { over: 1.5, ease: 'out' });
         await s.wait(0.9);
         s.move('hall_x', 0, { over: 1.2, ease: 'out' });
         s.move('hall_lamp', 0.85, { over: 0.9, ease: 'out' });
@@ -1122,9 +1120,8 @@ function film(scene) {
     },
     // ---- Later: the window shut, Roderick in the high chair facing the door, rocking a little; the narrator reads
     read: {
-      from: () => ({ ...reading, rock: 0, roderick_do: loop('seated'), fade: 1 }),
+      from: () => ({ ...reading, rock: 0, roderick_do: loop('seated') }),
       run: async (s) => {
-        await s.move('fade', 0, { over: 2, ease: 'inOut' });
         await s.move('rock', 0.3, { over: 2, ease: 'inOut' });
       },
     },
@@ -1291,7 +1288,7 @@ function film(scene) {
         await end;
       },
     },
-    // ---- Or he stays where he stands: the same end of the room around him; to black
+    // ---- Or he stays where he stands: the same end of the room around him
     stay: {
       after: ['collapse', 'hands'],
       from: () => ({ ...risen(), ...inRoom, narrator_look: 'madeline' }),
@@ -1301,8 +1298,7 @@ function film(scene) {
         const end = ruin(s);
         await s.wait(0.4);
         leftBehind(s);
-        await s.wait(5.0);
-        await s.move('fade', 1, { over: 3.0, ease: 'in' });
+        await s.wait(8);
         await end;
       },
     },

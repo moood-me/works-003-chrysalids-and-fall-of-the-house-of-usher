@@ -11,21 +11,21 @@ the close-up from 0.9 s into the beat `meet` and from 5.0 s into `news`: the gam
 
 | beat | after | what is seen | ends on |
 | --- | --- | --- | --- |
-| `enter` | — | out of the dark; the valet shows the narrator in from the right; Roderick looks, the valet bows; Roderick rises from the chair — too quickly, goes to his friend, takes his hand in both of his; the valet leaves | the two in mid-room, hand in hand |
+| `enter` | — | the valet shows the narrator in from the right; Roderick looks, the valet bows; Roderick rises from the chair — too quickly, goes to his friend, takes his hand in both of his; the valet leaves | the two in mid-room, hand in hand |
 | `meet` | enter | a cut to the close-up (`closeup_shot` glad): the eyes huge, wet, a smile comes; the lips 0.9–4.4 s (**the game's line from 0.9 s**); from 4 s the smile tightens into strain | the strained face |
 | `room` | meet | a cut to the room; he lets go of the hand, goes to the chair, sits; the narrator steps away | Roderick in the chair, the narrator to the right — the room free for “Quieter or brighter” |
 | `ease` | room, ease, flinch | a breath out, the shoulders drop, a nod | sits, eased |
 | `flinch` | room, ease, flinch | covers his eyes with a hand, turns away | sits, half turned away |
 | `portrait` | room, ease, flinch | the camera to Madeline's portrait; he gets up, goes to it, looks up at her, his back to us; once he stands before her the scene says `portrait:before` (**the game's lines from here**), the camera settles | the portrait on the left, his back and silver head on the right |
 | `turn_away` | portrait | he turns his face away, the camera back, he goes to the chair, sits | a wide shot, the face aside — “Speak not of her” |
-| `dusk` | — | days pass: into the dark (a fade as the passing of time), evening — the panes crimson, out of the dark | the room at evening |
+| `dusk` | — | days pass: a cut to the evening — the panes crimson (the game takes it through black) | the room at evening |
 | `guitar` | dusk | takes the guitar by the chair, plays slowly (`tempo` 0.12, the `strum` strokes go on for 40 s more); the camera to him | playing — under “Her song…”, then “String” |
 | `frenzy` | guitar | (showcase only; in the game this is “String”) faster, wilder: `tempo`, `wild` → 1 | wild |
 | `ballad` | guitar, frenzy | fewer strokes, he sings, the head thrown back; the room's light sinks, the crack glows (`song`) | singing |
 | `guitar_down` | ballad | the light comes back, he lays the guitar by the chair, the hand trembles | sits, the hand trembling |
-| `news` | — | out of the dark: another evening, he under the right window, his back to us, the friend by the clock; he turns; a cut to the close-up (`news`): dry eyes; the lips 5.0–6.4 s (**the game's line from 5.0 s**), grief shows through | the close-up |
+| `news` | — | another evening, he under the right window, his back to us, the friend by the clock; he turns; a cut to the close-up (`news`): dry eyes; the lips 5.0–6.4 s (**the game's line from 5.0 s**), grief shows through | the close-up |
 | `plan` | news | a cut to the room; he walks quickly from the window past the chair, stops at the table, towards his friend, speaks (`talk`) | at the table, speaking — under the plan |
-| `night_listen` | — | night out of the dark: the candles almost out (0.12), only the cold of the windows; the camera to the back wall, right; Roderick at the wall, his ear to the stone; the friend comes in from the right, stands beside him, bows his head | the two at the wall, listening |
+| `night_listen` | — | night: the candles almost out (0.12), only the cold of the windows; the camera to the back wall, right; Roderick at the wall, his ear to the stone; the friend comes in from the right, stands beside him, bows his head | the two at the wall, listening |
 
 ## The game's keys
 
@@ -73,8 +73,8 @@ candles' pool on the floor, the `glow` flicker) the engine's light now gives; th
 flicker on the wall is their light). The dust — particles. Walking — at the gait's step, without speeds; Roderick goes
 to his friend at his own hurried gait `hurry` (cast), not a sped-up walk. In `plan` he walks, then speaks (walking and
 `talk` are one track of the body). The close-up — an insert; the key `closeup_wet` is gone (wetness is a property of the
-shot), `closeup_shot` added. Cuts — without fades; fades remain only as the passing of time (`enter`, `dusk`, `news`,
-`night_listen`). The valet out of frame — `valet_here: false`.
+shot), `closeup_shot` added. Cuts — without fades; no fade of the scene's own (the passing of time between beats — a cut; the black between, if any,
+is the game's). The valet out of frame — `valet_here: false`.
 
 The crack's light from within is only the shader's `emission`: the engine does not discard a pixel where there is light
 without paint (rpg e41bfb5; the former trace of alpha 0.004 is gone).

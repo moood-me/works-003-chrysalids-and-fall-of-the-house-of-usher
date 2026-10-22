@@ -249,11 +249,11 @@ const ZERO = { camera_target: null, camera_x: 0, camera_z: 0, camera_h: 0, camer
 const DUSK = {
   day: 0, dusk: 0.4, mist: 0.6, window_light: 0.45, door: 0, reflection_figure: 0, gloom: 0, crack_trace: 0, follow: false, resist: 0,
   rider_present: true, rider_a: causeway(RIDER), rider_d: RIDER, rider_face: 128, horse_toss: 0,
-  ...mounted(128), narrator_look: [0, 80, 15], ...away("roderick"), closeup: 0, cu_inhale: 0, ...ZERO, fade: 0,
+  ...mounted(128), narrator_look: [0, 80, 15], ...away("roderick"), closeup: 0, cu_inhale: 0, ...ZERO,
 };
 const DAY = {
   day: 1, dusk: 0, gloom: 0, mist: 0.3, window_light: 0, reflection_figure: 0, crack_trace: 1, rider_present: false, ...pair,
-  follow: false, closeup: 0, cu_inhale: 0, door: 1, resist: 0.3, ...ZERO, fade: 0,
+  follow: false, closeup: 0, cu_inhale: 0, door: 1, resist: 0.3, ...ZERO,
 };
 // in the middle of the causeway after his breath: the narrator turned back to him, Roderick's face up
 const BREATHED = { ...DAY, ...places(MIDDLE), resist: 0, narrator_turn: back(MIDDLE), roderick_turn: heading(0, MIDDLE), roderick_look: AIR(MIDDLE), ...NEAR };
@@ -269,12 +269,11 @@ const MORNING = {
 // left; else it is cut to its `from`.
 const FILM = {
   // the rider rides in from the near end of the causeway, slows, stops at the tarn, the horse turns to the house and
-  // tosses its head; he lifts his eyes to the house — out of the dark (the chapter begins)
+  // tosses its head; he lifts his eyes to the house (the chapter begins)
   arrive: {
-    from: () => ({ ...DUSK, fade: 1, rider_a: causeway(3.5), rider_d: 3.5, rider_face: 160, ...mounted(160), narrator_look: null }),
+    from: () => ({ ...DUSK, rider_a: causeway(3.5), rider_d: 3.5, rider_face: 160, ...mounted(160), narrator_look: null }),
     run: async (s) => {
       const nar = s.person("narrator");
-      s.move("fade", 0, { over: 3, ease: "out" });
       await s.wait(0.4);
       await s.path(["rider_a", "rider_d"], along(3.5, RIDER), { over: 8.6, ease: "out" }).ending(1.4);
       // stopped, the horse steps round a little toward the house, he with it
@@ -317,7 +316,7 @@ const FILM = {
       await s.move("reflection_figure", 0, { over: 2, ease: "in" });
     },
   },
-  // he rides on to the door; it opens, a dim light in it; dark (the chapter's part ends)
+  // he rides on to the door; it opens, a dim light in it (the chapter's part ends)
   to_door: {
     after: ["look", "trace", "tarn"],
     from: () => ({ ...DUSK, gloom: 1, crack_trace: 1 }),
@@ -330,15 +329,14 @@ const FILM = {
       await s.wait(3.3);
       s.move("door", 1, { over: 3 });
       await s.wait(2.7);
-      await s.all(ride, s.move("fade", 1, { over: 3, ease: "in" }));
+      await ride;
     },
   },
   // a grey day, the camera low on the causeway some way from the door: it opens; the narrator comes out of the hall
   // leading Roderick by the hand and comes towards us, the house rising behind them
   walk_out: {
-    from: () => ({ ...DAY, fade: 1, door: 0, ...places(0), narrator_turn: heading(0, OUT), roderick_turn: heading(0, OUT), ...camera(OUT) }),
+    from: () => ({ ...DAY, door: 0, ...places(0), narrator_turn: heading(0, OUT), roderick_turn: heading(0, OUT), ...camera(OUT) }),
     run: async (s) => {
-      s.move("fade", 0, { over: 2.5, ease: "out" });
       await s.wait(0.6);
       // (the door begins to open: the game's line from here)
       s.tell("walk_out:door");
@@ -445,12 +443,11 @@ const FILM = {
       await s.all(home, follows);
     },
   },
-  // the last morning: out of the dark, the horse waits saddled by the tarn, he stands by it; the camera creeps nearer;
+  // the last morning: the horse waits saddled by the tarn, he stands by it; the camera creeps nearer;
   // the horse tosses its head; he looks back over his shoulder at the house
   morning: {
-    from: () => ({ ...MORNING, fade: 1 }),
+    from: () => ({ ...MORNING }),
     run: async (s) => {
-      s.move("fade", 0, { over: 3, ease: "out" });
       await s.wait(0.5);
       s.move("camera_z", 3.5, { over: 7, ease: "inOut" });
       await s.wait(3.7);
@@ -487,7 +484,7 @@ const FILM = {
       await s.wait(1.8);
       s.move("camera_x", -3.4, { over: 4, ease: "inOut" });
       await s.wait(2.6);
-      await s.all(ride, s.move("fade", 1, { over: 2.5, ease: "in" }));
+      await ride;
     },
   },
 };

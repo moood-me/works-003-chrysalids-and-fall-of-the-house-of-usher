@@ -172,7 +172,7 @@ const STEADY = [FOOT[0] + 0.25, FOOT[1] - 0.12, 1.72];
 
 // the vault as it stands once the coffin is on the plinth, the torch in the narrator's hand, the lid on her; no close shot
 const VAULT = {
-  closeup: 0, shot: "", inside: 0, outside: 0, fade: 0,
+  closeup: 0, shot: "", inside: 0, outside: 0,
   camera_x: 0, camera_z: 0, camera_h: 0, camera_look: 0,
   door_turn: 280, lid_x: 0, lid_h: ON_WALLS, torch: 1, knock: 0, answer: 0, touch: 0, mirror: 0,
   coffin_a: COFFIN[0], coffin_d: COFFIN[1], coffin_h: ON_PLINTH, coffin_turn: 180,
@@ -266,21 +266,20 @@ async function driven(s) {
 
 const FILM = {
   // the showcase's first shot (the scene's picture): the vault, the coffin open on the plinth, Roderick bent over her,
-  // the torch held high; the eye drifts in; to black — the story from its start
+  // the torch held high; the eye drifts in — the story from its start
   vault: {
     from: () => OPEN,
     run: async s => {
       s.move("camera_z", 1.15, { over: 3.8, ease: "inOut" });
-      await s.wait(3.0);
-      await s.move("fade", 1, { over: 0.8, ease: "in" });
+      await s.wait(3.8);
     },
   },
   // the two of them bring the coffin in through the iron door, Roderick backing in at its head, the narrator at its
   // foot, and set it down on the plinth; Roderick goes round behind it to its head; the narrator takes the torch from
-  // its holder on the pillar and comes back behind it, by the foot. Out of the dark: the chapter's first sight
+  // its holder on the pillar and comes back behind it, by the foot: the chapter's first sight
   enter: {
     from: () => at(VAULT, {
-      fade: 1, coffin_a: IN0[0], coffin_d: IN0[1], coffin_turn: IN0[2], coffin_h: CARRIED,
+      coffin_a: IN0[0], coffin_d: IN0[1], coffin_turn: IN0[2], coffin_h: CARRIED,
       roderick_a: IN0[3], roderick_d: IN0[4], roderick_turn: IN0[2] - 90, roderick_gait: "carry_back",
       roderick_reach: BEARS.roderick, roderick_look: "narrator",
       narrator_a: IN0[5], narrator_d: IN0[6], narrator_turn: IN0[2] + 90, narrator_gait: "carry_walk",
@@ -288,7 +287,6 @@ const FILM = {
     }),
     run: async s => {
       const rod = s.person("roderick"), nar = s.person("narrator");
-      s.move("fade", 0, { over: 2.2, ease: "out" });
       await s.wait(0.3);
       const carry = s.path(BEARING, IN.slice(1), { over: CARRY_T, ease: "linear" });
       await s.wait(CARRY_T - 1.6);
@@ -524,7 +522,7 @@ const FILM = {
     },
   },
   // close: Roderick takes the driver (a cut, said ahead as the beat begins: his hand on the lid) and drives home the
-  // screws left loose; to black
+  // screws left loose
   check: {
     after: "screws",
     from: () => at(SHUT, { closeup: 1, shot: "lid", driver: 1, driver_rod: 0, screw_at: 1 }),
@@ -539,17 +537,15 @@ const FILM = {
         if (n) await s.move("screw_at", i, { over: 0.5, ease: "inOut" });
         await s.move("screw" + i, 1, { over: each - (n ? 0.6 : 0.1), ease: "inOut" });
       }
-      await s.wait(0.3);
-      await s.move("fade", 1, { over: 0.6, ease: "in" });
+      await s.wait(0.9);
     },
   },
   // her eyes: inside the shut coffin — the thread of light, the shadows of them over it as they work, the screws' points
   // coming through one after another as the driver turns them (driven: each turn a change of `tip`); the light goes
   inside: {
-    from: () => at(SHUT, { closeup: 0, shot: "", inside: 1, seam: 1, tip: 0, shade: 0, fade: 1 }),
+    from: () => at(SHUT, { closeup: 0, shot: "", inside: 1, seam: 1, tip: 0, shade: 0 }),
     run: async s => {
       await s.wait(0.6);
-      s.move("fade", 0, { over: 1.6, ease: "inOut" });
       await s.wait(1.4);
       s.move("shade", 1, { over: 2.6, ease: "inOut" });
       await s.wait(1.4);
@@ -611,10 +607,9 @@ const FILM = {
   },
   // another night: outside the shut iron door, one candle; «Knock» knocks on it (knock, answer)
   at_door: {
-    from: () => at(SHUT, { outside: 1, knock: 0, answer: 0, roderick_here: false, narrator_here: false, door_turn: 180, torch: 0, fade: 1 }),
+    from: () => at(SHUT, { outside: 1, knock: 0, answer: 0, roderick_here: false, narrator_here: false, door_turn: 180, torch: 0 }),
     run: async s => {
       await s.wait(0.4);
-      await s.move("fade", 0, { over: 2.6, ease: "inOut" });
     },
   },
   // (the showcase's: «Knock» as the game plays it — two knocks, the silence, two answering from the other side)

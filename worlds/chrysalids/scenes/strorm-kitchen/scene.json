@@ -79,7 +79,6 @@
     "lamp": 1,
     "dusk": 0.2,
     "hearth": 1,
-    "fade": 0,
     "steam": 1,
     "yard_door": 0,
     "stair_door": 0,
@@ -117,14 +116,6 @@
       ],
       "smooth": true,
       "means": "the hearth fire: 1 — burning, 0.35 — smouldering"
-    },
-    "fade": {
-      "range": [
-        0,
-        1
-      ],
-      "smooth": true,
-      "means": "fade to black (the beginning and the end)"
     },
     "steam": {
       "range": [

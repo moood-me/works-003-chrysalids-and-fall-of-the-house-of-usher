@@ -10,7 +10,7 @@ After the book (ch. 3): David cut his hand open, wrapped it up anyhow by himself
 by himself "if I had another hand". His father took it for blasphemy, the family prayed for forgiveness, the boy was sent upstairs.
 
 BEATS (lib.FILM; `from` — the whole state: the scene can be opened at any of them):
- evening   Out of the dark. The father at the head of the table reads, the mother, her back to us, stirs the pot, Mary and the farmhand at the table. The door
+ evening   The father at the head of the table reads, the mother, her back to us, stirs the pot, Mary and the farmhand at the table. The door
            from the yard opens (a cold light), Mary looks round, the farmhand stops eating; David comes in, hunched, his hand in a rag at
            his chest, goes along the table to the hearth; the father does not raise his eyes. A cut: nearer, by the hearth; he pulls the knot with his teeth; the mother
            looks round. (The game's choice — on david.)
@@ -28,7 +28,7 @@ BEATS (lib.FILM; `from` — the whole state: the scene can be opened at any of t
  lie_mother A cut: the mother by the hearth; she raises her eyes to the father — and lowers them.
  lie_up    A wide shot. The father does not take his eyes off her; the boy goes upstairs round the table; on the threshold he looks back; the door closes;
            only then the mother goes to the pot, the father — to the Book.
- night     Out of the dark. Night at the table (Mary and the farmhand gone, the lamp lower): David in Mary's place holds the table's edge, the mother
+ night     Night at the table (Mary and the farmhand gone, the lamp lower): David in Mary's place holds the table's edge, the mother
            sews at the hearth end. The game ("Not a stir") moves david_grip, david_stir, father_look — script.js turns
            them into what the people do; the mark — on david#hand_r (the hands on the table's edge).
  night_after (after night) The reading is over: the camera draws back — the mother is seen.
@@ -37,9 +37,9 @@ BEATS (lib.FILM; `from` — the whole state: the scene can be opened at any of t
  to_bed    (after night / night_after / late / asks) The father shuts the Book; David gets up, goes to the stair door; the mother
            raises her eyes to him; he goes upstairs; the father reads on.
  sneak     (after to_bed) Deep in the night: the lamp out, the hearth smouldering; David comes down and tiptoes out into the yard.
-           The fade. Without the lamp the people are seen in the light of the window and the smouldering hearth.
+           Without the lamp the people are seen in the light of the window and the smouldering hearth.
 
-KEYS: beat; lamp, dusk, hearth, fade, steam, yard_door, stair_door, wish; night at the table (the game's keys): at_table, david_grip,
+KEYS: beat; lamp, dusk, hearth, steam, yard_door, stair_door, wish; night at the table (the game's keys): at_table, david_grip,
 david_stir, father_look. The "film"'s moon_light is gone (the window's light is now the scene's source, the night — the look dusk).
 
 THE MAKING: lib.js — the places (SEAT, POT, BY_HEARTH, TO_TIE, KNOT, STANDS, KNEEL, AT_DOOR, LATCH, UP, CAM — the camera's shots),

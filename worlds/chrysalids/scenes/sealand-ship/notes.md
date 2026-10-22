@@ -22,7 +22,7 @@ joseph_th is the game's key (web_father or the play): the beats' from after it d
 stay_alone — David goes up to Michael, Rosalind goes in after Petra, turns round out of the light and is gone; stay_alone_away —
 the ship goes, they on the ledge watch it go.
 
-KEYS: beat, fade, dawn, smoke, fight, fall, web, cave_web, spin, door, dust, ship_vis, ship_a/d/h, arrow_vis, arrow_a/d/h,
+KEYS: beat, dawn, smoke, fight, fall, web, cave_web, spin, door, dust, ship_vis, ship_a/d/h, arrow_vis, arrow_a/d/h,
 horse_a/d/face/toss, <id>_th, <id>_down, w<i>_fire. The "film" puppets' keys are gone (<id>_p, _w_*, _hr/_hl, _hide, _dead…): these are
 now the people's actions and the engine's keys. New motions/parts of the cast: aim_rifle, kneel_aim (the gun — the part gun), sprayer.
 

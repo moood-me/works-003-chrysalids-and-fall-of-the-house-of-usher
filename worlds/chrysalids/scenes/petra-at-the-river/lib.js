@@ -83,7 +83,7 @@ const swimTo = (s, keys, pts, speed = 0.8) => s.path(keys, pts, { speed, ease: '
 
 // ── the state the beats begin at ──
 const S = {
-  fade: 1, fade_color: '#000000', rain: 0.5, danger: 0.35, branch: 0.2, cry: 0, splash: 0, heard: 0, bond: 0, after: 0,
+  rain: 0.5, danger: 0.35, branch: 0.2, cry: 0, splash: 0, heard: 0, bond: 0, after: 0,
   ...camOf(CAM.wide),
   petra_a: PT0, petra_d: NEAR, petra_do: loop('cling'), petra_turn: 200, petra_look: null, petra_reach: { r: 'willow#tip', l: 'willow#tip' },
   petra_steps: false, petra_on: null, petra_here: true, pt_sink: 0,
@@ -95,7 +95,7 @@ const S = {
   ...Object.assign({}, ...LATE.map(c => ({ [`${c.id}_a`]: c.to[0] - 15, [`${c.id}_d`]: c.to[1], [`${c.id}_here`]: false, [`${c.id}_do`]: 'stand', [`${c.id}_turn`]: 90, [`${c.id}_look`]: null }))),
 };
 // she cries out in the pool, her head thrown back (pool's end)
-const CRYING = { ...S, fade: 0, branch: 0.45, danger: 0.6, cry: 1, ...camOf(CAM.pool), petra_look: [PT0, NEAR + 6, 3] };
+const CRYING = { ...S, branch: 0.45, danger: 0.6, cry: 1, ...camOf(CAM.pool), petra_look: [PT0, NEAR + 6, 3] };
 // on the field: Rosalind stopped dead, turned to the river (struck's end)
 const STRUCK = { ...CRYING, ...camOf(CAM.field), cry: 0.65, heard: 0.5, rosalind_do: 'stand', rosalind_still: true, rosalind_turn: 35 };
 // David at the edge of the near bank, looking down at her (edge's end)
@@ -121,7 +121,6 @@ const FILM = {
     from: () => S,
     run: async s => {
       const petra = s.person('petra');
-      s.move('fade', 0, { over: 2.5, ease: 'out' });
       s.move('branch', 0.45, { over: 8 });
       s.move('danger', 0.6, { over: 8 });
       await s.wait(0.5);
@@ -338,7 +337,7 @@ const FILM = {
     },
   },
   // they look away; Rosalind turns her back and wades out, slowly; she lifts her face; he gets his arms under her and rises
-  // with her in his arms (scoop → carry) and carries her up the bank, home; fade
+  // with her in his arms (scoop → carry) and carries her up the bank, home
   home: {
     after: ['bank_quiet', 'bank_loud'],
     from: () => ({ ...SAT, ...camOf(CAM.across_in), bond: 1 }),
@@ -364,7 +363,7 @@ const FILM = {
       david.do('carry', { loop: true });
       await david.turn(270);
       await walk(s, 'david', [[B(-1.5), NEAR - 0.2], [UP, NEAR - 0.3]], null, 'carry_walk');
-      await s.move('fade', 1, { over: 2.5, ease: 'in' });
+      await s.wait(2.5);
     },
   },
 };

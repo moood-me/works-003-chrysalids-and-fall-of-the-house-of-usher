@@ -127,7 +127,7 @@ async function goUp(s, back) {
 // ── the state the beats begin at ──
 // the evening, everyone at their place, the boy still outside
 const START = {
-  ...camOf(CAM.room), lamp: 1, dusk: 0.2, hearth: 1, fade: 0, fade_color: '#000000', steam: 1, yard_door: 0, stair_door: 0, wish: 0,
+  ...camOf(CAM.room), lamp: 1, dusk: 0.2, hearth: 1, steam: 1, yard_door: 0, stair_door: 0, wish: 0,
   at_table: false, david_grip: 1, david_stir: 0, father_look: 0,
   joseph_a: SEAT.joseph[0], joseph_d: SEAT.joseph[1], joseph_do: loop('read_seated'), joseph_turn: 90, joseph_look: null,
   joseph_reach: null, joseph_with: ['book_open'], joseph_here: true, joseph_steps: true,
@@ -189,11 +189,10 @@ const FILM = {
   // comes in, his right hand in a rag held to his chest, past the father (who doesn't look up) to the hearth, and tries
   // to tie it himself — one hand and his teeth. His mother looks round. (The game's choice: on david.)
   evening: {
-    from: () => ({ ...START, fade: 1 }),
+    from: () => ({ ...START }),
     run: async s => {
       const david = s.person('david'), emily = s.person('emily');
       const near = s.shot({ ...camOf(CAM.hearth) });
-      s.move('fade', 0, { over: 3.0 });
       s.move('dusk', 0.35, { over: 18, ease: 'linear' });
       s.move('steam', 0.7, { over: 18, ease: 'linear' });
       await s.wait(4.6);
@@ -561,8 +560,8 @@ const FILM = {
   // a night: the father reads, David across the table holds its edge (the game moves david_grip, david_stir,
   // father_look while he must not stir: “Not a stir” — its mark on david#hand_r)
   night: {
-    from: () => ({ ...NIGHT, fade: 1 }),
-    run: async s => { await s.move('fade', 0, { over: 2.4 }); },
+    from: () => ({ ...NIGHT }),
+    run: async s => { await s.wait(2.4); },
   },
   // the reading is over: the camera eases back — the mother at the hearth's end, her eyes down
   night_after: {
@@ -572,9 +571,8 @@ const FILM = {
   },
   // years later (David nearly grown), the lamp lower: the father reads longer than he used to
   late: {
-    from: () => ({ ...LATE, fade: 1 }),
+    from: () => ({ ...LATE }),
     run: async s => {
-      s.move('fade', 0, { over: 2.4 });
       await cam(s, CAM.late_in, 14);
     },
   },
@@ -628,7 +626,7 @@ const FILM = {
   sneak: {
     after: 'to_bed',
     from: () => ({
-      ...NIGHT, ...camOf(CAM.sneak), fade: 1, lamp: 0, hearth: 0.35, at_table: false, joseph_here: false, emily_here: false,
+      ...NIGHT, ...camOf(CAM.sneak), lamp: 0, hearth: 0.35, at_table: false, joseph_here: false, emily_here: false,
       david_here: false, david_a: UP[0], david_d: UP[1], david_turn: 180, david_do: 'stand', david_reach: null, david_look: null, david_gait: null,
     }),
     run: async s => {
@@ -637,7 +635,6 @@ const FILM = {
       s.set('hearth', 0.35);
       s.set('joseph_here', false);
       s.set('emily_here', false);
-      await s.move('fade', 0, { over: 2.0 });
       s.move('stair_door', 1, { over: 1.0, ease: 'out' });
       await s.wait(0.3);
       david.here(true);
@@ -650,7 +647,7 @@ const FILM = {
       await out;
       david.here(false);
       s.move('yard_door', 0, { over: 1.4, ease: 'in' });
-      await s.move('fade', 1, { over: 1.6 });
+      await s.wait(1.6);
     },
   },
 };

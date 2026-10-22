@@ -60,7 +60,7 @@ const seat = id => ({ at: `${id}#seat`, up: -0.5 });
 
 // ── the state the beats begin at ──
 const START = {
-  fade: 1, fade_color: '#000000', dawn: 0.1, mist: 0.7, fog: 0, pursuers: 0.12, ...camOf(CAM.wide),
+  dawn: 0.1, mist: 0.7, fog: 0, pursuers: 0.12, ...camOf(CAM.wide),
   great_a: GX, great_d: D, great_face: 90, great_toss: 0,
   pack_a: GX - PACK_BEHIND, pack_d: D + 0.1, pack_face: 90, pack_toss: 0,
   sheba_a: -13, sheba_d: SHEBA_D, sheba_face: 90, sheba_toss: 0, sheba_here: true, sheba_led: false,
@@ -73,7 +73,7 @@ const START = {
   lamp: 0, lamp_x: 6, search_point: 0, arrow: 0, arrow_high: false,
 };
 // Sheba come up to the great-horse (arrive's end)
-const MET = { ...START, fade: 0, pursuers: 0.35, ...camOf(CAM.met), sheba_a: SHEBA_BY };
+const MET = { ...START, pursuers: 0.35, ...camOf(CAM.met), sheba_a: SHEBA_BY };
 // Petra in the near pannier, David on his feet by the great-horse (handover's end)
 const IN_BASKET = { at: 'great#basket_r', up: -0.35 };
 const HANDED = { ...MET, petra_on: IN_BASKET, petra_do: loop('sit_knees'), petra_turn: 0, petra_look: [-6, D, 1.2],
@@ -99,7 +99,6 @@ const FILM = {
   arrive: {
     from: () => START,
     run: async s => {
-      s.move('fade', 0, { over: 2.5, ease: 'out' });
       s.move('pursuers', 0.35, { over: 10 });
       await s.wait(1.0);
       await ride(s, 'sheba', SHEBA_BY, 'trot', 'out');
@@ -114,7 +113,6 @@ const FILM = {
   arrive_alone: {
     from: () => ({ ...START, petra_on: IN_BASKET, petra_do: loop('sit_knees'), petra_turn: 0, petra_peek: 0.5 }),
     run: async s => {
-      s.move('fade', 0, { over: 2.5, ease: 'out' });
       s.move('pursuers', 0.35, { over: 10 });
       await s.wait(1.0);
       await ride(s, 'sheba', SHEBA_BY, 'trot', 'out');

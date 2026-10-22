@@ -59,7 +59,6 @@
   ],
   "state": {
     "beat": null,
-    "fade": 0,
     "dawn": 0.38,
     "smoke": 0.8,
     "fight": 1,
@@ -164,14 +163,6 @@
     "beat": {
       "type": "string",
       "means": "beat (module beats): cave → fight → hold | run → ship | noship → web | web_petra | web_rosalind | web_father | web_alone → landing | landing_run → free | free_run → back | back_run → board | stay_ros | stay_alone → stay_alone_away"
-    },
-    "fade": {
-      "range": [
-        0,
-        1
-      ],
-      "smooth": true,
-      "means": "fade to black"
     },
     "dawn": {
       "range": [

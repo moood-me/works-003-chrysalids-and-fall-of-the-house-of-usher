@@ -33,7 +33,6 @@
   ],
   "state": {
     "beat": null,
-    "fade": 0,
     "rain": 0.5,
     "danger": 0.35,
     "branch": 0.2,
@@ -95,14 +94,6 @@
     "beat": {
       "type": "string",
       "means": "a beat of the film (module beats): pool → struck → edge → run → field_quiet | field_loud → out → bank_quiet | bank_loud → home"
-    },
-    "fade": {
-      "range": [
-        0,
-        1
-      ],
-      "smooth": true,
-      "means": "fade to black"
     },
     "rain": {
       "range": [

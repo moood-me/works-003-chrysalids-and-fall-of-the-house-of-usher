@@ -16,7 +16,7 @@ Petra — in the near pannier (great#basket_r; petra_peek — how far she peeks 
 climb; at the start David in Sheba's saddle, Petra before him (a point in Sheba's frame: chrysalids.horse.spot).
 
 BEATS (lib.FILM; `from` — the whole state):
- arrive       The fade opens; on the crest the great-horse, Rosalind in the saddle looking at the road; from below at a trot Sheba with
+ arrive       On the crest the great-horse, Rosalind in the saddle looking at the road; from below at a trot Sheba with
               David and Petra, stops by the great-horse; the camera closes in.
  arrive_alone (the game) Petra already in the pannier; David has ridden up on Sheba alone; Petra rises to meet him; he slips down.
  handover     David gets down (dismount), lifts Petra (lift_into), Rosalind takes her into the pannier; Petra peeks out.
@@ -41,7 +41,7 @@ BEATS (lib.FILM; `from` — the whole state):
  hide         The fog thickens, Petra hides; the rider rides along the edge, shines into the fog right above them, rides away.
  away         (after kill | warn | hide) On, down out of the hollow; it grows light.
 
-KEYS: beat, fade, dawn, mist, fog, pursuers; the horses — great_*, pack_*, sheba_* (_a, _d, _face, _toss), h1_*, h2_* (+ _here),
+KEYS: beat, dawn, mist, fog, pursuers; the horses — great_*, pack_*, sheba_* (_a, _d, _face, _toss), h1_*, h2_* (+ _here),
 sheba_here, sheba_led; the game — great_toss, pack_toss, sheba_toss, petra_peek, lamp, lamp_x, search_point; arrow, arrow_high.
 The "film" puppets' keys are gone (gx, david_down, david_climb, ros_bow, fallen…): these are now the people's actions and the horses' places.
 

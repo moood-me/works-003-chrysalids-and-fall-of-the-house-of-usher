@@ -10,6 +10,8 @@
 //     none until one is named: the step's first beat goes in `state` ({beat: name}) — the scene opens playing it — and
 //     g.beat(name) then takes it up (waits for its end)
 //   g.set(key, value, seconds) / g.get(key) — the shown scene's state
+//   g.fade(level, seconds) — the page's black over the scene (bespoke.fade: 0 clear … 1 black; a dim under a letter,
+//     black at the end); → once it is there. While it is up, the next scene (g.scene, the map) comes through black, clear
 //   g.wait(ms) — time of the game's own (a pause between lines); never to wait for something the scene does — that is
 //     an event of the scene's: g.told / g.heard(text, ms) — until the scene tells `text` (→ true), or ms pass (→ false)
 //   g.watch(key, fn) — fn(value, old) each time the scene sets the key, till the step is left (a sound to each of its
@@ -80,6 +82,10 @@ export function facts(state) {
 export function carry(folder, f) {
   return folder === SCENES.fall || folder === SCENES.wall ? {} : { crack: f.crack };
 }
+
+// the page's black over the scene as the game last moved it (g.fade): a scene shown while it is up comes through black
+export const veil = { level: 0 };
+export const through = () => { const up = veil.level > 0; veil.level = 0; return up; };
 
 const BEAT = 180000; // a beat longer than this has not ended: the scene lacks it
 const SKIPPABLE = 20000; // ms in a minigame of a step not seen yet before the ⏭ may skip it
@@ -164,10 +170,16 @@ export function context(b, view, hub, state, j = null, { forward = null } = {}) 
         if (fast) await alive(land());
         opening = typeof st.beat === 'string' ? { name: st.beat, ended: g.told(`beat:${st.beat}`, BEAT) } : null;
         g.withdraw();
-        await alive(b.show(folder, { state: st, captions: false }));
+        await alive(b.show(folder, { state: st, captions: false, fade: through() }));
       } finally { showing = false; }
     },
     set: (key, value, seconds) => (gone() ? undefined : put(key, value, seconds)),
+    fade(level, seconds) {
+      if (gone()) return never;
+      if (unseen()) return Promise.resolve();
+      veil.level = level;
+      return alive(b.fade(level, fast ? 0 : seconds));
+    },
     get: key => (unseen() ? j.values[key] : b.get(key)),
     wait: sleep,
     watch(key, fn) {

@@ -89,7 +89,7 @@ const person = (id, [a, d, turn], more = {}) => ({ [`${id}_a`]: a, [`${id}_d`]: 
   [`${id}_reach`]: null, [`${id}_still`]: false, [`${id}_steps`]: true, [`${id}_here`]: true, [`${id}_down`]: false,
   ...Object.fromEntries(Object.entries(more).map(([k, v]) => [`${id}_${k}`, v])) });
 const START = {
-  fade: 0, fade_color: '#000000', dawn: 0.38, smoke: 0.8, fight: 1, fall: 0, web: 0, cave_web: 0, spin: 0, door: 0, dust: 0,
+  dawn: 0.38, smoke: 0.8, fight: 1, fall: 0, web: 0, cave_web: 0, spin: 0, door: 0, dust: 0,
   ship_a: 150, ship_d: 330, ship_h: 95, ship_vis: 0, arrow_vis: false, arrow_a: 6.3, arrow_d: 17.5, arrow_h: 1.6,
   horse_a: -2.9, horse_d: 15.6, horse_face: 90, horse_toss: 0, ...camOf(CAM.children),
   ...person('david', PEOPLE.david, { do: loop('kneel'), th: -1 }), ...person('petra', PEOPLE.petra, { do: loop('crouch') }),

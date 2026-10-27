@@ -12,7 +12,7 @@ the motion; at that moment sparks (the particles sparks from anvil#iron, by ax_s
 the lift: it is called 1.17 s before the beat. While the tools are not in his hands (axel_with), they lie on the anvil (the anvil's layers).
 
 BEATS (lib.FILM; `from` — the whole state):
- chatter   Out of the dark: Axel forges with his back to the boy; David on the barrel facing the gate "chatters" (dv_chat 7.2: a thought to the Mortons' far
+ chatter   The night forge: Axel forges with his back to the boy; David on the barrel facing the gate "chatters" (dv_chat 7.2: a thought to the Mortons' far
            window and an answer, he laughs).
  notice    The hammer stops at the top; Axel lays down his tools, looks at the gate, at the boy; limps to him, David shrinks;
            down on one knee against the light gap of the gate, the camera moves in; a hand on the shoulder; an open palm "who?" (the choice — on david).
@@ -35,7 +35,7 @@ BEATS (lib.FILM; `from` — the whole state):
  stranger_go | caught | strike  He goes away (the rhythm held) | he whistles, two more with lanterns; David shakes his head "don't" |
            David nods; Axel to the gap, a blow: the farmhand falls on his back into the yard, the lantern goes out; the fire sinks.
 
-KEYS: beat, fade, fire, sparks, door, pump; by themselves: ax_work, ax_pace, dv_chat, pump_work, dv_pump; the game: ax_blow
+KEYS: beat, fire, sparks, door, pump; by themselves: ax_work, ax_pace, dv_chat, pump_work, dv_pump; the game: ax_blow
 (the moment ax:hit), pump, st_lamp (above 1 — on David); the beats: st_lx, st_lz; the man with the lantern: st_on, st_who, st_a/st_d, st_drop, st_glow, st_lanx,
 st_more; the thoughts — th_amp, tho_*, thi_* (the elements thought_out, thought_in: layers, animate dims them on their way); the horse — hz_*.
 Points: pump#handle (the bellows — an element of their own, pump), anvil#iron, door#grip_low, door#grip_high, morton#window, forge#fire.

@@ -115,7 +115,6 @@
   ],
   "state": {
     "beat": null,
-    "fade": 0,
     "fire": 0.75,
     "sparks": 0.5,
     "door": 1,
@@ -200,14 +199,6 @@
     "beat": {
       "type": "string",
       "means": "a beat of the film (module beats): the canon chatter → notice → truth | lie → door → hush → lantern → after; III.1 — after hush lantern_bellows → lantern_go | lantern_linger → rest; III.5 night_anne → night_anne_end; V.2 key → stranger → stranger_go | caught | strike"
-    },
-    "fade": {
-      "range": [
-        0,
-        1
-      ],
-      "smooth": true,
-      "means": "fade to black"
     },
     "fire": {
       "range": [

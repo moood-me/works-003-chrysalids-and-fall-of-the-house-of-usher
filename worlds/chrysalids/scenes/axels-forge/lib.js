@@ -115,7 +115,7 @@ const lantern = (s, at, up) => { s.set('st_lx', at[0]); s.set('st_lz', at[1]); i
 
 // ── the state the beats begin at ──
 const START = {
-  fade: 1, fade_color: '#000000', ...camOf(CAM.wide), fire: 0.75, sparks: 0.5, door: 1, pump: 0,
+  ...camOf(CAM.wide), fire: 0.75, sparks: 0.5, door: 1, pump: 0,
   ax_a: AT_ANVIL[0], ax_d: AT_ANVIL[1], ax_work: 0, ax_pace: 2, ax_blow: 0,
   axel_do: 'stand', axel_turn: 270, axel_look: ANVIL, axel_reach: null, axel_with: TOOLS, axel_steps: true, axel_gait: null,
   dv_a: BARREL[0], dv_d: BARREL[1], dv_chat: 0, dv_glow: 0, dv_pump: 0, pump_work: 0,
@@ -129,7 +129,7 @@ const START = {
 };
 // the boy in the open hand's question: Axel on one knee by him, his hand open — "who?"
 const ASKED = {
-  ...START, fade: 0, ...camOf(CAM.kneel), ax_a: AXH[0], ax_d: AXH[1], axel_turn: 270, axel_do: loop('kneel_one_still'), axel_with: null,
+  ...START, ...camOf(CAM.kneel), ax_a: AXH[0], ax_d: AXH[1], axel_turn: 270, axel_do: loop('kneel_one_still'), axel_with: null,
   axel_look: DAVF, david_do: loop('perch_hunch'), david_look: AXF,
 };
 // …he knows: Axel's hand in his beard, his eyes on the gate
@@ -156,15 +156,14 @@ const ANNE = { ...START, fire: 0.35, door: 0.7, ax_a: 0.3, ax_d: 4.7, axel_turn:
 const KEY = { ...START, fire: 0.6, door: 0.7, ...camOf(CAM.bellows), ax_work: 1, ax_pace: 1.4, axel_look: ANVIL, david_wear: kit.cast.characters.david_teen,
   david_on: null, dv_a: BELLOWS[0], dv_d: BELLOWS[1], david_turn: 90, david_do: 'stand', dv_pump: 1, pump_work: 1.3, david_look: FIRE, st_who: 'farmhand' };
 // …the man in the gap with his lantern up, looking at the boy (where stranger_go, caught and strike begin)
-const LOOKED = { ...KEY, fade: 0, st_on: 1, st_a: JOSG[0], st_d: JOSG[1], farmhand_turn: 180, st_lamp: 1, st_lx: BELLOWS[0], st_lz: BELLOWS[1], axel_look: JOSG };
+const LOOKED = { ...KEY, st_on: 1, st_a: JOSG[0], st_d: JOSG[1], farmhand_turn: 180, st_lamp: 1, st_lx: BELLOWS[0], st_lz: BELLOWS[1], axel_look: JOSG };
 
 const FILM = {
-  // 1. chatter — from black: the night forge. Axel at the anvil, his back to the boy. David on the barrel faces the open
+  // 1. chatter — the night forge. Axel at the anvil, his back to the boy. David on the barrel faces the open
   //    gate and chatters away to no one; thought-shapes go out to a far lit window and come back; he laughs.
   chatter: {
     from: () => START,
     run: async s => {
-      s.move('fade', 0, { over: 2.2, ease: 'out' });
       s.person('david').do('perch_talk', { loop: true });
       s.set('dv_chat', 7.2);
       await s.wait(0.6);
@@ -177,7 +176,7 @@ const FILM = {
   //    gate's bright gap, a hand on the shoulder, an open hand: "who?" — held (the game's choice: on david).
   notice: {
     after: 'chatter',
-    from: () => ({ ...START, fade: 0, ax_work: 1, dv_chat: 7.2, david_do: loop('perch_talk') }),
+    from: () => ({ ...START, ax_work: 1, dv_chat: 7.2, david_do: loop('perch_talk') }),
     run: async s => {
       const axel = s.person('axel'), david = s.person('david');
       s.set('ax_work', 0);
@@ -549,7 +548,6 @@ const FILM = {
   night_anne: {
     from: () => ANNE,
     run: async s => {
-      s.move('fade', 0, { over: 2.5, ease: 'out' });
       await s.wait(1.2);
       s.person('axel').do('think', { loop: true });
       await s.wait(2.3);
@@ -563,7 +561,7 @@ const FILM = {
   // into the night; Axel turns to the fire
   night_anne_end: {
     after: 'night_anne',
-    from: () => ({ ...ANNE, fade: 0, axel_do: loop('think'), axel_look: [0.8, 4.4, 0.1], david_do: loop('perch_still') }),
+    from: () => ({ ...ANNE, axel_do: loop('think'), axel_look: [0.8, 4.4, 0.1], david_do: loop('perch_still') }),
     run: async s => {
       const axel = s.person('axel'), david = s.person('david');
       axel.do('stand');
@@ -584,7 +582,7 @@ const FILM = {
       david.here(false);
       await axel.turn(280);
       axel.look(FIRE);
-      await s.move('fade', 0.25, { over: 3 });
+      await s.wait(3);
     },
   },
   // V.2, the key — night, the door half shut, the fire up; Axel at the anvil making the key, quick light blows; David at
@@ -592,14 +590,13 @@ const FILM = {
   key: {
     from: () => KEY,
     run: async s => {
-      await s.move('fade', 0, { over: 2.5, ease: 'out' });
       await s.wait(3.5);
     },
   },
   // …a lantern in the yard: a man comes to the gap, stops, lifts it and looks in — at the anvil, at the boy
   stranger: {
     after: 'key',
-    from: () => ({ ...KEY, fade: 0 }),
+    from: () => ({ ...KEY }),
     run: async s => {
       const david = s.person('david');
       s.set('st_who', 'farmhand');

@@ -44,7 +44,7 @@ BEATS (lib.FILM: the director's sequences; the people — at their own pace; `fr
  away        He lowers his eyes, turns away; the mother looks a long time; lifts Sophie and goes off without looking back; Sophie looks
              back; he raises his eyes after her. (In both the mother goes on after the beat's end too.)
  alone       (the canon) On the far crest a rider (someone_coming); David looks at him, sits down by the water, looks after them.
- night_warn  CHAPTER II, "The night before the raid". Night (night 1). Out of the dark (fade 1 → 0, the chapter's beginning) David runs down the bank;
+ night_warn  CHAPTER II, "The night before the raid". Night (night 1). The chapter's beginning: David runs down the bank;
              by the stones Sophie, a little way off on the path her mother with a bundle; both turn round; Sophie steps towards him; they are face to face.
              The choice can be offered on sophie, mother, david.
  night_warn_bye  Sophie takes his hand; her mother calls; Sophie lets go, goes off with her mother up the path into the dark;

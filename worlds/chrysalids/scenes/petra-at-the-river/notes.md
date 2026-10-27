@@ -24,9 +24,9 @@ BEATS (lib.FILM; `from` — the whole state):
  bank_quiet  A wide shot across the water: he and Rosalind hear each other (warm rings); only the rain.
  bank_loud   The same — and late, along the top of the far bank, the others come, one by one, and stand and stare.
  home        They look away; Rosalind comes out of the water; David lifts Petra in his arms (scoop → carry) and carries her up the bank;
-             the fade. (The choice "Carry Petra home" — on david, before home.)
+             (The choice "Carry Petra home" — on david, before home.)
 
-KEYS: beat, fade, rain, danger, branch, cry (the game), heard, bond, after, pt_sink, splash, ro_drop; the scene sets by itself: pt_e,
+KEYS: beat, rain, danger, branch, cry (the game), heard, bond, after, pt_sink, splash, ro_drop; the scene sets by itself: pt_e,
 dv_e. The people — the engine's keys (<id>_a, _d, _do, _turn, _look, _reach, _with, _here, _on…). The "film" puppets' keys are gone (pt_x,
 pt_held, dv_swim, dv_scoop, ro_hands, stare, follow, crowd…): these are now the people's actions in the beats. Points: petra, david,
 rosalind, willow#tip (what Petra holds on to).

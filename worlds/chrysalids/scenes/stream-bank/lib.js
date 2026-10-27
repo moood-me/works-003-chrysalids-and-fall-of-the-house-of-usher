@@ -300,7 +300,7 @@ const person = (id, a, d, more = {}) => ({ [`${id}_a`]: a, [`${id}_d`]: d, [`${i
 const RIDER = { rider_on: { at: 'horse#seat', up: -0.5 }, rider_do: loop('perch_still'), rider_turn: 110, rider_look: null, rider_here: false,
   rider_reach: tack(35), r_a: -10, r_d: 19.5, r_face: 35, r_toss: 0, r_near: 0 };
 const START = {
-  evening: 0, night: 0, fade: 0, fade_color: '#000000', someone_coming: 0, closeup: 0, cu_pull: 0, cu_wig: 0, cu_hide: 0, cu_cover: false, hem: 0,
+  evening: 0, night: 0, someone_coming: 0, closeup: 0, cu_pull: 0, cu_wig: 0, cu_hide: 0, cu_cover: false, hem: 0,
   camera_x: 0, camera_z: 0, camera_h: 0, camera_look: 0, puff: 0, puff_a: 1, splash: 0, ring: 0, ring_a: 2.72,
   ...person('david', -1.95, Z, { e: 0, do: loop('sit_lean_back'), turn: 90, look: down(-1.95, 90), steps: false }),
   ...person('sophie', -2.85, Z, { e: 0, do: loop('crouch'), turn: 90, look: 'david', wear: null, on: null }),
@@ -893,13 +893,12 @@ const FILM = {
     },
   },
   // ---- II. The night before the raid: Sophie stands by the stones, a little way off on the path her mother with a bundle, both looking up the path.
-  // Out of the dark David runs down the bank; Sophie turns to him, her mother too; Sophie steps towards him; they stand face to
+  // David runs down the bank; Sophie turns to him, her mother too; Sophie steps towards him; they stand face to
   // face, the mother looking at them. (The choice can be offered on sophie, mother, david.)
   night_warn: {
     from: () => NIGHT,
     run: async s => {
       const david = s.person('david'), sophie = s.person('sophie'), mother = s.person('mother');
-      s.move('fade', 0, { over: 1.6, ease: 'out' });
       const runs = aside(s, async q => { await q.wait(0.9); await walk(q, 'david', [[1.35, Z]], 90, 'run'); q.person('david').gait(null); });
       await s.wait(1.4);
       sophie.look('david');
@@ -918,7 +917,7 @@ const FILM = {
   // she looks back; he stands and looks after her
   night_warn_bye: {
     after: 'night_warn',
-    from: () => ({ ...NIGHT, fade: 0, ...person('david', 1.6, Z, { e: 0, turn: 90, look: 'sophie' }),
+    from: () => ({ ...NIGHT, ...person('david', 1.6, Z, { e: 0, turn: 90, look: 'sophie' }),
       ...person('sophie', 2.15, Z, { e: 0, turn: 270, look: 'david', on: null }), mother_look: 'david', mother_turn: 290 }),
     run: async s => {
       const david = s.person('david'), sophie = s.person('sophie'), mother = s.person('mother');
@@ -1054,9 +1053,9 @@ const FOUND = () => ({ ...GIVEN(), evening: 0.54, camera_x: 2.3, camera_z: 1.5, 
   ...person('mother', BY_HER[0], BY_HER[1], { do: loop('kneel'), turn: 225, look: 'david' }),
   sophie_do: loop('hug_knees'), sophie_look: 'mother' });
 // the night before the raid: Sophie by the stones, her mother up the path with a bundle, both looking up the path; he on
-// the top of the bank; out of the dark
+// the top of the bank
 const NIGHT = {
-  ...START, night: 1, fade: 1, fade_color: '#08101d', evening: 1, camera_x: 0.6, camera_z: 0.7, camera_look: 0.04,
+  ...START, night: 1, evening: 1, camera_x: 0.6, camera_z: 0.7, camera_look: 0.04,
   ...person('david', -2.3, Z, { e: 0, turn: 90, look: down(-2.3, 90) }),
   ...person('sophie', 2.9, 5.2, { e: 0, turn: 30, look: PATH, on: null }),
   ...person('mother', 5.2, 7, { turn: 30, look: PATH, with: ['bundle'] }),

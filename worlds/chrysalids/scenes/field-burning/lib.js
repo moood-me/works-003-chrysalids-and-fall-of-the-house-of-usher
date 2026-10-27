@@ -171,7 +171,7 @@ const torch = (s, v, over) => s.move('jo_torch', v, { over });
 // ── the state the beats begin at ──
 // the first moment: the blue before dawn, all standing heads bowed, David holding his mother's hand
 const S0 = {
-  fade: 1, fade_color: '#000000', dawn: 0.22, morning: 0, fire: 0, ignite: 0, ash: 0, smoke: 0, jo_torch: 0, turned: 0, in_ear: false, in_toss: 0,
+  dawn: 0.22, morning: 0, fire: 0, ignite: 0, ash: 0, smoke: 0, jo_torch: 0, turned: 0, in_ear: false, in_toss: 0,
   ...camOf(CAM.wide),
   ...person('jo', JO, 180, { with: ['torch'], wear: { hat: 'hat' } }),
   ...person('in', IN, 180, { with: ['lantern'], wear: { hat: 'hat' } }),
@@ -179,7 +179,7 @@ const S0 = {
   ...person('dv', DV, 150, { reach: { l: 'em#hand_r' }, still: false }),
   ...congregation(m => person(m.id, m.at, m.face, { look: bowed(m) })),
 };
-const DAWN = { ...S0, fade: 0, dawn: 0.25, ...person('in', EDGE_IN, 180, { with: ['lantern'], wear: { hat: 'hat' } }), in_ear: true };
+const DAWN = { ...S0, dawn: 0.25, ...person('in', EDGE_IN, 180, { with: ['lantern'], wear: { hat: 'hat' } }), in_ear: true };
 const EAR = { ...DAWN, dawn: 0.28, ...person('in', SHOW, 170, { with: ['lantern'], wear: { hat: 'hat' } }), in_ear: false, in_toss: 1, jo_turn: 100,
   ...congregation(m => ({ [`${m.id}_look`]: null })) };
 const KNELT = { ...EAR, jo_turn: 180, jo_reach: { r: [JO[0], JO[1], 3.0] }, jo_look: [JO[0], JO[1] - 1, 5], in_turn: 200, in_look: [SHOW[0], SHOW[1] - 0.8, 0.2],
@@ -196,18 +196,17 @@ const HID = { ...HYMN, dv_a: HIDE[0], dv_d: HIDE[1], dv_turn: HIDE[2], dv_reach:
 // the grey morning after (set at once under the black)
 const GREY = { ash: 1, ignite: 1, fire: 0.12, smoke: 0.42, dawn: 0.82, morning: 1, jo_torch: 0, jo_reach: null, jo_turn: 180, jo_look: null,
   ...congregation(m => ({ [`${m.id}_do`]: 'stand', [`${m.id}_look`]: null, [`${m.id}_with`]: null })), em_do: 'stand', em_with: null };
-const STALKED = { ...HID, ...GREY, fade: 0, ...camOf(CAM.stalk), ...congregation((m, i) => person(m.id, home(m, i), 0)),
+const STALKED = { ...HID, ...GREY, ...camOf(CAM.stalk), ...congregation((m, i) => person(m.id, home(m, i), 0)),
   ...person('in', [5.2, 26], 0, { with: ['lantern'], wear: { hat: 'hat' } }), ...person('em', BY_STALK.em, 180, { reach: { r: 'dv#hand_l' } }),
   ...person('dv', BY_STALK.dv, 125, { reach: { l: 'em#hand_r' }, look: 'stalk#ear' }) };
 
 const FILM = {
-  // out of the black: the blue before dawn; the Inspector goes to the edge of the field, goes down on one knee and breaks
+  // the blue before dawn; the Inspector goes to the edge of the field, goes down on one knee and breaks
   // off an ear
   dawn: {
     from: () => S0,
     run: async s => {
       const ins = s.person('in');
-      s.move('fade', 0, { over: 2.2, ease: 'out' });
       s.move('dawn', 0.25, { over: 9.2 });
       await s.wait(1.0);
       await walk(s, 'in', [EDGE_IN], 0);
@@ -449,7 +448,7 @@ const FILM = {
       jo.look([HYMN_AT[0], HYMN_AT[1] - 3, 2.5]);
     },
   },
-  // the camera goes back; the field burns away into the dark; to black
+  // the camera goes back; the field burns away into the dark
   burn: {
     after: ['hymn_loud', 'hymn_hide'],
     from: () => HID,
@@ -464,8 +463,7 @@ const FILM = {
       await s.wait(0.4);
       await jo.turn(180);
       jo.look(null);
-      await s.wait(3.8);
-      await s.move('fade', 1, { over: 1.8, ease: 'in' });
+      await s.wait(5.6);
     },
   },
   // the grey morning after: ash, a little smoke. They go home; the Inspector goes off across the ash; his mother takes
@@ -473,11 +471,10 @@ const FILM = {
   // standing (the camera comes close). (The game's choice: stalk, on dv)
   morning: {
     after: 'burn',
-    from: () => ({ ...HID, fade: 1 }),
+    from: () => ({ ...HID }),
     run: async s => {
       const dv = s.person('dv'), em = s.person('em');
       for (const [k, v] of Object.entries(GREY)) s.set(k, v);
-      s.move('fade', 0, { over: 2.2, ease: 'out' });
       aside(s, q => each(q, 1.5, (sq, m, i) => walk(sq, m.id, m.at[0] < 0 ? [[home(m, i)[0], m.at[1]], home(m, i)] : [home(m, i)])));
       aside(s, async q => { await q.wait(1.4); await walk(q, 'in', [[5.2, 26]]); });
       await s.wait(3.4);

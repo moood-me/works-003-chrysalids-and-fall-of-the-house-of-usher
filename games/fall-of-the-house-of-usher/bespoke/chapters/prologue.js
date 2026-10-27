@@ -28,7 +28,7 @@ export default {
       await g.title(tr('The Fall of the House of Usher'));
       // the dark; and his letter
       g.sound.rain(0.2, 5);
-      g.set('fade', 0.94, 4);
+      g.fade(0.94, 4);
       await g.wait(4500);
       await g.letter(LETTER);
       g.sound.rain(0, 4);

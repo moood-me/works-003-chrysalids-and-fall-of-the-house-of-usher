@@ -136,8 +136,7 @@ export default {
       await g.beat('run');
       const { escaped } = await g.play(flight, { companions, speed: Math.min(1, scales.crack / CRACK_FULL), sanity: scales.sanity / SCALES.sanity.max });
       if (!escaped) {
-        g.set('fade', 1, 1.5);
-        await g.wait(1500);
+        await g.fade(1, 1.5);
       }
       g.end(!escaped ? 'stayed' : { none: 'poe', madeline: 'madeline', roderick: 'roderick', both: 'both' }[choices.hands]);
     },

@@ -27,7 +27,10 @@ export default {
       await g.say('narrator', 'For several days ensuing, her name was unmentioned.');
       await g.say('roderick', 'Speak not of her. I beg you.');
       await away;
+      // (days go by: through black — the scene cuts to the evening while it is dark)
+      g.fade(1, 1.4);
       await g.beat('dusk');
+      await g.fade(0, 2.2);
       const song = g.beat('guitar');
       const tune = g.sound.melody({ as: 'guitar', tempo: 0.8, loud: 0.5 });
       await g.say('roderick', 'Her song. She sang it when we were children.');

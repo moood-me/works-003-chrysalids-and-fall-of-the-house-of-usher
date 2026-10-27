@@ -29,7 +29,7 @@
 // lessened. The page's ⏭ (bespoke.forward, story.js) is the player's only where they have been: in a step not past what
 // they have seen of its chapter — on to the next interaction —, and in a minigame there, or one they have been in a
 // while (story.js SKIPPABLE).
-import { SCALES, SCENES, context, listen } from './story.js';
+import { SCALES, SCENES, context, listen, through } from './story.js';
 import { ui } from './ui.js';
 import { trees } from './map.js';
 import { hush, wake, unheard, pause } from './sound.js';
@@ -173,7 +173,7 @@ export default async function (b) {
     hush(2);
     view.gauges(null);
     const here = replay ? replay.run.chapter : Math.min(kept.chapter, END);
-    await b.show(SCENES.wall, { state: { shown: reveal ?? here }, captions: false });
+    await b.show(SCENES.wall, { state: { shown: reveal ?? here }, captions: false, fade: through() });
     const drawn = trees(b, sky(), { grow: reveal, seconds: REVEAL, author: !!author });
     const notice = replay?.done && anew() ? view.notice(tr('If you keep it, the chapters after this one will have to be played again.')) : () => {};
     let grown = reveal == null, asked = null; // (an option that would leave the replay: asked again)

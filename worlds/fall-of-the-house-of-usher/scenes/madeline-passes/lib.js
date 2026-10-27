@@ -428,7 +428,7 @@ const person = (id, place, turn, more = {}) => ({
 const away = (id, place = DOOR3) => ({ ...person(id, place, 90), [`${id}_here`]: false });
 // a close-up face at rest
 const FACE = { speak: 0, cu_turn: 0, cu_tear: 0, cu_inhale: 0, cu_blink: 0 };
-const EVENING = { fade: 0, camera_x: 0, camera_z: 0, low_sun: 0, light_shafts: 1, sconce: 1, closeup: 0, shot: "roderick", ...FACE };
+const EVENING = { camera_x: 0, camera_z: 0, low_sun: 0, light_shafts: 1, sconce: 1, closeup: 0, shot: "roderick", ...FACE };
 // in the dark of the doorways, past the wall (DOORS): she comes out of the first, goes into the second
 const DOOR3 = [-4.6, 20.4], DOOR5 = [-4.8, 29.6];
 // the two of them at the start, their backs to us
@@ -463,15 +463,14 @@ const CLOSE = (shot, o = {}) => ({ ...FACE, closeup: 1, shot, ...o });
 const DOCTOR_IN = [[-3.1, 20.6], [-1.8, 19.8], [0.0, 16.6]], DOCTOR_OUT = [[-0.4, 17.4], [-2.0, 19.9], [-3.6, 20.5], DOOR3];
 
 const FILM = {
-  // ---- She passes in the depth. Out of the dark: the narrator and Roderick, their backs to us, at the start of the gallery.
+  // ---- She passes in the depth. The narrator and Roderick, their backs to us, at the start of the gallery.
   // Out of the first doorway on the left comes Madeline, slowly, as if asleep, across through the windows' light; Roderick
   // raises his head to her, his head drops; he turns away toward us and hides his face in his hands; his friend looks round
   // at him. She stops in the light by a window and turns to it, not seeing them.
   pass: {
-    from: () => ({ ...EVENING, ...TOGETHER, fade: 1, ...madeline(DOOR3, 85), ...away("doctor") }),
+    from: () => ({ ...EVENING, ...TOGETHER, ...madeline(DOOR3, 85), ...away("doctor") }),
     run: async (s) => {
       const rod = s.person("roderick"), friend = s.person("narrator");
-      s.move("fade", 0, { over: 2.5, ease: "out" });
       await s.all(
         s.sequence(async (q) => {
           await q.wait(0.3);
@@ -652,15 +651,14 @@ const FILM = {
       await s.wait(0.5);
     },
   },
-  // ---- Chapter II, another day: the low warm sun. Out of the dark: the narrator alone in the middle of the gallery; the
+  // ---- Chapter II, another day: the low warm sun: the narrator alone in the middle of the gallery; the
   // doctor with his bag comes out of the first doorway and up to him; the narrator turns round to him; the doctor stops
   // facing him and leans in, confiding. Close: the spectacles, the sly perplexed eyes. (The game says his first line.)
   doctor: {
-    from: () => ({ ...DAY, fade: 1, ...person("doctor", DOOR3, 95) }),
+    from: () => ({ ...DAY, ...person("doctor", DOOR3, 95) }),
     run: async (s) => {
       const doc = s.person("doctor"), friend = s.person("narrator");
       const close = s.shot(CLOSE("doctor", { cu_turn: 0.3 }));
-      s.move("fade", 0, { over: 2, ease: "out" });
       await s.all(
         s.sequence(async (q) => {
           await q.wait(0.4);
@@ -719,8 +717,7 @@ const FILM = {
       friend.look(null);
       await s.wait(0.6);
       friend.walk([[-0.7, 16.6], [-2.0, 19.6]]);
-      await s.wait(2);
-      await s.move("fade", 1, { over: 2.4, ease: "inOut" });
+      await s.wait(4.4);
       out.finish();
     },
   },

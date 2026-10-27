@@ -135,7 +135,7 @@ const AT_WALL = [2.3, 10.25],
   BESIDE = [3.05, 9.75],
   DOOR = [7.6, 7.5];
 const AT_WINDOW = { roderick_do: "stand", roderick_a: WINDOW[0], roderick_d: WINDOW[1], narrator_a: FRIEND[0], narrator_d: FRIEND[1], narrator_turn: toward(...FRIEND, ...WINDOW) };
-const SHOT = { fade: 0, closeup: 0, night_fill: 0, ...shot(WIDE) };
+const SHOT = { closeup: 0, night_fill: 0, ...shot(WIDE) };
 // his face on the close-up, at rest
 const FACE = { closeup_smile: 0, closeup_strain: 0, closeup_grief: 0, closeup_speak: 0 };
 const DAY = { evening: 0, song: 0, tempo: 0, wild: 0 };
@@ -161,10 +161,9 @@ const strum = (s, strokes, over, ease = "linear") => s.move("strum", (+s.get("st
 const FILM = {
   // the valet brings the narrator in; Roderick is up too fast, comes, takes his hand in both his
   enter: {
-    from: () => ({ ...SEATED, ...SHOT, ...DAY, fade: 1, narrator_a: 5.4, narrator_d: 6.9, narrator_turn: 270, narrator_look: null, valet_a: 4.7, valet_d: 6.75, valet_here: true }),
+    from: () => ({ ...SEATED, ...SHOT, ...DAY, narrator_a: 5.4, narrator_d: 6.9, narrator_turn: 270, narrator_look: null, valet_a: 4.7, valet_d: 6.75, valet_here: true }),
     run: async (s) => {
       const rod = s.person("roderick"), nar = s.person("narrator"), valet = s.person("valet");
-      s.move("fade", 0, { over: 2.5 });
       await s.wait(0.5);
       const shown = walkTo(s, "valet", [3.0, 6.75], 240);
       await s.wait(0.6);
@@ -270,13 +269,12 @@ const FILM = {
       s.person("roderick").look(null);
     },
   },
-  // days go by: dark, and the room in the evening (a fade as time passing, a chapter's turn)
+  // days go by: a cut to the room in the evening (time passing, a chapter's turn; the game takes it through black)
   dusk: {
     from: () => ({ ...SEATED, ...SHOT, ...DAY }),
     run: async (s) => {
-      await s.move("fade", 1, { over: 1.4, ease: "in" });
-      s.set("evening", 1);
-      await s.move("fade", 0, { over: 2.2 });
+      await s.wait(1.4);
+      s.cut({ evening: 1 });
     },
   },
   // he takes up the guitar from beside the chair and plays, slowly — her song; he plays on
@@ -348,11 +346,10 @@ const FILM = {
   // another evening: he stands under the window, his back to the room; turns. Close: dry eyes; his lips (the scene tells
   // news:lips — the game's line from there)
   news: {
-    from: () => ({ ...SEATED, ...SHOT, ...EVENING, ...FACE, fade: 1, ...AT_WINDOW, roderick_turn: 0 }),
+    from: () => ({ ...SEATED, ...SHOT, ...EVENING, ...FACE, ...AT_WINDOW, roderick_turn: 0 }),
     run: async (s) => {
       const rod = s.person("roderick");
       const close = s.shot({ closeup: 1, closeup_shot: "news", ...FACE });
-      s.move("fade", 0, { over: 2.0 });
       await s.wait(2.4);
       rod.turn(toward(...WINDOW, ...FRIEND));
       rod.look("narrator");
@@ -384,11 +381,10 @@ const FILM = {
   night_listen: {
     // (his ear to the stone: facing the wall, his head turned along it — the ear to it — his palm flat on it)
     from: () => ({
-      ...SEATED, ...SHOT, ...NIGHT, ...shot(LISTENING), fade: 1, roderick_do: "stand", roderick_a: AT_WALL[0], roderick_d: AT_WALL[1], roderick_turn: 0,
+      ...SEATED, ...SHOT, ...NIGHT, ...shot(LISTENING), roderick_do: "stand", roderick_a: AT_WALL[0], roderick_d: AT_WALL[1], roderick_turn: 0,
       roderick_look: [AT_WALL[0] + 3, AT_WALL[1] + 0.1, 1.62], roderick_reach: { l: [AT_WALL[0] - 0.28, 10.48, 1.55] }, narrator_a: DOOR[0], narrator_d: DOOR[1], narrator_turn: 290, narrator_look: null,
     }),
     run: async (s) => {
-      s.move("fade", 0, { over: 3.0 });
       await s.wait(1.2);
       await walkTo(s, "narrator", BESIDE, 10);
       // (his head bowed to the stone, listening too: the game's line from here)

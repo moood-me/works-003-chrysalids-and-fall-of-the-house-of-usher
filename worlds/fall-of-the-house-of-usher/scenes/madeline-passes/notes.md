@@ -44,7 +44,6 @@
 | Key | What |
 | --- | --- |
 | `beat` | a beat of the film (the `beats` module); the showcase outside games — all the beats in order (`showcase.js`) |
-| `fade` | a fade — only as a device: out of the dark at the start of `pass` and `doctor`, into the dark at the end of `leave_with` |
 | `camera_x`, `camera_z` | the eye (m) over the picture |
 | `crack` | the crack 0…1 (the game sets it by the scale, smoothly) |
 | `light_shafts` | the windows' evening light 0…1 |
@@ -62,7 +61,7 @@ window (≈ 23 m), Roderick ahead on the right, facing us; after `look` Madeline
 ## Beats (lib.js FILM)
 The cuts are prepared ahead (`s.shot`) and shown whole; there are no fades to hide anything.
 
-- **pass** — out of the dark: the narrator and Roderick with their backs to us; Madeline comes out of the first opening
+- **pass** — the narrator and Roderick with their backs to us; Madeline comes out of the first opening
   and walks on a diagonal through the bands of light; Roderick lifts his head to her (as soon as she has come out), the
   head drops, he turns away towards us and covers his face with his palms; the narrator looks round at him. She stops in
   the light by a window, facing the window. Ends: Roderick weeping, she standing in the light.
@@ -79,13 +78,13 @@ The cuts are prepared ahead (`s.shot`) and shown whole; there are no fades to hi
   Roderick lowers his hands, looks at him, speaks with his hands — he has begun to speak: the scene says `stay:talk`
   (the game's lines from here); Madeline behind them goes into the opening. Ends: they stand side by side, Roderick
   speaking.
-- **doctor** (chapter II, from anywhere) — another day, a low sun; out of the dark: the narrator alone; the physician
+- **doctor** (chapter II, from anywhere) — another day, a low sun: the narrator alone; the physician
   with his bag comes out of the first opening and walks to him; the narrator turns round; the physician stands facing
   him and leans in; a cut: close, spectacles, sly eyes. The game says his line.
 - **beside** (after doctor) — back: the physician beside him, leaning. The choice, the second line.
 - **doctor_leaves** (after beside) — the physician straightens and goes into the opening without looking back.
-- **leave_with** (after beside) — the physician goes, the narrator after him; a fade (the end of the chapter). Ends:
-  dark.
+- **leave_with** (after beside) — the physician goes, the narrator after him (the end of the chapter). Ends:
+  the gallery, the two going into the opening.
 
 ## Lines (the game says them)
 Madeline after `wake` — “When I am so — I hear everything. Do not let them shut me in”; Roderick in `stay` (with

@@ -62,10 +62,10 @@ hand — the engine: `narrator_reach {r: "madeline#hand_l"}` and the answering o
 Each with `from` (a cut, if the beat does not follow its `after`). `_turn`: 0 — away from us (towards the house), 180 —
 towards us.
 
-- `prologue` (~22 s, no people): out of the dark, a push-in (`camera_z` → 9); the moon flares up in the crack (`moon` →
+- `prologue` (~22 s, no people): a push-in (`camera_z` → 9); the moon flares up in the crack (`moon` →
   1); the crack opens, dust and stones (`fall` → 0.3; > 0.2 — the game gives the roar); the halves part, lean, sink
   (→ 0.55 → 0.88); the tarn closes (→ 1); `storm` dies down.
-- `run` (~1.5 s): out of the dark; the narrator (and those he holds) on the causeway, where `run` found them, facing us,
+- `run` (~1.5 s): the narrator (and those he holds) on the causeway, where `run` found them, facing us,
   `fall` 0.15. Then the mini-game “Run” moves `run`, `fall`, `swim`.
 - `dash`, `ashore` — the showcase's: he runs half the way, then to the shore (`run` 0.5, 1), `fall` at its own pace (to
   0.33, 0.42).
@@ -83,7 +83,7 @@ towards us.
   window (`camera_z` 75, `camera_x` 6, `camera_look` 0.22); in the reflected window the three show through — larger than
   the window, in its red light (`ghosts`) — and fade; the house goes.
 - `gone`: morning (`morning` 1), the empty tarn without rings, of the causeway — piles; the camera eases forward a
-  little. The morning seen whole (out of the dark) — the scene says `gone:morning` (the lines of “Left” from here).
+  little. The morning seen whole — the scene says `gone:morning` (the lines of “Left” from here).
 
 The beats' length follows the people (their step): the game's epilogue lines, by seconds (11.5 s, 9 s …), fall close to
 where they were.

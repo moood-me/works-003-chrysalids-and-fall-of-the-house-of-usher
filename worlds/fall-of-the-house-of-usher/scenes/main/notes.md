@@ -10,19 +10,19 @@ people: the narrator, Roderick; the motion `ride` — on horseback), `ushers` (t
 
 | beat | after | what | ends |
 | --- | --- | --- | --- |
-| `arrive` | — | out of the dark; the rider comes along the causeway from lower left, slowing, the horse turns towards the house, tosses its head, the narrator raises his eyes to the house | stands by the tarn, looking at the house |
+| `arrive` | — | the rider comes along the causeway from lower left, slowing, the horse turns towards the house, tosses its head, the narrator raises his eyes to the house | stands by the tarn, looking at the house |
 | `look` | arrive | a slight push-in. Under “Cause”: the game raises `gloom` | a living pose |
 | `trace` | look | the camera to the house, the crack larger: for the finger to trace (`crack_trace`) | the house, close |
 | `tarn` | look, trace | the gaze down to the water, a pale figure shows in the reflection at an upper window, the gaze up — the window is empty, in the water she fades | the house, the window empty |
-| `to_door` | look, trace, tarn | the camera back, the rider rides along the causeway to the door, the door opens, a fade (the end of the part) | a black screen |
-| `walk_out` | — | day, the camera low on the causeway 15 m from the door; out of the dark, the door opens; the narrator leads Roderick by the hand towards us (`walk` 0 → 0.15) | the two close, hand in hand |
+| `to_door` | look, trace, tarn | the camera back, the rider rides along the causeway to the door, the door opens (the end of the part) | the rider at the open door |
+| `walk_out` | — | day, the camera low on the causeway 15 m from the door; the door opens; the narrator leads Roderick by the hand towards us (`walk` 0 → 0.15) | the two close, hand in hand |
 | `walk` | walk_out | the camera goes with them (`follow`): the game moves `walk` (→ 0.5) and `resist` | at once |
 | `walk_on` | walk_out, walk | (outside games — what “By the hand” does) they walk to the middle, he balks harder; the camera backs away ahead of them | in the middle |
 | `breathe` | walk, walk_on | he stops balking, the narrator turns round, Roderick lifts his face to the sky, the camera closer; **close** (the insert `closeup`, a cut without a fade): eyes shut, a deep breath; back | a wide shot, the face lifted |
 | `to_shore` | breathe | he lowers his face, they walk; a cut closer to the shore; he balks, the hand slips out, the narrator carried a step on by his own motion, Roderick falls to his knees, stops his ears, rocks | he on his knees, the narrator over him |
 | `turn_back` | breathe | they let go of hands, he turns home first (at his own gait), looks back at the shore once | the two going off to the house |
-| `morning` | — | chapter III, a grey morning, thick mist: out of the dark, the horse saddled by the tarn, the narrator on foot at its shoulder; the camera closer, the horse tosses its head, the narrator looks back at the house | a living pose (the choice: `rider` “Leave”, `house` “Stay”) |
-| `ride_away` | morning | he goes to the stirrup, a hand on the saddle — a cut: he is in the saddle; the horse turns towards us, rides along the causeway towards us and out of frame, a fade | a black screen |
+| `morning` | — | chapter III, a grey morning, thick mist: the horse saddled by the tarn, the narrator on foot at its shoulder; the camera closer, the horse tosses its head, the narrator looks back at the house | a living pose (the choice: `rider` “Leave”, `house` “Stay”) |
+| `ride_away` | morning | he goes to the stirrup, a hand on the saddle — a cut: he is in the saddle; the horse turns towards us, rides along the causeway towards us and out of frame | the causeway, empty |
 
 The showcase (`showcase.js`): arrive, look (with the gloom in steps there too, as in the game), trace (and a finger's
 trail along the crack), tarn, to_door, walk_out, walk_on, breathe, to_shore, morning, ride_away — ~2 min 8 s; each beat
@@ -64,7 +64,7 @@ house lives…” — after it; the choice “to the shore / back” — on `rod
   `walk`.
 - `closeup` 0/1 — the insert: Roderick's face by day (`lib.closeup`, drawn once); `cu_inhale` 0…1 — a breath (its
   animation). (It was `cu_d` — the card's distance; the insert does not need it.)
-- The camera: `camera_x`, `camera_z`, `camera_h`, `camera_look`; `fade` — only as the start and end of a part.
+- The camera: `camera_x`, `camera_z`, `camera_h`, `camera_look`. No fade of the scene's own: a part begins and ends seen (the black between, if any, is the game's).
 
 ## Elements for choices
 

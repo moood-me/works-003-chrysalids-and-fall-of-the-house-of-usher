@@ -598,7 +598,7 @@ function film(scene) {
   const people = { ...rest('narrator'), ...rest('madeline', 'still'), ...rest('roderick') };
   // the night under the red moon, nobody stirring
   const night = {
-    fade: 0, moon: 1, storm: 0.6, morning: 0, ghosts: 0, swim: 0, camera_x: 0, camera_z: 0, camera_h: 0, camera_look: 0,
+    moon: 1, storm: 0.6, morning: 0, ghosts: 0, swim: 0, camera_x: 0, camera_z: 0, camera_h: 0, camera_look: 0,
     running: false, trip: 0, hand_in_hand: false, ...people,
   };
   // nobody there
@@ -608,16 +608,15 @@ function film(scene) {
   const flight = () => {
     const md = !!scene.get('with_madeline'), rd = !!scene.get('with_roderick'), r = scene.get('run') ?? 0, d = runAt(r);
     return {
-      ...night, fade: 1, fall: 0.15, storm: 0.75, narrator_here: true, madeline_here: md, roderick_here: rd, running: true, run: r,
+      ...night, fall: 0.15, storm: 0.75, narrator_here: true, madeline_here: md, roderick_here: rd, running: true, run: r,
       narrator_turn: RUNNING, madeline_turn: RUNNING, roderick_turn: RUNNING, narrator_gait: 'flee', madeline_gait: 'flee', roderick_gait: 'flee',
       nar_a: across(d) + 0.05, nar_d: d, ...around(d, 0, md, rd), ...camOf(d), ...holding(0, md, rd),
     };
   };
   // an ending: the last of the house going under, them on the near shore
-  const ashore = { ...night, fade: 1, fall: 0.78, narrator_here: true };
+  const ashore = { ...night, fall: 0.78, narrator_here: true };
   // the house goes the rest of the way down, and the wind drops (beside what the people do)
   const sinks = (s) => s.sequence(async (q) => {
-    q.move('fade', 0, { over: 1.5, ease: 'out' });
     await q.move('fall', 1, { over: 7.5, ease: 'inOut' });
     await q.wait(5.5);
     await q.move('storm', 0.45, { over: 2, ease: 'inOut' });
@@ -642,9 +641,8 @@ function film(scene) {
     // ---- The end first, nobody there: the fissure blazes as the moon comes into it, the house splits and goes down into
     // the tarn; rings on the water, the moon in it
     prologue: {
-      from: () => ({ ...night, ...empty, fade: 1, fall: 0, moon: 0.55 }),
+      from: () => ({ ...night, ...empty, fall: 0, moon: 0.55 }),
       run: async (s) => {
-        s.move('fade', 0, { over: 3, ease: 'out' });
         s.move('camera_z', 9, { over: 22, ease: 'inOut' });
         await s.wait(2);
         s.move('moon', 1, { over: 3.5, ease: 'inOut' });
@@ -662,7 +660,6 @@ function film(scene) {
     run: {
       from: flight,
       run: async (s) => {
-        s.move('fade', 0, { over: 1.2, ease: 'out' });
         await s.move('storm', 0.85, { over: 1.5, ease: 'inOut' });
       },
     },
@@ -675,7 +672,7 @@ function film(scene) {
     // ---- One of them stumbles — the one he leads by the hand (he looks back at them), or he himself — and is up again
     stumble: {
       after: ['run', 'stumble', 'dash'],
-      from: () => ({ ...flight(), fade: 0 }),
+      from: () => ({ ...flight() }),
       run: async (s) => {
         const one = s.state.with_madeline ? 'madeline' : s.state.with_roderick ? 'roderick' : 'narrator';
         // (into the stumble's own moment: the foot caught at once)
@@ -697,10 +694,9 @@ function film(scene) {
     },
     // ---- As in Poe: alone, he runs off the causeway, slows on the shore, turns to the house, and it goes under
     end_alone: {
-      from: () => ({ ...night, ...empty, fade: 1, fall: 0.42, narrator_here: true, ...at('narrator', OFF_START), narrator_turn: RUNNING, narrator_gait: 'flee' }),
+      from: () => ({ ...night, ...empty, fall: 0.42, narrator_here: true, ...at('narrator', OFF_START), narrator_turn: RUNNING, narrator_gait: 'flee' }),
       run: async (s) => {
         const nar = s.person('narrator');
-        s.move('fade', 0, { over: 1.2, ease: 'out' });
         s.sequence(async (q) => {
           await q.move('fall', 0.52, { over: 4.6, ease: 'inOut' });
           await q.move('fall', 0.9, { over: 6, ease: 'inOut' });
@@ -796,9 +792,8 @@ function film(scene) {
     // ---- Nobody came out: the eye goes to the water; in the reflection, for a moment, the three of them in a window;
     // the tarn closes
     end_stayed: {
-      from: () => ({ ...night, ...empty, fade: 1, fall: 0.4 }),
+      from: () => ({ ...night, ...empty, fall: 0.4 }),
       run: async (s) => {
-        s.move('fade', 0, { over: 1.5, ease: 'out' });
         s.move('camera_z', 60, { over: 5, ease: 'inOut' });
         s.move('camera_look', 0.12, { over: 5, ease: 'inOut' });
         s.move('fall', 0.5, { over: 5.5, ease: 'inOut' });
@@ -820,10 +815,9 @@ function film(scene) {
     // ---- Morning: the empty tarn, the water still; from the causeway only its posts. Once it is all there, out of the
     // dark, the scene tells 'gone:morning'
     gone: {
-      from: () => ({ ...night, ...empty, fade: 1, fall: 1, moon: 0, storm: 0.3, morning: 1 }),
+      from: () => ({ ...night, ...empty, fall: 1, moon: 0, storm: 0.3, morning: 1 }),
       run: async (s) => {
         s.move('camera_z', 2.5, { over: 14, ease: 'inOut' });
-        await s.move('fade', 0, { over: 3, ease: 'inOut' });
         s.tell('gone:morning');
         await s.wait(4);
       },

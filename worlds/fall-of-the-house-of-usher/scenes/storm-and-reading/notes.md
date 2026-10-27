@@ -54,19 +54,19 @@ scene); a beat that follows its `after` goes on from what is there. After a beat
 
 | beat | after | what is seen | ends on (held) |
 | --- | --- | --- | --- |
-| `night` | — | out of black (2.5 s); night, quiet rain, the candle; the narrator at the table; he turns his head to the floor and back | seated, still — under “Listen” |
+| `night` | — | night, quiet rain, the candle; the narrator at the table; he turns his head to the floor and back | seated, still — under “Listen” |
 | `lamp_pass` | night | lamplight along the corridor under the door, stops at the door (trembling), goes on and fades; he turns to the door | dark again, he looks at the door |
-| `enter_lamp` | — | the storm, out of black; hurried lamplight; the door bursts open — Roderick with his lamp; the narrator gets up; Roderick comes in; the door drifts back; close-up `rod_lamp`, slowly closer | the close-up (~6 s in) — under “And you have not seen it?” (`cu_speak`) |
+| `enter_lamp` | — | the storm; hurried lamplight; the door bursts open — Roderick with his lamp; the narrator gets up; Roderick comes in; the door drifts back; close-up `rod_lamp`, slowly closer | the close-up (~6 s in) — under “And you have not seen it?” (`cu_speak`) |
 | `window_open` | enter_lamp | out of the close-up; he goes to the window, his hand on the latch — the wind flings the casements open: the curtain flies, the mist brightens, lightning; his lamp up to the storm; the narrator to mid-room | Roderick at the open window, the narrator mid-room |
 | `window_close` | window_open | the narrator comes up behind him; Roderick steps aside; the narrator pulls the casements shut by their handles, the wind drops; takes his hand, leads him round the chair; Roderick puts his lamp down and sits facing the door | Roderick seated, the narrator by the chair |
 | `watch` | window_open | the narrator stands by him at the open window; lightning; Roderick glances at him | the two at the window |
-| `read` | — | later, out of black; Roderick rocking in his chair; the narrator reads | the reading — under “The reading” |
+| `read` | — | later; Roderick rocking in his chair; the narrator reads | the reading — under “The reading” |
 | `confess` | read | the book lowered; Roderick gets up, comes round before the chair; close-up `rod_confess` | the close-up — under the confession |
 | `door_opens` | confess | out of the close-up; he points at the door — “Madman!…”; the narrator lays the book down, gets up; the door swings open: Madeline, swaying; lightning; close-up `mad_door`, her hand coming up | her close-up |
 | `hands` | door_opens | she staggers in; close-up of the hands (the game's reaching keys) | the hands — under “Hands” |
 | `collapse` | hands | out of the close-up; she lurches onto him, he catches her, borne back; arms round each other; both sink to their knees | the two on their knees |
 | `flee` | collapse, hands | the narrator runs out left — with whoever he took; whoever is left sinks down; the room shakes, the crack splits on the red moon, the candle goes out | the empty room shaking, red |
-| `stay` | collapse, hands | the same end around the narrator, who stays; to black | black |
+| `stay` | collapse, hands | the same end around the narrator, who stays | the end of the room, he in it |
 
 Beat lengths follow the people (their walks and motions take what they take): the game waits for the beats' moments
 (`enter_lamp:close`, `confess:close`, `door_opens:out`), never for seconds.

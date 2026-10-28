@@ -1,0 +1,1290 @@
+{
+  "engine": 3,
+  "title": "The storm and the reading",
+  "caption": "It appeared to me that from some very remote portion of the mansion there came the very sound of which I had just read.",
+  "horizon": 0.45,
+  "camera": {
+    "mode": "picture"
+  },
+  "light": {
+    "grain": 0.2,
+    "vignette": 0.72,
+    "haze": 0.06,
+    "hazeColor": "#1b262c",
+    "tint": "#1a2a33",
+    "tintStrength": 0.08,
+    "ambient": 0.5,
+    "ambientColor": "#8aa3b8",
+    "bounce": 0.4,
+    "hazeGlow": 0.35,
+    "shafts": 0.35,
+    "wind": [
+      1,
+      0,
+      0.15
+    ],
+    "looks": {
+      "storm": {
+        "wind": [
+          1.6,
+          -0.2,
+          0.6
+        ]
+      },
+      "wind": {
+        "wind": [
+          -1.2,
+          -1.0,
+          1.8
+        ]
+      },
+      "lightning": {
+        "ambient": 0.7,
+        "ambientColor": "#b8cce0"
+      },
+      "rift": {
+        "tint": "#5a1410",
+        "tintStrength": 0.15
+      }
+    }
+  },
+  "lights": [
+    {
+      "id": "candle",
+      "of": "flame#flame",
+      "strength": 1.2,
+      "reach": 5,
+      "on": "candle",
+      "flicker": 0.3
+    },
+    {
+      "id": "hall",
+      "across": 0,
+      "distance": 7.2,
+      "elevation": 0.95,
+      "place": {
+        "across": "hall_x"
+      },
+      "color": "#ffb468",
+      "strength": 1.1,
+      "reach": 3.5,
+      "on": "hall_lamp",
+      "flicker": 0.25,
+      "glow": 0.25
+    },
+    {
+      "id": "gap",
+      "across": 0,
+      "distance": 6.66,
+      "elevation": 0.03,
+      "place": {
+        "across": "hall_x"
+      },
+      "color": "#ffbe78",
+      "strength": 0.9,
+      "reach": 2.8,
+      "on": "hall_lamp",
+      "flicker": 0.25
+    },
+    {
+      "id": "lamp",
+      "at": "roderick#flame",
+      "color": "#ffc27a",
+      "strength": 1.3,
+      "reach": 5,
+      "on": "lamp_held",
+      "flicker": 0.15,
+      "glow": 0.2
+    },
+    {
+      "id": "lamp_floor",
+      "of": "floor_lamp",
+      "color": "#ffc27a",
+      "strength": 0.5,
+      "reach": 4,
+      "on": "lamp_down",
+      "flicker": 0.15
+    },
+    {
+      "id": "mist",
+      "from": [
+        20,
+        50
+      ],
+      "through": [
+        [
+          [
+            2.65,
+            6.49,
+            0.95
+          ],
+          [
+            3.85,
+            6.49,
+            0.95
+          ],
+          [
+            3.85,
+            6.49,
+            4.3
+          ],
+          [
+            2.65,
+            6.49,
+            4.3
+          ]
+        ]
+      ],
+      "color": "#8da2b8",
+      "strength": 0.7,
+      "size": 8,
+      "on": "glow"
+    },
+    {
+      "id": "lightning",
+      "from": [
+        15,
+        45
+      ],
+      "through": [
+        [
+          [
+            2.65,
+            6.49,
+            0.95
+          ],
+          [
+            3.85,
+            6.49,
+            0.95
+          ],
+          [
+            3.85,
+            6.49,
+            4.3
+          ],
+          [
+            2.65,
+            6.49,
+            4.3
+          ]
+        ]
+      ],
+      "color": "#c8d8e8",
+      "strength": 1.6,
+      "size": 3,
+      "on": "lightning"
+    },
+    {
+      "id": "rift",
+      "across": 0.4,
+      "distance": 6.4,
+      "elevation": 3.6,
+      "color": "#c0302a",
+      "strength": 1.2,
+      "reach": 10,
+      "on": "rift",
+      "glow": 0.6
+    },
+    {
+      "id": "fill",
+      "across": 0.2,
+      "distance": 0.6,
+      "elevation": 1.8,
+      "color": "#c4d0dc",
+      "strength": 0.85,
+      "reach": 10
+    }
+  ],
+  "modules": [
+    "cast",
+    "closeups",
+    "ushers",
+    "beats"
+  ],
+  "objects": [
+    {
+      "id": "sky",
+      "name": "Storm and glowing mist",
+      "sky": true,
+      "uniforms": {
+        "cloud": 0,
+        "mistgo": 0,
+        "glow": 0.2,
+        "flash": 0,
+        "width": 2.378
+      }
+    },
+    {
+      "id": "rain_quiet",
+      "name": "Rain beyond the window",
+      "particles": {
+        "kind": "rain",
+        "count": 2500,
+        "area": [
+          -40,
+          40,
+          7,
+          80
+        ],
+        "reach": 14
+      }
+    },
+    {
+      "id": "rain_storm",
+      "name": "Downpour beyond the window",
+      "particles": {
+        "kind": "rain",
+        "count": 7000,
+        "area": [
+          -40,
+          40,
+          7,
+          80
+        ],
+        "reach": 14,
+        "amount": "storm",
+        "gust": 0.6
+      }
+    },
+    {
+      "id": "corridor",
+      "name": "Dark corridor beyond the door",
+      "across": 0,
+      "distance": 7.4,
+      "height": 3,
+      "box": [
+        -1.6,
+        -3.2,
+        1.6,
+        0.1
+      ]
+    },
+    {
+      "id": "door_gap",
+      "name": "Light under the door",
+      "across": 0,
+      "distance": 6.6,
+      "height": 2.7,
+      "box": [
+        -1.3,
+        -2.8,
+        1.3,
+        0.05
+      ],
+      "glows": true
+    },
+    {
+      "id": "feet",
+      "name": "Feet of the lamp-bearer",
+      "across": 0,
+      "distance": 6.56,
+      "height": 0.2,
+      "box": [
+        -2.2,
+        -0.3,
+        2.2,
+        0.05
+      ],
+      "shadow": {
+        "light": "gap",
+        "onto": [
+          "floor"
+        ],
+        "soft": 0.03,
+        "strength": 0.85
+      }
+    },
+    {
+      "id": "wall",
+      "name": "Wall of the chamber with window and door",
+      "across": 0,
+      "distance": 6.5,
+      "height": 5,
+      "box": [
+        -8,
+        -6.6,
+        8,
+        0.1
+      ],
+      "shadow": {
+        "onto": [
+          "floor"
+        ],
+        "soft": 0.03,
+        "strength": 0.9
+      }
+    },
+    {
+      "id": "crack",
+      "name": "Crack in the wall",
+      "across": 0,
+      "distance": 6.49,
+      "height": 5,
+      "box": [
+        -3.7,
+        -5.7,
+        3.0,
+        -2.0
+      ]
+    },
+    {
+      "id": "fissure",
+      "name": "Crack: mist and the red moon",
+      "across": 0,
+      "distance": 6.48,
+      "height": 5,
+      "box": [
+        -3.7,
+        -5.7,
+        3.0,
+        -2.0
+      ],
+      "glows": true
+    },
+    {
+      "id": "door",
+      "name": "Door",
+      "across": 0.58,
+      "distance": 6.49,
+      "facing": 180,
+      "place": {
+        "facing": "door_turn"
+      },
+      "height": 2.6,
+      "box": [
+        -1.2,
+        -2.7,
+        0.02,
+        0.02
+      ],
+      "shadow": {
+        "onto": [
+          "floor"
+        ],
+        "soft": 0.03,
+        "strength": 0.9
+      }
+    },
+    {
+      "id": "window",
+      "name": "Window",
+      "across": 0,
+      "distance": 6.49,
+      "height": 4.4,
+      "box": [
+        2.5,
+        -4.7,
+        4.0,
+        -0.8
+      ]
+    },
+    {
+      "id": "casement_l",
+      "name": "Left casement",
+      "across": 2.65,
+      "distance": 6.47,
+      "facing": 180,
+      "place": {
+        "facing": "case_l"
+      },
+      "height": 3.8,
+      "box": [
+        -0.05,
+        -3.9,
+        0.65,
+        -0.85
+      ],
+      "translucent": 0.5
+    },
+    {
+      "id": "casement_r",
+      "name": "Right casement",
+      "across": 3.85,
+      "distance": 6.47,
+      "facing": 180,
+      "place": {
+        "facing": "case_r"
+      },
+      "height": 3.8,
+      "box": [
+        -0.65,
+        -3.9,
+        0.05,
+        -0.85
+      ],
+      "translucent": 0.5
+    },
+    {
+      "id": "drops_l",
+      "name": "Drops on the left casement",
+      "on": "casement_l",
+      "across": 0.3,
+      "elevation": 2.3,
+      "distance": -0.02,
+      "particles": {
+        "kind": "drops",
+        "source": [
+          0.5,
+          0,
+          2.6
+        ],
+        "rate": 2.5
+      }
+    },
+    {
+      "id": "drops_r",
+      "name": "Drops on the right casement",
+      "on": "casement_r",
+      "across": -0.3,
+      "elevation": 2.3,
+      "distance": -0.02,
+      "particles": {
+        "kind": "drops",
+        "source": [
+          0.5,
+          0,
+          2.6
+        ],
+        "rate": 2.5
+      }
+    },
+    {
+      "id": "rain_in",
+      "name": "Rain through the open window",
+      "particles": {
+        "kind": "rain",
+        "around": false,
+        "at": [
+          3.25,
+          6.3,
+          2.6
+        ],
+        "source": [
+          1.1,
+          0,
+          2.2
+        ],
+        "direction": [
+          -0.35,
+          -1,
+          -0.25
+        ],
+        "spread": 20,
+        "speed": [
+          2.5,
+          5
+        ],
+        "gravity": 9.8,
+        "drag": 0.1,
+        "rate": 260,
+        "life": [
+          0.6,
+          1.2
+        ],
+        "amount": "window",
+        "ground": "splash"
+      }
+    },
+    {
+      "id": "curtain",
+      "name": "Heavy curtain",
+      "across": 4.4,
+      "distance": 6.35,
+      "height": 4.9,
+      "box": [
+        -1.3,
+        -5,
+        0.7,
+        0.1
+      ],
+      "translucent": 0.15,
+      "uniforms": {
+        "gust": 0
+      }
+    },
+    {
+      "id": "floor",
+      "name": "Stone floor",
+      "plane": true,
+      "across": 0,
+      "distance": 3.6,
+      "elevation": 0,
+      "width": 16,
+      "depth": 6.4
+    },
+    {
+      "id": "ripple",
+      "name": "Sound from below",
+      "plane": true,
+      "across": 1.75,
+      "distance": 5.15,
+      "elevation": 0.005,
+      "width": 2.4,
+      "depth": 2.4,
+      "uniforms": {
+        "ring": 0
+      }
+    },
+    {
+      "id": "chair",
+      "name": "High-backed chair",
+      "across": 0.55,
+      "distance": 4.2,
+      "height": 1.45,
+      "box": [
+        -0.45,
+        -1.3,
+        0.75,
+        0.05
+      ],
+      "shadow": {
+        "onto": [
+          "floor"
+        ],
+        "soft": 0.12,
+        "strength": 0.6
+      }
+    },
+    {
+      "id": "floor_lamp",
+      "name": "Roderick's lamp on the floor",
+      "across": 1.15,
+      "distance": 4.5,
+      "height": 0.4,
+      "box": [
+        -0.25,
+        -0.5,
+        0.25,
+        0.05
+      ]
+    },
+    {
+      "id": "table",
+      "name": "Small table with a candle",
+      "across": -0.95,
+      "distance": 3.6,
+      "height": 0.8,
+      "box": [
+        -0.3,
+        -0.75,
+        0.3,
+        0.06
+      ]
+    },
+    {
+      "id": "table_top",
+      "name": "Tabletop",
+      "plane": true,
+      "across": -0.95,
+      "distance": 3.6,
+      "elevation": 0.72,
+      "width": 0.68,
+      "depth": 0.68,
+      "shadow": {
+        "light": "candle",
+        "onto": [
+          "floor"
+        ],
+        "soft": 0.08,
+        "strength": 0.8
+      }
+    },
+    {
+      "id": "book",
+      "name": "The book “Mad Trist”",
+      "across": -0.95,
+      "distance": 3.58,
+      "height": 0.8,
+      "box": [
+        -0.35,
+        -0.85,
+        0.1,
+        -0.6
+      ]
+    },
+    {
+      "id": "candle",
+      "name": "Candle",
+      "across": -0.88,
+      "distance": 3.6,
+      "elevation": 0.72,
+      "height": 0.3,
+      "box": [
+        -0.06,
+        -0.3,
+        0.06,
+        0.02
+      ]
+    },
+    {
+      "id": "flame",
+      "name": "Candle flame",
+      "across": -0.88,
+      "distance": 3.595,
+      "elevation": 0.72,
+      "height": 0.3,
+      "box": [
+        -0.3,
+        -0.62,
+        0.3,
+        0.0
+      ],
+      "glows": true,
+      "flicker": 0.3
+    },
+    {
+      "id": "dust",
+      "name": "Motes by the candle",
+      "particles": {
+        "kind": "dust",
+        "at": [
+          -0.88,
+          3.55,
+          1.15
+        ],
+        "source": [
+          1.4,
+          1.0,
+          1.2
+        ],
+        "rate": 5,
+        "amount": "candle"
+      }
+    },
+    {
+      "id": "grit",
+      "name": "Grit from the vault",
+      "particles": {
+        "kind": "puff",
+        "at": [
+          0.4,
+          5.8,
+          4.6
+        ],
+        "source": [
+          5,
+          1.2,
+          0.2
+        ],
+        "direction": [
+          0,
+          0,
+          -1
+        ],
+        "spread": 10,
+        "speed": [
+          0,
+          0.3
+        ],
+        "gravity": 7,
+        "drag": 0.4,
+        "life": [
+          0.8,
+          1.4
+        ],
+        "size": [
+          0.012,
+          0.012
+        ],
+        "shape": "dot",
+        "color": "#a9a596",
+        "opacity": 0.8,
+        "rate": 80,
+        "amount": "quake",
+        "burst": {
+          "on": "jolt",
+          "count": 120,
+          "over": 0.6
+        },
+        "ground": "stop",
+        "settle": 1.5,
+        "fade": [
+          0,
+          0.2
+        ],
+        "soft": 0.02,
+        "shadow": 0,
+        "turbulence": 0.05
+      }
+    },
+    {
+      "id": "seat",
+      "name": "Chair by the table",
+      "across": -1.62,
+      "distance": 3.9,
+      "height": 1.0,
+      "box": [
+        -0.3,
+        -1.05,
+        0.25,
+        0.05
+      ],
+      "shadow": {
+        "onto": [
+          "floor"
+        ],
+        "soft": 0.12,
+        "strength": 0.6
+      }
+    },
+    {
+      "id": "narrator",
+      "name": "Narrator",
+      "person": {
+        "cast": "cast",
+        "who": "narrator",
+        "turn": 110,
+        "does": "sit_hands"
+      },
+      "across": -1.58,
+      "distance": 3.85,
+      "place": {
+        "across": "narrator_a",
+        "distance": "narrator_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "roderick",
+      "name": "Roderick Usher",
+      "person": {
+        "cast": "cast",
+        "who": "roderick",
+        "turn": 180
+      },
+      "across": 0,
+      "distance": 6.95,
+      "place": {
+        "across": "roderick_a",
+        "distance": "roderick_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "madeline",
+      "name": "The Lady Madeline",
+      "person": {
+        "cast": "cast",
+        "who": "madeline",
+        "turn": 180,
+        "does": "sway"
+      },
+      "across": 0,
+      "distance": 6.85,
+      "place": {
+        "across": "madeline_a",
+        "distance": "madeline_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "closeup",
+      "name": "Close-up",
+      "insert": "closeup"
+    }
+  ],
+  "state": {
+    "beat": null,
+    "candle": 1,
+    "crack": 0.4,
+    "glow": 0.2,
+    "storm": 0,
+    "lightning": 0,
+    "window": 0,
+    "wind": 0,
+    "door": 0,
+    "hall_lamp": 0,
+    "hall_x": -1.4,
+    "ripple": 0,
+    "listen": 0,
+    "sound": 0,
+    "shudder": 0,
+    "quake": 0,
+    "rift": 0,
+    "rock": 0,
+    "lamp_down": 0,
+    "rod_reach": 0,
+    "mad_reach": 0,
+    "rod_to_mad": 0,
+    "mad_to_rod": 0,
+    "with_madeline": false,
+    "with_roderick": false,
+    "closeup": 0,
+    "shot": null,
+    "cu_speak": 0,
+    "cu_reach": 0,
+    "cu_push": 0,
+    "grab": 0,
+    "grab_x": 0,
+    "grab_y": 0.3,
+    "held_rod": 0,
+    "held_mad": 0,
+    "fallen": 0,
+    "lamp_held": 0,
+    "narrator_a": -1.58,
+    "narrator_d": 3.85,
+    "narrator_do": "sit_hands",
+    "narrator_turn": 110,
+    "narrator_look": null,
+    "narrator_reach": null,
+    "narrator_with": null,
+    "roderick_a": 0,
+    "roderick_d": 6.95,
+    "roderick_do": "stand",
+    "roderick_turn": 180,
+    "roderick_look": null,
+    "roderick_reach": null,
+    "roderick_with": null,
+    "roderick_gait": null,
+    "roderick_here": false,
+    "madeline_a": 0,
+    "madeline_d": 6.85,
+    "madeline_do": "sway",
+    "madeline_turn": 180,
+    "madeline_look": null,
+    "madeline_reach": null,
+    "madeline_gait": null,
+    "madeline_here": false,
+    "door_turn": 180,
+    "case_l": 180,
+    "case_r": 180,
+    "jolt": 0,
+    "camera_x": 0,
+    "camera_h": 0,
+    "narrator_gait": null,
+    "narrator_here": true,
+    "madeline_wear": {
+      "garment": "shroud"
+    }
+  },
+  "states": {
+    "beat": {
+      "type": "string",
+      "means": "a beat of the film (the beats module): the name — it plays from the start, at the end the scene says beat:<name>. Beats: night, lamp_pass, enter_lamp, window_open, window_close, watch, read, confess, door_opens, hands, collapse, flee, stay; moments — enter_lamp:close, confess:close, door_opens:out"
+    },
+    "candle": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the candle: 1 — burning, 0 — gone out (a thread of smoke)"
+    },
+    "crack": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the crack in the back wall: length and width; branches after 0.35, mist seeps through it after 0.6"
+    },
+    "glow": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the glowing mist beyond the window and its light into the room"
+    },
+    "storm": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "0 — night, quiet rain; 1 — the storm, a downpour, flying clouds"
+    },
+    "lightning": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "a flash of lightning: the sky, light through the window, the room"
+    },
+    "wind": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "wind in the room from the open window: the curtain, the candle flame, rain blown in"
+    },
+    "window": {
+      "range": [
+        0,
+        1.12
+      ],
+      "smooth": true,
+      "means": "the casements: 0 — shut, 1 — flung open into the room (above 1 — the rebound at the end of the swing)"
+    },
+    "door": {
+      "range": [
+        0,
+        1.1
+      ],
+      "smooth": true,
+      "means": "the door: 0 — shut, 1 — flung open into the room"
+    },
+    "door_turn": {
+      "range": [
+        80,
+        180
+      ],
+      "smooth": true,
+      "means": "where the door's leaf is turned, degrees (the scene sets it from door)"
+    },
+    "case_l": {
+      "range": [
+        170,
+        300
+      ],
+      "smooth": true,
+      "means": "the left casement, degrees (the scene sets it from window)"
+    },
+    "case_r": {
+      "range": [
+        60,
+        190
+      ],
+      "smooth": true,
+      "means": "the right casement, degrees (the scene sets it from window)"
+    },
+    "hall_lamp": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the lamp in the corridor: how bright its light is under the door and in the doorway"
+    },
+    "hall_x": {
+      "range": [
+        -1.6,
+        1.8
+      ],
+      "smooth": true,
+      "means": "where the lamp in the corridor is, metres across (0 — opposite the door)"
+    },
+    "ripple": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "rings on the floor where the sound comes from below"
+    },
+    "listen": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the narrator listens: head to the floor (while reading — the book on his knees)"
+    },
+    "sound": {
+      "values": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "means": "1, 2, 3 — the house answers: the candle shudders, the crack breathes, grit from the vault, a jolt, Roderick flinches and rocks harder; 0 — nothing"
+    },
+    "jolt": {
+      "type": "number",
+      "means": "the room's jolt: each time the number rises — grit from the vault (the scene sets it)"
+    },
+    "shudder": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "a jolt (a pulse): the candle, the crack, the grit, the camera"
+    },
+    "quake": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the room shakes"
+    },
+    "rift": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the crack has opened on the red moon, the room is red"
+    },
+    "rock": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "Roderick rocks in his chair"
+    },
+    "lamp_down": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": false,
+      "means": "his lamp stands on the floor by the chair"
+    },
+    "lamp_held": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "his lamp is in his hand (its light)"
+    },
+    "rod_reach": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "Roderick's hand to the narrator (in the room and in the hands' close-up)"
+    },
+    "mad_reach": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "Madeline's hand to the narrator"
+    },
+    "rod_to_mad": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "Roderick's hand to Madeline"
+    },
+    "mad_to_rod": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "Madeline's hand to Roderick"
+    },
+    "with_madeline": {
+      "type": "boolean",
+      "means": "Madeline flees with him (flee)"
+    },
+    "with_roderick": {
+      "type": "boolean",
+      "means": "Roderick flees with him (flee)"
+    },
+    "closeup": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": false,
+      "means": "the close-up (insert) is open"
+    },
+    "shot": {
+      "values": [
+        null,
+        "rod_lamp",
+        "rod_confess",
+        "mad_door",
+        "hands"
+      ],
+      "means": "which close-up: Roderick with the lamp, his confession, Madeline on the threshold, the hands"
+    },
+    "cu_speak": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": false,
+      "means": "the lips in the close-up move (while a line is said)"
+    },
+    "cu_reach": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "Madeline's hand rises in the close-up mad_door"
+    },
+    "cu_push": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the close-up's slow push-in"
+    },
+    "grab": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the narrator's hand in the hands' close-up, following the player's finger"
+    },
+    "grab_x": {
+      "range": [
+        -1,
+        1
+      ],
+      "smooth": true,
+      "means": "where his hand is: fractions of the frame's height from the middle"
+    },
+    "grab_y": {
+      "range": [
+        -1,
+        1
+      ],
+      "smooth": true,
+      "means": "where his hand is: fractions of the frame's height from the middle, downward"
+    },
+    "held_rod": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "he holds Roderick's hand"
+    },
+    "held_mad": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "he holds Madeline's hand"
+    },
+    "fallen": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": false,
+      "means": "the two have fallen together (after collapse)"
+    },
+    "narrator_a": {
+      "type": "number",
+      "means": "where he stands, metres across"
+    },
+    "narrator_d": {
+      "type": "number",
+      "means": "where he stands, metres deep"
+    },
+    "roderick_a": {
+      "type": "number",
+      "means": "where he stands, metres across"
+    },
+    "roderick_d": {
+      "type": "number",
+      "means": "where he stands, metres deep"
+    },
+    "madeline_a": {
+      "type": "number",
+      "means": "where he stands, metres across"
+    },
+    "madeline_d": {
+      "type": "number",
+      "means": "where he stands, metres deep"
+    }
+  },
+  "music": {
+    "bpm": 60,
+    "brightness": 0.25,
+    "density": 0.3,
+    "prompts": [
+      {
+        "text": "Storm ambience: heavy rain lashing old leaded windows, wind moaning around stone towers, distant rolling thunder",
+        "weight": 2
+      },
+      {
+        "text": "Low ominous strings, sustained cellos and double basses sul tasto, slow creeping dissonance, gothic dread",
+        "weight": 2
+      },
+      {
+        "text": "Harpsichord playing sparse dissonant notes, slightly detuned, echoing in a vast empty stone chamber",
+        "weight": 1.5
+      },
+      {
+        "text": "Distant thunder rumbling beneath a dark drone, far-off timpani rolls",
+        "weight": 1
+      },
+      {
+        "text": "Deep sub-bass rumble, an old house settling and cracking, subterranean groans",
+        "weight": 0.7
+      },
+      {
+        "text": "Medieval lute, slow modal ballad, an old romance read aloud by candlelight",
+        "weight": 0.4
+      },
+      {
+        "text": "Solo viola da gamba, slow mournful line, baroque, candlelit chamber",
+        "weight": 0
+      },
+      {
+        "text": "Glass harmonica tones, fragile and spectral, very slow, nineteenth century",
+        "weight": 0
+      },
+      {
+        "text": "Low pipe organ pedal notes in cathedral reverb, foreboding",
+        "weight": 0
+      },
+      {
+        "text": "Prepared piano, muted low strings struck softly, metallic resonance",
+        "weight": 0
+      },
+      {
+        "text": "Bowed cymbal and waterphone, shimmering horror textures",
+        "weight": 0
+      },
+      {
+        "text": "String quartet tremolo slowly swelling, mounting tension, Bernard Herrmann style",
+        "weight": 0
+      },
+      {
+        "text": "Old music box melody slightly out of tune, slowing down",
+        "weight": 0
+      },
+      {
+        "text": "Low brass clusters swelling and receding like breathing walls",
+        "weight": 0
+      },
+      {
+        "text": "Clavichord, quiet trembling arpeggios in a minor key, gothic romanticism",
+        "weight": 0
+      },
+      {
+        "text": "Celesta and bowed vibraphone, cold notes like rain on glass",
+        "weight": 0
+      },
+      {
+        "text": "Romantic chamber piece for cello and piano, slow and anguished, Schubert-like",
+        "weight": 0
+      },
+      {
+        "text": "Wind whistling through cracks, a door creaking slowly, sparse low drone",
+        "weight": 0
+      },
+      {
+        "text": "A distant iron shield struck once, metallic clang reverberating through a vault",
+        "weight": 0
+      },
+      {
+        "text": "Hurdy-gurdy drone, archaic and haunted",
+        "weight": 0
+      }
+    ],
+    "scale": "A_MAJOR_G_FLAT_MINOR"
+  }
+}

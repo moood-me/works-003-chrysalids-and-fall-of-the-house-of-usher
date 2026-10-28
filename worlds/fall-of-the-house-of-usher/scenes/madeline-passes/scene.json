@@ -1,0 +1,4703 @@
+{
+  "engine": 3,
+  "title": "Madeline passes",
+  "caption": "She passed slowly through a remote portion of the gallery and disappeared, without having noticed my presence.",
+  "horizon": 0.56,
+  "camera": {
+    "mode": "picture"
+  },
+  "light": {
+    "grain": 0.25,
+    "vignette": 0.55,
+    "tint": "#2a3d48",
+    "tintStrength": 0.12,
+    "saturation": 0.9,
+    "haze": 0.85,
+    "hazeColor": "#1e2c34",
+    "hazeGlow": 0.6,
+    "shafts": 0.8,
+    "ambient": 0.6,
+    "ambientColor": "#7f95a4",
+    "bounce": 0.6,
+    "looks": {
+      "low_sun": {
+        "lights": {
+          "evening": 0
+        },
+        "ambientColor": "#8a8a84",
+        "hazeColor": "#191814",
+        "tint": "#3d3326",
+        "shafts": 0.3
+      }
+    }
+  },
+  "lights": [
+    {
+      "id": "evening",
+      "from": [
+        52.6,
+        47.8
+      ],
+      "through": [
+        [
+          [
+            3.3,
+            10.2,
+            1.4
+          ],
+          [
+            3.3,
+            10.2,
+            5.6
+          ],
+          [
+            3.3,
+            10.542,
+            6.718
+          ],
+          [
+            3.3,
+            11.45,
+            7.454
+          ],
+          [
+            3.3,
+            12.358,
+            6.718
+          ],
+          [
+            3.3,
+            12.7,
+            5.6
+          ],
+          [
+            3.3,
+            12.7,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            14.8,
+            1.4
+          ],
+          [
+            3.3,
+            14.8,
+            5.6
+          ],
+          [
+            3.3,
+            15.142,
+            6.718
+          ],
+          [
+            3.3,
+            16.05,
+            7.454
+          ],
+          [
+            3.3,
+            16.958,
+            6.718
+          ],
+          [
+            3.3,
+            17.3,
+            5.6
+          ],
+          [
+            3.3,
+            17.3,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            19.4,
+            1.4
+          ],
+          [
+            3.3,
+            19.4,
+            5.6
+          ],
+          [
+            3.3,
+            19.742,
+            6.718
+          ],
+          [
+            3.3,
+            20.65,
+            7.454
+          ],
+          [
+            3.3,
+            21.558,
+            6.718
+          ],
+          [
+            3.3,
+            21.9,
+            5.6
+          ],
+          [
+            3.3,
+            21.9,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            24,
+            1.4
+          ],
+          [
+            3.3,
+            24,
+            5.6
+          ],
+          [
+            3.3,
+            24.342,
+            6.718
+          ],
+          [
+            3.3,
+            25.25,
+            7.454
+          ],
+          [
+            3.3,
+            26.158,
+            6.718
+          ],
+          [
+            3.3,
+            26.5,
+            5.6
+          ],
+          [
+            3.3,
+            26.5,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            28.6,
+            1.4
+          ],
+          [
+            3.3,
+            28.6,
+            5.6
+          ],
+          [
+            3.3,
+            28.942,
+            6.718
+          ],
+          [
+            3.3,
+            29.85,
+            7.454
+          ],
+          [
+            3.3,
+            30.758,
+            6.718
+          ],
+          [
+            3.3,
+            31.1,
+            5.6
+          ],
+          [
+            3.3,
+            31.1,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            33.2,
+            1.4
+          ],
+          [
+            3.3,
+            33.2,
+            5.6
+          ],
+          [
+            3.3,
+            33.542,
+            6.718
+          ],
+          [
+            3.3,
+            34.45,
+            7.454
+          ],
+          [
+            3.3,
+            35.358,
+            6.718
+          ],
+          [
+            3.3,
+            35.7,
+            5.6
+          ],
+          [
+            3.3,
+            35.7,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            37.8,
+            1.4
+          ],
+          [
+            3.3,
+            37.8,
+            5.6
+          ],
+          [
+            3.3,
+            38.142,
+            6.718
+          ],
+          [
+            3.3,
+            39.05,
+            7.454
+          ],
+          [
+            3.3,
+            39.958,
+            6.718
+          ],
+          [
+            3.3,
+            40.3,
+            5.6
+          ],
+          [
+            3.3,
+            40.3,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            42.4,
+            1.4
+          ],
+          [
+            3.3,
+            42.4,
+            5.6
+          ],
+          [
+            3.3,
+            42.742,
+            6.718
+          ],
+          [
+            3.3,
+            43.65,
+            7.454
+          ],
+          [
+            3.3,
+            44.558,
+            6.718
+          ],
+          [
+            3.3,
+            44.9,
+            5.6
+          ],
+          [
+            3.3,
+            44.9,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            47,
+            1.4
+          ],
+          [
+            3.3,
+            47,
+            5.6
+          ],
+          [
+            3.3,
+            47.342,
+            6.718
+          ],
+          [
+            3.3,
+            48.25,
+            7.454
+          ],
+          [
+            3.3,
+            49.158,
+            6.718
+          ],
+          [
+            3.3,
+            49.5,
+            5.6
+          ],
+          [
+            3.3,
+            49.5,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            51.6,
+            1.4
+          ],
+          [
+            3.3,
+            51.6,
+            5.6
+          ],
+          [
+            3.3,
+            51.942,
+            6.718
+          ],
+          [
+            3.3,
+            52.85,
+            7.454
+          ],
+          [
+            3.3,
+            53.758,
+            6.718
+          ],
+          [
+            3.3,
+            54.1,
+            5.6
+          ],
+          [
+            3.3,
+            54.1,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            56.2,
+            1.4
+          ],
+          [
+            3.3,
+            56.2,
+            5.6
+          ],
+          [
+            3.3,
+            56.542,
+            6.718
+          ],
+          [
+            3.3,
+            57.45,
+            7.454
+          ],
+          [
+            3.3,
+            58.358,
+            6.718
+          ],
+          [
+            3.3,
+            58.7,
+            5.6
+          ],
+          [
+            3.3,
+            58.7,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            60.8,
+            1.4
+          ],
+          [
+            3.3,
+            60.8,
+            5.6
+          ],
+          [
+            3.3,
+            61.142,
+            6.718
+          ],
+          [
+            3.3,
+            62.05,
+            7.454
+          ],
+          [
+            3.3,
+            62.958,
+            6.718
+          ],
+          [
+            3.3,
+            63.3,
+            5.6
+          ],
+          [
+            3.3,
+            63.3,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            65.4,
+            1.4
+          ],
+          [
+            3.3,
+            65.4,
+            5.6
+          ],
+          [
+            3.3,
+            65.742,
+            6.718
+          ],
+          [
+            3.3,
+            66.65,
+            7.454
+          ],
+          [
+            3.3,
+            67.558,
+            6.718
+          ],
+          [
+            3.3,
+            67.9,
+            5.6
+          ],
+          [
+            3.3,
+            67.9,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            70,
+            1.4
+          ],
+          [
+            3.3,
+            70,
+            5.6
+          ],
+          [
+            3.3,
+            70.342,
+            6.718
+          ],
+          [
+            3.3,
+            71.25,
+            7.454
+          ],
+          [
+            3.3,
+            72.158,
+            6.718
+          ],
+          [
+            3.3,
+            72.5,
+            5.6
+          ],
+          [
+            3.3,
+            72.5,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            74.6,
+            1.4
+          ],
+          [
+            3.3,
+            74.6,
+            5.6
+          ],
+          [
+            3.3,
+            74.942,
+            6.718
+          ],
+          [
+            3.3,
+            75.85,
+            7.454
+          ],
+          [
+            3.3,
+            76.758,
+            6.718
+          ],
+          [
+            3.3,
+            77.1,
+            5.6
+          ],
+          [
+            3.3,
+            77.1,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            79.2,
+            1.4
+          ],
+          [
+            3.3,
+            79.2,
+            5.6
+          ],
+          [
+            3.3,
+            79.542,
+            6.718
+          ],
+          [
+            3.3,
+            80.45,
+            7.454
+          ],
+          [
+            3.3,
+            81.358,
+            6.718
+          ],
+          [
+            3.3,
+            81.7,
+            5.6
+          ],
+          [
+            3.3,
+            81.7,
+            1.4
+          ]
+        ]
+      ],
+      "soft": 0.25,
+      "color": "#9fb2ba",
+      "strength": 1.5,
+      "on": "light_shafts"
+    },
+    {
+      "id": "sun",
+      "from": [
+        58.6,
+        43.5
+      ],
+      "through": [
+        [
+          [
+            3.3,
+            10.2,
+            1.4
+          ],
+          [
+            3.3,
+            10.2,
+            5.6
+          ],
+          [
+            3.3,
+            10.542,
+            6.718
+          ],
+          [
+            3.3,
+            11.45,
+            7.454
+          ],
+          [
+            3.3,
+            12.358,
+            6.718
+          ],
+          [
+            3.3,
+            12.7,
+            5.6
+          ],
+          [
+            3.3,
+            12.7,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            14.8,
+            1.4
+          ],
+          [
+            3.3,
+            14.8,
+            5.6
+          ],
+          [
+            3.3,
+            15.142,
+            6.718
+          ],
+          [
+            3.3,
+            16.05,
+            7.454
+          ],
+          [
+            3.3,
+            16.958,
+            6.718
+          ],
+          [
+            3.3,
+            17.3,
+            5.6
+          ],
+          [
+            3.3,
+            17.3,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            19.4,
+            1.4
+          ],
+          [
+            3.3,
+            19.4,
+            5.6
+          ],
+          [
+            3.3,
+            19.742,
+            6.718
+          ],
+          [
+            3.3,
+            20.65,
+            7.454
+          ],
+          [
+            3.3,
+            21.558,
+            6.718
+          ],
+          [
+            3.3,
+            21.9,
+            5.6
+          ],
+          [
+            3.3,
+            21.9,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            24,
+            1.4
+          ],
+          [
+            3.3,
+            24,
+            5.6
+          ],
+          [
+            3.3,
+            24.342,
+            6.718
+          ],
+          [
+            3.3,
+            25.25,
+            7.454
+          ],
+          [
+            3.3,
+            26.158,
+            6.718
+          ],
+          [
+            3.3,
+            26.5,
+            5.6
+          ],
+          [
+            3.3,
+            26.5,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            28.6,
+            1.4
+          ],
+          [
+            3.3,
+            28.6,
+            5.6
+          ],
+          [
+            3.3,
+            28.942,
+            6.718
+          ],
+          [
+            3.3,
+            29.85,
+            7.454
+          ],
+          [
+            3.3,
+            30.758,
+            6.718
+          ],
+          [
+            3.3,
+            31.1,
+            5.6
+          ],
+          [
+            3.3,
+            31.1,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            33.2,
+            1.4
+          ],
+          [
+            3.3,
+            33.2,
+            5.6
+          ],
+          [
+            3.3,
+            33.542,
+            6.718
+          ],
+          [
+            3.3,
+            34.45,
+            7.454
+          ],
+          [
+            3.3,
+            35.358,
+            6.718
+          ],
+          [
+            3.3,
+            35.7,
+            5.6
+          ],
+          [
+            3.3,
+            35.7,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            37.8,
+            1.4
+          ],
+          [
+            3.3,
+            37.8,
+            5.6
+          ],
+          [
+            3.3,
+            38.142,
+            6.718
+          ],
+          [
+            3.3,
+            39.05,
+            7.454
+          ],
+          [
+            3.3,
+            39.958,
+            6.718
+          ],
+          [
+            3.3,
+            40.3,
+            5.6
+          ],
+          [
+            3.3,
+            40.3,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            42.4,
+            1.4
+          ],
+          [
+            3.3,
+            42.4,
+            5.6
+          ],
+          [
+            3.3,
+            42.742,
+            6.718
+          ],
+          [
+            3.3,
+            43.65,
+            7.454
+          ],
+          [
+            3.3,
+            44.558,
+            6.718
+          ],
+          [
+            3.3,
+            44.9,
+            5.6
+          ],
+          [
+            3.3,
+            44.9,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            47,
+            1.4
+          ],
+          [
+            3.3,
+            47,
+            5.6
+          ],
+          [
+            3.3,
+            47.342,
+            6.718
+          ],
+          [
+            3.3,
+            48.25,
+            7.454
+          ],
+          [
+            3.3,
+            49.158,
+            6.718
+          ],
+          [
+            3.3,
+            49.5,
+            5.6
+          ],
+          [
+            3.3,
+            49.5,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            51.6,
+            1.4
+          ],
+          [
+            3.3,
+            51.6,
+            5.6
+          ],
+          [
+            3.3,
+            51.942,
+            6.718
+          ],
+          [
+            3.3,
+            52.85,
+            7.454
+          ],
+          [
+            3.3,
+            53.758,
+            6.718
+          ],
+          [
+            3.3,
+            54.1,
+            5.6
+          ],
+          [
+            3.3,
+            54.1,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            56.2,
+            1.4
+          ],
+          [
+            3.3,
+            56.2,
+            5.6
+          ],
+          [
+            3.3,
+            56.542,
+            6.718
+          ],
+          [
+            3.3,
+            57.45,
+            7.454
+          ],
+          [
+            3.3,
+            58.358,
+            6.718
+          ],
+          [
+            3.3,
+            58.7,
+            5.6
+          ],
+          [
+            3.3,
+            58.7,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            60.8,
+            1.4
+          ],
+          [
+            3.3,
+            60.8,
+            5.6
+          ],
+          [
+            3.3,
+            61.142,
+            6.718
+          ],
+          [
+            3.3,
+            62.05,
+            7.454
+          ],
+          [
+            3.3,
+            62.958,
+            6.718
+          ],
+          [
+            3.3,
+            63.3,
+            5.6
+          ],
+          [
+            3.3,
+            63.3,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            65.4,
+            1.4
+          ],
+          [
+            3.3,
+            65.4,
+            5.6
+          ],
+          [
+            3.3,
+            65.742,
+            6.718
+          ],
+          [
+            3.3,
+            66.65,
+            7.454
+          ],
+          [
+            3.3,
+            67.558,
+            6.718
+          ],
+          [
+            3.3,
+            67.9,
+            5.6
+          ],
+          [
+            3.3,
+            67.9,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            70,
+            1.4
+          ],
+          [
+            3.3,
+            70,
+            5.6
+          ],
+          [
+            3.3,
+            70.342,
+            6.718
+          ],
+          [
+            3.3,
+            71.25,
+            7.454
+          ],
+          [
+            3.3,
+            72.158,
+            6.718
+          ],
+          [
+            3.3,
+            72.5,
+            5.6
+          ],
+          [
+            3.3,
+            72.5,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            74.6,
+            1.4
+          ],
+          [
+            3.3,
+            74.6,
+            5.6
+          ],
+          [
+            3.3,
+            74.942,
+            6.718
+          ],
+          [
+            3.3,
+            75.85,
+            7.454
+          ],
+          [
+            3.3,
+            76.758,
+            6.718
+          ],
+          [
+            3.3,
+            77.1,
+            5.6
+          ],
+          [
+            3.3,
+            77.1,
+            1.4
+          ]
+        ],
+        [
+          [
+            3.3,
+            79.2,
+            1.4
+          ],
+          [
+            3.3,
+            79.2,
+            5.6
+          ],
+          [
+            3.3,
+            79.542,
+            6.718
+          ],
+          [
+            3.3,
+            80.45,
+            7.454
+          ],
+          [
+            3.3,
+            81.358,
+            6.718
+          ],
+          [
+            3.3,
+            81.7,
+            5.6
+          ],
+          [
+            3.3,
+            81.7,
+            1.4
+          ]
+        ]
+      ],
+      "soft": 0.2,
+      "color": "#d6a870",
+      "strength": 1.7,
+      "on": "low_sun"
+    },
+    {
+      "id": "candle",
+      "of": "sconce#flame",
+      "reach": 5,
+      "strength": 0.8,
+      "on": "sconce",
+      "flicker": 0.35,
+      "glow": 0.25
+    }
+  ],
+  "state": {
+    "beat": null,
+    "camera_x": 0,
+    "camera_z": 0,
+    "crack": 0.3,
+    "light_shafts": 1,
+    "low_sun": 0,
+    "sconce": 1,
+    "closeup": 0,
+    "shot": "roderick",
+    "cu_turn": 0,
+    "cu_tear": 0,
+    "cu_inhale": 0,
+    "cu_blink": 0,
+    "speak": 0,
+    "narrator_a": -1.15,
+    "narrator_d": 2.7,
+    "narrator_turn": 0,
+    "roderick_a": 0.75,
+    "roderick_d": 3.4,
+    "roderick_turn": 355,
+    "madeline_a": -4.6,
+    "madeline_d": 20.4,
+    "madeline_turn": 85,
+    "doctor_a": -4.6,
+    "doctor_d": 20.4,
+    "doctor_here": false
+  },
+  "states": {
+    "beat": {
+      "type": "string",
+      "means": "a beat of the film (the beats module): the name — it plays from the start, at the end the scene says beat:<name>. Beats: pass, weep, follow, freeze, wake, look, gone, stay, doctor, beside, doctor_leaves, leave_with; moments — freeze:still, stay:talk"
+    },
+    "crack": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the crack on the right pier of arch 2: 0 — none, 1 — run up to the vault and wide (the game sets it by the scale)"
+    },
+    "light_shafts": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the windows' evening light (and its rays in the air): 0 — none, 1 — full"
+    },
+    "low_sun": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "0 — evening, the windows' cold light; 1 — another day, a low warm sun (the physician)"
+    },
+    "sconce": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the candle in the sconce on the left wall: 0 — out, 1 — burning"
+    },
+    "closeup": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "a close-up over the gallery (the closeups module): 0 — none, 1 — open"
+    },
+    "shot": {
+      "values": [
+        "roderick",
+        "madeline",
+        "doctor"
+      ],
+      "means": "whose close-up: Roderick (his face in his palms), Madeline (frozen — madeline_still), the physician"
+    },
+    "cu_turn": {
+      "range": [
+        -1,
+        1
+      ],
+      "smooth": true,
+      "means": "the face, close: the head's turn, + towards the window"
+    },
+    "cu_tear": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the face, close: a tear — how far it has crept"
+    },
+    "cu_inhale": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the face, close: a deep breath (0→1→0)"
+    },
+    "cu_blink": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the face, close: blinking by hand (0 — blinks by itself, unless frozen)"
+    },
+    "speak": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "the lips in the close-up move: the game sets 1 while it says a line, then 0"
+    }
+  },
+  "objects": [
+    {
+      "id": "floor",
+      "name": "Floor",
+      "plane": true,
+      "across": 0,
+      "distance": 39.5,
+      "elevation": 0,
+      "width": 6.6,
+      "depth": 85,
+      "reflect": {
+        "strength": 0.22,
+        "fade": 5,
+        "rough": 0.2
+      }
+    },
+    {
+      "id": "ceiling",
+      "name": "Vault",
+      "plane": true,
+      "across": 0,
+      "distance": 39.5,
+      "elevation": 11,
+      "width": 6.6,
+      "depth": 85,
+      "tilt": 180
+    },
+    {
+      "id": "wall_l",
+      "name": "Left wall",
+      "across": -3.3,
+      "distance": -3,
+      "facing": 90,
+      "height": 11,
+      "box": [
+        0,
+        -11.1,
+        85,
+        0.1
+      ]
+    },
+    {
+      "id": "wall_r",
+      "name": "Right wall with windows",
+      "across": 3.3,
+      "distance": 82,
+      "facing": 270,
+      "height": 11,
+      "box": [
+        0,
+        -11.1,
+        85,
+        0.1
+      ]
+    },
+    {
+      "id": "windows",
+      "name": "Windows",
+      "across": 3.3299999999999996,
+      "distance": 82,
+      "facing": 270,
+      "glows": true,
+      "height": 8,
+      "box": [
+        0,
+        -7.6,
+        72,
+        -1.3
+      ],
+      "redraw": {
+        "low_sun": 0.1,
+        "light_shafts": 0.1
+      }
+    },
+    {
+      "id": "end_wall",
+      "name": "End wall",
+      "across": 0,
+      "distance": 82,
+      "facing": 180,
+      "height": 11,
+      "box": [
+        -3.4,
+        -11.1,
+        3.4,
+        0.1
+      ]
+    },
+    {
+      "id": "arch0",
+      "name": "Arch",
+      "across": 0,
+      "distance": 4.1,
+      "facing": 180,
+      "height": 11,
+      "box": [
+        -3.4,
+        -11.1,
+        3.4,
+        0.1
+      ]
+    },
+    {
+      "id": "arch0_pl",
+      "name": "Arch",
+      "across": -2.5,
+      "distance": 4.1,
+      "facing": 90,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch0_pr",
+      "name": "Arch",
+      "across": 2.5,
+      "distance": 5.1,
+      "facing": 270,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch0_l0",
+      "name": "Arch",
+      "across": -2.5,
+      "elevation": 5,
+      "distance": 4.1,
+      "facing": 90,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch0_r0",
+      "name": "Arch",
+      "across": 2.5,
+      "elevation": 5,
+      "distance": 5.1,
+      "facing": 270,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch0_l1",
+      "name": "Arch",
+      "across": -2.325,
+      "elevation": 6.169,
+      "distance": 4.1,
+      "facing": 90,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch0_r1",
+      "name": "Arch",
+      "across": 2.325,
+      "elevation": 6.169,
+      "distance": 5.1,
+      "facing": 270,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch0_l2",
+      "name": "Arch",
+      "across": -1.817,
+      "elevation": 7.236,
+      "distance": 4.1,
+      "facing": 90,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch0_r2",
+      "name": "Arch",
+      "across": 1.817,
+      "elevation": 7.236,
+      "distance": 5.1,
+      "facing": 270,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch0_l3",
+      "name": "Arch",
+      "across": -1.018,
+      "elevation": 8.108,
+      "distance": 4.1,
+      "facing": 90,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch0_r3",
+      "name": "Arch",
+      "across": 1.018,
+      "elevation": 8.108,
+      "distance": 5.1,
+      "facing": 270,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch1",
+      "name": "Arch",
+      "across": 0,
+      "distance": 8.7,
+      "facing": 180,
+      "height": 11,
+      "box": [
+        -3.4,
+        -11.1,
+        3.4,
+        0.1
+      ]
+    },
+    {
+      "id": "arch1_pl",
+      "name": "Arch",
+      "across": -2.5,
+      "distance": 8.7,
+      "facing": 90,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch1_pr",
+      "name": "Arch",
+      "across": 2.5,
+      "distance": 9.7,
+      "facing": 270,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch1_l0",
+      "name": "Arch",
+      "across": -2.5,
+      "elevation": 5,
+      "distance": 8.7,
+      "facing": 90,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch1_r0",
+      "name": "Arch",
+      "across": 2.5,
+      "elevation": 5,
+      "distance": 9.7,
+      "facing": 270,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch1_l1",
+      "name": "Arch",
+      "across": -2.325,
+      "elevation": 6.169,
+      "distance": 8.7,
+      "facing": 90,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch1_r1",
+      "name": "Arch",
+      "across": 2.325,
+      "elevation": 6.169,
+      "distance": 9.7,
+      "facing": 270,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch1_l2",
+      "name": "Arch",
+      "across": -1.817,
+      "elevation": 7.236,
+      "distance": 8.7,
+      "facing": 90,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch1_r2",
+      "name": "Arch",
+      "across": 1.817,
+      "elevation": 7.236,
+      "distance": 9.7,
+      "facing": 270,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch1_l3",
+      "name": "Arch",
+      "across": -1.018,
+      "elevation": 8.108,
+      "distance": 8.7,
+      "facing": 90,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch1_r3",
+      "name": "Arch",
+      "across": 1.018,
+      "elevation": 8.108,
+      "distance": 9.7,
+      "facing": 270,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch2",
+      "name": "Arch",
+      "across": 0,
+      "distance": 13.3,
+      "facing": 180,
+      "height": 11,
+      "box": [
+        -3.4,
+        -11.1,
+        3.4,
+        0.1
+      ]
+    },
+    {
+      "id": "arch2_pl",
+      "name": "Arch",
+      "across": -2.5,
+      "distance": 13.3,
+      "facing": 90,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch2_pr",
+      "name": "Arch",
+      "across": 2.5,
+      "distance": 14.3,
+      "facing": 270,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch2_l0",
+      "name": "Arch",
+      "across": -2.5,
+      "elevation": 5,
+      "distance": 13.3,
+      "facing": 90,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch2_r0",
+      "name": "Arch",
+      "across": 2.5,
+      "elevation": 5,
+      "distance": 14.3,
+      "facing": 270,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch2_l1",
+      "name": "Arch",
+      "across": -2.325,
+      "elevation": 6.169,
+      "distance": 13.3,
+      "facing": 90,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch2_r1",
+      "name": "Arch",
+      "across": 2.325,
+      "elevation": 6.169,
+      "distance": 14.3,
+      "facing": 270,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch2_l2",
+      "name": "Arch",
+      "across": -1.817,
+      "elevation": 7.236,
+      "distance": 13.3,
+      "facing": 90,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch2_r2",
+      "name": "Arch",
+      "across": 1.817,
+      "elevation": 7.236,
+      "distance": 14.3,
+      "facing": 270,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch2_l3",
+      "name": "Arch",
+      "across": -1.018,
+      "elevation": 8.108,
+      "distance": 13.3,
+      "facing": 90,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch2_r3",
+      "name": "Arch",
+      "across": 1.018,
+      "elevation": 8.108,
+      "distance": 14.3,
+      "facing": 270,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch3",
+      "name": "Arch",
+      "across": 0,
+      "distance": 17.9,
+      "facing": 180,
+      "height": 11,
+      "box": [
+        -3.4,
+        -11.1,
+        3.4,
+        0.1
+      ]
+    },
+    {
+      "id": "arch3_pl",
+      "name": "Arch",
+      "across": -2.5,
+      "distance": 17.9,
+      "facing": 90,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch3_pr",
+      "name": "Arch",
+      "across": 2.5,
+      "distance": 18.9,
+      "facing": 270,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch3_l0",
+      "name": "Arch",
+      "across": -2.5,
+      "elevation": 5,
+      "distance": 17.9,
+      "facing": 90,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch3_r0",
+      "name": "Arch",
+      "across": 2.5,
+      "elevation": 5,
+      "distance": 18.9,
+      "facing": 270,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch3_l1",
+      "name": "Arch",
+      "across": -2.325,
+      "elevation": 6.169,
+      "distance": 17.9,
+      "facing": 90,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch3_r1",
+      "name": "Arch",
+      "across": 2.325,
+      "elevation": 6.169,
+      "distance": 18.9,
+      "facing": 270,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch3_l2",
+      "name": "Arch",
+      "across": -1.817,
+      "elevation": 7.236,
+      "distance": 17.9,
+      "facing": 90,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch3_r2",
+      "name": "Arch",
+      "across": 1.817,
+      "elevation": 7.236,
+      "distance": 18.9,
+      "facing": 270,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch3_l3",
+      "name": "Arch",
+      "across": -1.018,
+      "elevation": 8.108,
+      "distance": 17.9,
+      "facing": 90,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch3_r3",
+      "name": "Arch",
+      "across": 1.018,
+      "elevation": 8.108,
+      "distance": 18.9,
+      "facing": 270,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch4",
+      "name": "Arch",
+      "across": 0,
+      "distance": 22.5,
+      "facing": 180,
+      "height": 11,
+      "box": [
+        -3.4,
+        -11.1,
+        3.4,
+        0.1
+      ]
+    },
+    {
+      "id": "arch4_pl",
+      "name": "Arch",
+      "across": -2.5,
+      "distance": 22.5,
+      "facing": 90,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch4_pr",
+      "name": "Arch",
+      "across": 2.5,
+      "distance": 23.5,
+      "facing": 270,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch4_l0",
+      "name": "Arch",
+      "across": -2.5,
+      "elevation": 5,
+      "distance": 22.5,
+      "facing": 90,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch4_r0",
+      "name": "Arch",
+      "across": 2.5,
+      "elevation": 5,
+      "distance": 23.5,
+      "facing": 270,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch4_l1",
+      "name": "Arch",
+      "across": -2.325,
+      "elevation": 6.169,
+      "distance": 22.5,
+      "facing": 90,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch4_r1",
+      "name": "Arch",
+      "across": 2.325,
+      "elevation": 6.169,
+      "distance": 23.5,
+      "facing": 270,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch4_l2",
+      "name": "Arch",
+      "across": -1.817,
+      "elevation": 7.236,
+      "distance": 22.5,
+      "facing": 90,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch4_r2",
+      "name": "Arch",
+      "across": 1.817,
+      "elevation": 7.236,
+      "distance": 23.5,
+      "facing": 270,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch4_l3",
+      "name": "Arch",
+      "across": -1.018,
+      "elevation": 8.108,
+      "distance": 22.5,
+      "facing": 90,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch4_r3",
+      "name": "Arch",
+      "across": 1.018,
+      "elevation": 8.108,
+      "distance": 23.5,
+      "facing": 270,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch5",
+      "name": "Arch",
+      "across": 0,
+      "distance": 27.1,
+      "facing": 180,
+      "height": 11,
+      "box": [
+        -3.4,
+        -11.1,
+        3.4,
+        0.1
+      ]
+    },
+    {
+      "id": "arch5_pl",
+      "name": "Arch",
+      "across": -2.5,
+      "distance": 27.1,
+      "facing": 90,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch5_pr",
+      "name": "Arch",
+      "across": 2.5,
+      "distance": 28.1,
+      "facing": 270,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch5_l0",
+      "name": "Arch",
+      "across": -2.5,
+      "elevation": 5,
+      "distance": 27.1,
+      "facing": 90,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch5_r0",
+      "name": "Arch",
+      "across": 2.5,
+      "elevation": 5,
+      "distance": 28.1,
+      "facing": 270,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch5_l1",
+      "name": "Arch",
+      "across": -2.325,
+      "elevation": 6.169,
+      "distance": 27.1,
+      "facing": 90,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch5_r1",
+      "name": "Arch",
+      "across": 2.325,
+      "elevation": 6.169,
+      "distance": 28.1,
+      "facing": 270,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch5_l2",
+      "name": "Arch",
+      "across": -1.817,
+      "elevation": 7.236,
+      "distance": 27.1,
+      "facing": 90,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch5_r2",
+      "name": "Arch",
+      "across": 1.817,
+      "elevation": 7.236,
+      "distance": 28.1,
+      "facing": 270,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch5_l3",
+      "name": "Arch",
+      "across": -1.018,
+      "elevation": 8.108,
+      "distance": 27.1,
+      "facing": 90,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch5_r3",
+      "name": "Arch",
+      "across": 1.018,
+      "elevation": 8.108,
+      "distance": 28.1,
+      "facing": 270,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch6",
+      "name": "Arch",
+      "across": 0,
+      "distance": 31.7,
+      "facing": 180,
+      "height": 11,
+      "box": [
+        -3.4,
+        -11.1,
+        3.4,
+        0.1
+      ]
+    },
+    {
+      "id": "arch6_pl",
+      "name": "Arch",
+      "across": -2.5,
+      "distance": 31.7,
+      "facing": 90,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch6_pr",
+      "name": "Arch",
+      "across": 2.5,
+      "distance": 32.7,
+      "facing": 270,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch6_l0",
+      "name": "Arch",
+      "across": -2.5,
+      "elevation": 5,
+      "distance": 31.7,
+      "facing": 90,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch6_r0",
+      "name": "Arch",
+      "across": 2.5,
+      "elevation": 5,
+      "distance": 32.7,
+      "facing": 270,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch6_l1",
+      "name": "Arch",
+      "across": -2.325,
+      "elevation": 6.169,
+      "distance": 31.7,
+      "facing": 90,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch6_r1",
+      "name": "Arch",
+      "across": 2.325,
+      "elevation": 6.169,
+      "distance": 32.7,
+      "facing": 270,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch6_l2",
+      "name": "Arch",
+      "across": -1.817,
+      "elevation": 7.236,
+      "distance": 31.7,
+      "facing": 90,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch6_r2",
+      "name": "Arch",
+      "across": 1.817,
+      "elevation": 7.236,
+      "distance": 32.7,
+      "facing": 270,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch6_l3",
+      "name": "Arch",
+      "across": -1.018,
+      "elevation": 8.108,
+      "distance": 31.7,
+      "facing": 90,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch6_r3",
+      "name": "Arch",
+      "across": 1.018,
+      "elevation": 8.108,
+      "distance": 32.7,
+      "facing": 270,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch7",
+      "name": "Arch",
+      "across": 0,
+      "distance": 36.3,
+      "facing": 180,
+      "height": 11,
+      "box": [
+        -3.4,
+        -11.1,
+        3.4,
+        0.1
+      ]
+    },
+    {
+      "id": "arch7_pl",
+      "name": "Arch",
+      "across": -2.5,
+      "distance": 36.3,
+      "facing": 90,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch7_pr",
+      "name": "Arch",
+      "across": 2.5,
+      "distance": 37.3,
+      "facing": 270,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch7_l0",
+      "name": "Arch",
+      "across": -2.5,
+      "elevation": 5,
+      "distance": 36.3,
+      "facing": 90,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch7_r0",
+      "name": "Arch",
+      "across": 2.5,
+      "elevation": 5,
+      "distance": 37.3,
+      "facing": 270,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch7_l1",
+      "name": "Arch",
+      "across": -2.325,
+      "elevation": 6.169,
+      "distance": 36.3,
+      "facing": 90,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch7_r1",
+      "name": "Arch",
+      "across": 2.325,
+      "elevation": 6.169,
+      "distance": 37.3,
+      "facing": 270,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch7_l2",
+      "name": "Arch",
+      "across": -1.817,
+      "elevation": 7.236,
+      "distance": 36.3,
+      "facing": 90,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch7_r2",
+      "name": "Arch",
+      "across": 1.817,
+      "elevation": 7.236,
+      "distance": 37.3,
+      "facing": 270,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch7_l3",
+      "name": "Arch",
+      "across": -1.018,
+      "elevation": 8.108,
+      "distance": 36.3,
+      "facing": 90,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch7_r3",
+      "name": "Arch",
+      "across": 1.018,
+      "elevation": 8.108,
+      "distance": 37.3,
+      "facing": 270,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch8",
+      "name": "Arch",
+      "across": 0,
+      "distance": 40.9,
+      "facing": 180,
+      "height": 11,
+      "box": [
+        -3.4,
+        -11.1,
+        3.4,
+        0.1
+      ]
+    },
+    {
+      "id": "arch8_pl",
+      "name": "Arch",
+      "across": -2.5,
+      "distance": 40.9,
+      "facing": 90,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch8_pr",
+      "name": "Arch",
+      "across": 2.5,
+      "distance": 41.9,
+      "facing": 270,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch8_l0",
+      "name": "Arch",
+      "across": -2.5,
+      "elevation": 5,
+      "distance": 40.9,
+      "facing": 90,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch8_r0",
+      "name": "Arch",
+      "across": 2.5,
+      "elevation": 5,
+      "distance": 41.9,
+      "facing": 270,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch8_l1",
+      "name": "Arch",
+      "across": -2.325,
+      "elevation": 6.169,
+      "distance": 40.9,
+      "facing": 90,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch8_r1",
+      "name": "Arch",
+      "across": 2.325,
+      "elevation": 6.169,
+      "distance": 41.9,
+      "facing": 270,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch8_l2",
+      "name": "Arch",
+      "across": -1.817,
+      "elevation": 7.236,
+      "distance": 40.9,
+      "facing": 90,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch8_r2",
+      "name": "Arch",
+      "across": 1.817,
+      "elevation": 7.236,
+      "distance": 41.9,
+      "facing": 270,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch8_l3",
+      "name": "Arch",
+      "across": -1.018,
+      "elevation": 8.108,
+      "distance": 40.9,
+      "facing": 90,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch8_r3",
+      "name": "Arch",
+      "across": 1.018,
+      "elevation": 8.108,
+      "distance": 41.9,
+      "facing": 270,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch9",
+      "name": "Arch",
+      "across": 0,
+      "distance": 45.5,
+      "facing": 180,
+      "height": 11,
+      "box": [
+        -3.4,
+        -11.1,
+        3.4,
+        0.1
+      ]
+    },
+    {
+      "id": "arch9_pl",
+      "name": "Arch",
+      "across": -2.5,
+      "distance": 45.5,
+      "facing": 90,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch9_pr",
+      "name": "Arch",
+      "across": 2.5,
+      "distance": 46.5,
+      "facing": 270,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch9_l0",
+      "name": "Arch",
+      "across": -2.5,
+      "elevation": 5,
+      "distance": 45.5,
+      "facing": 90,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch9_r0",
+      "name": "Arch",
+      "across": 2.5,
+      "elevation": 5,
+      "distance": 46.5,
+      "facing": 270,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch9_l1",
+      "name": "Arch",
+      "across": -2.325,
+      "elevation": 6.169,
+      "distance": 45.5,
+      "facing": 90,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch9_r1",
+      "name": "Arch",
+      "across": 2.325,
+      "elevation": 6.169,
+      "distance": 46.5,
+      "facing": 270,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch9_l2",
+      "name": "Arch",
+      "across": -1.817,
+      "elevation": 7.236,
+      "distance": 45.5,
+      "facing": 90,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch9_r2",
+      "name": "Arch",
+      "across": 1.817,
+      "elevation": 7.236,
+      "distance": 46.5,
+      "facing": 270,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch9_l3",
+      "name": "Arch",
+      "across": -1.018,
+      "elevation": 8.108,
+      "distance": 45.5,
+      "facing": 90,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch9_r3",
+      "name": "Arch",
+      "across": 1.018,
+      "elevation": 8.108,
+      "distance": 46.5,
+      "facing": 270,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch10",
+      "name": "Arch",
+      "across": 0,
+      "distance": 50.1,
+      "facing": 180,
+      "height": 11,
+      "box": [
+        -3.4,
+        -11.1,
+        3.4,
+        0.1
+      ]
+    },
+    {
+      "id": "arch10_pl",
+      "name": "Arch",
+      "across": -2.5,
+      "distance": 50.1,
+      "facing": 90,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch10_pr",
+      "name": "Arch",
+      "across": 2.5,
+      "distance": 51.1,
+      "facing": 270,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch10_l0",
+      "name": "Arch",
+      "across": -2.5,
+      "elevation": 5,
+      "distance": 50.1,
+      "facing": 90,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch10_r0",
+      "name": "Arch",
+      "across": 2.5,
+      "elevation": 5,
+      "distance": 51.1,
+      "facing": 270,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch10_l1",
+      "name": "Arch",
+      "across": -2.325,
+      "elevation": 6.169,
+      "distance": 50.1,
+      "facing": 90,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch10_r1",
+      "name": "Arch",
+      "across": 2.325,
+      "elevation": 6.169,
+      "distance": 51.1,
+      "facing": 270,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch10_l2",
+      "name": "Arch",
+      "across": -1.817,
+      "elevation": 7.236,
+      "distance": 50.1,
+      "facing": 90,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch10_r2",
+      "name": "Arch",
+      "across": 1.817,
+      "elevation": 7.236,
+      "distance": 51.1,
+      "facing": 270,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch10_l3",
+      "name": "Arch",
+      "across": -1.018,
+      "elevation": 8.108,
+      "distance": 50.1,
+      "facing": 90,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch10_r3",
+      "name": "Arch",
+      "across": 1.018,
+      "elevation": 8.108,
+      "distance": 51.1,
+      "facing": 270,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch11",
+      "name": "Arch",
+      "across": 0,
+      "distance": 54.7,
+      "facing": 180,
+      "height": 11,
+      "box": [
+        -3.4,
+        -11.1,
+        3.4,
+        0.1
+      ]
+    },
+    {
+      "id": "arch11_pl",
+      "name": "Arch",
+      "across": -2.5,
+      "distance": 54.7,
+      "facing": 90,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch11_pr",
+      "name": "Arch",
+      "across": 2.5,
+      "distance": 55.7,
+      "facing": 270,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch11_l0",
+      "name": "Arch",
+      "across": -2.5,
+      "elevation": 5,
+      "distance": 54.7,
+      "facing": 90,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch11_r0",
+      "name": "Arch",
+      "across": 2.5,
+      "elevation": 5,
+      "distance": 55.7,
+      "facing": 270,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch11_l1",
+      "name": "Arch",
+      "across": -2.325,
+      "elevation": 6.169,
+      "distance": 54.7,
+      "facing": 90,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch11_r1",
+      "name": "Arch",
+      "across": 2.325,
+      "elevation": 6.169,
+      "distance": 55.7,
+      "facing": 270,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch11_l2",
+      "name": "Arch",
+      "across": -1.817,
+      "elevation": 7.236,
+      "distance": 54.7,
+      "facing": 90,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch11_r2",
+      "name": "Arch",
+      "across": 1.817,
+      "elevation": 7.236,
+      "distance": 55.7,
+      "facing": 270,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch11_l3",
+      "name": "Arch",
+      "across": -1.018,
+      "elevation": 8.108,
+      "distance": 54.7,
+      "facing": 90,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch11_r3",
+      "name": "Arch",
+      "across": 1.018,
+      "elevation": 8.108,
+      "distance": 55.7,
+      "facing": 270,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch12",
+      "name": "Arch",
+      "across": 0,
+      "distance": 59.3,
+      "facing": 180,
+      "height": 11,
+      "box": [
+        -3.4,
+        -11.1,
+        3.4,
+        0.1
+      ]
+    },
+    {
+      "id": "arch12_pl",
+      "name": "Arch",
+      "across": -2.5,
+      "distance": 59.3,
+      "facing": 90,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch12_pr",
+      "name": "Arch",
+      "across": 2.5,
+      "distance": 60.3,
+      "facing": 270,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch12_l0",
+      "name": "Arch",
+      "across": -2.5,
+      "elevation": 5,
+      "distance": 59.3,
+      "facing": 90,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch12_r0",
+      "name": "Arch",
+      "across": 2.5,
+      "elevation": 5,
+      "distance": 60.3,
+      "facing": 270,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch12_l1",
+      "name": "Arch",
+      "across": -2.325,
+      "elevation": 6.169,
+      "distance": 59.3,
+      "facing": 90,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch12_r1",
+      "name": "Arch",
+      "across": 2.325,
+      "elevation": 6.169,
+      "distance": 60.3,
+      "facing": 270,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch12_l2",
+      "name": "Arch",
+      "across": -1.817,
+      "elevation": 7.236,
+      "distance": 59.3,
+      "facing": 90,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch12_r2",
+      "name": "Arch",
+      "across": 1.817,
+      "elevation": 7.236,
+      "distance": 60.3,
+      "facing": 270,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch12_l3",
+      "name": "Arch",
+      "across": -1.018,
+      "elevation": 8.108,
+      "distance": 59.3,
+      "facing": 90,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch12_r3",
+      "name": "Arch",
+      "across": 1.018,
+      "elevation": 8.108,
+      "distance": 60.3,
+      "facing": 270,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch13",
+      "name": "Arch",
+      "across": 0,
+      "distance": 63.9,
+      "facing": 180,
+      "height": 11,
+      "box": [
+        -3.4,
+        -11.1,
+        3.4,
+        0.1
+      ]
+    },
+    {
+      "id": "arch13_pl",
+      "name": "Arch",
+      "across": -2.5,
+      "distance": 63.9,
+      "facing": 90,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch13_pr",
+      "name": "Arch",
+      "across": 2.5,
+      "distance": 64.9,
+      "facing": 270,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch13_l0",
+      "name": "Arch",
+      "across": -2.5,
+      "elevation": 5,
+      "distance": 63.9,
+      "facing": 90,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch13_r0",
+      "name": "Arch",
+      "across": 2.5,
+      "elevation": 5,
+      "distance": 64.9,
+      "facing": 270,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch13_l1",
+      "name": "Arch",
+      "across": -2.325,
+      "elevation": 6.169,
+      "distance": 63.9,
+      "facing": 90,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch13_r1",
+      "name": "Arch",
+      "across": 2.325,
+      "elevation": 6.169,
+      "distance": 64.9,
+      "facing": 270,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch13_l2",
+      "name": "Arch",
+      "across": -1.817,
+      "elevation": 7.236,
+      "distance": 63.9,
+      "facing": 90,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch13_r2",
+      "name": "Arch",
+      "across": 1.817,
+      "elevation": 7.236,
+      "distance": 64.9,
+      "facing": 270,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch13_l3",
+      "name": "Arch",
+      "across": -1.018,
+      "elevation": 8.108,
+      "distance": 63.9,
+      "facing": 90,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch13_r3",
+      "name": "Arch",
+      "across": 1.018,
+      "elevation": 8.108,
+      "distance": 64.9,
+      "facing": 270,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch14",
+      "name": "Arch",
+      "across": 0,
+      "distance": 68.5,
+      "facing": 180,
+      "height": 11,
+      "box": [
+        -3.4,
+        -11.1,
+        3.4,
+        0.1
+      ]
+    },
+    {
+      "id": "arch14_pl",
+      "name": "Arch",
+      "across": -2.5,
+      "distance": 68.5,
+      "facing": 90,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch14_pr",
+      "name": "Arch",
+      "across": 2.5,
+      "distance": 69.5,
+      "facing": 270,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch14_l0",
+      "name": "Arch",
+      "across": -2.5,
+      "elevation": 5,
+      "distance": 68.5,
+      "facing": 90,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch14_r0",
+      "name": "Arch",
+      "across": 2.5,
+      "elevation": 5,
+      "distance": 69.5,
+      "facing": 270,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch14_l1",
+      "name": "Arch",
+      "across": -2.325,
+      "elevation": 6.169,
+      "distance": 68.5,
+      "facing": 90,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch14_r1",
+      "name": "Arch",
+      "across": 2.325,
+      "elevation": 6.169,
+      "distance": 69.5,
+      "facing": 270,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch14_l2",
+      "name": "Arch",
+      "across": -1.817,
+      "elevation": 7.236,
+      "distance": 68.5,
+      "facing": 90,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch14_r2",
+      "name": "Arch",
+      "across": 1.817,
+      "elevation": 7.236,
+      "distance": 69.5,
+      "facing": 270,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch14_l3",
+      "name": "Arch",
+      "across": -1.018,
+      "elevation": 8.108,
+      "distance": 68.5,
+      "facing": 90,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch14_r3",
+      "name": "Arch",
+      "across": 1.018,
+      "elevation": 8.108,
+      "distance": 69.5,
+      "facing": 270,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch15",
+      "name": "Arch",
+      "across": 0,
+      "distance": 73.1,
+      "facing": 180,
+      "height": 11,
+      "box": [
+        -3.4,
+        -11.1,
+        3.4,
+        0.1
+      ]
+    },
+    {
+      "id": "arch15_pl",
+      "name": "Arch",
+      "across": -2.5,
+      "distance": 73.1,
+      "facing": 90,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch15_pr",
+      "name": "Arch",
+      "across": 2.5,
+      "distance": 74.1,
+      "facing": 270,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch15_l0",
+      "name": "Arch",
+      "across": -2.5,
+      "elevation": 5,
+      "distance": 73.1,
+      "facing": 90,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch15_r0",
+      "name": "Arch",
+      "across": 2.5,
+      "elevation": 5,
+      "distance": 74.1,
+      "facing": 270,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch15_l1",
+      "name": "Arch",
+      "across": -2.325,
+      "elevation": 6.169,
+      "distance": 73.1,
+      "facing": 90,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch15_r1",
+      "name": "Arch",
+      "across": 2.325,
+      "elevation": 6.169,
+      "distance": 74.1,
+      "facing": 270,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch15_l2",
+      "name": "Arch",
+      "across": -1.817,
+      "elevation": 7.236,
+      "distance": 73.1,
+      "facing": 90,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch15_r2",
+      "name": "Arch",
+      "across": 1.817,
+      "elevation": 7.236,
+      "distance": 74.1,
+      "facing": 270,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch15_l3",
+      "name": "Arch",
+      "across": -1.018,
+      "elevation": 8.108,
+      "distance": 73.1,
+      "facing": 90,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch15_r3",
+      "name": "Arch",
+      "across": 1.018,
+      "elevation": 8.108,
+      "distance": 74.1,
+      "facing": 270,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch16",
+      "name": "Arch",
+      "across": 0,
+      "distance": 77.7,
+      "facing": 180,
+      "height": 11,
+      "box": [
+        -3.4,
+        -11.1,
+        3.4,
+        0.1
+      ]
+    },
+    {
+      "id": "arch16_pl",
+      "name": "Arch",
+      "across": -2.5,
+      "distance": 77.7,
+      "facing": 90,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch16_pr",
+      "name": "Arch",
+      "across": 2.5,
+      "distance": 78.7,
+      "facing": 270,
+      "height": 5,
+      "box": [
+        0,
+        -5,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch16_l0",
+      "name": "Arch",
+      "across": -2.5,
+      "elevation": 5,
+      "distance": 77.7,
+      "facing": 90,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch16_r0",
+      "name": "Arch",
+      "across": 2.5,
+      "elevation": 5,
+      "distance": 78.7,
+      "facing": 270,
+      "tilt": -8.497,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch16_l1",
+      "name": "Arch",
+      "across": -2.325,
+      "elevation": 6.169,
+      "distance": 77.7,
+      "facing": 90,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch16_r1",
+      "name": "Arch",
+      "across": 2.325,
+      "elevation": 6.169,
+      "distance": 78.7,
+      "facing": 270,
+      "tilt": -25.491,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch16_l2",
+      "name": "Arch",
+      "across": -1.817,
+      "elevation": 7.236,
+      "distance": 77.7,
+      "facing": 90,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch16_r2",
+      "name": "Arch",
+      "across": 1.817,
+      "elevation": 7.236,
+      "distance": 78.7,
+      "facing": 270,
+      "tilt": -42.485,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch16_l3",
+      "name": "Arch",
+      "across": -1.018,
+      "elevation": 8.108,
+      "distance": 77.7,
+      "facing": 90,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "arch16_r3",
+      "name": "Arch",
+      "across": 1.018,
+      "elevation": 8.108,
+      "distance": 78.7,
+      "facing": 270,
+      "tilt": -59.479,
+      "height": 1.202,
+      "box": [
+        0,
+        -1.202,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "crack",
+      "name": "Crack",
+      "across": 0,
+      "distance": 13.285,
+      "facing": 180,
+      "height": 9,
+      "box": [
+        1.6,
+        -10.8,
+        3.4,
+        -2
+      ],
+      "uniforms": {
+        "reach": 0,
+        "wide": 0
+      }
+    },
+    {
+      "id": "room3_floor",
+      "name": "Dark room",
+      "plane": true,
+      "across": -5.4,
+      "distance": 20.4,
+      "elevation": 0,
+      "width": 4.2,
+      "depth": 6
+    },
+    {
+      "id": "room3_ceil",
+      "name": "Dark room",
+      "plane": true,
+      "across": -5.4,
+      "distance": 20.4,
+      "elevation": 4.5,
+      "width": 4.2,
+      "depth": 6,
+      "tilt": 180
+    },
+    {
+      "id": "room3_back",
+      "name": "Dark room",
+      "across": -7.5,
+      "distance": 17.4,
+      "facing": 90,
+      "height": 4.5,
+      "box": [
+        0,
+        -4.5,
+        6,
+        0
+      ]
+    },
+    {
+      "id": "room3_near",
+      "name": "Dark room",
+      "across": -3.3,
+      "distance": 17.4,
+      "facing": 0,
+      "height": 4.5,
+      "box": [
+        0,
+        -4.5,
+        4.2,
+        0
+      ]
+    },
+    {
+      "id": "room3_far",
+      "name": "Dark room",
+      "across": -7.5,
+      "distance": 23.4,
+      "facing": 180,
+      "height": 4.5,
+      "box": [
+        0,
+        -4.5,
+        4.2,
+        0
+      ]
+    },
+    {
+      "id": "room5_floor",
+      "name": "Dark room",
+      "plane": true,
+      "across": -5.4,
+      "distance": 29.6,
+      "elevation": 0,
+      "width": 4.2,
+      "depth": 6
+    },
+    {
+      "id": "room5_ceil",
+      "name": "Dark room",
+      "plane": true,
+      "across": -5.4,
+      "distance": 29.6,
+      "elevation": 4.5,
+      "width": 4.2,
+      "depth": 6,
+      "tilt": 180
+    },
+    {
+      "id": "room5_back",
+      "name": "Dark room",
+      "across": -7.5,
+      "distance": 26.6,
+      "facing": 90,
+      "height": 4.5,
+      "box": [
+        0,
+        -4.5,
+        6,
+        0
+      ]
+    },
+    {
+      "id": "room5_near",
+      "name": "Dark room",
+      "across": -3.3,
+      "distance": 26.6,
+      "facing": 0,
+      "height": 4.5,
+      "box": [
+        0,
+        -4.5,
+        4.2,
+        0
+      ]
+    },
+    {
+      "id": "room5_far",
+      "name": "Dark room",
+      "across": -7.5,
+      "distance": 32.6,
+      "facing": 180,
+      "height": 4.5,
+      "box": [
+        0,
+        -4.5,
+        4.2,
+        0
+      ]
+    },
+    {
+      "id": "sconce",
+      "name": "Candle in a sconce",
+      "across": -3.1799999999999997,
+      "distance": 34.3,
+      "elevation": 2.6,
+      "height": 0.8,
+      "box": [
+        -0.2,
+        -0.4,
+        0.1,
+        0.4
+      ],
+      "glows": true,
+      "flicker": 0.35,
+      "redraw": {
+        "sconce": 0.1
+      }
+    },
+    {
+      "id": "motes",
+      "name": "Dust in the windows' light",
+      "particles": {
+        "kind": "dust",
+        "at": [
+          0,
+          18,
+          3.6
+        ],
+        "source": [
+          6.3999999999999995,
+          28,
+          7
+        ],
+        "rate": 200,
+        "life": [
+          10,
+          16
+        ]
+      }
+    },
+    {
+      "id": "narrator",
+      "name": "Narrator",
+      "person": {
+        "cast": "cast",
+        "who": "narrator",
+        "turn": 0
+      },
+      "across": -1.15,
+      "distance": 2.7,
+      "place": {
+        "across": "narrator_a",
+        "distance": "narrator_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "roderick",
+      "name": "Roderick",
+      "person": {
+        "cast": "cast",
+        "who": "roderick",
+        "turn": 355
+      },
+      "across": 0.75,
+      "distance": 3.4,
+      "place": {
+        "across": "roderick_a",
+        "distance": "roderick_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "madeline",
+      "name": "The Lady Madeline",
+      "person": {
+        "cast": "cast",
+        "who": "madeline",
+        "turn": 85,
+        "does": "still",
+        "gait": "sleepwalk"
+      },
+      "across": -4.6,
+      "distance": 20.4,
+      "place": {
+        "across": "madeline_a",
+        "distance": "madeline_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "doctor",
+      "name": "Physician",
+      "person": {
+        "cast": "cast",
+        "who": "doctor",
+        "turn": 90
+      },
+      "across": -4.6,
+      "distance": 20.4,
+      "place": {
+        "across": "doctor_a",
+        "distance": "doctor_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "closeup",
+      "name": "Close-up",
+      "insert": "closeup"
+    }
+  ],
+  "modules": [
+    "cast",
+    "beats",
+    "closeups"
+  ],
+  "music": {
+    "bpm": 60,
+    "brightness": 0.25,
+    "density": 0.2,
+    "prompts": [
+      {
+        "text": "distant music box playing a slow broken lullaby in an empty stone hall, long reverb",
+        "weight": 2
+      },
+      {
+        "text": "faint wordless female voice, breathy and far away, drifting in and out of hearing",
+        "weight": 2
+      },
+      {
+        "text": "cold ambient synth pad, slow evolving, grey and glassy, dark minor drone",
+        "weight": 2
+      },
+      {
+        "text": "creaking old house, wooden beams settling, sparse low string harmonics",
+        "weight": 1.5
+      },
+      {
+        "text": "gothic chamber strings, sul ponticello tremolo, ppp, uneasy",
+        "weight": 0
+      },
+      {
+        "text": "slow solo cello, mournful, long bowed notes, 19th century",
+        "weight": 0
+      },
+      {
+        "text": "detuned celesta, sparse notes, haunted nursery",
+        "weight": 0
+      },
+      {
+        "text": "glass harmonica, ethereal and sickly, Poe era",
+        "weight": 0
+      },
+      {
+        "text": "distant church organ heard through thick walls, low pedal tones",
+        "weight": 0
+      },
+      {
+        "text": "dark ambient drone, subsonic rumble, wind in stone corridors",
+        "weight": 0
+      },
+      {
+        "text": "prepared piano, muted single notes, long silences",
+        "weight": 0
+      },
+      {
+        "text": "choir of whispers, indistinct, spectral",
+        "weight": 0
+      },
+      {
+        "text": "slow harp arpeggios slightly out of tune, dreamlike and fragile",
+        "weight": 0
+      },
+      {
+        "text": "bowed cymbals and metallic shimmer, eerie suspense",
+        "weight": 0
+      },
+      {
+        "text": "lonely viola melody in minor key, romantic gothic, rubato",
+        "weight": 0
+      },
+      {
+        "text": "low clarinet sustained tones, cold and hollow",
+        "weight": 0
+      },
+      {
+        "text": "ticking clock and soft heartbeat pulse under a dark pad",
+        "weight": 0
+      },
+      {
+        "text": "minimal neoclassical piano, slow, grief and dread",
+        "weight": 0
+      },
+      {
+        "text": "tape-warped old waltz faintly heard from a far room",
+        "weight": 0
+      },
+      {
+        "text": "icy reversed piano swells, ghostly atmosphere",
+        "weight": 0
+      }
+    ],
+    "scale": "A_MAJOR_G_FLAT_MINOR"
+  }
+}

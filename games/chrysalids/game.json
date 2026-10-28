@@ -8,6 +8,7 @@
     "drama": 100,
     "relationships": 60
   },
-  "world": "pavel--chrysalids",
-  "scenes": []
+  "world": "../../worlds/chrysalids",
+  "scenes": [],
+  "languages": ["en", "ru"]
 }

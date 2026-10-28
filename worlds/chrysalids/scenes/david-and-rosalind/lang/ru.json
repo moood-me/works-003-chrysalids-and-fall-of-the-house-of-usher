@@ -1,6 +1,6 @@
 {"strings": [
-  {"text":"David and Rosalind","translation":"Дэвид и Розалинда","where":"scenes/david-and-rosalind/scene.json title"},
-  {"text":"In front of everyone we were strangers.","translation":"При всех мы были чужими.","where":"scenes/david-and-rosalind/scene.json caption"},
-  {"text":"We did not look at each other.","translation":"Мы не смотрели друг на друга.","where":"scenes/david-and-rosalind/scene.json captions[0] text"},
-  {"text":"Alone — only in our thoughts — we were together.","translation":"Наедине — только в мыслях — мы были вместе.","where":"scenes/david-and-rosalind/scene.json captions[1] text"}
+  {"text":"David and Rosalind","translation":"Дэвид и Розалинда","where":"worlds/chrysalids/scenes/david-and-rosalind/scene.json title"},
+  {"text":"In front of everyone we were strangers.","translation":"При всех мы были чужими.","where":"worlds/chrysalids/scenes/david-and-rosalind/scene.json caption"},
+  {"text":"We did not look at each other.","translation":"Мы не смотрели друг на друга.","where":"worlds/chrysalids/scenes/david-and-rosalind/scene.json captions[0] text"},
+  {"text":"Alone — only in our thoughts — we were together.","translation":"Наедине — только в мыслях — мы были вместе.","where":"worlds/chrysalids/scenes/david-and-rosalind/scene.json captions[1] text"}
 ]}

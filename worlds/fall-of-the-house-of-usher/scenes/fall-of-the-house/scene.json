@@ -13,12 +13,6 @@
   "camera": {
     "mode": "picture"
   },
-  "directions": [
-    {
-      "key": "fall",
-      "name": "The house collapses"
-    }
-  ],
   "light": {
     "ambient": 0.95,
     "ambientColor": "#a49cae",

@@ -320,12 +320,6 @@
       "on": "night_fill"
     }
   ],
-  "directions": [
-    {
-      "key": "crack",
-      "name": "The crack creeps across the wall"
-    }
-  ],
   "objects": [
     {
       "id": "sky",

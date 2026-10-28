@@ -6,5 +6,6 @@
     "post-apocalypse": 40,
     "mystery": 30
   },
-  "main": "stream-bank"
+  "main": "stream-bank",
+  "languages": ["en", "ru"]
 }

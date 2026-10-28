@@ -9,6 +9,7 @@
     "immersion": 50,
     "horror": 100
   },
-  "world": "pavel--fall-of-the-house-of-usher",
-  "scenes": []
+  "world": "../../worlds/fall-of-the-house-of-usher",
+  "scenes": [],
+  "languages": ["en", "ru"]
 }

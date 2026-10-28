@@ -62,20 +62,6 @@
       "text": "And the grown-ups heard nothing."
     }
   ],
-  "directions": [
-    {
-      "key": "adults_near",
-      "name": "The grown-ups look round"
-    },
-    {
-      "key": "dusk",
-      "name": "Evening comes"
-    },
-    {
-      "key": "rosalind",
-      "name": "Warm thread to Rosalind"
-    }
-  ],
   "state": {
     "dusk": 0,
     "threads": 0.7,

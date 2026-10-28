@@ -1,4 +1,4 @@
 {"strings": [
-  {"text":"The storm and the reading","translation":"Буря и чтение","where":"scenes/storm-and-reading/scene.json title"},
-  {"text":"It appeared to me that from some very remote portion of the mansion there came the very sound of which I had just read.","translation":"Мне почудилось, что откуда-то из самой глубины дома донёсся тот самый звук, о котором я только что читал.","where":"scenes/storm-and-reading/scene.json caption"}
+  {"text":"The storm and the reading","translation":"Буря и чтение","where":"worlds/fall-of-the-house-of-usher/scenes/storm-and-reading/scene.json title"},
+  {"text":"It appeared to me that from some very remote portion of the mansion there came the very sound of which I had just read.","translation":"Мне почудилось, что откуда-то из самой глубины дома донёсся тот самый звук, о котором я только что читал.","where":"worlds/fall-of-the-house-of-usher/scenes/storm-and-reading/scene.json caption"}
 ]}

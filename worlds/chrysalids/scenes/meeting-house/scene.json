@@ -396,20 +396,6 @@
       "means": "a thin thread of smoke over the blown-out lamp (the scene sets it itself when lamp goes out)"
     }
   },
-  "directions": [
-    {
-      "key": "fire_outside",
-      "name": "The barn burns beyond the windows"
-    },
-    {
-      "key": "spill",
-      "name": "The lamp falls, the oil burns on the floor"
-    },
-    {
-      "key": "rush",
-      "name": "Everyone runs to the door"
-    }
-  ],
   "objects": [
     {
       "id": "sky",
@@ -1023,7 +1009,7 @@
         "weight": 0
       }
     ],
-    "bpm": 56,
+    "bpm": 60,
     "density": 0.2,
     "brightness": 0.2,
     "scale": "C_MAJOR_A_MINOR"

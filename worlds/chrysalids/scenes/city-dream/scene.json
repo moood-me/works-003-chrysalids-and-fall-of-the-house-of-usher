@@ -68,12 +68,6 @@
       "text": "I did not know where it was. I knew only that I must go there."
     }
   ],
-  "directions": [
-    {
-      "key": "waking",
-      "name": "Wake up"
-    }
-  ],
   "state": {
     "craft": 0.6,
     "dream": 0.75,

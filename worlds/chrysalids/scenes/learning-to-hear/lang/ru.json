@@ -1,0 +1,10 @@
+{"strings": [
+  {"text":"Learning to hear","translation":"Учимся слышать","where":"scenes/learning-to-hear/scene.json title"},
+  {"text":"We learnt to know one another by a voice no one else heard.","translation":"Мы учились узнавать друг друга по голосу, которого никто не слышал.","where":"scenes/learning-to-hear/scene.json caption"},
+  {"text":"At first, only a rustle, like wind in the barley.","translation":"Сначала — только шорох, как ветер в ячмене.","where":"scenes/learning-to-hear/scene.json captions[0] text"},
+  {"text":"Then we learnt to tell who was calling.","translation":"Потом мы научились различать, кто зовёт.","where":"scenes/learning-to-hear/scene.json captions[1] text"},
+  {"text":"And the grown-ups heard nothing.","translation":"А взрослые ничего не слышали.","where":"scenes/learning-to-hear/scene.json captions[2] text"},
+  {"text":"The grown-ups look round","translation":"Взрослые оглядываются","where":"scenes/learning-to-hear/scene.json directions[0] name"},
+  {"text":"Evening comes","translation":"Вечереет","where":"scenes/learning-to-hear/scene.json directions[1] name"},
+  {"text":"Warm thread to Rosalind","translation":"Тёплая нить к Розалинде","where":"scenes/learning-to-hear/scene.json directions[2] name"}
+]}

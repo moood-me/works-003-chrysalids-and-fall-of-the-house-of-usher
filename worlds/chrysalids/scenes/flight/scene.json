@@ -1,0 +1,783 @@
+{
+  "engine": 3,
+  "title": "Flight",
+  "horizon": 0.62,
+  "camera": {
+    "mode": "picture"
+  },
+  "light": {
+    "ambient": 0.72,
+    "ambientColor": "#8a9ac4",
+    "bounce": 0.5,
+    "haze": 0.3,
+    "hazeColor": "#4a5a7a",
+    "hazeGlow": 0.7,
+    "shafts": 0.2,
+    "vignette": 0.4,
+    "grain": 0.2,
+    "saturation": 0.85,
+    "looks": {
+      "dawn": {
+        "ambient": 0.85,
+        "ambientColor": "#b8bccc",
+        "hazeColor": "#8a94aa",
+        "saturation": 0.9
+      },
+      "mist": {
+        "haze": 0.42
+      }
+    }
+  },
+  "lights": [
+    {
+      "id": "dawnlight",
+      "from": [
+        70,
+        6
+      ],
+      "color": "#c8ccd8",
+      "strength": 0.5
+    },
+    {
+      "id": "lantern",
+      "at": "searcher#hand_r",
+      "color": "#ffc46a",
+      "strength": 1.2,
+      "reach": 7,
+      "flicker": 0.15,
+      "glow": 0.3
+    },
+    {
+      "id": "lantern2",
+      "at": "searcher2#hand_r",
+      "color": "#ffc46a",
+      "strength": 0.9,
+      "reach": 5,
+      "flicker": 0.15,
+      "glow": 0.25
+    },
+    {
+      "id": "lamp_spot",
+      "across": 6,
+      "distance": 9.6,
+      "elevation": 0.4,
+      "place": {
+        "across": "lamp_x"
+      },
+      "color": "#ffcc88",
+      "strength": 1.0,
+      "reach": 4,
+      "on": "lamp",
+      "flicker": 0.1
+    },
+    {
+      "id": "fill",
+      "from": [
+        175,
+        22
+      ],
+      "color": "#b8c4e0",
+      "strength": 0.35
+    }
+  ],
+  "state": {
+    "beat": null,
+    "dawn": 0.1,
+    "mist": 0.7,
+    "fog": 0,
+    "pursuers": 0.12,
+    "great_a": 0.3,
+    "great_d": 9.0,
+    "great_face": 90,
+    "great_toss": 0,
+    "pack_a": -3.1,
+    "pack_d": 9.1,
+    "pack_face": 90,
+    "pack_toss": 0,
+    "sheba_a": -13,
+    "sheba_d": 8.78,
+    "sheba_face": 90,
+    "sheba_toss": 0,
+    "sheba_here": true,
+    "sheba_led": false,
+    "h1_a": -20,
+    "h1_d": 9.0,
+    "h1_face": 90,
+    "h1_toss": 0,
+    "h1_here": false,
+    "h2_a": -23.4,
+    "h2_d": 9.0,
+    "h2_face": 90,
+    "h2_here": false,
+    "petra_peek": 0,
+    "lamp": 0,
+    "lamp_x": 6,
+    "search_point": 0,
+    "arrow": 0,
+    "arrow_high": false,
+    "rosalind_on": {
+      "at": "great#seat",
+      "up": -0.5
+    },
+    "david_on": {
+      "at": "sheba#seat",
+      "up": -0.5
+    },
+    "searcher_on": {
+      "at": "horse1#seat",
+      "up": -0.5
+    },
+    "searcher2_on": {
+      "at": "horse2#seat",
+      "up": -0.5
+    },
+    "searcher_here": false,
+    "searcher2_here": false,
+    "searcher_with": [
+      "lantern"
+    ],
+    "searcher2_with": [
+      "lantern"
+    ]
+  },
+  "states": {
+    "beat": {
+      "type": "string",
+      "means": "beat (module beats): arrive | arrive_alone → handover → sheba_turn → sheba_go | sheba_keep → climb → bow → go → search; the game: bow → hollow → watch → spotted | stay → kill | warn | hide → away"
+    },
+    "dawn": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "dawn (light look dawn, the sky)"
+    },
+    "mist": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "fog in the low ground (and the look mist)"
+    },
+    "fog": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "fog in the hollow behind the ridge’s shoulder"
+    },
+    "pursuers": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the search party’s lanterns on the far ridge: how many"
+    },
+    "great_toss": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the great-horse tosses its head (the game, “Quiet, horses”)"
+    },
+    "pack_toss": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the pack-horse tosses its head (the game)"
+    },
+    "sheba_toss": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "Sheba tosses her head (the game)"
+    },
+    "h1_toss": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the first rider’s horse rears"
+    },
+    "petra_peek": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "Petra peeks out of the pannier (the game)"
+    },
+    "lamp": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the first rider’s lantern raised, shining into the fog of the hollow (the spot — light lamp_spot)"
+    },
+    "lamp_x": {
+      "type": "number",
+      "means": "where the lantern shines: metres across, on the fog of the hollow (≈ 2…12)"
+    },
+    "search_point": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the first rider points into the hollow"
+    },
+    "sheba_led": {
+      "type": "boolean",
+      "means": "Sheba on a rope behind the pack-horse"
+    },
+    "sheba_here": {
+      "type": "boolean",
+      "means": "Sheba is here"
+    },
+    "arrow": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "Rosalind’s arrow flies"
+    },
+    "arrow_high": {
+      "type": "boolean",
+      "means": "the arrow over the rider’s head (a warning)"
+    },
+    "h1_here": {
+      "type": "boolean",
+      "means": "the first rider’s horse is here"
+    },
+    "h2_here": {
+      "type": "boolean",
+      "means": "the second one’s horse is here"
+    },
+    "great_a": {
+      "type": "number",
+      "means": "great: where (m across, along the road)"
+    },
+    "great_d": {
+      "type": "number",
+      "means": "great: in depth"
+    },
+    "great_face": {
+      "range": [
+        0,
+        360
+      ],
+      "smooth": true,
+      "means": "great: which way it faces (90 — right)"
+    },
+    "pack_a": {
+      "type": "number",
+      "means": "pack: where (m across, along the road)"
+    },
+    "pack_d": {
+      "type": "number",
+      "means": "pack: in depth"
+    },
+    "pack_face": {
+      "range": [
+        0,
+        360
+      ],
+      "smooth": true,
+      "means": "pack: which way it faces (90 — right)"
+    },
+    "sheba_a": {
+      "type": "number",
+      "means": "sheba: where (m across, along the road)"
+    },
+    "sheba_d": {
+      "type": "number",
+      "means": "sheba: in depth"
+    },
+    "sheba_face": {
+      "range": [
+        0,
+        360
+      ],
+      "smooth": true,
+      "means": "sheba: which way she faces (90 — right)"
+    },
+    "h1_a": {
+      "type": "number",
+      "means": "rider: where"
+    },
+    "h1_d": {
+      "type": "number",
+      "means": "rider: in depth"
+    },
+    "h1_face": {
+      "range": [
+        0,
+        360
+      ],
+      "smooth": true,
+      "means": "rider: which way the horse faces"
+    },
+    "h2_a": {
+      "type": "number",
+      "means": "rider: where"
+    },
+    "h2_d": {
+      "type": "number",
+      "means": "rider: in depth"
+    },
+    "h2_face": {
+      "range": [
+        0,
+        360
+      ],
+      "smooth": true,
+      "means": "rider: which way the horse faces"
+    }
+  },
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Blue-hour sky"
+    },
+    {
+      "id": "clouds",
+      "sky": true,
+      "name": "Ragged clouds"
+    },
+    {
+      "id": "far_ridge",
+      "name": "Far ridge",
+      "x": 0.5,
+      "distance": 1200,
+      "height": 80,
+      "box": [
+        -3200,
+        -120,
+        3200,
+        300
+      ]
+    },
+    {
+      "id": "pursuers",
+      "name": "Lights of the pursuit",
+      "x": 0.5,
+      "distance": 1190,
+      "height": 80,
+      "box": [
+        -3200,
+        -140,
+        3200,
+        30
+      ],
+      "glows": true
+    },
+    {
+      "id": "forest",
+      "name": "Dark forest",
+      "across": 0,
+      "distance": 48,
+      "height": 20.74,
+      "box": [
+        10,
+        -10,
+        260,
+        30
+      ]
+    },
+    {
+      "id": "mist_far",
+      "name": "Fog in the low ground",
+      "across": 0,
+      "distance": 40,
+      "height": 4,
+      "box": [
+        -160,
+        -6,
+        160,
+        1
+      ]
+    },
+    {
+      "id": "field",
+      "name": "Field",
+      "plane": true,
+      "across": 0,
+      "distance": 40,
+      "width": 240,
+      "depth": 76,
+      "elevation": -0.5
+    },
+    {
+      "id": "hill",
+      "name": "Ridge with the road",
+      "across": 0,
+      "distance": 9.2,
+      "height": 1.4,
+      "box": [
+        -80,
+        -3,
+        80,
+        0.4
+      ],
+      "onLand": false
+    },
+    {
+      "id": "pack",
+      "name": "Pack-horse",
+      "across": -3.1,
+      "distance": 9.1,
+      "place": {
+        "across": "pack_a",
+        "distance": "pack_d"
+      },
+      "height": 2.5,
+      "box": [
+        -3.4,
+        -4.4,
+        3.4,
+        0.5
+      ],
+      "shadow": true
+    },
+    {
+      "id": "great",
+      "name": "Great-horse with the panniers",
+      "across": 0.3,
+      "distance": 9.0,
+      "place": {
+        "across": "great_a",
+        "distance": "great_d"
+      },
+      "height": 2.5,
+      "box": [
+        -3.4,
+        -4.4,
+        3.4,
+        0.5
+      ],
+      "shadow": true
+    },
+    {
+      "id": "sheba",
+      "name": "Sheba",
+      "across": -13,
+      "distance": 8.78,
+      "place": {
+        "across": "sheba_a",
+        "distance": "sheba_d"
+      },
+      "height": 2.5,
+      "box": [
+        -3.4,
+        -4.4,
+        3.4,
+        0.5
+      ],
+      "shadow": true
+    },
+    {
+      "id": "horse1",
+      "name": "The first rider’s horse",
+      "across": -20,
+      "distance": 9.0,
+      "place": {
+        "across": "h1_a",
+        "distance": "h1_d"
+      },
+      "height": 2.5,
+      "box": [
+        -3.4,
+        -4.4,
+        3.4,
+        0.5
+      ],
+      "shadow": true
+    },
+    {
+      "id": "horse2",
+      "name": "The second rider’s horse",
+      "across": -23.4,
+      "distance": 9.0,
+      "place": {
+        "across": "h2_a",
+        "distance": "h2_d"
+      },
+      "height": 2.5,
+      "box": [
+        -3.4,
+        -4.4,
+        3.4,
+        0.5
+      ],
+      "shadow": true
+    },
+    {
+      "id": "rosalind",
+      "name": "Rosalind",
+      "person": {
+        "cast": "cast",
+        "who": "rosalind",
+        "turn": 90
+      },
+      "across": 0.3,
+      "distance": 9.0,
+      "place": {
+        "across": "rosalind_a",
+        "distance": "rosalind_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "petra",
+      "name": "Petra",
+      "person": {
+        "cast": "cast",
+        "who": "petra",
+        "turn": 90
+      },
+      "across": 0.3,
+      "distance": 9.0,
+      "place": {
+        "across": "petra_a",
+        "distance": "petra_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "david",
+      "name": "David",
+      "person": {
+        "cast": "cast",
+        "who": "david_teen",
+        "turn": 90
+      },
+      "across": -13,
+      "distance": 8.78,
+      "place": {
+        "across": "david_a",
+        "distance": "david_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "searcher",
+      "name": "The first rider, with a lantern",
+      "person": {
+        "cast": "cast",
+        "who": "rider",
+        "turn": 90
+      },
+      "across": -20,
+      "distance": 9.0,
+      "place": {
+        "across": "searcher_a",
+        "distance": "searcher_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "searcher2",
+      "name": "The second rider",
+      "person": {
+        "cast": "cast",
+        "who": "man_b",
+        "turn": 90
+      },
+      "across": -23.4,
+      "distance": 9.0,
+      "place": {
+        "across": "searcher2_a",
+        "distance": "searcher2_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "shoulder",
+      "name": "Shoulder of the ridge",
+      "across": 0,
+      "distance": 8.85,
+      "height": 1.4,
+      "box": [
+        -2,
+        -3,
+        80,
+        2.7
+      ],
+      "onLand": false
+    },
+    {
+      "id": "fog",
+      "name": "Fog in the hollow behind the ridge’s shoulder",
+      "across": 0,
+      "distance": 9.15,
+      "height": 1.4,
+      "box": [
+        2,
+        -4,
+        18,
+        3
+      ],
+      "onLand": false
+    },
+    {
+      "id": "mist_near",
+      "name": "Fog in the hollow",
+      "across": 0,
+      "distance": 8,
+      "height": 1,
+      "box": [
+        -60,
+        -1.5,
+        60,
+        0.4
+      ],
+      "onLand": false
+    },
+    {
+      "id": "grass_near",
+      "name": "Dry grass",
+      "across": 0,
+      "distance": 4.5,
+      "height": 1,
+      "box": [
+        -14.5,
+        -1.3,
+        14.5,
+        0.6
+      ]
+    },
+    {
+      "id": "foreground",
+      "name": "Weedy hummock",
+      "across": -1,
+      "distance": 3.2,
+      "height": 0.8,
+      "box": [
+        -9,
+        -1.2,
+        2,
+        0.5
+      ]
+    },
+    {
+      "id": "arrow",
+      "name": "Rosalind’s arrow",
+      "across": 0,
+      "distance": 8.95,
+      "height": 1,
+      "box": [
+        -40,
+        -12,
+        40,
+        4
+      ],
+      "onLand": false
+    }
+  ],
+  "modules": [
+    "cast",
+    "chrysalids",
+    "beats"
+  ],
+  "music": {
+    "bpm": 72,
+    "density": 0.3,
+    "prompts": [
+      {
+        "text": "low pulsing strings, ostinato cellos and basses, tense but restrained, cinematic night flight",
+        "weight": 2
+      },
+      {
+        "text": "distant horse hooves on a dirt road, field-recording ambience blended with soft drone",
+        "weight": 2
+      },
+      {
+        "text": "sparse frame drum, slow heartbeat pattern, dry and close, folk ritual feel",
+        "weight": 2
+      },
+      {
+        "text": "cold wind over open fields, airy noise textures, wintry pre-dawn",
+        "weight": 1
+      },
+      {
+        "text": "solo viola melody, fragile and tender, long bow strokes, minor mode",
+        "weight": 0
+      },
+      {
+        "text": "post-apocalyptic folk lament on a lone detuned fiddle, far away",
+        "weight": 0
+      },
+      {
+        "text": "dark ambient drone, slow evolving low synth pads, vast and empty",
+        "weight": 0
+      },
+      {
+        "text": "hurdy-gurdy drone with soft bowed psaltery, rustic, ancient, slow",
+        "weight": 0
+      },
+      {
+        "text": "glass harmonica tones, shimmering and telepathic, quiet thoughts between minds",
+        "weight": 0
+      },
+      {
+        "text": "slow tension build, distant timpani rolls, pursuit approaching",
+        "weight": 0
+      },
+      {
+        "text": "minimal piano, single low notes with long decay, sorrowful, nocturnal",
+        "weight": 0
+      },
+      {
+        "text": "wordless female humming far away, lullaby fragment, warm and sad",
+        "weight": 0
+      },
+      {
+        "text": "string harmonics high and thin like breath in frost, eerie",
+        "weight": 0
+      },
+      {
+        "text": "galloping rhythm in pizzicato basses, urgent but muted, chase music",
+        "weight": 0
+      },
+      {
+        "text": "sunrise swell of soft brass and strings, hope through fear",
+        "weight": 0
+      },
+      {
+        "text": "tape-saturated ambient guitar swells, slow, melancholic",
+        "weight": 0
+      },
+      {
+        "text": "low male choir hum, solemn, forbidding, puritan hymn echo",
+        "weight": 0
+      },
+      {
+        "text": "celesta motif, childlike and fragile, slightly detuned",
+        "weight": 0
+      },
+      {
+        "text": "granular fog textures, almost silent, distant birds before dawn",
+        "weight": 0
+      },
+      {
+        "text": "bowed cymbals and scraped metal, long reverb, unease",
+        "weight": 0
+      }
+    ],
+    "brightness": 0.25,
+    "scale": "C_MAJOR_A_MINOR"
+  }
+}

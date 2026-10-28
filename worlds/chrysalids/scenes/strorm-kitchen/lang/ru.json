@@ -1,0 +1,6 @@
+{"strings": [
+  {"text":"Honour the Image","translation":"Чти образ Божий","where":"scenes/strorm-kitchen/elements/wall.js"},
+  {"text":"Keep the Stock Pure","translation":"Береги чистоту рода","where":"scenes/strorm-kitchen/elements/wall.js"},
+  {"text":"Watch Thou for the Mutant!","translation":"Блюди, не мутант ли","where":"scenes/strorm-kitchen/elements/wall.js"},
+  {"text":"The Strorms’ kitchen","translation":"Кухня Стормов","where":"scenes/strorm-kitchen/scene.json title"}
+]}

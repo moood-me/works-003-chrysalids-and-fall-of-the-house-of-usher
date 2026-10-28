@@ -1,0 +1,578 @@
+{
+  "engine": 3,
+  "title": "Voices",
+  "caption": "We heard each other across all the fields.",
+  "horizon": 0.66,
+  "camera": {
+    "mode": "picture"
+  },
+  "light": {
+    "ambient": 0.74,
+    "ambientColor": "#6c78a8",
+    "bounce": 0.5,
+    "haze": 0.25,
+    "hazeColor": "#2a2d48",
+    "hazeGlow": 0.5,
+    "vignette": 0.45,
+    "grain": 0.22,
+    "wind": [
+      1,
+      0,
+      0.35
+    ]
+  },
+  "lights": [
+    {
+      "id": "night",
+      "from": [
+        -30,
+        40
+      ],
+      "color": "#9aa8d0",
+      "strength": 0.35
+    },
+    {
+      "id": "fill",
+      "from": [
+        175,
+        20
+      ],
+      "color": "#9aa8d0",
+      "strength": 0.4
+    }
+  ],
+  "state": {
+    "count": 4,
+    "petra": 0,
+    "clouds": 0.15,
+    "voices": 0.6,
+    "david_present": 1,
+    "david_a": -1.89,
+    "david_d": 4.6,
+    "david_look": "farm1#window"
+  },
+  "states": {
+    "count": {
+      "range": [
+        0,
+        8
+      ],
+      "means": "how many windows have been called (farm1…farmN alight, a thread to each); −1 — the window of the one who left goes dark"
+    },
+    "petra": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "Petra’s strength: the glow of her window, the rings, a warm thread to David"
+    },
+    "clouds": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "clouds in the sky"
+    },
+    "voices": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "how loud the voices are: the threads and the glow round David"
+    },
+    "david_present": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "David on the hill (0 — the threads go from window to window)"
+    }
+  },
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Starry sky"
+    },
+    {
+      "id": "far_land",
+      "name": "Far hills",
+      "across": 0,
+      "distance": 3000,
+      "height": 60,
+      "box": [
+        -8000,
+        -80,
+        8000,
+        80
+      ]
+    },
+    {
+      "id": "ground",
+      "name": "Fields",
+      "plane": true,
+      "across": 0,
+      "distance": 708,
+      "width": 6000,
+      "depth": 1384
+    },
+    {
+      "id": "hedges",
+      "name": "Shelterbelts",
+      "across": 213.34,
+      "distance": 2400,
+      "height": 20,
+      "box": [
+        -6000,
+        -40,
+        6000,
+        6
+      ]
+    },
+    {
+      "id": "specks",
+      "name": "Tiny far windows",
+      "across": 195.56,
+      "distance": 2200,
+      "height": 4,
+      "box": [
+        -4000,
+        -8,
+        4000,
+        2
+      ],
+      "glows": true
+    },
+    {
+      "id": "specks2",
+      "name": "Lights nearer",
+      "across": 277.34,
+      "distance": 1300,
+      "height": 4,
+      "box": [
+        -3000,
+        -8,
+        3000,
+        2
+      ],
+      "glows": true
+    },
+    {
+      "id": "farm1_b",
+      "name": "Farm with a barn",
+      "across": 14.93,
+      "distance": 420,
+      "height": 8,
+      "box": [
+        -16,
+        -10,
+        8,
+        1
+      ]
+    },
+    {
+      "id": "farm2_b",
+      "name": "Farm with a windmill",
+      "across": 128.0,
+      "distance": 300,
+      "height": 10,
+      "box": [
+        -6,
+        -13,
+        10,
+        1
+      ]
+    },
+    {
+      "id": "farm3_b",
+      "name": "Farm with poplars",
+      "across": 256.0,
+      "distance": 480,
+      "height": 12,
+      "box": [
+        -11,
+        -15,
+        5,
+        1
+      ]
+    },
+    {
+      "id": "farm4_b",
+      "name": "Farm with a silo",
+      "across": 96.0,
+      "distance": 600,
+      "height": 9,
+      "box": [
+        -4,
+        -10,
+        8,
+        1
+      ]
+    },
+    {
+      "id": "farm5_b",
+      "name": "Long house under elms",
+      "across": -62.22,
+      "distance": 700,
+      "height": 9,
+      "box": [
+        -12,
+        -11,
+        6,
+        1
+      ]
+    },
+    {
+      "id": "farm6_b",
+      "name": "Homestead with a poplar",
+      "across": 234.67,
+      "distance": 800,
+      "height": 10,
+      "box": [
+        -4,
+        -12,
+        8,
+        1
+      ]
+    },
+    {
+      "id": "farm7_b",
+      "name": "Far windmill",
+      "across": -278.76,
+      "distance": 560,
+      "height": 10,
+      "box": [
+        -8,
+        -12,
+        4,
+        1
+      ]
+    },
+    {
+      "id": "farm8_b",
+      "name": "Farthest homestead",
+      "across": -248.89,
+      "distance": 1000,
+      "height": 8,
+      "box": [
+        -8,
+        -12,
+        4,
+        1
+      ]
+    },
+    {
+      "id": "home_b",
+      "name": "The Strorms’ house, Petra’s window",
+      "across": 60.45,
+      "distance": 170,
+      "height": 10,
+      "box": [
+        -12,
+        -14,
+        10,
+        1
+      ]
+    },
+    {
+      "id": "farm1",
+      "name": "Window: Farm with a barn",
+      "across": 14.9,
+      "distance": 419,
+      "elevation": 1.1,
+      "height": 1.0,
+      "box": [
+        -0.55,
+        -1.1,
+        0.55,
+        0.1
+      ],
+      "glows": true
+    },
+    {
+      "id": "farm2",
+      "name": "Window: Farm with a windmill",
+      "across": 127.57,
+      "distance": 299,
+      "elevation": 1.0,
+      "height": 1.0,
+      "box": [
+        -0.55,
+        -1.1,
+        0.55,
+        0.1
+      ],
+      "glows": true
+    },
+    {
+      "id": "farm3",
+      "name": "Window: Farm with poplars",
+      "across": 255.47,
+      "distance": 479,
+      "elevation": 1.0,
+      "height": 1.0,
+      "box": [
+        -0.55,
+        -1.1,
+        0.55,
+        0.1
+      ],
+      "glows": true
+    },
+    {
+      "id": "farm4",
+      "name": "Window: Farm with a silo",
+      "across": 95.84,
+      "distance": 599,
+      "elevation": 0.9,
+      "height": 1.1,
+      "box": [
+        -0.6,
+        -1.2000000000000002,
+        0.6,
+        0.1
+      ],
+      "glows": true
+    },
+    {
+      "id": "farm5",
+      "name": "Window: Long house under elms",
+      "across": -62.13,
+      "distance": 699,
+      "elevation": 0.8,
+      "height": 1.1,
+      "box": [
+        -0.6,
+        -1.2000000000000002,
+        0.6,
+        0.1
+      ],
+      "glows": true
+    },
+    {
+      "id": "farm6",
+      "name": "Window: Homestead with a poplar",
+      "across": 234.38,
+      "distance": 799,
+      "elevation": 0.7,
+      "height": 1.2,
+      "box": [
+        -0.65,
+        -1.3,
+        0.65,
+        0.1
+      ],
+      "glows": true
+    },
+    {
+      "id": "farm7",
+      "name": "Window: Far windmill",
+      "across": -278.26,
+      "distance": 559,
+      "elevation": 0.8,
+      "height": 1.1,
+      "box": [
+        -0.6,
+        -1.2000000000000002,
+        0.6,
+        0.1
+      ],
+      "glows": true
+    },
+    {
+      "id": "farm8",
+      "name": "Window: Farthest homestead",
+      "across": -248.64,
+      "distance": 999,
+      "elevation": 0.6,
+      "height": 1.2,
+      "box": [
+        -0.7,
+        -1.3,
+        0.7,
+        0.1
+      ],
+      "glows": true
+    },
+    {
+      "id": "home",
+      "name": "Petra’s window",
+      "across": 60.09,
+      "distance": 169,
+      "elevation": 1.4,
+      "height": 1.0,
+      "box": [
+        -0.5,
+        -1.1,
+        0.5,
+        0.1
+      ],
+      "glows": true
+    },
+    {
+      "id": "hedge_b",
+      "name": "Far hedgerow",
+      "across": 21.33,
+      "distance": 120,
+      "height": 2,
+      "box": [
+        -260,
+        -8,
+        320,
+        1
+      ]
+    },
+    {
+      "id": "hedge_a",
+      "name": "Near hedgerow",
+      "across": 20.0,
+      "distance": 45,
+      "height": 1,
+      "box": [
+        -60,
+        -3,
+        120,
+        1
+      ]
+    },
+    {
+      "id": "mist",
+      "sky": true,
+      "name": "Mist over the fields"
+    },
+    {
+      "id": "hillside",
+      "name": "Hill",
+      "plane": true,
+      "drape": true,
+      "across": -2,
+      "distance": 8,
+      "width": 40,
+      "depth": 16
+    },
+    {
+      "id": "david",
+      "name": "David",
+      "person": {
+        "cast": "cast",
+        "who": "david",
+        "turn": 70,
+        "does": "sit_knees"
+      },
+      "across": -1.89,
+      "distance": 4.6,
+      "place": {
+        "across": "david_a",
+        "distance": "david_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "fore",
+      "name": "Grass and ears underfoot",
+      "across": 0.4,
+      "distance": 4.2,
+      "height": 1,
+      "box": [
+        -9,
+        -1.6,
+        9,
+        0.5
+      ]
+    }
+  ],
+  "modules": [
+    "cast"
+  ],
+  "music": {
+    "bpm": 60,
+    "density": 0.2,
+    "prompts": [
+      {
+        "text": "ethereal ambient pads, slow evolving, vast night sky, distant shimmer",
+        "weight": 2.5
+      },
+      {
+        "text": "soft wordless choir, hushed, far away, cathedral reverb",
+        "weight": 2
+      },
+      {
+        "text": "glass harmonica, slow sustained tones, fragile and luminous",
+        "weight": 2
+      },
+      {
+        "text": "slow sparse piano with long reverb, quiet wonder",
+        "weight": 0
+      },
+      {
+        "text": "celesta and music box, very soft, sparse twinkling notes",
+        "weight": 0
+      },
+      {
+        "text": "warm analog synth drones, gentle swells, night",
+        "weight": 0
+      },
+      {
+        "text": "solo cello, long legato lines, tender, distant",
+        "weight": 0
+      },
+      {
+        "text": "crystal singing bowls, overlapping resonances",
+        "weight": 0
+      },
+      {
+        "text": "string ensemble harmonics, airy sul tasto, barely moving",
+        "weight": 0
+      },
+      {
+        "text": "shimmering granular textures, starlight, slow motion",
+        "weight": 0
+      },
+      {
+        "text": "folk fiddle melody heard from far away, plain and lonely",
+        "weight": 0
+      },
+      {
+        "text": "field recording mood, crickets and wind over wheat fields",
+        "weight": 0
+      },
+      {
+        "text": "minimalist harp arpeggios, slow, gentle",
+        "weight": 0
+      },
+      {
+        "text": "low organ drone, solemn, rural chapel",
+        "weight": 0
+      },
+      {
+        "text": "breathy flute, soft long tones over pads",
+        "weight": 0
+      },
+      {
+        "text": "choral pads with tape warble, nostalgic, 1950s",
+        "weight": 0
+      },
+      {
+        "text": "vibraphone with soft mallets, slow pulse, dreamy",
+        "weight": 0
+      },
+      {
+        "text": "aurora-like synth swells, cold and glowing, very slow",
+        "weight": 0
+      },
+      {
+        "text": "secret lullaby, hummed melody on pure sine tones",
+        "weight": 0
+      },
+      {
+        "text": "deep sub bass swell, ominous undercurrent, faint",
+        "weight": 0
+      }
+    ],
+    "brightness": 0.4,
+    "scale": "C_MAJOR_A_MINOR"
+  }
+}

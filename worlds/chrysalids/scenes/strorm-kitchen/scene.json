@@ -1,0 +1,635 @@
+{
+  "engine": 3,
+  "title": "The Strorms’ kitchen",
+  "horizon": 0.42,
+  "camera": {
+    "mode": "picture"
+  },
+  "light": {
+    "ambient": 0.5,
+    "ambientColor": "#e2c8a6",
+    "bounce": 0.55,
+    "haze": 0.04,
+    "hazeColor": "#3a2e28",
+    "hazeGlow": 0.7,
+    "vignette": 0.4,
+    "grain": 0.15,
+    "tint": "#ffd8a8",
+    "tintStrength": 0.04,
+    "looks": {
+      "dusk": {
+        "ambient": 0.4,
+        "ambientColor": "#c9b2a4"
+      }
+    }
+  },
+  "lights": [
+    {
+      "id": "lamp",
+      "of": "lamp#flame",
+      "color": "#ffbe78",
+      "strength": 1.7,
+      "reach": 7,
+      "on": "lamp",
+      "flicker": 0.08
+    },
+    {
+      "id": "hearth",
+      "across": 3.35,
+      "distance": 6.0,
+      "elevation": 0.3,
+      "color": "#ff8a48",
+      "strength": 1.1,
+      "reach": 4.5,
+      "flicker": 0.35,
+      "on": "hearth",
+      "glow": 0.6
+    },
+    {
+      "id": "yard",
+      "across": -6.5,
+      "distance": 3.4,
+      "elevation": 1.1,
+      "color": "#a2b6dc",
+      "strength": 0.9,
+      "reach": 7,
+      "on": "yard_door"
+    },
+    {
+      "id": "window_light",
+      "across": 0.8,
+      "distance": 6.0,
+      "elevation": 1.9,
+      "color": "#93a6cc",
+      "strength": 0.45,
+      "reach": 5
+    },
+    {
+      "id": "fill",
+      "across": 0.0,
+      "distance": 1.2,
+      "elevation": 1.7,
+      "color": "#ffd8b0",
+      "strength": 0.8,
+      "reach": 10
+    }
+  ],
+  "state": {
+    "beat": null,
+    "lamp": 1,
+    "dusk": 0.2,
+    "hearth": 1,
+    "steam": 1,
+    "yard_door": 0,
+    "stair_door": 0,
+    "wish": 0,
+    "at_table": false,
+    "david_grip": 1,
+    "david_stir": 0,
+    "father_look": 0
+  },
+  "states": {
+    "beat": {
+      "type": "string",
+      "means": "a beat of the film (module beats): the name — it plays from the beginning; at the end the scene says beat:<name>. The evening of the third hand: evening → help | self → slip → kneel → seek | bow → upstairs; the lie: slip → lie → lie_mother → lie_up. Nights at the table: night → night_after → to_bed → sneak; late → asks → to_bed"
+    },
+    "lamp": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the lamp on the table: 1 — alight, 0.85 — at night, 0.6 — years later, 0 — put out"
+    },
+    "dusk": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the evening outside the window: 0 — dusk, 1 — night (the room’s light a little softer)"
+    },
+    "hearth": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the hearth fire: 1 — burning, 0.35 — smouldering"
+    },
+    "steam": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "steam over David’s bowl: 1 — hot, 0 — gone cold"
+    },
+    "yard_door": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the door to the yard (off the frame on the left): 0 — shut, 1 — open, cold light on the floor"
+    },
+    "stair_door": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the door to the stairs: 0 — shut, 1 — open"
+    },
+    "wish": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the third hand — pale, from David’s side to the knot on his hand: 0 — none, 1 — grown"
+    },
+    "at_table": {
+      "type": "boolean",
+      "means": "night at the table: David sits in Mary’s place (then david_grip, david_stir — what he does)"
+    },
+    "david_grip": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": false,
+      "means": "the game (“Not a stir”): David holds the table’s edge (1, sit_grip) or has let go and fidgets (0, sit_fidget)"
+    },
+    "david_stir": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": false,
+      "means": "the game: a tremor while he holds on (above 0.25 — sit_tremble)"
+    },
+    "father_look": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": false,
+      "means": "the game: the father raises his eyes from the Book to David (above 0.5)"
+    }
+  },
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Sky beyond the window"
+    },
+    {
+      "id": "wall",
+      "name": "Back wall of the kitchen",
+      "across": 0,
+      "distance": 6.2,
+      "facing": 180,
+      "height": 3.35,
+      "box": [
+        -8,
+        -4.6,
+        8,
+        0.1
+      ]
+    },
+    {
+      "id": "window",
+      "name": "Window (the opening)",
+      "unseen": true,
+      "across": 0,
+      "distance": 6.19,
+      "facing": 180,
+      "height": 3.35,
+      "box": [
+        0.3,
+        -2.55,
+        1.3,
+        -1.3
+      ]
+    },
+    {
+      "id": "stairdoor",
+      "name": "Door to the stairs",
+      "across": -2.95,
+      "distance": 6.19,
+      "facing": 180,
+      "height": 2.05,
+      "box": [
+        -0.05,
+        -2.08,
+        0.8,
+        0.04
+      ]
+    },
+    {
+      "id": "stairs",
+      "name": "Stairs up",
+      "across": -2.58,
+      "distance": 6.3,
+      "height": 2.2,
+      "box": [
+        -0.5,
+        -2.2,
+        0.5,
+        0.05
+      ],
+      "onLand": false
+    },
+    {
+      "id": "ceiling",
+      "name": "Ceiling",
+      "plane": true,
+      "across": 0,
+      "distance": 3.45,
+      "elevation": 3.35,
+      "width": 16,
+      "depth": 5.5
+    },
+    {
+      "id": "floor",
+      "name": "Plank floor",
+      "plane": true,
+      "across": 0,
+      "distance": 3.45,
+      "width": 16,
+      "depth": 5.5
+    },
+    {
+      "id": "fire",
+      "name": "Fire in the hearth",
+      "across": 3.35,
+      "distance": 6.05,
+      "elevation": 0.03,
+      "particles": {
+        "kind": "fire",
+        "source": [
+          0.6,
+          0.05,
+          0.05
+        ],
+        "size": [
+          0.22,
+          0.05
+        ],
+        "amount": "hearth"
+      }
+    },
+    {
+      "id": "embers",
+      "name": "Sparks of the hearth",
+      "across": 3.35,
+      "distance": 6.05,
+      "elevation": 0.1,
+      "particles": {
+        "kind": "embers",
+        "source": [
+          0.5,
+          0.05,
+          0.05
+        ],
+        "rate": 3,
+        "amount": "hearth"
+      }
+    },
+    {
+      "id": "tabletop",
+      "name": "Tabletop",
+      "plane": true,
+      "across": 0.3,
+      "distance": 4.5,
+      "elevation": 0.78,
+      "width": 2.6,
+      "depth": 0.9,
+      "shadow": {
+        "light": "lamp",
+        "onto": [],
+        "strength": 0.85
+      }
+    },
+    {
+      "id": "table",
+      "name": "Heavy table",
+      "across": 0.3,
+      "distance": 4.05,
+      "height": 0.78,
+      "box": [
+        -1.5,
+        -0.9,
+        1.5,
+        0.08
+      ]
+    },
+    {
+      "id": "chair_father",
+      "name": "The father’s chair",
+      "across": -1.66,
+      "distance": 4.55,
+      "height": 1.3,
+      "box": [
+        -0.5,
+        -1.5,
+        0.5,
+        0.1
+      ]
+    },
+    {
+      "id": "chair_mother",
+      "name": "The mother’s chair",
+      "across": 2.12,
+      "distance": 4.6,
+      "height": 1.3,
+      "box": [
+        -0.5,
+        -1.5,
+        0.5,
+        0.1
+      ]
+    },
+    {
+      "id": "lamp",
+      "name": "Oil lamp",
+      "across": 0.3,
+      "distance": 4.45,
+      "elevation": 0.78,
+      "height": 0.45,
+      "box": [
+        -0.1,
+        -0.45,
+        0.1,
+        0.02
+      ]
+    },
+    {
+      "id": "steam",
+      "name": "Steam over David’s bowl",
+      "particles": {
+        "kind": "smoke",
+        "at": "tabletop#bowl",
+        "rate": 1.5,
+        "amount": "steam",
+        "size": [
+          0.03,
+          0.22
+        ],
+        "speed": [
+          0.04,
+          0.1
+        ],
+        "color": "#efe4d2",
+        "opacity": 0.22,
+        "life": [
+          2,
+          3.5
+        ],
+        "shadow": 0
+      }
+    },
+    {
+      "id": "dust",
+      "name": "Dust in the lamplight",
+      "across": 0.3,
+      "distance": 4.3,
+      "elevation": 1.6,
+      "particles": {
+        "kind": "dust",
+        "source": [
+          3.0,
+          1.6,
+          1.8
+        ],
+        "rate": 3,
+        "size": [
+          0.012,
+          0.012
+        ],
+        "color": "#ffe6c0",
+        "opacity": 0.6,
+        "amount": "lamp"
+      }
+    },
+    {
+      "id": "chair",
+      "name": "David’s chair",
+      "across": 0.6,
+      "distance": 3.85,
+      "height": 1,
+      "box": [
+        -0.4,
+        -1,
+        0.4,
+        0.05
+      ]
+    },
+    {
+      "id": "joseph",
+      "name": "The father, Joseph Strorm",
+      "person": {
+        "cast": "cast",
+        "who": "joseph",
+        "does": "read_seated",
+        "turn": 90
+      },
+      "across": -1.66,
+      "distance": 4.55,
+      "place": {
+        "across": "joseph_a",
+        "distance": "joseph_d"
+      },
+      "shadow": {
+        "light": "lamp",
+        "strength": 0.6
+      }
+    },
+    {
+      "id": "mary",
+      "name": "Mary, the sister",
+      "person": {
+        "cast": "cast",
+        "who": "mary",
+        "does": "sit_still",
+        "turn": 174
+      },
+      "across": -0.3,
+      "distance": 5.05,
+      "place": {
+        "across": "mary_a",
+        "distance": "mary_d"
+      },
+      "shadow": {
+        "light": "lamp",
+        "strength": 0.6
+      }
+    },
+    {
+      "id": "farmhand",
+      "name": "Farmhand",
+      "person": {
+        "cast": "cast",
+        "who": "farmhand",
+        "does": "eat_seated",
+        "turn": 188
+      },
+      "across": 0.95,
+      "distance": 5.05,
+      "place": {
+        "across": "farmhand_a",
+        "distance": "farmhand_d"
+      },
+      "shadow": {
+        "light": "lamp",
+        "strength": 0.6
+      }
+    },
+    {
+      "id": "emily",
+      "name": "The mother",
+      "person": {
+        "cast": "cast",
+        "who": "emily",
+        "does": "stir_pot",
+        "turn": 0
+      },
+      "across": 3.05,
+      "distance": 5.75,
+      "place": {
+        "across": "emily_a",
+        "distance": "emily_d"
+      },
+      "shadow": {
+        "light": "lamp",
+        "strength": 0.6
+      }
+    },
+    {
+      "id": "david",
+      "name": "David",
+      "person": {
+        "cast": "cast",
+        "who": "david",
+        "does": "clutch",
+        "turn": 90
+      },
+      "across": -4.8,
+      "distance": 3.6,
+      "place": {
+        "across": "david_a",
+        "distance": "david_d"
+      },
+      "shadow": {
+        "light": "lamp",
+        "strength": 0.6
+      }
+    },
+    {
+      "id": "wish",
+      "name": "The third hand (his wish)",
+      "across": -4.8,
+      "distance": 3.6,
+      "place": {
+        "across": "david_a",
+        "distance": "david_d"
+      },
+      "height": 1.4,
+      "box": [
+        -1.6,
+        -1.8,
+        1.6,
+        0.4
+      ],
+      "inFront": [
+        "david"
+      ],
+      "glows": true
+    }
+  ],
+  "modules": [
+    "cast",
+    "beats"
+  ],
+  "music": {
+    "bpm": 60,
+    "density": 0.2,
+    "prompts": [
+      {
+        "text": "Sparse Protestant hymn on a wheezing reed organ, slow chords with long silences, an empty farmhouse parlour",
+        "weight": 2
+      },
+      {
+        "text": "Ticking pendulum clock in a silent wooden kitchen, faint ember crackle, no melody",
+        "weight": 1.5
+      },
+      {
+        "text": "Low solo cello drone, one held note with slow bow changes, oppressive stillness",
+        "weight": 1.5
+      },
+      {
+        "text": "Muted church harmonium playing a psalm tune very slowly, slightly out of tune, 19th-century rural",
+        "weight": 0
+      },
+      {
+        "text": "Dark ambient room tone, distant wind against a window pane, creaking timber",
+        "weight": 0
+      },
+      {
+        "text": "Minimal string quartet sul tasto, sustained dissonant chords, fear held under the surface",
+        "weight": 0
+      },
+      {
+        "text": "Solo viola playing a plain modal melody, hesitant, unaccompanied",
+        "weight": 0
+      },
+      {
+        "text": "Old upright piano, single low notes struck softly and left to decay",
+        "weight": 0
+      },
+      {
+        "text": "Austere Shaker hymn harmony rendered on bowed strings, devout and cold",
+        "weight": 0
+      },
+      {
+        "text": "Distant thunder over prairie, rain on a wooden roof, low drone beneath",
+        "weight": 0
+      },
+      {
+        "text": "Glass harmonica tones, fragile and eerie, very slow",
+        "weight": 0
+      },
+      {
+        "text": "Bass clarinet low sustained tones, breath and air, chamber silence",
+        "weight": 0
+      },
+      {
+        "text": "Puritan psalmody on a small pipe organ, stern four-part chorale, slow",
+        "weight": 0
+      },
+      {
+        "text": "Felt piano and soft cello, intimate, a child's quiet fear",
+        "weight": 0
+      },
+      {
+        "text": "Appalachian dulcimer plucked sparingly, melancholic folk",
+        "weight": 0
+      },
+      {
+        "text": "Low rough hurdy-gurdy drone, ascetic and medieval",
+        "weight": 0
+      },
+      {
+        "text": "Slow cinematic tension pad swelling, a distant bell tolling once",
+        "weight": 0
+      },
+      {
+        "text": "Frontier fiddle playing a slow lament in a cabin, sparse",
+        "weight": 0
+      }
+    ],
+    "brightness": 0.25,
+    "scale": "C_MAJOR_A_MINOR"
+  }
+}

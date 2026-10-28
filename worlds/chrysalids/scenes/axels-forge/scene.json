@@ -1,0 +1,969 @@
+{
+  "engine": 3,
+  "title": "Uncle Axel’s forge",
+  "horizon": 0.52,
+  "camera": {
+    "mode": "picture"
+  },
+  "light": {
+    "ambient": 0.5,
+    "ambientColor": "#8c90b4",
+    "bounce": 0.5,
+    "haze": 0.12,
+    "hazeColor": "#1c2640",
+    "hazeGlow": 0.6,
+    "shafts": 0.3,
+    "vignette": 0.45,
+    "grain": 0.18,
+    "saturation": 0.9
+  },
+  "lights": [
+    {
+      "id": "fire",
+      "color": "#ff8a40",
+      "strength": 2.2,
+      "reach": 10,
+      "on": "fire",
+      "flicker": 0.3,
+      "glow": 0.4,
+      "across": -3.8,
+      "distance": 6.3,
+      "elevation": 1.05
+    },
+    {
+      "id": "moon",
+      "from": [
+        25,
+        40
+      ],
+      "color": "#a8bce4",
+      "strength": 0.7
+    },
+    {
+      "id": "iron_glow",
+      "of": "anvil#iron",
+      "color": "#ff7a30",
+      "strength": 0.5,
+      "reach": 1.5
+    },
+    {
+      "id": "lantern",
+      "at": "joseph#hand_r",
+      "color": "#ffc46a",
+      "strength": 0.9,
+      "reach": 9,
+      "flicker": 0.15,
+      "glow": 0.25,
+      "on": "joseph_lamp"
+    },
+    {
+      "id": "lantern2",
+      "at": "farmhand#hand_r",
+      "color": "#ffc46a",
+      "strength": 0.9,
+      "reach": 9,
+      "flicker": 0.15,
+      "glow": 0.25,
+      "on": "farmhand_lamp"
+    },
+    {
+      "id": "lantern_w0",
+      "at": "watch0#hand_r",
+      "color": "#ffc46a",
+      "strength": 0.7,
+      "reach": 4,
+      "flicker": 0.15,
+      "glow": 0.22
+    },
+    {
+      "id": "lantern_w1",
+      "at": "watch1#hand_r",
+      "color": "#ffc46a",
+      "strength": 0.7,
+      "reach": 4,
+      "flicker": 0.15,
+      "glow": 0.22
+    },
+    {
+      "id": "glow",
+      "at": "david#head",
+      "color": "#c8d2ff",
+      "strength": 0.6,
+      "reach": 1.2,
+      "glow": 0.3,
+      "on": "dv_glow"
+    },
+    {
+      "id": "fill",
+      "across": -1.5,
+      "distance": 0.5,
+      "elevation": 1.8,
+      "color": "#ffc89a",
+      "strength": 0.55,
+      "reach": 11
+    },
+    {
+      "id": "glare",
+      "across": -5.6,
+      "distance": 5.7,
+      "elevation": 1.6,
+      "color": "#ffd08a",
+      "strength": 2.6,
+      "reach": 3.2,
+      "on": "st_glare"
+    }
+  ],
+  "state": {
+    "beat": null,
+    "fire": 0.75,
+    "sparks": 0.5,
+    "door": 1,
+    "pump": 0,
+    "ax_work": 0,
+    "ax_pace": 2,
+    "ax_blow": 0,
+    "ax_spark": 0,
+    "dv_chat": 0,
+    "dv_glow": 0,
+    "dv_pump": 0,
+    "pump_work": 0,
+    "th_amp": 1,
+    "tho_a": 1.3,
+    "tho_e": 1.28,
+    "tho_d": 4.3,
+    "thi_a": 1.3,
+    "thi_e": 1.28,
+    "thi_d": 4.3,
+    "st_on": 0,
+    "st_who": "joseph",
+    "st_lamp": 0,
+    "st_lx": -5,
+    "st_lz": 8.4,
+    "st_drop": 0,
+    "st_glow": 1,
+    "st_lanx": 2.9,
+    "st_more": 0,
+    "joseph_lamp": 1,
+    "farmhand_lamp": 1,
+    "hz_a": 9.6,
+    "hz_d": 17,
+    "hz_face": 250,
+    "ax_a": -0.56,
+    "ax_d": 4.65,
+    "axel_with": [
+      "hammer",
+      "tongs"
+    ],
+    "dv_a": 1.3,
+    "dv_d": 4.32,
+    "david_on": [
+      1.3,
+      4.32,
+      0.7
+    ],
+    "david_do": {
+      "motion": "perch",
+      "loop": true
+    },
+    "joseph_here": false,
+    "farmhand_here": false,
+    "joseph_wear": {
+      "hat": "hat"
+    },
+    "farmhand_wear": {
+      "hat": "hat"
+    },
+    "joseph_with": [
+      "lantern"
+    ],
+    "farmhand_with": [
+      "lantern"
+    ],
+    "watch0_here": false,
+    "watch1_here": false,
+    "watch0_with": [
+      "lantern"
+    ],
+    "watch1_with": [
+      "lantern"
+    ],
+    "st_a": 5.8,
+    "st_d": 8.4,
+    "w0_a": 9.5,
+    "w0_d": 10,
+    "w1_a": 11.5,
+    "w1_d": 10.6,
+    "st_glare": 0
+  },
+  "states": {
+    "beat": {
+      "type": "string",
+      "means": "a beat of the film (module beats): the canon chatter → notice → truth | lie → door → hush → lantern → after; III.1 — after hush lantern_bellows → lantern_go | lantern_linger → rest; III.5 night_anne → night_anne_end; V.2 key → stranger → stranger_go | caught | strike"
+    },
+    "fire": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the forge fire: how strongly it burns (light fire, the coals, the flame)"
+    },
+    "sparks": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "how many sparks fly over the forge"
+    },
+    "door": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the sliding door: 1 — the gate open, 0.7 — half shut"
+    },
+    "pump": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the bellows’ lever: 0 — up, 1 — pressed down (each time it goes down, David at the bellows pulls it — pull_lever)"
+    },
+    "ax_work": {
+      "type": "number",
+      "means": "1 — Axel forges by himself, a blow once in ax_pace s; 0 — not"
+    },
+    "ax_pace": {
+      "type": "number",
+      "means": "seconds between blows, while ax_work"
+    },
+    "ax_blow": {
+      "type": "number",
+      "means": "the game: each change — one blow from the lift; the hammer’s face on the iron 1.17 s later — the scene says ax:hit"
+    },
+    "ax_spark": {
+      "type": "number",
+      "means": "sparks from under the hammer: each time the number grows"
+    },
+    "dv_chat": {
+      "type": "number",
+      "means": "N — David “chatters”: a thought to the window once in N s, the answer 3.2 s later; 0 — not"
+    },
+    "dv_glow": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "a glow in David’s head (the answer has come)"
+    },
+    "dv_pump": {
+      "type": "number",
+      "means": "1 — David’s hands on the bellows’ lever (pump#handle)"
+    },
+    "pump_work": {
+      "type": "number",
+      "means": "N — the bellows’ lever by itself once in N s (the fire breathes); 0 — not"
+    },
+    "th_amp": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the brightness of the thought-shapes"
+    },
+    "tho_a": {
+      "type": "number",
+      "means": "David’s thought in flight: metres across (from his head to the window)"
+    },
+    "tho_e": {
+      "type": "number",
+      "means": "its height"
+    },
+    "tho_d": {
+      "type": "number",
+      "means": "its distance"
+    },
+    "thi_a": {
+      "type": "number",
+      "means": "the answer in flight: metres across (from the window to his head)"
+    },
+    "thi_e": {
+      "type": "number",
+      "means": "its height"
+    },
+    "thi_d": {
+      "type": "number",
+      "means": "its distance"
+    },
+    "st_on": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the man with the lantern in the yard (who — st_who)"
+    },
+    "st_who": {
+      "values": [
+        "joseph",
+        "farmhand"
+      ],
+      "means": "who has the lantern: the father or the farmhand"
+    },
+    "st_lamp": {
+      "range": [
+        0,
+        1.3
+      ],
+      "smooth": true,
+      "means": "the lantern raised: 1 — up, towards where he looks (st_lx, st_lz); above 1 (to 1.3) — higher and on David, wherever he is"
+    },
+    "st_lx": {
+      "type": "number",
+      "means": "where he looks and shines: metres across"
+    },
+    "st_lz": {
+      "type": "number",
+      "means": "…and in depth"
+    },
+    "st_drop": {
+      "type": "number",
+      "means": "1 — the lantern has fallen (it lies in the yard, going out — st_glow)"
+    },
+    "st_glow": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the fallen lantern: how much it still burns"
+    },
+    "st_lanx": {
+      "type": "number",
+      "means": "where the fallen lantern lies: metres across"
+    },
+    "st_more": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "two more with lanterns in the yard"
+    },
+    "joseph_lamp": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the father’s lantern is alight"
+    },
+    "farmhand_lamp": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the farmhand’s lantern is alight"
+    },
+    "hz_a": {
+      "type": "number",
+      "means": "the horse in the yard: across"
+    },
+    "hz_d": {
+      "type": "number",
+      "means": "the horse: in depth"
+    },
+    "hz_face": {
+      "type": "number",
+      "means": "the horse: which way it faces"
+    },
+    "st_glare": {
+      "range": [
+        0,
+        1
+      ],
+      "means": "the raised lantern’s beam on David (the scene sets it itself by st_lamp above 1)"
+    },
+    "ax_a": {
+      "type": "number",
+      "means": "Axel: where he stands, metres across (the beats set it)"
+    },
+    "ax_d": {
+      "type": "number",
+      "means": "Axel: where he stands, metres in depth (the beats set it)"
+    },
+    "dv_a": {
+      "type": "number",
+      "means": "David: where he stands, metres across (the beats set it)"
+    },
+    "dv_d": {
+      "type": "number",
+      "means": "David: where he stands, metres in depth (the beats set it)"
+    },
+    "st_a": {
+      "type": "number",
+      "means": "the man with the lantern: where he stands, metres across (the beats set it)"
+    },
+    "st_d": {
+      "type": "number",
+      "means": "the man with the lantern: where he stands, metres in depth (the beats set it)"
+    },
+    "w0_a": {
+      "type": "number",
+      "means": "the second with a lantern: where he stands, metres across (the beats set it)"
+    },
+    "w0_d": {
+      "type": "number",
+      "means": "the second with a lantern: where he stands, metres in depth (the beats set it)"
+    },
+    "w1_a": {
+      "type": "number",
+      "means": "the third with a lantern: where he stands, metres across (the beats set it)"
+    },
+    "w1_d": {
+      "type": "number",
+      "means": "the third with a lantern: where he stands, metres in depth (the beats set it)"
+    }
+  },
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Night sky"
+    },
+    {
+      "id": "far",
+      "name": "Waknuk in the distance",
+      "across": 0,
+      "distance": 70,
+      "height": 8,
+      "box": [
+        -150,
+        -14,
+        150,
+        1
+      ]
+    },
+    {
+      "id": "morton",
+      "name": "The Morton farm, Rosalind’s window",
+      "across": 23.6,
+      "distance": 60,
+      "height": 11,
+      "box": [
+        -27,
+        -13,
+        27,
+        1.5
+      ]
+    },
+    {
+      "id": "yard",
+      "name": "Yard",
+      "plane": true,
+      "across": 0,
+      "distance": 40,
+      "width": 160,
+      "depth": 64
+    },
+    {
+      "id": "horse",
+      "name": "Dozing horse",
+      "across": 9.6,
+      "distance": 17,
+      "place": {
+        "across": "hz_a",
+        "distance": "hz_d"
+      },
+      "height": 1.6,
+      "box": [
+        -2.6,
+        -3.2,
+        2.6,
+        0.4
+      ],
+      "shadow": true
+    },
+    {
+      "id": "fence",
+      "name": "Corner of the fence",
+      "across": 4.2,
+      "distance": 12,
+      "height": 1.4,
+      "box": [
+        -3.5,
+        -1.8,
+        8,
+        0.3
+      ]
+    },
+    {
+      "id": "floor",
+      "name": "Earth floor",
+      "plane": true,
+      "across": 0,
+      "distance": 4.5,
+      "width": 18,
+      "depth": 7.4
+    },
+    {
+      "id": "ceiling",
+      "name": "Roof",
+      "plane": true,
+      "across": 0,
+      "distance": 4.5,
+      "elevation": 4.6,
+      "width": 18,
+      "depth": 7.4,
+      "shadow": {
+        "light": "moon",
+        "onto": [
+          "ground",
+          "floor",
+          "wall"
+        ],
+        "strength": 0.9
+      }
+    },
+    {
+      "id": "wall",
+      "name": "Wall with the open gate",
+      "across": 0,
+      "distance": 7.5,
+      "facing": 180,
+      "height": 6,
+      "box": [
+        -11,
+        -7,
+        11,
+        0.2
+      ]
+    },
+    {
+      "id": "door",
+      "name": "Sliding door of the gate",
+      "across": 0.9,
+      "distance": 7.45,
+      "facing": 180,
+      "height": 4,
+      "box": [
+        -0.1,
+        -4.0,
+        8.0,
+        0.3
+      ]
+    },
+    {
+      "id": "forge",
+      "name": "Forge",
+      "across": -3.8,
+      "distance": 6.5,
+      "facing": 180,
+      "height": 5,
+      "box": [
+        -2.3,
+        -7,
+        2.3,
+        0.2
+      ]
+    },
+    {
+      "id": "pump",
+      "name": "Bellows and lever",
+      "across": -3.8,
+      "distance": 6.45,
+      "height": 1.5,
+      "box": [
+        -2.3,
+        -1.7,
+        -0.8,
+        0.1
+      ]
+    },
+    {
+      "id": "fire",
+      "name": "Forge fire",
+      "across": -3.8,
+      "distance": 6.4,
+      "elevation": 0.95,
+      "particles": {
+        "kind": "fire",
+        "source": [
+          1.1,
+          0.05,
+          0.05
+        ],
+        "size": [
+          0.28,
+          0.06
+        ],
+        "amount": "fire"
+      }
+    },
+    {
+      "id": "embers",
+      "name": "Sparks over the forge",
+      "across": -3.8,
+      "distance": 6.4,
+      "elevation": 1.0,
+      "particles": {
+        "kind": "embers",
+        "source": [
+          1.0,
+          0.1,
+          0.1
+        ],
+        "rate": 6,
+        "amount": "sparks"
+      }
+    },
+    {
+      "id": "smoke",
+      "name": "Smoke under the hood",
+      "across": -3.8,
+      "distance": 6.4,
+      "elevation": 1.2,
+      "particles": {
+        "kind": "smoke",
+        "source": [
+          0.8,
+          0.1,
+          0.1
+        ],
+        "rate": 1.5,
+        "size": [
+          0.3,
+          1.2
+        ],
+        "opacity": 0.25,
+        "color": "#a09088",
+        "amount": "fire"
+      }
+    },
+    {
+      "id": "motes",
+      "name": "Dust in the firelight",
+      "across": -1.5,
+      "distance": 5.5,
+      "elevation": 1.5,
+      "particles": {
+        "kind": "dust",
+        "source": [
+          6,
+          2,
+          2.5
+        ],
+        "rate": 4,
+        "size": [
+          0.015,
+          0.015
+        ],
+        "color": "#ffd0a0",
+        "opacity": 0.6
+      }
+    },
+    {
+      "id": "bench",
+      "name": "Workbench",
+      "across": 0.2,
+      "distance": 5.5,
+      "height": 1,
+      "box": [
+        -1.4,
+        -1.6,
+        1.4,
+        0.15
+      ]
+    },
+    {
+      "id": "anvil",
+      "name": "Anvil",
+      "across": -1.1,
+      "distance": 4.6,
+      "height": 0.85,
+      "box": [
+        -0.8,
+        -1.9,
+        0.8,
+        0.15
+      ]
+    },
+    {
+      "id": "sparks",
+      "name": "Sparks from under the hammer",
+      "particles": {
+        "kind": "sparks",
+        "at": "anvil#iron",
+        "burst": {
+          "on": "ax_spark",
+          "count": 40
+        }
+      }
+    },
+    {
+      "id": "axel",
+      "name": "Uncle Axel",
+      "person": {
+        "cast": "cast",
+        "who": "axel",
+        "turn": 270,
+        "gait": "limp"
+      },
+      "across": -0.56,
+      "distance": 4.65,
+      "place": {
+        "across": "ax_a",
+        "distance": "ax_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "barrel",
+      "name": "Barrel",
+      "across": 1.3,
+      "distance": 4.32,
+      "height": 0.75,
+      "box": [
+        -0.5,
+        -0.9,
+        0.5,
+        0.15
+      ]
+    },
+    {
+      "id": "david",
+      "name": "David",
+      "person": {
+        "cast": "cast",
+        "who": "david",
+        "turn": 90
+      },
+      "across": 1.3,
+      "distance": 4.32,
+      "place": {
+        "across": "dv_a",
+        "distance": "dv_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "dropped",
+      "name": "Fallen lantern in the yard",
+      "across": 2.9,
+      "distance": 9.3,
+      "place": {
+        "across": "st_lanx"
+      },
+      "height": 0.3,
+      "box": [
+        -0.4,
+        -0.4,
+        0.4,
+        0.1
+      ]
+    },
+    {
+      "id": "watch0",
+      "name": "Man with a lantern",
+      "person": {
+        "cast": "cast",
+        "who": "man_a",
+        "turn": 270
+      },
+      "across": 9.5,
+      "distance": 10.0,
+      "place": {
+        "across": "w0_a",
+        "distance": "w0_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "watch1",
+      "name": "Another one with a lantern",
+      "person": {
+        "cast": "cast",
+        "who": "man_c",
+        "turn": 270
+      },
+      "across": 11.5,
+      "distance": 10.6,
+      "place": {
+        "across": "w1_a",
+        "distance": "w1_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "joseph",
+      "name": "Joseph Strorm, David’s father",
+      "person": {
+        "cast": "cast",
+        "who": "joseph",
+        "turn": 270
+      },
+      "across": 5.8,
+      "distance": 8.4,
+      "place": {
+        "across": "st_a",
+        "distance": "st_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "farmhand",
+      "name": "The Strorms’ farmhand",
+      "person": {
+        "cast": "cast",
+        "who": "farmhand",
+        "turn": 270
+      },
+      "across": 5.8,
+      "distance": 8.4,
+      "place": {
+        "across": "st_a",
+        "distance": "st_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "thought_out",
+      "name": "David’s thought",
+      "across": 1.3,
+      "distance": 4.3,
+      "elevation": 1.28,
+      "height": 0.6,
+      "box": [
+        -1,
+        -1,
+        1,
+        1
+      ],
+      "place": {
+        "across": "tho_a",
+        "distance": "tho_d",
+        "elevation": "tho_e"
+      },
+      "glows": true
+    },
+    {
+      "id": "thought_in",
+      "name": "Rosalind’s answer",
+      "across": 1.3,
+      "distance": 4.3,
+      "elevation": 1.28,
+      "height": 0.6,
+      "box": [
+        -1,
+        -1,
+        1,
+        1
+      ],
+      "place": {
+        "across": "thi_a",
+        "distance": "thi_d",
+        "elevation": "thi_e"
+      },
+      "glows": true
+    }
+  ],
+  "modules": [
+    "cast",
+    "chrysalids",
+    "beats"
+  ],
+  "music": {
+    "bpm": 66,
+    "density": 0.25,
+    "prompts": [
+      {
+        "text": "slow anvil strikes far apart, ringing iron, a patient rhythm in a quiet workshop",
+        "weight": 2
+      },
+      {
+        "text": "crackling forge fire ambience, embers hissing, warm and close",
+        "weight": 2
+      },
+      {
+        "text": "a sea shanty hummed very softly on a low wheezing accordion, slow and tender",
+        "weight": 2
+      },
+      {
+        "text": "warm solo cello, long low phrases, intimate and protective",
+        "weight": 1
+      },
+      {
+        "text": "rustic folk guitar fingerpicking, slow, 19th century farmhouse at night",
+        "weight": 0
+      },
+      {
+        "text": "low drone of a pump organ, a village chapel heard from far away, stern",
+        "weight": 0
+      },
+      {
+        "text": "night crickets and a horse breathing outside, field recording blended with soft pads",
+        "weight": 0
+      },
+      {
+        "text": "old sailor's concertina waltz, slow, half-remembered, melancholic",
+        "weight": 0
+      },
+      {
+        "text": "muted fiddle playing a slow air, Scottish lament, very quiet",
+        "weight": 0
+      },
+      {
+        "text": "deep double bass pizzicato heartbeat, slow, secretive",
+        "weight": 0
+      },
+      {
+        "text": "creaking wooden barn, wind under doors, sparse low strings, unease",
+        "weight": 0
+      },
+      {
+        "text": "dulcimer hammered gently, warm notes like sparks drifting up",
+        "weight": 0
+      },
+      {
+        "text": "chamber strings in a minor key, hushed, trust and danger mixed",
+        "weight": 0
+      },
+      {
+        "text": "bellows breathing rhythm, low percussive wooden knocks, earthy",
+        "weight": 0
+      },
+      {
+        "text": "harmonium chords swelling slowly, nostalgic, candlelit",
+        "weight": 0
+      },
+      {
+        "text": "distant church bell tolling once, cold night air, suspense",
+        "weight": 0
+      },
+      {
+        "text": "slow tension pulse, low timpani far away, footsteps approaching",
+        "weight": 0
+      },
+      {
+        "text": "lullaby melody on a music box, slightly out of tune, fragile",
+        "weight": 0
+      },
+      {
+        "text": "Celtic low whistle, breathy and soft, open night sky",
+        "weight": 0
+      },
+      {
+        "text": "post-apocalyptic folk, sparse acoustic textures, worn and gentle",
+        "weight": 0
+      }
+    ],
+    "brightness": 0.3,
+    "scale": "C_MAJOR_A_MINOR"
+  }
+}

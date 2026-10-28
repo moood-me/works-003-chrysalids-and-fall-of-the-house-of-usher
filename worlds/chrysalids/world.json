@@ -1,0 +1,10 @@
+{
+  "title": "The Chrysalids v3",
+  "description": "John Wyndham’s “The Chrysalids” on engine 3 and the language of mini-games",
+  "themes": {
+    "village": 30,
+    "post-apocalypse": 40,
+    "mystery": 30
+  },
+  "main": "stream-bank"
+}

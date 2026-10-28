@@ -1,0 +1,329 @@
+{
+  "engine": 3,
+  "title": "The dream of the city",
+  "caption": "I dreamt of a city that was on no map.",
+  "horizon": 0.6,
+  "camera": {
+    "mode": "picture"
+  },
+  "light": {
+    "ambient": 0.55,
+    "ambientColor": "#8a86b8",
+    "bounce": 0.5,
+    "haze": 0.06,
+    "hazeColor": "#4a4870",
+    "vignette": 0.55,
+    "grain": 0.2,
+    "tint": "#6e68a0",
+    "tintStrength": 0.05,
+    "wind": [
+      1,
+      0,
+      0.3
+    ],
+    "looks": {
+      "waking": {
+        "ambient": 0.5,
+        "ambientColor": "#5a5870",
+        "lights": {
+          "city": 0.2
+        }
+      }
+    }
+  },
+  "lights": [
+    {
+      "id": "city",
+      "from": [
+        20,
+        5
+      ],
+      "color": "#f0d8b0",
+      "strength": 0.75
+    },
+    {
+      "id": "fill",
+      "from": [
+        180,
+        25
+      ],
+      "color": "#c4c0ec",
+      "strength": 0.4
+    }
+  ],
+  "captions": [
+    {
+      "at": 6,
+      "for": 9,
+      "text": "Towers at the very water’s edge, and a light in every window."
+    },
+    {
+      "at": 18,
+      "for": 9,
+      "text": "And over them shining fish swam slowly."
+    },
+    {
+      "at": 30,
+      "for": 10,
+      "text": "I did not know where it was. I knew only that I must go there."
+    }
+  ],
+  "directions": [
+    {
+      "key": "waking",
+      "name": "Wake up"
+    }
+  ],
+  "state": {
+    "craft": 0.6,
+    "dream": 0.75,
+    "lights": 0.75,
+    "waking": 0,
+    "boy_present": 1,
+    "lead": null,
+    "gaze": null,
+    "david_a": -2.2,
+    "david_d": 5.6,
+    "david_wear": {
+      "garment": "nightshirt",
+      "barefoot": "both"
+    }
+  },
+  "states": {
+    "craft": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "Petra’s strength: how many shining fish over the city (up to three) and how big"
+    },
+    "dream": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the dream is clear (less — mist over the water, the city paler)"
+    },
+    "lights": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "the city’s lights: windows, light on the water"
+    },
+    "waking": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "waking: the towers sink in sparks, it grows dark, the bedroom window with its frame shows through"
+    },
+    "boy_present": {
+      "range": [
+        0,
+        1
+      ],
+      "smooth": true,
+      "means": "David on the dune"
+    },
+    "lead": {
+      "type": "number",
+      "means": "“Hold the dream”: where the leading fish is on its way over the city, 0…1 (the game leads it over 40 s); null — it drifts by itself"
+    },
+    "gaze": {
+      "type": "number",
+      "means": "“Hold the dream”: where along the fish’s way David looks, −1…1 (the place (gaze + 1) / 2 of the same way): his head and a light spot on the sky; null — at the city"
+    }
+  },
+  "objects": [
+    {
+      "id": "sky",
+      "sky": true,
+      "name": "Night sky of the dream",
+      "redraw": {
+        "dream": 0.1,
+        "lights": 0.1
+      }
+    },
+    {
+      "id": "clouds",
+      "sky": true,
+      "name": "Strands of cloud",
+      "redraw": {
+        "lights": 0.1
+      }
+    },
+    {
+      "id": "city",
+      "sky": true,
+      "name": "City by the sea",
+      "redraw": {
+        "dream": 0.1,
+        "lights": 0.1
+      }
+    },
+    {
+      "id": "craft",
+      "sky": true,
+      "name": "Shining fish",
+      "redraw": {
+        "craft": 0.1
+      }
+    },
+    {
+      "id": "motes",
+      "sky": true,
+      "name": "Dust of the dream"
+    },
+    {
+      "id": "sand",
+      "name": "Dune",
+      "plane": true,
+      "drape": true,
+      "across": 0,
+      "distance": 8,
+      "width": 40,
+      "depth": 16
+    },
+    {
+      "id": "david",
+      "name": "David",
+      "person": {
+        "cast": "cast",
+        "who": "david",
+        "turn": 16,
+        "does": "stand"
+      },
+      "across": -2.2,
+      "distance": 5.6,
+      "place": {
+        "across": "david_a",
+        "distance": "david_d"
+      },
+      "shadow": true
+    },
+    {
+      "id": "wheat_front",
+      "name": "Ears of grain at the edge",
+      "across": -3.6,
+      "distance": 4.6,
+      "height": 1.2,
+      "box": [
+        -4.5,
+        -1.8,
+        3,
+        0.45
+      ]
+    },
+    {
+      "id": "waking",
+      "name": "Waking",
+      "across": 0,
+      "distance": 1.5,
+      "elevation": 1.1,
+      "height": 1.5,
+      "glows": true,
+      "box": [
+        -2.465,
+        -2.113,
+        2.465,
+        0.493
+      ]
+    }
+  ],
+  "modules": [
+    "cast"
+  ],
+  "music": {
+    "bpm": 60,
+    "density": 0.25,
+    "prompts": [
+      {
+        "text": "dreamy celesta, slow falling notes with long reverb, childlike wonder",
+        "weight": 2
+      },
+      {
+        "text": "soft wordless choir, distant voices across water, sustained and tender",
+        "weight": 2
+      },
+      {
+        "text": "slow glassy synth pads, shimmering and luminous, night by the sea",
+        "weight": 2
+      },
+      {
+        "text": "distant sea, gentle waves on sand blended with a soft ambient drone",
+        "weight": 1
+      },
+      {
+        "text": "music box melody slowed and stretched, half-remembered, nostalgic",
+        "weight": 1
+      },
+      {
+        "text": "glass harmonica tones drifting, fragile and otherworldly",
+        "weight": 0
+      },
+      {
+        "text": "bowed vibraphone with long tails, crystalline shimmer",
+        "weight": 0
+      },
+      {
+        "text": "solo piano, sparse high notes, lullaby with lots of silence",
+        "weight": 0
+      },
+      {
+        "text": "warm analog synth arpeggio, slow and hypnotic, 1970s sci-fi dream",
+        "weight": 0
+      },
+      {
+        "text": "Vangelis-like cinematic pads, longing for a faraway city",
+        "weight": 0
+      },
+      {
+        "text": "airy flute harmonics over a soft drone, blue dusk",
+        "weight": 0
+      },
+      {
+        "text": "slow harp glissandi, soft and gentle wonder",
+        "weight": 0
+      },
+      {
+        "text": "granular shimmering textures, sparkling lights in slow motion",
+        "weight": 0
+      },
+      {
+        "text": "low warm cello sustained, quiet longing",
+        "weight": 0
+      },
+      {
+        "text": "tape-warped ambient pad, wavering pitch, a fading memory",
+        "weight": 0
+      },
+      {
+        "text": "distant bells across water at night, soft and irregular",
+        "weight": 0
+      },
+      {
+        "text": "austere rural hymn on harmonium, slow, far away",
+        "weight": 0
+      },
+      {
+        "text": "sub-bass hum like a distant rotor, slow phasing",
+        "weight": 0
+      },
+      {
+        "text": "Brian Eno style ambient, gentle loops, weightless",
+        "weight": 0
+      },
+      {
+        "text": "Icelandic ambient post-rock, slowly swelling strings, hopeful",
+        "weight": 0
+      }
+    ],
+    "brightness": 0.5,
+    "scale": "C_MAJOR_A_MINOR"
+  }
+}

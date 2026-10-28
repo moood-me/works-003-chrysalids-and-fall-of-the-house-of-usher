@@ -1,0 +1,31 @@
+// the Wenders' cottage up the meadow, 48 m off, its door to the path (its smoke: chimney_smoke, from "farpath#chimney";
+// the path itself — the meadow's)
+const wall = '#b8b49a', shade = '#8e8c76', roof = '#5a5446';
+g.fillStyle = '#3c4430';
+g.globalAlpha = 0.5;
+g.beginPath();
+g.ellipse(0, 0.05, 4.4, 0.3, 0, 0, 7);
+g.fill();
+g.globalAlpha = 1;
+g.fillStyle = wall;
+g.fillRect(-3, -2.6, 4.4, 2.6);
+g.fillStyle = shade;
+g.fillRect(1.4, -2.6, 1.8, 2.6);
+g.fillStyle = roof;
+g.beginPath();
+g.moveTo(-3.4, -2.5);
+g.lineTo(-1.6, -4.6);
+g.lineTo(2.0, -4.6);
+g.lineTo(3.6, -2.5);
+g.closePath();
+g.fill();
+g.fillStyle = '#6b6656';
+g.fillRect(1.2, -5.4, 0.6, 1.2);
+e.at(1.5, -5.45, 'chimney');
+g.fillStyle = '#3d3a32';
+g.fillRect(-2.3, -1.9, 0.8, 0.7);
+g.fillRect(0.2, -1.9, 0.8, 0.7);
+// the door, shut
+g.fillStyle = '#6d5a44';
+g.fillRect(-1.0, -1.9, 0.9, 1.9);
+e.at(-0.55, -0.95, 'door');

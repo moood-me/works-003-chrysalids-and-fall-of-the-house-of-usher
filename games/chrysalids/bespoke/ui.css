@@ -1,0 +1,181 @@
+/* The game over the scene (ui.js): the eye of suspicion, the words that come up. */
+#layer .eye { position: absolute; top: 18px; right: 22px; width: 46px; pointer-events: auto; opacity: calc(0.25 + var(--level, 0) * 0.25);
+  transition: opacity 1.6s ease; }
+#layer .eye svg { display: block; width: 100%; fill: none; stroke: #e8dcc4; stroke-width: 1.6; }
+#layer .eye circle { fill: rgba(150, 30, 20, calc(var(--level, 0) * 0.3)); transition: fill 1.6s ease; }
+#layer .toasts { position: absolute; top: 64px; right: 22px; display: flex; flex-direction: column; align-items: flex-end; gap: 6px; pointer-events: none; }
+#layer .toasts p { margin: 0; padding: 6px 12px; border-radius: 10px; background: rgba(8, 10, 16, 0.72); color: #efe6d2;
+  font: italic 15px/1.3 Georgia, 'Times New Roman', serif; animation: toast-in 0.9s ease; transition: opacity 1.3s ease; }
+#layer .toasts p.mark { color: #ffd9a0; }
+#layer .toasts p.gone { opacity: 0; }
+@keyframes toast-in { from { opacity: 0; transform: translateY(-6px); } }
+
+/* the author's map (its mark on «Нити»): a window over the scene, the chapters side by side, each a column of its steps */
+/* (below the site's header: a phone held upright has it in two lines) */
+#layer .author-map { --top: 56px; position: absolute; inset: 0; z-index: 20; display: grid; place-items: center; padding: var(--top) 16px 16px;
+  background: rgba(4, 5, 9, 0.55); }
+@media (max-aspect-ratio: 3/4) { #layer .author-map { --top: 80px; } }
+#layer .author-map[hidden] { display: none; }
+#layer .author-panel { position: relative; box-sizing: border-box; width: min(1100px, 100%); max-height: calc(100vh - var(--top) - 16px); overflow: auto;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 18px 22px; padding: 22px 26px 26px; border-radius: 16px;
+  background: rgba(10, 12, 18, 0.94); box-shadow: 0 12px 48px rgba(0, 0, 0, 0.55); font: 15px/1.35 Georgia, 'Times New Roman', serif; color: #efe6d2; }
+#layer .author-panel > button { position: absolute; top: 10px; right: 12px; width: 32px; height: 32px; border: 0; border-radius: 8px; background: none;
+  color: inherit; opacity: 0.6; cursor: pointer; font-size: 16px; }
+#layer .author-panel > button:hover { opacity: 1; background: rgba(255, 228, 170, 0.12); }
+#layer .author-panel section { display: flex; flex-direction: column; gap: 2px; }
+#layer .author-panel h3 { margin: 0 0 6px; font: italic 15px/1.3 Georgia, 'Times New Roman', serif; color: #c9bfae; }
+#layer .author-panel section button { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; border: 0; border-radius: 8px; padding: 6px 10px;
+  background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+#layer .author-panel section button:hover { background: rgba(255, 228, 170, 0.13); }
+#layer .author-panel section button.here { color: #ffd9a0; background: rgba(255, 217, 160, 0.08); }
+#layer .author-panel .minigames { display: flex; flex-direction: column; }
+#layer .author-panel section button.minigame { padding: 3px 10px 3px 24px; font-size: 13px; font-style: italic; color: #e8c79a; opacity: 0.85; }
+#layer .author-panel section button.minigame:hover { opacity: 1; }
+
+/* “Threads”: how things stand now, in the corner (ui.js now) — words, no numbers */
+#layer .now { position: absolute; left: 18px; bottom: 16px; max-width: min(340px, calc(100% - 90px)); padding: 10px 14px; border-radius: 12px;
+  background: rgba(8, 10, 16, 0.6); color: #d9cdb6; font: 13px/1.4 Georgia, 'Times New Roman', serif; animation: toast-in 1.2s ease; }
+#layer .now p, #layer .compare p { margin: 0 0 3px; }
+#layer .now b, #layer .compare p b { font-weight: normal; color: #efe6d2; }
+#layer .now hr { border: 0; border-top: 1px solid rgba(239, 230, 210, 0.15); margin: 6px 0; }
+/* a replay played to its end: what keeping it would change (ui.js compare) */
+#layer .compare { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); max-width: min(520px, calc(100% - 420px)); padding: 10px 16px;
+  border-radius: 12px; background: rgba(8, 10, 16, 0.72); color: #ffd9a0; font: 13px/1.4 Georgia, 'Times New Roman', serif; animation: toast-in 1.2s ease; }
+#layer .compare > b { display: block; margin-bottom: 4px; font-weight: normal; font-style: italic; color: #c9bfae; }
+#layer .compare p.again { margin-top: 6px; color: #efe6d2; font-style: italic; }
+@media (max-width: 900px), (max-aspect-ratio: 3/4) {
+  #layer .now { bottom: auto; top: 70px; left: 12px; font-size: 12px; }
+  #layer .compare { max-width: calc(100% - 170px); left: 12px; transform: none; }
+}
+
+/* «Нити»: the trees of the chapters (map.js) — under the language's marks (bespoke.underlay), each a 0×0 box on its
+   chapter's point of the sky (its knot), every size in a 900th of the frame's height (--u). Gold where the main run
+   went, pale blue a replay's, faint the ways not taken. What lives is transform and opacity. Only what the game offers
+   takes a touch (.can); the rest is the sky's. */
+#underlay .map { position: absolute; inset: 0; --u: calc(var(--h) / 900); --gold: #f3cf8c; --tried: #cfe0ff; --name: #cfc6b2;
+  --alt: #a9b1cf; --thin: rgba(169, 177, 207, 0.42); --gold-text: color-mix(in srgb, var(--gold) 62%, #fff8ec);
+  font-family: Georgia, "Times New Roman", serif; color: #efe6d2; animation: toast-in 0.9s ease; }
+#underlay .map .stand { position: absolute; left: 0; top: 0; width: 0; height: 0; transform-origin: 0 0; }
+#underlay .map .stand[hidden] { display: none; }
+/* (laid out to be measured: the rows where they end up) */
+#underlay .map.still * { animation: none !important; }
+@keyframes niti-breathe { from { transform: scale(0.84); opacity: 0.6; } to { transform: scale(1.12); opacity: 1; } }
+@keyframes niti-row-in { from { opacity: 0; transform: translateY(calc(var(--u) * -6)); } to { opacity: 1; transform: none; } }
+
+/* a tree: its head over the knot, a gold lead down to its rows */
+#underlay .tree { position: absolute; width: 0; height: 0; --s: 1; --w: calc(var(--u) * 400); --gut: calc(var(--u) * 44); --L: calc(var(--u) * var(--s) * 21);
+  text-shadow: 0 0 calc(var(--u) * 6) rgba(4, 5, 12, 0.95), 0 0 1px rgba(4, 5, 12, 0.9); }
+#underlay .tree.dense { --s: 0.84; }
+#underlay .tree .head { position: absolute; left: calc(var(--w) / -2); width: var(--w); bottom: calc(var(--u) * 22); text-align: center; }
+#underlay .tree .num { font-size: calc(var(--u) * 14); letter-spacing: 0.24em; line-height: 1.5; color: #d6bd88; }
+#underlay .tree.future .num { color: rgba(214, 189, 136, 0.45); }
+#underlay .tree .title { font-size: calc(var(--u) * 28); font-style: italic; line-height: 1.2; color: #f6eedc; }
+#underlay .tree .knot { position: absolute; left: 0; top: 0; }
+#underlay .tree .knot i { position: absolute; border-radius: 50%; }
+#underlay .tree .halo { left: calc(var(--u) * -30); top: calc(var(--u) * -30); width: calc(var(--u) * 60); height: calc(var(--u) * 60);
+  background: radial-gradient(circle, rgba(255, 214, 160, 0.42) 0%, rgba(255, 200, 140, 0.12) 42%, rgba(255, 200, 140, 0) 70%);
+  animation: niti-breathe 4.6s ease-in-out infinite alternate; will-change: transform, opacity; }
+#underlay .tree .core { left: calc(var(--u) * -5); top: calc(var(--u) * -5); width: calc(var(--u) * 10); height: calc(var(--u) * 10); background: #f3e2c2; }
+#underlay .tree.current .halo { left: calc(var(--u) * -46); top: calc(var(--u) * -46); width: calc(var(--u) * 92); height: calc(var(--u) * 92);
+  background: radial-gradient(circle, rgba(255, 222, 175, 0.7) 0%, rgba(255, 205, 145, 0.2) 40%, rgba(255, 200, 140, 0) 70%); }
+#underlay .tree.current .core { left: calc(var(--u) * -6.5); top: calc(var(--u) * -6.5); width: calc(var(--u) * 13); height: calc(var(--u) * 13);
+  background: #fffaf0; box-shadow: 0 0 calc(var(--u) * 12) rgba(255, 224, 175, 0.95); }
+/* (the chapter the sky is not at: its knot quieter) */
+#underlay .tree:not(.shown) .knot { opacity: 0.62; }
+#underlay .tree .lead { position: absolute; left: -0.75px; top: calc(var(--u) * 6); height: calc(var(--u) * 28); width: 1.5px; background: var(--gold); }
+
+/* the rows: question | trunk | answers */
+#underlay .tree .rows { position: absolute; left: calc(var(--w) / -2); width: var(--w); top: calc(var(--u) * 34); margin: 0; padding: 0; list-style: none; }
+#underlay .tree .row { display: grid; grid-template-columns: minmax(0, 1fr) var(--gut) minmax(0, 1fr); padding-bottom: calc(var(--u) * var(--s) * 13); }
+/* (a chapter just played: its rows come one after another — map.js gives each its place, --i, and the tree the pace) */
+#underlay .tree.fresh .row { animation: niti-row-in 0.9s ease-out both; animation-delay: calc(var(--i) * var(--row, 0.65s)); }
+#underlay .tree .name { text-align: right; font-style: italic; font-size: calc(var(--u) * var(--s) * 14.5); line-height: var(--L); color: var(--name); }
+#underlay .tree .row.key .name { color: #ece2cb; }
+#underlay .tree .flag { font-style: normal; color: var(--gold); }
+#underlay .tree .stem { position: relative; }
+#underlay .tree .stem i { position: absolute; }
+#underlay .tree .seg { left: 50%; top: 0; bottom: 0; width: 1.5px; margin-left: -0.75px; background: var(--gold); }
+#underlay .tree .seg::before { content: ""; position: absolute; left: calc(var(--u) * -3.5); right: calc(var(--u) * -3.5); top: 0; bottom: 0;
+  background: linear-gradient(90deg, rgba(255, 196, 120, 0), rgba(255, 196, 120, 0.18), rgba(255, 196, 120, 0)); }
+#underlay .tree .row:last-child .seg { bottom: auto; height: calc(var(--L) / 2); }
+#underlay .tree .dot { left: 50%; top: calc(var(--L) / 2); width: calc(var(--u) * var(--s) * 11); height: calc(var(--u) * var(--s) * 11);
+  transform: translate(-50%, -50%); border-radius: 50%; background: var(--gold); box-shadow: 0 0 calc(var(--u) * 8) rgba(255, 200, 130, 0.75); }
+/* (a fork the main run did not reach: its dot faint) */
+#underlay .tree .row.off .dot { width: calc(var(--u) * var(--s) * 6); height: calc(var(--u) * var(--s) * 6); background: var(--alt); opacity: 0.5; box-shadow: none; }
+/* a replay: a dashed pale-blue thread beside the trunk */
+#underlay .tree .rseg { left: calc(50% - var(--u) * 9); top: 0; bottom: 0; border-left: 1.5px dashed var(--tried); opacity: 0.85; }
+#underlay .tree .row.r-start .rseg { top: calc(var(--L) / 2); }
+#underlay .tree .row.r-end .rseg { bottom: auto; height: calc(var(--L) / 2); }
+#underlay .tree .row.r-start.r-end .rseg { display: none; }
+/* not reached yet (the main run's chapter): the trunk dashed */
+#underlay .tree .row.pending .seg, #underlay .tree .row.ahead .seg { background: none; border-left: 1.5px dashed var(--gold); opacity: 0.55; width: 0; }
+#underlay .tree .row.pending .seg::before, #underlay .tree .row.ahead .seg::before { display: none; }
+
+/* the answers: the main run's first, in gold; the others under it, smaller, on twigs */
+#underlay .tree .opts { list-style: none; margin: 0; padding: 0; min-width: 0; }
+#underlay .tree .opt { position: relative; }
+#underlay .tree .opt.chosen { font-size: calc(var(--u) * var(--s) * 16); line-height: var(--L); color: var(--gold-text); }
+#underlay .tree .opt.alt { padding-left: calc(var(--u) * var(--s) * 13); font-size: calc(var(--u) * var(--s) * 13.5); line-height: 1.32; color: var(--alt); }
+#underlay .tree .opt.alt .pip { position: absolute; left: 0; top: 0.66em; width: calc(var(--u) * 5); height: calc(var(--u) * 5); transform: translateY(-50%);
+  border-radius: 50%; background: var(--alt); opacity: 0.75; }
+#underlay .tree .opt.alt .twig { position: absolute; left: calc(var(--gut) / -2); top: calc(0.66em - var(--u) * 16); width: calc(var(--gut) / 2);
+  height: calc(var(--u) * 16); overflow: visible; }
+#underlay .tree .twig path { fill: none; stroke: var(--thin); stroke-width: 1px; vector-effect: non-scaling-stroke; }
+#underlay .tree .opt.tried { color: var(--tried); font-style: italic; }
+#underlay .tree .opt.tried .pip { background: var(--tried); opacity: 1; box-shadow: 0 0 calc(var(--u) * 5) rgba(190, 215, 255, 0.7); }
+#underlay .tree .opt.tried .twig path { stroke: var(--tried); stroke-dasharray: 4 3; }
+#underlay .tree .opt.unseen { font-size: calc(var(--u) * var(--s) * 16); line-height: var(--L); letter-spacing: 0.35em; color: rgba(169, 177, 207, 0.7); }
+
+/* the replay's plate on its tree */
+#underlay .tree .badge { position: absolute; left: calc(var(--w) / -2); top: calc(var(--u) * -128); display: inline-flex; align-items: center; gap: calc(var(--u) * 7);
+  padding: calc(var(--u) * 3) calc(var(--u) * 10); border: 1px solid rgba(207, 224, 255, 0.35); border-radius: 999px; white-space: nowrap;
+  font-size: calc(var(--u) * 12.5); font-style: italic; color: var(--tried); background: rgba(12, 16, 32, 0.55); text-shadow: none; }
+#underlay .tree .badge i { width: calc(var(--u) * 16); border-top: 1.5px dashed var(--tried); }
+/* (the plate pressed — its mark: the replay on, or dropped; its touch at least 44 px) */
+#underlay .tree .badge::after { content: ""; position: absolute; left: 50%; top: 50%; width: max(100%, 44px); height: max(100%, 44px); translate: -50% -50%; }
+
+/* where the play is: the main run's pointer (gold) and a replay's (pale blue), their words and arrow toward the trunk */
+@keyframes niti-nudge { from { transform: translateX(calc(var(--u) * -3)); } to { transform: translateX(calc(var(--u) * 2)); } }
+@keyframes niti-tip { from { opacity: 0.45; } to { opacity: 1; } }
+#underlay .tree .row.cursor, #underlay .tree .row.pending { --L: calc(var(--u) * var(--s) * 36); min-height: calc(var(--L) + var(--u) * 6); }
+#underlay .tree .row.cursor .dot, #underlay .tree .row.pending .dot { display: none; }
+#underlay .tree .row.cursor .rseg { top: 0; bottom: auto; height: calc(var(--L) / 2); }
+#underlay .tree .row.cursor .name, #underlay .tree .row.pending .name { position: relative; }
+#underlay .tree .tip { position: absolute; left: 50%; top: calc(var(--L) / 2); width: calc(var(--u) * 12); height: calc(var(--u) * 8);
+  transform: translate(-50%, -40%); overflow: visible; animation: niti-tip 1.4s ease-in-out infinite alternate; }
+#underlay .tree .tip.r { left: calc(50% - var(--u) * 9); }
+#underlay .tree .tip path { fill: none; stroke: var(--gold); stroke-width: 1.8px; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+#underlay .tree .tip.r path { stroke: var(--tried); }
+/* (the button reaches the trunk: its words and arrow where the design has them, the tip — where its mark opens — in it) */
+#underlay .tree .go { position: absolute; top: calc(var(--L) / 2); right: calc(var(--gut) / -2); transform: translateY(-50%); display: flex; align-items: center;
+  gap: calc(var(--u) * 8); min-height: max(44px, calc(var(--u) * 44)); margin: 0; padding: 0 calc(var(--gut) / 2) 0 0; border: 0; background: none;
+  font: italic calc(var(--u) * var(--s) * 15)/1.15 Georgia, "Times New Roman", serif; text-align: right; text-shadow: inherit; white-space: nowrap; }
+#underlay .tree .go-game { color: var(--gold-text); }
+#underlay .tree .go-replay { color: var(--tried); }
+#underlay .tree .go .arr { width: calc(var(--u) * 26); height: calc(var(--u) * 10); flex: none; overflow: visible; animation: niti-nudge 1.1s ease-in-out infinite alternate; }
+#underlay .tree .arr path { fill: none; stroke: currentColor; stroke-width: 1.6px; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+
+/* the author's sign: a ring of twelve stars, «автор» under it */
+#underlay .author { position: absolute; width: 0; height: 0; text-shadow: 0 0 calc(var(--u) * 6) rgba(4, 5, 12, 0.95); }
+#underlay .author .ring { position: absolute; left: 0; top: 0; width: 0; height: 0; }
+#underlay .author .ring i { position: absolute; border-radius: 50%; background: #efe3c8; }
+#underlay .author span { position: absolute; left: calc(var(--u) * -40); width: calc(var(--u) * 80); top: calc(var(--u) * 34); text-align: center;
+  font: italic calc(var(--u) * 14)/1 Georgia, serif; color: #d8cfbd; }
+
+/* what can be done: pressed, the game opens the language's mark there, born open (story.js hub.ask); a touch ≥ 44 px.
+   A press's place no one sees (.hit): over a knot, a fork's dot, the author's ring */
+#underlay .map .can { pointer-events: auto; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+#underlay .map .hit { position: absolute; left: 0; top: 0; width: max(44px, calc(var(--u) * 44)); height: max(44px, calc(var(--u) * 44)); margin: 0; padding: 0;
+  transform: translate(-50%, -50%); border: 0; border-radius: 50%; background: none; }
+#underlay .map .hit:not(.can) { display: none; }
+#underlay .tree .stem .hit { left: 50%; top: calc(var(--L) / 2); }
+#underlay .author .hit { width: max(44px, calc(var(--u) * 60)); height: max(44px, calc(var(--u) * 60)); }
+#underlay .map button:focus { outline: none; }
+#underlay .map button:focus-visible { outline: 1px solid rgba(243, 207, 140, 0.6); outline-offset: 2px; }
+#underlay .tree .go.can:hover { color: #fff; }
+#underlay .tree:has(.head.can:hover, .knot .hit.can:hover) .title { color: #fff; }
+#underlay .tree:has(.head.can:hover, .knot .hit.can:hover) .core { background: #fff; }
+#underlay .tree .row:has(.hit.can:hover, .opt.chosen.can:hover) .opt.chosen { color: #fff; }
+#underlay .tree .row:has(.hit.can:hover, .opt.chosen.can:hover) .dot { background: #fff8ec; }
+#underlay .author:has(.hit.can:hover) .ring i { background: #fff; }
+#underlay .author:has(.hit.can:hover) span { color: #fff; }

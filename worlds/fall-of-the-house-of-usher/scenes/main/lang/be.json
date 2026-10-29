@@ -1,0 +1,5 @@
+{"strings": [
+  {"text":"The approach to the house","translation":"Пад'езд да дома","where":"worlds/fall-of-the-house-of-usher/scenes/main/scene.json title"},
+  {"text":"I know not how it was — but, with the first glimpse of the building, a sense of insufferable gloom pervaded my spirit.","translation":"Не ведаю, чаму так сталася, — але пры першым позірку на дом невыносны смутак ахапіў маю душу.","where":"worlds/fall-of-the-house-of-usher/scenes/main/scene.json caption"},
+  {"text":"No wind, no sound — only the black water and the vacant windows.","translation":"Ні ветру, ні гуку — толькі чорная вада і пустыя вокны.","where":"worlds/fall-of-the-house-of-usher/scenes/main/scene.json captions[0] text"}
+]}

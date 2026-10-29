@@ -1,0 +1,6 @@
+{"strings": [
+  {"text":"Blessed is the Norm","translation":"Благословенна Норма","where":"worlds/chrysalids/scenes/meeting-house/elements/wall.js"},
+  {"text":"The meeting-house","translation":"Дім зібрань","where":"worlds/chrysalids/scenes/meeting-house/scene.json title"},
+  {"text":"They tried me at night, in the meeting-house, by one lamp.","translation":"Мене судили вночі, в домі зібрань, при одній лампі.","where":"worlds/chrysalids/scenes/meeting-house/scene.json caption"},
+  {"text":"Over the elders’ table hung a board: BLESSED IS THE NORM.","translation":"Над столом старійшин висіла дошка: «Благословенна Норма».","where":"worlds/chrysalids/scenes/meeting-house/scene.json captions[0] text"}
+]}

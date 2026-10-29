@@ -1,0 +1,7 @@
+{"strings": [
+  {"text":"The dream of the city","translation":"夢中的城市","where":"worlds/chrysalids/scenes/city-dream/scene.json title"},
+  {"text":"I dreamt of a city that was on no map.","translation":"我夢見一座任何地圖上都沒有的城市。","where":"worlds/chrysalids/scenes/city-dream/scene.json caption"},
+  {"text":"Towers at the very water’s edge, and a light in every window.","translation":"高塔就立在水邊，每扇窗裡都亮著燈。","where":"worlds/chrysalids/scenes/city-dream/scene.json captions[0] text"},
+  {"text":"And over them shining fish swam slowly.","translation":"閃閃發亮的魚在城市上空緩緩游過。","where":"worlds/chrysalids/scenes/city-dream/scene.json captions[1] text"},
+  {"text":"I did not know where it was. I knew only that I must go there.","translation":"我不知道它在哪裡。我只知道，我必須到那裡去。","where":"worlds/chrysalids/scenes/city-dream/scene.json captions[2] text"}
+]}

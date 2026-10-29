@@ -1,0 +1,7 @@
+{"strings": [
+  {"text":"Learning to hear","translation":"學著聆聽","where":"worlds/chrysalids/scenes/learning-to-hear/scene.json title"},
+  {"text":"We learnt to know one another by a voice no one else heard.","translation":"我們學著憑一個別人聽不見的聲音認出彼此。","where":"worlds/chrysalids/scenes/learning-to-hear/scene.json caption"},
+  {"text":"At first, only a rustle, like wind in the barley.","translation":"起初只是一陣窸窣，像風吹過大麥。","where":"worlds/chrysalids/scenes/learning-to-hear/scene.json captions[0] text"},
+  {"text":"Then we learnt to tell who was calling.","translation":"後來，我們學會分辨是誰在呼喚。","where":"worlds/chrysalids/scenes/learning-to-hear/scene.json captions[1] text"},
+  {"text":"And the grown-ups heard nothing.","translation":"而大人們什麼也聽不見。","where":"worlds/chrysalids/scenes/learning-to-hear/scene.json captions[2] text"}
+]}

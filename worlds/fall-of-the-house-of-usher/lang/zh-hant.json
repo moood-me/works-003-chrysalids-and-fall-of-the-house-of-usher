@@ -1,0 +1,4 @@
+{"strings": [
+  {"text":"The Fall of the House of Usher v3","translation":"亞瑟府的沒落 v3","where":"worlds/fall-of-the-house-of-usher/world.json title"},
+  {"text":"The Fall of the House of Usher on engine 3: the v2 scenes, rewritten in engine 3's language; the game — in the language of mini-games.","translation":"以引擎 3 呈現的《亞瑟府的沒落》：v2 的場景以引擎 3 的語言重寫；遊戲則以小遊戲的語言寫成。","where":"worlds/fall-of-the-house-of-usher/world.json description"}
+]}

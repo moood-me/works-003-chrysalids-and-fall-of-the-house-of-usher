@@ -33,7 +33,7 @@ for (let i = 0; i < L.CK.length - 1; i++) {
     g.strokeStyle = "rgba(170,190,202,0.32)"; g.lineWidth = 0.11; L.crackPath(g, i, i + 1); g.stroke();
   });
 }
-// its line, point by point, from the roof down
-L.CK.forEach(([x, y], i) => e.at(x + X, y, `k${i}`));
+// its line, point by point, from the roof down (g already stands at the wall, so the points are the crack's own)
+L.CK.forEach(([x, y], i) => e.at(x, y, `k${i}`));
 // where the trace has got to glows (its animate carries it down)
 e.layer("tip", {}, () => e.light(L.CK[0][0] + X, L.CK[0][1], 1.4, "#c8dae4", 0.35, "tip"));

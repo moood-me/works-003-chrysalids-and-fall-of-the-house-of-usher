@@ -1,0 +1,6 @@
+{"strings": [
+  {"text":"Blessed is the Norm","translation":"正常なるものに祝福あれ","where":"worlds/chrysalids/scenes/meeting-house/elements/wall.js"},
+  {"text":"The meeting-house","translation":"集会所","where":"worlds/chrysalids/scenes/meeting-house/scene.json title"},
+  {"text":"They tried me at night, in the meeting-house, by one lamp.","translation":"わたしが裁かれたのは夜、集会所で、ランプひとつの明かりのもとだった。","where":"worlds/chrysalids/scenes/meeting-house/scene.json caption"},
+  {"text":"Over the elders’ table hung a board: BLESSED IS THE NORM.","translation":"長老たちの机の上には、板が掛かっていた。「正常なるものに祝福あれ」","where":"worlds/chrysalids/scenes/meeting-house/scene.json captions[0] text"}
+]}

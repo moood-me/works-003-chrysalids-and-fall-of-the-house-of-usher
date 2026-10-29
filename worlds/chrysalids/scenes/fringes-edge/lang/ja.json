@@ -1,0 +1,4 @@
+{"strings": [
+  {"text":"The edge of the Fringes","translation":"外辺地方の境","where":"worlds/chrysalids/scenes/fringes-edge/scene.json title"},
+  {"text":"Beyond here begins what no one speaks of.","translation":"ここから先は、誰も口にしない土地だ。","where":"worlds/chrysalids/scenes/fringes-edge/scene.json caption"}
+]}

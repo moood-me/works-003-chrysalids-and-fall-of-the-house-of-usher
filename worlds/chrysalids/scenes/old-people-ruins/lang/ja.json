@@ -1,0 +1,8 @@
+{"strings": [
+  {"text":"…TION","translation":"…ション","where":"worlds/chrysalids/scenes/old-people-ruins/elements/glint.js"},
+  {"text":"The ruins of the Old People","translation":"古き人々の廃墟","where":"worlds/chrysalids/scenes/old-people-ruins/scene.json title"},
+  {"text":"The Old People lived here.","translation":"ここには古き人々が住んでいた。","where":"worlds/chrysalids/scenes/old-people-ruins/scene.json caption"},
+  {"text":"We were told God had punished them for their pride.","translation":"神が彼らの驕りを罰したのだと、わたしたちは教えられた。","where":"worlds/chrysalids/scenes/old-people-ruins/scene.json captions[0] text"},
+  {"text":"We were not allowed to come here. We came.","translation":"ここへ来ることは禁じられていた。それでも、わたしたちは来た。","where":"worlds/chrysalids/scenes/old-people-ruins/scene.json captions[1] text"},
+  {"text":"Sophie stroked the rusty side — warm from the sun.","translation":"ソフィーは錆びた側面をなでた――日に温められて、あたたかかった。","where":"worlds/chrysalids/scenes/old-people-ruins/scene.json captions[2] text"}
+]}

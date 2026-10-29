@@ -1,0 +1,6 @@
+{"strings": [
+  {"text":"David and Rosalind","translation":"デイヴィッドとロザリンド","where":"worlds/chrysalids/scenes/david-and-rosalind/scene.json title"},
+  {"text":"In front of everyone we were strangers.","translation":"人前では、わたしたちは他人どうしだった。","where":"worlds/chrysalids/scenes/david-and-rosalind/scene.json caption"},
+  {"text":"We did not look at each other.","translation":"互いの顔を見ることもなかった。","where":"worlds/chrysalids/scenes/david-and-rosalind/scene.json captions[0] text"},
+  {"text":"Alone — only in our thoughts — we were together.","translation":"ふたりきりのとき――思いのなかでだけ――わたしたちは一緒だった。","where":"worlds/chrysalids/scenes/david-and-rosalind/scene.json captions[1] text"}
+]}

@@ -1,0 +1,7 @@
+{"strings": [
+  {"text":"The dream of the city","translation":"Сон пра горад","where":"worlds/chrysalids/scenes/city-dream/scene.json title"},
+  {"text":"I dreamt of a city that was on no map.","translation":"Мне сніўся горад, якога не было ні на адной карце.","where":"worlds/chrysalids/scenes/city-dream/scene.json caption"},
+  {"text":"Towers at the very water’s edge, and a light in every window.","translation":"Вежы ля самай вады, і ў кожным акне — святло.","where":"worlds/chrysalids/scenes/city-dream/scene.json captions[0] text"},
+  {"text":"And over them shining fish swam slowly.","translation":"А над імі павольна плылі бліскучыя рыбы.","where":"worlds/chrysalids/scenes/city-dream/scene.json captions[1] text"},
+  {"text":"I did not know where it was. I knew only that I must go there.","translation":"Я не ведаў, дзе гэта. Ведаў толькі, што мне — туды.","where":"worlds/chrysalids/scenes/city-dream/scene.json captions[2] text"}
+]}

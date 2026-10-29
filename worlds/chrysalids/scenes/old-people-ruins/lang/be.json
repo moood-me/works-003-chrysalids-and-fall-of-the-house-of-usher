@@ -1,0 +1,8 @@
+{"strings": [
+  {"text":"…TION","translation":"…АНЦЫЯ","where":"worlds/chrysalids/scenes/old-people-ruins/elements/glint.js"},
+  {"text":"The ruins of the Old People","translation":"Руіны Старажытных","where":"worlds/chrysalids/scenes/old-people-ruins/scene.json title"},
+  {"text":"The Old People lived here.","translation":"Тут жылі Старажытныя.","where":"worlds/chrysalids/scenes/old-people-ruins/scene.json caption"},
+  {"text":"We were told God had punished them for their pride.","translation":"Нам казалі, што Бог пакараў іх за пыху.","where":"worlds/chrysalids/scenes/old-people-ruins/scene.json captions[0] text"},
+  {"text":"We were not allowed to come here. We came.","translation":"Сюды нельга было хадзіць. Мы хадзілі.","where":"worlds/chrysalids/scenes/old-people-ruins/scene.json captions[1] text"},
+  {"text":"Sophie stroked the rusty side — warm from the sun.","translation":"Сафі гладзіла іржавы бок — цёплы ад сонца.","where":"worlds/chrysalids/scenes/old-people-ruins/scene.json captions[2] text"}
+]}

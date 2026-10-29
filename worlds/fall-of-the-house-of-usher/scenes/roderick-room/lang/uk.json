@@ -1,0 +1,5 @@
+{"strings": [
+  {"text":"Roderick's room","translation":"Кімната Родеріка","where":"worlds/fall-of-the-house-of-usher/scenes/roderick-room/scene.json title"},
+  {"text":"He could bear no bright light, no loud sound.","translation":"Він не зносив ні яскравого світла, ні гучного звуку.","where":"worlds/fall-of-the-house-of-usher/scenes/roderick-room/scene.json caption"},
+  {"text":"Feeble gleams of light made their way through the trellised panes.","translation":"Світло ледь сочилося крізь ґратчасті шибки.","where":"worlds/fall-of-the-house-of-usher/scenes/roderick-room/scene.json captions[0] text"}
+]}

@@ -1,0 +1,4 @@
+{"strings": [
+  {"text":"The Fall of the House of Usher v3","translation":"アッシャー家の崩壊 v3","where":"worlds/fall-of-the-house-of-usher/world.json title"},
+  {"text":"The Fall of the House of Usher on engine 3: the v2 scenes, rewritten in engine 3's language; the game — in the language of mini-games.","translation":"エンジン3で描く「アッシャー家の崩壊」――v2の場面をエンジン3の言語で書きなおし、ゲームはミニゲームの言語で。","where":"worlds/fall-of-the-house-of-usher/world.json description"}
+]}

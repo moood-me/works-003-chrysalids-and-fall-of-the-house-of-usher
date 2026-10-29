@@ -1,0 +1,6 @@
+{"strings": [
+  {"text":"Honour the Image","translation":"尊崇神的形象","where":"worlds/chrysalids/scenes/strorm-kitchen/elements/wall.js"},
+  {"text":"Keep the Stock Pure","translation":"保持血統純正","where":"worlds/chrysalids/scenes/strorm-kitchen/elements/wall.js"},
+  {"text":"Watch Thou for the Mutant!","translation":"汝當警惕變種！","where":"worlds/chrysalids/scenes/strorm-kitchen/elements/wall.js"},
+  {"text":"The Strorms’ kitchen","translation":"史卓姆家的廚房","where":"worlds/chrysalids/scenes/strorm-kitchen/scene.json title"}
+]}

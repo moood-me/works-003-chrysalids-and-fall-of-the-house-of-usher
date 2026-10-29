@@ -1,0 +1,4 @@
+{"strings": [
+  {"text":"The Chrysalids v3","translation":"蛹 v3","where":"worlds/chrysalids/world.json title"},
+  {"text":"John Wyndham’s “The Chrysalids” on engine 3 and the language of mini-games","translation":"約翰·溫德姆的《蛹》，以引擎 3 與小遊戲的語言呈現","where":"worlds/chrysalids/world.json description"}
+]}

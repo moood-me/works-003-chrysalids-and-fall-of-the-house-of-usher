@@ -1,0 +1,8 @@
+{"strings": [
+  {"text":"…TION","translation":"……站","where":"worlds/chrysalids/scenes/old-people-ruins/elements/glint.js"},
+  {"text":"The ruins of the Old People","translation":"古人的廢墟","where":"worlds/chrysalids/scenes/old-people-ruins/scene.json title"},
+  {"text":"The Old People lived here.","translation":"古人曾經住在這裡。","where":"worlds/chrysalids/scenes/old-people-ruins/scene.json caption"},
+  {"text":"We were told God had punished them for their pride.","translation":"大人告訴我們，上帝因為他們的驕傲懲罰了他們。","where":"worlds/chrysalids/scenes/old-people-ruins/scene.json captions[0] text"},
+  {"text":"We were not allowed to come here. We came.","translation":"我們不准到這裡來。我們還是來了。","where":"worlds/chrysalids/scenes/old-people-ruins/scene.json captions[1] text"},
+  {"text":"Sophie stroked the rusty side — warm from the sun.","translation":"蘇菲撫摸著生鏽的鐵皮側面——被太陽曬得溫熱。","where":"worlds/chrysalids/scenes/old-people-ruins/scene.json captions[2] text"}
+]}

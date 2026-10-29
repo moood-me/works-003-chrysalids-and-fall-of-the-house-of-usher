@@ -1,0 +1,6 @@
+{"strings": [
+  {"text":"Blessed is the Norm","translation":"常態有福","where":"worlds/chrysalids/scenes/meeting-house/elements/wall.js"},
+  {"text":"The meeting-house","translation":"聚會所","where":"worlds/chrysalids/scenes/meeting-house/scene.json title"},
+  {"text":"They tried me at night, in the meeting-house, by one lamp.","translation":"他們在夜裡審判我，在聚會所，只點著一盞燈。","where":"worlds/chrysalids/scenes/meeting-house/scene.json caption"},
+  {"text":"Over the elders’ table hung a board: BLESSED IS THE NORM.","translation":"長老的桌子上方掛著一塊木牌：「常態有福」。","where":"worlds/chrysalids/scenes/meeting-house/scene.json captions[0] text"}
+]}

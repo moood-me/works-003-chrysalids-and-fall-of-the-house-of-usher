@@ -1,0 +1,6 @@
+{"strings": [
+  {"text":"Honour the Image","translation":"Czcij Obraz","where":"worlds/chrysalids/scenes/strorm-kitchen/elements/wall.js"},
+  {"text":"Keep the Stock Pure","translation":"Zachowaj czystość rodu","where":"worlds/chrysalids/scenes/strorm-kitchen/elements/wall.js"},
+  {"text":"Watch Thou for the Mutant!","translation":"Wypatruj mutanta!","where":"worlds/chrysalids/scenes/strorm-kitchen/elements/wall.js"},
+  {"text":"The Strorms’ kitchen","translation":"Kuchnia Strormów","where":"worlds/chrysalids/scenes/strorm-kitchen/scene.json title"}
+]}

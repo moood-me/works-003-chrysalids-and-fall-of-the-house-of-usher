@@ -10,5 +10,5 @@
     "horror": 100
   },
   "world": "../../worlds/fall-of-the-house-of-usher",
-  "languages": ["en", "ru", "uk", "de", "es", "ja", "be", "fr", "zh-hant", "pt"]
+  "languages": ["en", "ru", "uk", "de", "es", "ja", "be", "fr", "zh-hant", "pt", "pl"]
 }

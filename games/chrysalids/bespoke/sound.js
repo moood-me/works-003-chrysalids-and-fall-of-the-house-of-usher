@@ -1,19 +1,12 @@
 // Sounds of the game's own, made in the page (Web Audio): nothing to load. A step plays them as g.sound (story.js).
-let ctx = null, held = false;
-// (the site's "sounds" slider: MooodVolume.output — what this page makes goes to the speakers through it)
-let sink = null;
+// (the site's "sounds" slider: MooodVolume.output — what this page makes goes to the speakers through it; the page runs
+// the audio: it waits with the play as the scene's music does — paused, its scene standing or being made ready —,
+// fading out and back in)
+let ctx = null, sink = null;
 const audio = () => {
   if (!ctx) { ctx = new AudioContext(); sink = MooodVolume.output(ctx); sink.connect(ctx.destination); }
-  if (!held && ctx.state === 'suspended') ctx.resume();
   return ctx;
 };
-// the play paused (ui.js ⏸): the game's own sounds stand with it — their audio's clock is not the page's
-export function pause(on) {
-  held = !!on;
-  if (!ctx) return;
-  if (held) ctx.suspend();
-  else ctx.resume();
-}
 
 // a horse somewhere, galloping (dull thuds in threes) or at a walk (four slow falls): loud(v, seconds) — nearer or
 // farther; gait('walk' | 'gallop') — it changes its pace; halt(seconds) — reined in: a few slower steps, then still

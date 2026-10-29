@@ -1,8 +1,6 @@
-// Sounds of the game's own, made in the page (Web Audio): nothing to load. The page may be heard
-// only after the player's first touch: game.js wakes it then; nothing sounds before.
-//   wake() — the page may be heard from now on (called on the first touch)
-//   pause(on) — all of it stands while the play is paused (bespoke.pause: ui.js ⏸) and goes on from there after — its
-//     sounds' own time (the audio's clock) stands with the play's
+// Sounds of the game's own, made in the page (Web Audio): nothing to load. As loud as the site's "sounds" slider says
+// (MooodVolume.output); the page runs the audio: it sounds once the browser lets it (the first touch), and waits with
+// the play as the scene's music does — paused, its scene standing or being made ready —, fading out and back in.
 //   house(level, seconds) — the house's air: wind round an old house (a recording, sounds/); one for the page, as loud as `level` (0 — silence), getting there over `seconds`
 //   rain(level, seconds) — rain on stone and water (a recording); likewise. hush(seconds) — both fall silent
 //   unheard() → {sounds, wake()} — the same, unheard, for a step played unseen (jump.js); a step plays them as g.sound
@@ -43,7 +41,7 @@ export const SONG = [
 ];
 const BEAT = 0.78; // seconds a beat, as she sang it
 
-let ctx = null, master = null, room = null, held = false;
+let ctx = null, master = null, room = null;
 function audio() {
   if (!ctx) {
     ctx = new AudioContext();
@@ -64,15 +62,7 @@ function audio() {
     room.buffer = ir;
     room.connect(master);
   }
-  if (ctx.state === 'suspended' && !held) ctx.resume();
   return ctx;
-}
-export const wake = () => { audio(); };
-export function pause(on) {
-  held = !!on;
-  if (!ctx) return;
-  if (held) ctx.suspend();
-  else ctx.resume();
 }
 
 // where a sound goes: its loudness, and how much of it the stone halls carry
@@ -566,7 +556,7 @@ export function unheard() {
       melody: () => ({ done: Promise.resolve(), loud: none, stop: none }),
       guitar: () => ({ note: none, strum: none, loud: none, stop: none }),
       hush() { for (const k in levels) levels[k] = 0; },
-      wake: none, knock: none, screw: none, ironDoor: none, thunder: none, crash: none, paper: none, step: none, scratch: none,
+      knock: none, screw: none, ironDoor: none, thunder: none, crash: none, paper: none, step: none, scratch: none,
       splinter: none, shriek: none, clang: none,
     },
     wake() { for (const [k, level] of Object.entries(levels)) ({ house, rain })[k](level, 1); },

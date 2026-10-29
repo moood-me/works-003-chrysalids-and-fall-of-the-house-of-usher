@@ -32,7 +32,7 @@
 import { SCALES, SCENES, context, listen, through } from './story.js';
 import { ui } from './ui.js';
 import { trees } from './map.js';
-import { hush, wake, unheard, pause } from './sound.js';
+import { hush, unheard } from './sound.js';
 import { jump } from './jump.js';
 import prologue from './chapters/prologue.js';
 import one from './chapters/1.js';
@@ -59,7 +59,6 @@ export default async function (b) {
   b.minigame.style({ key: 'A_MAJOR_G_FLAT_MINOR', font: 'Georgia, "Times New Roman", serif', colors: { mark: '#e4d8bf', fill: '#c9a46a', good: '#a8b89a', danger: '#b0261a', fork: '#9aa4b4', ghost: 'rgba(228, 216, 191, 0.5)' } });
   const hub = listen(b);
   const view = ui(b.layer);
-  b.onPause(pause);
   let kept = load(b.saved);
   // the replay going on, never kept: {run, steps: its chapter's states as its steps began, done: played to its end}
   let replay = null;
@@ -84,7 +83,6 @@ export default async function (b) {
   for (let after = {}; ;) {
     const to = await map(after);
     after = {};
-    wake(); // (a touch: the page may be heard from now on)
     if (to === 'drop') { replay = null; continue; }
     if (to === 'keep') { await keepReplay(); if (kept.chapter === END) b.ended({ ending: kept.ending ?? null }); continue; }
     if (to === 'main' || to === 'back') replay = null; // («Back to the main run»: the main run goes on from where it stands)

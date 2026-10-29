@@ -30,7 +30,7 @@
 // chapter — on to the next interaction —, and in a minigame there, or one they have been in for 20 s (story.js SKIPPABLE).
 import { SCENES, context, listen } from './story.js';
 import { jump } from './jump.js';
-import { unheard, pause } from './sound.js';
+import { unheard } from './sound.js';
 import { ui } from './ui.js';
 import { trees } from './map.js';
 import { SCALES, level, people, differ } from './journal.js';
@@ -57,7 +57,6 @@ export default async function (b) {
   b.minigame.style({ key: 'C_MAJOR_A_MINOR', font: 'Georgia, "Times New Roman", serif', colors: { mark: '#efe6d2', fill: '#d9b878', good: '#a9c79a', danger: '#c8604a', fork: '#a8b4cc', ghost: 'rgba(239, 230, 210, 0.5)' } });
   const hub = listen(b);
   const view = ui(b.layer);
-  b.onPause(pause);
   let kept = load(b.saved);
   // the replay going on, never kept: {run, steps: its chapter's states as its steps began, done: played to its end}
   let replay = null;

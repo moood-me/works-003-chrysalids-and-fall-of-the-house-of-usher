@@ -9,5 +9,5 @@
     "relationships": 60
   },
   "world": "../../worlds/chrysalids",
-  "languages": ["en", "ru"]
+  "languages": ["en", "ru", "de"]
 }

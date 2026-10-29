@@ -1,0 +1,4 @@
+{"strings": [
+  {"text":"The Strorms’ farm","translation":"Der Hof der Strorms","where":"worlds/chrysalids/scenes/strorm-farm/scene.json title"},
+  {"text":"Here everything must be as it should be.","translation":"Hier muss alles so sein, wie es sich gehört.","where":"worlds/chrysalids/scenes/strorm-farm/scene.json caption"}
+]}

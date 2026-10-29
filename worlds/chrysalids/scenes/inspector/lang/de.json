@@ -1,0 +1,4 @@
+{"strings": [
+  {"text":"The inspector at the farm","translation":"Der Inspektor auf dem Hof","where":"worlds/chrysalids/scenes/inspector/scene.json title"},
+  {"text":"Every autumn he rode round the farms and decided what was fit to live.","translation":"Jeden Herbst ritt er die Höfe ab und entschied, was leben durfte.","where":"worlds/chrysalids/scenes/inspector/scene.json caption"}
+]}

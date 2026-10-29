@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap");
 /* The game over the scene (ui.js), in ink and paper: the crack down the edge, the candle in the
    corner, the slips of paper, the letter, the title; the author's map; the map's trees. */
 #layer { --ink: #2a1c13; --paper: #e6dac0; --bone: #e4d8bf; --hand: "Usher Hand", "Segoe Script", cursive;

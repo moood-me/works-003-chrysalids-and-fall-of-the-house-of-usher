@@ -1,0 +1,5 @@
+{"strings": [
+  {"text":"The approach to the house","translation":"走近府邸","where":"worlds/fall-of-the-house-of-usher/scenes/main/scene.json title"},
+  {"text":"I know not how it was — but, with the first glimpse of the building, a sense of insufferable gloom pervaded my spirit.","translation":"我不知道為什麼——但第一眼望見那座建築，一股難以忍受的陰鬱便瀰漫了我的心靈。","where":"worlds/fall-of-the-house-of-usher/scenes/main/scene.json caption"},
+  {"text":"No wind, no sound — only the black water and the vacant windows.","translation":"沒有風，沒有聲響——只有黑色的湖水和空洞的窗戶。","where":"worlds/fall-of-the-house-of-usher/scenes/main/scene.json captions[0] text"}
+]}

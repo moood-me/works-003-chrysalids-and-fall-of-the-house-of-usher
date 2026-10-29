@@ -152,5 +152,93 @@
         0
       ]
     }
-  ]
+  ],
+  "music": {
+    "bpm": 60,
+    "density": 0.2,
+    "brightness": 0.2,
+    "scale": "A_MAJOR_G_FLAT_MINOR",
+    "prompts": [
+      {
+        "text": "faint creak of old timber and a thin crack running through stone, sparse low string harmonics",
+        "weight": 0.5
+      },
+      {
+        "text": "low sustained drone, dark ambient, a cold stone wall in half-darkness, barely moving",
+        "weight": 1.2
+      },
+      {
+        "text": "low sustained drone, dark ambient, cold and vast, barely moving",
+        "weight": 0
+      },
+      {
+        "text": "distant wind over still water and dead reeds, field recording blended with soft noise",
+        "weight": 0.6
+      },
+      {
+        "text": "slow solo cello, long mournful bow strokes, minor mode, sparse and close",
+        "weight": 0.9
+      },
+      {
+        "text": "ominous church organ pedal tone, deep sub-bass, held for minutes, gothic",
+        "weight": 0
+      },
+      {
+        "text": "bowed double bass harmonics, eerie and thin, long reverb",
+        "weight": 0
+      },
+      {
+        "text": "muffled funeral bell tolling far away across a marsh",
+        "weight": 0
+      },
+      {
+        "text": "string quartet sul ponticello, trembling, unsettled, quiet",
+        "weight": 0
+      },
+      {
+        "text": "romantic-era piano, single low notes with long decay, melancholic nocturne",
+        "weight": 0
+      },
+      {
+        "text": "gothic chamber music, harpsichord and viola da gamba, slow and grave",
+        "weight": 0
+      },
+      {
+        "text": "dark choir hum, wordless low voices, solemn and distant",
+        "weight": 0
+      },
+      {
+        "text": "glass harmonica tones, fragile, uncanny, 19th century parlour",
+        "weight": 0
+      },
+      {
+        "text": "slow heartbeat on a muted timpani, tension under the surface",
+        "weight": 0
+      },
+      {
+        "text": "cold tape-saturated synth pad, slowly evolving, desolate",
+        "weight": 0
+      },
+      {
+        "text": "creaking timbers and faint dripping water, haunted house ambience",
+        "weight": 0
+      },
+      {
+        "text": "lone horse hooves on a stone causeway, slow, echoing",
+        "weight": 0
+      },
+      {
+        "text": "detuned music box fragment, faint, decaying memory",
+        "weight": 0
+      },
+      {
+        "text": "bowed cymbals and scraped metal, long reverb, dread",
+        "weight": 0
+      },
+      {
+        "text": "low clarinet melody, sombre, Victorian lament",
+        "weight": 0
+      }
+    ]
+  }
 }

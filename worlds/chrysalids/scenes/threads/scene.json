@@ -167,5 +167,93 @@
       "type": "number",
       "means": "each new value brings the sky back to the chapter shown (camera_x), the player's drag with it"
     }
+  },
+  "music": {
+    "bpm": 60,
+    "density": 0.2,
+    "brightness": 0.4,
+    "scale": "C_MAJOR_A_MINOR",
+    "prompts": [
+      {
+        "text": "soft wordless choir, hushed, far away, voices that hear each other",
+        "weight": 0.5
+      },
+      {
+        "text": "sparse solo folk fiddle, a slow modal air far away across the fields, rural and austere",
+        "weight": 0.6
+      },
+      {
+        "text": "glass harmonica, slow sustained tones, fragile threads of light between far-apart people",
+        "weight": 1
+      },
+      {
+        "text": "ethereal ambient pads, slow evolving, a night sky full of stars over dark fields, distant shimmer",
+        "weight": 1.2
+      },
+      {
+        "text": "ethereal ambient pads, slow evolving, vast night sky, distant shimmer",
+        "weight": 0
+      },
+      {
+        "text": "soft wordless choir, hushed, far away, cathedral reverb",
+        "weight": 0
+      },
+      {
+        "text": "glass harmonica, slow sustained tones, fragile and luminous",
+        "weight": 0
+      },
+      {
+        "text": "slow sparse piano with long reverb, quiet wonder",
+        "weight": 0
+      },
+      {
+        "text": "celesta and music box, very soft, sparse twinkling notes",
+        "weight": 0
+      },
+      {
+        "text": "warm analog synth drones, gentle swells, night",
+        "weight": 0
+      },
+      {
+        "text": "solo cello, long legato lines, tender, distant",
+        "weight": 0
+      },
+      {
+        "text": "crystal singing bowls, overlapping resonances",
+        "weight": 0
+      },
+      {
+        "text": "string ensemble harmonics, airy sul tasto, barely moving",
+        "weight": 0
+      },
+      {
+        "text": "shimmering granular textures, starlight, slow motion",
+        "weight": 0
+      },
+      {
+        "text": "folk fiddle melody heard from far away, plain and lonely",
+        "weight": 0
+      },
+      {
+        "text": "field recording mood, crickets and wind over wheat fields",
+        "weight": 0
+      },
+      {
+        "text": "minimalist harp arpeggios, slow, gentle",
+        "weight": 0
+      },
+      {
+        "text": "low organ drone, solemn, rural chapel",
+        "weight": 0
+      },
+      {
+        "text": "breathy flute, soft long tones over pads",
+        "weight": 0
+      },
+      {
+        "text": "choral pads with tape warble, nostalgic, 1950s",
+        "weight": 0
+      }
+    ]
   }
 }

@@ -1,0 +1,7 @@
+{"strings": [
+  {"text":"The dream of the city","translation":"도시의 꿈","where":"worlds/chrysalids/scenes/city-dream/scene.json title"},
+  {"text":"I dreamt of a city that was on no map.","translation":"나는 어느 지도에도 없는 도시를 꿈꾸었다.","where":"worlds/chrysalids/scenes/city-dream/scene.json caption"},
+  {"text":"Towers at the very water’s edge, and a light in every window.","translation":"바로 물가에 선 탑들, 창마다 켜진 불빛.","where":"worlds/chrysalids/scenes/city-dream/scene.json captions[0] text"},
+  {"text":"And over them shining fish swam slowly.","translation":"그리고 그 위로 반짝이는 물고기들이 천천히 헤엄쳐 갔다.","where":"worlds/chrysalids/scenes/city-dream/scene.json captions[1] text"},
+  {"text":"I did not know where it was. I knew only that I must go there.","translation":"그곳이 어디인지 나는 몰랐다. 다만 그리로 가야 한다는 것만은 알았다.","where":"worlds/chrysalids/scenes/city-dream/scene.json captions[2] text"}
+]}

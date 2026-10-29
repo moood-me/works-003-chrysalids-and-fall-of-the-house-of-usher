@@ -1,0 +1,5 @@
+{"strings": [
+  {"text":"Roderick's room","translation":"로더릭의 방","where":"worlds/fall-of-the-house-of-usher/scenes/roderick-room/scene.json title"},
+  {"text":"He could bear no bright light, no loud sound.","translation":"그는 밝은 빛도, 큰 소리도 견디지 못했다.","where":"worlds/fall-of-the-house-of-usher/scenes/roderick-room/scene.json caption"},
+  {"text":"Feeble gleams of light made their way through the trellised panes.","translation":"격자 유리창 사이로 희미한 빛줄기가 겨우 스며들었다.","where":"worlds/fall-of-the-house-of-usher/scenes/roderick-room/scene.json captions[0] text"}
+]}

@@ -1,0 +1,8 @@
+{"strings": [
+  {"text":"…TION","translation":"…역","where":"worlds/chrysalids/scenes/old-people-ruins/elements/glint.js"},
+  {"text":"The ruins of the Old People","translation":"옛사람들의 폐허","where":"worlds/chrysalids/scenes/old-people-ruins/scene.json title"},
+  {"text":"The Old People lived here.","translation":"이곳에는 옛사람들이 살았다.","where":"worlds/chrysalids/scenes/old-people-ruins/scene.json caption"},
+  {"text":"We were told God had punished them for their pride.","translation":"하느님이 그들의 오만을 벌하셨다고 우리는 배웠다.","where":"worlds/chrysalids/scenes/old-people-ruins/scene.json captions[0] text"},
+  {"text":"We were not allowed to come here. We came.","translation":"이곳에 와서는 안 되었다. 우리는 왔다.","where":"worlds/chrysalids/scenes/old-people-ruins/scene.json captions[1] text"},
+  {"text":"Sophie stroked the rusty side — warm from the sun.","translation":"소피는 녹슨 옆면을 쓰다듬었다. 햇볕에 데워져 따뜻했다.","where":"worlds/chrysalids/scenes/old-people-ruins/scene.json captions[2] text"}
+]}

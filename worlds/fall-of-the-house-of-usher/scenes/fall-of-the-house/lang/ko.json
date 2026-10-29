@@ -1,0 +1,5 @@
+{"strings": [
+  {"text":"The fall of the house","translation":"저택의 몰락","where":"worlds/fall-of-the-house-of-usher/scenes/fall-of-the-house/scene.json title"},
+  {"text":"The blood-red moon blazed out in the fissure — and the dark waters of the tarn closed over the House of Usher.","translation":"핏빛 달이 균열 사이로 활활 타올랐다 — 그리고 늪의 검은 물이 어셔가 위로 닫혔다.","where":"worlds/fall-of-the-house-of-usher/scenes/fall-of-the-house/scene.json caption"},
+  {"text":"There was a long tumultuous shouting sound like the voice of a thousand waters.","translation":"천 개의 물소리 같은, 길고 요란한 외침이 울려 퍼졌다.","where":"worlds/fall-of-the-house-of-usher/scenes/fall-of-the-house/scene.json captions[0] text"}
+]}

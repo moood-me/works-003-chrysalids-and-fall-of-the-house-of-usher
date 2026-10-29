@@ -1,0 +1,7 @@
+{"strings": [
+  {"text":"The dream of the city","translation":"Le rêve de la ville","where":"worlds/chrysalids/scenes/city-dream/scene.json title"},
+  {"text":"I dreamt of a city that was on no map.","translation":"Je rêvais d’une ville qui n’était sur aucune carte.","where":"worlds/chrysalids/scenes/city-dream/scene.json caption"},
+  {"text":"Towers at the very water’s edge, and a light in every window.","translation":"Des tours au bord même de l’eau, et une lumière à chaque fenêtre.","where":"worlds/chrysalids/scenes/city-dream/scene.json captions[0] text"},
+  {"text":"And over them shining fish swam slowly.","translation":"Et au-dessus d’elles nageaient lentement des poissons brillants.","where":"worlds/chrysalids/scenes/city-dream/scene.json captions[1] text"},
+  {"text":"I did not know where it was. I knew only that I must go there.","translation":"Je ne savais pas où elle se trouvait. Je savais seulement que je devais y aller.","where":"worlds/chrysalids/scenes/city-dream/scene.json captions[2] text"}
+]}

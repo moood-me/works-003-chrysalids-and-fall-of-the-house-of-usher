@@ -1,0 +1,8 @@
+{"strings": [
+  {"text":"…TION","translation":"…TION","where":"worlds/chrysalids/scenes/old-people-ruins/elements/glint.js"},
+  {"text":"The ruins of the Old People","translation":"Les ruines des Anciens","where":"worlds/chrysalids/scenes/old-people-ruins/scene.json title"},
+  {"text":"The Old People lived here.","translation":"Ici vivaient les Anciens.","where":"worlds/chrysalids/scenes/old-people-ruins/scene.json caption"},
+  {"text":"We were told God had punished them for their pride.","translation":"On nous disait que Dieu les avait punis de leur orgueil.","where":"worlds/chrysalids/scenes/old-people-ruins/scene.json captions[0] text"},
+  {"text":"We were not allowed to come here. We came.","translation":"Il nous était défendu de venir ici. Nous venions.","where":"worlds/chrysalids/scenes/old-people-ruins/scene.json captions[1] text"},
+  {"text":"Sophie stroked the rusty side — warm from the sun.","translation":"Sophie caressait le flanc rouillé, tiède de soleil.","where":"worlds/chrysalids/scenes/old-people-ruins/scene.json captions[2] text"}
+]}

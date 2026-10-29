@@ -1,0 +1,6 @@
+{"strings": [
+  {"text":"Blessed is the Norm","translation":"Bendita seja a Norma","where":"worlds/chrysalids/scenes/meeting-house/elements/wall.js"},
+  {"text":"The meeting-house","translation":"A casa de reuniões","where":"worlds/chrysalids/scenes/meeting-house/scene.json title"},
+  {"text":"They tried me at night, in the meeting-house, by one lamp.","translation":"Me julgaram à noite, na casa de reuniões, à luz de um único lampião.","where":"worlds/chrysalids/scenes/meeting-house/scene.json caption"},
+  {"text":"Over the elders’ table hung a board: BLESSED IS THE NORM.","translation":"Sobre a mesa dos anciãos pendia uma tábua: BENDITA SEJA A NORMA.","where":"worlds/chrysalids/scenes/meeting-house/scene.json captions[0] text"}
+]}

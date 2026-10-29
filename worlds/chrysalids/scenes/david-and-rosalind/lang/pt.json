@@ -1,0 +1,6 @@
+{"strings": [
+  {"text":"David and Rosalind","translation":"David e Rosalind","where":"worlds/chrysalids/scenes/david-and-rosalind/scene.json title"},
+  {"text":"In front of everyone we were strangers.","translation":"Diante de todos, éramos estranhos.","where":"worlds/chrysalids/scenes/david-and-rosalind/scene.json caption"},
+  {"text":"We did not look at each other.","translation":"Não olhávamos um para o outro.","where":"worlds/chrysalids/scenes/david-and-rosalind/scene.json captions[0] text"},
+  {"text":"Alone — only in our thoughts — we were together.","translation":"A sós — só em pensamento — estávamos juntos.","where":"worlds/chrysalids/scenes/david-and-rosalind/scene.json captions[1] text"}
+]}

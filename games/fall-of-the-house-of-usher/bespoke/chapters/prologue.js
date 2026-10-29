@@ -20,18 +20,17 @@ export default {
     async g => {
       // the roar as the house splits (the scene tells the fissure opening)
       g.told('prologue:split').then(split => split && g.sound.crash());
-      await g.scene(FALL, { beat: 'prologue' });
-      g.sound.rain(0.6, 3);
+      await g.scene(FALL, { beat: 'prologue' }, { beds: { rain: 0.6 } });
       g.sound.thunder(0.3);
       await g.beat('prologue');
       await g.wait(800);
       await g.title(tr('The Fall of the House of Usher'));
       // the dark; and his letter
-      g.sound.rain(0.2, 5);
+      g.beds({ rain: 0.2 });
       g.fade(0.94, 4);
       await g.wait(4500);
       await g.letter(LETTER);
-      g.sound.rain(0, 4);
+      g.beds({});
       await g.wait(1500);
     },
   ],

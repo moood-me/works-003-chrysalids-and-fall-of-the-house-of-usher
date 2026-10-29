@@ -121,12 +121,11 @@ export default {
     },
     // the nights: the sound from below; ⚑ go down, go to him, or the wind
     async g => {
-      await g.scene(NIGHT, { beat: 'night' });
-      g.sound.rain(0.3, 4);
+      await g.scene(NIGHT, { beat: 'night' }, { beds: { rain: 0.3 } });
       await g.beat('night');
       await g.say('narrator', 'Some days passed. He roamed the house by night. Sleep came not near my couch.');
       const { heard } = await g.play(listening, { clarity: 1 - g.state.scales.sanity / SCALES.sanity.max });
-      g.sound.house(0.15, 3);
+      g.beds({ rain: 0.4, house: 0.15 });
       if (heard === 'melody') await g.say('narrator', 'From below, through the stone — her song. Before, I should not have heard it.');
       else await g.say('narrator', 'From below — scarcely to be heard — as of something scratching at wood.');
       const lamp = g.beat('lamp_pass');

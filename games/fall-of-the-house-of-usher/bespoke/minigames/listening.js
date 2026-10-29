@@ -8,7 +8,7 @@
 // narrator turns to it (`listen`); held there long enough — found.
 //   opts: { clarity: 0…1 (lower sanity, clearer): from 0.5 her song, under it the scratching }
 //   → { heard: 'scratch' | 'melody', seconds: how long it took }
-import { house, rain, scratch, melody } from '../sound.js';
+import { scratch, melody } from '../sound.js';
 import { until, keys } from '../hands.js';
 
 const HOLD = 2.5; // s of listening at the place
@@ -23,8 +23,7 @@ export default {
     const c = clamp(clarity), song = c >= 0.5;
     const mg = g.minigame({ phrase: tr('From below, through the stone, there came some sound') });
     const send = keys(g), t0 = mg.t;
-    house(0.75, 3);
-    rain(0.4, 3);
+    g.beds({ house: 0.75, rain: 0.4 }); // (the house breathing, the rain: the background while he listens)
     const scraping = scratch();
     // her song, over and over, as long as it is listened for
     let hum = null, over = false;

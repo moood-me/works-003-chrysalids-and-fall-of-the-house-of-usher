@@ -34,14 +34,13 @@ export default {
   steps: [
     // the house over the tarn at dusk: the gloom without a cause; the crack
     async g => {
-      await g.scene(HOUSE, { beat: 'arrive' });
-      g.sound.house(0.35, 6);
+      await g.scene(HOUSE, { beat: 'arrive' }, { beds: { house: 0.35 } });
       await g.beat('arrive');
       await g.beat('look', { wait: false });
       await g.say('narrator', 'I know not how it was — but, with the first glimpse of the building, a sense of insufferable gloom pervaded my spirit.');
       await g.play(cause, {
         onLook: (which, n) => {
-          g.sound.house(0.35 * (1 - n / 3), 3); // the gloom: the air goes silent, look by look
+          g.beds({ house: 0.35 * (1 - n / 3) }); // the gloom: the air goes silent, look by look
           return g.say('narrator', LOOKS[which]);
         },
       });

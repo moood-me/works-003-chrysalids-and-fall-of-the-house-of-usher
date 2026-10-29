@@ -1,9 +1,11 @@
 // Sounds of the game's own, made in the page (Web Audio): nothing to load. As loud as the site's "sounds" slider says
 // (MooodVolume.output); the page runs the audio: it sounds once the browser lets it (the first touch), and waits with
-// the play as the scene's music does — paused, its scene standing or being made ready —, fading out and back in.
-//   house(level, seconds) — the house's air: wind round an old house (a recording, sounds/); one for the page, as loud as `level` (0 — silence), getting there over `seconds`
-//   rain(level, seconds) — rain on stone and water (a recording); likewise. hush(seconds) — both fall silent
-//   unheard() → {sounds, wake()} — the same, unheard, for a step played unseen (jump.js); a step plays them as g.sound
+// the scene's music — the play paused, its scene standing —, fading out and back in with it.
+//   background(levels, seconds) — the beds, one of each for the page: house — the house's air, wind round an old house;
+//     rain — rain on stone and water (recordings, sounds/); those named to their levels (0 — silence), every other to
+//     silence, over `seconds`: the game's background as the page sounds it (bespoke.onBackground — at a scene's cut
+//     with its music, or at once: the game declares it, g.scene's beds and g.beds, and never times it)
+//   unheard() → {sounds} — the same, unheard, for a step played unseen (jump.js); a step plays them as g.sound
 //   guitar({muffled}) → {note(pitch, {at, loud, bright}), strum(pitches, {at, loud, up, spread}),
 //     loud(v, seconds), stop(seconds)} — plucked strings (Karplus–Strong); pitch 'D4', 'F#3' or a MIDI number; at —
 //     seconds from now; muffled — heard through stone
@@ -198,13 +200,13 @@ function loop(name, make, level, seconds) {
   }
   to(loops[name].gain, level, seconds);
 }
-// wind in an old house: a recording
-export function house(level = 1, seconds = 3) { loop('house', recorded('house-797666.mp3', 1.33), level, seconds); }
-// rain: a recording
-export function rain(level = 1, seconds = 3) { loop('rain', recorded('rain-water-859807.mp3', 2.88), level, seconds); }
-export function hush(seconds = 2) {
-  if (!ctx) return;
-  for (const out of Object.values(loops)) to(out.gain, 0, seconds);
+// the beds: wind in an old house, rain — recordings (their names: what a background may name)
+export const BEDS = {
+  house: (level, seconds) => loop('house', recorded('house-797666.mp3', 1.33), level, seconds),
+  rain: (level, seconds) => loop('rain', recorded('rain-water-859807.mp3', 2.88), level, seconds),
+};
+export function background(levels, seconds) {
+  for (const [name, play] of Object.entries(BEDS)) play(levels[name] ?? 0, seconds);
 }
 
 // a plucked string, `seconds` long: Karplus–Strong — a burst of noise going round a delay one period
@@ -545,20 +547,16 @@ export function clang() {
   return 5;
 }
 
-// the sounds of a step played unseen (a jump: jump.js): nothing heard meanwhile — what lasts (the house, the rain)
-// heard from then on as loud as it was left; a song begun meanwhile not heard (it is over by then, or it was stopped)
+// the sounds of a step played unseen (a jump: jump.js): nothing heard meanwhile; a song begun meanwhile not heard (it
+// is over by then, or it was stopped). (The background the step declared is the jump's: j.background)
 export function unheard() {
-  const levels = {}, none = () => {};
+  const none = () => {};
   return {
     sounds: {
-      house(level = 1) { levels.house = level; },
-      rain(level = 1) { levels.rain = level; },
       melody: () => ({ done: Promise.resolve(), loud: none, stop: none }),
       guitar: () => ({ note: none, strum: none, loud: none, stop: none }),
-      hush() { for (const k in levels) levels[k] = 0; },
       knock: none, screw: none, ironDoor: none, thunder: none, crash: none, paper: none, step: none, scratch: none,
       splinter: none, shriek: none, clang: none,
     },
-    wake() { for (const [k, level] of Object.entries(levels)) ({ house, rain })[k](level, 1); },
   };
 }

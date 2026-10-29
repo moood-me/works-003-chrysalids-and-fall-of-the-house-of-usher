@@ -32,7 +32,7 @@
 import { SCALES, SCENES, context, listen, through } from './story.js';
 import { ui } from './ui.js';
 import { trees } from './map.js';
-import { hush, unheard } from './sound.js';
+import { background, unheard } from './sound.js';
 import { jump } from './jump.js';
 import prologue from './chapters/prologue.js';
 import one from './chapters/1.js';
@@ -58,6 +58,8 @@ export default async function (b) {
   // book's serif, ink and bone, the red of the crack
   b.minigame.style({ key: 'A_MAJOR_G_FLAT_MINOR', font: 'Georgia, "Times New Roman", serif', colors: { mark: '#e4d8bf', fill: '#c9a46a', good: '#a8b89a', danger: '#b0261a', fork: '#9aa4b4', ghost: 'rgba(228, 216, 191, 0.5)' } });
   const hub = listen(b);
+  // (the game's background — the house, the rain — as the page sounds it: at a scene's cut with its music, or at once)
+  b.onBackground(background);
   const view = ui(b.layer);
   let kept = load(b.saved);
   // the replay going on, never kept: {run, steps: its chapter's states as its steps began, done: played to its end}
@@ -168,10 +170,9 @@ export default async function (b) {
     // (nothing of the chapter said or shown stays over the map)
     b.hush();
     view.quiet();
-    hush(2);
     view.gauges(null);
     const here = replay ? replay.run.chapter : Math.min(kept.chapter, END);
-    await b.show(SCENES.wall, { state: { shown: reveal ?? here }, captions: false, fade: through() });
+    await b.show(SCENES.wall, { state: { shown: reveal ?? here }, captions: false, fade: through(), background: {} });
     const drawn = trees(b, sky(), { grow: reveal, seconds: REVEAL, author: !!author });
     const notice = replay?.done && anew() ? view.notice(tr('If you keep it, the chapters after this one will have to be played again.')) : () => {};
     let grown = reveal == null, asked = null; // (an option that would leave the replay: asked again)

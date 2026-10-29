@@ -32,8 +32,7 @@ export default {
     async g => {
       // (said in the close-up of his face, lit from below)
       const close = g.told('enter_lamp:close');
-      await g.scene(STORM, { beat: 'enter_lamp' });
-      g.sound.rain(0.9, 3);
+      await g.scene(STORM, { beat: 'enter_lamp' }, { beds: { rain: 0.9 } });
       g.sound.thunder(0.7);
       const lamp = g.beat('enter_lamp');
       await close;

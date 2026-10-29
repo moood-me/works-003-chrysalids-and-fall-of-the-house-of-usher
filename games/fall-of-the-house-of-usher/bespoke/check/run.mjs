@@ -169,7 +169,7 @@ for (const name in MINIGAMES) if (![...GAMES.values()].some(m => m.name === name
 const quietNames = Object.keys(sound.unheard().sounds);
 for (const name of quietNames) if (typeof sound[name] !== 'function') miss('sound.js', `sound “${name}” is in unheard(), but not in sound.js`);
 for (const name in sound) {
-  if (typeof sound[name] === 'function' && !['unheard'].includes(name) && !quietNames.includes(name)) miss('sound.js', `sound “${name}” is not in unheard()`);
+  if (typeof sound[name] === 'function' && !['unheard', 'background'].includes(name) && !quietNames.includes(name)) miss('sound.js', `sound “${name}” is not in unheard()`);
 }
 // «Crack», as game.js opens it
 const wall = WORLD.get(SCENES.wall);
@@ -236,7 +236,6 @@ function watched(g, j, ch, here, events) {
         bad(`sound “${n}” is not in sound.js or in unheard()`);
         return false;
       };
-      if (name === 'beds') return (levels = {}, seconds) => { Object.keys(levels).forEach(known); quiet.beds(levels, seconds); };
       return known(name) ? quiet[name] : mute;
     },
   });
@@ -252,9 +251,21 @@ function watched(g, j, ch, here, events) {
     if (!lines.has(`${who}\n${text}`)) lines.set(`${who}\n${text}`, { who, text, where: here });
     if (!during) events.push(['say', 0.3 + 0.06 * text.length]);
   };
+  // the beds of a background the step declares (g.beds, g.scene's beds): {bed: level} of the beds sound.js has
+  // (BEDS), and nothing more — the page times it (no seconds)
+  const declared = (levels, as) => {
+    if (!levels || typeof levels !== 'object' || Array.isArray(levels)) { bad(`${as}: not {bed: level}`); return; }
+    for (const n in levels) if (!(n in sound.BEDS)) bad(`${as}: the bed “${n}” is not in sound.js`);
+  };
   const w = Object.create(g);
   Object.assign(w, {
+    beds(levels, ...more) {
+      declared(levels, 'g.beds');
+      if (more.length) bad('g.beds: seconds — the page times the background');
+      return g.beds(levels);
+    },
     async scene(title, st = {}, how) {
+      if (how?.beds !== undefined) declared(how.beds, `g.scene “${title}” beds`);
       const scene = WORLD.get(title), party = carry(title, facts(g.state));
       if (scene && party) {
         cur = { title, scene, last: null, opening: typeof st.beat === 'string' ? st.beat : null };

@@ -1,4 +1,4 @@
 {"strings": [
-  {"text":"The Fall of the House of Usher v3","translation":"Der Untergang des Hauses Usher v3","where":"worlds/fall-of-the-house-of-usher/world.json title"},
+  {"text":"The Fall of the House of Usher","translation":"Der Untergang des Hauses Usher","where":"worlds/fall-of-the-house-of-usher/world.json title"},
   {"text":"The Fall of the House of Usher on engine 3: the v2 scenes, rewritten in engine 3's language; the game — in the language of mini-games.","translation":"Der Untergang des Hauses Usher auf Engine 3: die Szenen aus v2, neu geschrieben in der Sprache von Engine 3; das Spiel – in der Sprache der Minispiele.","where":"worlds/fall-of-the-house-of-usher/world.json description"}
 ]}

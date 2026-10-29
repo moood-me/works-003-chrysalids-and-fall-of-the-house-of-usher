@@ -1,4 +1,4 @@
 {"strings": [
-  {"text":"The Chrysalids v3","translation":"Отклонение от нормы v3","where":"worlds/chrysalids/world.json title"},
+  {"text":"The Chrysalids","translation":"Отклонение от нормы","where":"worlds/chrysalids/world.json title"},
   {"text":"John Wyndham’s “The Chrysalids” on engine 3 and the language of mini-games","translation":"«Отклонение от нормы» по роману Джона Уиндема на движке 3 и языке мини-игр","where":"worlds/chrysalids/world.json description"}
 ]}

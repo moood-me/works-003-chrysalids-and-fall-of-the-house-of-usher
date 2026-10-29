@@ -1,4 +1,4 @@
 {"strings": [
-  {"text":"The Fall of the House of Usher v3","translation":"어셔가의 몰락 v3","where":"worlds/fall-of-the-house-of-usher/world.json title"},
+  {"text":"The Fall of the House of Usher","translation":"어셔가의 몰락","where":"worlds/fall-of-the-house-of-usher/world.json title"},
   {"text":"The Fall of the House of Usher on engine 3: the v2 scenes, rewritten in engine 3's language; the game — in the language of mini-games.","translation":"엔진 3으로 그린 「어셔가의 몰락」: v2의 장면들을 엔진 3의 언어로 다시 쓰고, 게임은 미니게임의 언어로.","where":"worlds/fall-of-the-house-of-usher/world.json description"}
 ]}

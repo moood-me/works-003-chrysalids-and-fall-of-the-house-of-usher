@@ -1,4 +1,4 @@
 {"strings": [
-  {"text":"The Chrysalids v3","translation":"さなぎ v3","where":"worlds/chrysalids/world.json title"},
+  {"text":"The Chrysalids","translation":"さなぎ","where":"worlds/chrysalids/world.json title"},
   {"text":"John Wyndham’s “The Chrysalids” on engine 3 and the language of mini-games","translation":"ジョン・ウィンダム『さなぎ』を、エンジン3とミニゲームの言語で","where":"worlds/chrysalids/world.json description"}
 ]}

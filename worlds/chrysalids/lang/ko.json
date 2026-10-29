@@ -1,4 +1,4 @@
 {"strings": [
-  {"text":"The Chrysalids v3","translation":"번데기 v3","where":"worlds/chrysalids/world.json title"},
+  {"text":"The Chrysalids","translation":"번데기","where":"worlds/chrysalids/world.json title"},
   {"text":"John Wyndham’s “The Chrysalids” on engine 3 and the language of mini-games","translation":"존 윈덤의 『번데기』를 엔진 3과 미니게임의 언어로","where":"worlds/chrysalids/world.json description"}
 ]}

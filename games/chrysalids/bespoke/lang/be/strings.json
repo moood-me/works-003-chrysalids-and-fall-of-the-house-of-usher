@@ -1,5 +1,5 @@
 {"strings": [
-  {"text":"The Chrysalids","translation":"Хрызаліды","where":"games/chrysalids/game.json title"},
+  {"text":"The Chrysalids","translation":"Адхіленне ад нормы","where":"games/chrysalids/game.json title"},
   {"text":"You are David Strorm, son of the strictest man in Waknuk. Here one toe too many is reason enough to cast a child out into the Fringes. You and your friends differ in a way no one can see: you speak to each other in thoughts. So far, no one knows.","translation":"Ты — Дэвід Сторм, сын самага строгага чалавека ў Вакнуку. Тут лішні палец на назе — падстава выгнаць дзіця на Ускраіны. А ў цябе і тваіх сяброў адрозненне нябачнае: вы размаўляеце адно з адным думкамі. Пакуль пра гэта ніхто не ведае.","where":"games/chrysalids/game.json description"},
   {"text":"In a community where any difference is a sin, a boy hides his gift: he hears his friends’ thoughts.","translation":"У абшчыне, дзе любое адрозненне — грэх, хлопчык хавае свой дар: ён чуе думкі сяброў.","where":"games/chrysalids/game.json line"},
   {"text":"after the novel by John Wyndham","translation":"паводле рамана Джона Уіндэма","where":"games/chrysalids/game.json source"},

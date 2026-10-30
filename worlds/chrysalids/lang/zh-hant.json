@@ -1,4 +1,4 @@
 {"strings": [
   {"text":"The Chrysalids","translation":"蛹","where":"worlds/chrysalids/world.json title"},
-  {"text":"John Wyndham’s “The Chrysalids” on engine 3 and the language of mini-games","translation":"約翰·溫德姆的《蛹》，以引擎 3 與小遊戲的語言呈現","where":"worlds/chrysalids/world.json description"}
+  {"text":"Waknuk, a strict farming settlement where one toe too many is enough to cast a child out into the Fringes — and a few children who speak to each other in thoughts. After John Wyndham.","translation":"瓦克納克，一個嚴厲的農莊聚落，腳上多長一根腳趾就足以讓孩子被趕進邊緣地帶——還有幾個用思緒彼此交談的孩子。改編自約翰·溫德姆的小說。","where":"worlds/chrysalids/world.json description"}
 ]}

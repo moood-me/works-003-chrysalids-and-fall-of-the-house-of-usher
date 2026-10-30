@@ -1,4 +1,4 @@
 {"strings": [
   {"text":"The Fall of the House of Usher","translation":"A Queda da Casa de Usher","where":"worlds/fall-of-the-house-of-usher/world.json title"},
-  {"text":"The Fall of the House of Usher on engine 3: the v2 scenes, rewritten in engine 3's language; the game — in the language of mini-games.","translation":"A Queda da Casa de Usher no motor 3: as cenas da v2, reescritas na linguagem do motor 3; o jogo — na linguagem dos minijogos.","where":"worlds/fall-of-the-house-of-usher/world.json description"}
+  {"text":"A grey house above a dark tarn, a fissure down its front, an old friend who has sent for you, and his sister like a shadow. After Edgar Allan Poe.","translation":"Uma casa cinzenta sobre um lago escuro, uma fenda descendo pela fachada, um velho amigo que mandou chamar você e a irmã dele, como uma sombra. Baseado no conto de Edgar Allan Poe.","where":"worlds/fall-of-the-house-of-usher/world.json description"}
 ]}

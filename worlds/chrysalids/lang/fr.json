@@ -1,4 +1,4 @@
 {"strings": [
   {"text":"The Chrysalids","translation":"Les Chrysalides","where":"worlds/chrysalids/world.json title"},
-  {"text":"John Wyndham’s “The Chrysalids” on engine 3 and the language of mini-games","translation":"« Les Chrysalides » de John Wyndham sur le moteur 3 et le langage des mini-jeux","where":"worlds/chrysalids/world.json description"}
+  {"text":"Waknuk, a strict farming settlement where one toe too many is enough to cast a child out into the Fringes — and a few children who speak to each other in thoughts. After John Wyndham.","translation":"Waknuk, un village de fermiers austère où un orteil de trop suffit pour chasser un enfant dans les Franges — et quelques enfants qui se parlent en pensée. D’après le roman de John Wyndham.","where":"worlds/chrysalids/world.json description"}
 ]}

@@ -1,4 +1,4 @@
 {"strings": [
   {"text":"The Fall of the House of Usher","translation":"アッシャー家の崩壊","where":"worlds/fall-of-the-house-of-usher/world.json title"},
-  {"text":"The Fall of the House of Usher on engine 3: the v2 scenes, rewritten in engine 3's language; the game — in the language of mini-games.","translation":"エンジン3で描く「アッシャー家の崩壊」――v2の場面をエンジン3の言語で書きなおし、ゲームはミニゲームの言語で。","where":"worlds/fall-of-the-house-of-usher/world.json description"}
+  {"text":"A grey house above a dark tarn, a fissure down its front, an old friend who has sent for you, and his sister like a shadow. After Edgar Allan Poe.","translation":"暗い沼を見おろす灰色の館、その正面を走る亀裂、あなたを呼び寄せた旧友、そして影のような彼の妹。エドガー・アラン・ポーの短編より。","where":"worlds/fall-of-the-house-of-usher/world.json description"}
 ]}

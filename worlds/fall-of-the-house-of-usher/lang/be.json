@@ -1,4 +1,4 @@
 {"strings": [
   {"text":"The Fall of the House of Usher","translation":"Падзенне дома Ашэраў","where":"worlds/fall-of-the-house-of-usher/world.json title"},
-  {"text":"The Fall of the House of Usher on engine 3: the v2 scenes, rewritten in engine 3's language; the game — in the language of mini-games.","translation":"Падзенне дома Ашэраў на рухавіку 3: сцэны v2, перапісаныя мовай рухавіка 3; гульня — на мове міні-гульняў.","where":"worlds/fall-of-the-house-of-usher/world.json description"}
+  {"text":"A grey house above a dark tarn, a fissure down its front, an old friend who has sent for you, and his sister like a shadow. After Edgar Allan Poe.","translation":"Шэры дом над цёмнай сажалкай, расколіна па фасадзе, стары сябар, які паклікаў цябе, і яго сястра, падобная да ценю. Паводле апавядання Эдгара Алана По.","where":"worlds/fall-of-the-house-of-usher/world.json description"}
 ]}

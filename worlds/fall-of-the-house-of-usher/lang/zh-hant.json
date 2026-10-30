@@ -1,4 +1,4 @@
 {"strings": [
   {"text":"The Fall of the House of Usher","translation":"亞瑟府的沒落","where":"worlds/fall-of-the-house-of-usher/world.json title"},
-  {"text":"The Fall of the House of Usher on engine 3: the v2 scenes, rewritten in engine 3's language; the game — in the language of mini-games.","translation":"以引擎 3 呈現的《亞瑟府的沒落》：v2 的場景以引擎 3 的語言重寫；遊戲則以小遊戲的語言寫成。","where":"worlds/fall-of-the-house-of-usher/world.json description"}
+  {"text":"A grey house above a dark tarn, a fissure down its front, an old friend who has sent for you, and his sister like a shadow. After Edgar Allan Poe.","translation":"幽暗湖沼上的一座灰色宅子，正面裂開一道縫，一位召你前來的老友，還有他宛如影子的妹妹。改編自愛倫坡的短篇小說。","where":"worlds/fall-of-the-house-of-usher/world.json description"}
 ]}

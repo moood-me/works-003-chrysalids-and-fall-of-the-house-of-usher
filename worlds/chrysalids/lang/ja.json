@@ -1,4 +1,4 @@
 {"strings": [
   {"text":"The Chrysalids","translation":"さなぎ","where":"worlds/chrysalids/world.json title"},
-  {"text":"John Wyndham’s “The Chrysalids” on engine 3 and the language of mini-games","translation":"ジョン・ウィンダム『さなぎ』を、エンジン3とミニゲームの言語で","where":"worlds/chrysalids/world.json description"}
+  {"text":"Waknuk, a strict farming settlement where one toe too many is enough to cast a child out into the Fringes — and a few children who speak to each other in thoughts. After John Wyndham.","translation":"ワクナック――足の指が一本多いだけで子どもが外辺地方へ追放される、厳格な農村。そして、思いで互いに話せる数人の子どもたち。ジョン・ウィンダムの小説より。","where":"worlds/chrysalids/world.json description"}
 ]}

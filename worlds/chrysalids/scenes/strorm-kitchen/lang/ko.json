@@ -1,24 +1,6 @@
-{
-  "strings": [
-    {
-      "text": "Honour the Image",
-      "translation": "형상을 공경하라",
-      "where": "worlds/chrysalids/scenes/strorm-kitchen/elements/wall.js"
-    },
-    {
-      "text": "Keep the Stock Pure",
-      "translation": "혈통을 순수히 지켜라",
-      "where": "worlds/chrysalids/scenes/strorm-kitchen/elements/wall.js"
-    },
-    {
-      "text": "Watch Thou for the Mutant!",
-      "translation": "너는 변종을 경계하라!",
-      "where": "worlds/chrysalids/scenes/strorm-kitchen/elements/wall.js"
-    },
-    {
-      "text": "The Strorms’ kitchen",
-      "translation": "스트롬가의 부엌",
-      "where": "worlds/chrysalids/scenes/strorm-kitchen/scene.json title"
-    }
-  ]
-}
+{"strings": [
+  {"text":"Honour the Image","translation":"형상을 공경하라","where":"worlds/chrysalids/scenes/strorm-kitchen/elements/wall.js"},
+  {"text":"Keep the Stock Pure","translation":"혈통을 순수히 지켜라","where":"worlds/chrysalids/scenes/strorm-kitchen/elements/wall.js"},
+  {"text":"Watch Thou for the Mutant!","translation":"너는 변종을 경계하라!","where":"worlds/chrysalids/scenes/strorm-kitchen/elements/wall.js"},
+  {"text":"The Strorms’ kitchen","translation":"스트롬가의 부엌","where":"worlds/chrysalids/scenes/strorm-kitchen/scene.json title"}
+]}

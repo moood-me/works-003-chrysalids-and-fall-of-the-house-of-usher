@@ -1,4 +1,4 @@
 {"strings": [
   {"text":"The Chrysalids","translation":"Poczwarki","where":"worlds/chrysalids/world.json title"},
-  {"text":"John Wyndham’s “The Chrysalids” on engine 3 and the language of mini-games","translation":"„Poczwarki” Johna Wyndhama na silniku 3 i w języku minigier","where":"worlds/chrysalids/world.json description"}
+  {"text":"Waknuk, a strict farming settlement where one toe too many is enough to cast a child out into the Fringes — and a few children who speak to each other in thoughts. After John Wyndham.","translation":"Waknuk, surowa osada rolników, gdzie jeden palec u nogi za dużo wystarczy, by wygnać dziecko na Obrzeża – i kilkoro dzieci, które rozmawiają ze sobą myślami. Według powieści Johna Wyndhama.","where":"worlds/chrysalids/world.json description"}
 ]}

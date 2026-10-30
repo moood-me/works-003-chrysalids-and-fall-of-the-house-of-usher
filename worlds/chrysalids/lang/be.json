@@ -1,4 +1,4 @@
 {"strings": [
   {"text":"The Chrysalids","translation":"Адхіленне ад нормы","where":"worlds/chrysalids/world.json title"},
-  {"text":"John Wyndham’s “The Chrysalids” on engine 3 and the language of mini-games","translation":"«Адхіленне ад нормы» паводле рамана Джона Уіндэма на рухавіку 3 і мове міні-гульняў","where":"worlds/chrysalids/world.json description"}
+  {"text":"Waknuk, a strict farming settlement where one toe too many is enough to cast a child out into the Fringes — and a few children who speak to each other in thoughts. After John Wyndham.","translation":"Вакнук, строгі фермерскі пасёлак, дзе праз лішні палец на назе дзіця выганяюць на Ускраіны, — і некалькі дзяцей, якія размаўляюць адно з адным думкамі. Паводле рамана Джона Уіндэма.","where":"worlds/chrysalids/world.json description"}
 ]}

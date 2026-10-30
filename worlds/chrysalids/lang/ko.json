@@ -1,4 +1,4 @@
 {"strings": [
   {"text":"The Chrysalids","translation":"번데기","where":"worlds/chrysalids/world.json title"},
-  {"text":"John Wyndham’s “The Chrysalids” on engine 3 and the language of mini-games","translation":"존 윈덤의 『번데기』를 엔진 3과 미니게임의 언어로","where":"worlds/chrysalids/world.json description"}
+  {"text":"Waknuk, a strict farming settlement where one toe too many is enough to cast a child out into the Fringes — and a few children who speak to each other in thoughts. After John Wyndham.","translation":"발가락 하나가 더 많다는 것만으로 아이를 변두리로 내쫓는 엄격한 농촌 마을 왁넉 — 그리고 서로 생각으로 말을 나누는 몇몇 아이들. 존 윈덤의 소설을 바탕으로.","where":"worlds/chrysalids/world.json description"}
 ]}
